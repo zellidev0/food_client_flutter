@@ -2,10 +2,8 @@ import 'dart:convert';
 
 import 'package:food_client/home/home_controller.dart';
 import 'package:food_client/profile/profile_controller.dart';
-import 'package:food_client/services/web_client/web_client_model.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:http/http.dart' as http;
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 class WebClientService
     implements HomeWebClientService, ProfileWebClientService {
@@ -16,9 +14,6 @@ class WebClientService
     'Authorization':
         'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzE0OTk5OTMsImlhdCI6MTY2ODg3MDI1MCwiaXNzIjoic2VuZiIsImp0aSI6IjE4MjBiZmVmLTYwM2ItNDEyZS05Yzg4LTU1ZDQwMjMyYzhkYiJ9.ym3BOCZAuL52rcMzfL_1zKOQbxcuVp7dPgnknif72tQ',
   };
-
-  @override
-  WebClientModel build() => WebClientModel();
 
   @override
   TaskEither<Exception, Map<String, dynamic>> fetchAllRecipes() =>

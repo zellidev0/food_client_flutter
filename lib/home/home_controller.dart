@@ -1,20 +1,18 @@
 import 'package:food_client/home/home_model.dart';
 import 'package:food_client/home/home_view.dart';
 import 'package:food_client/providers.dart';
-import 'package:food_client/services/recipe_parser/recipe_parser_model.dart';
-import 'package:food_client/services/recipe_parser/recipe_parser_service.dart';
-import 'package:food_client/services/web_client/web_client_model.dart';
-import 'package:food_client/services/web_client/web_client_service.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 class HomeControllerImplementation extends HomeController {
+  // ignore: unused_field
+  late final HomeWebClientService _webClientService;
+  // ignore: unused_field
+  late final HomeRecipeParserService _recipeParserService;
+
   @override
   HomeModel build() {
-    final HomeWebClientService x = ref.watch(homeWebClientServiceProvider);
-    final HomeRecipeParserService y = ref.watch(
-      homeRecipeParserServiceProvider,
-    );
+    _webClientService = ref.watch(homeWebClientServiceProvider);
+    _recipeParserService = ref.watch(homeRecipeParserServiceProvider);
     return HomeModel();
   }
 

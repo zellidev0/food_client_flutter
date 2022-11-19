@@ -1,18 +1,18 @@
 import 'package:food_client/profile/profile_model.dart';
 import 'package:food_client/profile/profile_view.dart';
-import 'package:food_client/services/recipe_parser/recipe_parser_model.dart';
-import 'package:food_client/services/recipe_parser/recipe_parser_service.dart';
-import 'package:food_client/services/web_client/web_client_model.dart';
-import 'package:food_client/services/web_client/web_client_service.dart';
+import 'package:food_client/providers.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 class ProfileControllerImplementation extends ProfileController {
+  // ignore: unused_field
+  late final ProfileRecipeParserService _recipeParserService;
+  // ignore: unused_field
+  late final ProfileWebClientService _webClientService;
+
   @override
   ProfileModel build() {
-    // ref
-    //   ..watch(webClientServiceProvider)
-    //   ..watch(recipeParserServiceProvider);
+    _recipeParserService = ref.watch(profileRecipeParserServiceProvider);
+    _webClientService = ref.watch(profileWebClientServiceProvider);
     return ProfileModel();
   }
 }
