@@ -9,7 +9,9 @@ class HomeView extends ConsumerWidget {
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
     // ignore: unused_local_variable
-    final HomeModel model = ref.watch(homeControllerImplementationProvider);
+    final HomeModel model = ref.watch(
+      homeControllerImplementationProvider,
+    );
     // ignore: unused_local_variable
     final HomeController controller = ref.watch(
       homeControllerImplementationProvider.notifier,

@@ -9,8 +9,9 @@ class ProfileView extends ConsumerWidget {
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
     // ignore: unused_local_variable
-    final ProfileModel model =
-        ref.watch(profileControllerImplementationProvider);
+    final ProfileModel model = ref.watch(
+      profileControllerImplementationProvider,
+    );
     // ignore: unused_local_variable
     final ProfileController controller = ref.watch(
       profileControllerImplementationProvider.notifier,
