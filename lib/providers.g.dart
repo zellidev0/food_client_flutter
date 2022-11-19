@@ -41,6 +41,20 @@ final homeWebClientServiceProvider = AutoDisposeProvider<HomeWebClientService>(
       : $homeWebClientServiceHash,
 );
 typedef HomeWebClientServiceRef = AutoDisposeProviderRef<HomeWebClientService>;
+String $profileWebClientServiceHash() =>
+    r'c6f852f9a110fabd20b8feb896a1909af166448a';
+
+/// See also [profileWebClientService].
+final profileWebClientServiceProvider =
+    AutoDisposeProvider<ProfileWebClientService>(
+  profileWebClientService,
+  name: r'profileWebClientServiceProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : $profileWebClientServiceHash,
+);
+typedef ProfileWebClientServiceRef
+    = AutoDisposeProviderRef<ProfileWebClientService>;
 String $homeRecipeParserServiceHash() =>
     r'1fd7c5c9903236aabde02703060584fc168f8af9';
 
@@ -55,3 +69,17 @@ final homeRecipeParserServiceProvider =
 );
 typedef HomeRecipeParserServiceRef
     = AutoDisposeProviderRef<HomeRecipeParserService>;
+String $profileRecipeParserServiceHash() =>
+    r'fa077581172a92097e722f18e6a669818539d0ad';
+
+/// See also [profileRecipeParserService].
+final profileRecipeParserServiceProvider =
+    AutoDisposeProvider<ProfileRecipeParserService>(
+  profileRecipeParserService,
+  name: r'profileRecipeParserServiceProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : $profileRecipeParserServiceHash,
+);
+typedef ProfileRecipeParserServiceRef
+    = AutoDisposeProviderRef<ProfileRecipeParserService>;
