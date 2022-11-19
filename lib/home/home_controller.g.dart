@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'home_view.dart';
+part of 'home_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -29,20 +29,23 @@ class _SystemHash {
   }
 }
 
-String $HomeControllerHash() => r'2f4880ba003d9f3c9ec36ab2682e7e9595a001a8';
+String $HomeControllerImplementationHash() =>
+    r'f1027b0d6ad14ef767d1b381c5331dc43ec29dc8';
 
-/// See also [HomeController].
-final homeControllerProvider =
-    AutoDisposeNotifierProvider<HomeController, HomeModel>(
-  HomeController.new,
-  name: r'homeControllerProvider',
+/// See also [HomeControllerImplementation].
+final homeControllerImplementationProvider =
+    AutoDisposeNotifierProvider<HomeControllerImplementation, HomeModel>(
+  HomeControllerImplementation.new,
+  name: r'homeControllerImplementationProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $HomeControllerHash,
+      : $HomeControllerImplementationHash,
 );
-typedef HomeControllerRef = AutoDisposeNotifierProviderRef<HomeModel>;
+typedef HomeControllerImplementationRef
+    = AutoDisposeNotifierProviderRef<HomeModel>;
 
-abstract class _$HomeController extends AutoDisposeNotifier<HomeModel> {
+abstract class _$HomeControllerImplementation
+    extends AutoDisposeNotifier<HomeModel> {
   @override
   HomeModel build();
 }

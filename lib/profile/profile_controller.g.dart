@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'profile_view.dart';
+part of 'profile_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -29,20 +29,23 @@ class _SystemHash {
   }
 }
 
-String $ProfileControllerHash() => r'a7aa4a347b90d6b122e30a82b133e5f424b0870e';
+String $ProfileControllerImplementationHash() =>
+    r'6254b1c34cc6f5633da6797caa8c61c8df363adb';
 
-/// See also [ProfileController].
-final profileControllerProvider =
-    AutoDisposeNotifierProvider<ProfileController, ProfileModel>(
-  ProfileController.new,
-  name: r'profileControllerProvider',
+/// See also [ProfileControllerImplementation].
+final profileControllerImplementationProvider =
+    AutoDisposeNotifierProvider<ProfileControllerImplementation, ProfileModel>(
+  ProfileControllerImplementation.new,
+  name: r'profileControllerImplementationProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $ProfileControllerHash,
+      : $ProfileControllerImplementationHash,
 );
-typedef ProfileControllerRef = AutoDisposeNotifierProviderRef<ProfileModel>;
+typedef ProfileControllerImplementationRef
+    = AutoDisposeNotifierProviderRef<ProfileModel>;
 
-abstract class _$ProfileController extends AutoDisposeNotifier<ProfileModel> {
+abstract class _$ProfileControllerImplementation
+    extends AutoDisposeNotifier<ProfileModel> {
   @override
   ProfileModel build();
 }

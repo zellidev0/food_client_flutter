@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:food_client/profile/profile_controller.dart';
 import 'package:food_client/profile/profile_model.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-part 'profile_view.g.dart';
 
 class ProfileView extends ConsumerWidget {
   const ProfileView({super.key});
@@ -11,10 +9,11 @@ class ProfileView extends ConsumerWidget {
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
     // ignore: unused_local_variable
-    final ProfileModel model = ref.watch(profileControllerProvider);
+    final ProfileModel model =
+        ref.watch(profileControllerImplementationProvider);
     // ignore: unused_local_variable
     final ProfileController controller = ref.watch(
-      profileControllerProvider.notifier,
+      profileControllerImplementationProvider.notifier,
     );
 
     return MaterialApp(
@@ -28,8 +27,4 @@ class ProfileView extends ConsumerWidget {
   }
 }
 
-@riverpod
-abstract class ProfileController extends _$ProfileController {
-  @override
-  ProfileModel build();
-}
+abstract class ProfileController {}

@@ -2,8 +2,12 @@ import 'package:food_client/profile/profile_model.dart';
 import 'package:food_client/profile/profile_view.dart';
 import 'package:food_client/providers.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-class ProfileControllerImplementation extends ProfileController {
+part 'profile_controller.g.dart';
+
+@riverpod
+class ProfileControllerImplementation extends _$ProfileControllerImplementation implements ProfileController {
   // ignore: unused_field
   late final ProfileRecipeParserService _recipeParserService;
   // ignore: unused_field

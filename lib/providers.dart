@@ -7,17 +7,21 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'providers.g.dart';
 
+WebClientService buildWebClientService() => WebClientService(
+      useMockValues: true,
+    );
+
 @riverpod
 HomeWebClientService homeWebClientService(
   final HomeWebClientServiceRef ref,
 ) =>
-    WebClientService();
+    buildWebClientService();
 
 @riverpod
 ProfileWebClientService profileWebClientService(
   final ProfileWebClientServiceRef ref,
 ) =>
-    WebClientService();
+    buildWebClientService();
 
 @riverpod
 HomeRecipeParserService homeRecipeParserService(

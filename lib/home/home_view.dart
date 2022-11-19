@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:food_client/home/home_controller.dart';
 import 'package:food_client/home/home_model.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-part 'home_view.g.dart';
 
 class HomeView extends ConsumerWidget {
   const HomeView({super.key});
@@ -11,10 +9,10 @@ class HomeView extends ConsumerWidget {
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
     // ignore: unused_local_variable
-    final HomeModel model = ref.watch(homeControllerProvider);
+    final HomeModel model = ref.watch(homeControllerImplementationProvider);
     // ignore: unused_local_variable
     final HomeController controller = ref.watch(
-      homeControllerProvider.notifier,
+      homeControllerImplementationProvider.notifier,
     );
 
     return MaterialApp(
@@ -28,8 +26,4 @@ class HomeView extends ConsumerWidget {
   }
 }
 
-@riverpod
-abstract class HomeController extends _$HomeController {
-  @override
-  HomeModel build();
-}
+abstract class HomeController {}
