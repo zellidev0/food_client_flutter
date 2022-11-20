@@ -2,12 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:food_client/home/home_web_client_service.dart';
-import 'package:food_client/profile/profile_controller.dart';
+import 'package:food_client/profile/single_recipe_controller.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:http/http.dart' as http;
 
 class WebClientService
-    implements HomeWebClientService, ProfileWebClientService {
+    implements HomeWebClientService, SingleRecipeWebClientService {
   final bool _useMockValues;
 
   WebClientService({
@@ -28,7 +28,7 @@ class WebClientService
       return
           TaskEither<Exception, String>.tryCatch(
         () async => await rootBundle
-            .loadString('assets/recipes/recipes_100.json'),
+            .loadString('assets/recipes/recipes_300.json'),
         (final Object error, final _) =>
             Exception('Could not example hello fresh response.'),
       ).flatMap(

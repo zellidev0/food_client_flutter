@@ -1,7 +1,7 @@
 import 'package:food_client/home/home_recipe_parser.dart';
 import 'package:food_client/home/home_web_client_service.dart';
 import 'package:food_client/home/home_web_image_sizer_service.dart';
-import 'package:food_client/profile/profile_controller.dart';
+import 'package:food_client/profile/single_recipe_controller.dart';
 import 'package:food_client/services/recipe_parser/recipe_parser_service.dart';
 import 'package:food_client/services/web_client/web_client_service.dart';
 import 'package:food_client/services/web_image_sizer/web_image_sizer_service.dart';
@@ -20,7 +20,7 @@ HomeWebClientService homeWebClientService(
     buildWebClientService();
 
 @riverpod
-ProfileWebClientService profileWebClientService(
+SingleRecipeWebClientService profileWebClientService(
   final ProfileWebClientServiceRef ref,
 ) =>
     buildWebClientService();
@@ -32,7 +32,7 @@ HomeRecipeParserService homeRecipeParserService(
     RecipeParserService();
 
 @riverpod
-ProfileRecipeParserService profileRecipeParserService(
+SingleRecipeRecipeParserService profileRecipeParserService(
   final ProfileRecipeParserServiceRef ref,
 ) =>
     RecipeParserService();

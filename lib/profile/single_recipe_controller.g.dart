@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'profile_controller.dart';
+part of 'single_recipe_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -29,23 +29,24 @@ class _SystemHash {
   }
 }
 
-String $ProfileControllerImplementationHash() =>
-    r'6254b1c34cc6f5633da6797caa8c61c8df363adb';
+String $SingleRecipeControllerImplementationHash() =>
+    r'0f0c89104e74c46fccd639e06dba0304b2b548f5';
 
-/// See also [ProfileControllerImplementation].
-final profileControllerImplementationProvider =
-    AutoDisposeNotifierProvider<ProfileControllerImplementation, ProfileModel>(
-  ProfileControllerImplementation.new,
-  name: r'profileControllerImplementationProvider',
+/// See also [SingleRecipeControllerImplementation].
+final singleRecipeControllerImplementationProvider =
+    AutoDisposeNotifierProvider<SingleRecipeControllerImplementation,
+        SingleRecipeModel>(
+  SingleRecipeControllerImplementation.new,
+  name: r'singleRecipeControllerImplementationProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $ProfileControllerImplementationHash,
+      : $SingleRecipeControllerImplementationHash,
 );
-typedef ProfileControllerImplementationRef
-    = AutoDisposeNotifierProviderRef<ProfileModel>;
+typedef SingleRecipeControllerImplementationRef
+    = AutoDisposeNotifierProviderRef<SingleRecipeModel>;
 
-abstract class _$ProfileControllerImplementation
-    extends AutoDisposeNotifier<ProfileModel> {
+abstract class _$SingleRecipeControllerImplementation
+    extends AutoDisposeNotifier<SingleRecipeModel> {
   @override
-  ProfileModel build();
+  SingleRecipeModel build();
 }
