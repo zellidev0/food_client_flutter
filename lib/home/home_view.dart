@@ -82,7 +82,7 @@ class HomeView extends ConsumerWidget {
         ),
       );
 
-  Card _buildRecipeCardItem({
+  Widget _buildRecipeCardItem({
     required final HomeModelRecipe recipe,
   }) =>
       Card(

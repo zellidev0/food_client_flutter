@@ -114,13 +114,13 @@ List<HomeModelRecipe> mapToHomeModelRecipes({
                     .fold(
                   (final Exception l) {
                     debugPrint('Exception l');
-                    return none();
+                    return none<Uri>();
                   },
-                  some,
+                  some<Uri>,
                 ),
               )
               .map(
-                (imageUri) => HomeModelRecipe(
+                (final Uri imageUri) => HomeModelRecipe(
                   id: recipe.id,
                   displayedAttributes: _mapDisplayedAttributes(
                     displayedAttributes: recipe.displayedAttributes,
