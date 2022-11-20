@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/home/home_controller.dart';
 import 'package:food_client/home/home_model.dart';
+import 'package:fpdart/fpdart.dart';
 
 class HomeView extends ConsumerWidget {
   const HomeView({super.key});
@@ -25,7 +26,19 @@ class HomeView extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             buildTagChips(tags: model.tags, controller: controller),
-            buildRecipesList(recipes: model.recipes),
+            buildRecipesList(
+              recipes: model.recipes
+                  .filter(
+                    (final HomeModelRecipe recipe) => recipe.tagIds.any(
+                      (final String tag) => model.tags
+                          .where((final HomeModelTag tag) => tag.isSelected)
+                          .map((final HomeModelTag tagId) => tagId.id)
+                          .toList()
+                          .contains(tag),
+                    ),
+                  )
+                  .toList(),
+            ),
           ],
         ),
       ),
