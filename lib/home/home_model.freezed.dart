@@ -173,8 +173,7 @@ mixin _$HomeModelRecipe {
       throw _privateConstructorUsedError;
   List<HomeModelYield> get yields => throw _privateConstructorUsedError;
   List<String> get tagIds => throw _privateConstructorUsedError;
-  Option<Uri> get imageUriIcon => throw _privateConstructorUsedError;
-  Option<Uri> get imageUriLarge => throw _privateConstructorUsedError;
+  Uri get imageUriLarge => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeModelRecipeCopyWith<HomeModelRecipe> get copyWith =>
@@ -194,8 +193,7 @@ abstract class $HomeModelRecipeCopyWith<$Res> {
       List<HomeModelIngredient> ingredients,
       List<HomeModelYield> yields,
       List<String> tagIds,
-      Option<Uri> imageUriIcon,
-      Option<Uri> imageUriLarge});
+      Uri imageUriLarge});
 
   $HomeModelDisplayedAttributesCopyWith<$Res> get displayedAttributes;
 }
@@ -219,7 +217,6 @@ class _$HomeModelRecipeCopyWithImpl<$Res, $Val extends HomeModelRecipe>
     Object? ingredients = null,
     Object? yields = null,
     Object? tagIds = null,
-    Object? imageUriIcon = null,
     Object? imageUriLarge = null,
   }) {
     return _then(_value.copyWith(
@@ -247,14 +244,10 @@ class _$HomeModelRecipeCopyWithImpl<$Res, $Val extends HomeModelRecipe>
           ? _value.tagIds
           : tagIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      imageUriIcon: null == imageUriIcon
-          ? _value.imageUriIcon
-          : imageUriIcon // ignore: cast_nullable_to_non_nullable
-              as Option<Uri>,
       imageUriLarge: null == imageUriLarge
           ? _value.imageUriLarge
           : imageUriLarge // ignore: cast_nullable_to_non_nullable
-              as Option<Uri>,
+              as Uri,
     ) as $Val);
   }
 
@@ -283,8 +276,7 @@ abstract class _$$_HomeModelRecipeCopyWith<$Res>
       List<HomeModelIngredient> ingredients,
       List<HomeModelYield> yields,
       List<String> tagIds,
-      Option<Uri> imageUriIcon,
-      Option<Uri> imageUriLarge});
+      Uri imageUriLarge});
 
   @override
   $HomeModelDisplayedAttributesCopyWith<$Res> get displayedAttributes;
@@ -307,7 +299,6 @@ class __$$_HomeModelRecipeCopyWithImpl<$Res>
     Object? ingredients = null,
     Object? yields = null,
     Object? tagIds = null,
-    Object? imageUriIcon = null,
     Object? imageUriLarge = null,
   }) {
     return _then(_$_HomeModelRecipe(
@@ -335,14 +326,10 @@ class __$$_HomeModelRecipeCopyWithImpl<$Res>
           ? _value._tagIds
           : tagIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      imageUriIcon: null == imageUriIcon
-          ? _value.imageUriIcon
-          : imageUriIcon // ignore: cast_nullable_to_non_nullable
-              as Option<Uri>,
       imageUriLarge: null == imageUriLarge
           ? _value.imageUriLarge
           : imageUriLarge // ignore: cast_nullable_to_non_nullable
-              as Option<Uri>,
+              as Uri,
     ));
   }
 }
@@ -357,7 +344,6 @@ class _$_HomeModelRecipe implements _HomeModelRecipe {
       required final List<HomeModelIngredient> ingredients,
       required final List<HomeModelYield> yields,
       required final List<String> tagIds,
-      required this.imageUriIcon,
       required this.imageUriLarge})
       : _ingredients = ingredients,
         _yields = yields,
@@ -391,13 +377,11 @@ class _$_HomeModelRecipe implements _HomeModelRecipe {
   }
 
   @override
-  final Option<Uri> imageUriIcon;
-  @override
-  final Option<Uri> imageUriLarge;
+  final Uri imageUriLarge;
 
   @override
   String toString() {
-    return 'HomeModelRecipe(id: $id, displayedAttributes: $displayedAttributes, difficulty: $difficulty, ingredients: $ingredients, yields: $yields, tagIds: $tagIds, imageUriIcon: $imageUriIcon, imageUriLarge: $imageUriLarge)';
+    return 'HomeModelRecipe(id: $id, displayedAttributes: $displayedAttributes, difficulty: $difficulty, ingredients: $ingredients, yields: $yields, tagIds: $tagIds, imageUriLarge: $imageUriLarge)';
   }
 
   @override
@@ -414,8 +398,6 @@ class _$_HomeModelRecipe implements _HomeModelRecipe {
                 .equals(other._ingredients, _ingredients) &&
             const DeepCollectionEquality().equals(other._yields, _yields) &&
             const DeepCollectionEquality().equals(other._tagIds, _tagIds) &&
-            (identical(other.imageUriIcon, imageUriIcon) ||
-                other.imageUriIcon == imageUriIcon) &&
             (identical(other.imageUriLarge, imageUriLarge) ||
                 other.imageUriLarge == imageUriLarge));
   }
@@ -429,7 +411,6 @@ class _$_HomeModelRecipe implements _HomeModelRecipe {
       const DeepCollectionEquality().hash(_ingredients),
       const DeepCollectionEquality().hash(_yields),
       const DeepCollectionEquality().hash(_tagIds),
-      imageUriIcon,
       imageUriLarge);
 
   @JsonKey(ignore: true)
@@ -447,8 +428,7 @@ abstract class _HomeModelRecipe implements HomeModelRecipe {
       required final List<HomeModelIngredient> ingredients,
       required final List<HomeModelYield> yields,
       required final List<String> tagIds,
-      required final Option<Uri> imageUriIcon,
-      required final Option<Uri> imageUriLarge}) = _$_HomeModelRecipe;
+      required final Uri imageUriLarge}) = _$_HomeModelRecipe;
 
   @override
   String get id;
@@ -463,9 +443,7 @@ abstract class _HomeModelRecipe implements HomeModelRecipe {
   @override
   List<String> get tagIds;
   @override
-  Option<Uri> get imageUriIcon;
-  @override
-  Option<Uri> get imageUriLarge;
+  Uri get imageUriLarge;
   @override
   @JsonKey(ignore: true)
   _$$_HomeModelRecipeCopyWith<_$_HomeModelRecipe> get copyWith =>

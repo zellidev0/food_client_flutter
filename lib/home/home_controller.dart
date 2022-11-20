@@ -104,45 +104,37 @@ List<HomeModelRecipe> mapToHomeModelRecipes({
 }) =>
     recipes
         .map(
-          (final HomeRecipeParserModelRecipe recipe) => HomeModelRecipe(
-            id: recipe.id,
-            displayedAttributes: _mapDisplayedAttributes(
-              displayedAttributes: recipe.displayedAttributes,
-            ),
-            difficulty: recipe.difficulty,
-            ingredients: _mapIngredients(ingredients: recipe.ingredients),
-            yields: _mapYields(yields: recipe.yields),
-            tagIds: _mapTagIds(tags: recipe.tags),
-            imageUriIcon: recipe.imagePath.flatMap(
-              (final Uri imagePath) => imageResizerService
-                  .getUrl(
-                filePath: imagePath,
-                widthPixels: 100,
+          (final HomeRecipeParserModelRecipe recipe) => recipe.imagePath
+              .flatMap(
+                (final Uri imagePath) => imageResizerService
+                    .getUrl(
+                  filePath: imagePath,
+                  widthPixels: 500,
+                )
+                    .fold(
+                  (final Exception l) {
+                    debugPrint('Exception l');
+                    return none();
+                  },
+                  some,
+                ),
               )
-                  .fold(
-                (final Exception error) {
-                  debugPrint('$error');
-                  return none();
-                },
-                some,
+              .map(
+                (imageUri) => HomeModelRecipe(
+                  id: recipe.id,
+                  displayedAttributes: _mapDisplayedAttributes(
+                    displayedAttributes: recipe.displayedAttributes,
+                  ),
+                  difficulty: recipe.difficulty,
+                  ingredients: _mapIngredients(ingredients: recipe.ingredients),
+                  yields: _mapYields(yields: recipe.yields),
+                  tagIds: _mapTagIds(tags: recipe.tags),
+                  imageUriLarge: imageUri,
+                ),
               ),
-            ),
-            imageUriLarge: recipe.imagePath.flatMap(
-              (final Uri imagePath) => imageResizerService
-                  .getUrl(
-                filePath: imagePath,
-                widthPixels: 500,
-              )
-                  .fold(
-                (final Exception l) {
-                  debugPrint('Exception l');
-                  return none();
-                },
-                some,
-              ),
-            ),
-          ),
         )
+        .whereType<Some<HomeModelRecipe>>()
+        .map((final Some<HomeModelRecipe> recipe) => recipe.value)
         .toList();
 
 HomeModelDisplayedAttributes _mapDisplayedAttributes({

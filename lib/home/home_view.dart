@@ -82,13 +82,7 @@ class HomeView extends ConsumerWidget {
             children: <Widget>[
               Stack(
                 children: <Widget>[
-                  recipe.imageUriLarge
-                      .map<Widget>(
-                        (final Uri url) => Image(
-                          image: NetworkImage(url.toString()),
-                        ),
-                      )
-                      .getOrElse(() => const Icon(Icons.image_not_supported)),
+                  Image(image: NetworkImage(recipe.imageUriLarge.toString())),
                   Positioned.fill(
                     child: Align(
                       alignment: Alignment.bottomLeft,

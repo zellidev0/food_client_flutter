@@ -20,8 +20,7 @@ class HomeModelRecipe with _$HomeModelRecipe {
     required final List<HomeModelIngredient> ingredients,
     required final List<HomeModelYield> yields,
     required final List<String> tagIds,
-    required final Option<Uri> imageUriIcon,
-    required final Option<Uri> imageUriLarge,
+    required final Uri imageUriLarge,
   }) = _HomeModelRecipe;
 }
 
