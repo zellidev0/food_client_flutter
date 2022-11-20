@@ -28,7 +28,7 @@ class WebClientService
       return
           TaskEither<Exception, String>.tryCatch(
         () async => await rootBundle
-            .loadString('assets/json/example_hello_fresh_response.json'),
+            .loadString('assets/recipes/recipes_0.json'),
         (final Object error, final _) =>
             Exception('Could not example hello fresh response.'),
       ).flatMap(
@@ -57,8 +57,27 @@ class WebClientService
     );
   }
 
-  @override
-  TaskEither<Exception, Map<String, dynamic>> fetchAllThings() {
-    throw UnimplementedError();
-  }
 }
+
+
+// void main(List<String> arguments) async {
+//   var url = 'https://www.hellofresh.de/gw/api/recipes?take=XXX&skip=YYY';
+//   var jsons = [];
+//
+//   for (int i = 0; i < 186339; i += 1) {
+//     var response = await http.get(
+//       Uri.parse(url
+//           .replaceAll('XXX', 50.toString())
+//           .replaceAll('YYY', (i * 50).toString())),
+//       headers: {
+//         'Authorization':
+//         'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzE0OTk5OTMsImlhdCI6MTY2ODg3MDI1MCwiaXNzIjoic2VuZiIsImp0aSI6IjE4MjBiZmVmLTYwM2ItNDEyZS05Yzg4LTU1ZDQwMjMyYzhkYiJ9.ym3BOCZAuL52rcMzfL_1zKOQbxcuVp7dPgnknif72tQ',
+//       },
+//     );
+//     await File('recipes/recipes_${i * 50}.json').writeAsString(
+//       response.body,
+//     );
+//   }
+//
+//   exit(0);
+// }

@@ -17,15 +17,75 @@ class HomeView extends ConsumerWidget {
       homeControllerImplementationProvider.notifier,
     );
 
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: const Text('Example')),
-        body: const Center(
-          child: Text('value'),
+    return Scaffold(
+      backgroundColor: Colors.lightBlue.withOpacity(0.2),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            buildTagChips(tags: model.tags, controller: controller),
+            buildRecipesList(recipes: model.recipes),
+          ],
         ),
       ),
     );
   }
+
+  Widget buildTagChips({
+    required final List<HomeModelTag> tags,
+    required final HomeController controller,
+  }) =>
+      Padding(
+        padding: const EdgeInsets.all(4),
+        child: Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: List<Widget>.generate(
+            tags.length,
+            (final int index) => ChoiceChip(
+              label: Text(tags[index].displayedName),
+              selected: tags[index].isSelected,
+              onSelected: (final bool selected) {
+                controller.setTagSelected(index: index, selected: selected);
+              },
+            ),
+          ).toList(),
+        ),
+      );
+
+  Expanded buildRecipesList({
+    required final List<HomeModelRecipe> recipes,
+  }) =>
+      Expanded(
+        child: ListView.builder(
+          itemCount: recipes.length,
+          itemBuilder: (final BuildContext context, final int index) => Card(
+            child: ListTile(
+              title: Text(recipes[index].displayedAttributes.name),
+              subtitle: Text(recipes[index].displayedAttributes.headline),
+              leading: recipes[index]
+                  .imageUriIcon
+                  .map(
+                    (final Uri url) => CircleAvatar(
+                      backgroundImage: NetworkImage(url.toString()),
+                    ),
+                  )
+                  .getOrElse(
+                    () => const CircleAvatar(
+                      child: Icon(Icons.image_not_supported),
+                    ),
+                  ),
+              trailing: const Icon(Icons.add),
+            ),
+          ),
+        ),
+      );
 }
 
-abstract class HomeController {}
+abstract class HomeController {
+  void setTagSelected({
+    required final int index,
+    required final bool selected,
+  });
+}

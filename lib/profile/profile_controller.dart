@@ -1,7 +1,6 @@
 import 'package:food_client/profile/profile_model.dart';
 import 'package:food_client/profile/profile_view.dart';
 import 'package:food_client/providers.dart';
-import 'package:fpdart/fpdart.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'profile_controller.g.dart';
@@ -22,9 +21,7 @@ class ProfileControllerImplementation extends _$ProfileControllerImplementation 
 }
 
 abstract class ProfileRecipeParserService {
-  TaskEither<Exception, Map<String, dynamic>> fetchAllThings();
 }
 
 abstract class ProfileWebClientService {
-  TaskEither<Exception, Map<String, dynamic>> fetchAllThings();
 }

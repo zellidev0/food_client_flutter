@@ -83,3 +83,17 @@ final profileRecipeParserServiceProvider =
 );
 typedef ProfileRecipeParserServiceRef
     = AutoDisposeProviderRef<ProfileRecipeParserService>;
+String $homeWebImageSizerServiceHash() =>
+    r'15cebcfb4d7c28936aa1b27da9686c6c63ec2ea5';
+
+/// See also [homeWebImageSizerService].
+final homeWebImageSizerServiceProvider =
+    AutoDisposeProvider<HomeWebImageSizerService>(
+  homeWebImageSizerService,
+  name: r'homeWebImageSizerServiceProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : $homeWebImageSizerServiceHash,
+);
+typedef HomeWebImageSizerServiceRef
+    = AutoDisposeProviderRef<HomeWebImageSizerService>;

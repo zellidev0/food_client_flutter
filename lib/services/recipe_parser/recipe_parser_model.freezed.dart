@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'home_recipe_parser.dart';
+part of 'recipe_parser_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,49 +15,45 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$HomeRecipeParserModelRecipe {
+mixin _$RecipeParserModelRecipe {
   String get id => throw _privateConstructorUsedError;
-  HomeRecipeParserModelDisplayedAttributes get displayedAttributes =>
+  RecipeParserModelDisplayedAttributes get displayedAttributes =>
       throw _privateConstructorUsedError;
   int get difficulty => throw _privateConstructorUsedError;
-  List<HomeRecipeParserModelIngredient> get ingredients =>
+  List<RecipeParserModelIngredient> get ingredients =>
       throw _privateConstructorUsedError;
-  List<HomeRecipeParserModelYield> get yields =>
-      throw _privateConstructorUsedError;
-  List<HomeRecipeParserModelTag> get tags => throw _privateConstructorUsedError;
-  Option<Uri> get imagePath => throw _privateConstructorUsedError;
+  List<RecipeParserModelYield> get yields => throw _privateConstructorUsedError;
+  List<RecipeParserModelTag> get tags => throw _privateConstructorUsedError;
+  Option<String> get imagePath => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $HomeRecipeParserModelRecipeCopyWith<HomeRecipeParserModelRecipe>
-      get copyWith => throw _privateConstructorUsedError;
+  $RecipeParserModelRecipeCopyWith<RecipeParserModelRecipe> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HomeRecipeParserModelRecipeCopyWith<$Res> {
-  factory $HomeRecipeParserModelRecipeCopyWith(
-          HomeRecipeParserModelRecipe value,
-          $Res Function(HomeRecipeParserModelRecipe) then) =
-      _$HomeRecipeParserModelRecipeCopyWithImpl<$Res,
-          HomeRecipeParserModelRecipe>;
+abstract class $RecipeParserModelRecipeCopyWith<$Res> {
+  factory $RecipeParserModelRecipeCopyWith(RecipeParserModelRecipe value,
+          $Res Function(RecipeParserModelRecipe) then) =
+      _$RecipeParserModelRecipeCopyWithImpl<$Res, RecipeParserModelRecipe>;
   @useResult
   $Res call(
       {String id,
-      HomeRecipeParserModelDisplayedAttributes displayedAttributes,
+      RecipeParserModelDisplayedAttributes displayedAttributes,
       int difficulty,
-      List<HomeRecipeParserModelIngredient> ingredients,
-      List<HomeRecipeParserModelYield> yields,
-      List<HomeRecipeParserModelTag> tags,
-      Option<Uri> imagePath});
+      List<RecipeParserModelIngredient> ingredients,
+      List<RecipeParserModelYield> yields,
+      List<RecipeParserModelTag> tags,
+      Option<String> imagePath});
 
-  $HomeRecipeParserModelDisplayedAttributesCopyWith<$Res>
-      get displayedAttributes;
+  $RecipeParserModelDisplayedAttributesCopyWith<$Res> get displayedAttributes;
 }
 
 /// @nodoc
-class _$HomeRecipeParserModelRecipeCopyWithImpl<$Res,
-        $Val extends HomeRecipeParserModelRecipe>
-    implements $HomeRecipeParserModelRecipeCopyWith<$Res> {
-  _$HomeRecipeParserModelRecipeCopyWithImpl(this._value, this._then);
+class _$RecipeParserModelRecipeCopyWithImpl<$Res,
+        $Val extends RecipeParserModelRecipe>
+    implements $RecipeParserModelRecipeCopyWith<$Res> {
+  _$RecipeParserModelRecipeCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -83,7 +79,7 @@ class _$HomeRecipeParserModelRecipeCopyWithImpl<$Res,
       displayedAttributes: null == displayedAttributes
           ? _value.displayedAttributes
           : displayedAttributes // ignore: cast_nullable_to_non_nullable
-              as HomeRecipeParserModelDisplayedAttributes,
+              as RecipeParserModelDisplayedAttributes,
       difficulty: null == difficulty
           ? _value.difficulty
           : difficulty // ignore: cast_nullable_to_non_nullable
@@ -91,27 +87,26 @@ class _$HomeRecipeParserModelRecipeCopyWithImpl<$Res,
       ingredients: null == ingredients
           ? _value.ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
-              as List<HomeRecipeParserModelIngredient>,
+              as List<RecipeParserModelIngredient>,
       yields: null == yields
           ? _value.yields
           : yields // ignore: cast_nullable_to_non_nullable
-              as List<HomeRecipeParserModelYield>,
+              as List<RecipeParserModelYield>,
       tags: null == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as List<HomeRecipeParserModelTag>,
+              as List<RecipeParserModelTag>,
       imagePath: null == imagePath
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
-              as Option<Uri>,
+              as Option<String>,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $HomeRecipeParserModelDisplayedAttributesCopyWith<$Res>
-      get displayedAttributes {
-    return $HomeRecipeParserModelDisplayedAttributesCopyWith<$Res>(
+  $RecipeParserModelDisplayedAttributesCopyWith<$Res> get displayedAttributes {
+    return $RecipeParserModelDisplayedAttributesCopyWith<$Res>(
         _value.displayedAttributes, (value) {
       return _then(_value.copyWith(displayedAttributes: value) as $Val);
     });
@@ -119,36 +114,33 @@ class _$HomeRecipeParserModelRecipeCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_HomeRecipeParserModelRecipeCopyWith<$Res>
-    implements $HomeRecipeParserModelRecipeCopyWith<$Res> {
-  factory _$$_HomeRecipeParserModelRecipeCopyWith(
-          _$_HomeRecipeParserModelRecipe value,
-          $Res Function(_$_HomeRecipeParserModelRecipe) then) =
-      __$$_HomeRecipeParserModelRecipeCopyWithImpl<$Res>;
+abstract class _$$_RecipeParserModelRecipeCopyWith<$Res>
+    implements $RecipeParserModelRecipeCopyWith<$Res> {
+  factory _$$_RecipeParserModelRecipeCopyWith(_$_RecipeParserModelRecipe value,
+          $Res Function(_$_RecipeParserModelRecipe) then) =
+      __$$_RecipeParserModelRecipeCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {String id,
-      HomeRecipeParserModelDisplayedAttributes displayedAttributes,
+      RecipeParserModelDisplayedAttributes displayedAttributes,
       int difficulty,
-      List<HomeRecipeParserModelIngredient> ingredients,
-      List<HomeRecipeParserModelYield> yields,
-      List<HomeRecipeParserModelTag> tags,
-      Option<Uri> imagePath});
+      List<RecipeParserModelIngredient> ingredients,
+      List<RecipeParserModelYield> yields,
+      List<RecipeParserModelTag> tags,
+      Option<String> imagePath});
 
   @override
-  $HomeRecipeParserModelDisplayedAttributesCopyWith<$Res>
-      get displayedAttributes;
+  $RecipeParserModelDisplayedAttributesCopyWith<$Res> get displayedAttributes;
 }
 
 /// @nodoc
-class __$$_HomeRecipeParserModelRecipeCopyWithImpl<$Res>
-    extends _$HomeRecipeParserModelRecipeCopyWithImpl<$Res,
-        _$_HomeRecipeParserModelRecipe>
-    implements _$$_HomeRecipeParserModelRecipeCopyWith<$Res> {
-  __$$_HomeRecipeParserModelRecipeCopyWithImpl(
-      _$_HomeRecipeParserModelRecipe _value,
-      $Res Function(_$_HomeRecipeParserModelRecipe) _then)
+class __$$_RecipeParserModelRecipeCopyWithImpl<$Res>
+    extends _$RecipeParserModelRecipeCopyWithImpl<$Res,
+        _$_RecipeParserModelRecipe>
+    implements _$$_RecipeParserModelRecipeCopyWith<$Res> {
+  __$$_RecipeParserModelRecipeCopyWithImpl(_$_RecipeParserModelRecipe _value,
+      $Res Function(_$_RecipeParserModelRecipe) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -162,7 +154,7 @@ class __$$_HomeRecipeParserModelRecipeCopyWithImpl<$Res>
     Object? tags = null,
     Object? imagePath = null,
   }) {
-    return _then(_$_HomeRecipeParserModelRecipe(
+    return _then(_$_RecipeParserModelRecipe(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -170,7 +162,7 @@ class __$$_HomeRecipeParserModelRecipeCopyWithImpl<$Res>
       displayedAttributes: null == displayedAttributes
           ? _value.displayedAttributes
           : displayedAttributes // ignore: cast_nullable_to_non_nullable
-              as HomeRecipeParserModelDisplayedAttributes,
+              as RecipeParserModelDisplayedAttributes,
       difficulty: null == difficulty
           ? _value.difficulty
           : difficulty // ignore: cast_nullable_to_non_nullable
@@ -178,33 +170,33 @@ class __$$_HomeRecipeParserModelRecipeCopyWithImpl<$Res>
       ingredients: null == ingredients
           ? _value._ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
-              as List<HomeRecipeParserModelIngredient>,
+              as List<RecipeParserModelIngredient>,
       yields: null == yields
           ? _value._yields
           : yields // ignore: cast_nullable_to_non_nullable
-              as List<HomeRecipeParserModelYield>,
+              as List<RecipeParserModelYield>,
       tags: null == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as List<HomeRecipeParserModelTag>,
+              as List<RecipeParserModelTag>,
       imagePath: null == imagePath
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
-              as Option<Uri>,
+              as Option<String>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_HomeRecipeParserModelRecipe implements _HomeRecipeParserModelRecipe {
-  const _$_HomeRecipeParserModelRecipe(
+class _$_RecipeParserModelRecipe implements _RecipeParserModelRecipe {
+  const _$_RecipeParserModelRecipe(
       {required this.id,
       required this.displayedAttributes,
       required this.difficulty,
-      required final List<HomeRecipeParserModelIngredient> ingredients,
-      required final List<HomeRecipeParserModelYield> yields,
-      required final List<HomeRecipeParserModelTag> tags,
+      required final List<RecipeParserModelIngredient> ingredients,
+      required final List<RecipeParserModelYield> yields,
+      required final List<RecipeParserModelTag> tags,
       required this.imagePath})
       : _ingredients = ingredients,
         _yields = yields,
@@ -213,43 +205,43 @@ class _$_HomeRecipeParserModelRecipe implements _HomeRecipeParserModelRecipe {
   @override
   final String id;
   @override
-  final HomeRecipeParserModelDisplayedAttributes displayedAttributes;
+  final RecipeParserModelDisplayedAttributes displayedAttributes;
   @override
   final int difficulty;
-  final List<HomeRecipeParserModelIngredient> _ingredients;
+  final List<RecipeParserModelIngredient> _ingredients;
   @override
-  List<HomeRecipeParserModelIngredient> get ingredients {
+  List<RecipeParserModelIngredient> get ingredients {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_ingredients);
   }
 
-  final List<HomeRecipeParserModelYield> _yields;
+  final List<RecipeParserModelYield> _yields;
   @override
-  List<HomeRecipeParserModelYield> get yields {
+  List<RecipeParserModelYield> get yields {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_yields);
   }
 
-  final List<HomeRecipeParserModelTag> _tags;
+  final List<RecipeParserModelTag> _tags;
   @override
-  List<HomeRecipeParserModelTag> get tags {
+  List<RecipeParserModelTag> get tags {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_tags);
   }
 
   @override
-  final Option<Uri> imagePath;
+  final Option<String> imagePath;
 
   @override
   String toString() {
-    return 'HomeRecipeParserModelRecipe(id: $id, displayedAttributes: $displayedAttributes, difficulty: $difficulty, ingredients: $ingredients, yields: $yields, tags: $tags, imagePath: $imagePath)';
+    return 'RecipeParserModelRecipe(id: $id, displayedAttributes: $displayedAttributes, difficulty: $difficulty, ingredients: $ingredients, yields: $yields, tags: $tags, imagePath: $imagePath)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HomeRecipeParserModelRecipe &&
+            other is _$_RecipeParserModelRecipe &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.displayedAttributes, displayedAttributes) ||
                 other.displayedAttributes == displayedAttributes) &&
@@ -277,63 +269,62 @@ class _$_HomeRecipeParserModelRecipe implements _HomeRecipeParserModelRecipe {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HomeRecipeParserModelRecipeCopyWith<_$_HomeRecipeParserModelRecipe>
-      get copyWith => __$$_HomeRecipeParserModelRecipeCopyWithImpl<
-          _$_HomeRecipeParserModelRecipe>(this, _$identity);
+  _$$_RecipeParserModelRecipeCopyWith<_$_RecipeParserModelRecipe>
+      get copyWith =>
+          __$$_RecipeParserModelRecipeCopyWithImpl<_$_RecipeParserModelRecipe>(
+              this, _$identity);
 }
 
-abstract class _HomeRecipeParserModelRecipe
-    implements HomeRecipeParserModelRecipe {
-  const factory _HomeRecipeParserModelRecipe(
+abstract class _RecipeParserModelRecipe implements RecipeParserModelRecipe {
+  const factory _RecipeParserModelRecipe(
       {required final String id,
-      required final HomeRecipeParserModelDisplayedAttributes
-          displayedAttributes,
+      required final RecipeParserModelDisplayedAttributes displayedAttributes,
       required final int difficulty,
-      required final List<HomeRecipeParserModelIngredient> ingredients,
-      required final List<HomeRecipeParserModelYield> yields,
-      required final List<HomeRecipeParserModelTag> tags,
-      required final Option<Uri> imagePath}) = _$_HomeRecipeParserModelRecipe;
+      required final List<RecipeParserModelIngredient> ingredients,
+      required final List<RecipeParserModelYield> yields,
+      required final List<RecipeParserModelTag> tags,
+      required final Option<String> imagePath}) = _$_RecipeParserModelRecipe;
 
   @override
   String get id;
   @override
-  HomeRecipeParserModelDisplayedAttributes get displayedAttributes;
+  RecipeParserModelDisplayedAttributes get displayedAttributes;
   @override
   int get difficulty;
   @override
-  List<HomeRecipeParserModelIngredient> get ingredients;
+  List<RecipeParserModelIngredient> get ingredients;
   @override
-  List<HomeRecipeParserModelYield> get yields;
+  List<RecipeParserModelYield> get yields;
   @override
-  List<HomeRecipeParserModelTag> get tags;
+  List<RecipeParserModelTag> get tags;
   @override
-  Option<Uri> get imagePath;
+  Option<String> get imagePath;
   @override
   @JsonKey(ignore: true)
-  _$$_HomeRecipeParserModelRecipeCopyWith<_$_HomeRecipeParserModelRecipe>
+  _$$_RecipeParserModelRecipeCopyWith<_$_RecipeParserModelRecipe>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$HomeRecipeParserModelDisplayedAttributes {
+mixin _$RecipeParserModelDisplayedAttributes {
   String get name => throw _privateConstructorUsedError;
   String get headline => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get descriptionMarkdown => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $HomeRecipeParserModelDisplayedAttributesCopyWith<
-          HomeRecipeParserModelDisplayedAttributes>
+  $RecipeParserModelDisplayedAttributesCopyWith<
+          RecipeParserModelDisplayedAttributes>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HomeRecipeParserModelDisplayedAttributesCopyWith<$Res> {
-  factory $HomeRecipeParserModelDisplayedAttributesCopyWith(
-          HomeRecipeParserModelDisplayedAttributes value,
-          $Res Function(HomeRecipeParserModelDisplayedAttributes) then) =
-      _$HomeRecipeParserModelDisplayedAttributesCopyWithImpl<$Res,
-          HomeRecipeParserModelDisplayedAttributes>;
+abstract class $RecipeParserModelDisplayedAttributesCopyWith<$Res> {
+  factory $RecipeParserModelDisplayedAttributesCopyWith(
+          RecipeParserModelDisplayedAttributes value,
+          $Res Function(RecipeParserModelDisplayedAttributes) then) =
+      _$RecipeParserModelDisplayedAttributesCopyWithImpl<$Res,
+          RecipeParserModelDisplayedAttributes>;
   @useResult
   $Res call(
       {String name,
@@ -343,11 +334,10 @@ abstract class $HomeRecipeParserModelDisplayedAttributesCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$HomeRecipeParserModelDisplayedAttributesCopyWithImpl<$Res,
-        $Val extends HomeRecipeParserModelDisplayedAttributes>
-    implements $HomeRecipeParserModelDisplayedAttributesCopyWith<$Res> {
-  _$HomeRecipeParserModelDisplayedAttributesCopyWithImpl(
-      this._value, this._then);
+class _$RecipeParserModelDisplayedAttributesCopyWithImpl<$Res,
+        $Val extends RecipeParserModelDisplayedAttributes>
+    implements $RecipeParserModelDisplayedAttributesCopyWith<$Res> {
+  _$RecipeParserModelDisplayedAttributesCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -384,12 +374,12 @@ class _$HomeRecipeParserModelDisplayedAttributesCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_HomeRecipeParserModelDisplayedAttributesCopyWith<$Res>
-    implements $HomeRecipeParserModelDisplayedAttributesCopyWith<$Res> {
-  factory _$$_HomeRecipeParserModelDisplayedAttributesCopyWith(
-          _$_HomeRecipeParserModelDisplayedAttributes value,
-          $Res Function(_$_HomeRecipeParserModelDisplayedAttributes) then) =
-      __$$_HomeRecipeParserModelDisplayedAttributesCopyWithImpl<$Res>;
+abstract class _$$_RecipeParserModelDisplayedAttributesCopyWith<$Res>
+    implements $RecipeParserModelDisplayedAttributesCopyWith<$Res> {
+  factory _$$_RecipeParserModelDisplayedAttributesCopyWith(
+          _$_RecipeParserModelDisplayedAttributes value,
+          $Res Function(_$_RecipeParserModelDisplayedAttributes) then) =
+      __$$_RecipeParserModelDisplayedAttributesCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -400,13 +390,13 @@ abstract class _$$_HomeRecipeParserModelDisplayedAttributesCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_HomeRecipeParserModelDisplayedAttributesCopyWithImpl<$Res>
-    extends _$HomeRecipeParserModelDisplayedAttributesCopyWithImpl<$Res,
-        _$_HomeRecipeParserModelDisplayedAttributes>
-    implements _$$_HomeRecipeParserModelDisplayedAttributesCopyWith<$Res> {
-  __$$_HomeRecipeParserModelDisplayedAttributesCopyWithImpl(
-      _$_HomeRecipeParserModelDisplayedAttributes _value,
-      $Res Function(_$_HomeRecipeParserModelDisplayedAttributes) _then)
+class __$$_RecipeParserModelDisplayedAttributesCopyWithImpl<$Res>
+    extends _$RecipeParserModelDisplayedAttributesCopyWithImpl<$Res,
+        _$_RecipeParserModelDisplayedAttributes>
+    implements _$$_RecipeParserModelDisplayedAttributesCopyWith<$Res> {
+  __$$_RecipeParserModelDisplayedAttributesCopyWithImpl(
+      _$_RecipeParserModelDisplayedAttributes _value,
+      $Res Function(_$_RecipeParserModelDisplayedAttributes) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -417,7 +407,7 @@ class __$$_HomeRecipeParserModelDisplayedAttributesCopyWithImpl<$Res>
     Object? description = null,
     Object? descriptionMarkdown = null,
   }) {
-    return _then(_$_HomeRecipeParserModelDisplayedAttributes(
+    return _then(_$_RecipeParserModelDisplayedAttributes(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -440,9 +430,9 @@ class __$$_HomeRecipeParserModelDisplayedAttributesCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HomeRecipeParserModelDisplayedAttributes
-    implements _HomeRecipeParserModelDisplayedAttributes {
-  const _$_HomeRecipeParserModelDisplayedAttributes(
+class _$_RecipeParserModelDisplayedAttributes
+    implements _RecipeParserModelDisplayedAttributes {
+  const _$_RecipeParserModelDisplayedAttributes(
       {required this.name,
       required this.headline,
       required this.description,
@@ -459,14 +449,14 @@ class _$_HomeRecipeParserModelDisplayedAttributes
 
   @override
   String toString() {
-    return 'HomeRecipeParserModelDisplayedAttributes(name: $name, headline: $headline, description: $description, descriptionMarkdown: $descriptionMarkdown)';
+    return 'RecipeParserModelDisplayedAttributes(name: $name, headline: $headline, description: $description, descriptionMarkdown: $descriptionMarkdown)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HomeRecipeParserModelDisplayedAttributes &&
+            other is _$_RecipeParserModelDisplayedAttributes &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.headline, headline) ||
                 other.headline == headline) &&
@@ -483,20 +473,20 @@ class _$_HomeRecipeParserModelDisplayedAttributes
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HomeRecipeParserModelDisplayedAttributesCopyWith<
-          _$_HomeRecipeParserModelDisplayedAttributes>
-      get copyWith => __$$_HomeRecipeParserModelDisplayedAttributesCopyWithImpl<
-          _$_HomeRecipeParserModelDisplayedAttributes>(this, _$identity);
+  _$$_RecipeParserModelDisplayedAttributesCopyWith<
+          _$_RecipeParserModelDisplayedAttributes>
+      get copyWith => __$$_RecipeParserModelDisplayedAttributesCopyWithImpl<
+          _$_RecipeParserModelDisplayedAttributes>(this, _$identity);
 }
 
-abstract class _HomeRecipeParserModelDisplayedAttributes
-    implements HomeRecipeParserModelDisplayedAttributes {
-  const factory _HomeRecipeParserModelDisplayedAttributes(
+abstract class _RecipeParserModelDisplayedAttributes
+    implements RecipeParserModelDisplayedAttributes {
+  const factory _RecipeParserModelDisplayedAttributes(
           {required final String name,
           required final String headline,
           required final String description,
           required final String descriptionMarkdown}) =
-      _$_HomeRecipeParserModelDisplayedAttributes;
+      _$_RecipeParserModelDisplayedAttributes;
 
   @override
   String get name;
@@ -508,38 +498,38 @@ abstract class _HomeRecipeParserModelDisplayedAttributes
   String get descriptionMarkdown;
   @override
   @JsonKey(ignore: true)
-  _$$_HomeRecipeParserModelDisplayedAttributesCopyWith<
-          _$_HomeRecipeParserModelDisplayedAttributes>
+  _$$_RecipeParserModelDisplayedAttributesCopyWith<
+          _$_RecipeParserModelDisplayedAttributes>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$HomeRecipeParserModelIngredient {
+mixin _$RecipeParserModelIngredient {
   String get id => throw _privateConstructorUsedError;
   String get slug => throw _privateConstructorUsedError;
   String get displayedName => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $HomeRecipeParserModelIngredientCopyWith<HomeRecipeParserModelIngredient>
+  $RecipeParserModelIngredientCopyWith<RecipeParserModelIngredient>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HomeRecipeParserModelIngredientCopyWith<$Res> {
-  factory $HomeRecipeParserModelIngredientCopyWith(
-          HomeRecipeParserModelIngredient value,
-          $Res Function(HomeRecipeParserModelIngredient) then) =
-      _$HomeRecipeParserModelIngredientCopyWithImpl<$Res,
-          HomeRecipeParserModelIngredient>;
+abstract class $RecipeParserModelIngredientCopyWith<$Res> {
+  factory $RecipeParserModelIngredientCopyWith(
+          RecipeParserModelIngredient value,
+          $Res Function(RecipeParserModelIngredient) then) =
+      _$RecipeParserModelIngredientCopyWithImpl<$Res,
+          RecipeParserModelIngredient>;
   @useResult
   $Res call({String id, String slug, String displayedName});
 }
 
 /// @nodoc
-class _$HomeRecipeParserModelIngredientCopyWithImpl<$Res,
-        $Val extends HomeRecipeParserModelIngredient>
-    implements $HomeRecipeParserModelIngredientCopyWith<$Res> {
-  _$HomeRecipeParserModelIngredientCopyWithImpl(this._value, this._then);
+class _$RecipeParserModelIngredientCopyWithImpl<$Res,
+        $Val extends RecipeParserModelIngredient>
+    implements $RecipeParserModelIngredientCopyWith<$Res> {
+  _$RecipeParserModelIngredientCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -571,25 +561,25 @@ class _$HomeRecipeParserModelIngredientCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_HomeRecipeParserModelIngredientCopyWith<$Res>
-    implements $HomeRecipeParserModelIngredientCopyWith<$Res> {
-  factory _$$_HomeRecipeParserModelIngredientCopyWith(
-          _$_HomeRecipeParserModelIngredient value,
-          $Res Function(_$_HomeRecipeParserModelIngredient) then) =
-      __$$_HomeRecipeParserModelIngredientCopyWithImpl<$Res>;
+abstract class _$$_RecipeParserModelIngredientCopyWith<$Res>
+    implements $RecipeParserModelIngredientCopyWith<$Res> {
+  factory _$$_RecipeParserModelIngredientCopyWith(
+          _$_RecipeParserModelIngredient value,
+          $Res Function(_$_RecipeParserModelIngredient) then) =
+      __$$_RecipeParserModelIngredientCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, String slug, String displayedName});
 }
 
 /// @nodoc
-class __$$_HomeRecipeParserModelIngredientCopyWithImpl<$Res>
-    extends _$HomeRecipeParserModelIngredientCopyWithImpl<$Res,
-        _$_HomeRecipeParserModelIngredient>
-    implements _$$_HomeRecipeParserModelIngredientCopyWith<$Res> {
-  __$$_HomeRecipeParserModelIngredientCopyWithImpl(
-      _$_HomeRecipeParserModelIngredient _value,
-      $Res Function(_$_HomeRecipeParserModelIngredient) _then)
+class __$$_RecipeParserModelIngredientCopyWithImpl<$Res>
+    extends _$RecipeParserModelIngredientCopyWithImpl<$Res,
+        _$_RecipeParserModelIngredient>
+    implements _$$_RecipeParserModelIngredientCopyWith<$Res> {
+  __$$_RecipeParserModelIngredientCopyWithImpl(
+      _$_RecipeParserModelIngredient _value,
+      $Res Function(_$_RecipeParserModelIngredient) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -599,7 +589,7 @@ class __$$_HomeRecipeParserModelIngredientCopyWithImpl<$Res>
     Object? slug = null,
     Object? displayedName = null,
   }) {
-    return _then(_$_HomeRecipeParserModelIngredient(
+    return _then(_$_RecipeParserModelIngredient(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -618,9 +608,8 @@ class __$$_HomeRecipeParserModelIngredientCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HomeRecipeParserModelIngredient
-    implements _HomeRecipeParserModelIngredient {
-  const _$_HomeRecipeParserModelIngredient(
+class _$_RecipeParserModelIngredient implements _RecipeParserModelIngredient {
+  const _$_RecipeParserModelIngredient(
       {required this.id, required this.slug, required this.displayedName});
 
   @override
@@ -632,14 +621,14 @@ class _$_HomeRecipeParserModelIngredient
 
   @override
   String toString() {
-    return 'HomeRecipeParserModelIngredient(id: $id, slug: $slug, displayedName: $displayedName)';
+    return 'RecipeParserModelIngredient(id: $id, slug: $slug, displayedName: $displayedName)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HomeRecipeParserModelIngredient &&
+            other is _$_RecipeParserModelIngredient &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.slug, slug) || other.slug == slug) &&
             (identical(other.displayedName, displayedName) ||
@@ -652,178 +641,17 @@ class _$_HomeRecipeParserModelIngredient
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HomeRecipeParserModelIngredientCopyWith<
-          _$_HomeRecipeParserModelIngredient>
-      get copyWith => __$$_HomeRecipeParserModelIngredientCopyWithImpl<
-          _$_HomeRecipeParserModelIngredient>(this, _$identity);
+  _$$_RecipeParserModelIngredientCopyWith<_$_RecipeParserModelIngredient>
+      get copyWith => __$$_RecipeParserModelIngredientCopyWithImpl<
+          _$_RecipeParserModelIngredient>(this, _$identity);
 }
 
-abstract class _HomeRecipeParserModelIngredient
-    implements HomeRecipeParserModelIngredient {
-  const factory _HomeRecipeParserModelIngredient(
-          {required final String id,
-          required final String slug,
-          required final String displayedName}) =
-      _$_HomeRecipeParserModelIngredient;
-
-  @override
-  String get id;
-  @override
-  String get slug;
-  @override
-  String get displayedName;
-  @override
-  @JsonKey(ignore: true)
-  _$$_HomeRecipeParserModelIngredientCopyWith<
-          _$_HomeRecipeParserModelIngredient>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$HomeRecipeParserModelTag {
-  String get id => throw _privateConstructorUsedError;
-  String get slug => throw _privateConstructorUsedError;
-  String get displayedName => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $HomeRecipeParserModelTagCopyWith<HomeRecipeParserModelTag> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $HomeRecipeParserModelTagCopyWith<$Res> {
-  factory $HomeRecipeParserModelTagCopyWith(HomeRecipeParserModelTag value,
-          $Res Function(HomeRecipeParserModelTag) then) =
-      _$HomeRecipeParserModelTagCopyWithImpl<$Res, HomeRecipeParserModelTag>;
-  @useResult
-  $Res call({String id, String slug, String displayedName});
-}
-
-/// @nodoc
-class _$HomeRecipeParserModelTagCopyWithImpl<$Res,
-        $Val extends HomeRecipeParserModelTag>
-    implements $HomeRecipeParserModelTagCopyWith<$Res> {
-  _$HomeRecipeParserModelTagCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? slug = null,
-    Object? displayedName = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      slug: null == slug
-          ? _value.slug
-          : slug // ignore: cast_nullable_to_non_nullable
-              as String,
-      displayedName: null == displayedName
-          ? _value.displayedName
-          : displayedName // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$_HomeRecipeParserModelTagCopyWith<$Res>
-    implements $HomeRecipeParserModelTagCopyWith<$Res> {
-  factory _$$_HomeRecipeParserModelTagCopyWith(
-          _$_HomeRecipeParserModelTag value,
-          $Res Function(_$_HomeRecipeParserModelTag) then) =
-      __$$_HomeRecipeParserModelTagCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String id, String slug, String displayedName});
-}
-
-/// @nodoc
-class __$$_HomeRecipeParserModelTagCopyWithImpl<$Res>
-    extends _$HomeRecipeParserModelTagCopyWithImpl<$Res,
-        _$_HomeRecipeParserModelTag>
-    implements _$$_HomeRecipeParserModelTagCopyWith<$Res> {
-  __$$_HomeRecipeParserModelTagCopyWithImpl(_$_HomeRecipeParserModelTag _value,
-      $Res Function(_$_HomeRecipeParserModelTag) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? slug = null,
-    Object? displayedName = null,
-  }) {
-    return _then(_$_HomeRecipeParserModelTag(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      slug: null == slug
-          ? _value.slug
-          : slug // ignore: cast_nullable_to_non_nullable
-              as String,
-      displayedName: null == displayedName
-          ? _value.displayedName
-          : displayedName // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_HomeRecipeParserModelTag implements _HomeRecipeParserModelTag {
-  const _$_HomeRecipeParserModelTag(
-      {required this.id, required this.slug, required this.displayedName});
-
-  @override
-  final String id;
-  @override
-  final String slug;
-  @override
-  final String displayedName;
-
-  @override
-  String toString() {
-    return 'HomeRecipeParserModelTag(id: $id, slug: $slug, displayedName: $displayedName)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_HomeRecipeParserModelTag &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.slug, slug) || other.slug == slug) &&
-            (identical(other.displayedName, displayedName) ||
-                other.displayedName == displayedName));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, id, slug, displayedName);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_HomeRecipeParserModelTagCopyWith<_$_HomeRecipeParserModelTag>
-      get copyWith => __$$_HomeRecipeParserModelTagCopyWithImpl<
-          _$_HomeRecipeParserModelTag>(this, _$identity);
-}
-
-abstract class _HomeRecipeParserModelTag implements HomeRecipeParserModelTag {
-  const factory _HomeRecipeParserModelTag(
+abstract class _RecipeParserModelIngredient
+    implements RecipeParserModelIngredient {
+  const factory _RecipeParserModelIngredient(
       {required final String id,
       required final String slug,
-      required final String displayedName}) = _$_HomeRecipeParserModelTag;
+      required final String displayedName}) = _$_RecipeParserModelIngredient;
 
   @override
   String get id;
@@ -833,37 +661,192 @@ abstract class _HomeRecipeParserModelTag implements HomeRecipeParserModelTag {
   String get displayedName;
   @override
   @JsonKey(ignore: true)
-  _$$_HomeRecipeParserModelTagCopyWith<_$_HomeRecipeParserModelTag>
+  _$$_RecipeParserModelIngredientCopyWith<_$_RecipeParserModelIngredient>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$HomeRecipeParserModelYield {
+mixin _$RecipeParserModelTag {
+  String get id => throw _privateConstructorUsedError;
+  String get slug => throw _privateConstructorUsedError;
+  String get displayedName => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $RecipeParserModelTagCopyWith<RecipeParserModelTag> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RecipeParserModelTagCopyWith<$Res> {
+  factory $RecipeParserModelTagCopyWith(RecipeParserModelTag value,
+          $Res Function(RecipeParserModelTag) then) =
+      _$RecipeParserModelTagCopyWithImpl<$Res, RecipeParserModelTag>;
+  @useResult
+  $Res call({String id, String slug, String displayedName});
+}
+
+/// @nodoc
+class _$RecipeParserModelTagCopyWithImpl<$Res,
+        $Val extends RecipeParserModelTag>
+    implements $RecipeParserModelTagCopyWith<$Res> {
+  _$RecipeParserModelTagCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? slug = null,
+    Object? displayedName = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      slug: null == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as String,
+      displayedName: null == displayedName
+          ? _value.displayedName
+          : displayedName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_RecipeParserModelTagCopyWith<$Res>
+    implements $RecipeParserModelTagCopyWith<$Res> {
+  factory _$$_RecipeParserModelTagCopyWith(_$_RecipeParserModelTag value,
+          $Res Function(_$_RecipeParserModelTag) then) =
+      __$$_RecipeParserModelTagCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String id, String slug, String displayedName});
+}
+
+/// @nodoc
+class __$$_RecipeParserModelTagCopyWithImpl<$Res>
+    extends _$RecipeParserModelTagCopyWithImpl<$Res, _$_RecipeParserModelTag>
+    implements _$$_RecipeParserModelTagCopyWith<$Res> {
+  __$$_RecipeParserModelTagCopyWithImpl(_$_RecipeParserModelTag _value,
+      $Res Function(_$_RecipeParserModelTag) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? slug = null,
+    Object? displayedName = null,
+  }) {
+    return _then(_$_RecipeParserModelTag(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      slug: null == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as String,
+      displayedName: null == displayedName
+          ? _value.displayedName
+          : displayedName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_RecipeParserModelTag implements _RecipeParserModelTag {
+  const _$_RecipeParserModelTag(
+      {required this.id, required this.slug, required this.displayedName});
+
+  @override
+  final String id;
+  @override
+  final String slug;
+  @override
+  final String displayedName;
+
+  @override
+  String toString() {
+    return 'RecipeParserModelTag(id: $id, slug: $slug, displayedName: $displayedName)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RecipeParserModelTag &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.slug, slug) || other.slug == slug) &&
+            (identical(other.displayedName, displayedName) ||
+                other.displayedName == displayedName));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, slug, displayedName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_RecipeParserModelTagCopyWith<_$_RecipeParserModelTag> get copyWith =>
+      __$$_RecipeParserModelTagCopyWithImpl<_$_RecipeParserModelTag>(
+          this, _$identity);
+}
+
+abstract class _RecipeParserModelTag implements RecipeParserModelTag {
+  const factory _RecipeParserModelTag(
+      {required final String id,
+      required final String slug,
+      required final String displayedName}) = _$_RecipeParserModelTag;
+
+  @override
+  String get id;
+  @override
+  String get slug;
+  @override
+  String get displayedName;
+  @override
+  @JsonKey(ignore: true)
+  _$$_RecipeParserModelTagCopyWith<_$_RecipeParserModelTag> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$RecipeParserModelYield {
   int get yield => throw _privateConstructorUsedError;
-  List<HomeRecipeParserModelYieldIngredient> get yieldIngredient =>
+  List<RecipeParserModelYieldIngredient> get yieldIngredient =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $HomeRecipeParserModelYieldCopyWith<HomeRecipeParserModelYield>
-      get copyWith => throw _privateConstructorUsedError;
+  $RecipeParserModelYieldCopyWith<RecipeParserModelYield> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HomeRecipeParserModelYieldCopyWith<$Res> {
-  factory $HomeRecipeParserModelYieldCopyWith(HomeRecipeParserModelYield value,
-          $Res Function(HomeRecipeParserModelYield) then) =
-      _$HomeRecipeParserModelYieldCopyWithImpl<$Res,
-          HomeRecipeParserModelYield>;
+abstract class $RecipeParserModelYieldCopyWith<$Res> {
+  factory $RecipeParserModelYieldCopyWith(RecipeParserModelYield value,
+          $Res Function(RecipeParserModelYield) then) =
+      _$RecipeParserModelYieldCopyWithImpl<$Res, RecipeParserModelYield>;
   @useResult
   $Res call(
-      {int yield, List<HomeRecipeParserModelYieldIngredient> yieldIngredient});
+      {int yield, List<RecipeParserModelYieldIngredient> yieldIngredient});
 }
 
 /// @nodoc
-class _$HomeRecipeParserModelYieldCopyWithImpl<$Res,
-        $Val extends HomeRecipeParserModelYield>
-    implements $HomeRecipeParserModelYieldCopyWith<$Res> {
-  _$HomeRecipeParserModelYieldCopyWithImpl(this._value, this._then);
+class _$RecipeParserModelYieldCopyWithImpl<$Res,
+        $Val extends RecipeParserModelYield>
+    implements $RecipeParserModelYieldCopyWith<$Res> {
+  _$RecipeParserModelYieldCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -884,32 +867,30 @@ class _$HomeRecipeParserModelYieldCopyWithImpl<$Res,
       yieldIngredient: null == yieldIngredient
           ? _value.yieldIngredient
           : yieldIngredient // ignore: cast_nullable_to_non_nullable
-              as List<HomeRecipeParserModelYieldIngredient>,
+              as List<RecipeParserModelYieldIngredient>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_HomeRecipeParserModelYieldCopyWith<$Res>
-    implements $HomeRecipeParserModelYieldCopyWith<$Res> {
-  factory _$$_HomeRecipeParserModelYieldCopyWith(
-          _$_HomeRecipeParserModelYield value,
-          $Res Function(_$_HomeRecipeParserModelYield) then) =
-      __$$_HomeRecipeParserModelYieldCopyWithImpl<$Res>;
+abstract class _$$_RecipeParserModelYieldCopyWith<$Res>
+    implements $RecipeParserModelYieldCopyWith<$Res> {
+  factory _$$_RecipeParserModelYieldCopyWith(_$_RecipeParserModelYield value,
+          $Res Function(_$_RecipeParserModelYield) then) =
+      __$$_RecipeParserModelYieldCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {int yield, List<HomeRecipeParserModelYieldIngredient> yieldIngredient});
+      {int yield, List<RecipeParserModelYieldIngredient> yieldIngredient});
 }
 
 /// @nodoc
-class __$$_HomeRecipeParserModelYieldCopyWithImpl<$Res>
-    extends _$HomeRecipeParserModelYieldCopyWithImpl<$Res,
-        _$_HomeRecipeParserModelYield>
-    implements _$$_HomeRecipeParserModelYieldCopyWith<$Res> {
-  __$$_HomeRecipeParserModelYieldCopyWithImpl(
-      _$_HomeRecipeParserModelYield _value,
-      $Res Function(_$_HomeRecipeParserModelYield) _then)
+class __$$_RecipeParserModelYieldCopyWithImpl<$Res>
+    extends _$RecipeParserModelYieldCopyWithImpl<$Res,
+        _$_RecipeParserModelYield>
+    implements _$$_RecipeParserModelYieldCopyWith<$Res> {
+  __$$_RecipeParserModelYieldCopyWithImpl(_$_RecipeParserModelYield _value,
+      $Res Function(_$_RecipeParserModelYield) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -918,7 +899,7 @@ class __$$_HomeRecipeParserModelYieldCopyWithImpl<$Res>
     Object? yield = null,
     Object? yieldIngredient = null,
   }) {
-    return _then(_$_HomeRecipeParserModelYield(
+    return _then(_$_RecipeParserModelYield(
       yield: null == yield
           ? _value.yield
           : yield // ignore: cast_nullable_to_non_nullable
@@ -926,39 +907,38 @@ class __$$_HomeRecipeParserModelYieldCopyWithImpl<$Res>
       yieldIngredient: null == yieldIngredient
           ? _value._yieldIngredient
           : yieldIngredient // ignore: cast_nullable_to_non_nullable
-              as List<HomeRecipeParserModelYieldIngredient>,
+              as List<RecipeParserModelYieldIngredient>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_HomeRecipeParserModelYield implements _HomeRecipeParserModelYield {
-  const _$_HomeRecipeParserModelYield(
+class _$_RecipeParserModelYield implements _RecipeParserModelYield {
+  const _$_RecipeParserModelYield(
       {required this.yield,
-      required final List<HomeRecipeParserModelYieldIngredient>
-          yieldIngredient})
+      required final List<RecipeParserModelYieldIngredient> yieldIngredient})
       : _yieldIngredient = yieldIngredient;
 
   @override
   final int yield;
-  final List<HomeRecipeParserModelYieldIngredient> _yieldIngredient;
+  final List<RecipeParserModelYieldIngredient> _yieldIngredient;
   @override
-  List<HomeRecipeParserModelYieldIngredient> get yieldIngredient {
+  List<RecipeParserModelYieldIngredient> get yieldIngredient {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_yieldIngredient);
   }
 
   @override
   String toString() {
-    return 'HomeRecipeParserModelYield(yield: $yield, yieldIngredient: $yieldIngredient)';
+    return 'RecipeParserModelYield(yield: $yield, yieldIngredient: $yieldIngredient)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HomeRecipeParserModelYield &&
+            other is _$_RecipeParserModelYield &&
             (identical(other.yield, yield) || other.yield == yield) &&
             const DeepCollectionEquality()
                 .equals(other._yieldIngredient, _yieldIngredient));
@@ -971,56 +951,54 @@ class _$_HomeRecipeParserModelYield implements _HomeRecipeParserModelYield {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HomeRecipeParserModelYieldCopyWith<_$_HomeRecipeParserModelYield>
-      get copyWith => __$$_HomeRecipeParserModelYieldCopyWithImpl<
-          _$_HomeRecipeParserModelYield>(this, _$identity);
+  _$$_RecipeParserModelYieldCopyWith<_$_RecipeParserModelYield> get copyWith =>
+      __$$_RecipeParserModelYieldCopyWithImpl<_$_RecipeParserModelYield>(
+          this, _$identity);
 }
 
-abstract class _HomeRecipeParserModelYield
-    implements HomeRecipeParserModelYield {
-  const factory _HomeRecipeParserModelYield(
+abstract class _RecipeParserModelYield implements RecipeParserModelYield {
+  const factory _RecipeParserModelYield(
       {required final int yield,
-      required final List<HomeRecipeParserModelYieldIngredient>
-          yieldIngredient}) = _$_HomeRecipeParserModelYield;
+      required final List<RecipeParserModelYieldIngredient>
+          yieldIngredient}) = _$_RecipeParserModelYield;
 
   @override
   int get yield;
   @override
-  List<HomeRecipeParserModelYieldIngredient> get yieldIngredient;
+  List<RecipeParserModelYieldIngredient> get yieldIngredient;
   @override
   @JsonKey(ignore: true)
-  _$$_HomeRecipeParserModelYieldCopyWith<_$_HomeRecipeParserModelYield>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$_RecipeParserModelYieldCopyWith<_$_RecipeParserModelYield> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$HomeRecipeParserModelYieldIngredient {
+mixin _$RecipeParserModelYieldIngredient {
   String get id => throw _privateConstructorUsedError;
   Option<double> get amount => throw _privateConstructorUsedError;
   Option<String> get unit => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $HomeRecipeParserModelYieldIngredientCopyWith<
-          HomeRecipeParserModelYieldIngredient>
+  $RecipeParserModelYieldIngredientCopyWith<RecipeParserModelYieldIngredient>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HomeRecipeParserModelYieldIngredientCopyWith<$Res> {
-  factory $HomeRecipeParserModelYieldIngredientCopyWith(
-          HomeRecipeParserModelYieldIngredient value,
-          $Res Function(HomeRecipeParserModelYieldIngredient) then) =
-      _$HomeRecipeParserModelYieldIngredientCopyWithImpl<$Res,
-          HomeRecipeParserModelYieldIngredient>;
+abstract class $RecipeParserModelYieldIngredientCopyWith<$Res> {
+  factory $RecipeParserModelYieldIngredientCopyWith(
+          RecipeParserModelYieldIngredient value,
+          $Res Function(RecipeParserModelYieldIngredient) then) =
+      _$RecipeParserModelYieldIngredientCopyWithImpl<$Res,
+          RecipeParserModelYieldIngredient>;
   @useResult
   $Res call({String id, Option<double> amount, Option<String> unit});
 }
 
 /// @nodoc
-class _$HomeRecipeParserModelYieldIngredientCopyWithImpl<$Res,
-        $Val extends HomeRecipeParserModelYieldIngredient>
-    implements $HomeRecipeParserModelYieldIngredientCopyWith<$Res> {
-  _$HomeRecipeParserModelYieldIngredientCopyWithImpl(this._value, this._then);
+class _$RecipeParserModelYieldIngredientCopyWithImpl<$Res,
+        $Val extends RecipeParserModelYieldIngredient>
+    implements $RecipeParserModelYieldIngredientCopyWith<$Res> {
+  _$RecipeParserModelYieldIngredientCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -1052,25 +1030,25 @@ class _$HomeRecipeParserModelYieldIngredientCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_HomeRecipeParserModelYieldIngredientCopyWith<$Res>
-    implements $HomeRecipeParserModelYieldIngredientCopyWith<$Res> {
-  factory _$$_HomeRecipeParserModelYieldIngredientCopyWith(
-          _$_HomeRecipeParserModelYieldIngredient value,
-          $Res Function(_$_HomeRecipeParserModelYieldIngredient) then) =
-      __$$_HomeRecipeParserModelYieldIngredientCopyWithImpl<$Res>;
+abstract class _$$_RecipeParserModelYieldIngredientCopyWith<$Res>
+    implements $RecipeParserModelYieldIngredientCopyWith<$Res> {
+  factory _$$_RecipeParserModelYieldIngredientCopyWith(
+          _$_RecipeParserModelYieldIngredient value,
+          $Res Function(_$_RecipeParserModelYieldIngredient) then) =
+      __$$_RecipeParserModelYieldIngredientCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, Option<double> amount, Option<String> unit});
 }
 
 /// @nodoc
-class __$$_HomeRecipeParserModelYieldIngredientCopyWithImpl<$Res>
-    extends _$HomeRecipeParserModelYieldIngredientCopyWithImpl<$Res,
-        _$_HomeRecipeParserModelYieldIngredient>
-    implements _$$_HomeRecipeParserModelYieldIngredientCopyWith<$Res> {
-  __$$_HomeRecipeParserModelYieldIngredientCopyWithImpl(
-      _$_HomeRecipeParserModelYieldIngredient _value,
-      $Res Function(_$_HomeRecipeParserModelYieldIngredient) _then)
+class __$$_RecipeParserModelYieldIngredientCopyWithImpl<$Res>
+    extends _$RecipeParserModelYieldIngredientCopyWithImpl<$Res,
+        _$_RecipeParserModelYieldIngredient>
+    implements _$$_RecipeParserModelYieldIngredientCopyWith<$Res> {
+  __$$_RecipeParserModelYieldIngredientCopyWithImpl(
+      _$_RecipeParserModelYieldIngredient _value,
+      $Res Function(_$_RecipeParserModelYieldIngredient) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1080,7 +1058,7 @@ class __$$_HomeRecipeParserModelYieldIngredientCopyWithImpl<$Res>
     Object? amount = null,
     Object? unit = null,
   }) {
-    return _then(_$_HomeRecipeParserModelYieldIngredient(
+    return _then(_$_RecipeParserModelYieldIngredient(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1099,9 +1077,9 @@ class __$$_HomeRecipeParserModelYieldIngredientCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HomeRecipeParserModelYieldIngredient
-    implements _HomeRecipeParserModelYieldIngredient {
-  const _$_HomeRecipeParserModelYieldIngredient(
+class _$_RecipeParserModelYieldIngredient
+    implements _RecipeParserModelYieldIngredient {
+  const _$_RecipeParserModelYieldIngredient(
       {required this.id, required this.amount, required this.unit});
 
   @override
@@ -1113,14 +1091,14 @@ class _$_HomeRecipeParserModelYieldIngredient
 
   @override
   String toString() {
-    return 'HomeRecipeParserModelYieldIngredient(id: $id, amount: $amount, unit: $unit)';
+    return 'RecipeParserModelYieldIngredient(id: $id, amount: $amount, unit: $unit)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HomeRecipeParserModelYieldIngredient &&
+            other is _$_RecipeParserModelYieldIngredient &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.unit, unit) || other.unit == unit));
@@ -1132,19 +1110,19 @@ class _$_HomeRecipeParserModelYieldIngredient
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HomeRecipeParserModelYieldIngredientCopyWith<
-          _$_HomeRecipeParserModelYieldIngredient>
-      get copyWith => __$$_HomeRecipeParserModelYieldIngredientCopyWithImpl<
-          _$_HomeRecipeParserModelYieldIngredient>(this, _$identity);
+  _$$_RecipeParserModelYieldIngredientCopyWith<
+          _$_RecipeParserModelYieldIngredient>
+      get copyWith => __$$_RecipeParserModelYieldIngredientCopyWithImpl<
+          _$_RecipeParserModelYieldIngredient>(this, _$identity);
 }
 
-abstract class _HomeRecipeParserModelYieldIngredient
-    implements HomeRecipeParserModelYieldIngredient {
-  const factory _HomeRecipeParserModelYieldIngredient(
+abstract class _RecipeParserModelYieldIngredient
+    implements RecipeParserModelYieldIngredient {
+  const factory _RecipeParserModelYieldIngredient(
           {required final String id,
           required final Option<double> amount,
           required final Option<String> unit}) =
-      _$_HomeRecipeParserModelYieldIngredient;
+      _$_RecipeParserModelYieldIngredient;
 
   @override
   String get id;
@@ -1154,7 +1132,7 @@ abstract class _HomeRecipeParserModelYieldIngredient
   Option<String> get unit;
   @override
   @JsonKey(ignore: true)
-  _$$_HomeRecipeParserModelYieldIngredientCopyWith<
-          _$_HomeRecipeParserModelYieldIngredient>
+  _$$_RecipeParserModelYieldIngredientCopyWith<
+          _$_RecipeParserModelYieldIngredient>
       get copyWith => throw _privateConstructorUsedError;
 }

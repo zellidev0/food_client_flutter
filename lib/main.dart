@@ -15,9 +15,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Food client',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: Colors.deepPurple,
+            accentColor: Colors.yellow,
+          ),
+          useMaterial3: true,
         ),
         home: const HomeView(),
       );
