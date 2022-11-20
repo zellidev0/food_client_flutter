@@ -28,7 +28,7 @@ class WebClientService
       return
           TaskEither<Exception, String>.tryCatch(
         () async => await rootBundle
-            .loadString('assets/recipes/recipes_0.json'),
+            .loadString('assets/recipes/recipes_100.json'),
         (final Object error, final _) =>
             Exception('Could not example hello fresh response.'),
       ).flatMap(

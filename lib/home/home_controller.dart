@@ -89,7 +89,7 @@ List<HomeModelTag> mapToHomeModelTags({
                   id: e.id,
                   slug: e.slug,
                   displayedName: e.displayedName,
-                  isSelected: false,
+                  isSelected: true,
                 ),
               )
               .toList(),

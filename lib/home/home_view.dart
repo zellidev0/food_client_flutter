@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/home/home_controller.dart';
 import 'package:food_client/home/home_model.dart';
@@ -38,6 +39,7 @@ class HomeView extends ConsumerWidget {
                     ),
                   )
                   .toList(),
+              tags: model.tags,
             ),
           ],
         ),
@@ -69,51 +71,85 @@ class HomeView extends ConsumerWidget {
 
   Expanded buildRecipesList({
     required final List<HomeModelRecipe> recipes,
+    required final List<HomeModelTag> tags,
   }) =>
       Expanded(
         child: ListView.builder(
           itemCount: recipes.length,
-          itemBuilder: (final BuildContext context, final int index) => Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              _buildRecipeCardItem(recipe: recipes[index]),
-            ],
-          ),
+          itemBuilder: (final BuildContext context, final int index) =>
+              _buildRecipeCardItem(recipe: recipes[index], tags: tags),
         ),
       );
 
   Widget _buildRecipeCardItem({
     required final HomeModelRecipe recipe,
+    required final List<HomeModelTag> tags,
   }) =>
-      Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: Column(
-            children: <Widget>[
-              Stack(
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Column(
                 children: <Widget>[
                   Image(image: NetworkImage(recipe.imageUriLarge.toString())),
-                  Positioned.fill(
-                    child: Align(
-                      alignment: Alignment.bottomLeft,
-                      child: ColoredBox(
-                        color: Colors.white.withOpacity(0.8),
-                        child: ListTile(
-                          title: Text(recipe.displayedAttributes.name),
-                          subtitle: Text(
-                            recipe.displayedAttributes.headline,
-                          ),
-                        ),
-                      ),
+                  SizedBox(
+                    width: 400,
+                    child: buildRecipeCardItemDescription(
+                      recipe: recipe,
+                      tags: tags,
                     ),
                   ),
                 ],
               ),
-            ],
+            ),
           ),
+        ],
+      );
+
+  Widget buildRecipeCardItemDescription({
+    required final HomeModelRecipe recipe,
+    required final List<HomeModelTag> tags,
+  }) =>
+      ColoredBox(
+        color: Colors.white.withOpacity(0.8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            ListTile(
+              title: Text(recipe.displayedAttributes.name),
+              subtitle: Text(
+                recipe.displayedAttributes.headline,
+              ),
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: recipe.tagIds
+                      .map(
+                        (final String tagId) => Chip(
+                          label: Text(
+                            tags
+                                .firstWhere(
+                                  (final HomeModelTag element) =>
+                                      element.id == tagId,
+                                )
+                                .displayedName,
+                          ),
+                        ),
+                      )
+                      .toList(),
+                ),
+              ),
+            ),
+          ],
         ),
       );
 }
