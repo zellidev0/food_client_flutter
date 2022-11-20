@@ -60,24 +60,52 @@ class HomeView extends ConsumerWidget {
       Expanded(
         child: ListView.builder(
           itemCount: recipes.length,
-          itemBuilder: (final BuildContext context, final int index) => Card(
-            child: ListTile(
-              title: Text(recipes[index].displayedAttributes.name),
-              subtitle: Text(recipes[index].displayedAttributes.headline),
-              leading: recipes[index]
-                  .imageUriIcon
-                  .map(
-                    (final Uri url) => CircleAvatar(
-                      backgroundImage: NetworkImage(url.toString()),
-                    ),
-                  )
-                  .getOrElse(
-                    () => const CircleAvatar(
-                      child: Icon(Icons.image_not_supported),
+          itemBuilder: (final BuildContext context, final int index) => Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              _buildRecipeCardItem(recipe: recipes[index]),
+            ],
+          ),
+        ),
+      );
+
+  Card _buildRecipeCardItem({
+    required final HomeModelRecipe recipe,
+  }) =>
+      Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Column(
+            children: <Widget>[
+              Stack(
+                children: <Widget>[
+                  recipe.imageUriLarge
+                      .map<Widget>(
+                        (final Uri url) => Image(
+                          image: NetworkImage(url.toString()),
+                        ),
+                      )
+                      .getOrElse(() => const Icon(Icons.image_not_supported)),
+                  Positioned.fill(
+                    child: Align(
+                      alignment: Alignment.bottomLeft,
+                      child: ColoredBox(
+                        color: Colors.white.withOpacity(0.8),
+                        child: ListTile(
+                          title: Text(recipe.displayedAttributes.name),
+                          subtitle: Text(
+                            recipe.displayedAttributes.headline,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-              trailing: const Icon(Icons.add),
-            ),
+                ],
+              ),
+            ],
           ),
         ),
       );
