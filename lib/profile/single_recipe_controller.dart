@@ -1,6 +1,7 @@
 import 'package:food_client/profile/single_recipe_model.dart';
 import 'package:food_client/profile/single_recipe_view.dart';
-import 'package:food_client/providers.dart';
+import 'package:food_client/services/recipe_parser/recipe_parser_service.dart';
+import 'package:food_client/services/web_client/web_client_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -17,8 +18,8 @@ class SingleRecipeControllerImplementation
 
   @override
   SingleRecipeModel build() {
-    _recipeParserService = ref.watch(profileRecipeParserServiceProvider);
-    _webClientService = ref.watch(profileWebClientServiceProvider);
+    _recipeParserService = ref.watch(recipeParserServiceProvider);
+    _webClientService = ref.watch(webClientServiceProvider);
     return SingleRecipeModel(
       recipe: Right<Exception, Option<SingleRecipeModelRecipe>>(
         some(

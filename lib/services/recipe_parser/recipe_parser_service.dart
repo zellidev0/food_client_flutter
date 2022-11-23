@@ -6,11 +6,20 @@ import 'package:flutter/foundation.dart';
 import 'package:food_client/home/home_recipe_parser.dart';
 import 'package:food_client/profile/single_recipe_controller.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-abstract class RecipeParserServiceAggregator
+part 'recipe_parser_service.g.dart';
+
+@riverpod
+RecipeParserService recipeParserService(
+  final RecipeParserServiceRef ref,
+) =>
+    RecipeParserServiceImplementation();
+
+abstract class RecipeParserService
     implements HomeRecipeParserService, SingleRecipeRecipeParserService {}
 
-class RecipeParserService extends RecipeParserServiceAggregator {
+class RecipeParserServiceImplementation extends RecipeParserService {
   @override
   Either<Exception, List<HomeRecipeParserModelRecipe>> parseRecipes({
     required final Map<String, Object?> payload,

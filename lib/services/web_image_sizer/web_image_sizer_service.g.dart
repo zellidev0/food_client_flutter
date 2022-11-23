@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'single_recipe_controller.dart';
+part of 'web_image_sizer_service.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -29,24 +29,15 @@ class _SystemHash {
   }
 }
 
-String $SingleRecipeControllerImplementationHash() =>
-    r'563c30b8a4a2f90fb3b87804c11407bc5ff46b1c';
+String $webImageSizerServiceHash() =>
+    r'2f6ced0d8ccb25a6008db716242372a7a5d14551';
 
-/// See also [SingleRecipeControllerImplementation].
-final singleRecipeControllerImplementationProvider =
-    AutoDisposeNotifierProvider<SingleRecipeControllerImplementation,
-        SingleRecipeModel>(
-  SingleRecipeControllerImplementation.new,
-  name: r'singleRecipeControllerImplementationProvider',
+/// See also [webImageSizerService].
+final webImageSizerServiceProvider = AutoDisposeProvider<WebImageSizerService>(
+  webImageSizerService,
+  name: r'webImageSizerServiceProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $SingleRecipeControllerImplementationHash,
+      : $webImageSizerServiceHash,
 );
-typedef SingleRecipeControllerImplementationRef
-    = AutoDisposeNotifierProviderRef<SingleRecipeModel>;
-
-abstract class _$SingleRecipeControllerImplementation
-    extends AutoDisposeNotifier<SingleRecipeModel> {
-  @override
-  SingleRecipeModel build();
-}
+typedef WebImageSizerServiceRef = AutoDisposeProviderRef<WebImageSizerService>;

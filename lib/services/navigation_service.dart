@@ -11,7 +11,15 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'navigation_service.freezed.dart';
 part 'navigation_service.g.dart';
 
-abstract class NavigationServiceAggregator
+@riverpod
+BeamerNavigationService navigationService(
+  final NavigationServiceRef ref,
+) =>
+    BeamerNavigationService(
+      beamerDelegate: ref.read(globalBeamerDelegateProvider),
+    );
+
+abstract class NavigationService
     implements HomeNavigationService, SingleRecipeNavigationService {}
 
 class NavigationServiceUris {
@@ -30,8 +38,7 @@ class NavigationServiceDialogAction with _$NavigationServiceDialogAction {
   }) = _NavigationServiceDialogAction;
 }
 
-
-class BeamerNavigationService implements NavigationServiceAggregator {
+class BeamerNavigationService implements NavigationService {
   final BeamerDelegate _beamerDelegate;
   BeamerNavigationService({
     required final BeamerDelegate beamerDelegate,

@@ -5,12 +5,22 @@ import 'package:food_client/home/home_web_client_service.dart';
 import 'package:food_client/profile/single_recipe_controller.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:http/http.dart' as http;
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-class WebClientService
-    implements HomeWebClientService, SingleRecipeWebClientService {
+part 'web_client_service.g.dart';
+
+@riverpod
+WebClientService webClientService() => WebClientServiceImplementation(
+      useMockValues: true,
+    );
+
+abstract class WebClientService
+    implements HomeWebClientService, SingleRecipeWebClientService {}
+
+class WebClientServiceImplementation implements WebClientService {
   final bool _useMockValues;
 
-  WebClientService({
+  WebClientServiceImplementation({
     required final bool useMockValues,
   }) : _useMockValues = useMockValues;
 
@@ -25,10 +35,9 @@ class WebClientService
   @override
   TaskEither<Exception, Map<String, Object?>> fetchAllRecipes() {
     if (_useMockValues) {
-      return
-          TaskEither<Exception, String>.tryCatch(
-        () async => await rootBundle
-            .loadString('assets/recipes/recipes_300.json'),
+      return TaskEither<Exception, String>.tryCatch(
+        () async =>
+            await rootBundle.loadString('assets/recipes/recipes_300.json'),
         (final Object error, final _) =>
             Exception('Could not example hello fresh response.'),
       ).flatMap(
@@ -40,7 +49,7 @@ class WebClientService
         ).toTaskEither(),
       );
     }
-    
+
     return TaskEither<Exception, String>.tryCatch(
       () async => await http.read(url, headers: headers),
       (final Object error, final _) => Exception(
@@ -56,9 +65,7 @@ class WebClientService
       ),
     );
   }
-
 }
-
 
 // void main(List<String> arguments) async {
 //   var url = 'https://www.hellofresh.de/gw/api/recipes?take=XXX&skip=YYY';

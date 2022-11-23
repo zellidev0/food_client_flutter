@@ -89,7 +89,7 @@ class SingleRecipeView extends ConsumerWidget {
                               child: DefaultTabController(
                                 length: 2,
                                 child: Column(
-                                  children: [
+                                  children: <Widget>[
                                     const TabBar(
                                       tabs: <Widget>[
                                         Text('Ingredients'),

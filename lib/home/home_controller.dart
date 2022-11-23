@@ -7,7 +7,10 @@ import 'package:food_client/home/home_recipe_parser.dart';
 import 'package:food_client/home/home_view.dart';
 import 'package:food_client/home/home_web_client_service.dart';
 import 'package:food_client/home/home_web_image_sizer_service.dart';
-import 'package:food_client/providers.dart';
+import 'package:food_client/services/navigation_service.dart';
+import 'package:food_client/services/recipe_parser/recipe_parser_service.dart';
+import 'package:food_client/services/web_client/web_client_service.dart';
+import 'package:food_client/services/web_image_sizer/web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -19,14 +22,15 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
   late final HomeWebClientService _webClientService;
   late final HomeWebImageSizerService _webImageSizerService;
   late final HomeRecipeParserService _recipeParserService;
+  // ignore: unused_field
   late final HomeNavigationService _navigationService;
 
   @override
   HomeModel build() {
-    _webClientService = ref.watch(homeWebClientServiceProvider);
-    _webImageSizerService = ref.watch(homeWebImageSizerServiceProvider);
-    _recipeParserService = ref.watch(homeRecipeParserServiceProvider);
-    _navigationService = ref.watch(beamerNavigationServiceProvider);
+    _webClientService = ref.watch(webClientServiceProvider);
+    _webImageSizerService = ref.watch(webImageSizerServiceProvider);
+    _recipeParserService = ref.watch(recipeParserServiceProvider);
+    _navigationService = ref.watch(navigationServiceProvider);
 
     unawaited(
       init(

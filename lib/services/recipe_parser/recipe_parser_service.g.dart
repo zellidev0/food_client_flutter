@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'single_recipe_controller.dart';
+part of 'recipe_parser_service.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -29,24 +29,15 @@ class _SystemHash {
   }
 }
 
-String $SingleRecipeControllerImplementationHash() =>
-    r'563c30b8a4a2f90fb3b87804c11407bc5ff46b1c';
+String $recipeParserServiceHash() =>
+    r'5a7c08f927a4e1d0c7ba6d7a7edbec7fdb6237a4';
 
-/// See also [SingleRecipeControllerImplementation].
-final singleRecipeControllerImplementationProvider =
-    AutoDisposeNotifierProvider<SingleRecipeControllerImplementation,
-        SingleRecipeModel>(
-  SingleRecipeControllerImplementation.new,
-  name: r'singleRecipeControllerImplementationProvider',
+/// See also [recipeParserService].
+final recipeParserServiceProvider = AutoDisposeProvider<RecipeParserService>(
+  recipeParserService,
+  name: r'recipeParserServiceProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $SingleRecipeControllerImplementationHash,
+      : $recipeParserServiceHash,
 );
-typedef SingleRecipeControllerImplementationRef
-    = AutoDisposeNotifierProviderRef<SingleRecipeModel>;
-
-abstract class _$SingleRecipeControllerImplementation
-    extends AutoDisposeNotifier<SingleRecipeModel> {
-  @override
-  SingleRecipeModel build();
-}
+typedef RecipeParserServiceRef = AutoDisposeProviderRef<RecipeParserService>;
