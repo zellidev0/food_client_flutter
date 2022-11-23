@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:food_client/home/home_controller.dart';
-import 'package:food_client/home/home_model.dart';
+import 'package:food_client/ui/home/home_controller.dart';
+import 'package:food_client/ui/home/home_model.dart';
 import 'package:fpdart/fpdart.dart';
 
 class HomeView extends ConsumerWidget {

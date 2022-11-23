@@ -1,16 +1,16 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
-import 'package:food_client/home/home_model.dart';
-import 'package:food_client/home/home_navigation_service.dart';
-import 'package:food_client/home/home_recipe_parser.dart';
-import 'package:food_client/home/home_view.dart';
-import 'package:food_client/home/home_web_client_service.dart';
-import 'package:food_client/home/home_web_image_sizer_service.dart';
 import 'package:food_client/services/navigation_service.dart';
 import 'package:food_client/services/recipe_parser/recipe_parser_service.dart';
 import 'package:food_client/services/web_client/web_client_service.dart';
 import 'package:food_client/services/web_image_sizer/web_image_sizer_service.dart';
+import 'package:food_client/ui/home/home_model.dart';
+import 'package:food_client/ui/home/home_navigation_service.dart';
+import 'package:food_client/ui/home/home_recipe_parser.dart';
+import 'package:food_client/ui/home/home_view.dart';
+import 'package:food_client/ui/home/home_web_client_service.dart';
+import 'package:food_client/ui/home/home_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

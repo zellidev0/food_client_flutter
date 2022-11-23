@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-import 'package:food_client/home/home_web_client_service.dart';
-import 'package:food_client/profile/single_recipe_controller.dart';
+import 'package:food_client/ui/home/home_web_client_service.dart';
+import 'package:food_client/ui/single_recipe/single_recipe_controller.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:http/http.dart' as http;
 import 'package:riverpod_annotation/riverpod_annotation.dart';

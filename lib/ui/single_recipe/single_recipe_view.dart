@@ -1,8 +1,8 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:food_client/profile/single_recipe_controller.dart';
-import 'package:food_client/profile/single_recipe_model.dart';
+import 'package:food_client/ui/single_recipe/single_recipe_controller.dart';
+import 'package:food_client/ui/single_recipe/single_recipe_model.dart';
 import 'package:fpdart/fpdart.dart';
 
 class SingleRecipeView extends ConsumerWidget {

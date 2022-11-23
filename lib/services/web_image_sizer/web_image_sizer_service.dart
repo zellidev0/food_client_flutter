@@ -1,4 +1,4 @@
-import 'package:food_client/home/home_web_image_sizer_service.dart';
+import 'package:food_client/ui/home/home_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

@@ -1,7 +1,7 @@
-import 'package:food_client/profile/single_recipe_model.dart';
-import 'package:food_client/profile/single_recipe_view.dart';
 import 'package:food_client/services/recipe_parser/recipe_parser_service.dart';
 import 'package:food_client/services/web_client/web_client_service.dart';
+import 'package:food_client/ui/single_recipe/single_recipe_model.dart';
+import 'package:food_client/ui/single_recipe/single_recipe_view.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

@@ -3,8 +3,8 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:food_client/home/home_recipe_parser.dart';
-import 'package:food_client/profile/single_recipe_controller.dart';
+import 'package:food_client/ui/home/home_recipe_parser.dart';
+import 'package:food_client/ui/single_recipe/single_recipe_controller.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
