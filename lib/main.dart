@@ -1,7 +1,7 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:food_client/services/navigation_service.dart';
+import 'package:food_client/services/navigation_service/navigation_service.dart';
 
 void main() {
   runApp(
