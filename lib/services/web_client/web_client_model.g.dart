@@ -6,20 +6,66 @@ part of 'web_client_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_WebClientModelApiResponse _$$_WebClientModelApiResponseFromJson(
+_$_WebClientModelRecipeApiRecipeResponse
+    _$$_WebClientModelRecipeApiRecipeResponseFromJson(
+            Map<String, dynamic> json) =>
+        _$_WebClientModelRecipeApiRecipeResponse(
+          total: json['total'] as int,
+          take: json['take'] as int,
+          count: json['count'] as int,
+          skip: json['skip'] as int,
+          items: (json['items'] as List<dynamic>)
+              .map((e) =>
+                  WebClientModelRecipe.fromJson(e as Map<String, dynamic>))
+              .toList(),
+        );
+
+Map<String, dynamic> _$$_WebClientModelRecipeApiRecipeResponseToJson(
+        _$_WebClientModelRecipeApiRecipeResponse instance) =>
+    <String, dynamic>{
+      'total': instance.total,
+      'take': instance.take,
+      'count': instance.count,
+      'skip': instance.skip,
+      'items': instance.items,
+    };
+
+_$_WebClientModelRecipeApiTagResponse
+    _$$_WebClientModelRecipeApiTagResponseFromJson(Map<String, dynamic> json) =>
+        _$_WebClientModelRecipeApiTagResponse(
+          total: json['total'] as int,
+          take: json['take'] as int,
+          count: json['count'] as int,
+          skip: json['skip'] as int,
+          items: (json['items'] as List<dynamic>)
+              .map((e) => WebClientModelTag.fromJson(e as Map<String, dynamic>))
+              .toList(),
+        );
+
+Map<String, dynamic> _$$_WebClientModelRecipeApiTagResponseToJson(
+        _$_WebClientModelRecipeApiTagResponse instance) =>
+    <String, dynamic>{
+      'total': instance.total,
+      'take': instance.take,
+      'count': instance.count,
+      'skip': instance.skip,
+      'items': instance.items,
+    };
+
+_$_WebClientModelTagsApiResponse _$$_WebClientModelTagsApiResponseFromJson(
         Map<String, dynamic> json) =>
-    _$_WebClientModelApiResponse(
+    _$_WebClientModelTagsApiResponse(
       total: json['total'] as int,
       take: json['take'] as int,
       count: json['count'] as int,
       skip: json['skip'] as int,
       items: (json['items'] as List<dynamic>)
-          .map((e) => WebClientModelRecipe.fromJson(e as Map<String, dynamic>))
+          .map((e) => WebClientModelTag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$_WebClientModelApiResponseToJson(
-        _$_WebClientModelApiResponse instance) =>
+Map<String, dynamic> _$$_WebClientModelTagsApiResponseToJson(
+        _$_WebClientModelTagsApiResponse instance) =>
     <String, dynamic>{
       'total': instance.total,
       'take': instance.take,
@@ -50,7 +96,8 @@ _$_WebClientModelRecipe _$$_WebClientModelRecipeFromJson(
           .map((e) => WebClientModelYield.fromJson(e as Map<String, dynamic>))
           .toList(),
       tags: (json['tags'] as List<dynamic>)
-          .map((e) => WebClientModelTag.fromJson(e as Map<String, dynamic>))
+          .map((e) =>
+              WebClientModelRecipeTag.fromJson(e as Map<String, dynamic>))
           .toList(),
       steps: (json['steps'] as List<dynamic>)
           .map((e) => WebClientModelStep.fromJson(e as Map<String, dynamic>))
@@ -113,8 +160,9 @@ Map<String, dynamic> _$$_WebClientModelIngredientToJson(
       ),
     };
 
-_$_WebClientModelTag _$$_WebClientModelTagFromJson(Map<String, dynamic> json) =>
-    _$_WebClientModelTag(
+_$_WebClientModelRecipeTag _$$_WebClientModelRecipeTagFromJson(
+        Map<String, dynamic> json) =>
+    _$_WebClientModelRecipeTag(
       id: json['id'] as String,
       slug: json['slug'] as String,
       type: json['type'] as String,
@@ -124,8 +172,8 @@ _$_WebClientModelTag _$$_WebClientModelTagFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$_WebClientModelTagToJson(
-        _$_WebClientModelTag instance) =>
+Map<String, dynamic> _$$_WebClientModelRecipeTagToJson(
+        _$_WebClientModelRecipeTag instance) =>
     <String, dynamic>{
       'id': instance.id,
       'slug': instance.slug,
@@ -225,4 +273,22 @@ Map<String, dynamic> _$$_WebClientModelYieldIngredientToJson(
       'unit': instance.unit.toJson(
         (value) => value,
       ),
+    };
+
+_$_WebClientModelTag _$$_WebClientModelTagFromJson(Map<String, dynamic> json) =>
+    _$_WebClientModelTag(
+      id: json['id'] as String,
+      name: json['name'] as String,
+      slug: json['slug'] as String,
+      numberOfRecipesByCountry:
+          Map<String, int>.from(json['numberOfRecipesByCountry'] as Map),
+    );
+
+Map<String, dynamic> _$$_WebClientModelTagToJson(
+        _$_WebClientModelTag instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'slug': instance.slug,
+      'numberOfRecipesByCountry': instance.numberOfRecipesByCountry,
     };

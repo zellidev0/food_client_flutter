@@ -47,7 +47,6 @@ class HomeModelIngredient with _$HomeModelIngredient {
 class HomeModelTag with _$HomeModelTag {
   const factory HomeModelTag({
     required final String id,
-    required final String slug,
     required final String displayedName,
     required final bool isSelected,
   }) = _HomeModelTag;

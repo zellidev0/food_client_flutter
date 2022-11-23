@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/ui/home/home_controller.dart';
@@ -22,7 +23,16 @@ class HomeView extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              buildTagChips(tags: model.tags, controller: controller),
+              LayoutBuilder(
+                builder: (final _, final BoxConstraints constraints) =>
+                    ConstrainedBox(
+                  constraints: constraints.copyWith(maxHeight: 200),
+                  child: buildTagChips(
+                    tags: model.tags,
+                    controller: controller,
+                  ),
+                ),
+              ),
               buildRecipesList(
                 recipes: model.recipes
                     .filter(
@@ -56,19 +66,21 @@ class HomeView extends ConsumerWidget {
   }) =>
       Padding(
         padding: const EdgeInsets.all(4),
-        child: Wrap(
-          spacing: 8,
-          runSpacing: 8,
-          children: List<Widget>.generate(
-            tags.length,
-            (final int index) => ChoiceChip(
-              label: Text(tags[index].displayedName),
-              selected: tags[index].isSelected,
-              onSelected: (final bool selected) {
-                controller.setTagSelected(index: index, selected: selected);
-              },
-            ),
-          ).toList(),
+        child: SingleChildScrollView(
+          child: Wrap(
+            spacing: 8,
+            runSpacing: 0,
+            children: List<Widget>.generate(
+              tags.length,
+              (final int index) => ChoiceChip(
+                label: Text(tags[index].displayedName),
+                selected: tags[index].isSelected,
+                onSelected: (final bool selected) {
+                  controller.setTagSelected(index: index, selected: selected);
+                },
+              ),
+            ).toList(),
+          ),
         ),
       );
 
@@ -143,17 +155,18 @@ class HomeView extends ConsumerWidget {
                 runSpacing: 4,
                 children: recipe.tagIds
                     .map(
-                      (final String tagId) => Chip(
-                        label: Text(
-                          tags
-                              .firstWhere(
-                                (final HomeModelTag element) =>
-                                    element.id == tagId,
-                              )
-                              .displayedName,
+                      (final String tagId) => optionOf(
+                        tags.firstWhereOrNull(
+                          (final HomeModelTag element) => element.id == tagId,
+                        ),
+                      ).map(
+                        (final HomeModelTag tag) => Chip(
+                          label: Text(tag.displayedName),
                         ),
                       ),
                     )
+                    .whereType<Some<Widget>>()
+                    .map((final Some<Widget> optional) => optional.value)
                     .toList(),
               ),
             ),

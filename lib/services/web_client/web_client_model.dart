@@ -5,19 +5,51 @@ part 'web_client_model.freezed.dart';
 part 'web_client_model.g.dart';
 
 @freezed
-class WebClientModelApiResponse with _$WebClientModelApiResponse {
-  const factory WebClientModelApiResponse({
+class WebClientModelRecipeApiRecipeResponse with _$WebClientModelRecipeApiRecipeResponse {
+  const factory WebClientModelRecipeApiRecipeResponse({
     required final int total,
     required final int take,
     required final int count,
     required final int skip,
     required final List<WebClientModelRecipe> items,
-  }) = _WebClientModelApiResponse;
+  }) = _WebClientModelRecipeApiRecipeResponse;
 
-  factory WebClientModelApiResponse.fromJson(
+  factory WebClientModelRecipeApiRecipeResponse.fromJson(
+    final Map<String, dynamic> json,
+  ) =>
+      _$WebClientModelRecipeApiRecipeResponseFromJson(json);
+}
+
+@freezed
+class WebClientModelRecipeApiTagResponse with _$WebClientModelRecipeApiTagResponse {
+  const factory WebClientModelRecipeApiTagResponse({
+    required final int total,
+    required final int take,
+    required final int count,
+    required final int skip,
+    required final List<WebClientModelTag> items,
+  }) = _WebClientModelRecipeApiTagResponse;
+
+  factory WebClientModelRecipeApiTagResponse.fromJson(
       final Map<String, dynamic> json,
       ) =>
-      _$WebClientModelApiResponseFromJson(json);
+      _$WebClientModelRecipeApiTagResponseFromJson(json);
+}
+
+@freezed
+class WebClientModelTagsApiResponse with _$WebClientModelTagsApiResponse {
+  const factory WebClientModelTagsApiResponse({
+    required final int total,
+    required final int take,
+    required final int count,
+    required final int skip,
+    required final List<WebClientModelTag> items,
+  }) = _WebClientModelTagsApiResponse;
+
+  factory WebClientModelTagsApiResponse.fromJson(
+    final Map<String, dynamic> json,
+  ) =>
+      _$WebClientModelTagsApiResponseFromJson(json);
 }
 
 @freezed
@@ -36,14 +68,14 @@ class WebClientModelRecipe with _$WebClientModelRecipe {
     required final Option<String> imagePath,
     required final List<WebClientModelIngredient> ingredients,
     required final List<WebClientModelYield> yields,
-    required final List<WebClientModelTag> tags,
+    required final List<WebClientModelRecipeTag> tags,
     required final List<WebClientModelStep> steps,
     required final List<WebClientModelCuisine> cuisines,
   }) = _WebClientModelRecipe;
 
   factory WebClientModelRecipe.fromJson(
-      final Map<String, dynamic> json,
-      ) =>
+    final Map<String, dynamic> json,
+  ) =>
       _$WebClientModelRecipeFromJson(json);
 }
 
@@ -59,25 +91,25 @@ class WebClientModelIngredient with _$WebClientModelIngredient {
   }) = _WebClientModelIngredient;
 
   factory WebClientModelIngredient.fromJson(
-      final Map<String, dynamic> json,
-      ) =>
+    final Map<String, dynamic> json,
+  ) =>
       _$WebClientModelIngredientFromJson(json);
 }
 
 @freezed
-class WebClientModelTag with _$WebClientModelTag {
-  const factory WebClientModelTag({
+class WebClientModelRecipeTag with _$WebClientModelRecipeTag {
+  const factory WebClientModelRecipeTag({
     required final String id,
     required final String slug,
     required final String type,
     required final String name,
     required final List<String> preferences,
-  }) = _WebClientModelTag;
+  }) = _WebClientModelRecipeTag;
 
-  factory WebClientModelTag.fromJson(
-      final Map<String, dynamic> json,
-      ) =>
-      _$WebClientModelTagFromJson(json);
+  factory WebClientModelRecipeTag.fromJson(
+    final Map<String, dynamic> json,
+  ) =>
+      _$WebClientModelRecipeTagFromJson(json);
 }
 
 @freezed
@@ -91,8 +123,8 @@ class WebClientModelCuisine with _$WebClientModelCuisine {
   }) = _WebClientModelCuisine;
 
   factory WebClientModelCuisine.fromJson(
-      final Map<String, dynamic> json,
-      ) =>
+    final Map<String, dynamic> json,
+  ) =>
       _$WebClientModelCuisineFromJson(json);
 }
 
@@ -104,8 +136,8 @@ class WebClientModelYield with _$WebClientModelYield {
   }) = _WebClientModelYield;
 
   factory WebClientModelYield.fromJson(
-      final Map<String, dynamic> json,
-      ) =>
+    final Map<String, dynamic> json,
+  ) =>
       _$WebClientModelYieldFromJson(json);
 }
 
@@ -119,8 +151,8 @@ class WebClientModelStep with _$WebClientModelStep {
   }) = _WebClientModelStep;
 
   factory WebClientModelStep.fromJson(
-      final Map<String, dynamic> json,
-      ) =>
+    final Map<String, dynamic> json,
+  ) =>
       _$WebClientModelStepFromJson(json);
 }
 
@@ -132,8 +164,8 @@ class WebClientModelStepImage with _$WebClientModelStepImage {
   }) = _WebClientModelStepImage;
 
   factory WebClientModelStepImage.fromJson(
-      final Map<String, dynamic> json,
-      ) =>
+    final Map<String, dynamic> json,
+  ) =>
       _$WebClientModelStepImageFromJson(json);
 }
 
@@ -146,7 +178,22 @@ class WebClientModelYieldIngredient with _$WebClientModelYieldIngredient {
   }) = _WebClientModelYieldIngredient;
 
   factory WebClientModelYieldIngredient.fromJson(
-      final Map<String, dynamic> json,
-      ) =>
+    final Map<String, dynamic> json,
+  ) =>
       _$WebClientModelYieldIngredientFromJson(json);
+}
+
+@freezed
+class WebClientModelTag with _$WebClientModelTag {
+  const factory WebClientModelTag({
+    required final String id,
+    required final String name,
+    required final String slug,
+    required final Map<String,int> numberOfRecipesByCountry,
+  }) = _WebClientModelTag;
+
+  factory WebClientModelTag.fromJson(
+    final Map<String, dynamic> json,
+  ) =>
+      _$WebClientModelTagFromJson(json);
 }

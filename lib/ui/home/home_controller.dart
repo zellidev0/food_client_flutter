@@ -2,10 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
+import 'package:food_client/services/recipe_language_service/recipe_language_service.dart';
 import 'package:food_client/services/web_client/web_client_service.dart';
 import 'package:food_client/services/web_image_sizer/web_image_sizer_service.dart';
 import 'package:food_client/ui/home/home_model.dart';
 import 'package:food_client/ui/home/home_navigation_service.dart';
+import 'package:food_client/ui/home/home_recipe_language_service.dart';
 import 'package:food_client/ui/home/home_view.dart';
 import 'package:food_client/ui/home/home_web_client_service.dart';
 import 'package:food_client/ui/home/home_web_image_sizer_service.dart';
@@ -20,23 +22,44 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
   late final HomeWebClientService _webClientService;
   late final HomeWebImageSizerService _webImageSizerService;
   late final HomeNavigationService _navigationService;
+  late final HomeRecipeLanguageService _recipeLanguageService;
 
   @override
   HomeModel build() {
     _webClientService = ref.read(webClientServiceProvider);
     _webImageSizerService = ref.read(webImageSizerServiceProvider);
     _navigationService = ref.read(navigationServiceProvider);
+    _recipeLanguageService = ref.read(recipeLanguageServiceProvider);
 
     unawaited(
       init(
-        initialTask: _webClientService.fetchAllRecipes().map(
-              (final List<HomeWebClientModelRecipe> recipes) => HomeModel(
-                recipes: mapToHomeModelRecipes(
-                  recipes: recipes,
-                  imageResizerService: _webImageSizerService,
-                ),
-                tags: mapToHomeModelTags(recipes: recipes),
+        initialRecipes: _webClientService
+            .fetchAllRecipes(
+              country:
+                  _recipeLanguageService.getSupportedRecipeLanguages().first,
+              limit: some(100),
+            )
+            .map(
+              (final List<HomeWebClientModelRecipe> recipes) =>
+                  mapToHomeModelRecipes(
+                recipes: recipes,
+                imageResizerService: _webImageSizerService,
               ),
+            ),
+        initialTags: _webClientService
+            .fetchAllTags(
+              country:
+                  _recipeLanguageService.getSupportedRecipeLanguages().first,
+              take: some(100),
+            )
+            .map(
+              (final List<HomeWebClientModelTag> tags) => tags.map(
+                (final HomeWebClientModelTag tag) => HomeModelTag(
+                  id: tag.id,
+                  displayedName: tag.displayedName,
+                  isSelected: false,
+                ),
+              ).toList(),
             ),
       ),
     );
@@ -48,9 +71,23 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
   }
 
   Future<void> init({
-    required final TaskEither<Exception, HomeModel> initialTask,
+    required final TaskEither<Exception, List<HomeModelRecipe>> initialRecipes,
+    required final TaskEither<Exception, List<HomeModelTag>> initialTags,
   }) async {
-    (await initialTask.run()).fold(
+    (await initialRecipes
+            .map2(
+      initialTags,
+              (
+                final List<HomeModelRecipe> recipes,
+                final List<HomeModelTag> tags,
+              ) =>
+                  HomeModel(
+                recipes: recipes,
+                tags: tags,
+              ),
+            )
+            .run())
+        .fold(
       (final Exception l) => debugPrint(l.toString()),
       (final HomeModel model) {
         state = model;
@@ -85,7 +122,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
   }
 }
 
-List<HomeModelTag> mapToHomeModelTags({
+List<HomeModelTag> mapToHomeModelRecipeTags({
   required final List<HomeWebClientModelRecipe> recipes,
 }) =>
     recipes
@@ -94,7 +131,6 @@ List<HomeModelTag> mapToHomeModelTags({
               .map(
                 (final HomeWebClientModelTag tag) => HomeModelTag(
                   id: tag.id,
-                  slug: tag.slug,
                   displayedName: tag.displayedName,
                   isSelected: true,
                 ),

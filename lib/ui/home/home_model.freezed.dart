@@ -802,7 +802,6 @@ abstract class _HomeModelIngredient implements HomeModelIngredient {
 /// @nodoc
 mixin _$HomeModelTag {
   String get id => throw _privateConstructorUsedError;
-  String get slug => throw _privateConstructorUsedError;
   String get displayedName => throw _privateConstructorUsedError;
   bool get isSelected => throw _privateConstructorUsedError;
 
@@ -817,7 +816,7 @@ abstract class $HomeModelTagCopyWith<$Res> {
           HomeModelTag value, $Res Function(HomeModelTag) then) =
       _$HomeModelTagCopyWithImpl<$Res, HomeModelTag>;
   @useResult
-  $Res call({String id, String slug, String displayedName, bool isSelected});
+  $Res call({String id, String displayedName, bool isSelected});
 }
 
 /// @nodoc
@@ -834,7 +833,6 @@ class _$HomeModelTagCopyWithImpl<$Res, $Val extends HomeModelTag>
   @override
   $Res call({
     Object? id = null,
-    Object? slug = null,
     Object? displayedName = null,
     Object? isSelected = null,
   }) {
@@ -842,10 +840,6 @@ class _$HomeModelTagCopyWithImpl<$Res, $Val extends HomeModelTag>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      slug: null == slug
-          ? _value.slug
-          : slug // ignore: cast_nullable_to_non_nullable
               as String,
       displayedName: null == displayedName
           ? _value.displayedName
@@ -867,7 +861,7 @@ abstract class _$$_HomeModelTagCopyWith<$Res>
       __$$_HomeModelTagCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String slug, String displayedName, bool isSelected});
+  $Res call({String id, String displayedName, bool isSelected});
 }
 
 /// @nodoc
@@ -882,7 +876,6 @@ class __$$_HomeModelTagCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? slug = null,
     Object? displayedName = null,
     Object? isSelected = null,
   }) {
@@ -890,10 +883,6 @@ class __$$_HomeModelTagCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      slug: null == slug
-          ? _value.slug
-          : slug // ignore: cast_nullable_to_non_nullable
               as String,
       displayedName: null == displayedName
           ? _value.displayedName
@@ -912,14 +901,11 @@ class __$$_HomeModelTagCopyWithImpl<$Res>
 class _$_HomeModelTag implements _HomeModelTag {
   const _$_HomeModelTag(
       {required this.id,
-      required this.slug,
       required this.displayedName,
       required this.isSelected});
 
   @override
   final String id;
-  @override
-  final String slug;
   @override
   final String displayedName;
   @override
@@ -927,7 +913,7 @@ class _$_HomeModelTag implements _HomeModelTag {
 
   @override
   String toString() {
-    return 'HomeModelTag(id: $id, slug: $slug, displayedName: $displayedName, isSelected: $isSelected)';
+    return 'HomeModelTag(id: $id, displayedName: $displayedName, isSelected: $isSelected)';
   }
 
   @override
@@ -936,7 +922,6 @@ class _$_HomeModelTag implements _HomeModelTag {
         (other.runtimeType == runtimeType &&
             other is _$_HomeModelTag &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.slug, slug) || other.slug == slug) &&
             (identical(other.displayedName, displayedName) ||
                 other.displayedName == displayedName) &&
             (identical(other.isSelected, isSelected) ||
@@ -944,8 +929,7 @@ class _$_HomeModelTag implements _HomeModelTag {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, slug, displayedName, isSelected);
+  int get hashCode => Object.hash(runtimeType, id, displayedName, isSelected);
 
   @JsonKey(ignore: true)
   @override
@@ -957,14 +941,11 @@ class _$_HomeModelTag implements _HomeModelTag {
 abstract class _HomeModelTag implements HomeModelTag {
   const factory _HomeModelTag(
       {required final String id,
-      required final String slug,
       required final String displayedName,
       required final bool isSelected}) = _$_HomeModelTag;
 
   @override
   String get id;
-  @override
-  String get slug;
   @override
   String get displayedName;
   @override

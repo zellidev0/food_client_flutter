@@ -4,7 +4,18 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'home_web_client_service.freezed.dart';
 
 abstract class HomeWebClientService {
-  TaskEither<Exception, List<HomeWebClientModelRecipe>> fetchAllRecipes();
+  TaskEither<Exception, List<HomeWebClientModelRecipe>> fetchAllRecipes({
+    required final String country,
+    final Option<int> limit = const None<int>(),
+    final Option<List<String>> tags = const None<List<String>>(),
+    final Option<List<String>> cuisines = const None<List<String>>(),
+    final Option<List<String>> ingredients = const None<List<String>>(),
+    final Option<String> searchTerm = const None<String>(),
+  });
+  TaskEither<Exception, List<HomeWebClientModelTag>> fetchAllTags({
+    required final String country,
+    final Option<int> take = const None<int>(),
+  });
 }
 
 @freezed
@@ -58,7 +69,8 @@ class HomeWebClientModelYield with _$HomeWebClientModelYield {
 }
 
 @freezed
-class HomeWebClientModelYieldIngredient with _$HomeWebClientModelYieldIngredient {
+class HomeWebClientModelYieldIngredient
+    with _$HomeWebClientModelYieldIngredient {
   const factory HomeWebClientModelYieldIngredient({
     required final String id,
     required final Option<double> amount,

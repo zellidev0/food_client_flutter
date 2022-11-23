@@ -14,13 +14,13 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-WebClientModelApiResponse _$WebClientModelApiResponseFromJson(
-    Map<String, dynamic> json) {
-  return _WebClientModelApiResponse.fromJson(json);
+WebClientModelRecipeApiRecipeResponse
+    _$WebClientModelRecipeApiRecipeResponseFromJson(Map<String, dynamic> json) {
+  return _WebClientModelRecipeApiRecipeResponse.fromJson(json);
 }
 
 /// @nodoc
-mixin _$WebClientModelApiResponse {
+mixin _$WebClientModelRecipeApiRecipeResponse {
   int get total => throw _privateConstructorUsedError;
   int get take => throw _privateConstructorUsedError;
   int get count => throw _privateConstructorUsedError;
@@ -29,15 +29,18 @@ mixin _$WebClientModelApiResponse {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $WebClientModelApiResponseCopyWith<WebClientModelApiResponse> get copyWith =>
-      throw _privateConstructorUsedError;
+  $WebClientModelRecipeApiRecipeResponseCopyWith<
+          WebClientModelRecipeApiRecipeResponse>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $WebClientModelApiResponseCopyWith<$Res> {
-  factory $WebClientModelApiResponseCopyWith(WebClientModelApiResponse value,
-          $Res Function(WebClientModelApiResponse) then) =
-      _$WebClientModelApiResponseCopyWithImpl<$Res, WebClientModelApiResponse>;
+abstract class $WebClientModelRecipeApiRecipeResponseCopyWith<$Res> {
+  factory $WebClientModelRecipeApiRecipeResponseCopyWith(
+          WebClientModelRecipeApiRecipeResponse value,
+          $Res Function(WebClientModelRecipeApiRecipeResponse) then) =
+      _$WebClientModelRecipeApiRecipeResponseCopyWithImpl<$Res,
+          WebClientModelRecipeApiRecipeResponse>;
   @useResult
   $Res call(
       {int total,
@@ -48,10 +51,10 @@ abstract class $WebClientModelApiResponseCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$WebClientModelApiResponseCopyWithImpl<$Res,
-        $Val extends WebClientModelApiResponse>
-    implements $WebClientModelApiResponseCopyWith<$Res> {
-  _$WebClientModelApiResponseCopyWithImpl(this._value, this._then);
+class _$WebClientModelRecipeApiRecipeResponseCopyWithImpl<$Res,
+        $Val extends WebClientModelRecipeApiRecipeResponse>
+    implements $WebClientModelRecipeApiRecipeResponseCopyWith<$Res> {
+  _$WebClientModelRecipeApiRecipeResponseCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -93,12 +96,12 @@ class _$WebClientModelApiResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_WebClientModelApiResponseCopyWith<$Res>
-    implements $WebClientModelApiResponseCopyWith<$Res> {
-  factory _$$_WebClientModelApiResponseCopyWith(
-          _$_WebClientModelApiResponse value,
-          $Res Function(_$_WebClientModelApiResponse) then) =
-      __$$_WebClientModelApiResponseCopyWithImpl<$Res>;
+abstract class _$$_WebClientModelRecipeApiRecipeResponseCopyWith<$Res>
+    implements $WebClientModelRecipeApiRecipeResponseCopyWith<$Res> {
+  factory _$$_WebClientModelRecipeApiRecipeResponseCopyWith(
+          _$_WebClientModelRecipeApiRecipeResponse value,
+          $Res Function(_$_WebClientModelRecipeApiRecipeResponse) then) =
+      __$$_WebClientModelRecipeApiRecipeResponseCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -110,13 +113,13 @@ abstract class _$$_WebClientModelApiResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_WebClientModelApiResponseCopyWithImpl<$Res>
-    extends _$WebClientModelApiResponseCopyWithImpl<$Res,
-        _$_WebClientModelApiResponse>
-    implements _$$_WebClientModelApiResponseCopyWith<$Res> {
-  __$$_WebClientModelApiResponseCopyWithImpl(
-      _$_WebClientModelApiResponse _value,
-      $Res Function(_$_WebClientModelApiResponse) _then)
+class __$$_WebClientModelRecipeApiRecipeResponseCopyWithImpl<$Res>
+    extends _$WebClientModelRecipeApiRecipeResponseCopyWithImpl<$Res,
+        _$_WebClientModelRecipeApiRecipeResponse>
+    implements _$$_WebClientModelRecipeApiRecipeResponseCopyWith<$Res> {
+  __$$_WebClientModelRecipeApiRecipeResponseCopyWithImpl(
+      _$_WebClientModelRecipeApiRecipeResponse _value,
+      $Res Function(_$_WebClientModelRecipeApiRecipeResponse) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -128,7 +131,7 @@ class __$$_WebClientModelApiResponseCopyWithImpl<$Res>
     Object? skip = null,
     Object? items = null,
   }) {
-    return _then(_$_WebClientModelApiResponse(
+    return _then(_$_WebClientModelRecipeApiRecipeResponse(
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
@@ -155,8 +158,9 @@ class __$$_WebClientModelApiResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_WebClientModelApiResponse implements _WebClientModelApiResponse {
-  const _$_WebClientModelApiResponse(
+class _$_WebClientModelRecipeApiRecipeResponse
+    implements _WebClientModelRecipeApiRecipeResponse {
+  const _$_WebClientModelRecipeApiRecipeResponse(
       {required this.total,
       required this.take,
       required this.count,
@@ -164,8 +168,9 @@ class _$_WebClientModelApiResponse implements _WebClientModelApiResponse {
       required final List<WebClientModelRecipe> items})
       : _items = items;
 
-  factory _$_WebClientModelApiResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_WebClientModelApiResponseFromJson(json);
+  factory _$_WebClientModelRecipeApiRecipeResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$$_WebClientModelRecipeApiRecipeResponseFromJson(json);
 
   @override
   final int total;
@@ -184,14 +189,14 @@ class _$_WebClientModelApiResponse implements _WebClientModelApiResponse {
 
   @override
   String toString() {
-    return 'WebClientModelApiResponse(total: $total, take: $take, count: $count, skip: $skip, items: $items)';
+    return 'WebClientModelRecipeApiRecipeResponse(total: $total, take: $take, count: $count, skip: $skip, items: $items)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_WebClientModelApiResponse &&
+            other is _$_WebClientModelRecipeApiRecipeResponse &&
             (identical(other.total, total) || other.total == total) &&
             (identical(other.take, take) || other.take == take) &&
             (identical(other.count, count) || other.count == count) &&
@@ -207,29 +212,32 @@ class _$_WebClientModelApiResponse implements _WebClientModelApiResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_WebClientModelApiResponseCopyWith<_$_WebClientModelApiResponse>
-      get copyWith => __$$_WebClientModelApiResponseCopyWithImpl<
-          _$_WebClientModelApiResponse>(this, _$identity);
+  _$$_WebClientModelRecipeApiRecipeResponseCopyWith<
+          _$_WebClientModelRecipeApiRecipeResponse>
+      get copyWith => __$$_WebClientModelRecipeApiRecipeResponseCopyWithImpl<
+          _$_WebClientModelRecipeApiRecipeResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_WebClientModelApiResponseToJson(
+    return _$$_WebClientModelRecipeApiRecipeResponseToJson(
       this,
     );
   }
 }
 
-abstract class _WebClientModelApiResponse implements WebClientModelApiResponse {
-  const factory _WebClientModelApiResponse(
+abstract class _WebClientModelRecipeApiRecipeResponse
+    implements WebClientModelRecipeApiRecipeResponse {
+  const factory _WebClientModelRecipeApiRecipeResponse(
           {required final int total,
           required final int take,
           required final int count,
           required final int skip,
           required final List<WebClientModelRecipe> items}) =
-      _$_WebClientModelApiResponse;
+      _$_WebClientModelRecipeApiRecipeResponse;
 
-  factory _WebClientModelApiResponse.fromJson(Map<String, dynamic> json) =
-      _$_WebClientModelApiResponse.fromJson;
+  factory _WebClientModelRecipeApiRecipeResponse.fromJson(
+          Map<String, dynamic> json) =
+      _$_WebClientModelRecipeApiRecipeResponse.fromJson;
 
   @override
   int get total;
@@ -243,7 +251,488 @@ abstract class _WebClientModelApiResponse implements WebClientModelApiResponse {
   List<WebClientModelRecipe> get items;
   @override
   @JsonKey(ignore: true)
-  _$$_WebClientModelApiResponseCopyWith<_$_WebClientModelApiResponse>
+  _$$_WebClientModelRecipeApiRecipeResponseCopyWith<
+          _$_WebClientModelRecipeApiRecipeResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+WebClientModelRecipeApiTagResponse _$WebClientModelRecipeApiTagResponseFromJson(
+    Map<String, dynamic> json) {
+  return _WebClientModelRecipeApiTagResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$WebClientModelRecipeApiTagResponse {
+  int get total => throw _privateConstructorUsedError;
+  int get take => throw _privateConstructorUsedError;
+  int get count => throw _privateConstructorUsedError;
+  int get skip => throw _privateConstructorUsedError;
+  List<WebClientModelTag> get items => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $WebClientModelRecipeApiTagResponseCopyWith<
+          WebClientModelRecipeApiTagResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WebClientModelRecipeApiTagResponseCopyWith<$Res> {
+  factory $WebClientModelRecipeApiTagResponseCopyWith(
+          WebClientModelRecipeApiTagResponse value,
+          $Res Function(WebClientModelRecipeApiTagResponse) then) =
+      _$WebClientModelRecipeApiTagResponseCopyWithImpl<$Res,
+          WebClientModelRecipeApiTagResponse>;
+  @useResult
+  $Res call(
+      {int total,
+      int take,
+      int count,
+      int skip,
+      List<WebClientModelTag> items});
+}
+
+/// @nodoc
+class _$WebClientModelRecipeApiTagResponseCopyWithImpl<$Res,
+        $Val extends WebClientModelRecipeApiTagResponse>
+    implements $WebClientModelRecipeApiTagResponseCopyWith<$Res> {
+  _$WebClientModelRecipeApiTagResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? total = null,
+    Object? take = null,
+    Object? count = null,
+    Object? skip = null,
+    Object? items = null,
+  }) {
+    return _then(_value.copyWith(
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int,
+      take: null == take
+          ? _value.take
+          : take // ignore: cast_nullable_to_non_nullable
+              as int,
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
+      skip: null == skip
+          ? _value.skip
+          : skip // ignore: cast_nullable_to_non_nullable
+              as int,
+      items: null == items
+          ? _value.items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<WebClientModelTag>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_WebClientModelRecipeApiTagResponseCopyWith<$Res>
+    implements $WebClientModelRecipeApiTagResponseCopyWith<$Res> {
+  factory _$$_WebClientModelRecipeApiTagResponseCopyWith(
+          _$_WebClientModelRecipeApiTagResponse value,
+          $Res Function(_$_WebClientModelRecipeApiTagResponse) then) =
+      __$$_WebClientModelRecipeApiTagResponseCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int total,
+      int take,
+      int count,
+      int skip,
+      List<WebClientModelTag> items});
+}
+
+/// @nodoc
+class __$$_WebClientModelRecipeApiTagResponseCopyWithImpl<$Res>
+    extends _$WebClientModelRecipeApiTagResponseCopyWithImpl<$Res,
+        _$_WebClientModelRecipeApiTagResponse>
+    implements _$$_WebClientModelRecipeApiTagResponseCopyWith<$Res> {
+  __$$_WebClientModelRecipeApiTagResponseCopyWithImpl(
+      _$_WebClientModelRecipeApiTagResponse _value,
+      $Res Function(_$_WebClientModelRecipeApiTagResponse) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? total = null,
+    Object? take = null,
+    Object? count = null,
+    Object? skip = null,
+    Object? items = null,
+  }) {
+    return _then(_$_WebClientModelRecipeApiTagResponse(
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int,
+      take: null == take
+          ? _value.take
+          : take // ignore: cast_nullable_to_non_nullable
+              as int,
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
+      skip: null == skip
+          ? _value.skip
+          : skip // ignore: cast_nullable_to_non_nullable
+              as int,
+      items: null == items
+          ? _value._items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<WebClientModelTag>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_WebClientModelRecipeApiTagResponse
+    implements _WebClientModelRecipeApiTagResponse {
+  const _$_WebClientModelRecipeApiTagResponse(
+      {required this.total,
+      required this.take,
+      required this.count,
+      required this.skip,
+      required final List<WebClientModelTag> items})
+      : _items = items;
+
+  factory _$_WebClientModelRecipeApiTagResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$$_WebClientModelRecipeApiTagResponseFromJson(json);
+
+  @override
+  final int total;
+  @override
+  final int take;
+  @override
+  final int count;
+  @override
+  final int skip;
+  final List<WebClientModelTag> _items;
+  @override
+  List<WebClientModelTag> get items {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_items);
+  }
+
+  @override
+  String toString() {
+    return 'WebClientModelRecipeApiTagResponse(total: $total, take: $take, count: $count, skip: $skip, items: $items)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_WebClientModelRecipeApiTagResponse &&
+            (identical(other.total, total) || other.total == total) &&
+            (identical(other.take, take) || other.take == take) &&
+            (identical(other.count, count) || other.count == count) &&
+            (identical(other.skip, skip) || other.skip == skip) &&
+            const DeepCollectionEquality().equals(other._items, _items));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, total, take, count, skip,
+      const DeepCollectionEquality().hash(_items));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_WebClientModelRecipeApiTagResponseCopyWith<
+          _$_WebClientModelRecipeApiTagResponse>
+      get copyWith => __$$_WebClientModelRecipeApiTagResponseCopyWithImpl<
+          _$_WebClientModelRecipeApiTagResponse>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_WebClientModelRecipeApiTagResponseToJson(
+      this,
+    );
+  }
+}
+
+abstract class _WebClientModelRecipeApiTagResponse
+    implements WebClientModelRecipeApiTagResponse {
+  const factory _WebClientModelRecipeApiTagResponse(
+          {required final int total,
+          required final int take,
+          required final int count,
+          required final int skip,
+          required final List<WebClientModelTag> items}) =
+      _$_WebClientModelRecipeApiTagResponse;
+
+  factory _WebClientModelRecipeApiTagResponse.fromJson(
+          Map<String, dynamic> json) =
+      _$_WebClientModelRecipeApiTagResponse.fromJson;
+
+  @override
+  int get total;
+  @override
+  int get take;
+  @override
+  int get count;
+  @override
+  int get skip;
+  @override
+  List<WebClientModelTag> get items;
+  @override
+  @JsonKey(ignore: true)
+  _$$_WebClientModelRecipeApiTagResponseCopyWith<
+          _$_WebClientModelRecipeApiTagResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+WebClientModelTagsApiResponse _$WebClientModelTagsApiResponseFromJson(
+    Map<String, dynamic> json) {
+  return _WebClientModelTagsApiResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$WebClientModelTagsApiResponse {
+  int get total => throw _privateConstructorUsedError;
+  int get take => throw _privateConstructorUsedError;
+  int get count => throw _privateConstructorUsedError;
+  int get skip => throw _privateConstructorUsedError;
+  List<WebClientModelTag> get items => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $WebClientModelTagsApiResponseCopyWith<WebClientModelTagsApiResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WebClientModelTagsApiResponseCopyWith<$Res> {
+  factory $WebClientModelTagsApiResponseCopyWith(
+          WebClientModelTagsApiResponse value,
+          $Res Function(WebClientModelTagsApiResponse) then) =
+      _$WebClientModelTagsApiResponseCopyWithImpl<$Res,
+          WebClientModelTagsApiResponse>;
+  @useResult
+  $Res call(
+      {int total,
+      int take,
+      int count,
+      int skip,
+      List<WebClientModelTag> items});
+}
+
+/// @nodoc
+class _$WebClientModelTagsApiResponseCopyWithImpl<$Res,
+        $Val extends WebClientModelTagsApiResponse>
+    implements $WebClientModelTagsApiResponseCopyWith<$Res> {
+  _$WebClientModelTagsApiResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? total = null,
+    Object? take = null,
+    Object? count = null,
+    Object? skip = null,
+    Object? items = null,
+  }) {
+    return _then(_value.copyWith(
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int,
+      take: null == take
+          ? _value.take
+          : take // ignore: cast_nullable_to_non_nullable
+              as int,
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
+      skip: null == skip
+          ? _value.skip
+          : skip // ignore: cast_nullable_to_non_nullable
+              as int,
+      items: null == items
+          ? _value.items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<WebClientModelTag>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_WebClientModelTagsApiResponseCopyWith<$Res>
+    implements $WebClientModelTagsApiResponseCopyWith<$Res> {
+  factory _$$_WebClientModelTagsApiResponseCopyWith(
+          _$_WebClientModelTagsApiResponse value,
+          $Res Function(_$_WebClientModelTagsApiResponse) then) =
+      __$$_WebClientModelTagsApiResponseCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int total,
+      int take,
+      int count,
+      int skip,
+      List<WebClientModelTag> items});
+}
+
+/// @nodoc
+class __$$_WebClientModelTagsApiResponseCopyWithImpl<$Res>
+    extends _$WebClientModelTagsApiResponseCopyWithImpl<$Res,
+        _$_WebClientModelTagsApiResponse>
+    implements _$$_WebClientModelTagsApiResponseCopyWith<$Res> {
+  __$$_WebClientModelTagsApiResponseCopyWithImpl(
+      _$_WebClientModelTagsApiResponse _value,
+      $Res Function(_$_WebClientModelTagsApiResponse) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? total = null,
+    Object? take = null,
+    Object? count = null,
+    Object? skip = null,
+    Object? items = null,
+  }) {
+    return _then(_$_WebClientModelTagsApiResponse(
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int,
+      take: null == take
+          ? _value.take
+          : take // ignore: cast_nullable_to_non_nullable
+              as int,
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
+      skip: null == skip
+          ? _value.skip
+          : skip // ignore: cast_nullable_to_non_nullable
+              as int,
+      items: null == items
+          ? _value._items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<WebClientModelTag>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_WebClientModelTagsApiResponse
+    implements _WebClientModelTagsApiResponse {
+  const _$_WebClientModelTagsApiResponse(
+      {required this.total,
+      required this.take,
+      required this.count,
+      required this.skip,
+      required final List<WebClientModelTag> items})
+      : _items = items;
+
+  factory _$_WebClientModelTagsApiResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$$_WebClientModelTagsApiResponseFromJson(json);
+
+  @override
+  final int total;
+  @override
+  final int take;
+  @override
+  final int count;
+  @override
+  final int skip;
+  final List<WebClientModelTag> _items;
+  @override
+  List<WebClientModelTag> get items {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_items);
+  }
+
+  @override
+  String toString() {
+    return 'WebClientModelTagsApiResponse(total: $total, take: $take, count: $count, skip: $skip, items: $items)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_WebClientModelTagsApiResponse &&
+            (identical(other.total, total) || other.total == total) &&
+            (identical(other.take, take) || other.take == take) &&
+            (identical(other.count, count) || other.count == count) &&
+            (identical(other.skip, skip) || other.skip == skip) &&
+            const DeepCollectionEquality().equals(other._items, _items));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, total, take, count, skip,
+      const DeepCollectionEquality().hash(_items));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_WebClientModelTagsApiResponseCopyWith<_$_WebClientModelTagsApiResponse>
+      get copyWith => __$$_WebClientModelTagsApiResponseCopyWithImpl<
+          _$_WebClientModelTagsApiResponse>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_WebClientModelTagsApiResponseToJson(
+      this,
+    );
+  }
+}
+
+abstract class _WebClientModelTagsApiResponse
+    implements WebClientModelTagsApiResponse {
+  const factory _WebClientModelTagsApiResponse(
+          {required final int total,
+          required final int take,
+          required final int count,
+          required final int skip,
+          required final List<WebClientModelTag> items}) =
+      _$_WebClientModelTagsApiResponse;
+
+  factory _WebClientModelTagsApiResponse.fromJson(Map<String, dynamic> json) =
+      _$_WebClientModelTagsApiResponse.fromJson;
+
+  @override
+  int get total;
+  @override
+  int get take;
+  @override
+  int get count;
+  @override
+  int get skip;
+  @override
+  List<WebClientModelTag> get items;
+  @override
+  @JsonKey(ignore: true)
+  _$$_WebClientModelTagsApiResponseCopyWith<_$_WebClientModelTagsApiResponse>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -267,7 +756,7 @@ mixin _$WebClientModelRecipe {
   List<WebClientModelIngredient> get ingredients =>
       throw _privateConstructorUsedError;
   List<WebClientModelYield> get yields => throw _privateConstructorUsedError;
-  List<WebClientModelTag> get tags => throw _privateConstructorUsedError;
+  List<WebClientModelRecipeTag> get tags => throw _privateConstructorUsedError;
   List<WebClientModelStep> get steps => throw _privateConstructorUsedError;
   List<WebClientModelCuisine> get cuisines =>
       throw _privateConstructorUsedError;
@@ -298,7 +787,7 @@ abstract class $WebClientModelRecipeCopyWith<$Res> {
       Option<String> imagePath,
       List<WebClientModelIngredient> ingredients,
       List<WebClientModelYield> yields,
-      List<WebClientModelTag> tags,
+      List<WebClientModelRecipeTag> tags,
       List<WebClientModelStep> steps,
       List<WebClientModelCuisine> cuisines});
 }
@@ -390,7 +879,7 @@ class _$WebClientModelRecipeCopyWithImpl<$Res,
       tags: null == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as List<WebClientModelTag>,
+              as List<WebClientModelRecipeTag>,
       steps: null == steps
           ? _value.steps
           : steps // ignore: cast_nullable_to_non_nullable
@@ -425,7 +914,7 @@ abstract class _$$_WebClientModelRecipeCopyWith<$Res>
       Option<String> imagePath,
       List<WebClientModelIngredient> ingredients,
       List<WebClientModelYield> yields,
-      List<WebClientModelTag> tags,
+      List<WebClientModelRecipeTag> tags,
       List<WebClientModelStep> steps,
       List<WebClientModelCuisine> cuisines});
 }
@@ -514,7 +1003,7 @@ class __$$_WebClientModelRecipeCopyWithImpl<$Res>
       tags: null == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as List<WebClientModelTag>,
+              as List<WebClientModelRecipeTag>,
       steps: null == steps
           ? _value._steps
           : steps // ignore: cast_nullable_to_non_nullable
@@ -544,7 +1033,7 @@ class _$_WebClientModelRecipe implements _WebClientModelRecipe {
       required this.imagePath,
       required final List<WebClientModelIngredient> ingredients,
       required final List<WebClientModelYield> yields,
-      required final List<WebClientModelTag> tags,
+      required final List<WebClientModelRecipeTag> tags,
       required final List<WebClientModelStep> steps,
       required final List<WebClientModelCuisine> cuisines})
       : _ingredients = ingredients,
@@ -592,9 +1081,9 @@ class _$_WebClientModelRecipe implements _WebClientModelRecipe {
     return EqualUnmodifiableListView(_yields);
   }
 
-  final List<WebClientModelTag> _tags;
+  final List<WebClientModelRecipeTag> _tags;
   @override
-  List<WebClientModelTag> get tags {
+  List<WebClientModelRecipeTag> get tags {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_tags);
   }
@@ -700,7 +1189,7 @@ abstract class _WebClientModelRecipe implements WebClientModelRecipe {
           required final Option<String> imagePath,
           required final List<WebClientModelIngredient> ingredients,
           required final List<WebClientModelYield> yields,
-          required final List<WebClientModelTag> tags,
+          required final List<WebClientModelRecipeTag> tags,
           required final List<WebClientModelStep> steps,
           required final List<WebClientModelCuisine> cuisines}) =
       _$_WebClientModelRecipe;
@@ -735,7 +1224,7 @@ abstract class _WebClientModelRecipe implements WebClientModelRecipe {
   @override
   List<WebClientModelYield> get yields;
   @override
-  List<WebClientModelTag> get tags;
+  List<WebClientModelRecipeTag> get tags;
   @override
   List<WebClientModelStep> get steps;
   @override
@@ -993,12 +1482,13 @@ abstract class _WebClientModelIngredient implements WebClientModelIngredient {
       get copyWith => throw _privateConstructorUsedError;
 }
 
-WebClientModelTag _$WebClientModelTagFromJson(Map<String, dynamic> json) {
-  return _WebClientModelTag.fromJson(json);
+WebClientModelRecipeTag _$WebClientModelRecipeTagFromJson(
+    Map<String, dynamic> json) {
+  return _WebClientModelRecipeTag.fromJson(json);
 }
 
 /// @nodoc
-mixin _$WebClientModelTag {
+mixin _$WebClientModelRecipeTag {
   String get id => throw _privateConstructorUsedError;
   String get slug => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
@@ -1007,15 +1497,15 @@ mixin _$WebClientModelTag {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $WebClientModelTagCopyWith<WebClientModelTag> get copyWith =>
+  $WebClientModelRecipeTagCopyWith<WebClientModelRecipeTag> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $WebClientModelTagCopyWith<$Res> {
-  factory $WebClientModelTagCopyWith(
-          WebClientModelTag value, $Res Function(WebClientModelTag) then) =
-      _$WebClientModelTagCopyWithImpl<$Res, WebClientModelTag>;
+abstract class $WebClientModelRecipeTagCopyWith<$Res> {
+  factory $WebClientModelRecipeTagCopyWith(WebClientModelRecipeTag value,
+          $Res Function(WebClientModelRecipeTag) then) =
+      _$WebClientModelRecipeTagCopyWithImpl<$Res, WebClientModelRecipeTag>;
   @useResult
   $Res call(
       {String id,
@@ -1026,9 +1516,10 @@ abstract class $WebClientModelTagCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$WebClientModelTagCopyWithImpl<$Res, $Val extends WebClientModelTag>
-    implements $WebClientModelTagCopyWith<$Res> {
-  _$WebClientModelTagCopyWithImpl(this._value, this._then);
+class _$WebClientModelRecipeTagCopyWithImpl<$Res,
+        $Val extends WebClientModelRecipeTag>
+    implements $WebClientModelRecipeTagCopyWith<$Res> {
+  _$WebClientModelRecipeTagCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -1070,11 +1561,11 @@ class _$WebClientModelTagCopyWithImpl<$Res, $Val extends WebClientModelTag>
 }
 
 /// @nodoc
-abstract class _$$_WebClientModelTagCopyWith<$Res>
-    implements $WebClientModelTagCopyWith<$Res> {
-  factory _$$_WebClientModelTagCopyWith(_$_WebClientModelTag value,
-          $Res Function(_$_WebClientModelTag) then) =
-      __$$_WebClientModelTagCopyWithImpl<$Res>;
+abstract class _$$_WebClientModelRecipeTagCopyWith<$Res>
+    implements $WebClientModelRecipeTagCopyWith<$Res> {
+  factory _$$_WebClientModelRecipeTagCopyWith(_$_WebClientModelRecipeTag value,
+          $Res Function(_$_WebClientModelRecipeTag) then) =
+      __$$_WebClientModelRecipeTagCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1086,11 +1577,12 @@ abstract class _$$_WebClientModelTagCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_WebClientModelTagCopyWithImpl<$Res>
-    extends _$WebClientModelTagCopyWithImpl<$Res, _$_WebClientModelTag>
-    implements _$$_WebClientModelTagCopyWith<$Res> {
-  __$$_WebClientModelTagCopyWithImpl(
-      _$_WebClientModelTag _value, $Res Function(_$_WebClientModelTag) _then)
+class __$$_WebClientModelRecipeTagCopyWithImpl<$Res>
+    extends _$WebClientModelRecipeTagCopyWithImpl<$Res,
+        _$_WebClientModelRecipeTag>
+    implements _$$_WebClientModelRecipeTagCopyWith<$Res> {
+  __$$_WebClientModelRecipeTagCopyWithImpl(_$_WebClientModelRecipeTag _value,
+      $Res Function(_$_WebClientModelRecipeTag) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1102,7 +1594,7 @@ class __$$_WebClientModelTagCopyWithImpl<$Res>
     Object? name = null,
     Object? preferences = null,
   }) {
-    return _then(_$_WebClientModelTag(
+    return _then(_$_WebClientModelRecipeTag(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1129,8 +1621,8 @@ class __$$_WebClientModelTagCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_WebClientModelTag implements _WebClientModelTag {
-  const _$_WebClientModelTag(
+class _$_WebClientModelRecipeTag implements _WebClientModelRecipeTag {
+  const _$_WebClientModelRecipeTag(
       {required this.id,
       required this.slug,
       required this.type,
@@ -1138,8 +1630,8 @@ class _$_WebClientModelTag implements _WebClientModelTag {
       required final List<String> preferences})
       : _preferences = preferences;
 
-  factory _$_WebClientModelTag.fromJson(Map<String, dynamic> json) =>
-      _$$_WebClientModelTagFromJson(json);
+  factory _$_WebClientModelRecipeTag.fromJson(Map<String, dynamic> json) =>
+      _$$_WebClientModelRecipeTagFromJson(json);
 
   @override
   final String id;
@@ -1158,14 +1650,14 @@ class _$_WebClientModelTag implements _WebClientModelTag {
 
   @override
   String toString() {
-    return 'WebClientModelTag(id: $id, slug: $slug, type: $type, name: $name, preferences: $preferences)';
+    return 'WebClientModelRecipeTag(id: $id, slug: $slug, type: $type, name: $name, preferences: $preferences)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_WebClientModelTag &&
+            other is _$_WebClientModelRecipeTag &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.slug, slug) || other.slug == slug) &&
             (identical(other.type, type) || other.type == type) &&
@@ -1182,28 +1674,29 @@ class _$_WebClientModelTag implements _WebClientModelTag {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_WebClientModelTagCopyWith<_$_WebClientModelTag> get copyWith =>
-      __$$_WebClientModelTagCopyWithImpl<_$_WebClientModelTag>(
-          this, _$identity);
+  _$$_WebClientModelRecipeTagCopyWith<_$_WebClientModelRecipeTag>
+      get copyWith =>
+          __$$_WebClientModelRecipeTagCopyWithImpl<_$_WebClientModelRecipeTag>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_WebClientModelTagToJson(
+    return _$$_WebClientModelRecipeTagToJson(
       this,
     );
   }
 }
 
-abstract class _WebClientModelTag implements WebClientModelTag {
-  const factory _WebClientModelTag(
+abstract class _WebClientModelRecipeTag implements WebClientModelRecipeTag {
+  const factory _WebClientModelRecipeTag(
       {required final String id,
       required final String slug,
       required final String type,
       required final String name,
-      required final List<String> preferences}) = _$_WebClientModelTag;
+      required final List<String> preferences}) = _$_WebClientModelRecipeTag;
 
-  factory _WebClientModelTag.fromJson(Map<String, dynamic> json) =
-      _$_WebClientModelTag.fromJson;
+  factory _WebClientModelRecipeTag.fromJson(Map<String, dynamic> json) =
+      _$_WebClientModelRecipeTag.fromJson;
 
   @override
   String get id;
@@ -1217,8 +1710,8 @@ abstract class _WebClientModelTag implements WebClientModelTag {
   List<String> get preferences;
   @override
   @JsonKey(ignore: true)
-  _$$_WebClientModelTagCopyWith<_$_WebClientModelTag> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_WebClientModelRecipeTagCopyWith<_$_WebClientModelRecipeTag>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 WebClientModelCuisine _$WebClientModelCuisineFromJson(
@@ -2136,4 +2629,214 @@ abstract class _WebClientModelYieldIngredient
   @JsonKey(ignore: true)
   _$$_WebClientModelYieldIngredientCopyWith<_$_WebClientModelYieldIngredient>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+WebClientModelTag _$WebClientModelTagFromJson(Map<String, dynamic> json) {
+  return _WebClientModelTag.fromJson(json);
+}
+
+/// @nodoc
+mixin _$WebClientModelTag {
+  String get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get slug => throw _privateConstructorUsedError;
+  Map<String, int> get numberOfRecipesByCountry =>
+      throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $WebClientModelTagCopyWith<WebClientModelTag> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WebClientModelTagCopyWith<$Res> {
+  factory $WebClientModelTagCopyWith(
+          WebClientModelTag value, $Res Function(WebClientModelTag) then) =
+      _$WebClientModelTagCopyWithImpl<$Res, WebClientModelTag>;
+  @useResult
+  $Res call(
+      {String id,
+      String name,
+      String slug,
+      Map<String, int> numberOfRecipesByCountry});
+}
+
+/// @nodoc
+class _$WebClientModelTagCopyWithImpl<$Res, $Val extends WebClientModelTag>
+    implements $WebClientModelTagCopyWith<$Res> {
+  _$WebClientModelTagCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+    Object? slug = null,
+    Object? numberOfRecipesByCountry = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      slug: null == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as String,
+      numberOfRecipesByCountry: null == numberOfRecipesByCountry
+          ? _value.numberOfRecipesByCountry
+          : numberOfRecipesByCountry // ignore: cast_nullable_to_non_nullable
+              as Map<String, int>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_WebClientModelTagCopyWith<$Res>
+    implements $WebClientModelTagCopyWith<$Res> {
+  factory _$$_WebClientModelTagCopyWith(_$_WebClientModelTag value,
+          $Res Function(_$_WebClientModelTag) then) =
+      __$$_WebClientModelTagCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      String name,
+      String slug,
+      Map<String, int> numberOfRecipesByCountry});
+}
+
+/// @nodoc
+class __$$_WebClientModelTagCopyWithImpl<$Res>
+    extends _$WebClientModelTagCopyWithImpl<$Res, _$_WebClientModelTag>
+    implements _$$_WebClientModelTagCopyWith<$Res> {
+  __$$_WebClientModelTagCopyWithImpl(
+      _$_WebClientModelTag _value, $Res Function(_$_WebClientModelTag) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+    Object? slug = null,
+    Object? numberOfRecipesByCountry = null,
+  }) {
+    return _then(_$_WebClientModelTag(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      slug: null == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as String,
+      numberOfRecipesByCountry: null == numberOfRecipesByCountry
+          ? _value._numberOfRecipesByCountry
+          : numberOfRecipesByCountry // ignore: cast_nullable_to_non_nullable
+              as Map<String, int>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_WebClientModelTag implements _WebClientModelTag {
+  const _$_WebClientModelTag(
+      {required this.id,
+      required this.name,
+      required this.slug,
+      required final Map<String, int> numberOfRecipesByCountry})
+      : _numberOfRecipesByCountry = numberOfRecipesByCountry;
+
+  factory _$_WebClientModelTag.fromJson(Map<String, dynamic> json) =>
+      _$$_WebClientModelTagFromJson(json);
+
+  @override
+  final String id;
+  @override
+  final String name;
+  @override
+  final String slug;
+  final Map<String, int> _numberOfRecipesByCountry;
+  @override
+  Map<String, int> get numberOfRecipesByCountry {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_numberOfRecipesByCountry);
+  }
+
+  @override
+  String toString() {
+    return 'WebClientModelTag(id: $id, name: $name, slug: $slug, numberOfRecipesByCountry: $numberOfRecipesByCountry)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_WebClientModelTag &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.slug, slug) || other.slug == slug) &&
+            const DeepCollectionEquality().equals(
+                other._numberOfRecipesByCountry, _numberOfRecipesByCountry));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, name, slug,
+      const DeepCollectionEquality().hash(_numberOfRecipesByCountry));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_WebClientModelTagCopyWith<_$_WebClientModelTag> get copyWith =>
+      __$$_WebClientModelTagCopyWithImpl<_$_WebClientModelTag>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_WebClientModelTagToJson(
+      this,
+    );
+  }
+}
+
+abstract class _WebClientModelTag implements WebClientModelTag {
+  const factory _WebClientModelTag(
+          {required final String id,
+          required final String name,
+          required final String slug,
+          required final Map<String, int> numberOfRecipesByCountry}) =
+      _$_WebClientModelTag;
+
+  factory _WebClientModelTag.fromJson(Map<String, dynamic> json) =
+      _$_WebClientModelTag.fromJson;
+
+  @override
+  String get id;
+  @override
+  String get name;
+  @override
+  String get slug;
+  @override
+  Map<String, int> get numberOfRecipesByCountry;
+  @override
+  @JsonKey(ignore: true)
+  _$$_WebClientModelTagCopyWith<_$_WebClientModelTag> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -20,30 +20,86 @@ abstract class WebClientServiceAggregator
     implements HomeWebClientService, SingleRecipeWebClientService {}
 
 class WebClientService implements WebClientServiceAggregator {
-  final Uri baseUrl = Uri.parse('https://www.hellofresh.de/gw/api/recipes');
+  final Uri apiBaseUrl = Uri.parse('https://www.hellofresh.de/gw/api');
   final Map<String, String> headers = <String, String>{
     'Authorization':
         'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzE0OTk5OTMsImlhdCI6MTY2ODg3MDI1MCwiaXNzIjoic2VuZiIsImp0aSI6IjE4MjBiZmVmLTYwM2ItNDEyZS05Yzg4LTU1ZDQwMjMyYzhkYiJ9.ym3BOCZAuL52rcMzfL_1zKOQbxcuVp7dPgnknif72tQ',
   };
 
   @override
-  TaskEither<Exception, List<HomeWebClientModelRecipe>> fetchAllRecipes() =>
+  TaskEither<Exception, List<HomeWebClientModelRecipe>> fetchAllRecipes({
+    required final String country,
+    final Option<int> limit = const None<int>(),
+    final Option<List<String>> tags = const None<List<String>>(),
+    final Option<List<String>> cuisines = const None<List<String>>(),
+    final Option<List<String>> ingredients = const None<List<String>>(),
+    final Option<String> searchTerm = const None<String>(),
+  }) =>
       TaskEither<Exception, String>.tryCatch(
-        () async => await http.read(baseUrl, headers: headers),
+        () async => await http.read(
+          _recipesQueryApiUrl(
+            country: country,
+            limit: limit,
+          ),
+          headers: headers,
+        ),
         (final Object error, final _) => Exception(
           'Failed to fetch recipes: $error',
         ),
       ).flatMap(
         (final String response) =>
-            Either<Exception, WebClientModelApiResponse>.tryCatch(
-          () => WebClientModelApiResponse.fromJson(jsonDecode(response)),
+            Either<Exception, WebClientModelRecipeApiRecipeResponse>.tryCatch(
+          () => WebClientModelRecipeApiRecipeResponse.fromJson(
+            jsonDecode(response),
+          ),
           (final Object error, final StackTrace stacktrace) => Exception(
             'Failed to parse response: $error, $stacktrace',
           ),
         )
                 .map(
-                  (final WebClientModelApiResponse response) =>
+                  (final WebClientModelRecipeApiRecipeResponse response) =>
                       _mapToHomeWebClientModelRecipe(response: response),
+                )
+                .toTaskEither(),
+      );
+
+  @override
+  TaskEither<Exception, List<HomeWebClientModelTag>> fetchAllTags({
+    required final String country,
+    final Option<int> take = const None<int>(),
+  }) =>
+      TaskEither<Exception, String>.tryCatch(
+        () async => await http.read(
+          _tagsApiUrl(
+            country: country,
+            take: take,
+          ),
+          headers: headers,
+        ),
+        (final Object error, final _) => Exception(
+          'Failed to fetch recipes: $error',
+        ),
+      ).flatMap(
+        (final String response) =>
+            Either<Exception, WebClientModelRecipeApiTagResponse>.tryCatch(
+          () =>
+              WebClientModelRecipeApiTagResponse.fromJson(jsonDecode(response)),
+          (final Object error, final StackTrace stacktrace) => Exception(
+            'Failed to parse response: $error, $stacktrace',
+          ),
+        )
+                .map(
+                  (final WebClientModelRecipeApiTagResponse response) =>
+                      response.items
+                          .map(
+                            (final WebClientModelTag tag) =>
+                                HomeWebClientModelTag(
+                              id: tag.id,
+                              slug: tag.slug,
+                              displayedName: tag.name,
+                            ),
+                          )
+                          .toList(),
                 )
                 .toTaskEither(),
       );
@@ -54,7 +110,7 @@ class WebClientService implements WebClientServiceAggregator {
   }) =>
       TaskEither<Exception, String>.tryCatch(
         () async => await http.read(
-          baseUrl.replace(path: '${baseUrl.path}/$recipeId'),
+          _singleRecipeApiUrl(recipeId: recipeId),
           headers: headers,
         ),
         (final Object error, final _) => Exception(
@@ -75,6 +131,72 @@ class WebClientService implements WebClientServiceAggregator {
                   ),
                 )
                 .toTaskEither(),
+      );
+  Uri get _recipesApiUrl => Uri.parse('${apiBaseUrl.toString()}/recipes');
+  Uri _tagsApiUrl({
+    required final String country,
+    final Option<int> take = const None<int>(),
+  }) =>
+      Uri.parse('${apiBaseUrl.toString()}/tags').replace(
+        queryParameters: Map<String, Object?>.fromEntries(
+          <String, Object?>{
+            'country': country,
+            'take':
+                take.map((final int amount) => amount.toString()).toNullable()
+          }.entries.filter(
+                (final MapEntry<String, Object?> entry) => entry.value != null,
+              ),
+        ),
+      );
+  Uri _singleRecipeApiUrl({required final String recipeId}) =>
+      Uri.parse('$_recipesApiUrl/$recipeId');
+
+  Uri _recipesQueryApiUrl({
+    required final String country,
+    final Option<int> limit = const None<int>(),
+    final Option<List<String>> tags = const None<List<String>>(),
+    final Option<List<String>> cuisines = const None<List<String>>(),
+    final Option<List<String>> ingredients = const None<List<String>>(),
+    final Option<String> searchTerm = const None<String>(),
+  }) =>
+      Uri.parse('$_recipesApiUrl/search').replace(
+        queryParameters: Map<String, Object?>.fromEntries(
+          <String, Object?>{
+            'country': country,
+            'limit': limit
+                .map(
+                  (final int limit) => limit.toString(),
+                )
+                .toNullable(),
+            'tag': tags
+                .map(
+                  (final List<String> tag) => tag.reduce(
+                    (final String value, final String element) =>
+                        '$value,$element',
+                  ),
+                )
+                .toNullable(),
+            'cuisines': cuisines
+                .map(
+                  (final List<String> cuisine) => cuisine.reduce(
+                    (final String value, final String element) =>
+                        '$value,$element',
+                  ),
+                )
+                .toNullable(),
+            'ingredient': ingredients
+                .map(
+                  (final List<String> ingredient) => ingredient.reduce(
+                    (final String value, final String element) =>
+                        '$value,$element',
+                  ),
+                )
+                .toNullable(),
+            'q': searchTerm.toNullable(),
+          }.entries.filter(
+                (final MapEntry<String, Object?> entry) => entry.value != null,
+              ),
+        ),
       );
 }
 
@@ -138,7 +260,8 @@ SingleRecipeWebClientModelRecipe _mapToSingleRecipeWebClientModelRecipe({
           .toList(),
       tags: recipe.tags
           .map(
-            (final WebClientModelTag tag) => SingleRecipeWebClientModelTag(
+            (final WebClientModelRecipeTag tag) =>
+                SingleRecipeWebClientModelTag(
               id: tag.id,
               slug: tag.slug,
               displayedName: tag.name,
@@ -157,7 +280,7 @@ SingleRecipeWebClientModelRecipe _mapToSingleRecipeWebClientModelRecipe({
     );
 
 List<HomeWebClientModelRecipe> _mapToHomeWebClientModelRecipe({
-  required final WebClientModelApiResponse response,
+  required final WebClientModelRecipeApiRecipeResponse response,
 }) =>
     response.items
         .map(
@@ -207,7 +330,7 @@ List<HomeWebClientModelRecipe> _mapToHomeWebClientModelRecipe({
                 .toList(),
             tags: recipe.tags
                 .map(
-                  (final WebClientModelTag tag) => HomeWebClientModelTag(
+                  (final WebClientModelRecipeTag tag) => HomeWebClientModelTag(
                     id: tag.id,
                     slug: tag.slug,
                     displayedName: tag.name,

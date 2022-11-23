@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'home_controller.dart';
+part of 'recipe_language_service.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -29,23 +29,15 @@ class _SystemHash {
   }
 }
 
-String $HomeControllerImplementationHash() =>
-    r'5d420bcb89da1e9d3114af3cc0e3531b2891e06f';
+String $recipeLanguageServiceHash() =>
+    r'2dbc8b59ffa89a57af0c6feae46ba31f75bf081f';
 
-/// See also [HomeControllerImplementation].
-final homeControllerImplementationProvider =
-    AutoDisposeNotifierProvider<HomeControllerImplementation, HomeModel>(
-  HomeControllerImplementation.new,
-  name: r'homeControllerImplementationProvider',
+/// See also [recipeLanguageService].
+final recipeLanguageServiceProvider = Provider<RecipeLanguageService>(
+  recipeLanguageService,
+  name: r'recipeLanguageServiceProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $HomeControllerImplementationHash,
+      : $recipeLanguageServiceHash,
 );
-typedef HomeControllerImplementationRef
-    = AutoDisposeNotifierProviderRef<HomeModel>;
-
-abstract class _$HomeControllerImplementation
-    extends AutoDisposeNotifier<HomeModel> {
-  @override
-  HomeModel build();
-}
+typedef RecipeLanguageServiceRef = ProviderRef<RecipeLanguageService>;
