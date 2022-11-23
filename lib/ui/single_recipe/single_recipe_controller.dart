@@ -1,7 +1,12 @@
-import 'package:food_client/services/recipe_parser/recipe_parser_service.dart';
+import 'dart:async';
+
+import 'package:flutter/foundation.dart';
 import 'package:food_client/services/web_client/web_client_service.dart';
+import 'package:food_client/services/web_image_sizer/web_image_sizer_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_model.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_view.dart';
+import 'package:food_client/ui/single_recipe/single_recipe_web_client_service.dart';
+import 'package:food_client/ui/single_recipe/single_recipe_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -12,141 +17,171 @@ class SingleRecipeControllerImplementation
     extends _$SingleRecipeControllerImplementation
     implements SingleRecipeController {
   // ignore: unused_field
-  late final SingleRecipeRecipeParserService _recipeParserService;
-  // ignore: unused_field
   late final SingleRecipeWebClientService _webClientService;
+  late final SingleRecipeWebImageSizerService _webImageSizerService;
 
   @override
-  SingleRecipeModel build() {
-    _recipeParserService = ref.watch(recipeParserServiceProvider);
+  SingleRecipeModel build({
+    required final String recipeId,
+  }) {
     _webClientService = ref.watch(webClientServiceProvider);
-    return SingleRecipeModel(
-      recipe: Right<Exception, Option<SingleRecipeModelRecipe>>(
-        some(
-          SingleRecipeModelRecipe(
-            id: 'id',
-            displayedAttributes: const SingleRecipeModelDisplayedAttributes(
-              name: 'Tomatige Rigatoni mit Rinderhackfleisch',
-              headline: 'getoppt mit frischen Kräutern und Käseraspeln',
-              description:
-                  ''''One pot', 'one pan', 'one tray' gehören alle in die Kategorie „einfacher geht's nicht“. Schmeiß alles in einen Topf, eine Pfanne oder auf ein Blech und schon erledigt sein Dein Essen fast von selbst. Mit Bonus: Du musst kaum was abwaschen und Deine Mahlzeit steht meist schnell auf dem Tisch.''',
-              descriptionMarkdown:
-                  ''''One pot', 'one pan', 'one tray' gehören alle in die Kategorie „einfacher geht's nicht“. Schmeiß alles in einen Topf, eine Pfanne oder auf ein Blech und schon erledigt sein Dein Essen fast von selbst. Mit Bonus: Du musst kaum was abwaschen und Deine Mahlzeit steht meist schnell auf dem Tisch.''',
+    _webImageSizerService = ref.watch(webImageSizerServiceProvider);
+
+    unawaited(
+      init(
+        initialTask: _webClientService
+            .fetchSingleRecipe(
+              recipeId: recipeId,
+            )
+            .map(
+              (final SingleRecipeWebClientModelRecipe recipe) =>
+                  mapToSingleRecipeModelRecipe(
+                recipe: recipe,
+                imageResizerService: _webImageSizerService,
+              ),
             ),
-            difficulty: 1,
-            yields: <SingleRecipeModelYield>[
-              SingleRecipeModelYield(
-                yield: 2,
-                ingredients: <SingleRecipeModelIngredient>[
-                  SingleRecipeModelIngredient(
-                    id: '1',
-                    slug: 'Rigatoni',
-                    displayedName: 'Rigatoni',
-                    amount: some(270),
-                    unit: some('g'),
-                    imageUrl: none(),
-                  ),
-                  SingleRecipeModelIngredient(
-                    id: '2',
-                    slug: 'Rinderhackfleisch',
-                    displayedName: 'Rinderhackfleisch',
-                    amount: some(200),
-                    unit: some('g'),
-                    imageUrl: none(),
-                  ),
-                  SingleRecipeModelIngredient(
-                    id: '3',
-                    slug: 'Tomatenpesto',
-                    displayedName: 'Tomatenpesto',
-                    amount: some(25),
-                    unit: some('g'),
-                    imageUrl: none(),
-                  ),
-                  SingleRecipeModelIngredient(
-                    id: '4',
-                    slug: 'Hartkäse geraspelt',
-                    displayedName: 'Hartkäse geraspelt',
-                    amount: some(20),
-                    unit: some('g'),
-                    imageUrl: none(),
-                  ),
-                ],
-              ),
-              SingleRecipeModelYield(
-                yield: 4,
-                ingredients: <SingleRecipeModelIngredient>[
-                  SingleRecipeModelIngredient(
-                    id: '1',
-                    slug: 'Rigatoni',
-                    displayedName: 'Rigatoni',
-                    amount: some(270),
-                    unit: some('g'),
-                    imageUrl: none(),
-                  ),
-                  SingleRecipeModelIngredient(
-                    id: '2',
-                    slug: 'Rinderhackfleisch',
-                    displayedName: 'Rinderhackfleisch',
-                    amount: some(200),
-                    unit: some('g'),
-                    imageUrl: none(),
-                  ),
-                  SingleRecipeModelIngredient(
-                    id: '3',
-                    slug: 'Tomatenpesto',
-                    displayedName: 'Tomatenpesto',
-                    amount: some(25),
-                    unit: some('g'),
-                    imageUrl: none(),
-                  ),
-                  SingleRecipeModelIngredient(
-                    id: '4',
-                    slug: 'Hartkäse geraspelt',
-                    displayedName: 'Hartkäse geraspelt',
-                    amount: some(20),
-                    unit: some('g'),
-                    imageUrl: none(),
-                  ),
-                ],
-              ),
-            ],
-            tags: <SingleRecipeModelTag>[],
-            imageUriLarge: none(),
-            steps: <SingleRecipeModelStep>[
-              SingleRecipeModelStep(
-                instructionMarkdown: r'''Chiliflocken (Achtung: scharf!) und geriebenen Hartkäse zu den Gnocchi in die Pfanne geben, gut vermengen und einmal aufkochen lassen. Mit Salz\* und Pfeffer\* abschmecken.''',
-                imageUrl: some(Uri.parse('https://d3hvwccx09j84u.cloudfront.net/0,0/632c3d7c683f4229430e351b/step-3f8a4e7d.jpg')),
-              ),
-              SingleRecipeModelStep(
-                instructionMarkdown: r'''Chiliflocken (Achtung: scharf!) und geriebenen Hartkäse zu den Gnocchi in die Pfanne geben, gut vermengen und einmal aufkochen lassen. Mit Salz\* und Pfeffer\* abschmecken.''',
-                imageUrl: some(Uri.parse('https://d3hvwccx09j84u.cloudfront.net/0,0/632c3d7c683f4229430e351b/step-3f8a4e7d.jpg')),
-              ),
-              SingleRecipeModelStep(
-                instructionMarkdown: r'''Chiliflocken (Achtung: scharf!) und geriebenen Hartkäse zu den Gnocchi in die Pfanne geben, gut vermengen und einmal aufkochen lassen. Mit Salz\* und Pfeffer\* abschmecken.''',
-                imageUrl: some(Uri.parse('https://d3hvwccx09j84u.cloudfront.net/0,0/632c3d7c683f4229430e351b/step-3f8a4e7d.jpg')),
-              ),
-              SingleRecipeModelStep(
-                instructionMarkdown: r'''Chiliflocken (Achtung: scharf!) und geriebenen Hartkäse zu den Gnocchi in die Pfanne geben, gut vermengen und einmal aufkochen lassen. Mit Salz\* und Pfeffer\* abschmecken.''',
-                imageUrl: some(Uri.parse('https://d3hvwccx09j84u.cloudfront.net/0,0/632c3d7c683f4229430e351b/step-3f8a4e7d.jpg')),
-              ),
-              SingleRecipeModelStep(
-                instructionMarkdown: r'''Chiliflocken (Achtung: scharf!) und geriebenen Hartkäse zu den Gnocchi in die Pfanne geben, gut vermengen und einmal aufkochen lassen. Mit Salz\* und Pfeffer\* abschmecken.''',
-                imageUrl: some(Uri.parse('https://d3hvwccx09j84u.cloudfront.net/0,0/632c3d7c683f4229430e351b/step-3f8a4e7d.jpg')),
-              ),
-            ],
-          ),
-        ),
       ),
-      selectedYield: 2,
+    );
+
+    return SingleRecipeModel(
+      recipe: Either<Exception, Option<SingleRecipeModelRecipe>>.right(none()),
+      selectedYield: none(),
     );
   }
 
   @override
   void setSelectedYield({required final int yield}) {
-    state = state.copyWith(selectedYield: yield);
+    state = state.copyWith(selectedYield: some(yield));
+  }
+
+  Future<void> init({
+    required final TaskEither<Exception, SingleRecipeModel> initialTask,
+  }) async {
+    (await initialTask.run()).fold(
+      (final Exception l) => debugPrint(l.toString()),
+      (final SingleRecipeModel model) {
+        state = model;
+      },
+    );
   }
 }
 
-abstract class SingleRecipeRecipeParserService {}
+SingleRecipeModel mapToSingleRecipeModelRecipe({
+  required final SingleRecipeWebClientModelRecipe recipe,
+  required final SingleRecipeWebImageSizerService imageResizerService,
+}) =>
+    SingleRecipeModel(
+      recipe: Either<Exception, Option<SingleRecipeModelRecipe>>.right(
+        some(
+          SingleRecipeModelRecipe(
+            id: recipe.id,
+            displayedAttributes: _mapDisplayedAttributes(
+              displayedAttributes: recipe.displayedAttributes,
+            ),
+            difficulty: recipe.difficulty,
+            yields: _mapYields(
+              yields: recipe.yields,
+              imageResizerService: imageResizerService,
+            ),
+            imageUri: recipe.imagePath.flatMap(
+              (final Uri imagePath) => imageResizerService
+                  .getUrl(
+                    filePath: imagePath,
+                    widthPixels: 500,
+                  )
+                  .toOption(),
+            ),
+            tags: _mapTags(tags: recipe.tags),
+            steps: _mapSteps(
+              steps: recipe.steps,
+              imageResizerService: imageResizerService,
+            ),
+          ),
+        ),
+      ),
+      selectedYield: none(),
+    );
 
-abstract class SingleRecipeWebClientService {}
+SingleRecipeModelDisplayedAttributes _mapDisplayedAttributes({
+  required final SingleRecipeWebClientModelDisplayedAttributes
+      displayedAttributes,
+}) =>
+    SingleRecipeModelDisplayedAttributes(
+      name: displayedAttributes.name,
+      headline: displayedAttributes.headline,
+      description: displayedAttributes.description,
+      descriptionMarkdown: displayedAttributes.descriptionMarkdown,
+    );
+
+List<SingleRecipeModelTag> _mapTags({
+  required final List<SingleRecipeWebClientModelTag> tags,
+}) =>
+    tags
+        .map(
+          (final SingleRecipeWebClientModelTag tag) => SingleRecipeModelTag(
+            id: tag.id,
+            slug: tag.slug,
+            displayedName: tag.displayedName,
+          ),
+        )
+        .toList();
+
+List<SingleRecipeModelStep> _mapSteps({
+  required final List<SingleRecipeWebClientModelStep> steps,
+  required final SingleRecipeWebImageSizerService imageResizerService,
+}) =>
+    steps
+        .map(
+          (final SingleRecipeWebClientModelStep step) => SingleRecipeModelStep(
+            instructionMarkdown: step.instructionMarkdown,
+            imageUrl: step.imagePath.flatMap(
+              (final Uri imagePath) => imageResizerService
+                  .getUrl(
+                    filePath: imagePath,
+                    widthPixels: 500,
+                  )
+                  .toOption(),
+            ),
+          ),
+        )
+        .toList();
+
+List<SingleRecipeModelYield> _mapYields({
+  required final List<SingleRecipeWebClientModelYield> yields,
+  required final SingleRecipeWebImageSizerService imageResizerService,
+}) =>
+    yields
+        .map(
+          (final SingleRecipeWebClientModelYield yield) =>
+              SingleRecipeModelYield(
+            yield: yield.yield,
+            ingredients: yield.ingredients
+                .map(
+                  (
+                    final SingleRecipeWebClientModelIngredient ingredient,
+                  ) =>
+                      SingleRecipeModelIngredient(
+                    id: ingredient.id,
+                    slug: ingredient.slug,
+                    displayedName: ingredient.displayedName,
+                    imageUrl: ingredient.imagePath.flatMap(
+                      (final Uri imagePath) => imageResizerService
+                          .getUrl(
+                            filePath: imagePath,
+                            widthPixels: 500,
+                          )
+                          .toOption(),
+                    ),
+                    amount: ingredient.amount,
+                    unit: ingredient.unit,
+                  ),
+                )
+                .toList(),
+          ),
+        )
+        .toList();
+
+List<String> _mapTagIds({
+  required final List<SingleRecipeWebClientModelTag> tags,
+}) =>
+    tags.map((final SingleRecipeWebClientModelTag tag) => tag.id).toList();

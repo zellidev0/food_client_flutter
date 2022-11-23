@@ -43,14 +43,14 @@ final navigationServiceProvider =
 typedef NavigationServiceRef
     = AutoDisposeProviderRef<NavigationServiceAggregator>;
 String $globalBeamerDelegateHash() =>
-    r'6b63926994f89b1c3bdf5e2244f5387a45ba843e';
+    r'16c7cffd001441e359d7544062c03915ce4b92c8';
 
 /// See also [globalBeamerDelegate].
-final globalBeamerDelegateProvider = AutoDisposeProvider<BeamerDelegate>(
+final globalBeamerDelegateProvider = Provider<BeamerDelegate>(
   globalBeamerDelegate,
   name: r'globalBeamerDelegateProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : $globalBeamerDelegateHash,
 );
-typedef GlobalBeamerDelegateRef = AutoDisposeProviderRef<BeamerDelegate>;
+typedef GlobalBeamerDelegateRef = ProviderRef<BeamerDelegate>;

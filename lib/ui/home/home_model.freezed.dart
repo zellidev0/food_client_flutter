@@ -455,7 +455,7 @@ mixin _$HomeModelDisplayedAttributes {
   String get name => throw _privateConstructorUsedError;
   String get headline => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  String get descriptionMarkdown => throw _privateConstructorUsedError;
+  Option<String> get descriptionMarkdown => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeModelDisplayedAttributesCopyWith<HomeModelDisplayedAttributes>
@@ -474,7 +474,7 @@ abstract class $HomeModelDisplayedAttributesCopyWith<$Res> {
       {String name,
       String headline,
       String description,
-      String descriptionMarkdown});
+      Option<String> descriptionMarkdown});
 }
 
 /// @nodoc
@@ -512,7 +512,7 @@ class _$HomeModelDisplayedAttributesCopyWithImpl<$Res,
       descriptionMarkdown: null == descriptionMarkdown
           ? _value.descriptionMarkdown
           : descriptionMarkdown // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Option<String>,
     ) as $Val);
   }
 }
@@ -530,7 +530,7 @@ abstract class _$$_HomeModelDisplayedAttributesCopyWith<$Res>
       {String name,
       String headline,
       String description,
-      String descriptionMarkdown});
+      Option<String> descriptionMarkdown});
 }
 
 /// @nodoc
@@ -567,7 +567,7 @@ class __$$_HomeModelDisplayedAttributesCopyWithImpl<$Res>
       descriptionMarkdown: null == descriptionMarkdown
           ? _value.descriptionMarkdown
           : descriptionMarkdown // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Option<String>,
     ));
   }
 }
@@ -588,7 +588,7 @@ class _$_HomeModelDisplayedAttributes implements _HomeModelDisplayedAttributes {
   @override
   final String description;
   @override
-  final String descriptionMarkdown;
+  final Option<String> descriptionMarkdown;
 
   @override
   String toString() {
@@ -627,7 +627,7 @@ abstract class _HomeModelDisplayedAttributes
           {required final String name,
           required final String headline,
           required final String description,
-          required final String descriptionMarkdown}) =
+          required final Option<String> descriptionMarkdown}) =
       _$_HomeModelDisplayedAttributes;
 
   @override
@@ -637,7 +637,7 @@ abstract class _HomeModelDisplayedAttributes
   @override
   String get description;
   @override
-  String get descriptionMarkdown;
+  Option<String> get descriptionMarkdown;
   @override
   @JsonKey(ignore: true)
   _$$_HomeModelDisplayedAttributesCopyWith<_$_HomeModelDisplayedAttributes>

@@ -15,7 +15,8 @@ class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(final BuildContext context, final WidgetRef ref) => MaterialApp.router(
+  Widget build(final BuildContext context, final WidgetRef ref) =>
+      MaterialApp.router(
         title: 'Food client',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSwatch(
@@ -25,6 +26,9 @@ class MyApp extends ConsumerWidget {
           useMaterial3: true,
         ),
         routeInformationParser: BeamerParser(),
+        backButtonDispatcher: BeamerBackButtonDispatcher(
+          delegate: ref.read(globalBeamerDelegateProvider),
+        ),
         routerDelegate: ref.read(globalBeamerDelegateProvider),
       );
 }

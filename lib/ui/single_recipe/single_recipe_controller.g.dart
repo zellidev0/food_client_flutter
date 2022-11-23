@@ -30,23 +30,94 @@ class _SystemHash {
 }
 
 String $SingleRecipeControllerImplementationHash() =>
-    r'563c30b8a4a2f90fb3b87804c11407bc5ff46b1c';
+    r'914057004eb63f1d69d668de607d42a76980ec1b';
 
 /// See also [SingleRecipeControllerImplementation].
-final singleRecipeControllerImplementationProvider =
-    AutoDisposeNotifierProvider<SingleRecipeControllerImplementation,
-        SingleRecipeModel>(
-  SingleRecipeControllerImplementation.new,
-  name: r'singleRecipeControllerImplementationProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : $SingleRecipeControllerImplementationHash,
-);
+class SingleRecipeControllerImplementationProvider
+    extends AutoDisposeNotifierProviderImpl<
+        SingleRecipeControllerImplementation, SingleRecipeModel> {
+  SingleRecipeControllerImplementationProvider({
+    required this.recipeId,
+  }) : super(
+          () => SingleRecipeControllerImplementation()..recipeId = recipeId,
+          from: singleRecipeControllerImplementationProvider,
+          name: r'singleRecipeControllerImplementationProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : $SingleRecipeControllerImplementationHash,
+        );
+
+  final String recipeId;
+
+  @override
+  bool operator ==(Object other) {
+    return other is SingleRecipeControllerImplementationProvider &&
+        other.recipeId == recipeId;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, recipeId.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+
+  @override
+  SingleRecipeModel runNotifierBuild(
+    covariant _$SingleRecipeControllerImplementation notifier,
+  ) {
+    return notifier.build(
+      recipeId: recipeId,
+    );
+  }
+}
+
 typedef SingleRecipeControllerImplementationRef
     = AutoDisposeNotifierProviderRef<SingleRecipeModel>;
 
-abstract class _$SingleRecipeControllerImplementation
-    extends AutoDisposeNotifier<SingleRecipeModel> {
+/// See also [SingleRecipeControllerImplementation].
+final singleRecipeControllerImplementationProvider =
+    SingleRecipeControllerImplementationFamily();
+
+class SingleRecipeControllerImplementationFamily
+    extends Family<SingleRecipeModel> {
+  SingleRecipeControllerImplementationFamily();
+
+  SingleRecipeControllerImplementationProvider call({
+    required String recipeId,
+  }) {
+    return SingleRecipeControllerImplementationProvider(
+      recipeId: recipeId,
+    );
+  }
+
   @override
-  SingleRecipeModel build();
+  AutoDisposeNotifierProviderImpl<SingleRecipeControllerImplementation,
+      SingleRecipeModel> getProviderOverride(
+    covariant SingleRecipeControllerImplementationProvider provider,
+  ) {
+    return call(
+      recipeId: provider.recipeId,
+    );
+  }
+
+  @override
+  List<ProviderOrFamily>? get allTransitiveDependencies => null;
+
+  @override
+  List<ProviderOrFamily>? get dependencies => null;
+
+  @override
+  String? get name => r'singleRecipeControllerImplementationProvider';
+}
+
+abstract class _$SingleRecipeControllerImplementation
+    extends BuildlessAutoDisposeNotifier<SingleRecipeModel> {
+  late final String recipeId;
+
+  SingleRecipeModel build({
+    required String recipeId,
+  });
 }

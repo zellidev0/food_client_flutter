@@ -1,8 +1,9 @@
 import 'dart:convert';
 
-import 'package:flutter/services.dart';
+import 'package:collection/collection.dart';
+import 'package:food_client/services/web_client/web_client_model.dart';
 import 'package:food_client/ui/home/home_web_client_service.dart';
-import 'package:food_client/ui/single_recipe/single_recipe_controller.dart';
+import 'package:food_client/ui/single_recipe/single_recipe_web_client_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:http/http.dart' as http;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -13,66 +14,214 @@ part 'web_client_service.g.dart';
 WebClientServiceAggregator webClientService(
   final WebClientServiceRef ref,
 ) =>
-    WebClientService(
-      useMockValues: true,
-    );
+    WebClientService();
 
 abstract class WebClientServiceAggregator
     implements HomeWebClientService, SingleRecipeWebClientService {}
 
 class WebClientService implements WebClientServiceAggregator {
-  final bool _useMockValues;
-
-  WebClientService({
-    required final bool useMockValues,
-  }) : _useMockValues = useMockValues;
-
-  final Uri url = Uri.parse(
-    'https://www.hellofresh.de/gw/api/recipes/632c3d7c683f4229430e351b',
-  );
+  final Uri baseUrl = Uri.parse('https://www.hellofresh.de/gw/api/recipes');
   final Map<String, String> headers = <String, String>{
     'Authorization':
         'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzE0OTk5OTMsImlhdCI6MTY2ODg3MDI1MCwiaXNzIjoic2VuZiIsImp0aSI6IjE4MjBiZmVmLTYwM2ItNDEyZS05Yzg4LTU1ZDQwMjMyYzhkYiJ9.ym3BOCZAuL52rcMzfL_1zKOQbxcuVp7dPgnknif72tQ',
   };
 
   @override
-  TaskEither<Exception, Map<String, Object?>> fetchAllRecipes() {
-    if (_useMockValues) {
-      return TaskEither<Exception, String>.tryCatch(
-        () async =>
-            await rootBundle.loadString('assets/recipes/recipes_300.json'),
-        (final Object error, final _) =>
-            Exception('Could not example hello fresh response.'),
-      ).flatMap(
-        (final String e) => Either<Exception, Map<String, Object?>>.tryCatch(
-          () => jsonDecode(e) as Map<String, Object?>,
-          (final Object error, final _) => Exception(
-            'Could not parse data from example hello fresh to Map<String, Object?>',
-          ),
-        ).toTaskEither(),
-      );
-    }
-
-    return TaskEither<Exception, String>.tryCatch(
-      () async => await http.read(url, headers: headers),
-      (final Object error, final _) => Exception(
-        'Failed to fetch recipes: $error',
-      ),
-    ).flatMap(
-      (final String response) =>
-          TaskEither<Exception, Map<String, Object?>>.tryCatch(
-        () => jsonDecode(response),
+  TaskEither<Exception, List<HomeWebClientModelRecipe>> fetchAllRecipes() =>
+      TaskEither<Exception, String>.tryCatch(
+        () async => await http.read(baseUrl, headers: headers),
         (final Object error, final _) => Exception(
-          'Failed to parse response: $error',
+          'Failed to fetch recipes: $error',
         ),
-      ),
-    );
-  }
+      ).flatMap(
+        (final String response) =>
+            Either<Exception, WebClientModelApiResponse>.tryCatch(
+          () => WebClientModelApiResponse.fromJson(jsonDecode(response)),
+          (final Object error, final StackTrace stacktrace) => Exception(
+            'Failed to parse response: $error, $stacktrace',
+          ),
+        )
+                .map(
+                  (final WebClientModelApiResponse response) =>
+                      _mapToHomeWebClientModelRecipe(response: response),
+                )
+                .toTaskEither(),
+      );
+
+  @override
+  TaskEither<Exception, SingleRecipeWebClientModelRecipe> fetchSingleRecipe({
+    required final String recipeId,
+  }) =>
+      TaskEither<Exception, String>.tryCatch(
+        () async => await http.read(
+          baseUrl.replace(path: '${baseUrl.path}/$recipeId'),
+          headers: headers,
+        ),
+        (final Object error, final _) => Exception(
+          'Failed to fetch recipe with id: $recipeId: $error',
+        ),
+      ).flatMap(
+        (final String response) =>
+            Either<Exception, WebClientModelRecipe>.tryCatch(
+          () => WebClientModelRecipe.fromJson(jsonDecode(response)),
+          (final Object error, final _) => Exception(
+            'Failed to parse response: $error',
+          ),
+        )
+                .map(
+                  (final WebClientModelRecipe responseRecipe) =>
+                      _mapToSingleRecipeWebClientModelRecipe(
+                    recipe: responseRecipe,
+                  ),
+                )
+                .toTaskEither(),
+      );
 }
+
+SingleRecipeWebClientModelRecipe _mapToSingleRecipeWebClientModelRecipe({
+  required final WebClientModelRecipe recipe,
+}) =>
+    SingleRecipeWebClientModelRecipe(
+      id: recipe.id,
+      displayedAttributes: SingleRecipeWebClientModelDisplayedAttributes(
+        name: recipe.name,
+        headline: recipe.headline,
+        description: recipe.description,
+        descriptionMarkdown: recipe.descriptionMarkdown,
+      ),
+      difficulty: recipe.difficulty,
+      yields: recipe.yields
+          .map(
+            (final WebClientModelYield yield) => yield.yield.map(
+              (final int servings) => SingleRecipeWebClientModelYield(
+                yield: servings,
+                ingredients: yield.ingredients
+                    .map(
+                      (final WebClientModelYieldIngredient ingredient) =>
+                          optionOf(
+                        recipe.ingredients.firstWhereOrNull(
+                          (
+                            final WebClientModelIngredient otherIngredient,
+                          ) =>
+                              otherIngredient.id == ingredient.id,
+                        ),
+                      ).map(
+                        (final WebClientModelIngredient otherIngredient) =>
+                            SingleRecipeWebClientModelIngredient(
+                          id: ingredient.id,
+                          amount: ingredient.amount.map(
+                            (final num number) => number.toDouble(),
+                          ),
+                          unit: ingredient.unit,
+                          imagePath: otherIngredient.imagePath.map(Uri.parse),
+                          slug: otherIngredient.slug,
+                          displayedName: otherIngredient.name,
+                        ),
+                      ),
+                    )
+                    .whereType<Some<SingleRecipeWebClientModelIngredient>>()
+                    .map(
+                      (
+                        final Some<SingleRecipeWebClientModelIngredient>
+                            ingredient,
+                      ) =>
+                          ingredient.value,
+                    )
+                    .toList(),
+              ),
+            ),
+          )
+          .whereType<Some<SingleRecipeWebClientModelYield>>()
+          .map(
+            (final Some<SingleRecipeWebClientModelYield> yield) => yield.value,
+          )
+          .toList(),
+      tags: recipe.tags
+          .map(
+            (final WebClientModelTag tag) => SingleRecipeWebClientModelTag(
+              id: tag.id,
+              slug: tag.slug,
+              displayedName: tag.name,
+            ),
+          )
+          .toList(),
+      imagePath: recipe.imagePath.map(Uri.parse),
+      steps: recipe.steps
+          .map(
+            (final WebClientModelStep step) => SingleRecipeWebClientModelStep(
+              instructionMarkdown: step.instructionsMarkdown,
+              imagePath: none(),
+            ),
+          )
+          .toList(),
+    );
+
+List<HomeWebClientModelRecipe> _mapToHomeWebClientModelRecipe({
+  required final WebClientModelApiResponse response,
+}) =>
+    response.items
+        .map(
+          (final WebClientModelRecipe recipe) => HomeWebClientModelRecipe(
+            id: recipe.id,
+            displayedAttributes: HomeWebClientModelDisplayedAttributes(
+              name: recipe.name,
+              headline: recipe.headline,
+              description: recipe.description,
+              descriptionMarkdown: recipe.descriptionMarkdown,
+            ),
+            difficulty: recipe.difficulty,
+            ingredients: recipe.ingredients
+                .map(
+                  (final WebClientModelIngredient ingredient) =>
+                      HomeWebClientModelIngredient(
+                    id: ingredient.id,
+                    slug: ingredient.slug,
+                    displayedName: ingredient.name,
+                  ),
+                )
+                .toList(),
+            yields: recipe.yields
+                .map(
+                  (final WebClientModelYield yield) => yield.yield.map(
+                    (final int servings) => HomeWebClientModelYield(
+                      yield: servings,
+                      yieldIngredient: yield.ingredients
+                          .map(
+                            (final WebClientModelYieldIngredient ingredient) =>
+                                HomeWebClientModelYieldIngredient(
+                              id: ingredient.id,
+                              amount: ingredient.amount.map(
+                                (final num number) => number.toDouble(),
+                              ),
+                              unit: ingredient.unit,
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ),
+                )
+                .whereType<Some<HomeWebClientModelYield>>()
+                .map(
+                  (final Some<HomeWebClientModelYield> yield) => yield.value,
+                )
+                .toList(),
+            tags: recipe.tags
+                .map(
+                  (final WebClientModelTag tag) => HomeWebClientModelTag(
+                    id: tag.id,
+                    slug: tag.slug,
+                    displayedName: tag.name,
+                  ),
+                )
+                .toList(),
+            imagePath: recipe.imagePath.map(Uri.parse),
+          ),
+        )
+        .toList();
 
 // void main(List<String> arguments) async {
 //   var url = 'https://www.hellofresh.de/gw/api/recipes?take=XXX&skip=YYY';
-//   var jsons = [];
+//   var json = [];
 //
 //   for (int i = 0; i < 186339; i += 1) {
 //     var response = await http.get(

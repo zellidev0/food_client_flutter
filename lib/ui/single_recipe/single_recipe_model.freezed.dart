@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SingleRecipeModel {
   Either<Exception, Option<SingleRecipeModelRecipe>> get recipe =>
       throw _privateConstructorUsedError;
-  int get selectedYield => throw _privateConstructorUsedError;
+  Option<int> get selectedYield => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SingleRecipeModelCopyWith<SingleRecipeModel> get copyWith =>
@@ -33,7 +33,7 @@ abstract class $SingleRecipeModelCopyWith<$Res> {
   @useResult
   $Res call(
       {Either<Exception, Option<SingleRecipeModelRecipe>> recipe,
-      int selectedYield});
+      Option<int> selectedYield});
 }
 
 /// @nodoc
@@ -60,7 +60,7 @@ class _$SingleRecipeModelCopyWithImpl<$Res, $Val extends SingleRecipeModel>
       selectedYield: null == selectedYield
           ? _value.selectedYield
           : selectedYield // ignore: cast_nullable_to_non_nullable
-              as int,
+              as Option<int>,
     ) as $Val);
   }
 }
@@ -75,7 +75,7 @@ abstract class _$$_SingleRecipeModelCopyWith<$Res>
   @useResult
   $Res call(
       {Either<Exception, Option<SingleRecipeModelRecipe>> recipe,
-      int selectedYield});
+      Option<int> selectedYield});
 }
 
 /// @nodoc
@@ -100,7 +100,7 @@ class __$$_SingleRecipeModelCopyWithImpl<$Res>
       selectedYield: null == selectedYield
           ? _value.selectedYield
           : selectedYield // ignore: cast_nullable_to_non_nullable
-              as int,
+              as Option<int>,
     ));
   }
 }
@@ -114,7 +114,7 @@ class _$_SingleRecipeModel implements _SingleRecipeModel {
   @override
   final Either<Exception, Option<SingleRecipeModelRecipe>> recipe;
   @override
-  final int selectedYield;
+  final Option<int> selectedYield;
 
   @override
   String toString() {
@@ -145,12 +145,12 @@ class _$_SingleRecipeModel implements _SingleRecipeModel {
 abstract class _SingleRecipeModel implements SingleRecipeModel {
   const factory _SingleRecipeModel(
       {required final Either<Exception, Option<SingleRecipeModelRecipe>> recipe,
-      required final int selectedYield}) = _$_SingleRecipeModel;
+      required final Option<int> selectedYield}) = _$_SingleRecipeModel;
 
   @override
   Either<Exception, Option<SingleRecipeModelRecipe>> get recipe;
   @override
-  int get selectedYield;
+  Option<int> get selectedYield;
   @override
   @JsonKey(ignore: true)
   _$$_SingleRecipeModelCopyWith<_$_SingleRecipeModel> get copyWith =>
@@ -166,7 +166,7 @@ mixin _$SingleRecipeModelRecipe {
   List<SingleRecipeModelYield> get yields => throw _privateConstructorUsedError;
   List<SingleRecipeModelTag> get tags => throw _privateConstructorUsedError;
   List<SingleRecipeModelStep> get steps => throw _privateConstructorUsedError;
-  Option<Uri> get imageUriLarge => throw _privateConstructorUsedError;
+  Option<Uri> get imageUri => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SingleRecipeModelRecipeCopyWith<SingleRecipeModelRecipe> get copyWith =>
@@ -186,7 +186,7 @@ abstract class $SingleRecipeModelRecipeCopyWith<$Res> {
       List<SingleRecipeModelYield> yields,
       List<SingleRecipeModelTag> tags,
       List<SingleRecipeModelStep> steps,
-      Option<Uri> imageUriLarge});
+      Option<Uri> imageUri});
 
   $SingleRecipeModelDisplayedAttributesCopyWith<$Res> get displayedAttributes;
 }
@@ -211,7 +211,7 @@ class _$SingleRecipeModelRecipeCopyWithImpl<$Res,
     Object? yields = null,
     Object? tags = null,
     Object? steps = null,
-    Object? imageUriLarge = null,
+    Object? imageUri = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -238,9 +238,9 @@ class _$SingleRecipeModelRecipeCopyWithImpl<$Res,
           ? _value.steps
           : steps // ignore: cast_nullable_to_non_nullable
               as List<SingleRecipeModelStep>,
-      imageUriLarge: null == imageUriLarge
-          ? _value.imageUriLarge
-          : imageUriLarge // ignore: cast_nullable_to_non_nullable
+      imageUri: null == imageUri
+          ? _value.imageUri
+          : imageUri // ignore: cast_nullable_to_non_nullable
               as Option<Uri>,
     ) as $Val);
   }
@@ -270,7 +270,7 @@ abstract class _$$_SingleRecipeModelRecipeCopyWith<$Res>
       List<SingleRecipeModelYield> yields,
       List<SingleRecipeModelTag> tags,
       List<SingleRecipeModelStep> steps,
-      Option<Uri> imageUriLarge});
+      Option<Uri> imageUri});
 
   @override
   $SingleRecipeModelDisplayedAttributesCopyWith<$Res> get displayedAttributes;
@@ -294,7 +294,7 @@ class __$$_SingleRecipeModelRecipeCopyWithImpl<$Res>
     Object? yields = null,
     Object? tags = null,
     Object? steps = null,
-    Object? imageUriLarge = null,
+    Object? imageUri = null,
   }) {
     return _then(_$_SingleRecipeModelRecipe(
       id: null == id
@@ -321,9 +321,9 @@ class __$$_SingleRecipeModelRecipeCopyWithImpl<$Res>
           ? _value._steps
           : steps // ignore: cast_nullable_to_non_nullable
               as List<SingleRecipeModelStep>,
-      imageUriLarge: null == imageUriLarge
-          ? _value.imageUriLarge
-          : imageUriLarge // ignore: cast_nullable_to_non_nullable
+      imageUri: null == imageUri
+          ? _value.imageUri
+          : imageUri // ignore: cast_nullable_to_non_nullable
               as Option<Uri>,
     ));
   }
@@ -339,7 +339,7 @@ class _$_SingleRecipeModelRecipe implements _SingleRecipeModelRecipe {
       required final List<SingleRecipeModelYield> yields,
       required final List<SingleRecipeModelTag> tags,
       required final List<SingleRecipeModelStep> steps,
-      required this.imageUriLarge})
+      required this.imageUri})
       : _yields = yields,
         _tags = tags,
         _steps = steps;
@@ -372,11 +372,11 @@ class _$_SingleRecipeModelRecipe implements _SingleRecipeModelRecipe {
   }
 
   @override
-  final Option<Uri> imageUriLarge;
+  final Option<Uri> imageUri;
 
   @override
   String toString() {
-    return 'SingleRecipeModelRecipe(id: $id, displayedAttributes: $displayedAttributes, difficulty: $difficulty, yields: $yields, tags: $tags, steps: $steps, imageUriLarge: $imageUriLarge)';
+    return 'SingleRecipeModelRecipe(id: $id, displayedAttributes: $displayedAttributes, difficulty: $difficulty, yields: $yields, tags: $tags, steps: $steps, imageUri: $imageUri)';
   }
 
   @override
@@ -392,8 +392,8 @@ class _$_SingleRecipeModelRecipe implements _SingleRecipeModelRecipe {
             const DeepCollectionEquality().equals(other._yields, _yields) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
             const DeepCollectionEquality().equals(other._steps, _steps) &&
-            (identical(other.imageUriLarge, imageUriLarge) ||
-                other.imageUriLarge == imageUriLarge));
+            (identical(other.imageUri, imageUri) ||
+                other.imageUri == imageUri));
   }
 
   @override
@@ -405,7 +405,7 @@ class _$_SingleRecipeModelRecipe implements _SingleRecipeModelRecipe {
       const DeepCollectionEquality().hash(_yields),
       const DeepCollectionEquality().hash(_tags),
       const DeepCollectionEquality().hash(_steps),
-      imageUriLarge);
+      imageUri);
 
   @JsonKey(ignore: true)
   @override
@@ -424,7 +424,7 @@ abstract class _SingleRecipeModelRecipe implements SingleRecipeModelRecipe {
       required final List<SingleRecipeModelYield> yields,
       required final List<SingleRecipeModelTag> tags,
       required final List<SingleRecipeModelStep> steps,
-      required final Option<Uri> imageUriLarge}) = _$_SingleRecipeModelRecipe;
+      required final Option<Uri> imageUri}) = _$_SingleRecipeModelRecipe;
 
   @override
   String get id;
@@ -439,7 +439,7 @@ abstract class _SingleRecipeModelRecipe implements SingleRecipeModelRecipe {
   @override
   List<SingleRecipeModelStep> get steps;
   @override
-  Option<Uri> get imageUriLarge;
+  Option<Uri> get imageUri;
   @override
   @JsonKey(ignore: true)
   _$$_SingleRecipeModelRecipeCopyWith<_$_SingleRecipeModelRecipe>
@@ -451,7 +451,7 @@ mixin _$SingleRecipeModelDisplayedAttributes {
   String get name => throw _privateConstructorUsedError;
   String get headline => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  String get descriptionMarkdown => throw _privateConstructorUsedError;
+  Option<String> get descriptionMarkdown => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SingleRecipeModelDisplayedAttributesCopyWith<
@@ -471,7 +471,7 @@ abstract class $SingleRecipeModelDisplayedAttributesCopyWith<$Res> {
       {String name,
       String headline,
       String description,
-      String descriptionMarkdown});
+      Option<String> descriptionMarkdown});
 }
 
 /// @nodoc
@@ -509,7 +509,7 @@ class _$SingleRecipeModelDisplayedAttributesCopyWithImpl<$Res,
       descriptionMarkdown: null == descriptionMarkdown
           ? _value.descriptionMarkdown
           : descriptionMarkdown // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Option<String>,
     ) as $Val);
   }
 }
@@ -527,7 +527,7 @@ abstract class _$$_SingleRecipeModelDisplayedAttributesCopyWith<$Res>
       {String name,
       String headline,
       String description,
-      String descriptionMarkdown});
+      Option<String> descriptionMarkdown});
 }
 
 /// @nodoc
@@ -564,7 +564,7 @@ class __$$_SingleRecipeModelDisplayedAttributesCopyWithImpl<$Res>
       descriptionMarkdown: null == descriptionMarkdown
           ? _value.descriptionMarkdown
           : descriptionMarkdown // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Option<String>,
     ));
   }
 }
@@ -586,7 +586,7 @@ class _$_SingleRecipeModelDisplayedAttributes
   @override
   final String description;
   @override
-  final String descriptionMarkdown;
+  final Option<String> descriptionMarkdown;
 
   @override
   String toString() {
@@ -626,7 +626,7 @@ abstract class _SingleRecipeModelDisplayedAttributes
           {required final String name,
           required final String headline,
           required final String description,
-          required final String descriptionMarkdown}) =
+          required final Option<String> descriptionMarkdown}) =
       _$_SingleRecipeModelDisplayedAttributes;
 
   @override
@@ -636,7 +636,7 @@ abstract class _SingleRecipeModelDisplayedAttributes
   @override
   String get description;
   @override
-  String get descriptionMarkdown;
+  Option<String> get descriptionMarkdown;
   @override
   @JsonKey(ignore: true)
   _$$_SingleRecipeModelDisplayedAttributesCopyWith<
@@ -1170,7 +1170,6 @@ mixin _$SingleRecipeModelTag {
   String get id => throw _privateConstructorUsedError;
   String get slug => throw _privateConstructorUsedError;
   String get displayedName => throw _privateConstructorUsedError;
-  bool get isSelected => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SingleRecipeModelTagCopyWith<SingleRecipeModelTag> get copyWith =>
@@ -1183,7 +1182,7 @@ abstract class $SingleRecipeModelTagCopyWith<$Res> {
           $Res Function(SingleRecipeModelTag) then) =
       _$SingleRecipeModelTagCopyWithImpl<$Res, SingleRecipeModelTag>;
   @useResult
-  $Res call({String id, String slug, String displayedName, bool isSelected});
+  $Res call({String id, String slug, String displayedName});
 }
 
 /// @nodoc
@@ -1203,7 +1202,6 @@ class _$SingleRecipeModelTagCopyWithImpl<$Res,
     Object? id = null,
     Object? slug = null,
     Object? displayedName = null,
-    Object? isSelected = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -1218,10 +1216,6 @@ class _$SingleRecipeModelTagCopyWithImpl<$Res,
           ? _value.displayedName
           : displayedName // ignore: cast_nullable_to_non_nullable
               as String,
-      isSelected: null == isSelected
-          ? _value.isSelected
-          : isSelected // ignore: cast_nullable_to_non_nullable
-              as bool,
     ) as $Val);
   }
 }
@@ -1234,7 +1228,7 @@ abstract class _$$_SingleRecipeModelTagCopyWith<$Res>
       __$$_SingleRecipeModelTagCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String slug, String displayedName, bool isSelected});
+  $Res call({String id, String slug, String displayedName});
 }
 
 /// @nodoc
@@ -1251,7 +1245,6 @@ class __$$_SingleRecipeModelTagCopyWithImpl<$Res>
     Object? id = null,
     Object? slug = null,
     Object? displayedName = null,
-    Object? isSelected = null,
   }) {
     return _then(_$_SingleRecipeModelTag(
       id: null == id
@@ -1266,10 +1259,6 @@ class __$$_SingleRecipeModelTagCopyWithImpl<$Res>
           ? _value.displayedName
           : displayedName // ignore: cast_nullable_to_non_nullable
               as String,
-      isSelected: null == isSelected
-          ? _value.isSelected
-          : isSelected // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -1278,10 +1267,7 @@ class __$$_SingleRecipeModelTagCopyWithImpl<$Res>
 
 class _$_SingleRecipeModelTag implements _SingleRecipeModelTag {
   const _$_SingleRecipeModelTag(
-      {required this.id,
-      required this.slug,
-      required this.displayedName,
-      required this.isSelected});
+      {required this.id, required this.slug, required this.displayedName});
 
   @override
   final String id;
@@ -1289,12 +1275,10 @@ class _$_SingleRecipeModelTag implements _SingleRecipeModelTag {
   final String slug;
   @override
   final String displayedName;
-  @override
-  final bool isSelected;
 
   @override
   String toString() {
-    return 'SingleRecipeModelTag(id: $id, slug: $slug, displayedName: $displayedName, isSelected: $isSelected)';
+    return 'SingleRecipeModelTag(id: $id, slug: $slug, displayedName: $displayedName)';
   }
 
   @override
@@ -1305,14 +1289,11 @@ class _$_SingleRecipeModelTag implements _SingleRecipeModelTag {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.slug, slug) || other.slug == slug) &&
             (identical(other.displayedName, displayedName) ||
-                other.displayedName == displayedName) &&
-            (identical(other.isSelected, isSelected) ||
-                other.isSelected == isSelected));
+                other.displayedName == displayedName));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, slug, displayedName, isSelected);
+  int get hashCode => Object.hash(runtimeType, id, slug, displayedName);
 
   @JsonKey(ignore: true)
   @override
@@ -1326,8 +1307,7 @@ abstract class _SingleRecipeModelTag implements SingleRecipeModelTag {
   const factory _SingleRecipeModelTag(
       {required final String id,
       required final String slug,
-      required final String displayedName,
-      required final bool isSelected}) = _$_SingleRecipeModelTag;
+      required final String displayedName}) = _$_SingleRecipeModelTag;
 
   @override
   String get id;
@@ -1335,8 +1315,6 @@ abstract class _SingleRecipeModelTag implements SingleRecipeModelTag {
   String get slug;
   @override
   String get displayedName;
-  @override
-  bool get isSelected;
   @override
   @JsonKey(ignore: true)
   _$$_SingleRecipeModelTagCopyWith<_$_SingleRecipeModelTag> get copyWith =>

@@ -2,12 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:food_client/services/navigation_service.dart';
-import 'package:food_client/services/recipe_parser/recipe_parser_service.dart';
 import 'package:food_client/services/web_client/web_client_service.dart';
 import 'package:food_client/services/web_image_sizer/web_image_sizer_service.dart';
 import 'package:food_client/ui/home/home_model.dart';
 import 'package:food_client/ui/home/home_navigation_service.dart';
-import 'package:food_client/ui/home/home_recipe_parser.dart';
 import 'package:food_client/ui/home/home_view.dart';
 import 'package:food_client/ui/home/home_web_client_service.dart';
 import 'package:food_client/ui/home/home_web_image_sizer_service.dart';
@@ -21,33 +19,24 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
     implements HomeController {
   late final HomeWebClientService _webClientService;
   late final HomeWebImageSizerService _webImageSizerService;
-  late final HomeRecipeParserService _recipeParserService;
-  // ignore: unused_field
   late final HomeNavigationService _navigationService;
 
   @override
   HomeModel build() {
-    _webClientService = ref.watch(webClientServiceProvider);
-    _webImageSizerService = ref.watch(webImageSizerServiceProvider);
-    _recipeParserService = ref.watch(recipeParserServiceProvider);
-    _navigationService = ref.watch(navigationServiceProvider);
+    _webClientService = ref.read(webClientServiceProvider);
+    _webImageSizerService = ref.read(webImageSizerServiceProvider);
+    _navigationService = ref.read(navigationServiceProvider);
 
     unawaited(
       init(
-        initialTask: _webClientService.fetchAllRecipes().flatMap(
-              (final Map<String, dynamic> payload) => _recipeParserService
-                  .parseRecipes(payload: payload)
-                  .map(
-                    (final List<HomeRecipeParserModelRecipe> recipes) =>
-                        HomeModel(
-                      recipes: mapToHomeModelRecipes(
-                        recipes: recipes,
-                        imageResizerService: _webImageSizerService,
-                      ),
-                      tags: mapToHomeModelTags(recipes: recipes),
-                    ),
-                  )
-                  .toTaskEither(),
+        initialTask: _webClientService.fetchAllRecipes().map(
+              (final List<HomeWebClientModelRecipe> recipes) => HomeModel(
+                recipes: mapToHomeModelRecipes(
+                  recipes: recipes,
+                  imageResizerService: _webImageSizerService,
+                ),
+                tags: mapToHomeModelTags(recipes: recipes),
+              ),
             ),
       ),
     );
@@ -83,19 +72,30 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
           .toList(),
     );
   }
+
+  @override
+  void goToSingleRecipeView({required final String recipeId}) {
+    _navigationService.navigateToNamed(
+      uri: NavigationServiceUris.singleRecipeUri.replace(
+        queryParameters: <String, String>{
+          NavigationServiceUris.singleRecipeIdKey: recipeId,
+        },
+      ),
+    );
+  }
 }
 
 List<HomeModelTag> mapToHomeModelTags({
-  required final List<HomeRecipeParserModelRecipe> recipes,
+  required final List<HomeWebClientModelRecipe> recipes,
 }) =>
     recipes
         .map(
-          (final HomeRecipeParserModelRecipe recipe) => recipe.tags
+          (final HomeWebClientModelRecipe recipe) => recipe.tags
               .map(
-                (final HomeRecipeParserModelTag e) => HomeModelTag(
-                  id: e.id,
-                  slug: e.slug,
-                  displayedName: e.displayedName,
+                (final HomeWebClientModelTag tag) => HomeModelTag(
+                  id: tag.id,
+                  slug: tag.slug,
+                  displayedName: tag.displayedName,
                   isSelected: true,
                 ),
               )
@@ -106,12 +106,12 @@ List<HomeModelTag> mapToHomeModelTags({
         .toList();
 
 List<HomeModelRecipe> mapToHomeModelRecipes({
-  required final List<HomeRecipeParserModelRecipe> recipes,
+  required final List<HomeWebClientModelRecipe> recipes,
   required final HomeWebImageSizerService imageResizerService,
 }) =>
     recipes
         .map(
-          (final HomeRecipeParserModelRecipe recipe) => recipe.imagePath
+          (final HomeWebClientModelRecipe recipe) => recipe.imagePath
               .flatMap(
                 (final Uri imagePath) => imageResizerService
                     .getUrl(
@@ -141,11 +141,13 @@ List<HomeModelRecipe> mapToHomeModelRecipes({
               ),
         )
         .whereType<Some<HomeModelRecipe>>()
-        .map((final Some<HomeModelRecipe> recipe) => recipe.value)
+        .map(
+          (final Some<HomeModelRecipe> recipe) => recipe.value,
+        )
         .toList();
 
 HomeModelDisplayedAttributes _mapDisplayedAttributes({
-  required final HomeRecipeParserModelDisplayedAttributes displayedAttributes,
+  required final HomeWebClientModelDisplayedAttributes displayedAttributes,
 }) =>
     HomeModelDisplayedAttributes(
       name: displayedAttributes.name,
@@ -155,11 +157,11 @@ HomeModelDisplayedAttributes _mapDisplayedAttributes({
     );
 
 List<HomeModelIngredient> _mapIngredients({
-  required final List<HomeRecipeParserModelIngredient> ingredients,
+  required final List<HomeWebClientModelIngredient> ingredients,
 }) =>
     ingredients
         .map(
-          (final HomeRecipeParserModelIngredient ingredient) =>
+          (final HomeWebClientModelIngredient ingredient) =>
               HomeModelIngredient(
             id: ingredient.id,
             slug: ingredient.slug,
@@ -169,16 +171,16 @@ List<HomeModelIngredient> _mapIngredients({
         .toList();
 
 List<HomeModelYield> _mapYields({
-  required final List<HomeRecipeParserModelYield> yields,
+  required final List<HomeWebClientModelYield> yields,
 }) =>
     yields
         .map(
-          (final HomeRecipeParserModelYield yield) => HomeModelYield(
+          (final HomeWebClientModelYield yield) => HomeModelYield(
             yield: yield.yield,
             yieldIngredient: yield.yieldIngredient
                 .map(
                   (
-                    final HomeRecipeParserModelYieldIngredient yieldIngredient,
+                    final HomeWebClientModelYieldIngredient yieldIngredient,
                   ) =>
                       HomeModelYieldIngredient(
                     id: yieldIngredient.id,
@@ -192,6 +194,6 @@ List<HomeModelYield> _mapYields({
         .toList();
 
 List<String> _mapTagIds({
-  required final List<HomeRecipeParserModelTag> tags,
+  required final List<HomeWebClientModelTag> tags,
 }) =>
-    tags.map((final HomeRecipeParserModelTag tag) => tag.id).toList();
+    tags.map((final HomeWebClientModelTag tag) => tag.id).toList();

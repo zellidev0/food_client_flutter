@@ -1,4 +1,5 @@
 import 'package:food_client/ui/home/home_web_image_sizer_service.dart';
+import 'package:food_client/ui/single_recipe/single_recipe_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -10,7 +11,7 @@ WebImageSizerServiceAggregator webImageSizerService(
 ) =>
     WebImageSizerService();
 
-abstract class WebImageSizerServiceAggregator implements HomeWebImageSizerService {}
+abstract class WebImageSizerServiceAggregator implements HomeWebImageSizerService, SingleRecipeWebImageSizerService {}
 
 class WebImageSizerService implements WebImageSizerServiceAggregator {
   @override
@@ -33,6 +34,6 @@ String _helloFreshImageBaseURL({required final int widthPixels}) =>
     'c_fit,'
     'f_auto,'
     'fl_lossy,'
-    'h_${widthPixels / 2},'
+    'h_${widthPixels ~/ 2},'
     'q_auto,'
     'w_$widthPixels/hellofresh_s3';

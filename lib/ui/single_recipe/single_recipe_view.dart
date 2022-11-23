@@ -6,17 +6,20 @@ import 'package:food_client/ui/single_recipe/single_recipe_model.dart';
 import 'package:fpdart/fpdart.dart';
 
 class SingleRecipeView extends ConsumerWidget {
-  const SingleRecipeView({super.key});
+  final String _recipeId;
+
+  const SingleRecipeView({
+    super.key,
+    required final String recipeId,
+  }) : _recipeId = recipeId;
 
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
-    // ignore: unused_local_variable
     final SingleRecipeModel model = ref.watch(
-      singleRecipeControllerImplementationProvider,
+      singleRecipeControllerImplementationProvider(recipeId: _recipeId),
     );
-    // ignore: unused_local_variable
-    final SingleRecipeController controller = ref.watch(
-      singleRecipeControllerImplementationProvider.notifier,
+    final SingleRecipeController controller = ref.read(
+      singleRecipeControllerImplementationProvider(recipeId: _recipeId).notifier,
     );
 
     return Scaffold(
@@ -26,7 +29,7 @@ class SingleRecipeView extends ConsumerWidget {
           CircularProgressIndicator.new,
           (final SingleRecipeModelRecipe recipe) => _buildContent(
             recipe: recipe,
-            selectedYield: model.selectedYield,
+            selectedYield: model.selectedYield.getOrElse(() => 1),//TODO
             controller: controller,
           ),
         ),

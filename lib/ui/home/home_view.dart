@@ -9,38 +9,42 @@ class HomeView extends ConsumerWidget {
 
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
-    // ignore: unused_local_variable
-    final HomeModel model = ref.watch(
-      homeControllerImplementationProvider,
-    );
-    // ignore: unused_local_variable
-    final HomeController controller = ref.watch(
+    final HomeModel model = ref.watch(homeControllerImplementationProvider);
+    final HomeController controller = ref.read(
       homeControllerImplementationProvider.notifier,
     );
 
     return Scaffold(
       backgroundColor: Colors.lightBlue.withOpacity(0.2),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            buildTagChips(tags: model.tags, controller: controller),
-            buildRecipesList(
-              recipes: model.recipes
-                  .filter(
-                    (final HomeModelRecipe recipe) => recipe.tagIds.any(
-                      (final String tag) => model.tags
-                          .where((final HomeModelTag tag) => tag.isSelected)
-                          .map((final HomeModelTag tagId) => tagId.id)
-                          .toList()
-                          .contains(tag),
-                    ),
-                  )
-                  .toList(),
-              tags: model.tags,
-            ),
-          ],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              buildTagChips(tags: model.tags, controller: controller),
+              buildRecipesList(
+                recipes: model.recipes
+                    .filter(
+                      (final HomeModelRecipe recipe) =>
+                          model.tags
+                              .where((final HomeModelTag tag) => tag.isSelected)
+                              .isEmpty ||
+                          recipe.tagIds.any(
+                            (final String tag) => model.tags
+                                .where(
+                                    (final HomeModelTag tag) => tag.isSelected)
+                                .map((final HomeModelTag tagId) => tagId.id)
+                                .toList()
+                                .contains(tag),
+                          ),
+                    )
+                    .toList(),
+                tags: model.tags,
+                controller: controller,
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -70,48 +74,51 @@ class HomeView extends ConsumerWidget {
 
   Expanded buildRecipesList({
     required final List<HomeModelRecipe> recipes,
+    required final HomeController controller,
     required final List<HomeModelTag> tags,
   }) =>
       Expanded(
         child: ListView.builder(
           itemCount: recipes.length,
           itemBuilder: (final BuildContext context, final int index) =>
-              _buildRecipeCardItem(recipe: recipes[index], tags: tags),
+              _buildRecipeCardItem(
+            recipe: recipes[index],
+            tags: tags,
+            controller: controller,
+          ),
         ),
       );
 
   Widget _buildRecipeCardItem({
     required final HomeModelRecipe recipe,
+    required final HomeController controller,
     required final List<HomeModelTag> tags,
   }) =>
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Column(
-                children: <Widget>[
-                  Image.network(
-                    recipe.imageUriLarge.toString(),
-                    errorBuilder: (final _, final __, final ___) =>
-                        const Icon(Icons.image_not_supported),
+      InkWell(
+        onTap: () => controller.goToSingleRecipeView(recipeId: recipe.id),
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Column(
+              children: <Widget>[
+                Image.network(
+                  recipe.imageUriLarge.toString(),
+                  errorBuilder: (final _, final __, final ___) => const Padding(
+                    padding: EdgeInsets.all(64),
+                    child: Icon(Icons.image_not_supported),
                   ),
-                  SizedBox(
-                    width: 400,
-                    child: buildRecipeCardItemDescription(
-                      recipe: recipe,
-                      tags: tags,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+                buildRecipeCardItemDescription(
+                  recipe: recipe,
+                  tags: tags,
+                ),
+              ],
             ),
           ),
-        ],
+        ),
       );
 
   Widget buildRecipeCardItemDescription({
@@ -129,27 +136,25 @@ class HomeView extends ConsumerWidget {
                 recipe.displayedAttributes.headline,
               ),
             ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Padding(
-                padding: const EdgeInsets.all(8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: recipe.tagIds
-                      .map(
-                        (final String tagId) => Chip(
-                          label: Text(
-                            tags
-                                .firstWhere(
-                                  (final HomeModelTag element) =>
-                                      element.id == tagId,
-                                )
-                                .displayedName,
-                          ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              child: Wrap(
+                spacing: 8,
+                runSpacing: 4,
+                children: recipe.tagIds
+                    .map(
+                      (final String tagId) => Chip(
+                        label: Text(
+                          tags
+                              .firstWhere(
+                                (final HomeModelTag element) =>
+                                    element.id == tagId,
+                              )
+                              .displayedName,
                         ),
-                      )
-                      .toList(),
-                ),
+                      ),
+                    )
+                    .toList(),
               ),
             ),
           ],
@@ -161,5 +166,8 @@ abstract class HomeController {
   void setTagSelected({
     required final int index,
     required final bool selected,
+  });
+  void goToSingleRecipeView({
+    required final String recipeId,
   });
 }

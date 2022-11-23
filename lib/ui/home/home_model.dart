@@ -30,7 +30,7 @@ class HomeModelDisplayedAttributes with _$HomeModelDisplayedAttributes {
     required final String name,
     required final String headline,
     required final String description,
-    required final String descriptionMarkdown,
+    required final Option<String> descriptionMarkdown,
   }) = _HomeModelDisplayedAttributes;
 }
 

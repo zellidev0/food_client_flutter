@@ -7,7 +7,7 @@ part 'single_recipe_model.freezed.dart';
 class SingleRecipeModel with _$SingleRecipeModel {
   const factory SingleRecipeModel({
     required final Either<Exception,Option<SingleRecipeModelRecipe>> recipe,
-    required final int selectedYield,
+    required final Option<int> selectedYield,
   }) = _SingleRecipeModel;
 }
 
@@ -20,7 +20,7 @@ class SingleRecipeModelRecipe with _$SingleRecipeModelRecipe {
     required final List<SingleRecipeModelYield> yields,
     required final List<SingleRecipeModelTag> tags,
     required final List<SingleRecipeModelStep> steps,
-    required final Option<Uri> imageUriLarge,
+    required final Option<Uri> imageUri,
   }) = _SingleRecipeModelRecipe;
 }
 
@@ -31,7 +31,7 @@ class SingleRecipeModelDisplayedAttributes
     required final String name,
     required final String headline,
     required final String description,
-    required final String descriptionMarkdown,
+    required final Option<String> descriptionMarkdown,
   }) = _SingleRecipeModelDisplayedAttributes;
 }
 
@@ -70,6 +70,5 @@ class SingleRecipeModelTag with _$SingleRecipeModelTag {
     required final String id,
     required final String slug,
     required final String displayedName,
-    required final bool isSelected,
   }) = _SingleRecipeModelTag;
 }

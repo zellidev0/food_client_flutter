@@ -102,7 +102,7 @@ class BeamerNavigationService implements NavigationServiceAggregator {
           .showSnackBar(material.SnackBar(content: material.Text(message)));
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 BeamerDelegate globalBeamerDelegate(final GlobalBeamerDelegateRef ref) =>
     BeamerDelegate(
       initialPath: NavigationServiceUris.homeRouteUri.toString(),
@@ -110,8 +110,17 @@ BeamerDelegate globalBeamerDelegate(final GlobalBeamerDelegateRef ref) =>
         routes: <Pattern, dynamic Function(BuildContext, BeamState, Object?)>{
           NavigationServiceUris.homeRouteUri.toString():
               (final _, final __, final ___) => const HomeView(),
-          NavigationServiceUris.singleRecipeUri.toString():
-              (final _, final __, final ___) => const SingleRecipeView(),
+          '${NavigationServiceUris.singleRecipeUri}': (
+            final _,
+            final BeamState state,
+            final ___,
+          ) =>
+              SingleRecipeView(
+                recipeId: state
+                    .queryParameters[NavigationServiceUris.singleRecipeIdKey]!,
+              ),
+          // '*': (final _, final __, final ___) => const HomeView(),
+          // '/': (final _, final __, final ___) => const HomeView(),
         },
       ),
     );
