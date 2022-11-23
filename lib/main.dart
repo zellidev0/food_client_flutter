@@ -1,6 +1,7 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:food_client/profile/single_recipe_view.dart';
+import 'package:food_client/services/navigation_service.dart';
 
 void main() {
   runApp(
@@ -10,11 +11,11 @@ void main() {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(final BuildContext context) => MaterialApp(
+  Widget build(final BuildContext context, final WidgetRef ref) => MaterialApp.router(
         title: 'Food client',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSwatch(
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
-        home: const SingleRecipeView(),
+        routeInformationParser: BeamerParser(),
+        routerDelegate: ref.read(globalBeamerDelegateProvider),
       );
 }

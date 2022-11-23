@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:food_client/home/home_model.dart';
+import 'package:food_client/home/home_navigation_service.dart';
 import 'package:food_client/home/home_recipe_parser.dart';
 import 'package:food_client/home/home_view.dart';
 import 'package:food_client/home/home_web_client_service.dart';
@@ -18,12 +19,14 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
   late final HomeWebClientService _webClientService;
   late final HomeWebImageSizerService _webImageSizerService;
   late final HomeRecipeParserService _recipeParserService;
+  late final HomeNavigationService _navigationService;
 
   @override
   HomeModel build() {
     _webClientService = ref.watch(homeWebClientServiceProvider);
     _webImageSizerService = ref.watch(homeWebImageSizerServiceProvider);
     _recipeParserService = ref.watch(homeRecipeParserServiceProvider);
+    _navigationService = ref.watch(beamerNavigationServiceProvider);
 
     unawaited(
       init(

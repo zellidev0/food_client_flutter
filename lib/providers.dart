@@ -1,7 +1,9 @@
+import 'package:food_client/home/home_navigation_service.dart';
 import 'package:food_client/home/home_recipe_parser.dart';
 import 'package:food_client/home/home_web_client_service.dart';
 import 'package:food_client/home/home_web_image_sizer_service.dart';
 import 'package:food_client/profile/single_recipe_controller.dart';
+import 'package:food_client/services/navigation_service.dart';
 import 'package:food_client/services/recipe_parser/recipe_parser_service.dart';
 import 'package:food_client/services/web_client/web_client_service.dart';
 import 'package:food_client/services/web_image_sizer/web_image_sizer_service.dart';
@@ -11,6 +13,14 @@ part 'providers.g.dart';
 
 WebClientService buildWebClientService() => WebClientService(
       useMockValues: true,
+    );
+
+@riverpod
+BeamerNavigationService beamerNavigationService(
+    final BeamerNavigationServiceRef ref,
+    ) =>
+    BeamerNavigationService(
+      beamerDelegate: ref.read(globalBeamerDelegateProvider),
     );
 
 @riverpod

@@ -29,6 +29,20 @@ class _SystemHash {
   }
 }
 
+String $beamerNavigationServiceHash() =>
+    r'0f8cb98fe7f66898c6657a44189bc34ed07bb242';
+
+/// See also [beamerNavigationService].
+final beamerNavigationServiceProvider =
+    AutoDisposeProvider<BeamerNavigationService>(
+  beamerNavigationService,
+  name: r'beamerNavigationServiceProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : $beamerNavigationServiceHash,
+);
+typedef BeamerNavigationServiceRef
+    = AutoDisposeProviderRef<BeamerNavigationService>;
 String $homeWebClientServiceHash() =>
     r'447cb83f6e560ef95f0eb3711c4799a93685601f';
 

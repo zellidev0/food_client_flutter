@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'home_controller.dart';
+part of 'navigation_service.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -29,23 +29,15 @@ class _SystemHash {
   }
 }
 
-String $HomeControllerImplementationHash() =>
-    r'fc2b3a93a7e1a7161ff5a72540e961e403d56c14';
+String $globalBeamerDelegateHash() =>
+    r'56f609fed5faacac37f40030a5d38e0882a0694a';
 
-/// See also [HomeControllerImplementation].
-final homeControllerImplementationProvider =
-    AutoDisposeNotifierProvider<HomeControllerImplementation, HomeModel>(
-  HomeControllerImplementation.new,
-  name: r'homeControllerImplementationProvider',
+/// See also [globalBeamerDelegate].
+final globalBeamerDelegateProvider = AutoDisposeProvider<BeamerDelegate>(
+  globalBeamerDelegate,
+  name: r'globalBeamerDelegateProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $HomeControllerImplementationHash,
+      : $globalBeamerDelegateHash,
 );
-typedef HomeControllerImplementationRef
-    = AutoDisposeNotifierProviderRef<HomeModel>;
-
-abstract class _$HomeControllerImplementation
-    extends AutoDisposeNotifier<HomeModel> {
-  @override
-  HomeModel build();
-}
+typedef GlobalBeamerDelegateRef = AutoDisposeProviderRef<BeamerDelegate>;
