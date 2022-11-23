@@ -5,14 +5,14 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'web_image_sizer_service.g.dart';
 
 @riverpod
-WebImageSizerService webImageSizerService(
+WebImageSizerServiceAggregator webImageSizerService(
   final WebImageSizerServiceRef ref,
 ) =>
-    WebImageSizerServiceImplementation();
+    WebImageSizerService();
 
-abstract class WebImageSizerService implements HomeWebImageSizerService {}
+abstract class WebImageSizerServiceAggregator implements HomeWebImageSizerService {}
 
-class WebImageSizerServiceImplementation implements WebImageSizerService {
+class WebImageSizerService implements WebImageSizerServiceAggregator {
   @override
   Either<Exception, Uri> getUrl({
     required final Uri filePath,

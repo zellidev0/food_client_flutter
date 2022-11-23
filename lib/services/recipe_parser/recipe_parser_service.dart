@@ -11,15 +11,15 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'recipe_parser_service.g.dart';
 
 @riverpod
-RecipeParserService recipeParserService(
+RecipeParserServiceAggregator recipeParserService(
   final RecipeParserServiceRef ref,
 ) =>
-    RecipeParserServiceImplementation();
+    RecipeParserService();
 
-abstract class RecipeParserService
+abstract class RecipeParserServiceAggregator
     implements HomeRecipeParserService, SingleRecipeRecipeParserService {}
 
-class RecipeParserServiceImplementation extends RecipeParserService {
+class RecipeParserService extends RecipeParserServiceAggregator {
   @override
   Either<Exception, List<HomeRecipeParserModelRecipe>> parseRecipes({
     required final Map<String, Object?> payload,

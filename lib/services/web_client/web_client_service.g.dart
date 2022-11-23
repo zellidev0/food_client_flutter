@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'recipe_parser_service.dart';
+part of 'web_client_service.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -29,17 +29,16 @@ class _SystemHash {
   }
 }
 
-String $recipeParserServiceHash() =>
-    r'9835c6c889a91349d1cb8fa7d439a5326fc2eb12';
+String $webClientServiceHash() => r'22e7b8319d199eae790ccd9b635e97e5cfd4b6dd';
 
-/// See also [recipeParserService].
-final recipeParserServiceProvider =
-    AutoDisposeProvider<RecipeParserServiceAggregator>(
-  recipeParserService,
-  name: r'recipeParserServiceProvider',
+/// See also [webClientService].
+final webClientServiceProvider =
+    AutoDisposeProvider<WebClientServiceAggregator>(
+  webClientService,
+  name: r'webClientServiceProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $recipeParserServiceHash,
+      : $webClientServiceHash,
 );
-typedef RecipeParserServiceRef
-    = AutoDisposeProviderRef<RecipeParserServiceAggregator>;
+typedef WebClientServiceRef
+    = AutoDisposeProviderRef<WebClientServiceAggregator>;

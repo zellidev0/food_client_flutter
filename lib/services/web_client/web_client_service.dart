@@ -10,17 +10,20 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'web_client_service.g.dart';
 
 @riverpod
-WebClientService webClientService() => WebClientServiceImplementation(
+WebClientServiceAggregator webClientService(
+  final WebClientServiceRef ref,
+) =>
+    WebClientService(
       useMockValues: true,
     );
 
-abstract class WebClientService
+abstract class WebClientServiceAggregator
     implements HomeWebClientService, SingleRecipeWebClientService {}
 
-class WebClientServiceImplementation implements WebClientService {
+class WebClientService implements WebClientServiceAggregator {
   final bool _useMockValues;
 
-  WebClientServiceImplementation({
+  WebClientService({
     required final bool useMockValues,
   }) : _useMockValues = useMockValues;
 

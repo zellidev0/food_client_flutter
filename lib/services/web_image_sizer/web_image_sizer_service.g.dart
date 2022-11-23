@@ -30,14 +30,16 @@ class _SystemHash {
 }
 
 String $webImageSizerServiceHash() =>
-    r'2f6ced0d8ccb25a6008db716242372a7a5d14551';
+    r'de63d4578fbdcf307c1360ff550f289b50ec8191';
 
 /// See also [webImageSizerService].
-final webImageSizerServiceProvider = AutoDisposeProvider<WebImageSizerService>(
+final webImageSizerServiceProvider =
+    AutoDisposeProvider<WebImageSizerServiceAggregator>(
   webImageSizerService,
   name: r'webImageSizerServiceProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : $webImageSizerServiceHash,
 );
-typedef WebImageSizerServiceRef = AutoDisposeProviderRef<WebImageSizerService>;
+typedef WebImageSizerServiceRef
+    = AutoDisposeProviderRef<WebImageSizerServiceAggregator>;

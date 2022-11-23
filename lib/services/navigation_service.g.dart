@@ -29,17 +29,19 @@ class _SystemHash {
   }
 }
 
-String $navigationServiceHash() => r'5836e22e79522ecbeb8838964f3d903456da5295';
+String $navigationServiceHash() => r'b21feea9a65625546135130ec45fb4c78596c070';
 
 /// See also [navigationService].
-final navigationServiceProvider = AutoDisposeProvider<BeamerNavigationService>(
+final navigationServiceProvider =
+    AutoDisposeProvider<NavigationServiceAggregator>(
   navigationService,
   name: r'navigationServiceProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : $navigationServiceHash,
 );
-typedef NavigationServiceRef = AutoDisposeProviderRef<BeamerNavigationService>;
+typedef NavigationServiceRef
+    = AutoDisposeProviderRef<NavigationServiceAggregator>;
 String $globalBeamerDelegateHash() =>
     r'56f609fed5faacac37f40030a5d38e0882a0694a';
 
