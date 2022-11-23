@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:food_client/home/home_navigation_service.dart';
 import 'package:food_client/home/home_view.dart';
 import 'package:food_client/profile/single_recipe_navigation_service.dart';
+import 'package:food_client/profile/single_recipe_view.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -40,6 +41,7 @@ class NavigationServiceDialogAction with _$NavigationServiceDialogAction {
 
 class BeamerNavigationService implements NavigationServiceAggregator {
   final BeamerDelegate _beamerDelegate;
+
   BeamerNavigationService({
     required final BeamerDelegate beamerDelegate,
   }) : _beamerDelegate = beamerDelegate;
@@ -108,6 +110,8 @@ BeamerDelegate globalBeamerDelegate(final GlobalBeamerDelegateRef ref) =>
         routes: <Pattern, dynamic Function(BuildContext, BeamState, Object?)>{
           NavigationServiceUris.homeRouteUri.toString():
               (final _, final __, final ___) => const HomeView(),
+          NavigationServiceUris.singleRecipeUri.toString():
+              (final _, final __, final ___) => const SingleRecipeView(),
         },
       ),
     );

@@ -95,7 +95,11 @@ class HomeView extends ConsumerWidget {
               borderRadius: BorderRadius.circular(20),
               child: Column(
                 children: <Widget>[
-                  Image(image: NetworkImage(recipe.imageUriLarge.toString())),
+                  Image.network(
+                    recipe.imageUriLarge.toString(),
+                    errorBuilder: (final _, final __, final ___) =>
+                        const Icon(Icons.image_not_supported),
+                  ),
                   SizedBox(
                     width: 400,
                     child: buildRecipeCardItemDescription(

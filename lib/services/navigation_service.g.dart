@@ -43,7 +43,7 @@ final navigationServiceProvider =
 typedef NavigationServiceRef
     = AutoDisposeProviderRef<NavigationServiceAggregator>;
 String $globalBeamerDelegateHash() =>
-    r'56f609fed5faacac37f40030a5d38e0882a0694a';
+    r'6b63926994f89b1c3bdf5e2244f5387a45ba843e';
 
 /// See also [globalBeamerDelegate].
 final globalBeamerDelegateProvider = AutoDisposeProvider<BeamerDelegate>(
