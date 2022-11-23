@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:food_client/home/home_view.dart';
+import 'package:food_client/profile/single_recipe_view.dart';
 
 void main() {
   runApp(
@@ -23,6 +23,6 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
-        home: const HomeView(),
+        home: const SingleRecipeView(),
       );
 }
