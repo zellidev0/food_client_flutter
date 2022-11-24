@@ -174,7 +174,7 @@ Widget buildTagsDialog() => Consumer(
               child: SingleChildScrollView(
                 child: Wrap(
                   spacing: 8,
-                  runSpacing: 0,
+                  runSpacing: 8,
                   children: ref
                       .watch(homeControllerImplementationProvider)
                       .tags
