@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/services/recipe_language_service/recipe_language_service.dart';
 import 'package:food_client/services/web_client/web_client_service.dart';
@@ -53,13 +55,15 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
               take: some(100),
             )
             .map(
-              (final List<HomeWebClientModelTag> tags) => tags.map(
-                (final HomeWebClientModelTag tag) => HomeModelTag(
-                  id: tag.id,
-                  displayedName: tag.displayedName,
-                  isSelected: false,
-                ),
-              ).toList(),
+              (final List<HomeWebClientModelTag> tags) => tags
+                  .map(
+                    (final HomeWebClientModelTag tag) => HomeModelTag(
+                      id: tag.id,
+                      displayedName: tag.displayedName,
+                      isSelected: false,
+                    ),
+                  )
+                  .toList(),
             ),
       ),
     );
@@ -76,7 +80,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
   }) async {
     (await initialRecipes
             .map2(
-      initialTags,
+              initialTags,
               (
                 final List<HomeModelRecipe> recipes,
                 final List<HomeModelTag> tags,
@@ -119,6 +123,11 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
         },
       ),
     );
+  }
+
+  @override
+  Future<void> openTagsDialog({required final Widget child}) async {
+    await _navigationService.showModalBottomSheet(child: child);
   }
 }
 

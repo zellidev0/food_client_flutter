@@ -97,6 +97,16 @@ class BeamerNavigationService implements NavigationServiceAggregator {
   }
 
   @override
+  Future<void> showModalBottomSheet({
+    required final Widget child,
+  }) async {
+    await material.showModalBottomSheet(
+      context: _beamerDelegate.navigator.context,
+      builder: (final material.BuildContext context) => child,
+    );
+  }
+
+  @override
   void showSnackBar({required final String message}) =>
       material.ScaffoldMessenger.of(_beamerDelegate.navigator.context)
           .showSnackBar(material.SnackBar(content: material.Text(message)));

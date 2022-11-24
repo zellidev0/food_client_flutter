@@ -13,7 +13,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'recipe_language_service.g.dart';
 
 @Riverpod(keepAlive: true)
-RecipeLanguageService recipeLanguageService(
+RecipeLanguageServiceAggregator recipeLanguageService(
   final RecipeLanguageServiceRef ref,
 ) =>
     RecipeLanguageService();

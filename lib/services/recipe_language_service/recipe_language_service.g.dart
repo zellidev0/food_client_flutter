@@ -30,14 +30,14 @@ class _SystemHash {
 }
 
 String $recipeLanguageServiceHash() =>
-    r'2dbc8b59ffa89a57af0c6feae46ba31f75bf081f';
+    r'fe979dd4735134444e1c2543438a8035e5a26154';
 
 /// See also [recipeLanguageService].
-final recipeLanguageServiceProvider = Provider<RecipeLanguageService>(
+final recipeLanguageServiceProvider = Provider<RecipeLanguageServiceAggregator>(
   recipeLanguageService,
   name: r'recipeLanguageServiceProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : $recipeLanguageServiceHash,
 );
-typedef RecipeLanguageServiceRef = ProviderRef<RecipeLanguageService>;
+typedef RecipeLanguageServiceRef = ProviderRef<RecipeLanguageServiceAggregator>;

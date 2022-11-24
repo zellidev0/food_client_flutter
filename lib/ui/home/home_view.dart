@@ -23,15 +23,22 @@ class HomeView extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              LayoutBuilder(
-                builder: (final _, final BoxConstraints constraints) =>
-                    ConstrainedBox(
-                  constraints: constraints.copyWith(maxHeight: 200),
-                  child: buildTagChips(
-                    tags: model.tags,
-                    controller: controller,
-                  ),
+              ChoiceChip(
+                avatar: Text(
+                  model.tags
+                      .filter(
+                        (final HomeModelTag tag) => tag.isSelected,
+                      )
+                      .length
+                      .toString(),
                 ),
+                label: const Text('Tags'),
+                selected: model.tags.any(
+                  (final HomeModelTag tag) => tag.isSelected,
+                ),
+                onSelected: (final bool selected) {
+                  controller.openTagsDialog(child: buildTagsDialog());
+                },
               ),
               buildRecipesList(
                 recipes: model.recipes
@@ -43,7 +50,8 @@ class HomeView extends ConsumerWidget {
                           recipe.tagIds.any(
                             (final String tag) => model.tags
                                 .where(
-                                    (final HomeModelTag tag) => tag.isSelected)
+                                  (final HomeModelTag tag) => tag.isSelected,
+                                )
                                 .map((final HomeModelTag tagId) => tagId.id)
                                 .toList()
                                 .contains(tag),
@@ -59,30 +67,6 @@ class HomeView extends ConsumerWidget {
       ),
     );
   }
-
-  Widget buildTagChips({
-    required final List<HomeModelTag> tags,
-    required final HomeController controller,
-  }) =>
-      Padding(
-        padding: const EdgeInsets.all(4),
-        child: SingleChildScrollView(
-          child: Wrap(
-            spacing: 8,
-            runSpacing: 0,
-            children: List<Widget>.generate(
-              tags.length,
-              (final int index) => ChoiceChip(
-                label: Text(tags[index].displayedName),
-                selected: tags[index].isSelected,
-                onSelected: (final bool selected) {
-                  controller.setTagSelected(index: index, selected: selected);
-                },
-              ),
-            ).toList(),
-          ),
-        ),
-      );
 
   Expanded buildRecipesList({
     required final List<HomeModelRecipe> recipes,
@@ -175,6 +159,49 @@ class HomeView extends ConsumerWidget {
       );
 }
 
+Widget buildTagsDialog() => Consumer(
+      builder: (
+        final BuildContext context,
+        final WidgetRef ref,
+        final Widget? child,
+      ) =>
+          Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: <Widget>[
+            Text('Tags', style: Theme.of(context).textTheme.headlineLarge),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Wrap(
+                  spacing: 8,
+                  runSpacing: 0,
+                  children: ref
+                      .watch(homeControllerImplementationProvider)
+                      .tags
+                      .mapWithIndex(
+                        (final HomeModelTag tag, final int index) => ChoiceChip(
+                          label: Text(tag.displayedName),
+                          selected: tag.isSelected,
+                          onSelected: (final bool selected) => ref
+                              .watch(
+                                homeControllerImplementationProvider.notifier,
+                              )
+                              .setTagSelected(
+                                index: index,
+                                selected: selected,
+                              ),
+                        ),
+                      )
+                      .toList(),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      child: const Text('Good job!'),
+    );
+
 abstract class HomeController {
   void setTagSelected({
     required final int index,
@@ -183,4 +210,6 @@ abstract class HomeController {
   void goToSingleRecipeView({
     required final String recipeId,
   });
+
+  void openTagsDialog({required final Widget child});
 }
