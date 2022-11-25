@@ -33,19 +33,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
 
     unawaited(
       init(
-        initialRecipes: _webClientService
-            .fetchAllRecipes(
-              country:
-                  _recipeLanguageService.getSupportedRecipeLanguages().first,
-              limit: some(1000),
-            )
-            .map(
-              (final List<HomeWebClientModelRecipe> recipes) =>
-                  mapToHomeModelRecipes(
-                recipes: recipes,
-                imageResizerService: _webImageSizerService,
-              ),
-            ),
+        initialRecipes: _fetchRecipes(),
         initialCuisines: _webClientService
             .fetchAllCuisines(
               country:
@@ -59,6 +47,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
                         HomeModelFilterCuisine(
                       id: cuisine.id,
                       displayedName: cuisine.displayedName,
+                      type: cuisine.type,
                       isSelected: false,
                       numberOfRecipes: cuisine.numberOfRecipes,
                     ),
@@ -77,6 +66,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
                     (final HomeWebClientModelTag tag) => HomeModelFilterTag(
                       id: tag.id,
                       displayedName: tag.displayedName,
+                      type: tag.type,
                       isSelected: false,
                       numberOfRecipes: tag.numberOfRecipes,
                     ),
@@ -138,7 +128,31 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
           )
           .toList(),
     );
-    updateFilteredRecipes();
+    unawaited(
+      _fetchRecipes(
+        tagIds: some(
+          state.tags
+              .filter((final HomeModelFilterTag tag) => tag.isSelected)
+              .map((final HomeModelFilterTag tag) => tag.id)
+              .toList(),
+        ),
+      ).run().then(
+        (final Either<Exception, List<HomeModelRecipe>> value) {
+          value.fold(
+            (final Exception exception) => debugPrint(exception.toString()),
+            (final List<HomeModelRecipe> newRecipes) {
+              state = state.copyWith(
+                allRecipes: <HomeModelRecipe>{
+                  ...state.allRecipes,
+                  ...newRecipes,
+                }.toList(),
+              );
+              updateFilteredRecipes();
+            },
+          );
+        },
+      ),
+    );
   }
 
   @override
@@ -200,6 +214,30 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
           .toList(),
     );
   }
+
+  TaskEither<Exception, List<HomeModelRecipe>> _fetchRecipes({
+    final Option<List<String>> tagIds = const None<List<String>>(),
+  }) =>
+      _webClientService
+          .fetchAllRecipes(
+            country: _recipeLanguageService.getSupportedRecipeLanguages().first,
+            limit: some(1000),
+            tags: tagIds.map(
+              (final List<String> tagId) => state.tags
+                  .filter(
+                    (final HomeModelFilterTag tag) => tagId.contains(tag.id),
+                  )
+                  .map((final HomeModelFilterTag tag) => tag.type)
+                  .toList(),
+            ),
+          )
+          .map(
+            (final List<HomeWebClientModelRecipe> recipes) =>
+                mapToHomeModelRecipes(
+              recipes: recipes,
+              imageResizerService: _webImageSizerService,
+            ),
+          );
 }
 
 List<HomeModelFilterTag> mapToHomeModelRecipeTags({
@@ -212,6 +250,7 @@ List<HomeModelFilterTag> mapToHomeModelRecipeTags({
                 (final HomeWebClientModelTag tag) => HomeModelFilterTag(
                   id: tag.id,
                   displayedName: tag.displayedName,
+                  type: tag.type,
                   isSelected: true,
                   numberOfRecipes: tag.numberOfRecipes,
                 ),
