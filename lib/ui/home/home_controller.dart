@@ -230,7 +230,7 @@ List<HomeModelRecipe> mapToHomeModelRecipes({
                 (final Uri imagePath) => imageResizerService
                     .getUrl(
                   filePath: imagePath,
-                  widthPixels: 500,
+                  widthPixels: 1200,
                 )
                     .fold(
                   (final Exception l) {

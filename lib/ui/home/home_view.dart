@@ -27,11 +27,16 @@ class HomeView extends ConsumerWidget {
                 model: model,
               ),
               const SizedBox(height: 16),
-              _buildRecipesList(
-                tags: model.tags,
-                controller: controller,
-                recipes: model.filteredRecipes,
-              ),
+              if (model.allRecipes.isEmpty)
+                const Expanded(
+                  child: Center(child: CircularProgressIndicator()),
+                )
+              else
+                _buildRecipesList(
+                  tags: model.tags,
+                  controller: controller,
+                  recipes: model.filteredRecipes,
+                ),
             ],
           ),
         ),
@@ -118,11 +123,12 @@ class HomeView extends ConsumerWidget {
             borderRadius: BorderRadius.circular(20),
             child: Column(
               children: <Widget>[
-                Image.network(
-                  recipe.imageUriLarge.toString(),
-                  errorBuilder: (final _, final __, final ___) => const Padding(
-                    padding: EdgeInsets.all(64),
-                    child: Icon(Icons.image_not_supported),
+                AspectRatio(
+                  aspectRatio: 1.5 / 1,
+                  child: Image.network(
+                    recipe.imageUriLarge.toString(),
+                    errorBuilder: (final _, final __, final ___) =>
+                        const Icon(Icons.image_not_supported),
                   ),
                 ),
                 buildRecipeCardItemDescription(
