@@ -19,9 +19,9 @@ class MyApp extends ConsumerWidget {
       MaterialApp.router(
         title: 'Food client',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSwatch(
-            primarySwatch: Colors.deepPurple,
-            accentColor: Colors.yellow,
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.deepPurple,
+            // accentColor: Colors.yellow,
           ),
           useMaterial3: true,
         ),

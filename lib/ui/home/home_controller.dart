@@ -55,7 +55,8 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
             .map(
               (final List<HomeWebClientModelCuisine> cuisines) => cuisines
                   .map(
-                    (final HomeWebClientModelCuisine cuisine) => HomeModelFilterCuisine(
+                    (final HomeWebClientModelCuisine cuisine) =>
+                        HomeModelFilterCuisine(
                       id: cuisine.id,
                       displayedName: cuisine.displayedName,
                       isSelected: false,
@@ -167,8 +168,14 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
   }
 
   @override
-  Future<void> openDialog({required final Widget child}) async {
-    await _navigationService.showModalBottomSheet(child: child);
+  Future<void> openDialog({
+    required final Widget child,
+    required final Color backgroundColor,
+  }) async {
+    await _navigationService.showModalBottomSheet(
+      child: child,
+      backgroundColor:backgroundColor,
+    );
   }
 
   void updateFilteredRecipes() {
@@ -185,12 +192,12 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
           .filter(
             (final HomeModelRecipe recipe) =>
                 (recipe.tagIds.any(tagIds.contains) || tagIds.isEmpty) &&
-                (recipe.cuisineIds.any(cuisineIds.contains) || cuisineIds.isEmpty),
+                (recipe.cuisineIds.any(cuisineIds.contains) ||
+                    cuisineIds.isEmpty),
           )
           .toList(),
     );
   }
-
 }
 
 List<HomeModelFilterTag> mapToHomeModelRecipeTags({
@@ -243,7 +250,8 @@ List<HomeModelRecipe> mapToHomeModelRecipes({
                   ingredients: _mapIngredients(ingredients: recipe.ingredients),
                   yields: _mapYields(yields: recipe.yields),
                   tagIds: _mapTagIds(tags: recipe.tags),
-                  imageUriLarge: imageUri, cuisineIds: _mapCuisineIds(cuisines: recipe.cuisines),
+                  imageUriLarge: imageUri,
+                  cuisineIds: _mapCuisineIds(cuisines: recipe.cuisines),
                 ),
               ),
         )
@@ -308,4 +316,6 @@ List<String> _mapTagIds({
 List<String> _mapCuisineIds({
   required final List<HomeWebClientModelCuisine> cuisines,
 }) =>
-    cuisines.map((final HomeWebClientModelCuisine cuisine) => cuisine.id).toList();
+    cuisines
+        .map((final HomeWebClientModelCuisine cuisine) => cuisine.id)
+        .toList();

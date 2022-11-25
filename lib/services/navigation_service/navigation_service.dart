@@ -99,10 +99,15 @@ class BeamerNavigationService implements NavigationServiceAggregator {
   @override
   Future<void> showModalBottomSheet({
     required final Widget child,
+    required final Color backgroundColor,
   }) async {
     await material.showModalBottomSheet(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      backgroundColor: backgroundColor,
       context: _beamerDelegate.navigator.context,
-      builder: (final material.BuildContext context) => child,
+      builder: (final _) => child,
     );
   }
 

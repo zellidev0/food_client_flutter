@@ -15,7 +15,7 @@ class HomeView extends ConsumerWidget {
     );
 
     return Scaffold(
-      backgroundColor: Colors.lightBlue.withOpacity(0.2),
+      backgroundColor: Theme.of(context).backgroundColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -63,20 +63,24 @@ class HomeView extends ConsumerWidget {
         ],
       );
 
-  ChoiceChip buildSingleFilterChip({
+  Widget buildSingleFilterChip({
     required final String text,
     required final List<HomeModelFilter> selectedFilters,
     required final HomeController controller,
     required final Widget widgetToOpenOnClick,
   }) =>
-      ChoiceChip(
-        avatar: Text(selectedFilters.length.toString()),
-        label: Text(text),
-        selected: selectedFilters.isNotEmpty,
-        onSelected: (final _) {
-          controller.openDialog(child: widgetToOpenOnClick);
-        },
-      );
+      Builder(
+          builder: (final BuildContext context) => ChoiceChip(
+                avatar: Text(selectedFilters.length.toString()),
+                label: Text(text),
+                selected: selectedFilters.isNotEmpty,
+                onSelected: (final _) {
+                  controller.openDialog(
+                    child: widgetToOpenOnClick,
+                    backgroundColor: Theme.of(context).backgroundColor,
+                  );
+                },
+              ));
 
   Expanded _buildRecipesList({
     required final List<HomeModelRecipe> recipes,
@@ -99,12 +103,13 @@ class HomeView extends ConsumerWidget {
     required final HomeController controller,
     required final List<HomeModelFilterTag> tags,
   }) =>
-      InkWell(
-        onTap: () => controller.goToSingleRecipeView(recipeId: recipe.id),
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
+      Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(20),
+          onTap: () => controller.goToSingleRecipeView(recipeId: recipe.id),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Column(
@@ -130,37 +135,34 @@ class HomeView extends ConsumerWidget {
     required final HomeModelRecipe recipe,
     required final List<HomeModelFilterTag> tags,
   }) =>
-      ColoredBox(
-        color: Colors.white.withOpacity(0.8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            ListTile(
-              title: Text(recipe.displayedAttributes.name),
-              subtitle: Text(
-                recipe.displayedAttributes.headline,
-              ),
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          ListTile(
+            title: Text(recipe.displayedAttributes.name),
+            subtitle: Text(
+              recipe.displayedAttributes.headline,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-              child: Wrap(
-                spacing: 8,
-                runSpacing: 4,
-                children: tags
-                    .filter(
-                      (final HomeModelFilterTag element) =>
-                          recipe.tagIds.contains(element.id),
-                    )
-                    .map(
-                      (final HomeModelFilterTag tag) => Chip(
-                        label: Text(tag.displayedName),
-                      ),
-                    )
-                    .toList(),
-              ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            child: Wrap(
+              spacing: 8,
+              runSpacing: 4,
+              children: tags
+                  .filter(
+                    (final HomeModelFilterTag element) =>
+                        recipe.tagIds.contains(element.id),
+                  )
+                  .map(
+                    (final HomeModelFilterTag tag) => Chip(
+                      label: Text(tag.displayedName),
+                    ),
+                  )
+                  .toList(),
             ),
-          ],
-        ),
+          ),
+        ],
       );
 }
 
@@ -169,7 +171,6 @@ Widget buildDialogTags({
 }) =>
     Consumer(
       builder: (final _, final WidgetRef ref, final __) => buildDialog(
-        title: 'Tags',
         children: ref
             .watch(homeControllerImplementationProvider)
             .tags
@@ -196,7 +197,6 @@ Widget buildDialogCuisines({
 }) =>
     Consumer(
       builder: (final _, final WidgetRef ref, final __) => buildDialog(
-        title: 'Cuisine',
         children: ref
             .watch(homeControllerImplementationProvider)
             .cuisines
@@ -219,27 +219,24 @@ Widget buildDialogCuisines({
     );
 
 Widget buildDialog({
-  required final String title,
   required final List<Widget> children,
 }) =>
-    Padding(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        children: <Widget>[
-          Builder(
-            builder: (final BuildContext context) =>
-                Text(title, style: Theme.of(context).textTheme.headlineLarge),
-          ),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: children,
+    Builder(
+      builder: (final BuildContext context) => Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: SingleChildScrollView(
+                child: Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: children,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
 
@@ -256,5 +253,8 @@ abstract class HomeController {
     required final String recipeId,
   });
 
-  void openDialog({required final Widget child});
+  void openDialog({
+    required final Widget child,
+    required final Color backgroundColor,
+  });
 }
