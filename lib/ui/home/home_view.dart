@@ -26,6 +26,7 @@ class HomeView extends ConsumerWidget {
                 controller: controller,
                 model: model,
               ),
+              const SizedBox(height: 16),
               _buildRecipesList(
                 tags: model.tags,
                 controller: controller,
@@ -52,6 +53,7 @@ class HomeView extends ConsumerWidget {
                 .toList(),
             widgetToOpenOnClick: buildDialogTags(title: 'Tags'),
           ),
+          const SizedBox(width: 8),
           buildSingleFilterChip(
             text: 'Cuisines',
             controller: controller,
@@ -70,17 +72,19 @@ class HomeView extends ConsumerWidget {
     required final Widget widgetToOpenOnClick,
   }) =>
       Builder(
-          builder: (final BuildContext context) => ChoiceChip(
-                avatar: Text(selectedFilters.length.toString()),
-                label: Text(text),
-                selected: selectedFilters.isNotEmpty,
-                onSelected: (final _) {
-                  controller.openDialog(
-                    child: widgetToOpenOnClick,
-                    backgroundColor: Theme.of(context).backgroundColor,
-                  );
-                },
-              ));
+        builder: (final BuildContext context) => ChoiceChip(
+          label: Text(
+            '$text${selectedFilters.isEmpty ? '' : ' #${selectedFilters.length.toString()}'}',
+          ),
+          selected: selectedFilters.isNotEmpty,
+          onSelected: (final _) {
+            controller.openDialog(
+              child: widgetToOpenOnClick,
+              backgroundColor: Theme.of(context).backgroundColor,
+            );
+          },
+        ),
+      );
 
   Expanded _buildRecipesList({
     required final List<HomeModelRecipe> recipes,
