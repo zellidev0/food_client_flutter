@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:core';
 
 import 'package:collection/collection.dart';
 import 'package:food_client/services/web_client/web_client_model.dart';
@@ -182,29 +183,32 @@ class WebClientService implements WebClientServiceAggregator {
     final Option<int> take = const None<int>(),
   }) =>
       Uri.parse('${apiBaseUrl.toString()}/tags').replace(
-        queryParameters: Map<String, Object?>.fromEntries(
-          <String, Object?>{
-            'country': country,
-            'take':
-                take.map((final int amount) => amount.toString()).toNullable()
-          }.entries.filter(
-                (final MapEntry<String, Object?> entry) => entry.value != null,
-              ),
+        queryParameters: buildQueryParams(
+          map: <String, Either<Option<String>, Option<List<String>>>>{
+            'country': Either<Option<String>, Option<List<String>>>.left(
+              some(country),
+            ),
+            'take': Either<Option<String>, Option<List<String>>>.left(
+              take.map((final int amount) => amount.toString()),
+            ),
+          },
         ),
       );
+
   Uri _cuisinesApiUrl({
     required final String country,
     final Option<int> take = const None<int>(),
   }) =>
       Uri.parse('${apiBaseUrl.toString()}/cuisines').replace(
-        queryParameters: Map<String, Object?>.fromEntries(
-          <String, Object?>{
-            'country': country,
-            'take':
-                take.map((final int amount) => amount.toString()).toNullable()
-          }.entries.filter(
-                (final MapEntry<String, Object?> entry) => entry.value != null,
-              ),
+        queryParameters: buildQueryParams(
+          map: <String, Either<Option<String>, Option<List<String>>>>{
+            'country': Either<Option<String>, Option<List<String>>>.left(
+              some(country),
+            ),
+            'take': Either<Option<String>, Option<List<String>>>.left(
+              take.map((final int amount) => amount.toString()),
+            ),
+          },
         ),
       );
 
@@ -220,43 +224,61 @@ class WebClientService implements WebClientServiceAggregator {
     final Option<String> searchTerm = const None<String>(),
   }) =>
       Uri.parse('$_recipesApiUrl/search').replace(
-        queryParameters: Map<String, Object?>.fromEntries(
-          <String, Object?>{
-            'country': country,
-            'limit': limit
-                .map(
-                  (final int limit) => limit.toString(),
-                )
-                .toNullable(),
-            'tag': tags
-                .map(
-                  (final List<String> tag) => tag.reduce(
-                    (final String value, final String element) =>
-                        '$value,$element',
-                  ),
-                )
-                .toNullable(),
-            'cuisines': cuisines
-                .map(
-                  (final List<String> cuisine) => cuisine.reduce(
-                    (final String value, final String element) =>
-                        '$value,$element',
-                  ),
-                )
-                .toNullable(),
-            'ingredient': ingredients
-                .map(
-                  (final List<String> ingredient) => ingredient.reduce(
-                    (final String value, final String element) =>
-                        '$value,$element',
-                  ),
-                )
-                .toNullable(),
-            'q': searchTerm.toNullable(),
-          }.entries.filter(
-                (final MapEntry<String, Object?> entry) => entry.value != null,
-              ),
+        queryParameters: buildQueryParams(
+          map: <String, Either<Option<String>, Option<List<String>>>>{
+            'country': Either<Option<String>, Option<List<String>>>.left(
+              some(country),
+            ),
+            'limit': Either<Option<String>, Option<List<String>>>.left(
+              limit.map((final int amount) => amount.toString()),
+            ),
+            'tags': Either<Option<String>, Option<List<String>>>.right(tags),
+            'ingredient': Either<Option<String>, Option<List<String>>>.right(
+              ingredients,
+            ),
+            'cuisines': Either<Option<String>, Option<List<String>>>.right(
+              cuisines,
+            ),
+            'q': Either<Option<String>, Option<List<String>>>.left(searchTerm),
+          },
         ),
+      );
+
+  Map<String, String> buildQueryParams({
+    required final Map<String, Either<Option<String>, Option<List<String>>>>
+        map,
+  }) =>
+      Map<String, String>.fromEntries(
+        map.entries
+            .map(
+              (
+                final MapEntry<String,
+                        Either<Option<String>, Option<List<String>>>>
+                    entry,
+              ) =>
+                  entry.value.fold(
+                (final Option<String> l) => l.fold(
+                  none<MapEntry<String, String>>,
+                  (final String string) => some<MapEntry<String, String>>(
+                    MapEntry<String, String>(entry.key, string),
+                  ),
+                ),
+                (final Option<List<String>> r) => r.fold(
+                  none<MapEntry<String, String>>,
+                  (final List<String> list) => some<MapEntry<String, String>>(
+                    MapEntry<String, String>(
+                        entry.key,
+                        list.reduce(
+                            (final String a, final String b) => '$a,$b')),
+                  ),
+                ),
+              ),
+            )
+            .toList()
+            .whereType<Some<MapEntry<String, String>>>()
+            .map(
+              (final Some<MapEntry<String, String>> mapEntry) => mapEntry.value,
+            ),
       );
 }
 

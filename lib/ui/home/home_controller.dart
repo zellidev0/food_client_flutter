@@ -37,7 +37,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
             .fetchAllRecipes(
               country:
                   _recipeLanguageService.getSupportedRecipeLanguages().first,
-              limit: some(100),
+              limit: some(1000),
             )
             .map(
               (final List<HomeWebClientModelRecipe> recipes) =>
