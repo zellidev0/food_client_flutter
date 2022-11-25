@@ -122,6 +122,7 @@ class WebClientModelRecipeTag with _$WebClientModelRecipeTag {
     required final String type,
     required final String name,
     required final List<String> preferences,
+    required final Map<String,int> numberOfRecipesByCountry,
   }) = _WebClientModelRecipeTag;
 
   factory WebClientModelRecipeTag.fromJson(
@@ -137,6 +138,7 @@ class WebClientModelCuisine with _$WebClientModelCuisine {
     required final String slug,
     required final String type,
     required final String name,
+    required final int usage,
     required final Option<String> iconPath,
   }) = _WebClientModelCuisine;
 

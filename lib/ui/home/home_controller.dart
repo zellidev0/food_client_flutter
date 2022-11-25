@@ -60,6 +60,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
                       id: cuisine.id,
                       displayedName: cuisine.displayedName,
                       isSelected: false,
+                      numberOfRecipes: cuisine.numberOfRecipes,
                     ),
                   )
                   .toList(),
@@ -77,6 +78,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
                       id: tag.id,
                       displayedName: tag.displayedName,
                       isSelected: false,
+                      numberOfRecipes: tag.numberOfRecipes,
                     ),
                   )
                   .toList(),
@@ -174,7 +176,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
   }) async {
     await _navigationService.showModalBottomSheet(
       child: child,
-      backgroundColor:backgroundColor,
+      backgroundColor: backgroundColor,
     );
   }
 
@@ -211,6 +213,7 @@ List<HomeModelFilterTag> mapToHomeModelRecipeTags({
                   id: tag.id,
                   displayedName: tag.displayedName,
                   isSelected: true,
+                  numberOfRecipes: tag.numberOfRecipes,
                 ),
               )
               .toList(),

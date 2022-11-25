@@ -52,12 +52,14 @@ class HomeModelFilter with _$HomeModelFilter {
     required final String id,
     required final String displayedName,
     required final bool isSelected,
+    required final int numberOfRecipes,
   }) = HomeModelFilterTag;
 
   const factory HomeModelFilter.cuisine({
     required final String id,
     required final String displayedName,
     required final bool isSelected,
+    required final int numberOfRecipes,
   }) = HomeModelFilterCuisine;
 }
 

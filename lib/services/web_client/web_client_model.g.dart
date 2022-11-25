@@ -194,6 +194,8 @@ _$_WebClientModelRecipeTag _$$_WebClientModelRecipeTagFromJson(
       preferences: (json['preferences'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
+      numberOfRecipesByCountry:
+          Map<String, int>.from(json['numberOfRecipesByCountry'] as Map),
     );
 
 Map<String, dynamic> _$$_WebClientModelRecipeTagToJson(
@@ -204,6 +206,7 @@ Map<String, dynamic> _$$_WebClientModelRecipeTagToJson(
       'type': instance.type,
       'name': instance.name,
       'preferences': instance.preferences,
+      'numberOfRecipesByCountry': instance.numberOfRecipesByCountry,
     };
 
 _$_WebClientModelCuisine _$$_WebClientModelCuisineFromJson(
@@ -213,6 +216,7 @@ _$_WebClientModelCuisine _$$_WebClientModelCuisineFromJson(
       slug: json['slug'] as String,
       type: json['type'] as String,
       name: json['name'] as String,
+      usage: json['usage'] as int,
       iconPath: Option<String>.fromJson(json['iconPath']),
     );
 
@@ -223,6 +227,7 @@ Map<String, dynamic> _$$_WebClientModelCuisineToJson(
       'slug': instance.slug,
       'type': instance.type,
       'name': instance.name,
+      'usage': instance.usage,
       'iconPath': instance.iconPath.toJson(
         (value) => value,
       ),

@@ -1737,6 +1737,8 @@ mixin _$WebClientModelRecipeTag {
   String get type => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   List<String> get preferences => throw _privateConstructorUsedError;
+  Map<String, int> get numberOfRecipesByCountry =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1755,7 +1757,8 @@ abstract class $WebClientModelRecipeTagCopyWith<$Res> {
       String slug,
       String type,
       String name,
-      List<String> preferences});
+      List<String> preferences,
+      Map<String, int> numberOfRecipesByCountry});
 }
 
 /// @nodoc
@@ -1777,6 +1780,7 @@ class _$WebClientModelRecipeTagCopyWithImpl<$Res,
     Object? type = null,
     Object? name = null,
     Object? preferences = null,
+    Object? numberOfRecipesByCountry = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -1799,6 +1803,10 @@ class _$WebClientModelRecipeTagCopyWithImpl<$Res,
           ? _value.preferences
           : preferences // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      numberOfRecipesByCountry: null == numberOfRecipesByCountry
+          ? _value.numberOfRecipesByCountry
+          : numberOfRecipesByCountry // ignore: cast_nullable_to_non_nullable
+              as Map<String, int>,
     ) as $Val);
   }
 }
@@ -1816,7 +1824,8 @@ abstract class _$$_WebClientModelRecipeTagCopyWith<$Res>
       String slug,
       String type,
       String name,
-      List<String> preferences});
+      List<String> preferences,
+      Map<String, int> numberOfRecipesByCountry});
 }
 
 /// @nodoc
@@ -1836,6 +1845,7 @@ class __$$_WebClientModelRecipeTagCopyWithImpl<$Res>
     Object? type = null,
     Object? name = null,
     Object? preferences = null,
+    Object? numberOfRecipesByCountry = null,
   }) {
     return _then(_$_WebClientModelRecipeTag(
       id: null == id
@@ -1858,6 +1868,10 @@ class __$$_WebClientModelRecipeTagCopyWithImpl<$Res>
           ? _value._preferences
           : preferences // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      numberOfRecipesByCountry: null == numberOfRecipesByCountry
+          ? _value._numberOfRecipesByCountry
+          : numberOfRecipesByCountry // ignore: cast_nullable_to_non_nullable
+              as Map<String, int>,
     ));
   }
 }
@@ -1870,8 +1884,10 @@ class _$_WebClientModelRecipeTag implements _WebClientModelRecipeTag {
       required this.slug,
       required this.type,
       required this.name,
-      required final List<String> preferences})
-      : _preferences = preferences;
+      required final List<String> preferences,
+      required final Map<String, int> numberOfRecipesByCountry})
+      : _preferences = preferences,
+        _numberOfRecipesByCountry = numberOfRecipesByCountry;
 
   factory _$_WebClientModelRecipeTag.fromJson(Map<String, dynamic> json) =>
       _$$_WebClientModelRecipeTagFromJson(json);
@@ -1891,9 +1907,16 @@ class _$_WebClientModelRecipeTag implements _WebClientModelRecipeTag {
     return EqualUnmodifiableListView(_preferences);
   }
 
+  final Map<String, int> _numberOfRecipesByCountry;
+  @override
+  Map<String, int> get numberOfRecipesByCountry {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_numberOfRecipesByCountry);
+  }
+
   @override
   String toString() {
-    return 'WebClientModelRecipeTag(id: $id, slug: $slug, type: $type, name: $name, preferences: $preferences)';
+    return 'WebClientModelRecipeTag(id: $id, slug: $slug, type: $type, name: $name, preferences: $preferences, numberOfRecipesByCountry: $numberOfRecipesByCountry)';
   }
 
   @override
@@ -1906,13 +1929,21 @@ class _$_WebClientModelRecipeTag implements _WebClientModelRecipeTag {
             (identical(other.type, type) || other.type == type) &&
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality()
-                .equals(other._preferences, _preferences));
+                .equals(other._preferences, _preferences) &&
+            const DeepCollectionEquality().equals(
+                other._numberOfRecipesByCountry, _numberOfRecipesByCountry));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, slug, type, name,
-      const DeepCollectionEquality().hash(_preferences));
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      slug,
+      type,
+      name,
+      const DeepCollectionEquality().hash(_preferences),
+      const DeepCollectionEquality().hash(_numberOfRecipesByCountry));
 
   @JsonKey(ignore: true)
   @override
@@ -1932,11 +1963,13 @@ class _$_WebClientModelRecipeTag implements _WebClientModelRecipeTag {
 
 abstract class _WebClientModelRecipeTag implements WebClientModelRecipeTag {
   const factory _WebClientModelRecipeTag(
-      {required final String id,
-      required final String slug,
-      required final String type,
-      required final String name,
-      required final List<String> preferences}) = _$_WebClientModelRecipeTag;
+          {required final String id,
+          required final String slug,
+          required final String type,
+          required final String name,
+          required final List<String> preferences,
+          required final Map<String, int> numberOfRecipesByCountry}) =
+      _$_WebClientModelRecipeTag;
 
   factory _WebClientModelRecipeTag.fromJson(Map<String, dynamic> json) =
       _$_WebClientModelRecipeTag.fromJson;
@@ -1951,6 +1984,8 @@ abstract class _WebClientModelRecipeTag implements WebClientModelRecipeTag {
   String get name;
   @override
   List<String> get preferences;
+  @override
+  Map<String, int> get numberOfRecipesByCountry;
   @override
   @JsonKey(ignore: true)
   _$$_WebClientModelRecipeTagCopyWith<_$_WebClientModelRecipeTag>
@@ -1968,6 +2003,7 @@ mixin _$WebClientModelCuisine {
   String get slug => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  int get usage => throw _privateConstructorUsedError;
   Option<String> get iconPath => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1987,6 +2023,7 @@ abstract class $WebClientModelCuisineCopyWith<$Res> {
       String slug,
       String type,
       String name,
+      int usage,
       Option<String> iconPath});
 }
 
@@ -2008,6 +2045,7 @@ class _$WebClientModelCuisineCopyWithImpl<$Res,
     Object? slug = null,
     Object? type = null,
     Object? name = null,
+    Object? usage = null,
     Object? iconPath = null,
   }) {
     return _then(_value.copyWith(
@@ -2027,6 +2065,10 @@ class _$WebClientModelCuisineCopyWithImpl<$Res,
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      usage: null == usage
+          ? _value.usage
+          : usage // ignore: cast_nullable_to_non_nullable
+              as int,
       iconPath: null == iconPath
           ? _value.iconPath
           : iconPath // ignore: cast_nullable_to_non_nullable
@@ -2048,6 +2090,7 @@ abstract class _$$_WebClientModelCuisineCopyWith<$Res>
       String slug,
       String type,
       String name,
+      int usage,
       Option<String> iconPath});
 }
 
@@ -2066,6 +2109,7 @@ class __$$_WebClientModelCuisineCopyWithImpl<$Res>
     Object? slug = null,
     Object? type = null,
     Object? name = null,
+    Object? usage = null,
     Object? iconPath = null,
   }) {
     return _then(_$_WebClientModelCuisine(
@@ -2085,6 +2129,10 @@ class __$$_WebClientModelCuisineCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      usage: null == usage
+          ? _value.usage
+          : usage // ignore: cast_nullable_to_non_nullable
+              as int,
       iconPath: null == iconPath
           ? _value.iconPath
           : iconPath // ignore: cast_nullable_to_non_nullable
@@ -2101,6 +2149,7 @@ class _$_WebClientModelCuisine implements _WebClientModelCuisine {
       required this.slug,
       required this.type,
       required this.name,
+      required this.usage,
       required this.iconPath});
 
   factory _$_WebClientModelCuisine.fromJson(Map<String, dynamic> json) =>
@@ -2115,11 +2164,13 @@ class _$_WebClientModelCuisine implements _WebClientModelCuisine {
   @override
   final String name;
   @override
+  final int usage;
+  @override
   final Option<String> iconPath;
 
   @override
   String toString() {
-    return 'WebClientModelCuisine(id: $id, slug: $slug, type: $type, name: $name, iconPath: $iconPath)';
+    return 'WebClientModelCuisine(id: $id, slug: $slug, type: $type, name: $name, usage: $usage, iconPath: $iconPath)';
   }
 
   @override
@@ -2131,13 +2182,15 @@ class _$_WebClientModelCuisine implements _WebClientModelCuisine {
             (identical(other.slug, slug) || other.slug == slug) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.usage, usage) || other.usage == usage) &&
             (identical(other.iconPath, iconPath) ||
                 other.iconPath == iconPath));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, slug, type, name, iconPath);
+  int get hashCode =>
+      Object.hash(runtimeType, id, slug, type, name, usage, iconPath);
 
   @JsonKey(ignore: true)
   @override
@@ -2160,6 +2213,7 @@ abstract class _WebClientModelCuisine implements WebClientModelCuisine {
       required final String slug,
       required final String type,
       required final String name,
+      required final int usage,
       required final Option<String> iconPath}) = _$_WebClientModelCuisine;
 
   factory _WebClientModelCuisine.fromJson(Map<String, dynamic> json) =
@@ -2173,6 +2227,8 @@ abstract class _WebClientModelCuisine implements WebClientModelCuisine {
   String get type;
   @override
   String get name;
+  @override
+  int get usage;
   @override
   Option<String> get iconPath;
   @override

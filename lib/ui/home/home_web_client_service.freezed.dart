@@ -699,6 +699,7 @@ mixin _$HomeWebClientModelTag {
   String get id => throw _privateConstructorUsedError;
   String get slug => throw _privateConstructorUsedError;
   String get displayedName => throw _privateConstructorUsedError;
+  int get numberOfRecipes => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeWebClientModelTagCopyWith<HomeWebClientModelTag> get copyWith =>
@@ -711,7 +712,8 @@ abstract class $HomeWebClientModelTagCopyWith<$Res> {
           $Res Function(HomeWebClientModelTag) then) =
       _$HomeWebClientModelTagCopyWithImpl<$Res, HomeWebClientModelTag>;
   @useResult
-  $Res call({String id, String slug, String displayedName});
+  $Res call(
+      {String id, String slug, String displayedName, int numberOfRecipes});
 }
 
 /// @nodoc
@@ -731,6 +733,7 @@ class _$HomeWebClientModelTagCopyWithImpl<$Res,
     Object? id = null,
     Object? slug = null,
     Object? displayedName = null,
+    Object? numberOfRecipes = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -745,6 +748,10 @@ class _$HomeWebClientModelTagCopyWithImpl<$Res,
           ? _value.displayedName
           : displayedName // ignore: cast_nullable_to_non_nullable
               as String,
+      numberOfRecipes: null == numberOfRecipes
+          ? _value.numberOfRecipes
+          : numberOfRecipes // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -757,7 +764,8 @@ abstract class _$$_HomeWebClientModelTagCopyWith<$Res>
       __$$_HomeWebClientModelTagCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String slug, String displayedName});
+  $Res call(
+      {String id, String slug, String displayedName, int numberOfRecipes});
 }
 
 /// @nodoc
@@ -774,6 +782,7 @@ class __$$_HomeWebClientModelTagCopyWithImpl<$Res>
     Object? id = null,
     Object? slug = null,
     Object? displayedName = null,
+    Object? numberOfRecipes = null,
   }) {
     return _then(_$_HomeWebClientModelTag(
       id: null == id
@@ -788,6 +797,10 @@ class __$$_HomeWebClientModelTagCopyWithImpl<$Res>
           ? _value.displayedName
           : displayedName // ignore: cast_nullable_to_non_nullable
               as String,
+      numberOfRecipes: null == numberOfRecipes
+          ? _value.numberOfRecipes
+          : numberOfRecipes // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -796,7 +809,10 @@ class __$$_HomeWebClientModelTagCopyWithImpl<$Res>
 
 class _$_HomeWebClientModelTag implements _HomeWebClientModelTag {
   const _$_HomeWebClientModelTag(
-      {required this.id, required this.slug, required this.displayedName});
+      {required this.id,
+      required this.slug,
+      required this.displayedName,
+      required this.numberOfRecipes});
 
   @override
   final String id;
@@ -804,10 +820,12 @@ class _$_HomeWebClientModelTag implements _HomeWebClientModelTag {
   final String slug;
   @override
   final String displayedName;
+  @override
+  final int numberOfRecipes;
 
   @override
   String toString() {
-    return 'HomeWebClientModelTag(id: $id, slug: $slug, displayedName: $displayedName)';
+    return 'HomeWebClientModelTag(id: $id, slug: $slug, displayedName: $displayedName, numberOfRecipes: $numberOfRecipes)';
   }
 
   @override
@@ -818,11 +836,14 @@ class _$_HomeWebClientModelTag implements _HomeWebClientModelTag {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.slug, slug) || other.slug == slug) &&
             (identical(other.displayedName, displayedName) ||
-                other.displayedName == displayedName));
+                other.displayedName == displayedName) &&
+            (identical(other.numberOfRecipes, numberOfRecipes) ||
+                other.numberOfRecipes == numberOfRecipes));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, slug, displayedName);
+  int get hashCode =>
+      Object.hash(runtimeType, id, slug, displayedName, numberOfRecipes);
 
   @JsonKey(ignore: true)
   @override
@@ -836,7 +857,8 @@ abstract class _HomeWebClientModelTag implements HomeWebClientModelTag {
   const factory _HomeWebClientModelTag(
       {required final String id,
       required final String slug,
-      required final String displayedName}) = _$_HomeWebClientModelTag;
+      required final String displayedName,
+      required final int numberOfRecipes}) = _$_HomeWebClientModelTag;
 
   @override
   String get id;
@@ -844,6 +866,8 @@ abstract class _HomeWebClientModelTag implements HomeWebClientModelTag {
   String get slug;
   @override
   String get displayedName;
+  @override
+  int get numberOfRecipes;
   @override
   @JsonKey(ignore: true)
   _$$_HomeWebClientModelTagCopyWith<_$_HomeWebClientModelTag> get copyWith =>
@@ -857,6 +881,7 @@ mixin _$HomeWebClientModelCuisine {
   Option<Uri> get iconPath => throw _privateConstructorUsedError;
   String get displayedName => throw _privateConstructorUsedError;
   String get slug => throw _privateConstructorUsedError;
+  int get numberOfRecipes => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeWebClientModelCuisineCopyWith<HomeWebClientModelCuisine> get copyWith =>
@@ -874,7 +899,8 @@ abstract class $HomeWebClientModelCuisineCopyWith<$Res> {
       String type,
       Option<Uri> iconPath,
       String displayedName,
-      String slug});
+      String slug,
+      int numberOfRecipes});
 }
 
 /// @nodoc
@@ -896,6 +922,7 @@ class _$HomeWebClientModelCuisineCopyWithImpl<$Res,
     Object? iconPath = null,
     Object? displayedName = null,
     Object? slug = null,
+    Object? numberOfRecipes = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -918,6 +945,10 @@ class _$HomeWebClientModelCuisineCopyWithImpl<$Res,
           ? _value.slug
           : slug // ignore: cast_nullable_to_non_nullable
               as String,
+      numberOfRecipes: null == numberOfRecipes
+          ? _value.numberOfRecipes
+          : numberOfRecipes // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -936,7 +967,8 @@ abstract class _$$_HomeWebClientModelCuisineCopyWith<$Res>
       String type,
       Option<Uri> iconPath,
       String displayedName,
-      String slug});
+      String slug,
+      int numberOfRecipes});
 }
 
 /// @nodoc
@@ -957,6 +989,7 @@ class __$$_HomeWebClientModelCuisineCopyWithImpl<$Res>
     Object? iconPath = null,
     Object? displayedName = null,
     Object? slug = null,
+    Object? numberOfRecipes = null,
   }) {
     return _then(_$_HomeWebClientModelCuisine(
       id: null == id
@@ -979,6 +1012,10 @@ class __$$_HomeWebClientModelCuisineCopyWithImpl<$Res>
           ? _value.slug
           : slug // ignore: cast_nullable_to_non_nullable
               as String,
+      numberOfRecipes: null == numberOfRecipes
+          ? _value.numberOfRecipes
+          : numberOfRecipes // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -991,7 +1028,8 @@ class _$_HomeWebClientModelCuisine implements _HomeWebClientModelCuisine {
       required this.type,
       required this.iconPath,
       required this.displayedName,
-      required this.slug});
+      required this.slug,
+      required this.numberOfRecipes});
 
   @override
   final String id;
@@ -1003,10 +1041,12 @@ class _$_HomeWebClientModelCuisine implements _HomeWebClientModelCuisine {
   final String displayedName;
   @override
   final String slug;
+  @override
+  final int numberOfRecipes;
 
   @override
   String toString() {
-    return 'HomeWebClientModelCuisine(id: $id, type: $type, iconPath: $iconPath, displayedName: $displayedName, slug: $slug)';
+    return 'HomeWebClientModelCuisine(id: $id, type: $type, iconPath: $iconPath, displayedName: $displayedName, slug: $slug, numberOfRecipes: $numberOfRecipes)';
   }
 
   @override
@@ -1020,12 +1060,14 @@ class _$_HomeWebClientModelCuisine implements _HomeWebClientModelCuisine {
                 other.iconPath == iconPath) &&
             (identical(other.displayedName, displayedName) ||
                 other.displayedName == displayedName) &&
-            (identical(other.slug, slug) || other.slug == slug));
+            (identical(other.slug, slug) || other.slug == slug) &&
+            (identical(other.numberOfRecipes, numberOfRecipes) ||
+                other.numberOfRecipes == numberOfRecipes));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, type, iconPath, displayedName, slug);
+  int get hashCode => Object.hash(
+      runtimeType, id, type, iconPath, displayedName, slug, numberOfRecipes);
 
   @JsonKey(ignore: true)
   @override
@@ -1041,7 +1083,8 @@ abstract class _HomeWebClientModelCuisine implements HomeWebClientModelCuisine {
       required final String type,
       required final Option<Uri> iconPath,
       required final String displayedName,
-      required final String slug}) = _$_HomeWebClientModelCuisine;
+      required final String slug,
+      required final int numberOfRecipes}) = _$_HomeWebClientModelCuisine;
 
   @override
   String get id;
@@ -1053,6 +1096,8 @@ abstract class _HomeWebClientModelCuisine implements HomeWebClientModelCuisine {
   String get displayedName;
   @override
   String get slug;
+  @override
+  int get numberOfRecipes;
   @override
   @JsonKey(ignore: true)
   _$$_HomeWebClientModelCuisineCopyWith<_$_HomeWebClientModelCuisine>

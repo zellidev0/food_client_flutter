@@ -184,9 +184,10 @@ Widget buildDialogTags({
         children: ref
             .watch(homeControllerImplementationProvider)
             .tags
+            .filter((final HomeModelFilterTag tag) => tag.numberOfRecipes > 0)
             .map(
               (final HomeModelFilterTag tag) => ChoiceChip(
-                label: Text(tag.displayedName),
+                label: Text('${tag.displayedName} (${tag.numberOfRecipes})'),
                 selected: tag.isSelected,
                 onSelected: (final bool selected) => ref
                     .watch(
@@ -210,9 +211,13 @@ Widget buildDialogCuisines({
         children: ref
             .watch(homeControllerImplementationProvider)
             .cuisines
+            .filter(
+              (final HomeModelFilterCuisine cuisine) =>
+                  cuisine.numberOfRecipes >0,
+            )
             .map(
               (final HomeModelFilterCuisine cuisine) => ChoiceChip(
-                label: Text(cuisine.displayedName),
+                label: Text('${cuisine.displayedName} (${cuisine.numberOfRecipes})'),
                 selected: cuisine.isSelected,
                 onSelected: (final bool selected) => ref
                     .watch(

@@ -59,7 +59,10 @@ class WebClientService implements WebClientServiceAggregator {
         )
                 .map(
                   (final WebClientModelRecipeApiRecipeResponse response) =>
-                      _mapToHomeWebClientModelRecipe(response: response),
+                      _mapToHomeWebClientModelRecipe(
+                    response: response,
+                    country: country,
+                  ),
                 )
                 .toTaskEither(),
       );
@@ -98,6 +101,9 @@ class WebClientService implements WebClientServiceAggregator {
                               id: tag.id,
                               slug: tag.slug,
                               displayedName: tag.name,
+                              numberOfRecipes: optionOf(
+                                tag.numberOfRecipesByCountry[country],
+                              ).getOrElse(() => 0),
                             ),
                           )
                           .toList(),
@@ -170,6 +176,7 @@ class WebClientService implements WebClientServiceAggregator {
                               type: cuisine.type,
                               iconPath: cuisine.iconPath.map(Uri.parse),
                               displayedName: cuisine.name,
+                              numberOfRecipes: cuisine.usage,
                             ),
                           )
                           .toList(),
@@ -363,6 +370,7 @@ SingleRecipeWebClientModelRecipe _mapToSingleRecipeWebClientModelRecipe({
 
 List<HomeWebClientModelRecipe> _mapToHomeWebClientModelRecipe({
   required final WebClientModelRecipeApiRecipeResponse response,
+  required final String country,
 }) =>
     response.items
         .map(
@@ -416,6 +424,9 @@ List<HomeWebClientModelRecipe> _mapToHomeWebClientModelRecipe({
                     id: tag.id,
                     slug: tag.slug,
                     displayedName: tag.name,
+                    numberOfRecipes:
+                        optionOf(tag.numberOfRecipesByCountry[country])
+                            .getOrElse(() => 0),
                   ),
                 )
                 .toList(),
@@ -429,6 +440,7 @@ List<HomeWebClientModelRecipe> _mapToHomeWebClientModelRecipe({
                     displayedName: cuisine.name,
                     type: cuisine.type,
                     iconPath: cuisine.iconPath.map(Uri.parse),
+                    numberOfRecipes: cuisine.usage,
                   ),
                 )
                 .toList(),

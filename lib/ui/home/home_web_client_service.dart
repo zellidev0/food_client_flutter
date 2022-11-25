@@ -62,17 +62,19 @@ class HomeWebClientModelTag with _$HomeWebClientModelTag {
     required final String id,
     required final String slug,
     required final String displayedName,
+    required final int numberOfRecipes,
   }) = _HomeWebClientModelTag;
 }
 
 @freezed
 class HomeWebClientModelCuisine with _$HomeWebClientModelCuisine {
   const factory HomeWebClientModelCuisine({
-   required final String id,
-   required final String type,
-   required final Option<Uri> iconPath,
-   required final String displayedName,
-   required final String slug,
+    required final String id,
+    required final String type,
+    required final Option<Uri> iconPath,
+    required final String displayedName,
+    required final String slug,
+    required final int numberOfRecipes,
   }) = _HomeWebClientModelCuisine;
 }
 
