@@ -25,6 +25,8 @@ mixin _$HomeWebClientModelRecipe {
   List<HomeWebClientModelYield> get yields =>
       throw _privateConstructorUsedError;
   List<HomeWebClientModelTag> get tags => throw _privateConstructorUsedError;
+  List<HomeWebClientModelCuisine> get cuisines =>
+      throw _privateConstructorUsedError;
   Option<Uri> get imagePath => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -45,6 +47,7 @@ abstract class $HomeWebClientModelRecipeCopyWith<$Res> {
       List<HomeWebClientModelIngredient> ingredients,
       List<HomeWebClientModelYield> yields,
       List<HomeWebClientModelTag> tags,
+      List<HomeWebClientModelCuisine> cuisines,
       Option<Uri> imagePath});
 
   $HomeWebClientModelDisplayedAttributesCopyWith<$Res> get displayedAttributes;
@@ -70,6 +73,7 @@ class _$HomeWebClientModelRecipeCopyWithImpl<$Res,
     Object? ingredients = null,
     Object? yields = null,
     Object? tags = null,
+    Object? cuisines = null,
     Object? imagePath = null,
   }) {
     return _then(_value.copyWith(
@@ -97,6 +101,10 @@ class _$HomeWebClientModelRecipeCopyWithImpl<$Res,
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<HomeWebClientModelTag>,
+      cuisines: null == cuisines
+          ? _value.cuisines
+          : cuisines // ignore: cast_nullable_to_non_nullable
+              as List<HomeWebClientModelCuisine>,
       imagePath: null == imagePath
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
@@ -130,6 +138,7 @@ abstract class _$$_HomeWebClientModelRecipeCopyWith<$Res>
       List<HomeWebClientModelIngredient> ingredients,
       List<HomeWebClientModelYield> yields,
       List<HomeWebClientModelTag> tags,
+      List<HomeWebClientModelCuisine> cuisines,
       Option<Uri> imagePath});
 
   @override
@@ -154,6 +163,7 @@ class __$$_HomeWebClientModelRecipeCopyWithImpl<$Res>
     Object? ingredients = null,
     Object? yields = null,
     Object? tags = null,
+    Object? cuisines = null,
     Object? imagePath = null,
   }) {
     return _then(_$_HomeWebClientModelRecipe(
@@ -181,6 +191,10 @@ class __$$_HomeWebClientModelRecipeCopyWithImpl<$Res>
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<HomeWebClientModelTag>,
+      cuisines: null == cuisines
+          ? _value._cuisines
+          : cuisines // ignore: cast_nullable_to_non_nullable
+              as List<HomeWebClientModelCuisine>,
       imagePath: null == imagePath
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
@@ -199,10 +213,12 @@ class _$_HomeWebClientModelRecipe implements _HomeWebClientModelRecipe {
       required final List<HomeWebClientModelIngredient> ingredients,
       required final List<HomeWebClientModelYield> yields,
       required final List<HomeWebClientModelTag> tags,
+      required final List<HomeWebClientModelCuisine> cuisines,
       required this.imagePath})
       : _ingredients = ingredients,
         _yields = yields,
-        _tags = tags;
+        _tags = tags,
+        _cuisines = cuisines;
 
   @override
   final String id;
@@ -231,12 +247,19 @@ class _$_HomeWebClientModelRecipe implements _HomeWebClientModelRecipe {
     return EqualUnmodifiableListView(_tags);
   }
 
+  final List<HomeWebClientModelCuisine> _cuisines;
+  @override
+  List<HomeWebClientModelCuisine> get cuisines {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_cuisines);
+  }
+
   @override
   final Option<Uri> imagePath;
 
   @override
   String toString() {
-    return 'HomeWebClientModelRecipe(id: $id, displayedAttributes: $displayedAttributes, difficulty: $difficulty, ingredients: $ingredients, yields: $yields, tags: $tags, imagePath: $imagePath)';
+    return 'HomeWebClientModelRecipe(id: $id, displayedAttributes: $displayedAttributes, difficulty: $difficulty, ingredients: $ingredients, yields: $yields, tags: $tags, cuisines: $cuisines, imagePath: $imagePath)';
   }
 
   @override
@@ -253,6 +276,7 @@ class _$_HomeWebClientModelRecipe implements _HomeWebClientModelRecipe {
                 .equals(other._ingredients, _ingredients) &&
             const DeepCollectionEquality().equals(other._yields, _yields) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
+            const DeepCollectionEquality().equals(other._cuisines, _cuisines) &&
             (identical(other.imagePath, imagePath) ||
                 other.imagePath == imagePath));
   }
@@ -266,6 +290,7 @@ class _$_HomeWebClientModelRecipe implements _HomeWebClientModelRecipe {
       const DeepCollectionEquality().hash(_ingredients),
       const DeepCollectionEquality().hash(_yields),
       const DeepCollectionEquality().hash(_tags),
+      const DeepCollectionEquality().hash(_cuisines),
       imagePath);
 
   @JsonKey(ignore: true)
@@ -284,6 +309,7 @@ abstract class _HomeWebClientModelRecipe implements HomeWebClientModelRecipe {
       required final List<HomeWebClientModelIngredient> ingredients,
       required final List<HomeWebClientModelYield> yields,
       required final List<HomeWebClientModelTag> tags,
+      required final List<HomeWebClientModelCuisine> cuisines,
       required final Option<Uri> imagePath}) = _$_HomeWebClientModelRecipe;
 
   @override
@@ -298,6 +324,8 @@ abstract class _HomeWebClientModelRecipe implements HomeWebClientModelRecipe {
   List<HomeWebClientModelYield> get yields;
   @override
   List<HomeWebClientModelTag> get tags;
+  @override
+  List<HomeWebClientModelCuisine> get cuisines;
   @override
   Option<Uri> get imagePath;
   @override
@@ -820,6 +848,215 @@ abstract class _HomeWebClientModelTag implements HomeWebClientModelTag {
   @JsonKey(ignore: true)
   _$$_HomeWebClientModelTagCopyWith<_$_HomeWebClientModelTag> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$HomeWebClientModelCuisine {
+  String get id => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
+  Option<Uri> get iconPath => throw _privateConstructorUsedError;
+  String get displayedName => throw _privateConstructorUsedError;
+  String get slug => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $HomeWebClientModelCuisineCopyWith<HomeWebClientModelCuisine> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $HomeWebClientModelCuisineCopyWith<$Res> {
+  factory $HomeWebClientModelCuisineCopyWith(HomeWebClientModelCuisine value,
+          $Res Function(HomeWebClientModelCuisine) then) =
+      _$HomeWebClientModelCuisineCopyWithImpl<$Res, HomeWebClientModelCuisine>;
+  @useResult
+  $Res call(
+      {String id,
+      String type,
+      Option<Uri> iconPath,
+      String displayedName,
+      String slug});
+}
+
+/// @nodoc
+class _$HomeWebClientModelCuisineCopyWithImpl<$Res,
+        $Val extends HomeWebClientModelCuisine>
+    implements $HomeWebClientModelCuisineCopyWith<$Res> {
+  _$HomeWebClientModelCuisineCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? type = null,
+    Object? iconPath = null,
+    Object? displayedName = null,
+    Object? slug = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      iconPath: null == iconPath
+          ? _value.iconPath
+          : iconPath // ignore: cast_nullable_to_non_nullable
+              as Option<Uri>,
+      displayedName: null == displayedName
+          ? _value.displayedName
+          : displayedName // ignore: cast_nullable_to_non_nullable
+              as String,
+      slug: null == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_HomeWebClientModelCuisineCopyWith<$Res>
+    implements $HomeWebClientModelCuisineCopyWith<$Res> {
+  factory _$$_HomeWebClientModelCuisineCopyWith(
+          _$_HomeWebClientModelCuisine value,
+          $Res Function(_$_HomeWebClientModelCuisine) then) =
+      __$$_HomeWebClientModelCuisineCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      String type,
+      Option<Uri> iconPath,
+      String displayedName,
+      String slug});
+}
+
+/// @nodoc
+class __$$_HomeWebClientModelCuisineCopyWithImpl<$Res>
+    extends _$HomeWebClientModelCuisineCopyWithImpl<$Res,
+        _$_HomeWebClientModelCuisine>
+    implements _$$_HomeWebClientModelCuisineCopyWith<$Res> {
+  __$$_HomeWebClientModelCuisineCopyWithImpl(
+      _$_HomeWebClientModelCuisine _value,
+      $Res Function(_$_HomeWebClientModelCuisine) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? type = null,
+    Object? iconPath = null,
+    Object? displayedName = null,
+    Object? slug = null,
+  }) {
+    return _then(_$_HomeWebClientModelCuisine(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      iconPath: null == iconPath
+          ? _value.iconPath
+          : iconPath // ignore: cast_nullable_to_non_nullable
+              as Option<Uri>,
+      displayedName: null == displayedName
+          ? _value.displayedName
+          : displayedName // ignore: cast_nullable_to_non_nullable
+              as String,
+      slug: null == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_HomeWebClientModelCuisine implements _HomeWebClientModelCuisine {
+  const _$_HomeWebClientModelCuisine(
+      {required this.id,
+      required this.type,
+      required this.iconPath,
+      required this.displayedName,
+      required this.slug});
+
+  @override
+  final String id;
+  @override
+  final String type;
+  @override
+  final Option<Uri> iconPath;
+  @override
+  final String displayedName;
+  @override
+  final String slug;
+
+  @override
+  String toString() {
+    return 'HomeWebClientModelCuisine(id: $id, type: $type, iconPath: $iconPath, displayedName: $displayedName, slug: $slug)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_HomeWebClientModelCuisine &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.iconPath, iconPath) ||
+                other.iconPath == iconPath) &&
+            (identical(other.displayedName, displayedName) ||
+                other.displayedName == displayedName) &&
+            (identical(other.slug, slug) || other.slug == slug));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, id, type, iconPath, displayedName, slug);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_HomeWebClientModelCuisineCopyWith<_$_HomeWebClientModelCuisine>
+      get copyWith => __$$_HomeWebClientModelCuisineCopyWithImpl<
+          _$_HomeWebClientModelCuisine>(this, _$identity);
+}
+
+abstract class _HomeWebClientModelCuisine implements HomeWebClientModelCuisine {
+  const factory _HomeWebClientModelCuisine(
+      {required final String id,
+      required final String type,
+      required final Option<Uri> iconPath,
+      required final String displayedName,
+      required final String slug}) = _$_HomeWebClientModelCuisine;
+
+  @override
+  String get id;
+  @override
+  String get type;
+  @override
+  Option<Uri> get iconPath;
+  @override
+  String get displayedName;
+  @override
+  String get slug;
+  @override
+  @JsonKey(ignore: true)
+  _$$_HomeWebClientModelCuisineCopyWith<_$_HomeWebClientModelCuisine>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc

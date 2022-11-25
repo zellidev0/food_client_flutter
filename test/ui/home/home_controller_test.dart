@@ -86,7 +86,7 @@ void main() {
       controller.state,
       equals(
         const HomeModel(
-          recipes: <HomeModelRecipe>[],
+          allRecipes: <HomeModelRecipe>[],
           tags: <HomeModelTag>[],
         ),
       ),
@@ -109,7 +109,7 @@ void main() {
       controller.state,
       equals(
         const HomeModel(
-          recipes: <HomeModelRecipe>[],
+          allRecipes: <HomeModelRecipe>[],
           tags: <HomeModelTag>[
             HomeModelTag(
               id: 'id',

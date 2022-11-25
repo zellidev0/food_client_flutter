@@ -16,8 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomeModel {
-  List<HomeModelRecipe> get recipes => throw _privateConstructorUsedError;
-  List<HomeModelTag> get tags => throw _privateConstructorUsedError;
+  List<HomeModelRecipe> get allRecipes => throw _privateConstructorUsedError;
+  List<HomeModelRecipe> get filteredRecipes =>
+      throw _privateConstructorUsedError;
+  List<HomeModelFilterTag> get tags => throw _privateConstructorUsedError;
+  List<HomeModelFilterCuisine> get cuisines =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeModelCopyWith<HomeModel> get copyWith =>
@@ -29,7 +33,11 @@ abstract class $HomeModelCopyWith<$Res> {
   factory $HomeModelCopyWith(HomeModel value, $Res Function(HomeModel) then) =
       _$HomeModelCopyWithImpl<$Res, HomeModel>;
   @useResult
-  $Res call({List<HomeModelRecipe> recipes, List<HomeModelTag> tags});
+  $Res call(
+      {List<HomeModelRecipe> allRecipes,
+      List<HomeModelRecipe> filteredRecipes,
+      List<HomeModelFilterTag> tags,
+      List<HomeModelFilterCuisine> cuisines});
 }
 
 /// @nodoc
@@ -45,18 +53,28 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? recipes = null,
+    Object? allRecipes = null,
+    Object? filteredRecipes = null,
     Object? tags = null,
+    Object? cuisines = null,
   }) {
     return _then(_value.copyWith(
-      recipes: null == recipes
-          ? _value.recipes
-          : recipes // ignore: cast_nullable_to_non_nullable
+      allRecipes: null == allRecipes
+          ? _value.allRecipes
+          : allRecipes // ignore: cast_nullable_to_non_nullable
+              as List<HomeModelRecipe>,
+      filteredRecipes: null == filteredRecipes
+          ? _value.filteredRecipes
+          : filteredRecipes // ignore: cast_nullable_to_non_nullable
               as List<HomeModelRecipe>,
       tags: null == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as List<HomeModelTag>,
+              as List<HomeModelFilterTag>,
+      cuisines: null == cuisines
+          ? _value.cuisines
+          : cuisines // ignore: cast_nullable_to_non_nullable
+              as List<HomeModelFilterCuisine>,
     ) as $Val);
   }
 }
@@ -68,7 +86,11 @@ abstract class _$$_HomeModelCopyWith<$Res> implements $HomeModelCopyWith<$Res> {
       __$$_HomeModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<HomeModelRecipe> recipes, List<HomeModelTag> tags});
+  $Res call(
+      {List<HomeModelRecipe> allRecipes,
+      List<HomeModelRecipe> filteredRecipes,
+      List<HomeModelFilterTag> tags,
+      List<HomeModelFilterCuisine> cuisines});
 }
 
 /// @nodoc
@@ -82,18 +104,28 @@ class __$$_HomeModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? recipes = null,
+    Object? allRecipes = null,
+    Object? filteredRecipes = null,
     Object? tags = null,
+    Object? cuisines = null,
   }) {
     return _then(_$_HomeModel(
-      recipes: null == recipes
-          ? _value._recipes
-          : recipes // ignore: cast_nullable_to_non_nullable
+      allRecipes: null == allRecipes
+          ? _value._allRecipes
+          : allRecipes // ignore: cast_nullable_to_non_nullable
+              as List<HomeModelRecipe>,
+      filteredRecipes: null == filteredRecipes
+          ? _value._filteredRecipes
+          : filteredRecipes // ignore: cast_nullable_to_non_nullable
               as List<HomeModelRecipe>,
       tags: null == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as List<HomeModelTag>,
+              as List<HomeModelFilterTag>,
+      cuisines: null == cuisines
+          ? _value._cuisines
+          : cuisines // ignore: cast_nullable_to_non_nullable
+              as List<HomeModelFilterCuisine>,
     ));
   }
 }
@@ -102,28 +134,46 @@ class __$$_HomeModelCopyWithImpl<$Res>
 
 class _$_HomeModel implements _HomeModel {
   const _$_HomeModel(
-      {required final List<HomeModelRecipe> recipes,
-      required final List<HomeModelTag> tags})
-      : _recipes = recipes,
-        _tags = tags;
+      {required final List<HomeModelRecipe> allRecipes,
+      required final List<HomeModelRecipe> filteredRecipes,
+      required final List<HomeModelFilterTag> tags,
+      required final List<HomeModelFilterCuisine> cuisines})
+      : _allRecipes = allRecipes,
+        _filteredRecipes = filteredRecipes,
+        _tags = tags,
+        _cuisines = cuisines;
 
-  final List<HomeModelRecipe> _recipes;
+  final List<HomeModelRecipe> _allRecipes;
   @override
-  List<HomeModelRecipe> get recipes {
+  List<HomeModelRecipe> get allRecipes {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_recipes);
+    return EqualUnmodifiableListView(_allRecipes);
   }
 
-  final List<HomeModelTag> _tags;
+  final List<HomeModelRecipe> _filteredRecipes;
   @override
-  List<HomeModelTag> get tags {
+  List<HomeModelRecipe> get filteredRecipes {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_filteredRecipes);
+  }
+
+  final List<HomeModelFilterTag> _tags;
+  @override
+  List<HomeModelFilterTag> get tags {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_tags);
   }
 
+  final List<HomeModelFilterCuisine> _cuisines;
+  @override
+  List<HomeModelFilterCuisine> get cuisines {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_cuisines);
+  }
+
   @override
   String toString() {
-    return 'HomeModel(recipes: $recipes, tags: $tags)';
+    return 'HomeModel(allRecipes: $allRecipes, filteredRecipes: $filteredRecipes, tags: $tags, cuisines: $cuisines)';
   }
 
   @override
@@ -131,15 +181,21 @@ class _$_HomeModel implements _HomeModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_HomeModel &&
-            const DeepCollectionEquality().equals(other._recipes, _recipes) &&
-            const DeepCollectionEquality().equals(other._tags, _tags));
+            const DeepCollectionEquality()
+                .equals(other._allRecipes, _allRecipes) &&
+            const DeepCollectionEquality()
+                .equals(other._filteredRecipes, _filteredRecipes) &&
+            const DeepCollectionEquality().equals(other._tags, _tags) &&
+            const DeepCollectionEquality().equals(other._cuisines, _cuisines));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_recipes),
-      const DeepCollectionEquality().hash(_tags));
+      const DeepCollectionEquality().hash(_allRecipes),
+      const DeepCollectionEquality().hash(_filteredRecipes),
+      const DeepCollectionEquality().hash(_tags),
+      const DeepCollectionEquality().hash(_cuisines));
 
   @JsonKey(ignore: true)
   @override
@@ -150,13 +206,19 @@ class _$_HomeModel implements _HomeModel {
 
 abstract class _HomeModel implements HomeModel {
   const factory _HomeModel(
-      {required final List<HomeModelRecipe> recipes,
-      required final List<HomeModelTag> tags}) = _$_HomeModel;
+      {required final List<HomeModelRecipe> allRecipes,
+      required final List<HomeModelRecipe> filteredRecipes,
+      required final List<HomeModelFilterTag> tags,
+      required final List<HomeModelFilterCuisine> cuisines}) = _$_HomeModel;
 
   @override
-  List<HomeModelRecipe> get recipes;
+  List<HomeModelRecipe> get allRecipes;
   @override
-  List<HomeModelTag> get tags;
+  List<HomeModelRecipe> get filteredRecipes;
+  @override
+  List<HomeModelFilterTag> get tags;
+  @override
+  List<HomeModelFilterCuisine> get cuisines;
   @override
   @JsonKey(ignore: true)
   _$$_HomeModelCopyWith<_$_HomeModel> get copyWith =>
@@ -173,6 +235,7 @@ mixin _$HomeModelRecipe {
       throw _privateConstructorUsedError;
   List<HomeModelYield> get yields => throw _privateConstructorUsedError;
   List<String> get tagIds => throw _privateConstructorUsedError;
+  List<String> get cuisineIds => throw _privateConstructorUsedError;
   Uri get imageUriLarge => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -193,6 +256,7 @@ abstract class $HomeModelRecipeCopyWith<$Res> {
       List<HomeModelIngredient> ingredients,
       List<HomeModelYield> yields,
       List<String> tagIds,
+      List<String> cuisineIds,
       Uri imageUriLarge});
 
   $HomeModelDisplayedAttributesCopyWith<$Res> get displayedAttributes;
@@ -217,6 +281,7 @@ class _$HomeModelRecipeCopyWithImpl<$Res, $Val extends HomeModelRecipe>
     Object? ingredients = null,
     Object? yields = null,
     Object? tagIds = null,
+    Object? cuisineIds = null,
     Object? imageUriLarge = null,
   }) {
     return _then(_value.copyWith(
@@ -243,6 +308,10 @@ class _$HomeModelRecipeCopyWithImpl<$Res, $Val extends HomeModelRecipe>
       tagIds: null == tagIds
           ? _value.tagIds
           : tagIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      cuisineIds: null == cuisineIds
+          ? _value.cuisineIds
+          : cuisineIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
       imageUriLarge: null == imageUriLarge
           ? _value.imageUriLarge
@@ -276,6 +345,7 @@ abstract class _$$_HomeModelRecipeCopyWith<$Res>
       List<HomeModelIngredient> ingredients,
       List<HomeModelYield> yields,
       List<String> tagIds,
+      List<String> cuisineIds,
       Uri imageUriLarge});
 
   @override
@@ -299,6 +369,7 @@ class __$$_HomeModelRecipeCopyWithImpl<$Res>
     Object? ingredients = null,
     Object? yields = null,
     Object? tagIds = null,
+    Object? cuisineIds = null,
     Object? imageUriLarge = null,
   }) {
     return _then(_$_HomeModelRecipe(
@@ -326,6 +397,10 @@ class __$$_HomeModelRecipeCopyWithImpl<$Res>
           ? _value._tagIds
           : tagIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      cuisineIds: null == cuisineIds
+          ? _value._cuisineIds
+          : cuisineIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       imageUriLarge: null == imageUriLarge
           ? _value.imageUriLarge
           : imageUriLarge // ignore: cast_nullable_to_non_nullable
@@ -344,10 +419,12 @@ class _$_HomeModelRecipe implements _HomeModelRecipe {
       required final List<HomeModelIngredient> ingredients,
       required final List<HomeModelYield> yields,
       required final List<String> tagIds,
+      required final List<String> cuisineIds,
       required this.imageUriLarge})
       : _ingredients = ingredients,
         _yields = yields,
-        _tagIds = tagIds;
+        _tagIds = tagIds,
+        _cuisineIds = cuisineIds;
 
   @override
   final String id;
@@ -376,12 +453,19 @@ class _$_HomeModelRecipe implements _HomeModelRecipe {
     return EqualUnmodifiableListView(_tagIds);
   }
 
+  final List<String> _cuisineIds;
+  @override
+  List<String> get cuisineIds {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_cuisineIds);
+  }
+
   @override
   final Uri imageUriLarge;
 
   @override
   String toString() {
-    return 'HomeModelRecipe(id: $id, displayedAttributes: $displayedAttributes, difficulty: $difficulty, ingredients: $ingredients, yields: $yields, tagIds: $tagIds, imageUriLarge: $imageUriLarge)';
+    return 'HomeModelRecipe(id: $id, displayedAttributes: $displayedAttributes, difficulty: $difficulty, ingredients: $ingredients, yields: $yields, tagIds: $tagIds, cuisineIds: $cuisineIds, imageUriLarge: $imageUriLarge)';
   }
 
   @override
@@ -398,6 +482,8 @@ class _$_HomeModelRecipe implements _HomeModelRecipe {
                 .equals(other._ingredients, _ingredients) &&
             const DeepCollectionEquality().equals(other._yields, _yields) &&
             const DeepCollectionEquality().equals(other._tagIds, _tagIds) &&
+            const DeepCollectionEquality()
+                .equals(other._cuisineIds, _cuisineIds) &&
             (identical(other.imageUriLarge, imageUriLarge) ||
                 other.imageUriLarge == imageUriLarge));
   }
@@ -411,6 +497,7 @@ class _$_HomeModelRecipe implements _HomeModelRecipe {
       const DeepCollectionEquality().hash(_ingredients),
       const DeepCollectionEquality().hash(_yields),
       const DeepCollectionEquality().hash(_tagIds),
+      const DeepCollectionEquality().hash(_cuisineIds),
       imageUriLarge);
 
   @JsonKey(ignore: true)
@@ -428,6 +515,7 @@ abstract class _HomeModelRecipe implements HomeModelRecipe {
       required final List<HomeModelIngredient> ingredients,
       required final List<HomeModelYield> yields,
       required final List<String> tagIds,
+      required final List<String> cuisineIds,
       required final Uri imageUriLarge}) = _$_HomeModelRecipe;
 
   @override
@@ -442,6 +530,8 @@ abstract class _HomeModelRecipe implements HomeModelRecipe {
   List<HomeModelYield> get yields;
   @override
   List<String> get tagIds;
+  @override
+  List<String> get cuisineIds;
   @override
   Uri get imageUriLarge;
   @override
@@ -800,29 +890,70 @@ abstract class _HomeModelIngredient implements HomeModelIngredient {
 }
 
 /// @nodoc
-mixin _$HomeModelTag {
+mixin _$HomeModelFilter {
   String get id => throw _privateConstructorUsedError;
   String get displayedName => throw _privateConstructorUsedError;
   bool get isSelected => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String id, String displayedName, bool isSelected)
+        tag,
+    required TResult Function(String id, String displayedName, bool isSelected)
+        cuisine,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String id, String displayedName, bool isSelected)? tag,
+    TResult? Function(String id, String displayedName, bool isSelected)?
+        cuisine,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String id, String displayedName, bool isSelected)? tag,
+    TResult Function(String id, String displayedName, bool isSelected)? cuisine,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(HomeModelFilterTag value) tag,
+    required TResult Function(HomeModelFilterCuisine value) cuisine,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(HomeModelFilterTag value)? tag,
+    TResult? Function(HomeModelFilterCuisine value)? cuisine,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(HomeModelFilterTag value)? tag,
+    TResult Function(HomeModelFilterCuisine value)? cuisine,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $HomeModelTagCopyWith<HomeModelTag> get copyWith =>
+  $HomeModelFilterCopyWith<HomeModelFilter> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HomeModelTagCopyWith<$Res> {
-  factory $HomeModelTagCopyWith(
-          HomeModelTag value, $Res Function(HomeModelTag) then) =
-      _$HomeModelTagCopyWithImpl<$Res, HomeModelTag>;
+abstract class $HomeModelFilterCopyWith<$Res> {
+  factory $HomeModelFilterCopyWith(
+          HomeModelFilter value, $Res Function(HomeModelFilter) then) =
+      _$HomeModelFilterCopyWithImpl<$Res, HomeModelFilter>;
   @useResult
   $Res call({String id, String displayedName, bool isSelected});
 }
 
 /// @nodoc
-class _$HomeModelTagCopyWithImpl<$Res, $Val extends HomeModelTag>
-    implements $HomeModelTagCopyWith<$Res> {
-  _$HomeModelTagCopyWithImpl(this._value, this._then);
+class _$HomeModelFilterCopyWithImpl<$Res, $Val extends HomeModelFilter>
+    implements $HomeModelFilterCopyWith<$Res> {
+  _$HomeModelFilterCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -854,22 +985,22 @@ class _$HomeModelTagCopyWithImpl<$Res, $Val extends HomeModelTag>
 }
 
 /// @nodoc
-abstract class _$$_HomeModelTagCopyWith<$Res>
-    implements $HomeModelTagCopyWith<$Res> {
-  factory _$$_HomeModelTagCopyWith(
-          _$_HomeModelTag value, $Res Function(_$_HomeModelTag) then) =
-      __$$_HomeModelTagCopyWithImpl<$Res>;
+abstract class _$$HomeModelFilterTagCopyWith<$Res>
+    implements $HomeModelFilterCopyWith<$Res> {
+  factory _$$HomeModelFilterTagCopyWith(_$HomeModelFilterTag value,
+          $Res Function(_$HomeModelFilterTag) then) =
+      __$$HomeModelFilterTagCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, String displayedName, bool isSelected});
 }
 
 /// @nodoc
-class __$$_HomeModelTagCopyWithImpl<$Res>
-    extends _$HomeModelTagCopyWithImpl<$Res, _$_HomeModelTag>
-    implements _$$_HomeModelTagCopyWith<$Res> {
-  __$$_HomeModelTagCopyWithImpl(
-      _$_HomeModelTag _value, $Res Function(_$_HomeModelTag) _then)
+class __$$HomeModelFilterTagCopyWithImpl<$Res>
+    extends _$HomeModelFilterCopyWithImpl<$Res, _$HomeModelFilterTag>
+    implements _$$HomeModelFilterTagCopyWith<$Res> {
+  __$$HomeModelFilterTagCopyWithImpl(
+      _$HomeModelFilterTag _value, $Res Function(_$HomeModelFilterTag) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -879,7 +1010,7 @@ class __$$_HomeModelTagCopyWithImpl<$Res>
     Object? displayedName = null,
     Object? isSelected = null,
   }) {
-    return _then(_$_HomeModelTag(
+    return _then(_$HomeModelFilterTag(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -898,8 +1029,8 @@ class __$$_HomeModelTagCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HomeModelTag implements _HomeModelTag {
-  const _$_HomeModelTag(
+class _$HomeModelFilterTag implements HomeModelFilterTag {
+  const _$HomeModelFilterTag(
       {required this.id,
       required this.displayedName,
       required this.isSelected});
@@ -913,14 +1044,14 @@ class _$_HomeModelTag implements _HomeModelTag {
 
   @override
   String toString() {
-    return 'HomeModelTag(id: $id, displayedName: $displayedName, isSelected: $isSelected)';
+    return 'HomeModelFilter.tag(id: $id, displayedName: $displayedName, isSelected: $isSelected)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HomeModelTag &&
+            other is _$HomeModelFilterTag &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.displayedName, displayedName) ||
                 other.displayedName == displayedName) &&
@@ -934,15 +1065,81 @@ class _$_HomeModelTag implements _HomeModelTag {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HomeModelTagCopyWith<_$_HomeModelTag> get copyWith =>
-      __$$_HomeModelTagCopyWithImpl<_$_HomeModelTag>(this, _$identity);
+  _$$HomeModelFilterTagCopyWith<_$HomeModelFilterTag> get copyWith =>
+      __$$HomeModelFilterTagCopyWithImpl<_$HomeModelFilterTag>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String id, String displayedName, bool isSelected)
+        tag,
+    required TResult Function(String id, String displayedName, bool isSelected)
+        cuisine,
+  }) {
+    return tag(id, displayedName, isSelected);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String id, String displayedName, bool isSelected)? tag,
+    TResult? Function(String id, String displayedName, bool isSelected)?
+        cuisine,
+  }) {
+    return tag?.call(id, displayedName, isSelected);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String id, String displayedName, bool isSelected)? tag,
+    TResult Function(String id, String displayedName, bool isSelected)? cuisine,
+    required TResult orElse(),
+  }) {
+    if (tag != null) {
+      return tag(id, displayedName, isSelected);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(HomeModelFilterTag value) tag,
+    required TResult Function(HomeModelFilterCuisine value) cuisine,
+  }) {
+    return tag(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(HomeModelFilterTag value)? tag,
+    TResult? Function(HomeModelFilterCuisine value)? cuisine,
+  }) {
+    return tag?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(HomeModelFilterTag value)? tag,
+    TResult Function(HomeModelFilterCuisine value)? cuisine,
+    required TResult orElse(),
+  }) {
+    if (tag != null) {
+      return tag(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _HomeModelTag implements HomeModelTag {
-  const factory _HomeModelTag(
+abstract class HomeModelFilterTag implements HomeModelFilter {
+  const factory HomeModelFilterTag(
       {required final String id,
       required final String displayedName,
-      required final bool isSelected}) = _$_HomeModelTag;
+      required final bool isSelected}) = _$HomeModelFilterTag;
 
   @override
   String get id;
@@ -952,7 +1149,176 @@ abstract class _HomeModelTag implements HomeModelTag {
   bool get isSelected;
   @override
   @JsonKey(ignore: true)
-  _$$_HomeModelTagCopyWith<_$_HomeModelTag> get copyWith =>
+  _$$HomeModelFilterTagCopyWith<_$HomeModelFilterTag> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$HomeModelFilterCuisineCopyWith<$Res>
+    implements $HomeModelFilterCopyWith<$Res> {
+  factory _$$HomeModelFilterCuisineCopyWith(_$HomeModelFilterCuisine value,
+          $Res Function(_$HomeModelFilterCuisine) then) =
+      __$$HomeModelFilterCuisineCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String id, String displayedName, bool isSelected});
+}
+
+/// @nodoc
+class __$$HomeModelFilterCuisineCopyWithImpl<$Res>
+    extends _$HomeModelFilterCopyWithImpl<$Res, _$HomeModelFilterCuisine>
+    implements _$$HomeModelFilterCuisineCopyWith<$Res> {
+  __$$HomeModelFilterCuisineCopyWithImpl(_$HomeModelFilterCuisine _value,
+      $Res Function(_$HomeModelFilterCuisine) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? displayedName = null,
+    Object? isSelected = null,
+  }) {
+    return _then(_$HomeModelFilterCuisine(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      displayedName: null == displayedName
+          ? _value.displayedName
+          : displayedName // ignore: cast_nullable_to_non_nullable
+              as String,
+      isSelected: null == isSelected
+          ? _value.isSelected
+          : isSelected // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$HomeModelFilterCuisine implements HomeModelFilterCuisine {
+  const _$HomeModelFilterCuisine(
+      {required this.id,
+      required this.displayedName,
+      required this.isSelected});
+
+  @override
+  final String id;
+  @override
+  final String displayedName;
+  @override
+  final bool isSelected;
+
+  @override
+  String toString() {
+    return 'HomeModelFilter.cuisine(id: $id, displayedName: $displayedName, isSelected: $isSelected)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$HomeModelFilterCuisine &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.displayedName, displayedName) ||
+                other.displayedName == displayedName) &&
+            (identical(other.isSelected, isSelected) ||
+                other.isSelected == isSelected));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, displayedName, isSelected);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$HomeModelFilterCuisineCopyWith<_$HomeModelFilterCuisine> get copyWith =>
+      __$$HomeModelFilterCuisineCopyWithImpl<_$HomeModelFilterCuisine>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String id, String displayedName, bool isSelected)
+        tag,
+    required TResult Function(String id, String displayedName, bool isSelected)
+        cuisine,
+  }) {
+    return cuisine(id, displayedName, isSelected);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String id, String displayedName, bool isSelected)? tag,
+    TResult? Function(String id, String displayedName, bool isSelected)?
+        cuisine,
+  }) {
+    return cuisine?.call(id, displayedName, isSelected);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String id, String displayedName, bool isSelected)? tag,
+    TResult Function(String id, String displayedName, bool isSelected)? cuisine,
+    required TResult orElse(),
+  }) {
+    if (cuisine != null) {
+      return cuisine(id, displayedName, isSelected);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(HomeModelFilterTag value) tag,
+    required TResult Function(HomeModelFilterCuisine value) cuisine,
+  }) {
+    return cuisine(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(HomeModelFilterTag value)? tag,
+    TResult? Function(HomeModelFilterCuisine value)? cuisine,
+  }) {
+    return cuisine?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(HomeModelFilterTag value)? tag,
+    TResult Function(HomeModelFilterCuisine value)? cuisine,
+    required TResult orElse(),
+  }) {
+    if (cuisine != null) {
+      return cuisine(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class HomeModelFilterCuisine implements HomeModelFilter {
+  const factory HomeModelFilterCuisine(
+      {required final String id,
+      required final String displayedName,
+      required final bool isSelected}) = _$HomeModelFilterCuisine;
+
+  @override
+  String get id;
+  @override
+  String get displayedName;
+  @override
+  bool get isSelected;
+  @override
+  @JsonKey(ignore: true)
+  _$$HomeModelFilterCuisineCopyWith<_$HomeModelFilterCuisine> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

@@ -6,8 +6,10 @@ part 'home_model.freezed.dart';
 @freezed
 class HomeModel with _$HomeModel {
   const factory HomeModel({
-    required final List<HomeModelRecipe> recipes,
-    required final List<HomeModelTag> tags,
+    required final List<HomeModelRecipe> allRecipes,
+    required final List<HomeModelRecipe> filteredRecipes,
+    required final List<HomeModelFilterTag> tags,
+    required final List<HomeModelFilterCuisine> cuisines,
   }) = _HomeModel;
 }
 
@@ -20,6 +22,7 @@ class HomeModelRecipe with _$HomeModelRecipe {
     required final List<HomeModelIngredient> ingredients,
     required final List<HomeModelYield> yields,
     required final List<String> tagIds,
+    required final List<String> cuisineIds,
     required final Uri imageUriLarge,
   }) = _HomeModelRecipe;
 }
@@ -44,12 +47,18 @@ class HomeModelIngredient with _$HomeModelIngredient {
 }
 
 @freezed
-class HomeModelTag with _$HomeModelTag {
-  const factory HomeModelTag({
+class HomeModelFilter with _$HomeModelFilter {
+  const factory HomeModelFilter.tag({
     required final String id,
     required final String displayedName,
     required final bool isSelected,
-  }) = _HomeModelTag;
+  }) = HomeModelFilterTag;
+
+  const factory HomeModelFilter.cuisine({
+    required final String id,
+    required final String displayedName,
+    required final bool isSelected,
+  }) = HomeModelFilterCuisine;
 }
 
 @freezed

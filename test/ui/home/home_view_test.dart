@@ -28,7 +28,7 @@ void main() {
   ) async {
     connectControllerMock = MockHomeControllerImplementation(
       const HomeModel(
-        recipes: <HomeModelRecipe>[],
+        allRecipes: <HomeModelRecipe>[],
         tags: <HomeModelTag>[],
       ),
     );

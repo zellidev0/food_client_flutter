@@ -12,6 +12,10 @@ abstract class HomeWebClientService {
     final Option<List<String>> ingredients = const None<List<String>>(),
     final Option<String> searchTerm = const None<String>(),
   });
+  TaskEither<Exception, List<HomeWebClientModelCuisine>> fetchAllCuisines({
+    required final String country,
+    final Option<int> take = const None<int>(),
+  });
   TaskEither<Exception, List<HomeWebClientModelTag>> fetchAllTags({
     required final String country,
     final Option<int> take = const None<int>(),
@@ -27,6 +31,7 @@ class HomeWebClientModelRecipe with _$HomeWebClientModelRecipe {
     required final List<HomeWebClientModelIngredient> ingredients,
     required final List<HomeWebClientModelYield> yields,
     required final List<HomeWebClientModelTag> tags,
+    required final List<HomeWebClientModelCuisine> cuisines,
     required final Option<Uri> imagePath,
   }) = _HomeWebClientModelRecipe;
 }
@@ -58,6 +63,17 @@ class HomeWebClientModelTag with _$HomeWebClientModelTag {
     required final String slug,
     required final String displayedName,
   }) = _HomeWebClientModelTag;
+}
+
+@freezed
+class HomeWebClientModelCuisine with _$HomeWebClientModelCuisine {
+  const factory HomeWebClientModelCuisine({
+   required final String id,
+   required final String type,
+   required final Option<Uri> iconPath,
+   required final String displayedName,
+   required final String slug,
+  }) = _HomeWebClientModelCuisine;
 }
 
 @freezed

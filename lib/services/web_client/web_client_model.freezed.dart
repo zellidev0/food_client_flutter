@@ -498,6 +498,249 @@ abstract class _WebClientModelRecipeApiTagResponse
       get copyWith => throw _privateConstructorUsedError;
 }
 
+WebClientModelRecipeApiCuisineResponse
+    _$WebClientModelRecipeApiCuisineResponseFromJson(
+        Map<String, dynamic> json) {
+  return _WebClientModelRecipeApiCuisineResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$WebClientModelRecipeApiCuisineResponse {
+  int get total => throw _privateConstructorUsedError;
+  int get take => throw _privateConstructorUsedError;
+  int get count => throw _privateConstructorUsedError;
+  int get skip => throw _privateConstructorUsedError;
+  List<WebClientModelCuisine> get items => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $WebClientModelRecipeApiCuisineResponseCopyWith<
+          WebClientModelRecipeApiCuisineResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WebClientModelRecipeApiCuisineResponseCopyWith<$Res> {
+  factory $WebClientModelRecipeApiCuisineResponseCopyWith(
+          WebClientModelRecipeApiCuisineResponse value,
+          $Res Function(WebClientModelRecipeApiCuisineResponse) then) =
+      _$WebClientModelRecipeApiCuisineResponseCopyWithImpl<$Res,
+          WebClientModelRecipeApiCuisineResponse>;
+  @useResult
+  $Res call(
+      {int total,
+      int take,
+      int count,
+      int skip,
+      List<WebClientModelCuisine> items});
+}
+
+/// @nodoc
+class _$WebClientModelRecipeApiCuisineResponseCopyWithImpl<$Res,
+        $Val extends WebClientModelRecipeApiCuisineResponse>
+    implements $WebClientModelRecipeApiCuisineResponseCopyWith<$Res> {
+  _$WebClientModelRecipeApiCuisineResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? total = null,
+    Object? take = null,
+    Object? count = null,
+    Object? skip = null,
+    Object? items = null,
+  }) {
+    return _then(_value.copyWith(
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int,
+      take: null == take
+          ? _value.take
+          : take // ignore: cast_nullable_to_non_nullable
+              as int,
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
+      skip: null == skip
+          ? _value.skip
+          : skip // ignore: cast_nullable_to_non_nullable
+              as int,
+      items: null == items
+          ? _value.items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<WebClientModelCuisine>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_WebClientModelRecipeApiCuisineResponseCopyWith<$Res>
+    implements $WebClientModelRecipeApiCuisineResponseCopyWith<$Res> {
+  factory _$$_WebClientModelRecipeApiCuisineResponseCopyWith(
+          _$_WebClientModelRecipeApiCuisineResponse value,
+          $Res Function(_$_WebClientModelRecipeApiCuisineResponse) then) =
+      __$$_WebClientModelRecipeApiCuisineResponseCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int total,
+      int take,
+      int count,
+      int skip,
+      List<WebClientModelCuisine> items});
+}
+
+/// @nodoc
+class __$$_WebClientModelRecipeApiCuisineResponseCopyWithImpl<$Res>
+    extends _$WebClientModelRecipeApiCuisineResponseCopyWithImpl<$Res,
+        _$_WebClientModelRecipeApiCuisineResponse>
+    implements _$$_WebClientModelRecipeApiCuisineResponseCopyWith<$Res> {
+  __$$_WebClientModelRecipeApiCuisineResponseCopyWithImpl(
+      _$_WebClientModelRecipeApiCuisineResponse _value,
+      $Res Function(_$_WebClientModelRecipeApiCuisineResponse) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? total = null,
+    Object? take = null,
+    Object? count = null,
+    Object? skip = null,
+    Object? items = null,
+  }) {
+    return _then(_$_WebClientModelRecipeApiCuisineResponse(
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int,
+      take: null == take
+          ? _value.take
+          : take // ignore: cast_nullable_to_non_nullable
+              as int,
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
+      skip: null == skip
+          ? _value.skip
+          : skip // ignore: cast_nullable_to_non_nullable
+              as int,
+      items: null == items
+          ? _value._items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<WebClientModelCuisine>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_WebClientModelRecipeApiCuisineResponse
+    implements _WebClientModelRecipeApiCuisineResponse {
+  const _$_WebClientModelRecipeApiCuisineResponse(
+      {required this.total,
+      required this.take,
+      required this.count,
+      required this.skip,
+      required final List<WebClientModelCuisine> items})
+      : _items = items;
+
+  factory _$_WebClientModelRecipeApiCuisineResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$$_WebClientModelRecipeApiCuisineResponseFromJson(json);
+
+  @override
+  final int total;
+  @override
+  final int take;
+  @override
+  final int count;
+  @override
+  final int skip;
+  final List<WebClientModelCuisine> _items;
+  @override
+  List<WebClientModelCuisine> get items {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_items);
+  }
+
+  @override
+  String toString() {
+    return 'WebClientModelRecipeApiCuisineResponse(total: $total, take: $take, count: $count, skip: $skip, items: $items)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_WebClientModelRecipeApiCuisineResponse &&
+            (identical(other.total, total) || other.total == total) &&
+            (identical(other.take, take) || other.take == take) &&
+            (identical(other.count, count) || other.count == count) &&
+            (identical(other.skip, skip) || other.skip == skip) &&
+            const DeepCollectionEquality().equals(other._items, _items));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, total, take, count, skip,
+      const DeepCollectionEquality().hash(_items));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_WebClientModelRecipeApiCuisineResponseCopyWith<
+          _$_WebClientModelRecipeApiCuisineResponse>
+      get copyWith => __$$_WebClientModelRecipeApiCuisineResponseCopyWithImpl<
+          _$_WebClientModelRecipeApiCuisineResponse>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_WebClientModelRecipeApiCuisineResponseToJson(
+      this,
+    );
+  }
+}
+
+abstract class _WebClientModelRecipeApiCuisineResponse
+    implements WebClientModelRecipeApiCuisineResponse {
+  const factory _WebClientModelRecipeApiCuisineResponse(
+          {required final int total,
+          required final int take,
+          required final int count,
+          required final int skip,
+          required final List<WebClientModelCuisine> items}) =
+      _$_WebClientModelRecipeApiCuisineResponse;
+
+  factory _WebClientModelRecipeApiCuisineResponse.fromJson(
+          Map<String, dynamic> json) =
+      _$_WebClientModelRecipeApiCuisineResponse.fromJson;
+
+  @override
+  int get total;
+  @override
+  int get take;
+  @override
+  int get count;
+  @override
+  int get skip;
+  @override
+  List<WebClientModelCuisine> get items;
+  @override
+  @JsonKey(ignore: true)
+  _$$_WebClientModelRecipeApiCuisineResponseCopyWith<
+          _$_WebClientModelRecipeApiCuisineResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
 WebClientModelTagsApiResponse _$WebClientModelTagsApiResponseFromJson(
     Map<String, dynamic> json) {
   return _WebClientModelTagsApiResponse.fromJson(json);

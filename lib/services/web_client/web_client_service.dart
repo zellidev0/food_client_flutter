@@ -132,6 +132,50 @@ class WebClientService implements WebClientServiceAggregator {
                 )
                 .toTaskEither(),
       );
+  @override
+  TaskEither<Exception, List<HomeWebClientModelCuisine>> fetchAllCuisines({
+    required final String country,
+    final Option<int> take = const None<int>(),
+  }) =>
+      TaskEither<Exception, String>.tryCatch(
+        () async => await http.read(
+          _cuisinesApiUrl(
+            country: country,
+            take: take,
+          ),
+          headers: headers,
+        ),
+        (final Object error, final _) => Exception(
+          'Failed to fetch recipes: $error',
+        ),
+      ).flatMap(
+        (final String response) =>
+            Either<Exception, WebClientModelRecipeApiCuisineResponse>.tryCatch(
+          () => WebClientModelRecipeApiCuisineResponse.fromJson(
+            jsonDecode(response),
+          ),
+          (final Object error, final StackTrace stacktrace) => Exception(
+            'Failed to parse response: $error, $stacktrace',
+          ),
+        )
+                .map(
+                  (final WebClientModelRecipeApiCuisineResponse response) =>
+                      response.items
+                          .map(
+                            (final WebClientModelCuisine cuisine) =>
+                                HomeWebClientModelCuisine(
+                              id: cuisine.id,
+                              slug: cuisine.slug,
+                              type: cuisine.type,
+                              iconPath: cuisine.iconPath.map(Uri.parse),
+                              displayedName: cuisine.name,
+                            ),
+                          )
+                          .toList(),
+                )
+                .toTaskEither(),
+      );
+
   Uri get _recipesApiUrl => Uri.parse('${apiBaseUrl.toString()}/recipes');
   Uri _tagsApiUrl({
     required final String country,
@@ -148,6 +192,22 @@ class WebClientService implements WebClientServiceAggregator {
               ),
         ),
       );
+  Uri _cuisinesApiUrl({
+    required final String country,
+    final Option<int> take = const None<int>(),
+  }) =>
+      Uri.parse('${apiBaseUrl.toString()}/cuisines').replace(
+        queryParameters: Map<String, Object?>.fromEntries(
+          <String, Object?>{
+            'country': country,
+            'take':
+                take.map((final int amount) => amount.toString()).toNullable()
+          }.entries.filter(
+                (final MapEntry<String, Object?> entry) => entry.value != null,
+              ),
+        ),
+      );
+
   Uri _singleRecipeApiUrl({required final String recipeId}) =>
       Uri.parse('$_recipesApiUrl/$recipeId');
 
@@ -338,6 +398,18 @@ List<HomeWebClientModelRecipe> _mapToHomeWebClientModelRecipe({
                 )
                 .toList(),
             imagePath: recipe.imagePath.map(Uri.parse),
+            cuisines: recipe.cuisines
+                .map(
+                  (final WebClientModelCuisine cuisine) =>
+                      HomeWebClientModelCuisine(
+                    id: cuisine.id,
+                    slug: cuisine.slug,
+                    displayedName: cuisine.name,
+                    type: cuisine.type,
+                    iconPath: cuisine.iconPath.map(Uri.parse),
+                  ),
+                )
+                .toList(),
           ),
         )
         .toList();

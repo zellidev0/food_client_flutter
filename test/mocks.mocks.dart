@@ -89,6 +89,34 @@ class MockWebClientServiceAggregator extends _i1.Mock
         ),
       ) as _i2.TaskEither<Exception, List<_i4.HomeWebClientModelRecipe>>);
   @override
+  _i2.TaskEither<Exception,
+      List<_i4.HomeWebClientModelCuisine>> fetchAllCuisines({
+    required String? country,
+    _i2.Option<int>? take = const _i2.None(),
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #fetchAllCuisines,
+          [],
+          {
+            #country: country,
+            #take: take,
+          },
+        ),
+        returnValue:
+            _FakeTaskEither_0<Exception, List<_i4.HomeWebClientModelCuisine>>(
+          this,
+          Invocation.method(
+            #fetchAllCuisines,
+            [],
+            {
+              #country: country,
+              #take: take,
+            },
+          ),
+        ),
+      ) as _i2.TaskEither<Exception, List<_i4.HomeWebClientModelCuisine>>);
+  @override
   _i2.TaskEither<Exception, List<_i4.HomeWebClientModelTag>> fetchAllTags({
     required String? country,
     _i2.Option<int>? take = const _i2.None(),

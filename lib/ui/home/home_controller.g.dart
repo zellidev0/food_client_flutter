@@ -30,7 +30,7 @@ class _SystemHash {
 }
 
 String $HomeControllerImplementationHash() =>
-    r'f94d9f14b710a5f68885e978e6a526e0a5259b82';
+    r'2ac310a58921cc46d6c40574d10e7eaa1e32c359';
 
 /// See also [HomeControllerImplementation].
 final homeControllerImplementationProvider =
