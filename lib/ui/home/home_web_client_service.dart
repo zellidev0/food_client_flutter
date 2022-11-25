@@ -60,7 +60,7 @@ class HomeWebClientModelIngredient with _$HomeWebClientModelIngredient {
 class HomeWebClientModelTag with _$HomeWebClientModelTag {
   const factory HomeWebClientModelTag({
     required final String id,
-    required final String slug,
+    required final String type,
     required final String displayedName,
     required final int numberOfRecipes,
   }) = _HomeWebClientModelTag;

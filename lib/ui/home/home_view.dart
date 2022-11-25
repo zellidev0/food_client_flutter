@@ -91,19 +91,31 @@ class HomeView extends ConsumerWidget {
         ),
       );
 
-  Expanded _buildRecipesList({
+  Widget _buildRecipesList({
     required final List<HomeModelRecipe> recipes,
     required final HomeController controller,
     required final List<HomeModelFilterTag> tags,
   }) =>
       Expanded(
-        child: ListView.builder(
-          itemCount: recipes.length,
-          itemBuilder: (final _, final int index) => _buildRecipeCardItem(
-            recipe: recipes[index],
-            tags: tags,
-            controller: controller,
-          ),
+        child: Column(
+          children: <Widget>[
+            Builder(
+              builder: (final BuildContext context) => Text(
+                  recipes.length.toString(),
+                  style: Theme.of(context).textTheme.headline6,
+                )
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: recipes.length,
+                itemBuilder: (final _, final int index) => _buildRecipeCardItem(
+                  recipe: recipes[index],
+                  tags: tags,
+                  controller: controller,
+                ),
+              ),
+            ),
+          ],
         ),
       );
 
@@ -186,17 +198,20 @@ Widget buildDialogTags({
             .tags
             .filter((final HomeModelFilterTag tag) => tag.numberOfRecipes > 0)
             .map(
-              (final HomeModelFilterTag tag) => ChoiceChip(
-                label: Text('${tag.displayedName} (${tag.numberOfRecipes})'),
-                selected: tag.isSelected,
-                onSelected: (final bool selected) => ref
-                    .watch(
-                      homeControllerImplementationProvider.notifier,
-                    )
-                    .setTagSelected(
-                      tagId: tag.id,
-                      selected: selected,
-                    ),
+              (final HomeModelFilterTag tag) => Tooltip(
+                message: tag.toString(),
+                child: ChoiceChip(
+                  label: Text('${tag.displayedName} (${tag.numberOfRecipes})'),
+                  selected: tag.isSelected,
+                  onSelected: (final bool selected) => ref
+                      .watch(
+                        homeControllerImplementationProvider.notifier,
+                      )
+                      .setTagSelected(
+                        tagId: tag.id,
+                        selected: selected,
+                      ),
+                ),
               ),
             )
             .toList(),
@@ -213,11 +228,13 @@ Widget buildDialogCuisines({
             .cuisines
             .filter(
               (final HomeModelFilterCuisine cuisine) =>
-                  cuisine.numberOfRecipes >0,
+                  cuisine.numberOfRecipes > 0,
             )
             .map(
               (final HomeModelFilterCuisine cuisine) => ChoiceChip(
-                label: Text('${cuisine.displayedName} (${cuisine.numberOfRecipes})'),
+                label: Text(
+                  '${cuisine.displayedName} (${cuisine.numberOfRecipes})',
+                ),
                 selected: cuisine.isSelected,
                 onSelected: (final bool selected) => ref
                     .watch(

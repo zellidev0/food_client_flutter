@@ -2938,7 +2938,7 @@ WebClientModelTag _$WebClientModelTagFromJson(Map<String, dynamic> json) {
 mixin _$WebClientModelTag {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get slug => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
   Map<String, int> get numberOfRecipesByCountry =>
       throw _privateConstructorUsedError;
 
@@ -2957,7 +2957,7 @@ abstract class $WebClientModelTagCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
-      String slug,
+      String type,
       Map<String, int> numberOfRecipesByCountry});
 }
 
@@ -2976,7 +2976,7 @@ class _$WebClientModelTagCopyWithImpl<$Res, $Val extends WebClientModelTag>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? slug = null,
+    Object? type = null,
     Object? numberOfRecipesByCountry = null,
   }) {
     return _then(_value.copyWith(
@@ -2988,9 +2988,9 @@ class _$WebClientModelTagCopyWithImpl<$Res, $Val extends WebClientModelTag>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      slug: null == slug
-          ? _value.slug
-          : slug // ignore: cast_nullable_to_non_nullable
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
               as String,
       numberOfRecipesByCountry: null == numberOfRecipesByCountry
           ? _value.numberOfRecipesByCountry
@@ -3011,7 +3011,7 @@ abstract class _$$_WebClientModelTagCopyWith<$Res>
   $Res call(
       {String id,
       String name,
-      String slug,
+      String type,
       Map<String, int> numberOfRecipesByCountry});
 }
 
@@ -3028,7 +3028,7 @@ class __$$_WebClientModelTagCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? slug = null,
+    Object? type = null,
     Object? numberOfRecipesByCountry = null,
   }) {
     return _then(_$_WebClientModelTag(
@@ -3040,9 +3040,9 @@ class __$$_WebClientModelTagCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      slug: null == slug
-          ? _value.slug
-          : slug // ignore: cast_nullable_to_non_nullable
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
               as String,
       numberOfRecipesByCountry: null == numberOfRecipesByCountry
           ? _value._numberOfRecipesByCountry
@@ -3058,7 +3058,7 @@ class _$_WebClientModelTag implements _WebClientModelTag {
   const _$_WebClientModelTag(
       {required this.id,
       required this.name,
-      required this.slug,
+      required this.type,
       required final Map<String, int> numberOfRecipesByCountry})
       : _numberOfRecipesByCountry = numberOfRecipesByCountry;
 
@@ -3070,7 +3070,7 @@ class _$_WebClientModelTag implements _WebClientModelTag {
   @override
   final String name;
   @override
-  final String slug;
+  final String type;
   final Map<String, int> _numberOfRecipesByCountry;
   @override
   Map<String, int> get numberOfRecipesByCountry {
@@ -3080,7 +3080,7 @@ class _$_WebClientModelTag implements _WebClientModelTag {
 
   @override
   String toString() {
-    return 'WebClientModelTag(id: $id, name: $name, slug: $slug, numberOfRecipesByCountry: $numberOfRecipesByCountry)';
+    return 'WebClientModelTag(id: $id, name: $name, type: $type, numberOfRecipesByCountry: $numberOfRecipesByCountry)';
   }
 
   @override
@@ -3090,14 +3090,14 @@ class _$_WebClientModelTag implements _WebClientModelTag {
             other is _$_WebClientModelTag &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.slug, slug) || other.slug == slug) &&
+            (identical(other.type, type) || other.type == type) &&
             const DeepCollectionEquality().equals(
                 other._numberOfRecipesByCountry, _numberOfRecipesByCountry));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, slug,
+  int get hashCode => Object.hash(runtimeType, id, name, type,
       const DeepCollectionEquality().hash(_numberOfRecipesByCountry));
 
   @JsonKey(ignore: true)
@@ -3119,7 +3119,7 @@ abstract class _WebClientModelTag implements WebClientModelTag {
   const factory _WebClientModelTag(
           {required final String id,
           required final String name,
-          required final String slug,
+          required final String type,
           required final Map<String, int> numberOfRecipesByCountry}) =
       _$_WebClientModelTag;
 
@@ -3131,7 +3131,7 @@ abstract class _WebClientModelTag implements WebClientModelTag {
   @override
   String get name;
   @override
-  String get slug;
+  String get type;
   @override
   Map<String, int> get numberOfRecipesByCountry;
   @override

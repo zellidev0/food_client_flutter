@@ -208,7 +208,7 @@ class WebClientModelTag with _$WebClientModelTag {
   const factory WebClientModelTag({
     required final String id,
     required final String name,
-    required final String slug,
+    required final String type,
     required final Map<String,int> numberOfRecipesByCountry,
   }) = _WebClientModelTag;
 

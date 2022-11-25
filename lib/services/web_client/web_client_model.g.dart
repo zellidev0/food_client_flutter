@@ -308,7 +308,7 @@ _$_WebClientModelTag _$$_WebClientModelTagFromJson(Map<String, dynamic> json) =>
     _$_WebClientModelTag(
       id: json['id'] as String,
       name: json['name'] as String,
-      slug: json['slug'] as String,
+      type: json['type'] as String,
       numberOfRecipesByCountry:
           Map<String, int>.from(json['numberOfRecipesByCountry'] as Map),
     );
@@ -318,6 +318,6 @@ Map<String, dynamic> _$$_WebClientModelTagToJson(
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'slug': instance.slug,
+      'type': instance.type,
       'numberOfRecipesByCountry': instance.numberOfRecipesByCountry,
     };

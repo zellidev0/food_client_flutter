@@ -41,6 +41,10 @@ class WebClientService implements WebClientServiceAggregator {
           _recipesQueryApiUrl(
             country: country,
             limit: limit,
+            tags: tags,
+            cuisines: cuisines,
+            ingredients: ingredients,
+            searchTerm: searchTerm,
           ),
           headers: headers,
         ),
@@ -81,7 +85,7 @@ class WebClientService implements WebClientServiceAggregator {
           headers: headers,
         ),
         (final Object error, final _) => Exception(
-          'Failed to fetch recipes: $error',
+          'Failed to fetch tags: $error',
         ),
       ).flatMap(
         (final String response) =>
@@ -99,7 +103,7 @@ class WebClientService implements WebClientServiceAggregator {
                             (final WebClientModelTag tag) =>
                                 HomeWebClientModelTag(
                               id: tag.id,
-                              slug: tag.slug,
+                              type: tag.type,
                               displayedName: tag.name,
                               numberOfRecipes: optionOf(
                                 tag.numberOfRecipesByCountry[country],
@@ -153,7 +157,7 @@ class WebClientService implements WebClientServiceAggregator {
           headers: headers,
         ),
         (final Object error, final _) => Exception(
-          'Failed to fetch recipes: $error',
+          'Failed to fetch cuisines: $error',
         ),
       ).flatMap(
         (final String response) =>
@@ -272,11 +276,13 @@ class WebClientService implements WebClientServiceAggregator {
                 ),
                 (final Option<List<String>> r) => r.fold(
                   none<MapEntry<String, String>>,
-                  (final List<String> list) => some<MapEntry<String, String>>(
+                  (final List<String> list) => list.isEmpty ? none: some<MapEntry<String, String>>(
                     MapEntry<String, String>(
-                        entry.key,
-                        list.reduce(
-                            (final String a, final String b) => '$a,$b')),
+                      entry.key,
+                      list.reduce(
+                        (final String a, final String b) => '$a,$b',
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -422,7 +428,7 @@ List<HomeWebClientModelRecipe> _mapToHomeWebClientModelRecipe({
                 .map(
                   (final WebClientModelRecipeTag tag) => HomeWebClientModelTag(
                     id: tag.id,
-                    slug: tag.slug,
+                    type: tag.type,
                     displayedName: tag.name,
                     numberOfRecipes:
                         optionOf(tag.numberOfRecipesByCountry[country])
