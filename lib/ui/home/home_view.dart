@@ -15,7 +15,6 @@ class HomeView extends ConsumerWidget {
     );
 
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -85,7 +84,7 @@ class HomeView extends ConsumerWidget {
           onSelected: (final _) {
             controller.openDialog(
               child: widgetToOpenOnClick,
-              backgroundColor: Theme.of(context).backgroundColor,
+              backgroundColor: Theme.of(context).dialogBackgroundColor,
             );
           },
         ),
@@ -101,9 +100,9 @@ class HomeView extends ConsumerWidget {
           children: <Widget>[
             Builder(
               builder: (final BuildContext context) => Text(
-                  recipes.length.toString(),
-                  style: Theme.of(context).textTheme.headline6,
-                )
+                recipes.length.toString(),
+                style: Theme.of(context).textTheme.headline6,
+              ),
             ),
             Expanded(
               child: ListView.builder(

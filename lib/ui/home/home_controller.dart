@@ -16,7 +16,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'home_controller.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class HomeControllerImplementation extends _$HomeControllerImplementation
     implements HomeController {
   late final HomeWebClientService _webClientService;
