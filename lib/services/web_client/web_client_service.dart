@@ -276,14 +276,16 @@ class WebClientService implements WebClientServiceAggregator {
                 ),
                 (final Option<List<String>> r) => r.fold(
                   none<MapEntry<String, String>>,
-                  (final List<String> list) => list.isEmpty ? none: some<MapEntry<String, String>>(
-                    MapEntry<String, String>(
-                      entry.key,
-                      list.reduce(
-                        (final String a, final String b) => '$a,$b',
-                      ),
-                    ),
-                  ),
+                  (final List<String> list) => list.isEmpty
+                      ? none
+                      : some<MapEntry<String, String>>(
+                          MapEntry<String, String>(
+                            entry.key,
+                            list.reduce(
+                              (final String a, final String b) => '$a,$b',
+                            ),
+                          ),
+                        ),
                 ),
               ),
             )
@@ -309,48 +311,43 @@ SingleRecipeWebClientModelRecipe _mapToSingleRecipeWebClientModelRecipe({
       difficulty: recipe.difficulty,
       yields: recipe.yields
           .map(
-            (final WebClientModelYield yield) => yield.yield.map(
-              (final int servings) => SingleRecipeWebClientModelYield(
-                yield: servings,
-                ingredients: yield.ingredients
-                    .map(
-                      (final WebClientModelYieldIngredient ingredient) =>
-                          optionOf(
-                        recipe.ingredients.firstWhereOrNull(
-                          (
-                            final WebClientModelIngredient otherIngredient,
-                          ) =>
-                              otherIngredient.id == ingredient.id,
-                        ),
-                      ).map(
-                        (final WebClientModelIngredient otherIngredient) =>
-                            SingleRecipeWebClientModelIngredient(
-                          id: ingredient.id,
-                          amount: ingredient.amount.map(
-                            (final num number) => number.toDouble(),
-                          ),
-                          unit: ingredient.unit,
-                          imagePath: otherIngredient.imagePath.map(Uri.parse),
-                          slug: otherIngredient.slug,
-                          displayedName: otherIngredient.name,
-                        ),
+            (final WebClientModelYield yield) =>
+                SingleRecipeWebClientModelYield(
+              yields: yield.yields,
+              ingredients: yield.ingredients
+                  .map(
+                    (final WebClientModelYieldIngredient ingredient) =>
+                        optionOf(
+                      recipe.ingredients.firstWhereOrNull(
+                        (
+                          final WebClientModelIngredient otherIngredient,
+                        ) =>
+                            otherIngredient.id == ingredient.id,
                       ),
-                    )
-                    .whereType<Some<SingleRecipeWebClientModelIngredient>>()
-                    .map(
-                      (
-                        final Some<SingleRecipeWebClientModelIngredient>
-                            ingredient,
-                      ) =>
-                          ingredient.value,
-                    )
-                    .toList(),
-              ),
+                    ).map(
+                      (final WebClientModelIngredient otherIngredient) =>
+                          SingleRecipeWebClientModelIngredient(
+                        id: ingredient.id,
+                        amount: ingredient.amount.map(
+                          (final num number) => number.toDouble(),
+                        ),
+                        unit: ingredient.unit,
+                        imagePath: otherIngredient.imagePath.map(Uri.parse),
+                        slug: otherIngredient.slug,
+                        displayedName: otherIngredient.name,
+                      ),
+                    ),
+                  )
+                  .whereType<Some<SingleRecipeWebClientModelIngredient>>()
+                  .map(
+                    (
+                      final Some<SingleRecipeWebClientModelIngredient>
+                          ingredient,
+                    ) =>
+                        ingredient.value,
+                  )
+                  .toList(),
             ),
-          )
-          .whereType<Some<SingleRecipeWebClientModelYield>>()
-          .map(
-            (final Some<SingleRecipeWebClientModelYield> yield) => yield.value,
           )
           .toList(),
       tags: recipe.tags
@@ -368,7 +365,9 @@ SingleRecipeWebClientModelRecipe _mapToSingleRecipeWebClientModelRecipe({
           .map(
             (final WebClientModelStep step) => SingleRecipeWebClientModelStep(
               instructionMarkdown: step.instructionsMarkdown,
-              imagePath: none(),
+              imagePath: optionOf(step.images.firstOrNull).map(
+                (final WebClientModelStepImage image) => Uri.parse(image.path),
+              ),
             ),
           )
           .toList(),
@@ -401,7 +400,7 @@ List<HomeWebClientModelRecipe> _mapToHomeWebClientModelRecipe({
                 .toList(),
             yields: recipe.yields
                 .map(
-                  (final WebClientModelYield yield) => yield.yield.map(
+                  (final WebClientModelYield yield) => yield.yields.map(
                     (final int servings) => HomeWebClientModelYield(
                       yield: servings,
                       yieldIngredient: yield.ingredients

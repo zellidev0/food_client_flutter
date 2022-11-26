@@ -2243,7 +2243,7 @@ WebClientModelYield _$WebClientModelYieldFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$WebClientModelYield {
-  Option<int> get yield => throw _privateConstructorUsedError;
+  Option<int> get yields => throw _privateConstructorUsedError;
   List<WebClientModelYieldIngredient> get ingredients =>
       throw _privateConstructorUsedError;
 
@@ -2260,7 +2260,7 @@ abstract class $WebClientModelYieldCopyWith<$Res> {
       _$WebClientModelYieldCopyWithImpl<$Res, WebClientModelYield>;
   @useResult
   $Res call(
-      {Option<int> yield, List<WebClientModelYieldIngredient> ingredients});
+      {Option<int> yields, List<WebClientModelYieldIngredient> ingredients});
 }
 
 /// @nodoc
@@ -2276,13 +2276,13 @@ class _$WebClientModelYieldCopyWithImpl<$Res, $Val extends WebClientModelYield>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? yield = null,
+    Object? yields = null,
     Object? ingredients = null,
   }) {
     return _then(_value.copyWith(
-      yield: null == yield
-          ? _value.yield
-          : yield // ignore: cast_nullable_to_non_nullable
+      yields: null == yields
+          ? _value.yields
+          : yields // ignore: cast_nullable_to_non_nullable
               as Option<int>,
       ingredients: null == ingredients
           ? _value.ingredients
@@ -2301,7 +2301,7 @@ abstract class _$$_WebClientModelYieldCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Option<int> yield, List<WebClientModelYieldIngredient> ingredients});
+      {Option<int> yields, List<WebClientModelYieldIngredient> ingredients});
 }
 
 /// @nodoc
@@ -2315,13 +2315,13 @@ class __$$_WebClientModelYieldCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? yield = null,
+    Object? yields = null,
     Object? ingredients = null,
   }) {
     return _then(_$_WebClientModelYield(
-      yield: null == yield
-          ? _value.yield
-          : yield // ignore: cast_nullable_to_non_nullable
+      yields: null == yields
+          ? _value.yields
+          : yields // ignore: cast_nullable_to_non_nullable
               as Option<int>,
       ingredients: null == ingredients
           ? _value._ingredients
@@ -2335,7 +2335,7 @@ class __$$_WebClientModelYieldCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_WebClientModelYield implements _WebClientModelYield {
   const _$_WebClientModelYield(
-      {required this.yield,
+      {required this.yields,
       required final List<WebClientModelYieldIngredient> ingredients})
       : _ingredients = ingredients;
 
@@ -2343,7 +2343,7 @@ class _$_WebClientModelYield implements _WebClientModelYield {
       _$$_WebClientModelYieldFromJson(json);
 
   @override
-  final Option<int> yield;
+  final Option<int> yields;
   final List<WebClientModelYieldIngredient> _ingredients;
   @override
   List<WebClientModelYieldIngredient> get ingredients {
@@ -2353,7 +2353,7 @@ class _$_WebClientModelYield implements _WebClientModelYield {
 
   @override
   String toString() {
-    return 'WebClientModelYield(yield: $yield, ingredients: $ingredients)';
+    return 'WebClientModelYield(yields: $yields, ingredients: $ingredients)';
   }
 
   @override
@@ -2361,7 +2361,7 @@ class _$_WebClientModelYield implements _WebClientModelYield {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_WebClientModelYield &&
-            (identical(other.yield, yield) || other.yield == yield) &&
+            (identical(other.yields, yields) || other.yields == yields) &&
             const DeepCollectionEquality()
                 .equals(other._ingredients, _ingredients));
   }
@@ -2369,7 +2369,7 @@ class _$_WebClientModelYield implements _WebClientModelYield {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, yield, const DeepCollectionEquality().hash(_ingredients));
+      runtimeType, yields, const DeepCollectionEquality().hash(_ingredients));
 
   @JsonKey(ignore: true)
   @override
@@ -2388,7 +2388,7 @@ class _$_WebClientModelYield implements _WebClientModelYield {
 
 abstract class _WebClientModelYield implements WebClientModelYield {
   const factory _WebClientModelYield(
-          {required final Option<int> yield,
+          {required final Option<int> yields,
           required final List<WebClientModelYieldIngredient> ingredients}) =
       _$_WebClientModelYield;
 
@@ -2396,7 +2396,7 @@ abstract class _WebClientModelYield implements WebClientModelYield {
       _$_WebClientModelYield.fromJson;
 
   @override
-  Option<int> get yield;
+  Option<int> get yields;
   @override
   List<WebClientModelYieldIngredient> get ingredients;
   @override
@@ -2414,6 +2414,8 @@ mixin _$WebClientModelStep {
   int get index => throw _privateConstructorUsedError;
   String get instructionsMarkdown => throw _privateConstructorUsedError;
   List<String> get ingredients => throw _privateConstructorUsedError;
+  List<WebClientModelStepImage> get images =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -2427,7 +2429,11 @@ abstract class $WebClientModelStepCopyWith<$Res> {
           WebClientModelStep value, $Res Function(WebClientModelStep) then) =
       _$WebClientModelStepCopyWithImpl<$Res, WebClientModelStep>;
   @useResult
-  $Res call({int index, String instructionsMarkdown, List<String> ingredients});
+  $Res call(
+      {int index,
+      String instructionsMarkdown,
+      List<String> ingredients,
+      List<WebClientModelStepImage> images});
 }
 
 /// @nodoc
@@ -2446,6 +2452,7 @@ class _$WebClientModelStepCopyWithImpl<$Res, $Val extends WebClientModelStep>
     Object? index = null,
     Object? instructionsMarkdown = null,
     Object? ingredients = null,
+    Object? images = null,
   }) {
     return _then(_value.copyWith(
       index: null == index
@@ -2460,6 +2467,10 @@ class _$WebClientModelStepCopyWithImpl<$Res, $Val extends WebClientModelStep>
           ? _value.ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      images: null == images
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<WebClientModelStepImage>,
     ) as $Val);
   }
 }
@@ -2472,7 +2483,11 @@ abstract class _$$_WebClientModelStepCopyWith<$Res>
       __$$_WebClientModelStepCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int index, String instructionsMarkdown, List<String> ingredients});
+  $Res call(
+      {int index,
+      String instructionsMarkdown,
+      List<String> ingredients,
+      List<WebClientModelStepImage> images});
 }
 
 /// @nodoc
@@ -2489,6 +2504,7 @@ class __$$_WebClientModelStepCopyWithImpl<$Res>
     Object? index = null,
     Object? instructionsMarkdown = null,
     Object? ingredients = null,
+    Object? images = null,
   }) {
     return _then(_$_WebClientModelStep(
       index: null == index
@@ -2503,6 +2519,10 @@ class __$$_WebClientModelStepCopyWithImpl<$Res>
           ? _value._ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      images: null == images
+          ? _value._images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<WebClientModelStepImage>,
     ));
   }
 }
@@ -2513,8 +2533,10 @@ class _$_WebClientModelStep implements _WebClientModelStep {
   const _$_WebClientModelStep(
       {required this.index,
       required this.instructionsMarkdown,
-      required final List<String> ingredients})
-      : _ingredients = ingredients;
+      required final List<String> ingredients,
+      required final List<WebClientModelStepImage> images})
+      : _ingredients = ingredients,
+        _images = images;
 
   factory _$_WebClientModelStep.fromJson(Map<String, dynamic> json) =>
       _$$_WebClientModelStepFromJson(json);
@@ -2530,9 +2552,16 @@ class _$_WebClientModelStep implements _WebClientModelStep {
     return EqualUnmodifiableListView(_ingredients);
   }
 
+  final List<WebClientModelStepImage> _images;
+  @override
+  List<WebClientModelStepImage> get images {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_images);
+  }
+
   @override
   String toString() {
-    return 'WebClientModelStep(index: $index, instructionsMarkdown: $instructionsMarkdown, ingredients: $ingredients)';
+    return 'WebClientModelStep(index: $index, instructionsMarkdown: $instructionsMarkdown, ingredients: $ingredients, images: $images)';
   }
 
   @override
@@ -2544,13 +2573,18 @@ class _$_WebClientModelStep implements _WebClientModelStep {
             (identical(other.instructionsMarkdown, instructionsMarkdown) ||
                 other.instructionsMarkdown == instructionsMarkdown) &&
             const DeepCollectionEquality()
-                .equals(other._ingredients, _ingredients));
+                .equals(other._ingredients, _ingredients) &&
+            const DeepCollectionEquality().equals(other._images, _images));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, index, instructionsMarkdown,
-      const DeepCollectionEquality().hash(_ingredients));
+  int get hashCode => Object.hash(
+      runtimeType,
+      index,
+      instructionsMarkdown,
+      const DeepCollectionEquality().hash(_ingredients),
+      const DeepCollectionEquality().hash(_images));
 
   @JsonKey(ignore: true)
   @override
@@ -2569,9 +2603,11 @@ class _$_WebClientModelStep implements _WebClientModelStep {
 
 abstract class _WebClientModelStep implements WebClientModelStep {
   const factory _WebClientModelStep(
-      {required final int index,
-      required final String instructionsMarkdown,
-      required final List<String> ingredients}) = _$_WebClientModelStep;
+          {required final int index,
+          required final String instructionsMarkdown,
+          required final List<String> ingredients,
+          required final List<WebClientModelStepImage> images}) =
+      _$_WebClientModelStep;
 
   factory _WebClientModelStep.fromJson(Map<String, dynamic> json) =
       _$_WebClientModelStep.fromJson;
@@ -2582,6 +2618,8 @@ abstract class _WebClientModelStep implements WebClientModelStep {
   String get instructionsMarkdown;
   @override
   List<String> get ingredients;
+  @override
+  List<WebClientModelStepImage> get images;
   @override
   @JsonKey(ignore: true)
   _$$_WebClientModelStepCopyWith<_$_WebClientModelStep> get copyWith =>

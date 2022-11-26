@@ -151,7 +151,7 @@ class WebClientModelCuisine with _$WebClientModelCuisine {
 @freezed
 class WebClientModelYield with _$WebClientModelYield {
   const factory WebClientModelYield({
-    required final Option<int> yield,
+    required final Option<int> yields,
     required final List<WebClientModelYieldIngredient> ingredients,
   }) = _WebClientModelYield;
 
@@ -167,7 +167,7 @@ class WebClientModelStep with _$WebClientModelStep {
     required final int index,
     required final String instructionsMarkdown,
     required final List<String> ingredients,
-    // required final Option<List<WebClientModelStepImage>> images,
+    required final List<WebClientModelStepImage> images,
   }) = _WebClientModelStep;
 
   factory WebClientModelStep.fromJson(

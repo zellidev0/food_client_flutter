@@ -236,7 +236,7 @@ Map<String, dynamic> _$$_WebClientModelCuisineToJson(
 _$_WebClientModelYield _$$_WebClientModelYieldFromJson(
         Map<String, dynamic> json) =>
     _$_WebClientModelYield(
-      yield: Option<int>.fromJson(json['yield']),
+      yields: Option<int>.fromJson(json['yields']),
       ingredients: (json['ingredients'] as List<dynamic>)
           .map((e) =>
               WebClientModelYieldIngredient.fromJson(e as Map<String, dynamic>))
@@ -246,7 +246,7 @@ _$_WebClientModelYield _$$_WebClientModelYieldFromJson(
 Map<String, dynamic> _$$_WebClientModelYieldToJson(
         _$_WebClientModelYield instance) =>
     <String, dynamic>{
-      'yield': instance.yield.toJson(
+      'yields': instance.yields.toJson(
         (value) => value,
       ),
       'ingredients': instance.ingredients,
@@ -260,6 +260,10 @@ _$_WebClientModelStep _$$_WebClientModelStepFromJson(
       ingredients: (json['ingredients'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
+      images: (json['images'] as List<dynamic>)
+          .map((e) =>
+              WebClientModelStepImage.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_WebClientModelStepToJson(
@@ -268,6 +272,7 @@ Map<String, dynamic> _$$_WebClientModelStepToJson(
       'index': instance.index,
       'instructionsMarkdown': instance.instructionsMarkdown,
       'ingredients': instance.ingredients,
+      'images': instance.images,
     };
 
 _$_WebClientModelStepImage _$$_WebClientModelStepImageFromJson(
