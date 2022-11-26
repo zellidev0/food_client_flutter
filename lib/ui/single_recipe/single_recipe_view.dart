@@ -297,12 +297,15 @@ class SingleRecipeView extends ConsumerWidget {
               .map(
                 (final SingleRecipeModelIngredient ingredient) => Card(
                   child: ListTile(
-                    leading: ingredient.imageUrl.fold(
-                      () => const Icon(Icons.image_not_supported),
-                      (final Uri url) => Image.network(
-                        url.toString(),
-                        errorBuilder: (final _, final __, final ___) =>
-                            const Icon(Icons.image_not_supported),
+                    leading: AspectRatio(
+                      aspectRatio: 1,
+                      child: ingredient.imageUrl.fold(
+                        () => const Icon(Icons.image_not_supported),
+                        (final Uri url) => Image.network(
+                          url.toString(),
+                          errorBuilder: (final _, final __, final ___) =>
+                              const Icon(Icons.image_not_supported),
+                        ),
                       ),
                     ),
                     title: Text(ingredient.displayedName),
