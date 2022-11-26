@@ -87,7 +87,7 @@ void main() {
       equals(
         const HomeModel(
           allRecipes: <HomeModelRecipe>[],
-          tags: <HomeModelTag>[],
+          allTags: <HomeModelTag>[],
         ),
       ),
     );
@@ -110,7 +110,7 @@ void main() {
       equals(
         const HomeModel(
           allRecipes: <HomeModelRecipe>[],
-          tags: <HomeModelTag>[
+          allTags: <HomeModelTag>[
             HomeModelTag(
               id: 'id',
               displayedName: 'displayedName',

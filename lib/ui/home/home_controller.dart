@@ -18,7 +18,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'home_controller.g.dart';
 
-const int widthPixels = 1200;
+const int widthPixels = 10;
 
 @Riverpod(keepAlive: true)
 class HomeControllerImplementation extends _$HomeControllerImplementation

@@ -29,7 +29,7 @@ void main() {
     connectControllerMock = MockHomeControllerImplementation(
       const HomeModel(
         allRecipes: <HomeModelRecipe>[],
-        tags: <HomeModelTag>[],
+        allTags: <HomeModelTag>[],
       ),
     );
     await initWidgetTest(widgetTester: widgetTester);

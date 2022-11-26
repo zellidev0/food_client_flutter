@@ -230,19 +230,22 @@ Widget buildDialogCuisines({
                   cuisine.numberOfRecipes > 0,
             )
             .map(
-              (final HomeModelFilterCuisine cuisine) => ChoiceChip(
-                label: Text(
-                  '${cuisine.displayedName} (${cuisine.numberOfRecipes})',
+              (final HomeModelFilterCuisine cuisine) => Tooltip(
+                message: cuisine.toString(),
+                child: ChoiceChip(
+                  label: Text(
+                    '${cuisine.displayedName} (${cuisine.numberOfRecipes})',
+                  ),
+                  selected: cuisine.isSelected,
+                  onSelected: (final bool selected) => ref
+                      .watch(
+                        homeControllerImplementationProvider.notifier,
+                      )
+                      .setCuisineSelected(
+                        cuisineId: cuisine.id,
+                        selected: selected,
+                      ),
                 ),
-                selected: cuisine.isSelected,
-                onSelected: (final bool selected) => ref
-                    .watch(
-                      homeControllerImplementationProvider.notifier,
-                    )
-                    .setCuisineSelected(
-                      cuisineId: cuisine.id,
-                      selected: selected,
-                    ),
               ),
             )
             .toList(),
