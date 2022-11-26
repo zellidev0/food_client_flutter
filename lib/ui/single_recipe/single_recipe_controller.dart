@@ -19,7 +19,6 @@ part 'single_recipe_controller.g.dart';
 class SingleRecipeControllerImplementation
     extends _$SingleRecipeControllerImplementation
     implements SingleRecipeController {
-  // ignore: unused_field
   late final SingleRecipeWebClientService _webClientService;
   late final SingleRecipeWebImageSizerService _webImageSizerService;
   late final SingleRecipeNavigationService _navigationService;
@@ -30,7 +29,9 @@ class SingleRecipeControllerImplementation
   }) {
     _webClientService = ref.watch(webClientServiceProvider);
     _webImageSizerService = ref.watch(webImageSizerServiceProvider);
-    _navigationService = ref.watch(navigationServiceProvider);
+    _navigationService = ref.watch(
+      bottomNavigationBarNavigationServiceProvider,
+    );
 
     unawaited(
       init(
@@ -71,7 +72,6 @@ class SingleRecipeControllerImplementation
       },
     );
   }
-
 }
 
 SingleRecipeModel mapToSingleRecipeModelRecipe({

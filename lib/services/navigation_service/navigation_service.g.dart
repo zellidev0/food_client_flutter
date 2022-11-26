@@ -29,21 +29,36 @@ class _SystemHash {
   }
 }
 
-String $navigationServiceHash() => r'b21feea9a65625546135130ec45fb4c78596c070';
+String $globalNavigationServiceHash() =>
+    r'bef2ccdac7a7227d5a15190d726a1967b5ccdb71';
 
-/// See also [navigationService].
-final navigationServiceProvider =
+/// See also [globalNavigationService].
+final globalNavigationServiceProvider =
     AutoDisposeProvider<NavigationServiceAggregator>(
-  navigationService,
-  name: r'navigationServiceProvider',
+  globalNavigationService,
+  name: r'globalNavigationServiceProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $navigationServiceHash,
+      : $globalNavigationServiceHash,
 );
-typedef NavigationServiceRef
+typedef GlobalNavigationServiceRef
+    = AutoDisposeProviderRef<NavigationServiceAggregator>;
+String $bottomNavigationBarNavigationServiceHash() =>
+    r'05de2fbf470701cdd17e0955db5f9832f303d023';
+
+/// See also [bottomNavigationBarNavigationService].
+final bottomNavigationBarNavigationServiceProvider =
+    AutoDisposeProvider<NavigationServiceAggregator>(
+  bottomNavigationBarNavigationService,
+  name: r'bottomNavigationBarNavigationServiceProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : $bottomNavigationBarNavigationServiceHash,
+);
+typedef BottomNavigationBarNavigationServiceRef
     = AutoDisposeProviderRef<NavigationServiceAggregator>;
 String $globalBeamerDelegateHash() =>
-    r'16c7cffd001441e359d7544062c03915ce4b92c8';
+    r'505d5108c6a1cffe7199779dd8f94a8b10f93dd7';
 
 /// See also [globalBeamerDelegate].
 final globalBeamerDelegateProvider = Provider<BeamerDelegate>(
@@ -54,3 +69,15 @@ final globalBeamerDelegateProvider = Provider<BeamerDelegate>(
       : $globalBeamerDelegateHash,
 );
 typedef GlobalBeamerDelegateRef = ProviderRef<BeamerDelegate>;
+String $bottomNavigationBarBeamerDelegateHash() =>
+    r'6bbe4fc5e072f0cfb139ea0f3862c162c3765ec3';
+
+/// See also [bottomNavigationBarBeamerDelegate].
+final bottomNavigationBarBeamerDelegateProvider = Provider<BeamerDelegate>(
+  bottomNavigationBarBeamerDelegate,
+  name: r'bottomNavigationBarBeamerDelegateProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : $bottomNavigationBarBeamerDelegateHash,
+);
+typedef BottomNavigationBarBeamerDelegateRef = ProviderRef<BeamerDelegate>;

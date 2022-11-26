@@ -3,6 +3,8 @@ import 'package:flutter/material.dart' as material;
 import 'package:flutter/material.dart';
 import 'package:food_client/ui/home/home_navigation_service.dart';
 import 'package:food_client/ui/home/home_view.dart';
+import 'package:food_client/ui/main/main_navigation_service.dart';
+import 'package:food_client/ui/main/main_view.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_navigation_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_view.dart';
 import 'package:fpdart/fpdart.dart';
@@ -13,22 +15,35 @@ part 'navigation_service.freezed.dart';
 part 'navigation_service.g.dart';
 
 @riverpod
-NavigationServiceAggregator navigationService(
-  final NavigationServiceRef ref,
+NavigationServiceAggregator globalNavigationService(
+  final GlobalNavigationServiceRef ref,
 ) =>
     BeamerNavigationService(
       beamerDelegate: ref.read(globalBeamerDelegateProvider),
     );
 
+@riverpod
+NavigationServiceAggregator bottomNavigationBarNavigationService(
+  final BottomNavigationBarNavigationServiceRef ref,
+) =>
+    BeamerNavigationService(
+      beamerDelegate: ref.read(bottomNavigationBarBeamerDelegateProvider),
+    );
+
 abstract class NavigationServiceAggregator
-    implements HomeNavigationService, SingleRecipeNavigationService {}
+    implements
+        HomeNavigationService,
+        SingleRecipeNavigationService,
+        MainNavigationService {}
 
 class NavigationServiceUris {
   NavigationServiceUris._();
 
-  static Uri singleRecipeUri = Uri.parse('/recipes');
+  static Uri singleRecipeUri = Uri.parse('/main/recipes');
   static String singleRecipeIdKey = 'single-recipe-id';
-  static Uri homeRouteUri = Uri.parse('/home');
+  static Uri homeRouteUri = Uri.parse('/main/home');
+  static Uri cartRouteUri = Uri.parse('/main/cart');
+  static Uri mainRouteUri = Uri.parse('/main');
 }
 
 @freezed
@@ -119,6 +134,20 @@ class BeamerNavigationService implements NavigationServiceAggregator {
 
 @Riverpod(keepAlive: true)
 BeamerDelegate globalBeamerDelegate(final GlobalBeamerDelegateRef ref) =>
+    BeamerDelegate(
+      initialPath: NavigationServiceUris.mainRouteUri.toString(),
+      locationBuilder: RoutesLocationBuilder(
+        routes: <Pattern, dynamic Function(BuildContext, BeamState, Object?)>{
+          NavigationServiceUris.mainRouteUri.toString():
+              (final _, final __, final ___) => const MainView(),
+          '*': (final _, final __, final ___) => const MainView(),
+        },
+      ),
+    );
+
+@Riverpod(keepAlive: true)
+BeamerDelegate bottomNavigationBarBeamerDelegate(
+        final GlobalBeamerDelegateRef ref) =>
     BeamerDelegate(
       initialPath: NavigationServiceUris.homeRouteUri.toString(),
       locationBuilder: RoutesLocationBuilder(

@@ -32,7 +32,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
   HomeModel build() {
     _webClientService = ref.read(webClientServiceProvider);
     _webImageSizerService = ref.read(webImageSizerServiceProvider);
-    _navigationService = ref.read(navigationServiceProvider);
+    _navigationService = ref.read(bottomNavigationBarNavigationServiceProvider);
     _recipeLanguageService = ref.read(recipeLanguageServiceProvider);
 
     unawaited(
