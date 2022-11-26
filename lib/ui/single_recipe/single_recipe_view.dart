@@ -34,7 +34,7 @@ class SingleRecipeView extends ConsumerWidget {
       body: model.recipe.fold(
         (final Exception exception) => Text(exception.toString()),
         (final Option<SingleRecipeModelRecipe> content) => content.fold(
-          CircularProgressIndicator.new,
+          () => const Center(child: CircularProgressIndicator()),
           (final SingleRecipeModelRecipe recipe) => _buildContent(
             recipe: recipe,
             selectedYield: model.selectedYield,
