@@ -30,22 +30,20 @@ class _SystemHash {
 }
 
 String $HomeControllerImplementationHash() =>
-    r'e2972f518cc8894038795c3ba7a2e09c7bd0bb80';
+    r'b669b03c87c891d6fd050a4fbfdb187d19260ec2';
 
 /// See also [HomeControllerImplementation].
 final homeControllerImplementationProvider =
-    AutoDisposeNotifierProvider<HomeControllerImplementation, HomeModel>(
+    NotifierProvider<HomeControllerImplementation, HomeModel>(
   HomeControllerImplementation.new,
   name: r'homeControllerImplementationProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : $HomeControllerImplementationHash,
 );
-typedef HomeControllerImplementationRef
-    = AutoDisposeNotifierProviderRef<HomeModel>;
+typedef HomeControllerImplementationRef = NotifierProviderRef<HomeModel>;
 
-abstract class _$HomeControllerImplementation
-    extends AutoDisposeNotifier<HomeModel> {
+abstract class _$HomeControllerImplementation extends Notifier<HomeModel> {
   @override
   HomeModel build();
 }

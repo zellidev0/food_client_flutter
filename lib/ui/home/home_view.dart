@@ -32,9 +32,9 @@ class HomeView extends ConsumerWidget {
                 )
               else
                 _buildRecipesList(
-                  tags: model.tags,
                   controller: controller,
                   recipes: model.filteredRecipes,
+                  tags: model.allTags,
                 ),
             ],
           ),
@@ -52,7 +52,7 @@ class HomeView extends ConsumerWidget {
           buildSingleFilterChip(
             text: 'Tags',
             controller: controller,
-            selectedFilters: model.tags
+            selectedFilters: model.allTags
                 .filter((final HomeModelFilter filter) => filter.isSelected)
                 .toList(),
             widgetToOpenOnClick: buildDialogTags(title: 'Tags'),
@@ -61,7 +61,7 @@ class HomeView extends ConsumerWidget {
           buildSingleFilterChip(
             text: 'Cuisines',
             controller: controller,
-            selectedFilters: model.cuisines
+            selectedFilters: model.allCuisines
                 .filter((final HomeModelFilter filter) => filter.isSelected)
                 .toList(),
             widgetToOpenOnClick: buildDialogCuisines(title: 'Cuisines'),
@@ -91,8 +91,8 @@ class HomeView extends ConsumerWidget {
       );
 
   Widget _buildRecipesList({
-    required final List<HomeModelRecipe> recipes,
     required final HomeController controller,
+    required final List<HomeModelRecipe> recipes,
     required final List<HomeModelFilterTag> tags,
   }) =>
       Expanded(
@@ -194,7 +194,7 @@ Widget buildDialogTags({
       builder: (final _, final WidgetRef ref, final __) => buildDialog(
         children: ref
             .watch(homeControllerImplementationProvider)
-            .tags
+            .allTags
             .filter((final HomeModelFilterTag tag) => tag.numberOfRecipes > 0)
             .map(
               (final HomeModelFilterTag tag) => Tooltip(
@@ -224,7 +224,7 @@ Widget buildDialogCuisines({
       builder: (final _, final WidgetRef ref, final __) => buildDialog(
         children: ref
             .watch(homeControllerImplementationProvider)
-            .cuisines
+            .allCuisines
             .filter(
               (final HomeModelFilterCuisine cuisine) =>
                   cuisine.numberOfRecipes > 0,

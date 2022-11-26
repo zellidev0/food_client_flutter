@@ -30,7 +30,7 @@ class _SystemHash {
 }
 
 String $SingleRecipeControllerImplementationHash() =>
-    r'914057004eb63f1d69d668de607d42a76980ec1b';
+    r'01237a9c095c9eddb23bd5a87e03f2717e2fc901';
 
 /// See also [SingleRecipeControllerImplementation].
 class SingleRecipeControllerImplementationProvider

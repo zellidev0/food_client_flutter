@@ -8,8 +8,8 @@ class HomeModel with _$HomeModel {
   const factory HomeModel({
     required final List<HomeModelRecipe> allRecipes,
     required final List<HomeModelRecipe> filteredRecipes,
-    required final List<HomeModelFilterTag> tags,
-    required final List<HomeModelFilterCuisine> cuisines,
+    required final List<HomeModelFilterTag> allTags,
+    required final List<HomeModelFilterCuisine> allCuisines,
   }) = _HomeModel;
 }
 
