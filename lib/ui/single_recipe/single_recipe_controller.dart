@@ -1,9 +1,12 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
+import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/services/web_client/web_client_service.dart';
 import 'package:food_client/services/web_image_sizer/web_image_sizer_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_model.dart';
+import 'package:food_client/ui/single_recipe/single_recipe_navigation_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_view.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_web_client_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_web_image_sizer_service.dart';
@@ -19,6 +22,7 @@ class SingleRecipeControllerImplementation
   // ignore: unused_field
   late final SingleRecipeWebClientService _webClientService;
   late final SingleRecipeWebImageSizerService _webImageSizerService;
+  late final SingleRecipeNavigationService _navigationService;
 
   @override
   SingleRecipeModel build({
@@ -26,20 +30,18 @@ class SingleRecipeControllerImplementation
   }) {
     _webClientService = ref.watch(webClientServiceProvider);
     _webImageSizerService = ref.watch(webImageSizerServiceProvider);
+    _navigationService = ref.watch(navigationServiceProvider);
 
     unawaited(
       init(
-        initialTask: _webClientService
-            .fetchSingleRecipe(
-              recipeId: recipeId,
-            )
-            .map(
-              (final SingleRecipeWebClientModelRecipe recipe) =>
-                  mapToSingleRecipeModelRecipe(
-                recipe: recipe,
-                imageResizerService: _webImageSizerService,
-              ),
-            ),
+        initialTask:
+            _webClientService.fetchSingleRecipe(recipeId: recipeId).map(
+                  (final SingleRecipeWebClientModelRecipe recipe) =>
+                      mapToSingleRecipeModelRecipe(
+                    recipe: recipe,
+                    imageResizerService: _webImageSizerService,
+                  ),
+                ),
       ),
     );
 
@@ -54,6 +56,11 @@ class SingleRecipeControllerImplementation
     state = state.copyWith(selectedYield: some(yield));
   }
 
+  @override
+  void goBack() {
+    _navigationService.goBackToNamed(uri: NavigationServiceUris.homeRouteUri);
+  }
+
   Future<void> init({
     required final TaskEither<Exception, SingleRecipeModel> initialTask,
   }) async {
@@ -64,6 +71,7 @@ class SingleRecipeControllerImplementation
       },
     );
   }
+
 }
 
 SingleRecipeModel mapToSingleRecipeModelRecipe({
@@ -87,7 +95,7 @@ SingleRecipeModel mapToSingleRecipeModelRecipe({
               (final Uri imagePath) => imageResizerService
                   .getUrl(
                     filePath: imagePath,
-                    widthPixels: 500,
+                    widthPixels: 1000,
                   )
                   .toOption(),
             ),
@@ -99,7 +107,9 @@ SingleRecipeModel mapToSingleRecipeModelRecipe({
           ),
         ),
       ),
-      selectedYield: none(),
+      selectedYield: optionOf(recipe.yields.firstOrNull).flatMap(
+        (final SingleRecipeWebClientModelYield yield) => yield.yields,
+      ),
     );
 
 SingleRecipeModelDisplayedAttributes _mapDisplayedAttributes({
@@ -138,7 +148,7 @@ List<SingleRecipeModelStep> _mapSteps({
               (final Uri imagePath) => imageResizerService
                   .getUrl(
                     filePath: imagePath,
-                    widthPixels: 500,
+                    widthPixels: 1000,
                   )
                   .toOption(),
             ),
@@ -154,7 +164,7 @@ List<SingleRecipeModelYield> _mapYields({
         .map(
           (final SingleRecipeWebClientModelYield yield) =>
               SingleRecipeModelYield(
-            yield: yield.yield,
+            yields: yield.yields,
             ingredients: yield.ingredients
                 .map(
                   (
@@ -180,8 +190,3 @@ List<SingleRecipeModelYield> _mapYields({
           ),
         )
         .toList();
-
-List<String> _mapTagIds({
-  required final List<SingleRecipeWebClientModelTag> tags,
-}) =>
-    tags.map((final SingleRecipeWebClientModelTag tag) => tag.id).toList();

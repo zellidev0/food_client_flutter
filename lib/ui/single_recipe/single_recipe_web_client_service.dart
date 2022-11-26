@@ -61,7 +61,7 @@ class SingleRecipeWebClientModelIngredient
 class SingleRecipeWebClientModelYield
     with _$SingleRecipeWebClientModelYield {
   const factory SingleRecipeWebClientModelYield({
-    required final int yield,
+    required final Option<int> yields,
     required final List<SingleRecipeWebClientModelIngredient> ingredients,
   }) = _SingleRecipeWebClientModelYield;
 }

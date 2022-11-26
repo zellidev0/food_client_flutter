@@ -1018,7 +1018,7 @@ abstract class _SingleRecipeModelIngredient
 
 /// @nodoc
 mixin _$SingleRecipeModelYield {
-  int get yield => throw _privateConstructorUsedError;
+  Option<int> get yields => throw _privateConstructorUsedError;
   List<SingleRecipeModelIngredient> get ingredients =>
       throw _privateConstructorUsedError;
 
@@ -1033,7 +1033,8 @@ abstract class $SingleRecipeModelYieldCopyWith<$Res> {
           $Res Function(SingleRecipeModelYield) then) =
       _$SingleRecipeModelYieldCopyWithImpl<$Res, SingleRecipeModelYield>;
   @useResult
-  $Res call({int yield, List<SingleRecipeModelIngredient> ingredients});
+  $Res call(
+      {Option<int> yields, List<SingleRecipeModelIngredient> ingredients});
 }
 
 /// @nodoc
@@ -1050,14 +1051,14 @@ class _$SingleRecipeModelYieldCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? yield = null,
+    Object? yields = null,
     Object? ingredients = null,
   }) {
     return _then(_value.copyWith(
-      yield: null == yield
-          ? _value.yield
-          : yield // ignore: cast_nullable_to_non_nullable
-              as int,
+      yields: null == yields
+          ? _value.yields
+          : yields // ignore: cast_nullable_to_non_nullable
+              as Option<int>,
       ingredients: null == ingredients
           ? _value.ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
@@ -1074,7 +1075,8 @@ abstract class _$$_SingleRecipeModelYieldCopyWith<$Res>
       __$$_SingleRecipeModelYieldCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int yield, List<SingleRecipeModelIngredient> ingredients});
+  $Res call(
+      {Option<int> yields, List<SingleRecipeModelIngredient> ingredients});
 }
 
 /// @nodoc
@@ -1089,14 +1091,14 @@ class __$$_SingleRecipeModelYieldCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? yield = null,
+    Object? yields = null,
     Object? ingredients = null,
   }) {
     return _then(_$_SingleRecipeModelYield(
-      yield: null == yield
-          ? _value.yield
-          : yield // ignore: cast_nullable_to_non_nullable
-              as int,
+      yields: null == yields
+          ? _value.yields
+          : yields // ignore: cast_nullable_to_non_nullable
+              as Option<int>,
       ingredients: null == ingredients
           ? _value._ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
@@ -1109,12 +1111,12 @@ class __$$_SingleRecipeModelYieldCopyWithImpl<$Res>
 
 class _$_SingleRecipeModelYield implements _SingleRecipeModelYield {
   const _$_SingleRecipeModelYield(
-      {required this.yield,
+      {required this.yields,
       required final List<SingleRecipeModelIngredient> ingredients})
       : _ingredients = ingredients;
 
   @override
-  final int yield;
+  final Option<int> yields;
   final List<SingleRecipeModelIngredient> _ingredients;
   @override
   List<SingleRecipeModelIngredient> get ingredients {
@@ -1124,7 +1126,7 @@ class _$_SingleRecipeModelYield implements _SingleRecipeModelYield {
 
   @override
   String toString() {
-    return 'SingleRecipeModelYield(yield: $yield, ingredients: $ingredients)';
+    return 'SingleRecipeModelYield(yields: $yields, ingredients: $ingredients)';
   }
 
   @override
@@ -1132,14 +1134,14 @@ class _$_SingleRecipeModelYield implements _SingleRecipeModelYield {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SingleRecipeModelYield &&
-            (identical(other.yield, yield) || other.yield == yield) &&
+            (identical(other.yields, yields) || other.yields == yields) &&
             const DeepCollectionEquality()
                 .equals(other._ingredients, _ingredients));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, yield, const DeepCollectionEquality().hash(_ingredients));
+      runtimeType, yields, const DeepCollectionEquality().hash(_ingredients));
 
   @JsonKey(ignore: true)
   @override
@@ -1151,12 +1153,12 @@ class _$_SingleRecipeModelYield implements _SingleRecipeModelYield {
 
 abstract class _SingleRecipeModelYield implements SingleRecipeModelYield {
   const factory _SingleRecipeModelYield(
-          {required final int yield,
+          {required final Option<int> yields,
           required final List<SingleRecipeModelIngredient> ingredients}) =
       _$_SingleRecipeModelYield;
 
   @override
-  int get yield;
+  Option<int> get yields;
   @override
   List<SingleRecipeModelIngredient> get ingredients;
   @override

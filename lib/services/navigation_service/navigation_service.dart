@@ -61,7 +61,7 @@ class BeamerNavigationService implements NavigationServiceAggregator {
 
   @override
   void navigateToNamed({required final Uri uri}) =>
-      _beamerDelegate.beamToNamed(uri.toString());
+      _beamerDelegate.beamToNamed(uri.toString(), beamBackOnPop: true);
 
   @override
   void replaceWithNamed({required final Uri uri}) =>

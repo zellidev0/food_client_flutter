@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_controller.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_model.dart';
@@ -19,17 +20,24 @@ class SingleRecipeView extends ConsumerWidget {
       singleRecipeControllerImplementationProvider(recipeId: _recipeId),
     );
     final SingleRecipeController controller = ref.read(
-      singleRecipeControllerImplementationProvider(recipeId: _recipeId).notifier,
+      singleRecipeControllerImplementationProvider(recipeId: _recipeId)
+          .notifier,
     );
 
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: controller.goBack,
+        ),
+      ),
       body: model.recipe.fold(
         (final Exception exception) => Text(exception.toString()),
         (final Option<SingleRecipeModelRecipe> content) => content.fold(
           CircularProgressIndicator.new,
           (final SingleRecipeModelRecipe recipe) => _buildContent(
             recipe: recipe,
-            selectedYield: model.selectedYield.getOrElse(() => 1),//TODO
+            selectedYield: model.selectedYield,
             controller: controller,
           ),
         ),
@@ -40,233 +48,329 @@ class SingleRecipeView extends ConsumerWidget {
   Widget _buildContent({
     required final SingleRecipeController controller,
     required final SingleRecipeModelRecipe recipe,
-    required final int selectedYield,
+    required final Option<int> selectedYield,
   }) =>
       Builder(
         builder: (final BuildContext context) => Stack(
           children: <Widget>[
-            Column(
-              children: <Widget>[
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    color: Colors.red,
-                  ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Container(
-                    width: double.infinity,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                children: <Widget>[
-                  const Expanded(
-                    child: ColoredBox(color: Colors.transparent),
-                  ),
-                  Expanded(
-                    flex: 3,
-                    child: ColoredBox(
-                      color: Colors.white,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Column(
-                          children: <Widget>[
-                            Text(
-                              recipe.displayedAttributes.name,
-                              style: Theme.of(context).textTheme.headlineMedium,
-                            ),
-                            Text(
-                              recipe.displayedAttributes.headline,
-                              style: Theme.of(context).textTheme.headlineSmall,
-                            ),
-                            const Divider(),
-                            _buildCookingDetails(),
-                            const Divider(),
-                            Expanded(
-                              child: DefaultTabController(
-                                length: 2,
-                                child: Column(
-                                  children: <Widget>[
-                                    const TabBar(
-                                      tabs: <Widget>[
-                                        Text('Ingredients'),
-                                        Text('Instructions'),
-                                      ],
-                                    ),
-                                    Expanded(
-                                      child: TabBarView(
-                                        children: <Widget>[
-                                          Column(
-                                            children: <Widget>[
-                                              buildYieldToggleButton(
-                                                yields: recipe.yields,
-                                                selectedYield: selectedYield,
-                                                controller: controller,
-                                              ),
-                                              buildIngredients(
-                                                recipe: recipe,
-                                                selectedYield: selectedYield,
-                                              ),
-                                            ],
-                                          ),
-                                          _buildDescriptionStepsTab(
-                                            steps: recipe.steps,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
+            buildTopImage(recipe: recipe),
+            buildMainContent(
+              recipe: recipe,
+              context: context,
+              selectedYield: selectedYield,
+              controller: controller,
             ),
           ],
         ),
       );
 
-  ListView _buildDescriptionStepsTab({
-    required final List<SingleRecipeModelStep> steps,
+  Padding buildMainContent({
+    required final SingleRecipeModelRecipe recipe,
+    required final BuildContext context,
+    required final Option<int> selectedYield,
+    required final SingleRecipeController controller,
   }) =>
-      ListView(
-        children: steps
-            .mapIndexed(
-              (
-                final int index,
-                final SingleRecipeModelStep step,
-              ) =>
-                  Column(
-                children: <Widget>[
-                  Stack(
+      Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: <Widget>[
+            Expanded(child: Container()),
+            Expanded(
+              flex: 3,
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
                     children: <Widget>[
-                      step.imageUrl.fold(
-                        () => const Icon(Icons.image_not_supported),
-                        (final Uri url) => Image.network(
-                          url.toString(),
-                          errorBuilder: (final _, final __, final ___) =>
-                              const Icon(Icons.image_not_supported),
+                      Tooltip(
+                        margin: const EdgeInsets.all(16),
+                        message: recipe.displayedAttributes.headline,
+                        child: Text(
+                          recipe.displayedAttributes.name,
+                          style: Theme.of(context).textTheme.headline3,
                         ),
                       ),
-                      _buildDescriptionTextStepIndicator(
-                        stepNumber: index + 1,
-                      )
+                      // _buildCookingDetails(),
+                      const Divider(),
+                      buildTabContent(
+                        recipe: recipe,
+                        selectedYield: selectedYield,
+                        controller: controller,
+                      ),
                     ],
                   ),
-                  const SizedBox(height: 8),
-                  Text(step.instructionMarkdown),
-                  const Divider(),
-                ],
+                ),
               ),
             )
-            .toList(),
+          ],
+        ),
       );
 
-  FloatingActionButton _buildDescriptionTextStepIndicator({
+  Column buildTopImage({required final SingleRecipeModelRecipe recipe}) =>
+      Column(
+        children: <Widget>[
+          recipe.imageUri
+              .map<Widget>(
+                (final Uri imageUri) => Image.network(
+                  imageUri.toString(),
+                  fit: BoxFit.scaleDown,
+                  errorBuilder: (final _, final __, final ___) =>
+                      const Expanded(
+                    child: Icon(Icons.image_not_supported),
+                  ),
+                ),
+              )
+              .getOrElse(() => const Icon(Icons.image_not_supported)),
+          Expanded(
+            child: Container(width: double.infinity),
+          ),
+        ],
+      );
+
+  Expanded buildTabContent({
+    required final SingleRecipeModelRecipe recipe,
+    required final Option<int> selectedYield,
+    required final SingleRecipeController controller,
+  }) =>
+      Expanded(
+        child: DefaultTabController(
+          length: 2,
+          child: Column(
+            children: <Widget>[
+              _buildTabBar(),
+              // _buildCookingDetails(),
+              buildTabsContent(
+                recipe: recipe,
+                selectedYield: selectedYield,
+                controller: controller,
+              ),
+            ],
+          ),
+        ),
+      );
+
+  Expanded buildTabsContent({
+    required final SingleRecipeModelRecipe recipe,
+    required final Option<int> selectedYield,
+    required final SingleRecipeController controller,
+  }) =>
+      Expanded(
+        child: TabBarView(
+          children: <Widget>[
+            Column(
+              children: <Widget>[
+                const SizedBox(height: 16),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: <Widget>[
+                        buildYieldToggleButton(
+                          yields: recipe.yields,
+                          selectedYield: selectedYield,
+                          controller: controller,
+                        ),
+                        const SizedBox(height: 16),
+                        buildIngredients(
+                          yields: recipe.yields,
+                          selectedYield: selectedYield,
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            _buildDescriptionStepsTab(
+              steps: recipe.steps,
+            ),
+          ],
+        ),
+      );
+
+  Widget _buildTabBar() => Builder(
+        builder: (final BuildContext context) => TabBar(
+          labelColor: Theme.of(context).indicatorColor,
+          splashBorderRadius: const BorderRadius.all(Radius.circular(20)),
+          indicator: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+          ),
+          indicatorColor: Colors.red,
+          tabs: const <Widget>[
+            Tab(text: 'Ingredients'),
+            Tab(text: 'Instructions'),
+          ],
+        ),
+      );
+
+  Widget _buildDescriptionStepsTab({
+    required final List<SingleRecipeModelStep> steps,
+  }) =>
+      Column(
+        children: <Widget>[
+          const SizedBox(height: 16),
+          Expanded(
+            child: ListView(
+              children: steps
+                  .mapIndexed(
+                    (
+                      final int index,
+                      final SingleRecipeModelStep step,
+                    ) =>
+                        buildSingleDescriptionCard(
+                      index: index,
+                      step: step,
+                    ),
+                  )
+                  .toList(),
+            ),
+          ),
+        ],
+      );
+
+  Card buildSingleDescriptionCard({
+    required final SingleRecipeModelStep step,
+    required final int index,
+  }) =>
+      Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          children: <Widget>[
+            Stack(
+              children: <Widget>[
+                AspectRatio(
+                  aspectRatio: 1.5 / 1,
+                  child: step.imageUrl.fold(
+                    () => const Icon(Icons.image_not_supported),
+                    (final Uri url) => ClipRRect(
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
+                      ),
+                      child: Image.network(
+                        url.toString(),
+                        fit: BoxFit.fill,
+                        errorBuilder: (final _, final __, final ___) =>
+                            const Icon(Icons.image_not_supported),
+                      ),
+                    ),
+                  ),
+                ),
+                _buildDescriptionTextStepIndicator(stepNumber: index)
+              ],
+            ),
+            Markdown(
+              data: step.instructionMarkdown,
+              shrinkWrap: true,
+            ),
+          ],
+        ),
+      );
+
+  Widget _buildDescriptionTextStepIndicator({
     required final int stepNumber,
   }) =>
-      FloatingActionButton.small(
-        onPressed: null,
-        backgroundColor: Colors.grey,
-        child: Text((stepNumber + 1).toString()),
+      Padding(
+        padding: const EdgeInsets.all(16),
+        child: Builder(
+          builder: (final BuildContext context) => FloatingActionButton(
+            onPressed: null,
+            child: Text((stepNumber + 1).toString()),
+          ),
+        ),
       );
 
   Widget buildIngredients({
-    required final SingleRecipeModelRecipe recipe,
-    required final int selectedYield,
+    required final List<SingleRecipeModelYield> yields,
+    required final Option<int> selectedYield,
   }) =>
       optionOf(
-        recipe.yields.firstWhereOrNull(
-          (final SingleRecipeModelYield yield) => yield.yield == selectedYield,
+        yields.firstWhereOrNull(
+          (final SingleRecipeModelYield yield) => yield.yields == selectedYield,
         ),
       ).fold(
-        () => const Text('Select a yield'),
+        () => throw Exception('No yield selected, not possible state reached'),
         (final SingleRecipeModelYield yield) => Column(
           children: yield.ingredients
               .map(
-                (final SingleRecipeModelIngredient ingredient) => Row(
-                  children: <Widget>[
-                    Expanded(
-                      flex: 1,
-                      child: ingredient.imageUrl.fold(
-                        () => const Icon(Icons.image_not_supported),
-                        (final Uri url) => Image.network(url.toString()),
+                (final SingleRecipeModelIngredient ingredient) => Card(
+                  child: ListTile(
+                    leading: ingredient.imageUrl.fold(
+                      () => const Icon(Icons.image_not_supported),
+                      (final Uri url) => Image.network(
+                        url.toString(),
+                        errorBuilder: (final _, final __, final ___) =>
+                            const Icon(Icons.image_not_supported),
                       ),
                     ),
-                    const SizedBox(width: 20),
-                    Expanded(
-                      flex: 3,
-                      child: Text(ingredient.displayedName),
-                    ),
-                    const SizedBox(width: 20),
-                    Expanded(
-                      flex: 1,
-                      child: Text('${ingredient.amount.fold(
-                        () => '-',
+                    title: Text(ingredient.displayedName),
+                    subtitle: Text(
+                      '${ingredient.amount.fold(
+                        () => 'nach Ermessen',
                         (final double amount) => amount.toString(),
-                      )} ${ingredient.unit.getOrElse(() => '')}'),
+                      )} ${ingredient.unit.getOrElse(() => '')}',
                     ),
-                  ],
+                    trailing: const Icon(Icons.more_vert),
+                  ),
                 ),
               )
               .toList(),
         ),
       );
 
-  ToggleButtons buildYieldToggleButton({
+  Widget buildYieldToggleButton({
     required final List<SingleRecipeModelYield> yields,
-    required final int selectedYield,
+    required final Option<int> selectedYield,
     required final SingleRecipeController controller,
   }) =>
-      ToggleButtons(
-        isSelected: yields
-            .map(
-              (final SingleRecipeModelYield yield) =>
-                  yield.yield == selectedYield,
-            )
-            .toList(),
-        children: yields
-            .map(
-              (final SingleRecipeModelYield yield) =>
-                  Text(yield.yield.toString()),
-            )
-            .toList(),
-        onPressed: (final int index) => controller.setSelectedYield(
-          yield: yields
-              .map((final SingleRecipeModelYield yield) => yield.yield)
-              .toList()[index],
+      Builder(
+        builder: (final BuildContext context) => ToggleButtons(
+          borderRadius: BorderRadius.circular(16),
+          isSelected: yields
+              .map(
+                (final SingleRecipeModelYield yield) =>
+                    yield.yields == selectedYield,
+              )
+              .toList(),
+          children: yields
+              .map(
+                (final SingleRecipeModelYield yield) => Text(
+                  yield.yields.getOrElse(() => 0).toString(),
+                ),
+              )
+              .toList(),
+          onPressed: (final int index) => controller.setSelectedYield(
+            yield: yields
+                .map(
+                  (final SingleRecipeModelYield yield) =>
+                      yield.yields.getOrElse(() => 0),
+                )
+                .toList()[index],
+          ),
         ),
       );
 
-  Row _buildCookingDetails() => Row(
-        children: <Widget>[
-          _buildCookingDetailIconWithText(),
-          _buildCookingDetailIconWithText(),
-          _buildCookingDetailIconWithText(),
-        ],
-      );
+  // Row _buildCookingDetails() => Row(
+  //       children: <Widget>[
+  //         _buildCookingDetailIconWithText(),
+  //         _buildCookingDetailIconWithText(),
+  //         _buildCookingDetailIconWithText(),
+  //       ],
+  //     );
 
-  Expanded _buildCookingDetailIconWithText() => Expanded(
-        child: Column(
-          children: const <Widget>[
-            Icon(Icons.timelapse),
-            Text('25 min'),
-          ],
-        ),
-      );
+  // Expanded _buildCookingDetailIconWithText() => Expanded(
+  //       child: Column(
+  //         children: const <Widget>[
+  //           Icon(Icons.timelapse),
+  //           Text('25 min'),
+  //         ],
+  //       ),
+  //     );
 }
 
 abstract class SingleRecipeController {
   void setSelectedYield({required final int yield});
+  void goBack();
 }

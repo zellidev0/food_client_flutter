@@ -59,7 +59,7 @@ class SingleRecipeModelIngredient with _$SingleRecipeModelIngredient {
 @freezed
 class SingleRecipeModelYield with _$SingleRecipeModelYield {
   const factory SingleRecipeModelYield({
-    required final int yield,
+    required final Option<int> yields,
     required final List<SingleRecipeModelIngredient> ingredients,
   }) = _SingleRecipeModelYield;
 }
