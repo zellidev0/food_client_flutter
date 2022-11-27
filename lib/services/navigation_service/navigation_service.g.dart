@@ -58,7 +58,7 @@ final bottomNavigationBarNavigationServiceProvider =
 typedef BottomNavigationBarNavigationServiceRef
     = AutoDisposeProviderRef<NavigationServiceAggregator>;
 String $globalBeamerDelegateHash() =>
-    r'505d5108c6a1cffe7199779dd8f94a8b10f93dd7';
+    r'f50447d9942dce7de46ad5fa8f623fe1e9b95f78';
 
 /// See also [globalBeamerDelegate].
 final globalBeamerDelegateProvider = Provider<BeamerDelegate>(

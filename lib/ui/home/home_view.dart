@@ -14,36 +14,32 @@ class HomeView extends ConsumerWidget {
       homeControllerImplementationProvider.notifier,
     );
 
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              buildFilterChips(
-                controller: controller,
-                model: model,
-              ),
-              const SizedBox(height: 16),
-              if (model.allRecipes.isEmpty)
-                const Expanded(
-                  child: Center(child: CircularProgressIndicator()),
-                )
-              else
-                _buildRecipesList(
-                  controller: controller,
-                  recipes: model.filteredRecipes,
-                  tags: model.allTags,
-                ),
-            ],
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          buildFilterChips(
+            controller: controller,
+            model: model,
           ),
-        ),
+          const SizedBox(height: 16),
+          if (model.allRecipes.isEmpty)
+            const Expanded(
+              child: Center(child: CircularProgressIndicator()),
+            )
+          else
+            _buildRecipesList(
+              controller: controller,
+              recipes: model.filteredRecipes,
+              tags: model.allTags,
+            ),
+        ],
       ),
     );
   }
 
-  Row buildFilterChips({
+  Widget buildFilterChips({
     required final HomeController controller,
     required final HomeModel model,
   }) =>
@@ -124,9 +120,7 @@ class HomeView extends ConsumerWidget {
     required final List<HomeModelFilterTag> tags,
   }) =>
       Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         child: InkWell(
           borderRadius: BorderRadius.circular(20),
           onTap: () => controller.goToSingleRecipeView(recipeId: recipe.id),

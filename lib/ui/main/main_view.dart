@@ -23,8 +23,7 @@ class MainView extends ConsumerWidget {
           topRight: Radius.circular(20),
         ),
         child: BottomNavigationBar(
-          backgroundColor:
-              Theme.of(context).colorScheme.background,
+          backgroundColor: Theme.of(context).colorScheme.background,
           selectedItemColor: Theme.of(context).colorScheme.onBackground,
           unselectedItemColor:
               Theme.of(context).colorScheme.onBackground.withOpacity(0.24),
@@ -52,12 +51,9 @@ class MainView extends ConsumerWidget {
           },
         ),
       ),
-      body: SafeArea(
-        bottom: false,
-        child: Beamer(
-          routerDelegate: ref.read(
-            bottomNavigationBarBeamerDelegateProvider,
-          ),
+      body: Beamer(
+        routerDelegate: ref.read(
+          bottomNavigationBarBeamerDelegateProvider,
         ),
       ),
     );
@@ -67,4 +63,5 @@ class MainView extends ConsumerWidget {
 abstract class MainController {
   void goToHome();
   void goToCart();
+  void goBack();
 }

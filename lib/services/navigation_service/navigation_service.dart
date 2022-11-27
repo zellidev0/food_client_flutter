@@ -43,7 +43,6 @@ class NavigationServiceUris {
   static String singleRecipeIdKey = 'single-recipe-id';
   static Uri homeRouteUri = Uri.parse('/main/home');
   static Uri cartRouteUri = Uri.parse('/main/cart');
-  static Uri mainRouteUri = Uri.parse('/main');
 }
 
 @freezed
@@ -135,11 +134,9 @@ class BeamerNavigationService implements NavigationServiceAggregator {
 @Riverpod(keepAlive: true)
 BeamerDelegate globalBeamerDelegate(final GlobalBeamerDelegateRef ref) =>
     BeamerDelegate(
-      initialPath: NavigationServiceUris.mainRouteUri.toString(),
+      initialPath: '*',
       locationBuilder: RoutesLocationBuilder(
         routes: <Pattern, dynamic Function(BuildContext, BeamState, Object?)>{
-          NavigationServiceUris.mainRouteUri.toString():
-              (final _, final __, final ___) => const MainView(),
           '*': (final _, final __, final ___) => const MainView(),
         },
       ),
