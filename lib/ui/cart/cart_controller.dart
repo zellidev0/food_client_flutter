@@ -1,7 +1,7 @@
 import 'package:food_client/services/navigation_service/navigation_service.dart';
-import 'package:food_client/ui/home/cart/cart_model.dart';
-import 'package:food_client/ui/home/cart/cart_navigation_service.dart';
-import 'package:food_client/ui/home/cart/cart_view.dart';
+import 'package:food_client/ui/cart/cart_model.dart';
+import 'package:food_client/ui/cart/cart_navigation_service.dart';
+import 'package:food_client/ui/cart/cart_view.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

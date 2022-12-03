@@ -1,8 +1,8 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/material.dart';
-import 'package:food_client/ui/home/cart/cart_navigation_service.dart';
-import 'package:food_client/ui/home/cart/cart_view.dart';
+import 'package:food_client/ui/cart/cart_navigation_service.dart';
+import 'package:food_client/ui/cart/cart_view.dart';
 import 'package:food_client/ui/home/home_navigation_service.dart';
 import 'package:food_client/ui/home/home_view.dart';
 import 'package:food_client/ui/main/main_navigation_service.dart';
