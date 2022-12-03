@@ -30,7 +30,7 @@ class _SystemHash {
 }
 
 String $CartControllerImplementationHash() =>
-    r'c28addd67162141e56f4fff05c4d305b27dffe18';
+    r'c6187acf3906161241c8a9a4e56fa0e6bc020a31';
 
 /// See also [CartControllerImplementation].
 final cartControllerImplementationProvider =
