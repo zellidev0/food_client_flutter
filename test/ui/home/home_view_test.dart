@@ -29,7 +29,9 @@ void main() {
     connectControllerMock = MockHomeControllerImplementation(
       const HomeModel(
         allRecipes: <HomeModelRecipe>[],
-        allTags: <HomeModelTag>[],
+        allTags: <HomeModelFilterTag>[],
+        filteredRecipes: <HomeModelRecipe>[],
+        allCuisines: [],
       ),
     );
     await initWidgetTest(widgetTester: widgetTester);
@@ -39,5 +41,4 @@ void main() {
       findsOneWidget,
     );
   });
-
 }

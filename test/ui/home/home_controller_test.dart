@@ -23,7 +23,7 @@ void main() {
   }) {
     final ProviderContainer container = ProviderContainer(
       overrides: <Override>[
-        navigationServiceProvider.overrideWithValue(navigationService),
+        // navigationServiceProvider.overrideWithValue(navigationService),
         recipeLanguageServiceProvider.overrideWithValue(languageService),
         webClientServiceProvider.overrideWithValue(webClientService),
       ],
@@ -66,8 +66,9 @@ void main() {
         <HomeWebClientModelTag>[
           const HomeWebClientModelTag(
             id: 'id',
-            slug: 'slug',
+            type: 'slug',
             displayedName: 'displayedName',
+            numberOfRecipes: 0,
           )
         ],
       ),
@@ -87,7 +88,9 @@ void main() {
       equals(
         const HomeModel(
           allRecipes: <HomeModelRecipe>[],
-          allTags: <HomeModelTag>[],
+          allTags: <HomeModelFilterTag>[],
+          filteredRecipes: [],
+          allCuisines: [],
         ),
       ),
     );
@@ -110,13 +113,17 @@ void main() {
       equals(
         const HomeModel(
           allRecipes: <HomeModelRecipe>[],
-          allTags: <HomeModelTag>[
-            HomeModelTag(
+          allTags: <HomeModelFilterTag>[
+            HomeModelFilterTag(
               id: 'id',
               displayedName: 'displayedName',
               isSelected: false,
+              type: '',
+              numberOfRecipes: 0,
             )
           ],
+          filteredRecipes: [],
+          allCuisines: [],
         ),
       ),
     );
