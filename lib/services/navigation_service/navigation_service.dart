@@ -1,6 +1,8 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/material.dart';
+import 'package:food_client/ui/home/cart/cart_navigation_service.dart';
+import 'package:food_client/ui/home/cart/cart_view.dart';
 import 'package:food_client/ui/home/home_navigation_service.dart';
 import 'package:food_client/ui/home/home_view.dart';
 import 'package:food_client/ui/main/main_navigation_service.dart';
@@ -34,7 +36,8 @@ abstract class NavigationServiceAggregator
     implements
         HomeNavigationService,
         SingleRecipeNavigationService,
-        MainNavigationService {}
+        MainNavigationService,
+        CartNavigationService {}
 
 class NavigationServiceUris {
   NavigationServiceUris._();
@@ -144,13 +147,16 @@ BeamerDelegate globalBeamerDelegate(final GlobalBeamerDelegateRef ref) =>
 
 @Riverpod(keepAlive: true)
 BeamerDelegate bottomNavigationBarBeamerDelegate(
-        final GlobalBeamerDelegateRef ref) =>
+  final GlobalBeamerDelegateRef ref,
+) =>
     BeamerDelegate(
       initialPath: NavigationServiceUris.homeRouteUri.toString(),
       locationBuilder: RoutesLocationBuilder(
         routes: <Pattern, dynamic Function(BuildContext, BeamState, Object?)>{
           NavigationServiceUris.homeRouteUri.toString():
               (final _, final __, final ___) => const HomeView(),
+          NavigationServiceUris.cartRouteUri.toString():
+              (final _, final __, final ___) => const CartView(),
           '${NavigationServiceUris.singleRecipeUri}': (
             final _,
             final BeamState state,

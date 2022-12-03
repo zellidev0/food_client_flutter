@@ -70,7 +70,7 @@ final globalBeamerDelegateProvider = Provider<BeamerDelegate>(
 );
 typedef GlobalBeamerDelegateRef = ProviderRef<BeamerDelegate>;
 String $bottomNavigationBarBeamerDelegateHash() =>
-    r'6bbe4fc5e072f0cfb139ea0f3862c162c3765ec3';
+    r'8ba34e6d3c637e1580ad3773a0d38ca6450bac70';
 
 /// See also [bottomNavigationBarBeamerDelegate].
 final bottomNavigationBarBeamerDelegateProvider = Provider<BeamerDelegate>(
