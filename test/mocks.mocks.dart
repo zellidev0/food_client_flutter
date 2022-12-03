@@ -54,6 +54,7 @@ class MockWebClientServiceAggregator extends _i1.Mock
       List<_i4.HomeWebClientModelRecipe>> fetchAllRecipes({
     required String? country,
     _i2.Option<int>? limit = const _i2.None(),
+    _i2.Option<int>? take = const _i2.None(),
     _i2.Option<List<String>>? tags = const _i2.None(),
     _i2.Option<List<String>>? cuisines = const _i2.None(),
     _i2.Option<List<String>>? ingredients = const _i2.None(),
@@ -66,6 +67,7 @@ class MockWebClientServiceAggregator extends _i1.Mock
           {
             #country: country,
             #limit: limit,
+            #take: take,
             #tags: tags,
             #cuisines: cuisines,
             #ingredients: ingredients,
@@ -81,6 +83,7 @@ class MockWebClientServiceAggregator extends _i1.Mock
             {
               #country: country,
               #limit: limit,
+              #take: take,
               #tags: tags,
               #cuisines: cuisines,
               #ingredients: ingredients,

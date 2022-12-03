@@ -877,7 +877,6 @@ abstract class _HomeWebClientModelTag implements HomeWebClientModelTag {
 /// @nodoc
 mixin _$HomeWebClientModelCuisine {
   String get id => throw _privateConstructorUsedError;
-  String get type => throw _privateConstructorUsedError;
   Option<Uri> get iconPath => throw _privateConstructorUsedError;
   String get displayedName => throw _privateConstructorUsedError;
   String get slug => throw _privateConstructorUsedError;
@@ -896,7 +895,6 @@ abstract class $HomeWebClientModelCuisineCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String type,
       Option<Uri> iconPath,
       String displayedName,
       String slug,
@@ -918,7 +916,6 @@ class _$HomeWebClientModelCuisineCopyWithImpl<$Res,
   @override
   $Res call({
     Object? id = null,
-    Object? type = null,
     Object? iconPath = null,
     Object? displayedName = null,
     Object? slug = null,
@@ -928,10 +925,6 @@ class _$HomeWebClientModelCuisineCopyWithImpl<$Res,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
               as String,
       iconPath: null == iconPath
           ? _value.iconPath
@@ -964,7 +957,6 @@ abstract class _$$_HomeWebClientModelCuisineCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      String type,
       Option<Uri> iconPath,
       String displayedName,
       String slug,
@@ -985,7 +977,6 @@ class __$$_HomeWebClientModelCuisineCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? type = null,
     Object? iconPath = null,
     Object? displayedName = null,
     Object? slug = null,
@@ -995,10 +986,6 @@ class __$$_HomeWebClientModelCuisineCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
               as String,
       iconPath: null == iconPath
           ? _value.iconPath
@@ -1025,7 +1012,6 @@ class __$$_HomeWebClientModelCuisineCopyWithImpl<$Res>
 class _$_HomeWebClientModelCuisine implements _HomeWebClientModelCuisine {
   const _$_HomeWebClientModelCuisine(
       {required this.id,
-      required this.type,
       required this.iconPath,
       required this.displayedName,
       required this.slug,
@@ -1033,8 +1019,6 @@ class _$_HomeWebClientModelCuisine implements _HomeWebClientModelCuisine {
 
   @override
   final String id;
-  @override
-  final String type;
   @override
   final Option<Uri> iconPath;
   @override
@@ -1046,7 +1030,7 @@ class _$_HomeWebClientModelCuisine implements _HomeWebClientModelCuisine {
 
   @override
   String toString() {
-    return 'HomeWebClientModelCuisine(id: $id, type: $type, iconPath: $iconPath, displayedName: $displayedName, slug: $slug, numberOfRecipes: $numberOfRecipes)';
+    return 'HomeWebClientModelCuisine(id: $id, iconPath: $iconPath, displayedName: $displayedName, slug: $slug, numberOfRecipes: $numberOfRecipes)';
   }
 
   @override
@@ -1055,7 +1039,6 @@ class _$_HomeWebClientModelCuisine implements _HomeWebClientModelCuisine {
         (other.runtimeType == runtimeType &&
             other is _$_HomeWebClientModelCuisine &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.type, type) || other.type == type) &&
             (identical(other.iconPath, iconPath) ||
                 other.iconPath == iconPath) &&
             (identical(other.displayedName, displayedName) ||
@@ -1067,7 +1050,7 @@ class _$_HomeWebClientModelCuisine implements _HomeWebClientModelCuisine {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, type, iconPath, displayedName, slug, numberOfRecipes);
+      runtimeType, id, iconPath, displayedName, slug, numberOfRecipes);
 
   @JsonKey(ignore: true)
   @override
@@ -1080,7 +1063,6 @@ class _$_HomeWebClientModelCuisine implements _HomeWebClientModelCuisine {
 abstract class _HomeWebClientModelCuisine implements HomeWebClientModelCuisine {
   const factory _HomeWebClientModelCuisine(
       {required final String id,
-      required final String type,
       required final Option<Uri> iconPath,
       required final String displayedName,
       required final String slug,
@@ -1088,8 +1070,6 @@ abstract class _HomeWebClientModelCuisine implements HomeWebClientModelCuisine {
 
   @override
   String get id;
-  @override
-  String get type;
   @override
   Option<Uri> get iconPath;
   @override

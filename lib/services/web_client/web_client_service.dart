@@ -31,6 +31,7 @@ class WebClientService implements WebClientServiceAggregator {
   TaskEither<Exception, List<HomeWebClientModelRecipe>> fetchAllRecipes({
     required final String country,
     final Option<int> limit = const None<int>(),
+    final Option<int> take = const None<int>(),
     final Option<List<String>> tags = const None<List<String>>(),
     final Option<List<String>> cuisines = const None<List<String>>(),
     final Option<List<String>> ingredients = const None<List<String>>(),
@@ -177,7 +178,6 @@ class WebClientService implements WebClientServiceAggregator {
                                 HomeWebClientModelCuisine(
                               id: cuisine.id,
                               slug: cuisine.slug,
-                              type: cuisine.type,
                               iconPath: cuisine.iconPath.map(Uri.parse),
                               displayedName: cuisine.name,
                               numberOfRecipes: cuisine.usage,
@@ -229,6 +229,7 @@ class WebClientService implements WebClientServiceAggregator {
   Uri _recipesQueryApiUrl({
     required final String country,
     final Option<int> limit = const None<int>(),
+    final Option<int> take = const None<int>(),
     final Option<List<String>> tags = const None<List<String>>(),
     final Option<List<String>> cuisines = const None<List<String>>(),
     final Option<List<String>> ingredients = const None<List<String>>(),
@@ -242,6 +243,9 @@ class WebClientService implements WebClientServiceAggregator {
             ),
             'limit': Either<Option<String>, Option<List<String>>>.left(
               limit.map((final int amount) => amount.toString()),
+            ),
+            'take': Either<Option<String>, Option<List<String>>>.left(
+              take.map((final int amount) => amount.toString()),
             ),
             'tags': Either<Option<String>, Option<List<String>>>.right(tags),
             'ingredient': Either<Option<String>, Option<List<String>>>.right(
@@ -443,7 +447,6 @@ List<HomeWebClientModelRecipe> _mapToHomeWebClientModelRecipe({
                     id: cuisine.id,
                     slug: cuisine.slug,
                     displayedName: cuisine.name,
-                    type: cuisine.type,
                     iconPath: cuisine.iconPath.map(Uri.parse),
                     numberOfRecipes: cuisine.usage,
                   ),

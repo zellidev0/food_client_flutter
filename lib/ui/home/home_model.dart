@@ -59,7 +59,7 @@ class HomeModelFilter with _$HomeModelFilter {
   const factory HomeModelFilter.cuisine({
     required final String id,
     required final String displayedName,
-    required final String type,
+    required final String slug,
     required final bool isSelected,
     required final int numberOfRecipes,
   }) = HomeModelFilterCuisine;

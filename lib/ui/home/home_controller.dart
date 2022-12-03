@@ -18,7 +18,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'home_controller.g.dart';
 
-const int widthPixels = 10;
+const int widthPixels = 1200;
 
 @Riverpod(keepAlive: true)
 class HomeControllerImplementation extends _$HomeControllerImplementation
@@ -187,6 +187,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
           .fetchAllRecipes(
             country: _recipeLanguageService.getSupportedRecipeLanguages().first,
             limit: some(250),
+            take: some(250),
             tags: some(
               userSelectedTags
                   .filter((final HomeModelFilterTag tag) => tag.isSelected)
@@ -214,7 +215,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
                     (final HomeModelFilterCuisine cuisine) =>
                         cuisines.contains(cuisine.id),
                   )
-                  .map((final HomeModelFilterCuisine cuisine) => cuisine.type)
+                  .map((final HomeModelFilterCuisine cuisine) => cuisine.slug)
                   .toList(),
             ),
           )
@@ -258,7 +259,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
                       HomeModelFilterCuisine(
                     id: cuisine.id,
                     displayedName: cuisine.displayedName,
-                    type: cuisine.type,
+                    slug: cuisine.slug,
                     isSelected: false,
                     numberOfRecipes: cuisine.numberOfRecipes,
                   ),
