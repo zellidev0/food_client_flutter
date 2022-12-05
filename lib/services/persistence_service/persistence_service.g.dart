@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'cart_controller.dart';
+part of 'persistence_service.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -29,23 +29,14 @@ class _SystemHash {
   }
 }
 
-String $CartControllerImplementationHash() =>
-    r'6fd29470a25f6e7feb9e63531321ce84561d6fc4';
+String $persistenceServiceHash() => r'88d72c01725320b568816f23962d3e0973050552';
 
-/// See also [CartControllerImplementation].
-final cartControllerImplementationProvider =
-    AutoDisposeNotifierProvider<CartControllerImplementation, CartModel>(
-  CartControllerImplementation.new,
-  name: r'cartControllerImplementationProvider',
+/// See also [persistenceService].
+final persistenceServiceProvider = Provider<PersistenceServiceAggregator>(
+  persistenceService,
+  name: r'persistenceServiceProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $CartControllerImplementationHash,
+      : $persistenceServiceHash,
 );
-typedef CartControllerImplementationRef
-    = AutoDisposeNotifierProviderRef<CartModel>;
-
-abstract class _$CartControllerImplementation
-    extends AutoDisposeNotifier<CartModel> {
-  @override
-  CartModel build();
-}
+typedef PersistenceServiceRef = ProviderRef<PersistenceServiceAggregator>;

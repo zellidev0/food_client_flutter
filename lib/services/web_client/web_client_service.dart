@@ -39,14 +39,19 @@ class WebClientService implements WebClientServiceAggregator {
   }) =>
       TaskEither<Exception, String>.tryCatch(
         () async => await http.read(
-          _recipesQueryApiUrl(
-            country: country,
-            limit: limit,
-            tags: tags,
-            cuisines: cuisines,
-            ingredients: ingredients,
-            searchTerm: searchTerm,
-          ),
+          () {
+            var x = _recipesQueryApiUrl(
+              country: country,
+              limit: limit,
+              take: take,
+              tags: tags,
+              cuisines: cuisines,
+              ingredients: ingredients,
+              searchTerm: searchTerm,
+            );
+            print(x);
+            return x;
+          }.call(),
           headers: headers,
         ),
         (final Object error, final _) => Exception(

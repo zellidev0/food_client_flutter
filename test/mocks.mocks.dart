@@ -4,7 +4,6 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i8;
-import 'dart:ui' as _i10;
 
 import 'package:flutter/material.dart' as _i9;
 import 'package:food_client/services/navigation_service/navigation_service.dart'
@@ -261,7 +260,7 @@ class MockNavigationServiceAggregator extends _i1.Mock
   @override
   _i8.Future<void> showModalBottomSheet({
     required _i9.Widget? child,
-    required _i10.Color? backgroundColor,
+    required dynamic backgroundColor,
   }) =>
       (super.noSuchMethod(
         Invocation.method(

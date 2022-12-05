@@ -174,6 +174,7 @@ class SingleRecipeView extends ConsumerWidget {
                         ),
                         const SizedBox(height: 16),
                         buildIngredients(
+                          controller: controller,
                           yields: recipe.yields,
                           selectedYield: selectedYield,
                         )
@@ -287,6 +288,7 @@ class SingleRecipeView extends ConsumerWidget {
 
   Widget buildIngredients({
     required final List<SingleRecipeModelYield> yields,
+    required final SingleRecipeController controller,
     required final Option<int> selectedYield,
   }) =>
       optionOf(
@@ -298,27 +300,33 @@ class SingleRecipeView extends ConsumerWidget {
         (final SingleRecipeModelYield yield) => Column(
           children: yield.ingredients
               .map(
-                (final SingleRecipeModelIngredient ingredient) => Card(
-                  child: ListTile(
-                    leading: AspectRatio(
-                      aspectRatio: 1,
-                      child: ingredient.imageUrl.fold(
-                        () => const Icon(Icons.image_not_supported),
-                        (final Uri url) => Image.network(
-                          url.toString(),
-                          errorBuilder: (final _, final __, final ___) =>
-                              const Icon(Icons.image_not_supported),
+                (final SingleRecipeModelIngredient ingredient) => InkWell(
+                  onTap: () => controller.addIngredientToShoppingCart(
+                    ingredient: ingredient,
+                    recipeId: _recipeId,
+                  ),
+                  child: Card(
+                    child: ListTile(
+                      leading: AspectRatio(
+                        aspectRatio: 1,
+                        child: ingredient.imageUrl.fold(
+                          () => const Icon(Icons.image_not_supported),
+                          (final Uri url) => Image.network(
+                            url.toString(),
+                            errorBuilder: (final _, final __, final ___) =>
+                                const Icon(Icons.image_not_supported),
+                          ),
                         ),
                       ),
+                      title: Text(ingredient.displayedName),
+                      subtitle: Text(
+                        '${ingredient.amount.fold(
+                          () => 'nach Ermessen',
+                          (final double amount) => amount.toString(),
+                        )} ${ingredient.unit.getOrElse(() => '')}',
+                      ),
+                      trailing: const Icon(Icons.more_vert),
                     ),
-                    title: Text(ingredient.displayedName),
-                    subtitle: Text(
-                      '${ingredient.amount.fold(
-                        () => 'nach Ermessen',
-                        (final double amount) => amount.toString(),
-                      )} ${ingredient.unit.getOrElse(() => '')}',
-                    ),
-                    trailing: const Icon(Icons.more_vert),
                   ),
                 ),
               )
@@ -379,4 +387,9 @@ class SingleRecipeView extends ConsumerWidget {
 abstract class SingleRecipeController {
   void setSelectedYield({required final int yield});
   void goBack();
+
+  void addIngredientToShoppingCart({
+    required final SingleRecipeModelIngredient ingredient,
+    required final String recipeId,
+  });
 }

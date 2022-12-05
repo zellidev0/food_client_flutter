@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
+import 'package:food_client/services/persistence_service/persistence_service.dart';
 import 'package:food_client/services/web_client/web_client_service.dart';
 import 'package:food_client/services/web_image_sizer/web_image_sizer_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_model.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_navigation_service.dart';
+import 'package:food_client/ui/single_recipe/single_recipe_persistence_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_view.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_web_client_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_web_image_sizer_service.dart';
@@ -22,6 +24,7 @@ class SingleRecipeControllerImplementation
   late final SingleRecipeWebClientService _webClientService;
   late final SingleRecipeWebImageSizerService _webImageSizerService;
   late final SingleRecipeNavigationService _navigationService;
+  late final SingleRecipePersistenceService _persistenceService;
 
   @override
   SingleRecipeModel build({
@@ -32,6 +35,7 @@ class SingleRecipeControllerImplementation
     _navigationService = ref.watch(
       bottomNavigationBarNavigationServiceProvider,
     );
+    _persistenceService = ref.watch(persistenceServiceProvider);
 
     unawaited(
       init(
@@ -52,6 +56,17 @@ class SingleRecipeControllerImplementation
     );
   }
 
+  Future<void> init({
+    required final TaskEither<Exception, SingleRecipeModel> initialTask,
+  }) async {
+    (await initialTask.run()).fold(
+      (final Exception l) => debugPrint(l.toString()),
+      (final SingleRecipeModel model) {
+        state = model;
+      },
+    );
+  }
+
   @override
   void setSelectedYield({required final int yield}) {
     state = state.copyWith(selectedYield: some(yield));
@@ -62,14 +77,26 @@ class SingleRecipeControllerImplementation
     _navigationService.goBackToNamed(uri: NavigationServiceUris.homeRouteUri);
   }
 
-  Future<void> init({
-    required final TaskEither<Exception, SingleRecipeModel> initialTask,
-  }) async {
-    (await initialTask.run()).fold(
-      (final Exception l) => debugPrint(l.toString()),
-      (final SingleRecipeModel model) {
-        state = model;
-      },
+  @override
+  void addIngredientToShoppingCart({
+    required final SingleRecipeModelIngredient ingredient,
+    required final String recipeId,
+  }) {
+    unawaited(
+      _persistenceService
+          .addIngredient(
+            ingredient: SingleRecipePersistenceServiceIngredient(
+              isTickedOff: false,
+              recipeId: recipeId,
+              imageUrl: ingredient.imageUrl,
+              id: ingredient.id,
+              slug: ingredient.slug,
+              displayedName: ingredient.displayedName,
+              amount: ingredient.amount,
+              unit: ingredient.unit,
+            ),
+          )
+          .run(),
     );
   }
 }
