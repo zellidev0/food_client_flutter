@@ -792,6 +792,7 @@ mixin _$SingleRecipeModelIngredient {
   String get displayedName => throw _privateConstructorUsedError;
   Option<double> get amount => throw _privateConstructorUsedError;
   Option<String> get unit => throw _privateConstructorUsedError;
+  bool get isInShoppingCard => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SingleRecipeModelIngredientCopyWith<SingleRecipeModelIngredient>
@@ -812,7 +813,8 @@ abstract class $SingleRecipeModelIngredientCopyWith<$Res> {
       String slug,
       String displayedName,
       Option<double> amount,
-      Option<String> unit});
+      Option<String> unit,
+      bool isInShoppingCard});
 }
 
 /// @nodoc
@@ -835,6 +837,7 @@ class _$SingleRecipeModelIngredientCopyWithImpl<$Res,
     Object? displayedName = null,
     Object? amount = null,
     Object? unit = null,
+    Object? isInShoppingCard = null,
   }) {
     return _then(_value.copyWith(
       imageUrl: null == imageUrl
@@ -861,6 +864,10 @@ class _$SingleRecipeModelIngredientCopyWithImpl<$Res,
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
               as Option<String>,
+      isInShoppingCard: null == isInShoppingCard
+          ? _value.isInShoppingCard
+          : isInShoppingCard // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -880,7 +887,8 @@ abstract class _$$_SingleRecipeModelIngredientCopyWith<$Res>
       String slug,
       String displayedName,
       Option<double> amount,
-      Option<String> unit});
+      Option<String> unit,
+      bool isInShoppingCard});
 }
 
 /// @nodoc
@@ -902,6 +910,7 @@ class __$$_SingleRecipeModelIngredientCopyWithImpl<$Res>
     Object? displayedName = null,
     Object? amount = null,
     Object? unit = null,
+    Object? isInShoppingCard = null,
   }) {
     return _then(_$_SingleRecipeModelIngredient(
       imageUrl: null == imageUrl
@@ -928,6 +937,10 @@ class __$$_SingleRecipeModelIngredientCopyWithImpl<$Res>
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
               as Option<String>,
+      isInShoppingCard: null == isInShoppingCard
+          ? _value.isInShoppingCard
+          : isInShoppingCard // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -941,7 +954,8 @@ class _$_SingleRecipeModelIngredient implements _SingleRecipeModelIngredient {
       required this.slug,
       required this.displayedName,
       required this.amount,
-      required this.unit});
+      required this.unit,
+      required this.isInShoppingCard});
 
   @override
   final Option<Uri> imageUrl;
@@ -955,10 +969,12 @@ class _$_SingleRecipeModelIngredient implements _SingleRecipeModelIngredient {
   final Option<double> amount;
   @override
   final Option<String> unit;
+  @override
+  final bool isInShoppingCard;
 
   @override
   String toString() {
-    return 'SingleRecipeModelIngredient(imageUrl: $imageUrl, id: $id, slug: $slug, displayedName: $displayedName, amount: $amount, unit: $unit)';
+    return 'SingleRecipeModelIngredient(imageUrl: $imageUrl, id: $id, slug: $slug, displayedName: $displayedName, amount: $amount, unit: $unit, isInShoppingCard: $isInShoppingCard)';
   }
 
   @override
@@ -973,12 +989,14 @@ class _$_SingleRecipeModelIngredient implements _SingleRecipeModelIngredient {
             (identical(other.displayedName, displayedName) ||
                 other.displayedName == displayedName) &&
             (identical(other.amount, amount) || other.amount == amount) &&
-            (identical(other.unit, unit) || other.unit == unit));
+            (identical(other.unit, unit) || other.unit == unit) &&
+            (identical(other.isInShoppingCard, isInShoppingCard) ||
+                other.isInShoppingCard == isInShoppingCard));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, imageUrl, id, slug, displayedName, amount, unit);
+  int get hashCode => Object.hash(runtimeType, imageUrl, id, slug,
+      displayedName, amount, unit, isInShoppingCard);
 
   @JsonKey(ignore: true)
   @override
@@ -996,7 +1014,8 @@ abstract class _SingleRecipeModelIngredient
       required final String slug,
       required final String displayedName,
       required final Option<double> amount,
-      required final Option<String> unit}) = _$_SingleRecipeModelIngredient;
+      required final Option<String> unit,
+      required final bool isInShoppingCard}) = _$_SingleRecipeModelIngredient;
 
   @override
   Option<Uri> get imageUrl;
@@ -1010,6 +1029,8 @@ abstract class _SingleRecipeModelIngredient
   Option<double> get amount;
   @override
   Option<String> get unit;
+  @override
+  bool get isInShoppingCard;
   @override
   @JsonKey(ignore: true)
   _$$_SingleRecipeModelIngredientCopyWith<_$_SingleRecipeModelIngredient>

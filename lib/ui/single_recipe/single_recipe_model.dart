@@ -52,6 +52,7 @@ class SingleRecipeModelIngredient with _$SingleRecipeModelIngredient {
     required final String displayedName,
     required final Option<double> amount,
     required final Option<String> unit,
+    required final bool isInShoppingCard,
   }) = _SingleRecipeModelIngredient;
 }
 

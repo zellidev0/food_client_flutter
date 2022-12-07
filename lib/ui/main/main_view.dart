@@ -11,12 +11,9 @@ class MainView extends ConsumerWidget {
 
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
-    final MainModel model = ref.watch(
-      mainControllerImplementationProvider,
-    );
-    final MainController controller = ref.read(
-      mainControllerImplementationProvider.notifier,
-    );
+    final MainModel model = ref.watch(providers.mainControllerProvider);
+    final MainController controller =
+        ref.read(providers.mainControllerProvider.notifier);
     return Scaffold(
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.only(
@@ -61,7 +58,9 @@ class MainView extends ConsumerWidget {
   }
 }
 
-abstract class MainController {
+abstract class MainController extends StateNotifier<MainModel>{
+  MainController(super.state);
+
   void goToHome();
   void goToCart();
   void goBack();

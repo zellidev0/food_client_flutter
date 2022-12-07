@@ -7,6 +7,12 @@ abstract class SingleRecipePersistenceService {
   Task<void> addIngredient({
     required final SingleRecipePersistenceServiceIngredient ingredient,
   });
+  bool hasSavedIngredient({
+    required final String ingredientId,
+  });
+  Task<void> removeIngredient({
+    required final String ingredientId,
+  });
 }
 
 @freezed

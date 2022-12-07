@@ -28,18 +28,7 @@ class SingleRecipeControllerImplementation extends SingleRecipeController {
         _webImageSizerService = webImageSizerService,
         _navigationService = navigationService,
         _persistenceService = persistenceService {
-    unawaited(
-      init(
-        initialTask:
-            _webClientService.fetchSingleRecipe(recipeId: recipeId).map(
-                  (final SingleRecipeWebClientModelRecipe recipe) =>
-                      mapToSingleRecipeModelRecipe(
-                    recipe: recipe,
-                    imageResizerService: _webImageSizerService,
-                  ),
-                ),
-      ),
-    );
+    unawaited(init(initialTask: fetchSingleRecipeTask(recipeId: recipeId)));
   }
 
   Future<void> init({
@@ -64,32 +53,64 @@ class SingleRecipeControllerImplementation extends SingleRecipeController {
   }
 
   @override
-  void addIngredientToShoppingCart({
+  Future<void> addIngredientToShoppingCart({
     required final SingleRecipeModelIngredient ingredient,
     required final String recipeId,
-  }) {
-    unawaited(
-      _persistenceService
-          .addIngredient(
-            ingredient: SingleRecipePersistenceServiceIngredient(
-              isTickedOff: false,
-              recipeId: recipeId,
-              imageUrl: ingredient.imageUrl,
-              id: ingredient.id,
-              slug: ingredient.slug,
-              displayedName: ingredient.displayedName,
-              amount: ingredient.amount,
-              unit: ingredient.unit,
-            ),
-          )
-          .run(),
+  }) async {
+    (await TaskEither<Exception, void>.fromTask(
+            _persistenceService.addIngredient(
+      ingredient: SingleRecipePersistenceServiceIngredient(
+        isTickedOff: false,
+        recipeId: recipeId,
+        imageUrl: ingredient.imageUrl,
+        id: ingredient.id,
+        slug: ingredient.slug,
+        displayedName: ingredient.displayedName,
+        amount: ingredient.amount,
+        unit: ingredient.unit,
+      ),
+    )).andThen(() => fetchSingleRecipeTask(recipeId: recipeId)).run())
+        .fold(
+      (final Exception l) => print('Error removing ingredient'),
+      (final SingleRecipeModel recipeModel) {
+        state = recipeModel;
+      },
     );
   }
+
+  @override
+  Future<void> removeIngredientFromShoppingCart({
+    required final SingleRecipeModelIngredient ingredient,
+    required final String recipeId,
+  }) async {
+    (await TaskEither<Exception, void>.fromTask(
+      _persistenceService.removeIngredient(ingredientId: ingredient.id),
+    ).andThen(() => fetchSingleRecipeTask(recipeId: recipeId)).run())
+        .fold(
+      (final Exception l) => print('Error removing ingredient'),
+      (final SingleRecipeModel recipeModel) {
+        state = recipeModel;
+      },
+    );
+  }
+
+  TaskEither<Exception, SingleRecipeModel> fetchSingleRecipeTask({
+    required final String recipeId,
+  }) =>
+      _webClientService.fetchSingleRecipe(recipeId: recipeId).map(
+            (final SingleRecipeWebClientModelRecipe recipe) =>
+                mapToSingleRecipeModelRecipe(
+              recipe: recipe,
+              imageResizerService: _webImageSizerService,
+              persistenceService: _persistenceService,
+            ),
+          );
 }
 
 SingleRecipeModel mapToSingleRecipeModelRecipe({
   required final SingleRecipeWebClientModelRecipe recipe,
   required final SingleRecipeWebImageSizerService imageResizerService,
+  required final SingleRecipePersistenceService persistenceService,
 }) =>
     SingleRecipeModel(
       recipe: Either<Exception, Option<SingleRecipeModelRecipe>>.right(
@@ -103,6 +124,7 @@ SingleRecipeModel mapToSingleRecipeModelRecipe({
             yields: _mapYields(
               yields: recipe.yields,
               imageResizerService: imageResizerService,
+              persistenceService: persistenceService,
             ),
             imageUri: recipe.imagePath.flatMap(
               (final Uri imagePath) => imageResizerService
@@ -172,6 +194,7 @@ List<SingleRecipeModelStep> _mapSteps({
 List<SingleRecipeModelYield> _mapYields({
   required final List<SingleRecipeWebClientModelYield> yields,
   required final SingleRecipeWebImageSizerService imageResizerService,
+  required final SingleRecipePersistenceService persistenceService,
 }) =>
     yields
         .map(
@@ -197,6 +220,9 @@ List<SingleRecipeModelYield> _mapYields({
                     ),
                     amount: ingredient.amount,
                     unit: ingredient.unit,
+                    isInShoppingCard: persistenceService.hasSavedIngredient(
+                      ingredientId: ingredient.id,
+                    ),
                   ),
                 )
                 .toList(),

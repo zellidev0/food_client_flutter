@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
@@ -299,32 +301,42 @@ class SingleRecipeView extends ConsumerWidget {
         (final SingleRecipeModelYield yield) => Column(
           children: yield.ingredients
               .map(
-                (final SingleRecipeModelIngredient ingredient) => InkWell(
-                  onTap: () => controller.addIngredientToShoppingCart(
-                    ingredient: ingredient,
-                    recipeId: _recipeId,
-                  ),
-                  child: Card(
-                    child: ListTile(
-                      leading: AspectRatio(
-                        aspectRatio: 1,
-                        child: ingredient.imageUrl.fold(
-                          () => const Icon(Icons.image_not_supported),
-                          (final Uri url) => Image.network(
-                            url.toString(),
-                            errorBuilder: (final _, final __, final ___) =>
-                                const Icon(Icons.image_not_supported),
-                          ),
+                (final SingleRecipeModelIngredient ingredient) => Card(
+                  child: ListTile(
+                    leading: AspectRatio(
+                      aspectRatio: 1,
+                      child: ingredient.imageUrl.fold(
+                        () => const Icon(Icons.image_not_supported),
+                        (final Uri url) => Image.network(
+                          url.toString(),
+                          errorBuilder: (final _, final __, final ___) =>
+                              const Icon(Icons.image_not_supported),
                         ),
                       ),
-                      title: Text(ingredient.displayedName),
-                      subtitle: Text(
-                        '${ingredient.amount.fold(
-                          () => 'nach Ermessen',
-                          (final double amount) => amount.toString(),
-                        )} ${ingredient.unit.getOrElse(() => '')}',
-                      ),
-                      trailing: const Icon(Icons.more_vert),
+                    ),
+                    title: Text(ingredient.displayedName),
+                    subtitle: Text(
+                      '${ingredient.amount.fold(
+                        () => 'nach Ermessen',
+                        (final double amount) => amount.toString(),
+                      )} ${ingredient.unit.getOrElse(() => '')}',
+                    ),
+                    trailing: IconButton(
+                      onPressed: () => ingredient.isInShoppingCard
+                          ? unawaited(
+                              controller.removeIngredientFromShoppingCart(
+                                ingredient: ingredient,
+                                recipeId: _recipeId,
+                              ),
+                            )
+                          : controller.addIngredientToShoppingCart(
+                              ingredient: ingredient,
+                              recipeId: _recipeId,
+                            ),
+                      padding: const EdgeInsets.all(16),
+                      icon: ingredient.isInShoppingCard
+                          ? const Icon(Icons.remove_shopping_cart)
+                          : const Icon(Icons.add_shopping_cart),
                     ),
                   ),
                 ),
@@ -390,6 +402,10 @@ abstract class SingleRecipeController extends StateNotifier<SingleRecipeModel> {
   void goBack();
 
   void addIngredientToShoppingCart({
+    required final SingleRecipeModelIngredient ingredient,
+    required final String recipeId,
+  });
+  Future<void> removeIngredientFromShoppingCart({
     required final SingleRecipeModelIngredient ingredient,
     required final String recipeId,
   });

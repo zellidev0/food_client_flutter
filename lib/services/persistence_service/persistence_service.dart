@@ -4,17 +4,18 @@ import 'package:food_client/ui/single_recipe/single_recipe_persistence_service.d
 import 'package:fpdart/fpdart.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-
 const String ingredientsBoxName = 'ingredientsBox';
 
 abstract class PersistenceServiceAggregator
     implements CartPersistenceService, SingleRecipePersistenceService {}
 
 class PersistenceService implements PersistenceServiceAggregator {
-  late Box<PersistenceServiceModelShoppingListIngredient> _ingredientsBox;
+  late Box<PersistenceServiceModelShoppingListIngredient>
+      shoppingListIngredientsBox;
 
   PersistenceService() {
-    _ingredientsBox = Hive.box<PersistenceServiceModelShoppingListIngredient>(
+    shoppingListIngredientsBox =
+        Hive.box<PersistenceServiceModelShoppingListIngredient>(
       ingredientsBoxName,
     );
   }
@@ -29,23 +30,39 @@ class PersistenceService implements PersistenceServiceAggregator {
   Task<void> addIngredient({
     required final SingleRecipePersistenceServiceIngredient ingredient,
   }) =>
-      Task<void>(() async => await _ingredientsBox.put(
-            ingredient.id,
-            PersistenceServiceModelShoppingListIngredient(
-              id: ingredient.id,
-              imageUrl: ingredient.imageUrl,
-              slug: ingredient.slug,
-              isTickedOff: ingredient.isTickedOff,
-              recipeId: ingredient.recipeId,
-              displayedName: ingredient.displayedName,
-              amount: ingredient.amount,
-              unit: ingredient.unit,
-            ),
-          ),);
+      Task<void>(
+        () async => await shoppingListIngredientsBox.put(
+          ingredient.id,
+          PersistenceServiceModelShoppingListIngredient(
+            id: ingredient.id,
+            imageUrl: ingredient.imageUrl,
+            slug: ingredient.slug,
+            isTickedOff: ingredient.isTickedOff,
+            recipeId: ingredient.recipeId,
+            displayedName: ingredient.displayedName,
+            amount: ingredient.amount,
+            unit: ingredient.unit,
+          ),
+        ),
+      );
 
   List<PersistenceServiceModelShoppingListIngredient>
       _readAllShoppingCardIngredientsAndSetState() =>
-          _ingredientsBox.values.toList();
+          shoppingListIngredientsBox.values.toList();
+
+  @override
+  bool hasSavedIngredient({
+    required final String ingredientId,
+  }) =>
+      shoppingListIngredientsBox.containsKey(ingredientId);
+
+  @override
+  Task<void> removeIngredient({
+    required final String ingredientId,
+  }) =>
+      Task<void>(
+        () async => await shoppingListIngredientsBox.delete(ingredientId),
+      );
 }
 
 CartPersistenceServiceModelIngredient

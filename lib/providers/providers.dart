@@ -12,6 +12,8 @@ import 'package:food_client/ui/cart/cart_view.dart';
 import 'package:food_client/ui/home/home_controller.dart';
 import 'package:food_client/ui/home/home_model.dart';
 import 'package:food_client/ui/home/home_view.dart';
+import 'package:food_client/ui/main/main_controller.dart';
+import 'package:food_client/ui/main/main_model.dart';
 import 'package:food_client/ui/main/main_view.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_controller.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_model.dart';
@@ -31,6 +33,20 @@ class Providers {
         providers.bottomNavigationBarNavigationServiceProvider,
       ),
       persistenceService: ref.read(providers.persistenceServiceProvider),
+    ),
+  );
+
+  final AutoDisposeStateNotifierProvider<MainController, MainModel>
+      mainControllerProvider =
+      StateNotifierProvider.autoDispose<MainController, MainModel>(
+    (
+      final AutoDisposeStateNotifierProviderRef<MainController, MainModel> ref,
+    ) =>
+        MainControllerImplementation(
+      const MainModel(bottomNavigationBarIndex: 0),
+      navigationService: ref.read(
+        providers.bottomNavigationBarNavigationServiceProvider,
+      ),
     ),
   );
 
@@ -78,7 +94,8 @@ class Providers {
       ),
       webClientService: ref.read(providers.webClientServiceProvider),
       webImageSizerService: ref.read(providers.webImageSizerServiceProvider),
-      persistenceService: ref.read(providers.persistenceServiceProvider), recipeId: recipeId,
+      persistenceService: ref.read(providers.persistenceServiceProvider),
+      recipeId: recipeId,
     ),
   );
 
