@@ -4,9 +4,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
-import 'package:food_client/services/recipe_language_service/recipe_language_service.dart';
-import 'package:food_client/services/web_client/web_client_service.dart';
-import 'package:food_client/services/web_image_sizer/web_image_sizer_service.dart';
 import 'package:food_client/ui/home/home_model.dart';
 import 'package:food_client/ui/home/home_navigation_service.dart';
 import 'package:food_client/ui/home/home_recipe_language_service.dart';
@@ -14,27 +11,26 @@ import 'package:food_client/ui/home/home_view.dart';
 import 'package:food_client/ui/home/home_web_client_service.dart';
 import 'package:food_client/ui/home/home_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'home_controller.g.dart';
 
 const int widthPixels = 1200;
 
-@Riverpod(keepAlive: true)
-class HomeControllerImplementation extends _$HomeControllerImplementation
-    implements HomeController {
+class HomeControllerImplementation extends HomeController {
   late final HomeWebClientService _webClientService;
   late final HomeWebImageSizerService _webImageSizerService;
   late final HomeNavigationService _navigationService;
   late final HomeRecipeLanguageService _recipeLanguageService;
 
-  @override
-  HomeModel build() {
-    _webClientService = ref.read(webClientServiceProvider);
-    _webImageSizerService = ref.read(webImageSizerServiceProvider);
-    _navigationService = ref.read(bottomNavigationBarNavigationServiceProvider);
-    _recipeLanguageService = ref.read(recipeLanguageServiceProvider);
-
+  HomeControllerImplementation(
+    super.state, {
+    required final HomeWebClientService webClientService,
+    required final HomeWebImageSizerService webImageSizerService,
+    required final HomeNavigationService navigationService,
+    required final HomeRecipeLanguageService recipeLanguageService,
+  })  : _webClientService = webClientService,
+        _webImageSizerService = webImageSizerService,
+        _navigationService = navigationService,
+        _recipeLanguageService = recipeLanguageService {
     unawaited(
       init(
         initialRecipes: _fetchRecipes(
@@ -62,13 +58,6 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
                   .toList(),
             ),
       ),
-    );
-
-    return const HomeModel(
-      allRecipes: <HomeModelRecipe>[],
-      allTags: <HomeModelFilterTag>[],
-      allCuisines: <HomeModelFilterCuisine>[],
-      filteredRecipes: <HomeModelRecipe>[],
     );
   }
 

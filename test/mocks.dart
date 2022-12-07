@@ -3,9 +3,6 @@ import 'package:food_client/services/recipe_language_service/recipe_language_ser
 import 'package:food_client/services/web_client/web_client_service.dart';
 import 'package:food_client/ui/home/home_controller.dart';
 import 'package:food_client/ui/home/home_model.dart';
-import 'package:food_client/ui/home/home_navigation_service.dart';
-import 'package:food_client/ui/home/home_recipe_language_service.dart';
-import 'package:food_client/ui/home/home_web_client_service.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -19,13 +16,12 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 )
 class GeneratedMocks {}
 
-class MockHomeControllerImplementation
-    extends AutoDisposeNotifier<HomeModel>
+class MockHomeControllerImplementation extends AutoDisposeNotifier<HomeModel>
+    // ignore: prefer_mixin
     with Mock
     implements HomeControllerImplementation {
   final HomeModel _model;
-  MockHomeControllerImplementation(final HomeModel model)
-      : _model = model;
+  MockHomeControllerImplementation(final HomeModel model) : _model = model;
 
   @override
   HomeModel build() => _model;

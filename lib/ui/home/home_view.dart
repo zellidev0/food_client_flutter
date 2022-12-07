@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:food_client/ui/home/home_controller.dart';
+import 'package:food_client/providers/providers.dart';
 import 'package:food_client/ui/home/home_model.dart';
 import 'package:fpdart/fpdart.dart';
 
@@ -9,9 +9,9 @@ class HomeView extends ConsumerWidget {
 
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
-    final HomeModel model = ref.watch(homeControllerImplementationProvider);
+    final HomeModel model = ref.watch(providers.homeControllerProvider);
     final HomeController controller = ref.read(
-      homeControllerImplementationProvider.notifier,
+      providers.homeControllerProvider.notifier,
     );
 
     return Padding(
@@ -187,7 +187,7 @@ Widget buildDialogTags({
     Consumer(
       builder: (final _, final WidgetRef ref, final __) => buildDialog(
         children: ref
-            .watch(homeControllerImplementationProvider)
+            .watch(providers.homeControllerProvider)
             .allTags
             .filter((final HomeModelFilterTag tag) => tag.numberOfRecipes > 0)
             .map(
@@ -197,9 +197,7 @@ Widget buildDialogTags({
                   label: Text('${tag.displayedName} (${tag.numberOfRecipes})'),
                   selected: tag.isSelected,
                   onSelected: (final bool selected) => ref
-                      .watch(
-                        homeControllerImplementationProvider.notifier,
-                      )
+                      .watch(providers.homeControllerProvider.notifier)
                       .setTagSelected(
                         tagId: tag.id,
                         selected: selected,
@@ -217,7 +215,7 @@ Widget buildDialogCuisines({
     Consumer(
       builder: (final _, final WidgetRef ref, final __) => buildDialog(
         children: ref
-            .watch(homeControllerImplementationProvider)
+            .watch(providers.homeControllerProvider)
             .allCuisines
             .filter(
               (final HomeModelFilterCuisine cuisine) =>
@@ -232,9 +230,7 @@ Widget buildDialogCuisines({
                   ),
                   selected: cuisine.isSelected,
                   onSelected: (final bool selected) => ref
-                      .watch(
-                        homeControllerImplementationProvider.notifier,
-                      )
+                      .watch(providers.homeControllerProvider.notifier)
                       .setCuisineSelected(
                         cuisineId: cuisine.id,
                         selected: selected,
@@ -268,7 +264,9 @@ Widget buildDialog({
       ),
     );
 
-abstract class HomeController {
+abstract class HomeController extends StateNotifier<HomeModel> {
+  HomeController(super.state);
+
   void setTagSelected({
     required final String tagId,
     required final bool selected,

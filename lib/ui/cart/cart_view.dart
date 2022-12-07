@@ -1,7 +1,6 @@
-import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:food_client/ui/cart/cart_controller.dart';
+import 'package:food_client/providers/providers.dart';
 import 'package:food_client/ui/cart/cart_model.dart';
 
 class CartView extends ConsumerWidget {
@@ -10,10 +9,7 @@ class CartView extends ConsumerWidget {
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
     final CartModel model = ref.watch(
-      cartControllerImplementationProvider,
-    );
-    final CartController controller = ref.read(
-      cartControllerImplementationProvider.notifier,
+      providers.cartControllerProvider,
     );
     return Scaffold(
       body: Padding(
@@ -112,7 +108,9 @@ class CartView extends ConsumerWidget {
       );
 }
 
-abstract class CartController {
+abstract class CartController extends StateNotifier<CartModel> {
+  CartController(super.state);
+
   void goToHome();
   void goToCart();
   void goBack();

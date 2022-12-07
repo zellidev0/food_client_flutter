@@ -2,20 +2,13 @@ import 'dart:convert';
 import 'dart:core';
 
 import 'package:collection/collection.dart';
+import 'package:flutter/foundation.dart';
 import 'package:food_client/services/web_client/web_client_model.dart';
 import 'package:food_client/ui/home/home_web_client_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_web_client_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:http/http.dart' as http;
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'web_client_service.g.dart';
-
-@riverpod
-WebClientServiceAggregator webClientService(
-  final WebClientServiceRef ref,
-) =>
-    WebClientService();
 
 abstract class WebClientServiceAggregator
     implements HomeWebClientService, SingleRecipeWebClientService {}
@@ -40,7 +33,7 @@ class WebClientService implements WebClientServiceAggregator {
       TaskEither<Exception, String>.tryCatch(
         () async => await http.read(
           () {
-            var x = _recipesQueryApiUrl(
+            final Uri x = _recipesQueryApiUrl(
               country: country,
               limit: limit,
               take: take,
@@ -49,7 +42,9 @@ class WebClientService implements WebClientServiceAggregator {
               ingredients: ingredients,
               searchTerm: searchTerm,
             );
-            print(x);
+            if (kDebugMode) {
+              print(x);
+            }
             return x;
           }.call(),
           headers: headers,

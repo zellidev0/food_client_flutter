@@ -10,12 +10,11 @@ abstract class SingleRecipeWebClientService {
 }
 
 @freezed
-class SingleRecipeWebClientModelRecipe
-    with _$SingleRecipeWebClientModelRecipe {
+class SingleRecipeWebClientModelRecipe with _$SingleRecipeWebClientModelRecipe {
   const factory SingleRecipeWebClientModelRecipe({
     required final String id,
     required final SingleRecipeWebClientModelDisplayedAttributes
-    displayedAttributes,
+        displayedAttributes,
     required final int difficulty,
     required final List<SingleRecipeWebClientModelYield> yields,
     required final List<SingleRecipeWebClientModelTag> tags,
@@ -36,8 +35,7 @@ class SingleRecipeWebClientModelDisplayedAttributes
 }
 
 @freezed
-class SingleRecipeWebClientModelStep
-    with _$SingleRecipeWebClientModelStep {
+class SingleRecipeWebClientModelStep with _$SingleRecipeWebClientModelStep {
   const factory SingleRecipeWebClientModelStep({
     required final String instructionMarkdown,
     required final Option<Uri> imagePath,
@@ -58,8 +56,7 @@ class SingleRecipeWebClientModelIngredient
 }
 
 @freezed
-class SingleRecipeWebClientModelYield
-    with _$SingleRecipeWebClientModelYield {
+class SingleRecipeWebClientModelYield with _$SingleRecipeWebClientModelYield {
   const factory SingleRecipeWebClientModelYield({
     required final Option<int> yields,
     required final List<SingleRecipeWebClientModelIngredient> ingredients,

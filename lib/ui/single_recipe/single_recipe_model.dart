@@ -6,7 +6,7 @@ part 'single_recipe_model.freezed.dart';
 @freezed
 class SingleRecipeModel with _$SingleRecipeModel {
   const factory SingleRecipeModel({
-    required final Either<Exception,Option<SingleRecipeModelRecipe>> recipe,
+    required final Either<Exception, Option<SingleRecipeModelRecipe>> recipe,
     required final Option<int> selectedYield,
   }) = _SingleRecipeModel;
 }
@@ -36,8 +36,7 @@ class SingleRecipeModelDisplayedAttributes
 }
 
 @freezed
-class SingleRecipeModelStep
-    with _$SingleRecipeModelStep {
+class SingleRecipeModelStep with _$SingleRecipeModelStep {
   const factory SingleRecipeModelStep({
     required final String instructionMarkdown,
     required final Option<Uri> imageUrl,

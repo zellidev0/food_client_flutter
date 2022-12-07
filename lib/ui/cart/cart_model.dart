@@ -10,7 +10,6 @@ class CartModel with _$CartModel {
   }) = _CartModel;
 }
 
-
 @freezed
 class CartModelIngredient with _$CartModelIngredient {
   const factory CartModelIngredient({

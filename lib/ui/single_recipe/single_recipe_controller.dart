@@ -3,9 +3,6 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
-import 'package:food_client/services/persistence_service/persistence_service.dart';
-import 'package:food_client/services/web_client/web_client_service.dart';
-import 'package:food_client/services/web_image_sizer/web_image_sizer_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_model.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_navigation_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_persistence_service.dart';
@@ -13,30 +10,24 @@ import 'package:food_client/ui/single_recipe/single_recipe_view.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_web_client_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'single_recipe_controller.g.dart';
-
-@riverpod
-class SingleRecipeControllerImplementation
-    extends _$SingleRecipeControllerImplementation
-    implements SingleRecipeController {
+class SingleRecipeControllerImplementation extends SingleRecipeController {
   late final SingleRecipeWebClientService _webClientService;
   late final SingleRecipeWebImageSizerService _webImageSizerService;
   late final SingleRecipeNavigationService _navigationService;
   late final SingleRecipePersistenceService _persistenceService;
 
-  @override
-  SingleRecipeModel build({
+  SingleRecipeControllerImplementation(
+    super.state, {
     required final String recipeId,
-  }) {
-    _webClientService = ref.watch(webClientServiceProvider);
-    _webImageSizerService = ref.watch(webImageSizerServiceProvider);
-    _navigationService = ref.watch(
-      bottomNavigationBarNavigationServiceProvider,
-    );
-    _persistenceService = ref.watch(persistenceServiceProvider);
-
+    required final SingleRecipeWebClientService webClientService,
+    required final SingleRecipeWebImageSizerService webImageSizerService,
+    required final SingleRecipeNavigationService navigationService,
+    required final SingleRecipePersistenceService persistenceService,
+  })  : _webClientService = webClientService,
+        _webImageSizerService = webImageSizerService,
+        _navigationService = navigationService,
+        _persistenceService = persistenceService {
     unawaited(
       init(
         initialTask:
@@ -48,11 +39,6 @@ class SingleRecipeControllerImplementation
                   ),
                 ),
       ),
-    );
-
-    return SingleRecipeModel(
-      recipe: Either<Exception, Option<SingleRecipeModelRecipe>>.right(none()),
-      selectedYield: none(),
     );
   }
 

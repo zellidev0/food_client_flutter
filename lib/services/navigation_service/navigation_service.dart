@@ -2,35 +2,14 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/material.dart';
 import 'package:food_client/ui/cart/cart_navigation_service.dart';
-import 'package:food_client/ui/cart/cart_view.dart';
 import 'package:food_client/ui/home/home_navigation_service.dart';
-import 'package:food_client/ui/home/home_view.dart';
 import 'package:food_client/ui/main/main_navigation_service.dart';
-import 'package:food_client/ui/main/main_view.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_navigation_service.dart';
-import 'package:food_client/ui/single_recipe/single_recipe_view.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'navigation_service.freezed.dart';
-part 'navigation_service.g.dart';
-
-@riverpod
-NavigationServiceAggregator globalNavigationService(
-  final GlobalNavigationServiceRef ref,
-) =>
-    BeamerNavigationService(
-      beamerDelegate: ref.read(globalBeamerDelegateProvider),
-    );
-
-@riverpod
-NavigationServiceAggregator bottomNavigationBarNavigationService(
-  final BottomNavigationBarNavigationServiceRef ref,
-) =>
-    BeamerNavigationService(
-      beamerDelegate: ref.read(bottomNavigationBarBeamerDelegateProvider),
-    );
 
 abstract class NavigationServiceAggregator
     implements
@@ -133,41 +112,3 @@ class BeamerNavigationService implements NavigationServiceAggregator {
       material.ScaffoldMessenger.of(_beamerDelegate.navigator.context)
           .showSnackBar(material.SnackBar(content: material.Text(message)));
 }
-
-@Riverpod(keepAlive: true)
-BeamerDelegate globalBeamerDelegate(final GlobalBeamerDelegateRef ref) =>
-    BeamerDelegate(
-      initialPath: '*',
-      locationBuilder: RoutesLocationBuilder(
-        routes: <Pattern, dynamic Function(BuildContext, BeamState, Object?)>{
-          '*': (final _, final __, final ___) => const MainView(),
-        },
-      ),
-    );
-
-@Riverpod(keepAlive: true)
-BeamerDelegate bottomNavigationBarBeamerDelegate(
-  final GlobalBeamerDelegateRef ref,
-) =>
-    BeamerDelegate(
-      initialPath: NavigationServiceUris.homeRouteUri.toString(),
-      locationBuilder: RoutesLocationBuilder(
-        routes: <Pattern, dynamic Function(BuildContext, BeamState, Object?)>{
-          NavigationServiceUris.homeRouteUri.toString():
-              (final _, final __, final ___) => const HomeView(),
-          NavigationServiceUris.cartRouteUri.toString():
-              (final _, final __, final ___) => const CartView(),
-          '${NavigationServiceUris.singleRecipeUri}': (
-            final _,
-            final BeamState state,
-            final ___,
-          ) =>
-              SingleRecipeView(
-                recipeId: state
-                    .queryParameters[NavigationServiceUris.singleRecipeIdKey]!,
-              ),
-          // '*': (final _, final __, final ___) => const HomeView(),
-          // '/': (final _, final __, final ___) => const HomeView(),
-        },
-      ),
-    );

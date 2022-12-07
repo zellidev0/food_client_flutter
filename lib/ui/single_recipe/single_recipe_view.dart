@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:food_client/ui/single_recipe/single_recipe_controller.dart';
+import 'package:food_client/providers/providers.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_model.dart';
 import 'package:fpdart/fpdart.dart';
 
@@ -17,11 +17,10 @@ class SingleRecipeView extends ConsumerWidget {
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
     final SingleRecipeModel model = ref.watch(
-      singleRecipeControllerImplementationProvider(recipeId: _recipeId),
+      providers.singleRecipeControllerProvider(_recipeId),
     );
     final SingleRecipeController controller = ref.read(
-      singleRecipeControllerImplementationProvider(recipeId: _recipeId)
-          .notifier,
+      providers.singleRecipeControllerProvider(_recipeId).notifier,
     );
 
     return Scaffold(
@@ -384,7 +383,9 @@ class SingleRecipeView extends ConsumerWidget {
   //     );
 }
 
-abstract class SingleRecipeController {
+abstract class SingleRecipeController extends StateNotifier<SingleRecipeModel> {
+  SingleRecipeController(super.state);
+
   void setSelectedYield({required final int yield});
   void goBack();
 

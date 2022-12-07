@@ -16,7 +16,9 @@ class PersistenceServiceModel with _$PersistenceServiceModel {
 @freezed
 class PersistenceServiceModelShoppingListIngredient
     with _$PersistenceServiceModelShoppingListIngredient {
-  @HiveType(typeId: 0, adapterName: 'PersistenceServiceModelShoppingListIngredientAdapter')
+  @HiveType(
+      typeId: 0,
+      adapterName: 'PersistenceServiceModelShoppingListIngredientAdapter',)
   const factory PersistenceServiceModelShoppingListIngredient({
     @HiveField(0) required final String id,
     @HiveField(1) required final bool isTickedOff,
@@ -28,7 +30,7 @@ class PersistenceServiceModelShoppingListIngredient
     @HiveField(7) required final Option<String> unit,
   }) = _PersistenceServiceModelShoppingListIngredient;
 
-  factory PersistenceServiceModelShoppingListIngredient.fromJson(Map<String, dynamic> json) =>
+  factory PersistenceServiceModelShoppingListIngredient.fromJson(
+          final Map<String, dynamic> json,) =>
       _$PersistenceServiceModelShoppingListIngredientFromJson(json);
 }
-

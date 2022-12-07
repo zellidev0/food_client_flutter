@@ -1,6 +1,7 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:food_client/providers/providers.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/ui/main/main_controller.dart';
 import 'package:food_client/ui/main/main_model.dart';
@@ -53,7 +54,7 @@ class MainView extends ConsumerWidget {
       ),
       body: Beamer(
         routerDelegate: ref.read(
-          bottomNavigationBarBeamerDelegateProvider,
+          providers.bottomNavigationBarBeamerDelegate,
         ),
       ),
     );

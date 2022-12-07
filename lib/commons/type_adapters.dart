@@ -6,8 +6,7 @@ class OptionUriAdapter extends TypeAdapter<Option<Uri>> {
   final int typeId = 100;
 
   @override
-  Option<Uri> read(final BinaryReader reader) =>
-      optionOf(reader.read());
+  Option<Uri> read(final BinaryReader reader) => optionOf(reader.read());
 
   @override
   void write(final BinaryWriter writer, final Option<Uri> obj) {
@@ -20,8 +19,7 @@ class OptionDoubleAdapter extends TypeAdapter<Option<double>> {
   final int typeId = 101;
 
   @override
-  Option<double> read(final BinaryReader reader) =>
-      optionOf(reader.read());
+  Option<double> read(final BinaryReader reader) => optionOf(reader.read());
 
   @override
   void write(final BinaryWriter writer, final Option<double> obj) {
@@ -34,8 +32,7 @@ class OptionStringAdapter extends TypeAdapter<Option<String>> {
   final int typeId = 102;
 
   @override
-  Option<String> read(final BinaryReader reader) =>
-      optionOf(reader.read());
+  Option<String> read(final BinaryReader reader) => optionOf(reader.read());
 
   @override
   void write(final BinaryWriter writer, final Option<String> obj) {
@@ -48,8 +45,7 @@ class UriAdapter extends TypeAdapter<Uri> {
   final int typeId = 103;
 
   @override
-  Uri read(final BinaryReader reader) =>
-      Uri.parse(reader.read());
+  Uri read(final BinaryReader reader) => Uri.parse(reader.read());
 
   @override
   void write(final BinaryWriter writer, final Uri obj) {

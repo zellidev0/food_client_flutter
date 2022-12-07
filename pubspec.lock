@@ -539,13 +539,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.6"
-  riverpod_generator:
-    dependency: "direct main"
-    description:
-      name: riverpod_generator
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.6"
   shared_preferences:
     dependency: transitive
     description:

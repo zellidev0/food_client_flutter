@@ -5,7 +5,8 @@ part 'web_client_model.freezed.dart';
 part 'web_client_model.g.dart';
 
 @freezed
-class WebClientModelRecipeApiRecipeResponse with _$WebClientModelRecipeApiRecipeResponse {
+class WebClientModelRecipeApiRecipeResponse
+    with _$WebClientModelRecipeApiRecipeResponse {
   const factory WebClientModelRecipeApiRecipeResponse({
     required final int total,
     required final int take,
@@ -21,7 +22,8 @@ class WebClientModelRecipeApiRecipeResponse with _$WebClientModelRecipeApiRecipe
 }
 
 @freezed
-class WebClientModelRecipeApiTagResponse with _$WebClientModelRecipeApiTagResponse {
+class WebClientModelRecipeApiTagResponse
+    with _$WebClientModelRecipeApiTagResponse {
   const factory WebClientModelRecipeApiTagResponse({
     required final int total,
     required final int take,
@@ -31,13 +33,14 @@ class WebClientModelRecipeApiTagResponse with _$WebClientModelRecipeApiTagRespon
   }) = _WebClientModelRecipeApiTagResponse;
 
   factory WebClientModelRecipeApiTagResponse.fromJson(
-      final Map<String, dynamic> json,
-      ) =>
+    final Map<String, dynamic> json,
+  ) =>
       _$WebClientModelRecipeApiTagResponseFromJson(json);
 }
 
 @freezed
-class WebClientModelRecipeApiCuisineResponse with _$WebClientModelRecipeApiCuisineResponse {
+class WebClientModelRecipeApiCuisineResponse
+    with _$WebClientModelRecipeApiCuisineResponse {
   const factory WebClientModelRecipeApiCuisineResponse({
     required final int total,
     required final int take,
@@ -47,12 +50,10 @@ class WebClientModelRecipeApiCuisineResponse with _$WebClientModelRecipeApiCuisi
   }) = _WebClientModelRecipeApiCuisineResponse;
 
   factory WebClientModelRecipeApiCuisineResponse.fromJson(
-      final Map<String, dynamic> json,
-      ) =>
+    final Map<String, dynamic> json,
+  ) =>
       _$WebClientModelRecipeApiCuisineResponseFromJson(json);
 }
-
-
 
 @freezed
 class WebClientModelTagsApiResponse with _$WebClientModelTagsApiResponse {
@@ -122,7 +123,7 @@ class WebClientModelRecipeTag with _$WebClientModelRecipeTag {
     required final String type,
     required final String name,
     required final List<String> preferences,
-    required final Map<String,int> numberOfRecipesByCountry,
+    required final Map<String, int> numberOfRecipesByCountry,
   }) = _WebClientModelRecipeTag;
 
   factory WebClientModelRecipeTag.fromJson(
@@ -209,7 +210,7 @@ class WebClientModelTag with _$WebClientModelTag {
     required final String id,
     required final String name,
     required final String type,
-    required final Map<String,int> numberOfRecipesByCountry,
+    required final Map<String, int> numberOfRecipesByCountry,
   }) = _WebClientModelTag;
 
   factory WebClientModelTag.fromJson(

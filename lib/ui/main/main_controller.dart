@@ -1,4 +1,4 @@
-
+import 'package:food_client/providers/providers.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/ui/main/main_model.dart';
 import 'package:food_client/ui/main/main_navigation_service.dart';
@@ -14,7 +14,8 @@ class MainControllerImplementation extends _$MainControllerImplementation
 
   @override
   MainModel build() {
-    _navigationService = ref.watch(bottomNavigationBarNavigationServiceProvider);
+    _navigationService =
+        ref.watch(providers.bottomNavigationBarNavigationServiceProvider);
     return const MainModel(bottomNavigationBarIndex: 0);
   }
 
