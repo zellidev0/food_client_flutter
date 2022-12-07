@@ -9,9 +9,11 @@ abstract class SingleRecipePersistenceService {
   });
   bool hasSavedIngredient({
     required final String ingredientId,
+    required final String recipeId,
   });
   Task<void> removeIngredient({
     required final String ingredientId,
+    required final String recipeId,
   });
 }
 

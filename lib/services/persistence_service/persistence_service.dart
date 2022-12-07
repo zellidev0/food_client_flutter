@@ -32,7 +32,10 @@ class PersistenceService implements PersistenceServiceAggregator {
   }) =>
       Task<void>(
         () async => await shoppingListIngredientsBox.put(
-          ingredient.id,
+          _buildKey(
+            ingredientId: ingredient.id,
+            recipeId: ingredient.recipeId,
+          ),
           PersistenceServiceModelShoppingListIngredient(
             id: ingredient.id,
             imageUrl: ingredient.imageUrl,
@@ -46,23 +49,39 @@ class PersistenceService implements PersistenceServiceAggregator {
         ),
       );
 
-  List<PersistenceServiceModelShoppingListIngredient>
-      _readAllShoppingCardIngredientsAndSetState() =>
-          shoppingListIngredientsBox.values.toList();
-
   @override
   bool hasSavedIngredient({
     required final String ingredientId,
+    required final String recipeId,
   }) =>
-      shoppingListIngredientsBox.containsKey(ingredientId);
+      shoppingListIngredientsBox.containsKey( _buildKey(
+        ingredientId: ingredientId,
+        recipeId: recipeId,
+      ),);
 
   @override
   Task<void> removeIngredient({
     required final String ingredientId,
+    required final String recipeId,
   }) =>
       Task<void>(
-        () async => await shoppingListIngredientsBox.delete(ingredientId),
+        () async => await shoppingListIngredientsBox.delete(
+          _buildKey(
+            ingredientId: ingredientId,
+            recipeId: recipeId,
+          ),
+        ),
       );
+
+  String _buildKey({
+    required final String ingredientId,
+    required final String recipeId,
+  }) =>
+      'recipe:$recipeId;ingredient:$ingredientId';
+
+  List<PersistenceServiceModelShoppingListIngredient>
+      _readAllShoppingCardIngredientsAndSetState() =>
+          shoppingListIngredientsBox.values.toList();
 }
 
 CartPersistenceServiceModelIngredient

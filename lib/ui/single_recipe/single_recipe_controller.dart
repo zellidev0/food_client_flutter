@@ -86,7 +86,10 @@ class SingleRecipeControllerImplementation extends SingleRecipeController {
     required final String recipeId,
   }) async {
     (await TaskEither<Exception, void>.fromTask(
-      _persistenceService.removeIngredient(ingredientId: ingredient.id),
+      _persistenceService.removeIngredient(
+        ingredientId: ingredient.id,
+        recipeId: recipeId,
+      ),
     ).andThen(() => fetchSingleRecipeTask(recipeId: recipeId)).run())
         .fold(
       (final Exception exception) =>
@@ -128,6 +131,7 @@ SingleRecipeModel mapToSingleRecipeModelRecipe({
               yields: recipe.yields,
               imageResizerService: imageResizerService,
               persistenceService: persistenceService,
+              recipeId: recipe.id,
             ),
             imageUri: recipe.imagePath.flatMap(
               (final Uri imagePath) => imageResizerService
@@ -198,6 +202,7 @@ List<SingleRecipeModelYield> _mapYields({
   required final List<SingleRecipeWebClientModelYield> yields,
   required final SingleRecipeWebImageSizerService imageResizerService,
   required final SingleRecipePersistenceService persistenceService,
+  required final String recipeId,
 }) =>
     yields
         .map(
@@ -225,6 +230,7 @@ List<SingleRecipeModelYield> _mapYields({
                     unit: ingredient.unit,
                     isInShoppingCard: persistenceService.hasSavedIngredient(
                       ingredientId: ingredient.id,
+                      recipeId: recipeId,
                     ),
                   ),
                 )
