@@ -19,16 +19,20 @@ class CartView extends ConsumerWidget {
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: DefaultTabController(
-          length: 2,
+          length: 1,
           child: Column(
             children: <Widget>[
               _buildTabBar(),
               const SizedBox(height: 8),
               Expanded(
-                child: buildTabContent(
-                  context: context,
-                  model: model,
-                  controller: controller,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: model.ingredients.length,
+                  itemBuilder: (final BuildContext context, final int index) =>
+                      buildSingleIngredient(
+                    ingredient: model.ingredients.toList()[index],
+                    controller: controller,
+                  ),
                 ),
               ),
             ],
@@ -37,56 +41,6 @@ class CartView extends ConsumerWidget {
       ),
     );
   }
-
-  Widget buildTabContent({
-    required final BuildContext context,
-    required final CartModel model,
-    required final CartController controller,
-  }) =>
-      TabBarView(
-        children: <Widget>[
-          ListView.builder(
-            shrinkWrap: true,
-            itemCount: model.ingredients
-                .whereNot(
-                  (final CartModelIngredient ingredient) =>
-                      ingredient.isTickedOff,
-                )
-                .length,
-            itemBuilder: (final BuildContext context, final int index) =>
-                buildSingleIngredient(
-              ingredient: model.ingredients
-                  .whereNot(
-                    (final CartModelIngredient ingredient) =>
-                        ingredient.isTickedOff,
-                  )
-                  .toList()[index],
-              controller: controller,
-              tickOffOnTap: true,
-            ),
-          ),
-          ListView.builder(
-            shrinkWrap: true,
-            itemCount: model.ingredients
-                .where(
-                  (final CartModelIngredient ingredient) =>
-                      ingredient.isTickedOff,
-                )
-                .length,
-            itemBuilder: (final BuildContext context, final int index) =>
-                buildSingleIngredient(
-              ingredient: model.ingredients
-                  .where(
-                    (final CartModelIngredient ingredient) =>
-                        ingredient.isTickedOff,
-                  )
-                  .toList()[index],
-              controller: controller,
-              tickOffOnTap: false,
-            ),
-          ),
-        ],
-      );
 
   Widget _buildTabBar() => Builder(
         builder: (final BuildContext context) => TabBar(
@@ -99,7 +53,6 @@ class CartView extends ConsumerWidget {
           indicatorColor: Colors.red,
           tabs: const <Widget>[
             Tab(text: 'Einkaufen'),
-            Tab(text: 'Abgehakt'),
           ],
         ),
       );
@@ -107,16 +60,16 @@ class CartView extends ConsumerWidget {
   Widget buildSingleIngredient({
     required final CartModelIngredient ingredient,
     required final CartController controller,
-    required final bool tickOffOnTap,
   }) =>
       Card(
-        color: ingredient.color,
+        color: ingredient.isTickedOff ? Colors.grey.shade300 : ingredient.color,
         child: InkWell(
           onTap: () => controller.tickOff(
             ingredientId: ingredient.ingredient.id,
-            isTickedOff: tickOffOnTap,
+            isTickedOff: !ingredient.isTickedOff,
           ),
           child: ListTile(
+            enabled: !ingredient.isTickedOff,
             leading: AspectRatio(
               aspectRatio: 1,
               child: ingredient.ingredient.imageUrl.fold(
