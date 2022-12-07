@@ -142,6 +142,7 @@ abstract class _CartModel implements CartModel {
 mixin _$CartModelIngredient {
   CartModelIngredientInfo get ingredient => throw _privateConstructorUsedError;
   bool get isTickedOff => throw _privateConstructorUsedError;
+  Color get color => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CartModelIngredientCopyWith<CartModelIngredient> get copyWith =>
@@ -154,7 +155,8 @@ abstract class $CartModelIngredientCopyWith<$Res> {
           CartModelIngredient value, $Res Function(CartModelIngredient) then) =
       _$CartModelIngredientCopyWithImpl<$Res, CartModelIngredient>;
   @useResult
-  $Res call({CartModelIngredientInfo ingredient, bool isTickedOff});
+  $Res call(
+      {CartModelIngredientInfo ingredient, bool isTickedOff, Color color});
 
   $CartModelIngredientInfoCopyWith<$Res> get ingredient;
 }
@@ -174,6 +176,7 @@ class _$CartModelIngredientCopyWithImpl<$Res, $Val extends CartModelIngredient>
   $Res call({
     Object? ingredient = null,
     Object? isTickedOff = null,
+    Object? color = null,
   }) {
     return _then(_value.copyWith(
       ingredient: null == ingredient
@@ -184,6 +187,10 @@ class _$CartModelIngredientCopyWithImpl<$Res, $Val extends CartModelIngredient>
           ? _value.isTickedOff
           : isTickedOff // ignore: cast_nullable_to_non_nullable
               as bool,
+      color: null == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as Color,
     ) as $Val);
   }
 
@@ -204,7 +211,8 @@ abstract class _$$_CartModelIngredientCopyWith<$Res>
       __$$_CartModelIngredientCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({CartModelIngredientInfo ingredient, bool isTickedOff});
+  $Res call(
+      {CartModelIngredientInfo ingredient, bool isTickedOff, Color color});
 
   @override
   $CartModelIngredientInfoCopyWith<$Res> get ingredient;
@@ -223,6 +231,7 @@ class __$$_CartModelIngredientCopyWithImpl<$Res>
   $Res call({
     Object? ingredient = null,
     Object? isTickedOff = null,
+    Object? color = null,
   }) {
     return _then(_$_CartModelIngredient(
       ingredient: null == ingredient
@@ -233,6 +242,10 @@ class __$$_CartModelIngredientCopyWithImpl<$Res>
           ? _value.isTickedOff
           : isTickedOff // ignore: cast_nullable_to_non_nullable
               as bool,
+      color: null == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as Color,
     ));
   }
 }
@@ -241,16 +254,20 @@ class __$$_CartModelIngredientCopyWithImpl<$Res>
 
 class _$_CartModelIngredient implements _CartModelIngredient {
   const _$_CartModelIngredient(
-      {required this.ingredient, required this.isTickedOff});
+      {required this.ingredient,
+      required this.isTickedOff,
+      required this.color});
 
   @override
   final CartModelIngredientInfo ingredient;
   @override
   final bool isTickedOff;
+  @override
+  final Color color;
 
   @override
   String toString() {
-    return 'CartModelIngredient(ingredient: $ingredient, isTickedOff: $isTickedOff)';
+    return 'CartModelIngredient(ingredient: $ingredient, isTickedOff: $isTickedOff, color: $color)';
   }
 
   @override
@@ -261,11 +278,13 @@ class _$_CartModelIngredient implements _CartModelIngredient {
             (identical(other.ingredient, ingredient) ||
                 other.ingredient == ingredient) &&
             (identical(other.isTickedOff, isTickedOff) ||
-                other.isTickedOff == isTickedOff));
+                other.isTickedOff == isTickedOff) &&
+            const DeepCollectionEquality().equals(other.color, color));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, ingredient, isTickedOff);
+  int get hashCode => Object.hash(runtimeType, ingredient, isTickedOff,
+      const DeepCollectionEquality().hash(color));
 
   @JsonKey(ignore: true)
   @override
@@ -278,12 +297,15 @@ class _$_CartModelIngredient implements _CartModelIngredient {
 abstract class _CartModelIngredient implements CartModelIngredient {
   const factory _CartModelIngredient(
       {required final CartModelIngredientInfo ingredient,
-      required final bool isTickedOff}) = _$_CartModelIngredient;
+      required final bool isTickedOff,
+      required final Color color}) = _$_CartModelIngredient;
 
   @override
   CartModelIngredientInfo get ingredient;
   @override
   bool get isTickedOff;
+  @override
+  Color get color;
   @override
   @JsonKey(ignore: true)
   _$$_CartModelIngredientCopyWith<_$_CartModelIngredient> get copyWith =>

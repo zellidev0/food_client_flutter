@@ -84,6 +84,7 @@ class CartView extends ConsumerWidget {
     required final CartModelIngredient ingredient,
   }) =>
       Card(
+        color: ingredient.color,
         child: ListTile(
           leading: AspectRatio(
             aspectRatio: 1,

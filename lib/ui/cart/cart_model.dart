@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -15,6 +17,7 @@ class CartModelIngredient with _$CartModelIngredient {
   const factory CartModelIngredient({
     required final CartModelIngredientInfo ingredient,
     required final bool isTickedOff,
+    required final Color color,
   }) = _CartModelIngredient;
 }
 

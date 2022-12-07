@@ -1,3 +1,4 @@
+import 'package:food_client/commons/utils.dart';
 import 'package:food_client/ui/cart/cart_model.dart';
 import 'package:food_client/ui/cart/cart_navigation_service.dart';
 import 'package:food_client/ui/cart/cart_persistence_service.dart';
@@ -27,12 +28,10 @@ class CartControllerImplementation extends CartController {
   }
 
   @override
-  void goToCart() {
-  }
+  void goToCart() {}
 
   @override
-  void goToHome() {
-  }
+  void goToHome() {}
 }
 
 CartModelIngredient mapToCartModelIngredient(
@@ -49,4 +48,5 @@ CartModelIngredient mapToCartModelIngredient(
         unit: ingredient.unit,
       ),
       isTickedOff: ingredient.isTickedOff,
+      color: generateRandomPastelColor(seed: ingredient.recipeId.hashCode),
     );
