@@ -62,7 +62,7 @@ class SingleRecipeControllerImplementation extends SingleRecipeController {
           isTickedOff: false,
           recipeId: recipeId,
           imageUrl: ingredient.imageUrl,
-          id: ingredient.id,
+          ingredientId: ingredient.ingredientId,
           slug: ingredient.slug,
           displayedName: ingredient.displayedName,
           amount: ingredient.amount,
@@ -86,7 +86,7 @@ class SingleRecipeControllerImplementation extends SingleRecipeController {
   }) async {
     (await TaskEither<Exception, void>.fromTask(
       _persistenceService.removeIngredient(
-        ingredientId: ingredient.id,
+        ingredientId: ingredient.ingredientId,
         recipeId: recipeId,
       ),
     ).andThen(() => fetchSingleRecipeTask(recipeId: recipeId)).run())
@@ -214,21 +214,18 @@ List<SingleRecipeModelYield> _mapYields({
                     final SingleRecipeWebClientModelIngredient ingredient,
                   ) =>
                       SingleRecipeModelIngredient(
-                    id: ingredient.id,
+                    ingredientId: ingredient.ingredientId,
                     slug: ingredient.slug,
                     displayedName: ingredient.displayedName,
                     imageUrl: ingredient.imagePath.flatMap(
                       (final Uri imagePath) => imageResizerService
-                          .getUrl(
-                            filePath: imagePath,
-                            widthPixels: 500,
-                          )
+                          .getUrl(filePath: imagePath, widthPixels: 500)
                           .toOption(),
                     ),
                     amount: ingredient.amount,
                     unit: ingredient.unit,
-                    isInShoppingCard: persistenceService.hasSavedIngredient(
-                      ingredientId: ingredient.id,
+                    isInShoppingCard: persistenceService.isInShoppingCart(
+                      ingredientId: ingredient.ingredientId,
                       recipeId: recipeId,
                     ),
                   ),

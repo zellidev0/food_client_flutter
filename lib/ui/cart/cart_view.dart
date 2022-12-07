@@ -62,37 +62,40 @@ class CartView extends ConsumerWidget {
   }) =>
       Card(
         color: ingredient.isTickedOff ? Colors.grey.shade300 : ingredient.color,
-        child: InkWell(
-          onTap: () => controller.tickOff(
-            ingredientId: ingredient.ingredient.id,
-            isTickedOff: !ingredient.isTickedOff,
-          ),
-          child: ListTile(
-            enabled: !ingredient.isTickedOff,
-            leading: AspectRatio(
-              aspectRatio: 1,
-              child: ingredient.ingredient.imageUrl.fold(
-                () => const Icon(Icons.image_not_supported),
-                (final Uri url) => Image.network(
-                  url.toString(),
-                  errorBuilder: (final _, final __, final ___) =>
-                      const Icon(Icons.image_not_supported),
+        child: Builder(
+          builder: (final BuildContext context) => InkWell(
+            onTap: () => controller.tickOff(
+              ingredientId: ingredient.ingredient.ingredientId,
+              isTickedOff: !ingredient.isTickedOff,
+            ),
+            onLongPress: controller.showDeleteDialog,
+            child: ListTile(
+              enabled: !ingredient.isTickedOff,
+              leading: AspectRatio(
+                aspectRatio: 1,
+                child: ingredient.ingredient.imageUrl.fold(
+                  () => const Icon(Icons.image_not_supported),
+                  (final Uri url) => Image.network(
+                    url.toString(),
+                    errorBuilder: (final _, final __, final ___) =>
+                        const Icon(Icons.image_not_supported),
+                  ),
                 ),
               ),
-            ),
-            title: Text(ingredient.ingredient.displayedName),
-            subtitle: Text(
-              '${ingredient.ingredient.amount.fold(
-                () => 'nach Ermessen',
-                (final double amount) => amount.toString(),
-              )} ${ingredient.ingredient.unit.getOrElse(() => '')}',
-            ),
-            trailing: IconButton(
-              padding: const EdgeInsets.all(16),
-              onPressed: () => controller.openSingleRecipe(
-                recipeId: ingredient.ingredient.recipeId,
+              title: Text(ingredient.ingredient.displayedName),
+              subtitle: Text(
+                '${ingredient.ingredient.amount.fold(
+                  () => 'nach Ermessen',
+                  (final double amount) => amount.toString(),
+                )} ${ingredient.ingredient.unit.getOrElse(() => '')}',
               ),
-              icon: const Icon(Icons.forward),
+              trailing: IconButton(
+                padding: const EdgeInsets.all(16),
+                onPressed: () => controller.openSingleRecipe(
+                  recipeId: ingredient.ingredient.recipeId,
+                ),
+                icon: const Icon(Icons.forward),
+              ),
             ),
           ),
         ),
@@ -110,4 +113,5 @@ abstract class CartController extends StateNotifier<CartModel> {
     required final String ingredientId,
     required final bool isTickedOff,
   });
+  void showDeleteDialog();
 }

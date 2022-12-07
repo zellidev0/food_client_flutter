@@ -7,7 +7,7 @@ abstract class SingleRecipePersistenceService {
   Task<void> addIngredient({
     required final SingleRecipePersistenceServiceIngredient ingredient,
   });
-  bool hasSavedIngredient({
+  bool isInShoppingCart({
     required final String ingredientId,
     required final String recipeId,
   });
@@ -24,7 +24,7 @@ class SingleRecipePersistenceServiceIngredient
     required final bool isTickedOff,
     required final String recipeId,
     required final Option<Uri> imageUrl,
-    required final String id,
+    required final String ingredientId,
     required final String slug,
     required final String displayedName,
     required final Option<double> amount,

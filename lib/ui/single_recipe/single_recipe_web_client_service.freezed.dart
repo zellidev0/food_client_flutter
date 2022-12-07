@@ -671,7 +671,7 @@ abstract class _SingleRecipeWebClientModelStep
 /// @nodoc
 mixin _$SingleRecipeWebClientModelIngredient {
   Option<Uri> get imagePath => throw _privateConstructorUsedError;
-  String get id => throw _privateConstructorUsedError;
+  String get ingredientId => throw _privateConstructorUsedError;
   String get slug => throw _privateConstructorUsedError;
   String get displayedName => throw _privateConstructorUsedError;
   Option<double> get amount => throw _privateConstructorUsedError;
@@ -693,7 +693,7 @@ abstract class $SingleRecipeWebClientModelIngredientCopyWith<$Res> {
   @useResult
   $Res call(
       {Option<Uri> imagePath,
-      String id,
+      String ingredientId,
       String slug,
       String displayedName,
       Option<double> amount,
@@ -715,7 +715,7 @@ class _$SingleRecipeWebClientModelIngredientCopyWithImpl<$Res,
   @override
   $Res call({
     Object? imagePath = null,
-    Object? id = null,
+    Object? ingredientId = null,
     Object? slug = null,
     Object? displayedName = null,
     Object? amount = null,
@@ -726,9 +726,9 @@ class _$SingleRecipeWebClientModelIngredientCopyWithImpl<$Res,
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
               as Option<Uri>,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      ingredientId: null == ingredientId
+          ? _value.ingredientId
+          : ingredientId // ignore: cast_nullable_to_non_nullable
               as String,
       slug: null == slug
           ? _value.slug
@@ -761,7 +761,7 @@ abstract class _$$_SingleRecipeWebClientModelIngredientCopyWith<$Res>
   @useResult
   $Res call(
       {Option<Uri> imagePath,
-      String id,
+      String ingredientId,
       String slug,
       String displayedName,
       Option<double> amount,
@@ -782,7 +782,7 @@ class __$$_SingleRecipeWebClientModelIngredientCopyWithImpl<$Res>
   @override
   $Res call({
     Object? imagePath = null,
-    Object? id = null,
+    Object? ingredientId = null,
     Object? slug = null,
     Object? displayedName = null,
     Object? amount = null,
@@ -793,9 +793,9 @@ class __$$_SingleRecipeWebClientModelIngredientCopyWithImpl<$Res>
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
               as Option<Uri>,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      ingredientId: null == ingredientId
+          ? _value.ingredientId
+          : ingredientId // ignore: cast_nullable_to_non_nullable
               as String,
       slug: null == slug
           ? _value.slug
@@ -823,7 +823,7 @@ class _$_SingleRecipeWebClientModelIngredient
     implements _SingleRecipeWebClientModelIngredient {
   const _$_SingleRecipeWebClientModelIngredient(
       {required this.imagePath,
-      required this.id,
+      required this.ingredientId,
       required this.slug,
       required this.displayedName,
       required this.amount,
@@ -832,7 +832,7 @@ class _$_SingleRecipeWebClientModelIngredient
   @override
   final Option<Uri> imagePath;
   @override
-  final String id;
+  final String ingredientId;
   @override
   final String slug;
   @override
@@ -844,7 +844,7 @@ class _$_SingleRecipeWebClientModelIngredient
 
   @override
   String toString() {
-    return 'SingleRecipeWebClientModelIngredient(imagePath: $imagePath, id: $id, slug: $slug, displayedName: $displayedName, amount: $amount, unit: $unit)';
+    return 'SingleRecipeWebClientModelIngredient(imagePath: $imagePath, ingredientId: $ingredientId, slug: $slug, displayedName: $displayedName, amount: $amount, unit: $unit)';
   }
 
   @override
@@ -854,7 +854,8 @@ class _$_SingleRecipeWebClientModelIngredient
             other is _$_SingleRecipeWebClientModelIngredient &&
             (identical(other.imagePath, imagePath) ||
                 other.imagePath == imagePath) &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.ingredientId, ingredientId) ||
+                other.ingredientId == ingredientId) &&
             (identical(other.slug, slug) || other.slug == slug) &&
             (identical(other.displayedName, displayedName) ||
                 other.displayedName == displayedName) &&
@@ -864,7 +865,7 @@ class _$_SingleRecipeWebClientModelIngredient
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, imagePath, id, slug, displayedName, amount, unit);
+      runtimeType, imagePath, ingredientId, slug, displayedName, amount, unit);
 
   @JsonKey(ignore: true)
   @override
@@ -879,7 +880,7 @@ abstract class _SingleRecipeWebClientModelIngredient
     implements SingleRecipeWebClientModelIngredient {
   const factory _SingleRecipeWebClientModelIngredient(
           {required final Option<Uri> imagePath,
-          required final String id,
+          required final String ingredientId,
           required final String slug,
           required final String displayedName,
           required final Option<double> amount,
@@ -889,7 +890,7 @@ abstract class _SingleRecipeWebClientModelIngredient
   @override
   Option<Uri> get imagePath;
   @override
-  String get id;
+  String get ingredientId;
   @override
   String get slug;
   @override

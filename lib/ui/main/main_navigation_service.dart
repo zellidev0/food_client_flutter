@@ -10,6 +10,7 @@ abstract class MainNavigationService {
   Future<void> showDialog({
     final Option<List<NavigationServiceDialogAction>> actions =
         const None<List<NavigationServiceDialogAction>>(),
-    required final String message,
+    required final String content,
+    required final String title,
   });
 }

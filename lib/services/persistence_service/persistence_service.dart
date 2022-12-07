@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:food_client/services/persistence_service/persistence_service_model.dart';
 import 'package:food_client/ui/cart/cart_persistence_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_persistence_service.dart';
@@ -32,12 +33,12 @@ class PersistenceService implements PersistenceServiceAggregator {
   }) =>
       Task<void>(
         () async => await shoppingListIngredientsBox.put(
-          _buildKey(
-            ingredientId: ingredient.id,
+          buildKey(
+            ingredientId: ingredient.ingredientId,
             recipeId: ingredient.recipeId,
           ),
           PersistenceServiceModelShoppingListIngredient(
-            id: ingredient.id,
+            ingredientId: ingredient.ingredientId,
             imageUrl: ingredient.imageUrl,
             slug: ingredient.slug,
             isTickedOff: ingredient.isTickedOff,
@@ -50,12 +51,12 @@ class PersistenceService implements PersistenceServiceAggregator {
       );
 
   @override
-  bool hasSavedIngredient({
+  bool isInShoppingCart({
     required final String ingredientId,
     required final String recipeId,
   }) =>
       shoppingListIngredientsBox.containsKey(
-        _buildKey(
+        buildKey(
           ingredientId: ingredientId,
           recipeId: recipeId,
         ),
@@ -68,18 +69,12 @@ class PersistenceService implements PersistenceServiceAggregator {
   }) =>
       Task<void>(
         () async => await shoppingListIngredientsBox.delete(
-          _buildKey(
+          buildKey(
             ingredientId: ingredientId,
             recipeId: recipeId,
           ),
         ),
       );
-
-  String _buildKey({
-    required final String ingredientId,
-    required final String recipeId,
-  }) =>
-      'recipe:$recipeId;ingredient:$ingredientId';
 
   List<PersistenceServiceModelShoppingListIngredient>
       _readAllShoppingCardIngredientsAndSetState() =>
@@ -91,12 +86,12 @@ class PersistenceService implements PersistenceServiceAggregator {
   }) =>
       Task<void>(
         () async => await shoppingListIngredientsBox.put(
-          _buildKey(
-            ingredientId: ingredient.id,
+          buildKey(
+            ingredientId: ingredient.ingredientId,
             recipeId: ingredient.recipeId,
           ),
           PersistenceServiceModelShoppingListIngredient(
-            id: ingredient.id,
+            ingredientId: ingredient.ingredientId,
             imageUrl: ingredient.imageUrl,
             slug: ingredient.slug,
             isTickedOff: ingredient.isTickedOff,
@@ -107,6 +102,28 @@ class PersistenceService implements PersistenceServiceAggregator {
           ),
         ),
       );
+
+  @override
+  Task<void> deleteIngredients({
+    required final List<String> ingredientKeys,
+    required final List<String> recipeKeys,
+  }) =>
+      Task<void>(
+        () async => await shoppingListIngredientsBox.deleteAll(
+          IterableZip<String>(<List<String>>[recipeKeys, ingredientKeys]).map(
+            (final List<String> ids) => buildKey(
+              recipeId: ids[0],
+              ingredientId: ids[1],
+            ),
+          ),
+        ),
+      );
+
+  String buildKey({
+    required final String ingredientId,
+    required final String recipeId,
+  }) =>
+      '$recipeId\$$ingredientId';
 }
 
 CartPersistenceServiceModelIngredient
@@ -117,7 +134,7 @@ CartPersistenceServiceModelIngredient
           isTickedOff: ingredient.isTickedOff,
           recipeId: ingredient.recipeId,
           imageUrl: ingredient.imageUrl,
-          id: ingredient.id,
+          ingredientId: ingredient.ingredientId,
           slug: ingredient.slug,
           displayedName: ingredient.displayedName,
           amount: ingredient.amount,

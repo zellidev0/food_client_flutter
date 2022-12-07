@@ -47,7 +47,7 @@ class SingleRecipeModelStep with _$SingleRecipeModelStep {
 class SingleRecipeModelIngredient with _$SingleRecipeModelIngredient {
   const factory SingleRecipeModelIngredient({
     required final Option<Uri> imageUrl,
-    required final String id,
+    required final String ingredientId,
     required final String slug,
     required final String displayedName,
     required final Option<double> amount,

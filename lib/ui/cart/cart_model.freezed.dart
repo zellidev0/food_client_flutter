@@ -316,7 +316,7 @@ abstract class _CartModelIngredient implements CartModelIngredient {
 mixin _$CartModelIngredientInfo {
   String get recipeId => throw _privateConstructorUsedError;
   Option<Uri> get imageUrl => throw _privateConstructorUsedError;
-  String get id => throw _privateConstructorUsedError;
+  String get ingredientId => throw _privateConstructorUsedError;
   String get slug => throw _privateConstructorUsedError;
   String get displayedName => throw _privateConstructorUsedError;
   Option<double> get amount => throw _privateConstructorUsedError;
@@ -336,7 +336,7 @@ abstract class $CartModelIngredientInfoCopyWith<$Res> {
   $Res call(
       {String recipeId,
       Option<Uri> imageUrl,
-      String id,
+      String ingredientId,
       String slug,
       String displayedName,
       Option<double> amount,
@@ -359,7 +359,7 @@ class _$CartModelIngredientInfoCopyWithImpl<$Res,
   $Res call({
     Object? recipeId = null,
     Object? imageUrl = null,
-    Object? id = null,
+    Object? ingredientId = null,
     Object? slug = null,
     Object? displayedName = null,
     Object? amount = null,
@@ -374,9 +374,9 @@ class _$CartModelIngredientInfoCopyWithImpl<$Res,
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as Option<Uri>,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      ingredientId: null == ingredientId
+          ? _value.ingredientId
+          : ingredientId // ignore: cast_nullable_to_non_nullable
               as String,
       slug: null == slug
           ? _value.slug
@@ -409,7 +409,7 @@ abstract class _$$_CartModelIngredientInfoCopyWith<$Res>
   $Res call(
       {String recipeId,
       Option<Uri> imageUrl,
-      String id,
+      String ingredientId,
       String slug,
       String displayedName,
       Option<double> amount,
@@ -430,7 +430,7 @@ class __$$_CartModelIngredientInfoCopyWithImpl<$Res>
   $Res call({
     Object? recipeId = null,
     Object? imageUrl = null,
-    Object? id = null,
+    Object? ingredientId = null,
     Object? slug = null,
     Object? displayedName = null,
     Object? amount = null,
@@ -445,9 +445,9 @@ class __$$_CartModelIngredientInfoCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as Option<Uri>,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      ingredientId: null == ingredientId
+          ? _value.ingredientId
+          : ingredientId // ignore: cast_nullable_to_non_nullable
               as String,
       slug: null == slug
           ? _value.slug
@@ -475,7 +475,7 @@ class _$_CartModelIngredientInfo implements _CartModelIngredientInfo {
   const _$_CartModelIngredientInfo(
       {required this.recipeId,
       required this.imageUrl,
-      required this.id,
+      required this.ingredientId,
       required this.slug,
       required this.displayedName,
       required this.amount,
@@ -486,7 +486,7 @@ class _$_CartModelIngredientInfo implements _CartModelIngredientInfo {
   @override
   final Option<Uri> imageUrl;
   @override
-  final String id;
+  final String ingredientId;
   @override
   final String slug;
   @override
@@ -498,7 +498,7 @@ class _$_CartModelIngredientInfo implements _CartModelIngredientInfo {
 
   @override
   String toString() {
-    return 'CartModelIngredientInfo(recipeId: $recipeId, imageUrl: $imageUrl, id: $id, slug: $slug, displayedName: $displayedName, amount: $amount, unit: $unit)';
+    return 'CartModelIngredientInfo(recipeId: $recipeId, imageUrl: $imageUrl, ingredientId: $ingredientId, slug: $slug, displayedName: $displayedName, amount: $amount, unit: $unit)';
   }
 
   @override
@@ -510,7 +510,8 @@ class _$_CartModelIngredientInfo implements _CartModelIngredientInfo {
                 other.recipeId == recipeId) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.ingredientId, ingredientId) ||
+                other.ingredientId == ingredientId) &&
             (identical(other.slug, slug) || other.slug == slug) &&
             (identical(other.displayedName, displayedName) ||
                 other.displayedName == displayedName) &&
@@ -519,8 +520,8 @@ class _$_CartModelIngredientInfo implements _CartModelIngredientInfo {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, recipeId, imageUrl, id, slug, displayedName, amount, unit);
+  int get hashCode => Object.hash(runtimeType, recipeId, imageUrl, ingredientId,
+      slug, displayedName, amount, unit);
 
   @JsonKey(ignore: true)
   @override
@@ -535,7 +536,7 @@ abstract class _CartModelIngredientInfo implements CartModelIngredientInfo {
   const factory _CartModelIngredientInfo(
       {required final String recipeId,
       required final Option<Uri> imageUrl,
-      required final String id,
+      required final String ingredientId,
       required final String slug,
       required final String displayedName,
       required final Option<double> amount,
@@ -546,7 +547,7 @@ abstract class _CartModelIngredientInfo implements CartModelIngredientInfo {
   @override
   Option<Uri> get imageUrl;
   @override
-  String get id;
+  String get ingredientId;
   @override
   String get slug;
   @override

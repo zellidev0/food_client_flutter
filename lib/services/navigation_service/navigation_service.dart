@@ -66,12 +66,15 @@ class BeamerNavigationService implements NavigationServiceAggregator {
   Future<void> showDialog({
     final Option<List<NavigationServiceDialogAction>> actions =
         const None<List<NavigationServiceDialogAction>>(),
-    required final String message,
+    required final String title,
+    required final String content,
   }) async {
     await material.showDialog(
       context: _beamerDelegate.navigator.context,
       builder: (final material.BuildContext context) => material.AlertDialog(
-        title: material.Text(message),
+        title: material.Text(title),
+        content: material.Text(content),
+        actionsAlignment: MainAxisAlignment.spaceBetween,
         actions: actions.fold(
           () => null,
           (final List<NavigationServiceDialogAction> actions) => actions
@@ -80,6 +83,7 @@ class BeamerNavigationService implements NavigationServiceAggregator {
                     material.TextButton(
                   onPressed: () async {
                     action.onPressed.call();
+                    // This is not working
                     await _beamerDelegate.popRoute();
                   },
                   child: material.Text(action.text),

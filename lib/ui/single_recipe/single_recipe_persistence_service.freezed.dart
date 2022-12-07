@@ -19,7 +19,7 @@ mixin _$SingleRecipePersistenceServiceIngredient {
   bool get isTickedOff => throw _privateConstructorUsedError;
   String get recipeId => throw _privateConstructorUsedError;
   Option<Uri> get imageUrl => throw _privateConstructorUsedError;
-  String get id => throw _privateConstructorUsedError;
+  String get ingredientId => throw _privateConstructorUsedError;
   String get slug => throw _privateConstructorUsedError;
   String get displayedName => throw _privateConstructorUsedError;
   Option<double> get amount => throw _privateConstructorUsedError;
@@ -43,7 +43,7 @@ abstract class $SingleRecipePersistenceServiceIngredientCopyWith<$Res> {
       {bool isTickedOff,
       String recipeId,
       Option<Uri> imageUrl,
-      String id,
+      String ingredientId,
       String slug,
       String displayedName,
       Option<double> amount,
@@ -68,7 +68,7 @@ class _$SingleRecipePersistenceServiceIngredientCopyWithImpl<$Res,
     Object? isTickedOff = null,
     Object? recipeId = null,
     Object? imageUrl = null,
-    Object? id = null,
+    Object? ingredientId = null,
     Object? slug = null,
     Object? displayedName = null,
     Object? amount = null,
@@ -87,9 +87,9 @@ class _$SingleRecipePersistenceServiceIngredientCopyWithImpl<$Res,
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as Option<Uri>,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      ingredientId: null == ingredientId
+          ? _value.ingredientId
+          : ingredientId // ignore: cast_nullable_to_non_nullable
               as String,
       slug: null == slug
           ? _value.slug
@@ -124,7 +124,7 @@ abstract class _$$_SingleRecipePersistenceServiceIngredientCopyWith<$Res>
       {bool isTickedOff,
       String recipeId,
       Option<Uri> imageUrl,
-      String id,
+      String ingredientId,
       String slug,
       String displayedName,
       Option<double> amount,
@@ -147,7 +147,7 @@ class __$$_SingleRecipePersistenceServiceIngredientCopyWithImpl<$Res>
     Object? isTickedOff = null,
     Object? recipeId = null,
     Object? imageUrl = null,
-    Object? id = null,
+    Object? ingredientId = null,
     Object? slug = null,
     Object? displayedName = null,
     Object? amount = null,
@@ -166,9 +166,9 @@ class __$$_SingleRecipePersistenceServiceIngredientCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as Option<Uri>,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      ingredientId: null == ingredientId
+          ? _value.ingredientId
+          : ingredientId // ignore: cast_nullable_to_non_nullable
               as String,
       slug: null == slug
           ? _value.slug
@@ -198,7 +198,7 @@ class _$_SingleRecipePersistenceServiceIngredient
       {required this.isTickedOff,
       required this.recipeId,
       required this.imageUrl,
-      required this.id,
+      required this.ingredientId,
       required this.slug,
       required this.displayedName,
       required this.amount,
@@ -211,7 +211,7 @@ class _$_SingleRecipePersistenceServiceIngredient
   @override
   final Option<Uri> imageUrl;
   @override
-  final String id;
+  final String ingredientId;
   @override
   final String slug;
   @override
@@ -223,7 +223,7 @@ class _$_SingleRecipePersistenceServiceIngredient
 
   @override
   String toString() {
-    return 'SingleRecipePersistenceServiceIngredient(isTickedOff: $isTickedOff, recipeId: $recipeId, imageUrl: $imageUrl, id: $id, slug: $slug, displayedName: $displayedName, amount: $amount, unit: $unit)';
+    return 'SingleRecipePersistenceServiceIngredient(isTickedOff: $isTickedOff, recipeId: $recipeId, imageUrl: $imageUrl, ingredientId: $ingredientId, slug: $slug, displayedName: $displayedName, amount: $amount, unit: $unit)';
   }
 
   @override
@@ -237,7 +237,8 @@ class _$_SingleRecipePersistenceServiceIngredient
                 other.recipeId == recipeId) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.ingredientId, ingredientId) ||
+                other.ingredientId == ingredientId) &&
             (identical(other.slug, slug) || other.slug == slug) &&
             (identical(other.displayedName, displayedName) ||
                 other.displayedName == displayedName) &&
@@ -247,7 +248,7 @@ class _$_SingleRecipePersistenceServiceIngredient
 
   @override
   int get hashCode => Object.hash(runtimeType, isTickedOff, recipeId, imageUrl,
-      id, slug, displayedName, amount, unit);
+      ingredientId, slug, displayedName, amount, unit);
 
   @JsonKey(ignore: true)
   @override
@@ -264,7 +265,7 @@ abstract class _SingleRecipePersistenceServiceIngredient
           {required final bool isTickedOff,
           required final String recipeId,
           required final Option<Uri> imageUrl,
-          required final String id,
+          required final String ingredientId,
           required final String slug,
           required final String displayedName,
           required final Option<double> amount,
@@ -278,7 +279,7 @@ abstract class _SingleRecipePersistenceServiceIngredient
   @override
   Option<Uri> get imageUrl;
   @override
-  String get id;
+  String get ingredientId;
   @override
   String get slug;
   @override

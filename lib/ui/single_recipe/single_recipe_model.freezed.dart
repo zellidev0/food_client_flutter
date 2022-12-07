@@ -787,7 +787,7 @@ abstract class _SingleRecipeModelStep implements SingleRecipeModelStep {
 /// @nodoc
 mixin _$SingleRecipeModelIngredient {
   Option<Uri> get imageUrl => throw _privateConstructorUsedError;
-  String get id => throw _privateConstructorUsedError;
+  String get ingredientId => throw _privateConstructorUsedError;
   String get slug => throw _privateConstructorUsedError;
   String get displayedName => throw _privateConstructorUsedError;
   Option<double> get amount => throw _privateConstructorUsedError;
@@ -809,7 +809,7 @@ abstract class $SingleRecipeModelIngredientCopyWith<$Res> {
   @useResult
   $Res call(
       {Option<Uri> imageUrl,
-      String id,
+      String ingredientId,
       String slug,
       String displayedName,
       Option<double> amount,
@@ -832,7 +832,7 @@ class _$SingleRecipeModelIngredientCopyWithImpl<$Res,
   @override
   $Res call({
     Object? imageUrl = null,
-    Object? id = null,
+    Object? ingredientId = null,
     Object? slug = null,
     Object? displayedName = null,
     Object? amount = null,
@@ -844,9 +844,9 @@ class _$SingleRecipeModelIngredientCopyWithImpl<$Res,
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as Option<Uri>,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      ingredientId: null == ingredientId
+          ? _value.ingredientId
+          : ingredientId // ignore: cast_nullable_to_non_nullable
               as String,
       slug: null == slug
           ? _value.slug
@@ -883,7 +883,7 @@ abstract class _$$_SingleRecipeModelIngredientCopyWith<$Res>
   @useResult
   $Res call(
       {Option<Uri> imageUrl,
-      String id,
+      String ingredientId,
       String slug,
       String displayedName,
       Option<double> amount,
@@ -905,7 +905,7 @@ class __$$_SingleRecipeModelIngredientCopyWithImpl<$Res>
   @override
   $Res call({
     Object? imageUrl = null,
-    Object? id = null,
+    Object? ingredientId = null,
     Object? slug = null,
     Object? displayedName = null,
     Object? amount = null,
@@ -917,9 +917,9 @@ class __$$_SingleRecipeModelIngredientCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as Option<Uri>,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      ingredientId: null == ingredientId
+          ? _value.ingredientId
+          : ingredientId // ignore: cast_nullable_to_non_nullable
               as String,
       slug: null == slug
           ? _value.slug
@@ -950,7 +950,7 @@ class __$$_SingleRecipeModelIngredientCopyWithImpl<$Res>
 class _$_SingleRecipeModelIngredient implements _SingleRecipeModelIngredient {
   const _$_SingleRecipeModelIngredient(
       {required this.imageUrl,
-      required this.id,
+      required this.ingredientId,
       required this.slug,
       required this.displayedName,
       required this.amount,
@@ -960,7 +960,7 @@ class _$_SingleRecipeModelIngredient implements _SingleRecipeModelIngredient {
   @override
   final Option<Uri> imageUrl;
   @override
-  final String id;
+  final String ingredientId;
   @override
   final String slug;
   @override
@@ -974,7 +974,7 @@ class _$_SingleRecipeModelIngredient implements _SingleRecipeModelIngredient {
 
   @override
   String toString() {
-    return 'SingleRecipeModelIngredient(imageUrl: $imageUrl, id: $id, slug: $slug, displayedName: $displayedName, amount: $amount, unit: $unit, isInShoppingCard: $isInShoppingCard)';
+    return 'SingleRecipeModelIngredient(imageUrl: $imageUrl, ingredientId: $ingredientId, slug: $slug, displayedName: $displayedName, amount: $amount, unit: $unit, isInShoppingCard: $isInShoppingCard)';
   }
 
   @override
@@ -984,7 +984,8 @@ class _$_SingleRecipeModelIngredient implements _SingleRecipeModelIngredient {
             other is _$_SingleRecipeModelIngredient &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.ingredientId, ingredientId) ||
+                other.ingredientId == ingredientId) &&
             (identical(other.slug, slug) || other.slug == slug) &&
             (identical(other.displayedName, displayedName) ||
                 other.displayedName == displayedName) &&
@@ -995,7 +996,7 @@ class _$_SingleRecipeModelIngredient implements _SingleRecipeModelIngredient {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, imageUrl, id, slug,
+  int get hashCode => Object.hash(runtimeType, imageUrl, ingredientId, slug,
       displayedName, amount, unit, isInShoppingCard);
 
   @JsonKey(ignore: true)
@@ -1010,7 +1011,7 @@ abstract class _SingleRecipeModelIngredient
     implements SingleRecipeModelIngredient {
   const factory _SingleRecipeModelIngredient(
       {required final Option<Uri> imageUrl,
-      required final String id,
+      required final String ingredientId,
       required final String slug,
       required final String displayedName,
       required final Option<double> amount,
@@ -1020,7 +1021,7 @@ abstract class _SingleRecipeModelIngredient
   @override
   Option<Uri> get imageUrl;
   @override
-  String get id;
+  String get ingredientId;
   @override
   String get slug;
   @override

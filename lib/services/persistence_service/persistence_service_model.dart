@@ -20,7 +20,7 @@ class PersistenceServiceModelShoppingListIngredient
       typeId: 0,
       adapterName: 'PersistenceServiceModelShoppingListIngredientAdapter',)
   const factory PersistenceServiceModelShoppingListIngredient({
-    @HiveField(0) required final String id,
+    @HiveField(0) required final String ingredientId,
     @HiveField(1) required final bool isTickedOff,
     @HiveField(2) required final String recipeId,
     @HiveField(3) required final Option<Uri> imageUrl,

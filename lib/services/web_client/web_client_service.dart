@@ -9,7 +9,6 @@ import 'package:food_client/ui/single_recipe/single_recipe_web_client_service.da
 import 'package:fpdart/fpdart.dart';
 import 'package:http/http.dart' as http;
 
-
 abstract class WebClientServiceAggregator
     implements HomeWebClientService, SingleRecipeWebClientService {}
 
@@ -331,7 +330,7 @@ SingleRecipeWebClientModelRecipe _mapToSingleRecipeWebClientModelRecipe({
                     ).map(
                       (final WebClientModelIngredient otherIngredient) =>
                           SingleRecipeWebClientModelIngredient(
-                        id: ingredient.id,
+                        ingredientId: ingredient.id,
                         amount: ingredient.amount.map(
                           (final num number) => number.toDouble(),
                         ),

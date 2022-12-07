@@ -26,7 +26,7 @@ class CartModelIngredientInfo with _$CartModelIngredientInfo {
   const factory CartModelIngredientInfo({
     required final String recipeId,
     required final Option<Uri> imageUrl,
-    required final String id,
+    required final String ingredientId,
     required final String slug,
     required final String displayedName,
     required final Option<double> amount,

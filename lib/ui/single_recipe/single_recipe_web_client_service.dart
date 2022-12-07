@@ -47,7 +47,7 @@ class SingleRecipeWebClientModelIngredient
     with _$SingleRecipeWebClientModelIngredient {
   const factory SingleRecipeWebClientModelIngredient({
     required final Option<Uri> imagePath,
-    required final String id,
+    required final String ingredientId,
     required final String slug,
     required final String displayedName,
     required final Option<double> amount,

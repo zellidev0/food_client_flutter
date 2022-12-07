@@ -18,7 +18,7 @@ class PersistenceServiceModelShoppingListIngredientAdapter
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return _$_PersistenceServiceModelShoppingListIngredient(
-      id: fields[0] as String,
+      ingredientId: fields[0] as String,
       isTickedOff: fields[1] as bool,
       recipeId: fields[2] as String,
       imageUrl: fields[3] as Option<Uri>,
@@ -35,7 +35,7 @@ class PersistenceServiceModelShoppingListIngredientAdapter
     writer
       ..writeByte(8)
       ..writeByte(0)
-      ..write(obj.id)
+      ..write(obj.ingredientId)
       ..writeByte(1)
       ..write(obj.isTickedOff)
       ..writeByte(2)
@@ -71,7 +71,7 @@ _$_PersistenceServiceModelShoppingListIngredient
     _$$_PersistenceServiceModelShoppingListIngredientFromJson(
             Map<String, dynamic> json) =>
         _$_PersistenceServiceModelShoppingListIngredient(
-          id: json['id'] as String,
+          ingredientId: json['ingredientId'] as String,
           isTickedOff: json['isTickedOff'] as bool,
           recipeId: json['recipeId'] as String,
           imageUrl: Option<Uri>.fromJson(json['imageUrl']),
@@ -84,7 +84,7 @@ _$_PersistenceServiceModelShoppingListIngredient
 Map<String, dynamic> _$$_PersistenceServiceModelShoppingListIngredientToJson(
         _$_PersistenceServiceModelShoppingListIngredient instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'ingredientId': instance.ingredientId,
       'isTickedOff': instance.isTickedOff,
       'recipeId': instance.recipeId,
       'imageUrl': instance.imageUrl.toJson(

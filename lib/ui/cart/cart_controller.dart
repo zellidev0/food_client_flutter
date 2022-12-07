@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:food_client/commons/utils.dart';
@@ -53,21 +55,18 @@ class CartControllerImplementation extends CartController {
     optionOf(
       state.ingredients.firstWhereOrNull(
         (final CartModelIngredient ingredient) =>
-            ingredient.ingredient.id == ingredientId,
+            ingredient.ingredient.ingredientId == ingredientId,
       ),
     ).fold(
-      () => debugPrint('Error ingredient with id $ingredientId not found'),
+      () => debugPrint(
+        'Error ingredient with id $ingredientId not found',
+      ),
       (final CartModelIngredient ingredient) async {
-        await _persistenceService.updateIngredient(
-              ingredient: CartPersistenceServiceModelIngredient(
+        await _persistenceService
+            .updateIngredient(
+              ingredient: mapToCartPersistenceServiceModelIngredient(
                 isTickedOff: isTickedOff,
-                recipeId: ingredient.ingredient.recipeId,
-                imageUrl: ingredient.ingredient.imageUrl,
-                id: ingredient.ingredient.id,
-                slug: ingredient.ingredient.slug,
-                displayedName: ingredient.ingredient.displayedName,
-                amount: ingredient.ingredient.amount,
-                unit: ingredient.ingredient.unit,
+                ingredient: ingredient,
               ),
             )
             .run();
@@ -76,10 +75,74 @@ class CartControllerImplementation extends CartController {
     );
   }
 
+  CartPersistenceServiceModelIngredient
+      mapToCartPersistenceServiceModelIngredient({
+    required final bool isTickedOff,
+    required final CartModelIngredient ingredient,
+  }) =>
+          CartPersistenceServiceModelIngredient(
+            isTickedOff: isTickedOff,
+            recipeId: ingredient.ingredient.recipeId,
+            imageUrl: ingredient.ingredient.imageUrl,
+            ingredientId: ingredient.ingredient.ingredientId,
+            slug: ingredient.ingredient.slug,
+            displayedName: ingredient.ingredient.displayedName,
+            amount: ingredient.ingredient.amount,
+            unit: ingredient.ingredient.unit,
+          );
+
   List<CartModelIngredient> _getAllIngredients() => _persistenceService
       .getShoppingCardIngredients()
       .map(mapToCartModelIngredient)
       .toList();
+
+  @override
+  void showDeleteDialog() {
+    unawaited(
+      _navigationService.showDialog(
+        title: 'Delete all ticked off?',
+        content: 'Delete all ticket off ingredients, permanently?',
+        actions: some(
+          <NavigationServiceDialogAction>[
+            NavigationServiceDialogAction(
+              text: 'Cancel',
+              onPressed: () {},
+            ),
+            NavigationServiceDialogAction(
+              text: 'Delete',
+              onPressed: () async {
+                await _persistenceService
+                    .deleteIngredients(
+                      ingredientKeys: state.ingredients
+                          .where(
+                            (final CartModelIngredient element) =>
+                                element.isTickedOff,
+                          )
+                          .map(
+                            (final CartModelIngredient ingredient) =>
+                                ingredient.ingredient.ingredientId,
+                          )
+                          .toList(),
+                      recipeKeys: state.ingredients
+                          .where(
+                            (final CartModelIngredient element) =>
+                                element.isTickedOff,
+                          )
+                          .map(
+                            (final CartModelIngredient ingredient) =>
+                                ingredient.ingredient.recipeId,
+                          )
+                          .toList(),
+                    )
+                    .run();
+                state = state.copyWith(ingredients: _getAllIngredients());
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 CartModelIngredient mapToCartModelIngredient(
@@ -89,7 +152,7 @@ CartModelIngredient mapToCartModelIngredient(
       ingredient: CartModelIngredientInfo(
         recipeId: ingredient.recipeId,
         imageUrl: ingredient.imageUrl,
-        id: ingredient.id,
+        ingredientId: ingredient.ingredientId,
         slug: ingredient.slug,
         displayedName: ingredient.displayedName,
         amount: ingredient.amount,

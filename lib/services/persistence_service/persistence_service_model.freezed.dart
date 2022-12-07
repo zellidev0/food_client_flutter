@@ -156,7 +156,7 @@ PersistenceServiceModelShoppingListIngredient
 /// @nodoc
 mixin _$PersistenceServiceModelShoppingListIngredient {
   @HiveField(0)
-  String get id => throw _privateConstructorUsedError;
+  String get ingredientId => throw _privateConstructorUsedError;
   @HiveField(1)
   bool get isTickedOff => throw _privateConstructorUsedError;
   @HiveField(2)
@@ -188,7 +188,7 @@ abstract class $PersistenceServiceModelShoppingListIngredientCopyWith<$Res> {
           PersistenceServiceModelShoppingListIngredient>;
   @useResult
   $Res call(
-      {@HiveField(0) String id,
+      {@HiveField(0) String ingredientId,
       @HiveField(1) bool isTickedOff,
       @HiveField(2) String recipeId,
       @HiveField(3) Option<Uri> imageUrl,
@@ -213,7 +213,7 @@ class _$PersistenceServiceModelShoppingListIngredientCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? ingredientId = null,
     Object? isTickedOff = null,
     Object? recipeId = null,
     Object? imageUrl = null,
@@ -223,9 +223,9 @@ class _$PersistenceServiceModelShoppingListIngredientCopyWithImpl<$Res,
     Object? unit = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      ingredientId: null == ingredientId
+          ? _value.ingredientId
+          : ingredientId // ignore: cast_nullable_to_non_nullable
               as String,
       isTickedOff: null == isTickedOff
           ? _value.isTickedOff
@@ -270,7 +270,7 @@ abstract class _$$_PersistenceServiceModelShoppingListIngredientCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@HiveField(0) String id,
+      {@HiveField(0) String ingredientId,
       @HiveField(1) bool isTickedOff,
       @HiveField(2) String recipeId,
       @HiveField(3) Option<Uri> imageUrl,
@@ -293,7 +293,7 @@ class __$$_PersistenceServiceModelShoppingListIngredientCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? ingredientId = null,
     Object? isTickedOff = null,
     Object? recipeId = null,
     Object? imageUrl = null,
@@ -303,9 +303,9 @@ class __$$_PersistenceServiceModelShoppingListIngredientCopyWithImpl<$Res>
     Object? unit = null,
   }) {
     return _then(_$_PersistenceServiceModelShoppingListIngredient(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      ingredientId: null == ingredientId
+          ? _value.ingredientId
+          : ingredientId // ignore: cast_nullable_to_non_nullable
               as String,
       isTickedOff: null == isTickedOff
           ? _value.isTickedOff
@@ -347,7 +347,7 @@ class __$$_PersistenceServiceModelShoppingListIngredientCopyWithImpl<$Res>
 class _$_PersistenceServiceModelShoppingListIngredient
     implements _PersistenceServiceModelShoppingListIngredient {
   const _$_PersistenceServiceModelShoppingListIngredient(
-      {@HiveField(0) required this.id,
+      {@HiveField(0) required this.ingredientId,
       @HiveField(1) required this.isTickedOff,
       @HiveField(2) required this.recipeId,
       @HiveField(3) required this.imageUrl,
@@ -362,7 +362,7 @@ class _$_PersistenceServiceModelShoppingListIngredient
 
   @override
   @HiveField(0)
-  final String id;
+  final String ingredientId;
   @override
   @HiveField(1)
   final bool isTickedOff;
@@ -387,7 +387,7 @@ class _$_PersistenceServiceModelShoppingListIngredient
 
   @override
   String toString() {
-    return 'PersistenceServiceModelShoppingListIngredient(id: $id, isTickedOff: $isTickedOff, recipeId: $recipeId, imageUrl: $imageUrl, slug: $slug, displayedName: $displayedName, amount: $amount, unit: $unit)';
+    return 'PersistenceServiceModelShoppingListIngredient(ingredientId: $ingredientId, isTickedOff: $isTickedOff, recipeId: $recipeId, imageUrl: $imageUrl, slug: $slug, displayedName: $displayedName, amount: $amount, unit: $unit)';
   }
 
   @override
@@ -395,7 +395,8 @@ class _$_PersistenceServiceModelShoppingListIngredient
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PersistenceServiceModelShoppingListIngredient &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.ingredientId, ingredientId) ||
+                other.ingredientId == ingredientId) &&
             (identical(other.isTickedOff, isTickedOff) ||
                 other.isTickedOff == isTickedOff) &&
             (identical(other.recipeId, recipeId) ||
@@ -411,8 +412,8 @@ class _$_PersistenceServiceModelShoppingListIngredient
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, isTickedOff, recipeId,
-      imageUrl, slug, displayedName, amount, unit);
+  int get hashCode => Object.hash(runtimeType, ingredientId, isTickedOff,
+      recipeId, imageUrl, slug, displayedName, amount, unit);
 
   @JsonKey(ignore: true)
   @override
@@ -435,7 +436,7 @@ class _$_PersistenceServiceModelShoppingListIngredient
 abstract class _PersistenceServiceModelShoppingListIngredient
     implements PersistenceServiceModelShoppingListIngredient {
   const factory _PersistenceServiceModelShoppingListIngredient(
-          {@HiveField(0) required final String id,
+          {@HiveField(0) required final String ingredientId,
           @HiveField(1) required final bool isTickedOff,
           @HiveField(2) required final String recipeId,
           @HiveField(3) required final Option<Uri> imageUrl,
@@ -451,7 +452,7 @@ abstract class _PersistenceServiceModelShoppingListIngredient
 
   @override
   @HiveField(0)
-  String get id;
+  String get ingredientId;
   @override
   @HiveField(1)
   bool get isTickedOff;

@@ -243,7 +243,8 @@ class MockNavigationServiceAggregator extends _i1.Mock
   _i8.Future<void> showDialog({
     _i2.Option<List<_i7.NavigationServiceDialogAction>>? actions =
         const _i2.None(),
-    required String? message,
+    required String? content,
+    required String? title,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -251,7 +252,8 @@ class MockNavigationServiceAggregator extends _i1.Mock
           [],
           {
             #actions: actions,
-            #message: message,
+            #content: content,
+            #title: title,
           },
         ),
         returnValue: _i8.Future<void>.value(),
