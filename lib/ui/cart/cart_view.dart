@@ -64,8 +64,10 @@ class CartView extends ConsumerWidget {
         color: ingredient.isTickedOff ? Colors.grey.shade300 : ingredient.color,
         child: Builder(
           builder: (final BuildContext context) => InkWell(
+            borderRadius: BorderRadius.circular(8),
             onTap: () => controller.tickOff(
               ingredientId: ingredient.ingredient.ingredientId,
+              recipeId: ingredient.ingredient.recipeId,
               isTickedOff: !ingredient.isTickedOff,
             ),
             onLongPress: controller.showDeleteDialog,
@@ -111,6 +113,7 @@ abstract class CartController extends StateNotifier<CartModel> {
   void openSingleRecipe({required final String recipeId});
   void tickOff({
     required final String ingredientId,
+    required final String recipeId,
     required final bool isTickedOff,
   });
   void showDeleteDialog();

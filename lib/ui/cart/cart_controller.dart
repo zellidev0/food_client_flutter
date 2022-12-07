@@ -50,12 +50,14 @@ class CartControllerImplementation extends CartController {
   @override
   void tickOff({
     required final String ingredientId,
+    required final String recipeId,
     required final bool isTickedOff,
   }) {
     optionOf(
       state.ingredients.firstWhereOrNull(
         (final CartModelIngredient ingredient) =>
-            ingredient.ingredient.ingredientId == ingredientId,
+            ingredient.ingredient.ingredientId == ingredientId &&
+            ingredient.ingredient.recipeId == recipeId,
       ),
     ).fold(
       () => debugPrint(
