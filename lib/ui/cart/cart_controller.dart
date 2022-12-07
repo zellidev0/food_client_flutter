@@ -1,9 +1,12 @@
+import 'package:collection/collection.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:food_client/commons/utils.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/ui/cart/cart_model.dart';
 import 'package:food_client/ui/cart/cart_navigation_service.dart';
 import 'package:food_client/ui/cart/cart_persistence_service.dart';
 import 'package:food_client/ui/cart/cart_view.dart';
+import 'package:fpdart/fpdart.dart';
 
 class CartControllerImplementation extends CartController {
   late final CartNavigationService _navigationService;
@@ -16,10 +19,7 @@ class CartControllerImplementation extends CartController {
   })  : _navigationService = navigationService,
         _persistenceService = persistenceService {
     state = state.copyWith(
-      ingredients: _persistenceService
-          .getShoppingCardIngredients()
-          .map(mapToCartModelIngredient)
-          .toList(),
+      ingredients: _getAllIngredients(),
     );
   }
 
@@ -44,6 +44,42 @@ class CartControllerImplementation extends CartController {
       ),
     );
   }
+
+  @override
+  void tickOff({
+    required final String ingredientId,
+    required final bool isTickedOff,
+  }) {
+    optionOf(
+      state.ingredients.firstWhereOrNull(
+        (final CartModelIngredient ingredient) =>
+            ingredient.ingredient.id == ingredientId,
+      ),
+    ).fold(
+      () => debugPrint('Error ingredient with id $ingredientId not found'),
+      (final CartModelIngredient ingredient) async {
+        await _persistenceService.updateIngredient(
+              ingredient: CartPersistenceServiceModelIngredient(
+                isTickedOff: isTickedOff,
+                recipeId: ingredient.ingredient.recipeId,
+                imageUrl: ingredient.ingredient.imageUrl,
+                id: ingredient.ingredient.id,
+                slug: ingredient.ingredient.slug,
+                displayedName: ingredient.ingredient.displayedName,
+                amount: ingredient.ingredient.amount,
+                unit: ingredient.ingredient.unit,
+              ),
+            )
+            .run();
+        state = state.copyWith(ingredients: _getAllIngredients());
+      },
+    );
+  }
+
+  List<CartModelIngredient> _getAllIngredients() => _persistenceService
+      .getShoppingCardIngredients()
+      .map(mapToCartModelIngredient)
+      .toList();
 }
 
 CartModelIngredient mapToCartModelIngredient(

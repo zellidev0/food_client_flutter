@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/providers/providers.dart';
@@ -44,28 +45,45 @@ class CartView extends ConsumerWidget {
   }) =>
       TabBarView(
         children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Expanded(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: model.ingredients.length,
-                  itemBuilder: (
-                    final BuildContext context,
-                    final int index,
-                  ) =>
-                      buildSingleIngredient(
-                    ingredient: model.ingredients[index],
-                    controller: controller,
-                  ),
-                ),
-              ),
-            ],
+          ListView.builder(
+            shrinkWrap: true,
+            itemCount: model.ingredients
+                .whereNot(
+                  (final CartModelIngredient ingredient) =>
+                      ingredient.isTickedOff,
+                )
+                .length,
+            itemBuilder: (final BuildContext context, final int index) =>
+                buildSingleIngredient(
+              ingredient: model.ingredients
+                  .whereNot(
+                    (final CartModelIngredient ingredient) =>
+                        ingredient.isTickedOff,
+                  )
+                  .toList()[index],
+              controller: controller,
+              tickOffOnTap: true,
+            ),
           ),
-          Text(
-            'Einkaufen',
-            style: Theme.of(context).textTheme.headline5,
+          ListView.builder(
+            shrinkWrap: true,
+            itemCount: model.ingredients
+                .where(
+                  (final CartModelIngredient ingredient) =>
+                      ingredient.isTickedOff,
+                )
+                .length,
+            itemBuilder: (final BuildContext context, final int index) =>
+                buildSingleIngredient(
+              ingredient: model.ingredients
+                  .where(
+                    (final CartModelIngredient ingredient) =>
+                        ingredient.isTickedOff,
+                  )
+                  .toList()[index],
+              controller: controller,
+              tickOffOnTap: false,
+            ),
           ),
         ],
       );
@@ -89,34 +107,41 @@ class CartView extends ConsumerWidget {
   Widget buildSingleIngredient({
     required final CartModelIngredient ingredient,
     required final CartController controller,
+    required final bool tickOffOnTap,
   }) =>
       Card(
         color: ingredient.color,
-        child: ListTile(
-          leading: AspectRatio(
-            aspectRatio: 1,
-            child: ingredient.ingredient.imageUrl.fold(
-              () => const Icon(Icons.image_not_supported),
-              (final Uri url) => Image.network(
-                url.toString(),
-                errorBuilder: (final _, final __, final ___) =>
-                    const Icon(Icons.image_not_supported),
+        child: InkWell(
+          onTap: () => controller.tickOff(
+            ingredientId: ingredient.ingredient.id,
+            isTickedOff: tickOffOnTap,
+          ),
+          child: ListTile(
+            leading: AspectRatio(
+              aspectRatio: 1,
+              child: ingredient.ingredient.imageUrl.fold(
+                () => const Icon(Icons.image_not_supported),
+                (final Uri url) => Image.network(
+                  url.toString(),
+                  errorBuilder: (final _, final __, final ___) =>
+                      const Icon(Icons.image_not_supported),
+                ),
               ),
             ),
-          ),
-          title: Text(ingredient.ingredient.displayedName),
-          subtitle: Text(
-            '${ingredient.ingredient.amount.fold(
-              () => 'nach Ermessen',
-              (final double amount) => amount.toString(),
-            )} ${ingredient.ingredient.unit.getOrElse(() => '')}',
-          ),
-          trailing: IconButton(
-            padding: const EdgeInsets.all(16),
-            onPressed: () => controller.openSingleRecipe(
-              recipeId: ingredient.ingredient.recipeId,
+            title: Text(ingredient.ingredient.displayedName),
+            subtitle: Text(
+              '${ingredient.ingredient.amount.fold(
+                () => 'nach Ermessen',
+                (final double amount) => amount.toString(),
+              )} ${ingredient.ingredient.unit.getOrElse(() => '')}',
             ),
-            icon: const Icon(Icons.forward),
+            trailing: IconButton(
+              padding: const EdgeInsets.all(16),
+              onPressed: () => controller.openSingleRecipe(
+                recipeId: ingredient.ingredient.recipeId,
+              ),
+              icon: const Icon(Icons.forward),
+            ),
           ),
         ),
       );
@@ -129,4 +154,8 @@ abstract class CartController extends StateNotifier<CartModel> {
   void goToCart();
   void goBack();
   void openSingleRecipe({required final String recipeId});
+  void tickOff({
+    required final String ingredientId,
+    required final bool isTickedOff,
+  });
 }

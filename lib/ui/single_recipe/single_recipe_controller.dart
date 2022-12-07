@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
-import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_model.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_navigation_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_persistence_service.dart';

@@ -5,6 +5,10 @@ part 'cart_persistence_service.freezed.dart';
 
 abstract class CartPersistenceService {
   List<CartPersistenceServiceModelIngredient> getShoppingCardIngredients();
+
+  Task<void> updateIngredient({
+    required final CartPersistenceServiceModelIngredient ingredient,
+  });
 }
 
 @freezed

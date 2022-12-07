@@ -54,10 +54,12 @@ class PersistenceService implements PersistenceServiceAggregator {
     required final String ingredientId,
     required final String recipeId,
   }) =>
-      shoppingListIngredientsBox.containsKey( _buildKey(
-        ingredientId: ingredientId,
-        recipeId: recipeId,
-      ),);
+      shoppingListIngredientsBox.containsKey(
+        _buildKey(
+          ingredientId: ingredientId,
+          recipeId: recipeId,
+        ),
+      );
 
   @override
   Task<void> removeIngredient({
@@ -82,6 +84,29 @@ class PersistenceService implements PersistenceServiceAggregator {
   List<PersistenceServiceModelShoppingListIngredient>
       _readAllShoppingCardIngredientsAndSetState() =>
           shoppingListIngredientsBox.values.toList();
+
+  @override
+  Task<void> updateIngredient({
+    required final CartPersistenceServiceModelIngredient ingredient,
+  }) =>
+      Task<void>(
+        () async => await shoppingListIngredientsBox.put(
+          _buildKey(
+            ingredientId: ingredient.id,
+            recipeId: ingredient.recipeId,
+          ),
+          PersistenceServiceModelShoppingListIngredient(
+            id: ingredient.id,
+            imageUrl: ingredient.imageUrl,
+            slug: ingredient.slug,
+            isTickedOff: ingredient.isTickedOff,
+            recipeId: ingredient.recipeId,
+            displayedName: ingredient.displayedName,
+            amount: ingredient.amount,
+            unit: ingredient.unit,
+          ),
+        ),
+      );
 }
 
 CartPersistenceServiceModelIngredient
