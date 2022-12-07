@@ -58,20 +58,22 @@ class SingleRecipeControllerImplementation extends SingleRecipeController {
     required final String recipeId,
   }) async {
     (await TaskEither<Exception, void>.fromTask(
-            _persistenceService.addIngredient(
-      ingredient: SingleRecipePersistenceServiceIngredient(
-        isTickedOff: false,
-        recipeId: recipeId,
-        imageUrl: ingredient.imageUrl,
-        id: ingredient.id,
-        slug: ingredient.slug,
-        displayedName: ingredient.displayedName,
-        amount: ingredient.amount,
-        unit: ingredient.unit,
+      _persistenceService.addIngredient(
+        ingredient: SingleRecipePersistenceServiceIngredient(
+          isTickedOff: false,
+          recipeId: recipeId,
+          imageUrl: ingredient.imageUrl,
+          id: ingredient.id,
+          slug: ingredient.slug,
+          displayedName: ingredient.displayedName,
+          amount: ingredient.amount,
+          unit: ingredient.unit,
+        ),
       ),
-    )).andThen(() => fetchSingleRecipeTask(recipeId: recipeId)).run())
+    ).andThen(() => fetchSingleRecipeTask(recipeId: recipeId)).run())
         .fold(
-      (final Exception l) => print('Error removing ingredient'),
+      (final Exception exception) =>
+          debugPrint('Error adding ingredient: $exception'),
       (final SingleRecipeModel recipeModel) {
         state = recipeModel;
       },
@@ -87,7 +89,8 @@ class SingleRecipeControllerImplementation extends SingleRecipeController {
       _persistenceService.removeIngredient(ingredientId: ingredient.id),
     ).andThen(() => fetchSingleRecipeTask(recipeId: recipeId)).run())
         .fold(
-      (final Exception l) => print('Error removing ingredient'),
+      (final Exception exception) =>
+          debugPrint('Error removing ingredient: $exception'),
       (final SingleRecipeModel recipeModel) {
         state = recipeModel;
       },
