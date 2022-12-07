@@ -1,4 +1,5 @@
 import 'package:food_client/commons/utils.dart';
+import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/ui/cart/cart_model.dart';
 import 'package:food_client/ui/cart/cart_navigation_service.dart';
 import 'package:food_client/ui/cart/cart_persistence_service.dart';
@@ -32,6 +33,17 @@ class CartControllerImplementation extends CartController {
 
   @override
   void goToHome() {}
+
+  @override
+  void openSingleRecipe({required final String recipeId}) {
+    _navigationService.navigateToNamed(
+      uri: NavigationServiceUris.singleRecipeUri.replace(
+        queryParameters: <String, String>{
+          NavigationServiceUris.singleRecipeIdKey: recipeId,
+        },
+      ),
+    );
+  }
 }
 
 CartModelIngredient mapToCartModelIngredient(

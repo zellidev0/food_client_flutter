@@ -49,7 +49,7 @@ class SingleRecipeControllerImplementation extends SingleRecipeController {
 
   @override
   void goBack() {
-    _navigationService.goBackToNamed(uri: NavigationServiceUris.homeRouteUri);
+    _navigationService.goBack();
   }
 
   @override

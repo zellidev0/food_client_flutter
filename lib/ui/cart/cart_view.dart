@@ -11,6 +11,9 @@ class CartView extends ConsumerWidget {
     final CartModel model = ref.watch(
       providers.cartControllerProvider,
     );
+    final CartController controller = ref.watch(
+      providers.cartControllerProvider.notifier,
+    );
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -24,6 +27,7 @@ class CartView extends ConsumerWidget {
                 child: buildTabContent(
                   context: context,
                   model: model,
+                  controller: controller,
                 ),
               ),
             ],
@@ -36,6 +40,7 @@ class CartView extends ConsumerWidget {
   Widget buildTabContent({
     required final BuildContext context,
     required final CartModel model,
+    required final CartController controller,
   }) =>
       TabBarView(
         children: <Widget>[
@@ -52,6 +57,7 @@ class CartView extends ConsumerWidget {
                   ) =>
                       buildSingleIngredient(
                     ingredient: model.ingredients[index],
+                    controller: controller,
                   ),
                 ),
               ),
@@ -82,6 +88,7 @@ class CartView extends ConsumerWidget {
 
   Widget buildSingleIngredient({
     required final CartModelIngredient ingredient,
+    required final CartController controller,
   }) =>
       Card(
         color: ingredient.color,
@@ -104,7 +111,13 @@ class CartView extends ConsumerWidget {
               (final double amount) => amount.toString(),
             )} ${ingredient.ingredient.unit.getOrElse(() => '')}',
           ),
-          trailing: const Icon(Icons.more_vert),
+          trailing: IconButton(
+            padding: const EdgeInsets.all(16),
+            onPressed: () => controller.openSingleRecipe(
+              recipeId: ingredient.ingredient.recipeId,
+            ),
+            icon: const Icon(Icons.forward),
+          ),
         ),
       );
 }
@@ -115,4 +128,5 @@ abstract class CartController extends StateNotifier<CartModel> {
   void goToHome();
   void goToCart();
   void goBack();
+  void openSingleRecipe({required final String recipeId});
 }
