@@ -35,8 +35,10 @@ class MyApp extends ConsumerWidget {
   Widget build(final BuildContext context, final WidgetRef ref) =>
       MaterialApp.router(
         title: 'Food client',
-        theme: ThemeData(
+        darkTheme: ThemeData(
           colorScheme: ColorScheme.fromSwatch(
+            brightness: Brightness.dark,
+            // seedColor: Colors.amberAccent,
             primarySwatch: Colors.pink,
             accentColor: Colors.amberAccent,
             backgroundColor: Colors.green,
