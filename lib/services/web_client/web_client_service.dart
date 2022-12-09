@@ -314,43 +314,48 @@ SingleRecipeWebClientModelRecipe _mapToSingleRecipeWebClientModelRecipe({
       difficulty: recipe.difficulty,
       yields: recipe.yields
           .map(
-            (final WebClientModelYield yield) =>
-                SingleRecipeWebClientModelYield(
-              yields: yield.yields,
-              ingredients: yield.ingredients
-                  .map(
-                    (final WebClientModelYieldIngredient ingredient) =>
-                        optionOf(
-                      recipe.ingredients.firstWhereOrNull(
-                        (
-                          final WebClientModelIngredient otherIngredient,
-                        ) =>
-                            otherIngredient.id == ingredient.id,
-                      ),
-                    ).map(
-                      (final WebClientModelIngredient otherIngredient) =>
-                          SingleRecipeWebClientModelIngredient(
-                        ingredientId: ingredient.id,
-                        amount: ingredient.amount.map(
-                          (final num number) => number.toDouble(),
+            (final WebClientModelYield yield) => yield.yields.map(
+              (final int serving) => SingleRecipeWebClientModelYield(
+                servings: serving,
+                ingredients: yield.ingredients
+                    .map(
+                      (final WebClientModelYieldIngredient ingredient) =>
+                          optionOf(
+                        recipe.ingredients.firstWhereOrNull(
+                          (
+                            final WebClientModelIngredient otherIngredient,
+                          ) =>
+                              otherIngredient.id == ingredient.id,
                         ),
-                        unit: ingredient.unit,
-                        imagePath: otherIngredient.imagePath.map(Uri.parse),
-                        slug: otherIngredient.slug,
-                        displayedName: otherIngredient.name,
+                      ).map(
+                        (final WebClientModelIngredient otherIngredient) =>
+                            SingleRecipeWebClientModelIngredient(
+                          ingredientId: ingredient.id,
+                          amount: ingredient.amount.map(
+                            (final num number) => number.toDouble(),
+                          ),
+                          unit: ingredient.unit,
+                          imagePath: otherIngredient.imagePath.map(Uri.parse),
+                          slug: otherIngredient.slug,
+                          displayedName: otherIngredient.name,
+                        ),
                       ),
-                    ),
-                  )
-                  .whereType<Some<SingleRecipeWebClientModelIngredient>>()
-                  .map(
-                    (
-                      final Some<SingleRecipeWebClientModelIngredient>
-                          ingredient,
-                    ) =>
-                        ingredient.value,
-                  )
-                  .toList(),
+                    )
+                    .whereType<Some<SingleRecipeWebClientModelIngredient>>()
+                    .map(
+                      (
+                        final Some<SingleRecipeWebClientModelIngredient>
+                            ingredient,
+                      ) =>
+                          ingredient.value,
+                    )
+                    .toList(),
+              ),
             ),
+          )
+          .whereType<Some<SingleRecipeWebClientModelYield>>()
+          .map(
+            (final Some<SingleRecipeWebClientModelYield> yield) => yield.value,
           )
           .toList(),
       tags: recipe.tags

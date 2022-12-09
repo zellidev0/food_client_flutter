@@ -8,23 +8,29 @@ part 'cart_model.freezed.dart';
 @freezed
 class CartModel with _$CartModel {
   const factory CartModel({
-    required final List<CartModelIngredient> ingredients,
+    required final List<CartModelRecipe> recipes,
   }) = _CartModel;
 }
 
+@freezed
+class CartModelRecipe with _$CartModelRecipe {
+  const factory CartModelRecipe({
+    required final List<CartModelIngredient> ingredients,
+    required final String recipeId,
+    required final Color color,
+  }) = _CartModelRecipe;
+}
 @freezed
 class CartModelIngredient with _$CartModelIngredient {
   const factory CartModelIngredient({
     required final CartModelIngredientInfo ingredient,
     required final bool isTickedOff,
-    required final Color color,
   }) = _CartModelIngredient;
 }
 
 @freezed
 class CartModelIngredientInfo with _$CartModelIngredientInfo {
   const factory CartModelIngredientInfo({
-    required final String recipeId,
     required final Option<Uri> imageUrl,
     required final String ingredientId,
     required final String slug,

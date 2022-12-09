@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/services/persistence_service/persistence_service.dart';
+import 'package:food_client/services/persistence_service/persistence_service_model.dart';
 import 'package:food_client/services/recipe_language_service/recipe_language_service.dart';
 import 'package:food_client/services/web_client/web_client_service.dart';
 import 'package:food_client/services/web_image_sizer/web_image_sizer_service.dart';
@@ -28,19 +29,19 @@ class Providers {
       final AutoDisposeStateNotifierProviderRef<CartController, CartModel> ref,
     ) =>
         CartControllerImplementation(
-      const CartModel(ingredients: <CartModelIngredient>[]),
-      navigationService: ref.read(
-        providers.bottomNavigationBarNavigationServiceProvider,
-      ),
-      persistenceService: ref.read(providers.persistenceServiceProvider),
-    ),
+            const CartModel(recipes: <CartModelRecipe>[]),
+            navigationService: ref.read(
+              providers.bottomNavigationBarNavigationServiceProvider,
+            ),
+            persistenceService: ref.read(
+              providers.persistenceServiceProvider.notifier,
+            )),
   );
 
-  final AutoDisposeStateNotifierProvider<MainController, MainModel>
-      mainControllerProvider =
-      StateNotifierProvider.autoDispose<MainController, MainModel>(
+  final StateNotifierProvider<MainController, MainModel>
+      mainControllerProvider = StateNotifierProvider<MainController, MainModel>(
     (
-      final AutoDisposeStateNotifierProviderRef<MainController, MainModel> ref,
+      final StateNotifierProviderRef<MainController, MainModel> ref,
     ) =>
         MainControllerImplementation(
       const MainModel(bottomNavigationBarIndex: 0),
@@ -51,8 +52,7 @@ class Providers {
   );
 
   final AutoDisposeStateNotifierProvider<HomeController, HomeModel>
-      homeControllerProvider =
-      StateNotifierProvider.autoDispose<HomeController, HomeModel>(
+      homeControllerProvider = StateNotifierProvider.autoDispose<HomeController, HomeModel>(
     (
       final AutoDisposeStateNotifierProviderRef<HomeController, HomeModel> ref,
     ) =>
@@ -94,16 +94,24 @@ class Providers {
       ),
       webClientService: ref.read(providers.webClientServiceProvider),
       webImageSizerService: ref.read(providers.webImageSizerServiceProvider),
-      persistenceService: ref.read(providers.persistenceServiceProvider),
+      persistenceService:
+          ref.watch(providers.persistenceServiceProvider.notifier),
       recipeId: recipeId,
     ),
   );
 
-  final Provider<PersistenceServiceAggregator> persistenceServiceProvider =
-      Provider<PersistenceServiceAggregator>(
-    (final ProviderRef<PersistenceServiceAggregator> ref) =>
+  final StateNotifierProvider<PersistenceServiceAggregator,
+          PersistenceServiceModel> persistenceServiceProvider =
+      StateNotifierProvider<PersistenceServiceAggregator,
+          PersistenceServiceModel>(
+    (
+      final StateNotifierProviderRef<PersistenceServiceAggregator,
+              PersistenceServiceModel>
+          ref,
+    ) =>
         PersistenceService(),
   );
+
   final Provider<RecipeLanguageServiceAggregator>
       recipeLanguageServiceProvider = Provider<RecipeLanguageServiceAggregator>(
     (final ProviderRef<RecipeLanguageServiceAggregator> ref) =>

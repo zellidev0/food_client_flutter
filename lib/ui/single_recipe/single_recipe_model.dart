@@ -52,14 +52,14 @@ class SingleRecipeModelIngredient with _$SingleRecipeModelIngredient {
     required final String displayedName,
     required final Option<double> amount,
     required final Option<String> unit,
-    required final bool isInShoppingCard,
   }) = _SingleRecipeModelIngredient;
 }
 
 @freezed
 class SingleRecipeModelYield with _$SingleRecipeModelYield {
   const factory SingleRecipeModelYield({
-    required final Option<int> yields,
+    required final bool isInShoppingCart,
+    required final int servings,
     required final List<SingleRecipeModelIngredient> ingredients,
   }) = _SingleRecipeModelYield;
 }

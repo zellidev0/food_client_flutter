@@ -908,7 +908,7 @@ abstract class _SingleRecipeWebClientModelIngredient
 
 /// @nodoc
 mixin _$SingleRecipeWebClientModelYield {
-  Option<int> get yields => throw _privateConstructorUsedError;
+  int get servings => throw _privateConstructorUsedError;
   List<SingleRecipeWebClientModelIngredient> get ingredients =>
       throw _privateConstructorUsedError;
 
@@ -926,8 +926,7 @@ abstract class $SingleRecipeWebClientModelYieldCopyWith<$Res> {
           SingleRecipeWebClientModelYield>;
   @useResult
   $Res call(
-      {Option<int> yields,
-      List<SingleRecipeWebClientModelIngredient> ingredients});
+      {int servings, List<SingleRecipeWebClientModelIngredient> ingredients});
 }
 
 /// @nodoc
@@ -944,14 +943,14 @@ class _$SingleRecipeWebClientModelYieldCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? yields = null,
+    Object? servings = null,
     Object? ingredients = null,
   }) {
     return _then(_value.copyWith(
-      yields: null == yields
-          ? _value.yields
-          : yields // ignore: cast_nullable_to_non_nullable
-              as Option<int>,
+      servings: null == servings
+          ? _value.servings
+          : servings // ignore: cast_nullable_to_non_nullable
+              as int,
       ingredients: null == ingredients
           ? _value.ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
@@ -970,8 +969,7 @@ abstract class _$$_SingleRecipeWebClientModelYieldCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Option<int> yields,
-      List<SingleRecipeWebClientModelIngredient> ingredients});
+      {int servings, List<SingleRecipeWebClientModelIngredient> ingredients});
 }
 
 /// @nodoc
@@ -987,14 +985,14 @@ class __$$_SingleRecipeWebClientModelYieldCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? yields = null,
+    Object? servings = null,
     Object? ingredients = null,
   }) {
     return _then(_$_SingleRecipeWebClientModelYield(
-      yields: null == yields
-          ? _value.yields
-          : yields // ignore: cast_nullable_to_non_nullable
-              as Option<int>,
+      servings: null == servings
+          ? _value.servings
+          : servings // ignore: cast_nullable_to_non_nullable
+              as int,
       ingredients: null == ingredients
           ? _value._ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
@@ -1008,12 +1006,12 @@ class __$$_SingleRecipeWebClientModelYieldCopyWithImpl<$Res>
 class _$_SingleRecipeWebClientModelYield
     implements _SingleRecipeWebClientModelYield {
   const _$_SingleRecipeWebClientModelYield(
-      {required this.yields,
+      {required this.servings,
       required final List<SingleRecipeWebClientModelIngredient> ingredients})
       : _ingredients = ingredients;
 
   @override
-  final Option<int> yields;
+  final int servings;
   final List<SingleRecipeWebClientModelIngredient> _ingredients;
   @override
   List<SingleRecipeWebClientModelIngredient> get ingredients {
@@ -1023,7 +1021,7 @@ class _$_SingleRecipeWebClientModelYield
 
   @override
   String toString() {
-    return 'SingleRecipeWebClientModelYield(yields: $yields, ingredients: $ingredients)';
+    return 'SingleRecipeWebClientModelYield(servings: $servings, ingredients: $ingredients)';
   }
 
   @override
@@ -1031,14 +1029,15 @@ class _$_SingleRecipeWebClientModelYield
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SingleRecipeWebClientModelYield &&
-            (identical(other.yields, yields) || other.yields == yields) &&
+            (identical(other.servings, servings) ||
+                other.servings == servings) &&
             const DeepCollectionEquality()
                 .equals(other._ingredients, _ingredients));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, yields, const DeepCollectionEquality().hash(_ingredients));
+      runtimeType, servings, const DeepCollectionEquality().hash(_ingredients));
 
   @JsonKey(ignore: true)
   @override
@@ -1052,12 +1051,12 @@ class _$_SingleRecipeWebClientModelYield
 abstract class _SingleRecipeWebClientModelYield
     implements SingleRecipeWebClientModelYield {
   const factory _SingleRecipeWebClientModelYield(
-      {required final Option<int> yields,
+      {required final int servings,
       required final List<SingleRecipeWebClientModelIngredient>
           ingredients}) = _$_SingleRecipeWebClientModelYield;
 
   @override
-  Option<int> get yields;
+  int get servings;
   @override
   List<SingleRecipeWebClientModelIngredient> get ingredients;
   @override

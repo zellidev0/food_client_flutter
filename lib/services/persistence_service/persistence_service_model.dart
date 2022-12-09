@@ -8,9 +8,26 @@ part 'persistence_service_model.g.dart';
 @freezed
 class PersistenceServiceModel with _$PersistenceServiceModel {
   const factory PersistenceServiceModel({
-    required final List<PersistenceServiceModelShoppingListIngredient>
-        ingredients,
+    required final List<PersistenceServiceModelShoppingListRecipe>
+        recipes,
   }) = _PersistenceServiceModel;
+}
+
+@freezed
+class PersistenceServiceModelShoppingListRecipe
+    with _$PersistenceServiceModelShoppingListRecipe {
+  @HiveType(
+    typeId: 1,
+    adapterName: 'PersistenceServiceModelShoppingListRecipeAdapter',)
+  const factory PersistenceServiceModelShoppingListRecipe({
+    @HiveField(0) required final List<PersistenceServiceModelShoppingListIngredient> ingredients,
+    @HiveField(2) required final String recipeId,
+    @HiveField(7) required final int servings,
+  }) = _PersistenceServiceModelShoppingListRecipe;
+
+  factory PersistenceServiceModelShoppingListRecipe.fromJson(
+      final Map<String, dynamic> json,) =>
+      _$PersistenceServiceModelShoppingListRecipeFromJson(json);
 }
 
 @freezed
@@ -22,7 +39,6 @@ class PersistenceServiceModelShoppingListIngredient
   const factory PersistenceServiceModelShoppingListIngredient({
     @HiveField(0) required final String ingredientId,
     @HiveField(1) required final bool isTickedOff,
-    @HiveField(2) required final String recipeId,
     @HiveField(3) required final Option<Uri> imageUrl,
     @HiveField(4) required final String slug,
     @HiveField(5) required final String displayedName,

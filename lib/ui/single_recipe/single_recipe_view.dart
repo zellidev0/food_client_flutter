@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:ui';
 
 import 'package:collection/collection.dart';
@@ -32,10 +31,27 @@ class SingleRecipeView extends ConsumerWidget {
         (final Exception exception) => Text(exception.toString()),
         (final Option<SingleRecipeModelRecipe> content) => content.fold(
           () => const Center(child: CircularProgressIndicator()),
-          (final SingleRecipeModelRecipe recipe) => _buildContent(
-            recipe: recipe,
-            selectedYield: model.selectedYield,
-            controller: controller,
+          (final SingleRecipeModelRecipe recipe) => Stack(
+            children: <Widget>[
+              _buildContent(
+                recipe: recipe,
+                selectedYield: model.selectedYield,
+                controller: controller,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: FloatingActionButton(
+                    onPressed: () => controller.openAddToShoppingCartDialog(
+                      recipe: recipe,
+                      recipeId: _recipeId,
+                    ),
+                    child: const Icon(Icons.add_shopping_cart),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -159,6 +175,9 @@ class SingleRecipeView extends ConsumerWidget {
   }) =>
       Builder(
         builder: (final BuildContext context) => TabBar(
+          labelColor: Theme.of(context).colorScheme.primary,
+          indicatorColor: Theme.of(context).colorScheme.primary,
+          unselectedLabelColor: Theme.of(context).colorScheme.onSurfaceVariant,
           splashBorderRadius: const BorderRadius.all(Radius.circular(20)),
           indicator: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -190,12 +209,11 @@ class SingleRecipeView extends ConsumerWidget {
               onPressed: () => controller.setSelectedYield(
                 yield: yields
                     .map(
-                      (final SingleRecipeModelYield yield) =>
-                          yield.yields.getOrElse(() => 0),
+                      (final SingleRecipeModelYield yield) => yield.servings,
                     )
                     .toList()[(yields.indexWhere(
                           (final SingleRecipeModelYield yield) =>
-                              yield.yields == selectedYield,
+                              some(yield.servings) == selectedYield,
                         ) +
                         1) %
                     yields.length],
@@ -212,7 +230,7 @@ class SingleRecipeView extends ConsumerWidget {
   }) =>
       Column(
         children: <Widget>[
-          const SizedBox(height: 16),
+          const SizedBox(height: 8),
           Expanded(
             child: ListView(
               children: steps
@@ -290,7 +308,8 @@ class SingleRecipeView extends ConsumerWidget {
   }) =>
       optionOf(
         yields.firstWhereOrNull(
-          (final SingleRecipeModelYield yield) => yield.yields == selectedYield,
+          (final SingleRecipeModelYield yield) =>
+              some(yield.servings) == selectedYield,
         ),
       ).fold(
         () => throw Exception('No yield selected, not possible state reached'),
@@ -316,23 +335,6 @@ class SingleRecipeView extends ConsumerWidget {
                         () => 'nach Ermessen',
                         (final double amount) => amount.toString(),
                       )} ${ingredient.unit.getOrElse(() => '')}',
-                    ),
-                    trailing: IconButton(
-                      onPressed: () => ingredient.isInShoppingCard
-                          ? unawaited(
-                              controller.removeIngredientFromShoppingCart(
-                                ingredient: ingredient,
-                                recipeId: _recipeId,
-                              ),
-                            )
-                          : controller.addIngredientToShoppingCart(
-                              ingredient: ingredient,
-                              recipeId: _recipeId,
-                            ),
-                      padding: const EdgeInsets.all(16),
-                      icon: ingredient.isInShoppingCard
-                          ? const Icon(Icons.remove_shopping_cart)
-                          : const Icon(Icons.add_shopping_cart),
                     ),
                   ),
                 ),
@@ -366,14 +368,9 @@ abstract class SingleRecipeController extends StateNotifier<SingleRecipeModel> {
     required final int yield,
     required final String recipeId,
   });
+  void openAddToShoppingCartDialog({
+    required final SingleRecipeModelRecipe recipe,
+    required final String recipeId,
+  });
   void goBack();
-
-  void addIngredientToShoppingCart({
-    required final SingleRecipeModelIngredient ingredient,
-    required final String recipeId,
-  });
-  Future<void> removeIngredientFromShoppingCart({
-    required final SingleRecipeModelIngredient ingredient,
-    required final String recipeId,
-  });
 }

@@ -58,7 +58,7 @@ class SingleRecipeWebClientModelIngredient
 @freezed
 class SingleRecipeWebClientModelYield with _$SingleRecipeWebClientModelYield {
   const factory SingleRecipeWebClientModelYield({
-    required final Option<int> yields,
+    required final int servings,
     required final List<SingleRecipeWebClientModelIngredient> ingredients,
   }) = _SingleRecipeWebClientModelYield;
 }

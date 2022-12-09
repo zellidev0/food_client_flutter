@@ -14,10 +14,6 @@ class MainView extends ConsumerWidget {
         ref.read(providers.mainControllerProvider.notifier);
     return Scaffold(
       bottomNavigationBar: ClipRRect(
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
-        ),
         child: BottomNavigationBar(
           backgroundColor: Theme.of(context).colorScheme.background,
           selectedItemColor: Theme.of(context).colorScheme.onBackground,

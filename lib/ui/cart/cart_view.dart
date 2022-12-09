@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/providers/providers.dart';
@@ -26,12 +27,26 @@ class CartView extends ConsumerWidget {
               Expanded(
                 child: ListView.builder(
                   shrinkWrap: true,
-                  itemCount: model.ingredients.length,
+                  itemCount: model.recipes
+                      .map((final CartModelRecipe recipe) => recipe.ingredients)
+                      .flattened
+                      .length,
                   itemBuilder: (final BuildContext context, final int index) =>
-                      buildSingleIngredient(
-                    ingredient: model.ingredients.toList()[index],
-                    controller: controller,
-                  ),
+                      model.recipes
+                          .map(
+                            (final CartModelRecipe recipe) =>
+                                recipe.ingredients.map(
+                              (final CartModelIngredient ingredient) =>
+                                  buildSingleIngredient(
+                                ingredient: ingredient,
+                                controller: controller,
+                                recipeId: recipe.recipeId,
+                                color: recipe.color,
+                              ),
+                            ),
+                          )
+                          .flattened
+                          .toList()[index],
                 ),
               ),
             ],
@@ -57,17 +72,19 @@ class CartView extends ConsumerWidget {
       );
 
   Widget buildSingleIngredient({
+    required final String recipeId,
+    required final Color color,
     required final CartModelIngredient ingredient,
     required final CartController controller,
   }) =>
       Card(
-        color: ingredient.isTickedOff ? Colors.grey.shade300 : ingredient.color,
+        color: ingredient.isTickedOff ? Colors.grey.shade300 : color,
         child: Builder(
           builder: (final BuildContext context) => InkWell(
             borderRadius: BorderRadius.circular(8),
-            onTap: () => controller.tickOff(
+            onTap: () async => controller.tickOff(
               ingredientId: ingredient.ingredient.ingredientId,
-              recipeId: ingredient.ingredient.recipeId,
+              recipeId: recipeId,
               isTickedOff: !ingredient.isTickedOff,
             ),
             onLongPress: controller.showDeleteDialog,
@@ -93,9 +110,8 @@ class CartView extends ConsumerWidget {
               ),
               trailing: IconButton(
                 padding: const EdgeInsets.all(16),
-                onPressed: () => controller.openSingleRecipe(
-                  recipeId: ingredient.ingredient.recipeId,
-                ),
+                onPressed: () =>
+                    controller.openSingleRecipe(recipeId: recipeId),
                 icon: const Icon(Icons.forward),
               ),
             ),
@@ -111,7 +127,7 @@ abstract class CartController extends StateNotifier<CartModel> {
   void goToCart();
   void goBack();
   void openSingleRecipe({required final String recipeId});
-  void tickOff({
+  Future<void> tickOff({
     required final String ingredientId,
     required final String recipeId,
     required final bool isTickedOff,

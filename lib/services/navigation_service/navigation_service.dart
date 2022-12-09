@@ -74,7 +74,6 @@ class BeamerNavigationService implements NavigationServiceAggregator {
       builder: (final material.BuildContext context) => material.AlertDialog(
         title: material.Text(title),
         content: material.Text(content),
-        actionsAlignment: MainAxisAlignment.spaceBetween,
         actions: actions.fold(
           () => null,
           (final List<NavigationServiceDialogAction> actions) => actions

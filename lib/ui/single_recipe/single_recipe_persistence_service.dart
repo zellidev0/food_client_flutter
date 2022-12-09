@@ -4,19 +4,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'single_recipe_persistence_service.freezed.dart';
 
 abstract class SingleRecipePersistenceService {
-  Task<void> addIngredient({
-    required final SingleRecipePersistenceServiceIngredient ingredient,
-  });
   bool isInShoppingCart({
-    required final String ingredientId,
     required final String recipeId,
+    required final int servings,
   });
-  Task<void> removeIngredient({
-    required final String ingredientId,
-    required final String recipeId,
-  });
-  Task<void> addIngredients({
-    required final List<SingleRecipePersistenceServiceIngredient> ingredients,
+  Task<void> addRecipe({
+    required final SingleRecipePersistenceServiceRecipe recipe,
   });
 }
 
@@ -25,7 +18,6 @@ class SingleRecipePersistenceServiceIngredient
     with _$SingleRecipePersistenceServiceIngredient {
   const factory SingleRecipePersistenceServiceIngredient({
     required final bool isTickedOff,
-    required final String recipeId,
     required final Option<Uri> imageUrl,
     required final String ingredientId,
     required final String slug,
@@ -33,4 +25,15 @@ class SingleRecipePersistenceServiceIngredient
     required final Option<double> amount,
     required final Option<String> unit,
   }) = _SingleRecipePersistenceServiceIngredient;
+}
+
+
+@freezed
+class SingleRecipePersistenceServiceRecipe
+    with _$SingleRecipePersistenceServiceRecipe {
+  const factory SingleRecipePersistenceServiceRecipe({
+    required final List<SingleRecipePersistenceServiceIngredient> ingredients,
+    required final String recipeId,
+    required final int servings,
+  }) = _SingleRecipePersistenceServiceRecipe;
 }

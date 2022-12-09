@@ -1,7 +1,6 @@
 import 'dart:async';
 
-import 'package:collection/collection.dart';
-import 'package:flutter/foundation.dart';
+import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_model.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_navigation_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_persistence_service.dart';
@@ -42,8 +41,8 @@ class SingleRecipeControllerImplementation extends SingleRecipeController {
       recipe: recipeTask.map(some),
       selectedYield: recipeTask.toOption().flatMap(
             (final SingleRecipeModelRecipe recipe) =>
-                recipe.yields.firstOption.flatMap(
-              (final SingleRecipeModelYield yield) => yield.yields,
+                recipe.yields.firstOption.map(
+              (final SingleRecipeModelYield yield) => yield.servings,
             ),
           ),
     );
@@ -55,147 +54,11 @@ class SingleRecipeControllerImplementation extends SingleRecipeController {
     required final String recipeId,
   }) {
     state = state.copyWith(selectedYield: some(yield));
-    addAllCurrentlySelectedYieldIngredientsToShoppingCart(
-      yield: yield,
-      recipeId: recipeId,
-    );
-  }
-
-  void addAllCurrentlySelectedYieldIngredientsToShoppingCart({
-    required final int yield,
-    required final String recipeId,
-  }) {
-    state.recipe
-        .flatMap(
-          (final Option<SingleRecipeModelRecipe> optionalRecipe) =>
-              optionalRecipe
-                  .flatMap(
-                    (final SingleRecipeModelRecipe recipe) => optionOf(
-                      recipe.yields.firstWhereOrNull(
-                        (final SingleRecipeModelYield element) =>
-                            element.yields == some(yield),
-                      ),
-                    ),
-                  )
-                  .toEither(Exception.new),
-        )
-        .fold(
-          (final Exception exception) => debugPrint(exception.toString()),
-          (final SingleRecipeModelYield singleYield) => unawaited(
-            addIngredientsToShoppingCart(
-              ingredients: singleYield.ingredients,
-              recipeId: recipeId,
-            ),
-          ),
-        );
   }
 
   @override
   void goBack() {
     _navigationService.goBack();
-  }
-
-  @override
-  Future<void> addIngredientToShoppingCart({
-    required final SingleRecipeModelIngredient ingredient,
-    required final String recipeId,
-  }) async {
-    (await TaskEither<Exception, void>.fromTask(
-      _persistenceService.addIngredient(
-        ingredient: mapToSingleRecipePersistenceServiceIngredient(
-          recipeId: recipeId,
-          ingredient: ingredient,
-        ),
-      ),
-    ).run())
-        .fold(
-      (final Exception exception) =>
-          debugPrint('Error removing ingredient: $exception'),
-      (final _) {
-        updateIngredientsWIthShoppingCartInfo(
-          ingredient: ingredient,
-          recipeId: recipeId,
-        );
-      },
-    );
-  }
-
-  void updateIngredientsWIthShoppingCartInfo({
-    required final SingleRecipeModelIngredient ingredient,
-    required final String recipeId,
-  }) =>
-      state = state.copyWith(
-        recipe: state.recipe.map(
-          (final Option<SingleRecipeModelRecipe> r) => r.map(
-            (final SingleRecipeModelRecipe recipe) => recipe.copyWith(
-              yields: recipe.yields
-                  .map(
-                    (final SingleRecipeModelYield yield) => yield.copyWith(
-                      ingredients: yield.ingredients
-                          .map(
-                            (final SingleRecipeModelIngredient newIngredient) =>
-                                newIngredient.copyWith(
-                              isInShoppingCard:
-                                  _persistenceService.isInShoppingCart(
-                                ingredientId: newIngredient.ingredientId,
-                                recipeId: recipeId,
-                              ),
-                            ),
-                          )
-                          .toList(),
-                    ),
-                  )
-                  .toList(),
-            ),
-          ),
-        ),
-      );
-
-  Future<void> addIngredientsToShoppingCart({
-    required final List<SingleRecipeModelIngredient> ingredients,
-    required final String recipeId,
-  }) async {
-    (await TaskEither<Exception, void>.fromTask(
-      _persistenceService.addIngredients(
-        ingredients: ingredients
-            .map(
-              (final SingleRecipeModelIngredient ingredient) =>
-                  mapToSingleRecipePersistenceServiceIngredient(
-                recipeId: recipeId,
-                ingredient: ingredient,
-              ),
-            )
-            .toList(),
-      ),
-    ).run())
-        .fold(
-      (final Exception exception) =>
-          debugPrint('Error removing ingredient: $exception'),
-      (final _) {},
-    );
-  }
-
-  @override
-  Future<void> removeIngredientFromShoppingCart({
-    required final SingleRecipeModelIngredient ingredient,
-    required final String recipeId,
-  }) async {
-    (await TaskEither<Exception, void>.fromTask(
-      _persistenceService.removeIngredient(
-        ingredientId: ingredient.ingredientId,
-        recipeId: recipeId,
-      ),
-    ).run())
-        .fold(
-      (final Exception exception) =>
-          debugPrint('Error removing ingredient: $exception'),
-      (final _) {
-        updateIngredientsWIthShoppingCartInfo(
-          ingredient: ingredient,
-          recipeId: recipeId,
-        );
-      },
-    );
   }
 
   TaskEither<Exception, SingleRecipeModelRecipe> fetchSingleRecipeTask({
@@ -209,16 +72,61 @@ class SingleRecipeControllerImplementation extends SingleRecipeController {
               persistenceService: _persistenceService,
             ),
           );
+
+  @override
+  void openAddToShoppingCartDialog({
+    required final SingleRecipeModelRecipe recipe,
+    required final String recipeId,
+  }) {
+    unawaited(
+      _navigationService.showDialog(
+        title: 'Add to shopping cart?',
+        content:
+            'Add this recipe to the shopping cart, with the following serving',
+        actions: some(
+          recipe.yields
+              .map(
+                (final SingleRecipeModelYield yield) =>
+                    NavigationServiceDialogAction(
+                  text: '${yield.servings} Persons',
+                  onPressed: () {
+                    unawaited(
+                      _persistenceService
+                          .addRecipe(
+                            recipe: SingleRecipePersistenceServiceRecipe(
+                              ingredients: yield.ingredients
+                                  .map(
+                                    (
+                                      final SingleRecipeModelIngredient
+                                          ingredient,
+                                    ) =>
+                                        mapToSingleRecipePersistenceServiceIngredient(
+                                      ingredient: ingredient,
+                                    ),
+                                  )
+                                  .toList(),
+                              recipeId: recipeId,
+                              servings: yield.servings,
+                            ),
+                          )
+                          .run(),
+                    );
+                  },
+                ),
+              )
+              .toList(),
+        ),
+      ),
+    );
+  }
 }
 
 SingleRecipePersistenceServiceIngredient
     mapToSingleRecipePersistenceServiceIngredient({
-  required final String recipeId,
   required final SingleRecipeModelIngredient ingredient,
 }) =>
         SingleRecipePersistenceServiceIngredient(
           isTickedOff: false,
-          recipeId: recipeId,
           imageUrl: ingredient.imageUrl,
           ingredientId: ingredient.ingredientId,
           slug: ingredient.slug,
@@ -313,7 +221,7 @@ List<SingleRecipeModelYield> _mapYields({
         .map(
           (final SingleRecipeWebClientModelYield yield) =>
               SingleRecipeModelYield(
-            yields: yield.yields,
+            servings: yield.servings,
             ingredients: yield.ingredients
                 .map(
                   (
@@ -330,13 +238,13 @@ List<SingleRecipeModelYield> _mapYields({
                     ),
                     amount: ingredient.amount,
                     unit: ingredient.unit,
-                    isInShoppingCard: persistenceService.isInShoppingCart(
-                      ingredientId: ingredient.ingredientId,
-                      recipeId: recipeId,
-                    ),
                   ),
                 )
                 .toList(),
+            isInShoppingCart: persistenceService.isInShoppingCart(
+              servings: yield.servings,
+              recipeId: recipeId,
+            ),
           ),
         )
         .toList();

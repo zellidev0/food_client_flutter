@@ -13,13 +13,12 @@ void main() async {
     ..registerAdapter(OptionDoubleAdapter())
     ..registerAdapter(OptionStringAdapter())
     ..registerAdapter(UriAdapter())
-    ..registerAdapter(
-      PersistenceServiceModelShoppingListIngredientAdapter(),
-    );
-  await Hive.openBox<PersistenceServiceModelShoppingListIngredient>(
+    ..registerAdapter(PersistenceServiceModelShoppingListIngredientAdapter())
+    ..registerAdapter(PersistenceServiceModelShoppingListRecipeAdapter());
+  await Hive.initFlutter();
+  await Hive.openBox<PersistenceServiceModelShoppingListRecipe>(
     ingredientsBoxName,
   );
-  await Hive.initFlutter();
 
   runApp(
     const ProviderScope(
@@ -35,10 +34,9 @@ class MyApp extends ConsumerWidget {
   Widget build(final BuildContext context, final WidgetRef ref) =>
       MaterialApp.router(
         title: 'Food client',
-        darkTheme: ThemeData(
+        theme: ThemeData(
           colorScheme: ColorScheme.fromSwatch(
-            brightness: Brightness.dark,
-            // seedColor: Colors.amberAccent,
+            brightness: Brightness.light,
             primarySwatch: Colors.pink,
             accentColor: Colors.amberAccent,
             backgroundColor: Colors.green,

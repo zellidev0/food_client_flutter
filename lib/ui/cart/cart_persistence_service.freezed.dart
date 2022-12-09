@@ -15,9 +15,170 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
+mixin _$CartPersistenceServiceModelRecipe {
+  String get recipeId => throw _privateConstructorUsedError;
+  List<CartPersistenceServiceModelIngredient> get ingredients =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $CartPersistenceServiceModelRecipeCopyWith<CartPersistenceServiceModelRecipe>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CartPersistenceServiceModelRecipeCopyWith<$Res> {
+  factory $CartPersistenceServiceModelRecipeCopyWith(
+          CartPersistenceServiceModelRecipe value,
+          $Res Function(CartPersistenceServiceModelRecipe) then) =
+      _$CartPersistenceServiceModelRecipeCopyWithImpl<$Res,
+          CartPersistenceServiceModelRecipe>;
+  @useResult
+  $Res call(
+      {String recipeId,
+      List<CartPersistenceServiceModelIngredient> ingredients});
+}
+
+/// @nodoc
+class _$CartPersistenceServiceModelRecipeCopyWithImpl<$Res,
+        $Val extends CartPersistenceServiceModelRecipe>
+    implements $CartPersistenceServiceModelRecipeCopyWith<$Res> {
+  _$CartPersistenceServiceModelRecipeCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? recipeId = null,
+    Object? ingredients = null,
+  }) {
+    return _then(_value.copyWith(
+      recipeId: null == recipeId
+          ? _value.recipeId
+          : recipeId // ignore: cast_nullable_to_non_nullable
+              as String,
+      ingredients: null == ingredients
+          ? _value.ingredients
+          : ingredients // ignore: cast_nullable_to_non_nullable
+              as List<CartPersistenceServiceModelIngredient>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_CartPersistenceServiceModelRecipeCopyWith<$Res>
+    implements $CartPersistenceServiceModelRecipeCopyWith<$Res> {
+  factory _$$_CartPersistenceServiceModelRecipeCopyWith(
+          _$_CartPersistenceServiceModelRecipe value,
+          $Res Function(_$_CartPersistenceServiceModelRecipe) then) =
+      __$$_CartPersistenceServiceModelRecipeCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String recipeId,
+      List<CartPersistenceServiceModelIngredient> ingredients});
+}
+
+/// @nodoc
+class __$$_CartPersistenceServiceModelRecipeCopyWithImpl<$Res>
+    extends _$CartPersistenceServiceModelRecipeCopyWithImpl<$Res,
+        _$_CartPersistenceServiceModelRecipe>
+    implements _$$_CartPersistenceServiceModelRecipeCopyWith<$Res> {
+  __$$_CartPersistenceServiceModelRecipeCopyWithImpl(
+      _$_CartPersistenceServiceModelRecipe _value,
+      $Res Function(_$_CartPersistenceServiceModelRecipe) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? recipeId = null,
+    Object? ingredients = null,
+  }) {
+    return _then(_$_CartPersistenceServiceModelRecipe(
+      recipeId: null == recipeId
+          ? _value.recipeId
+          : recipeId // ignore: cast_nullable_to_non_nullable
+              as String,
+      ingredients: null == ingredients
+          ? _value._ingredients
+          : ingredients // ignore: cast_nullable_to_non_nullable
+              as List<CartPersistenceServiceModelIngredient>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_CartPersistenceServiceModelRecipe
+    implements _CartPersistenceServiceModelRecipe {
+  const _$_CartPersistenceServiceModelRecipe(
+      {required this.recipeId,
+      required final List<CartPersistenceServiceModelIngredient> ingredients})
+      : _ingredients = ingredients;
+
+  @override
+  final String recipeId;
+  final List<CartPersistenceServiceModelIngredient> _ingredients;
+  @override
+  List<CartPersistenceServiceModelIngredient> get ingredients {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_ingredients);
+  }
+
+  @override
+  String toString() {
+    return 'CartPersistenceServiceModelRecipe(recipeId: $recipeId, ingredients: $ingredients)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CartPersistenceServiceModelRecipe &&
+            (identical(other.recipeId, recipeId) ||
+                other.recipeId == recipeId) &&
+            const DeepCollectionEquality()
+                .equals(other._ingredients, _ingredients));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, recipeId, const DeepCollectionEquality().hash(_ingredients));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CartPersistenceServiceModelRecipeCopyWith<
+          _$_CartPersistenceServiceModelRecipe>
+      get copyWith => __$$_CartPersistenceServiceModelRecipeCopyWithImpl<
+          _$_CartPersistenceServiceModelRecipe>(this, _$identity);
+}
+
+abstract class _CartPersistenceServiceModelRecipe
+    implements CartPersistenceServiceModelRecipe {
+  const factory _CartPersistenceServiceModelRecipe(
+      {required final String recipeId,
+      required final List<CartPersistenceServiceModelIngredient>
+          ingredients}) = _$_CartPersistenceServiceModelRecipe;
+
+  @override
+  String get recipeId;
+  @override
+  List<CartPersistenceServiceModelIngredient> get ingredients;
+  @override
+  @JsonKey(ignore: true)
+  _$$_CartPersistenceServiceModelRecipeCopyWith<
+          _$_CartPersistenceServiceModelRecipe>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$CartPersistenceServiceModelIngredient {
   bool get isTickedOff => throw _privateConstructorUsedError;
-  String get recipeId => throw _privateConstructorUsedError;
   Option<Uri> get imageUrl => throw _privateConstructorUsedError;
   String get ingredientId => throw _privateConstructorUsedError;
   String get slug => throw _privateConstructorUsedError;
@@ -41,7 +202,6 @@ abstract class $CartPersistenceServiceModelIngredientCopyWith<$Res> {
   @useResult
   $Res call(
       {bool isTickedOff,
-      String recipeId,
       Option<Uri> imageUrl,
       String ingredientId,
       String slug,
@@ -65,7 +225,6 @@ class _$CartPersistenceServiceModelIngredientCopyWithImpl<$Res,
   @override
   $Res call({
     Object? isTickedOff = null,
-    Object? recipeId = null,
     Object? imageUrl = null,
     Object? ingredientId = null,
     Object? slug = null,
@@ -78,10 +237,6 @@ class _$CartPersistenceServiceModelIngredientCopyWithImpl<$Res,
           ? _value.isTickedOff
           : isTickedOff // ignore: cast_nullable_to_non_nullable
               as bool,
-      recipeId: null == recipeId
-          ? _value.recipeId
-          : recipeId // ignore: cast_nullable_to_non_nullable
-              as String,
       imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -121,7 +276,6 @@ abstract class _$$_CartPersistenceServiceModelIngredientCopyWith<$Res>
   @useResult
   $Res call(
       {bool isTickedOff,
-      String recipeId,
       Option<Uri> imageUrl,
       String ingredientId,
       String slug,
@@ -144,7 +298,6 @@ class __$$_CartPersistenceServiceModelIngredientCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isTickedOff = null,
-    Object? recipeId = null,
     Object? imageUrl = null,
     Object? ingredientId = null,
     Object? slug = null,
@@ -157,10 +310,6 @@ class __$$_CartPersistenceServiceModelIngredientCopyWithImpl<$Res>
           ? _value.isTickedOff
           : isTickedOff // ignore: cast_nullable_to_non_nullable
               as bool,
-      recipeId: null == recipeId
-          ? _value.recipeId
-          : recipeId // ignore: cast_nullable_to_non_nullable
-              as String,
       imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -195,7 +344,6 @@ class _$_CartPersistenceServiceModelIngredient
     implements _CartPersistenceServiceModelIngredient {
   const _$_CartPersistenceServiceModelIngredient(
       {required this.isTickedOff,
-      required this.recipeId,
       required this.imageUrl,
       required this.ingredientId,
       required this.slug,
@@ -205,8 +353,6 @@ class _$_CartPersistenceServiceModelIngredient
 
   @override
   final bool isTickedOff;
-  @override
-  final String recipeId;
   @override
   final Option<Uri> imageUrl;
   @override
@@ -222,7 +368,7 @@ class _$_CartPersistenceServiceModelIngredient
 
   @override
   String toString() {
-    return 'CartPersistenceServiceModelIngredient(isTickedOff: $isTickedOff, recipeId: $recipeId, imageUrl: $imageUrl, ingredientId: $ingredientId, slug: $slug, displayedName: $displayedName, amount: $amount, unit: $unit)';
+    return 'CartPersistenceServiceModelIngredient(isTickedOff: $isTickedOff, imageUrl: $imageUrl, ingredientId: $ingredientId, slug: $slug, displayedName: $displayedName, amount: $amount, unit: $unit)';
   }
 
   @override
@@ -232,8 +378,6 @@ class _$_CartPersistenceServiceModelIngredient
             other is _$_CartPersistenceServiceModelIngredient &&
             (identical(other.isTickedOff, isTickedOff) ||
                 other.isTickedOff == isTickedOff) &&
-            (identical(other.recipeId, recipeId) ||
-                other.recipeId == recipeId) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
             (identical(other.ingredientId, ingredientId) ||
@@ -246,7 +390,7 @@ class _$_CartPersistenceServiceModelIngredient
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isTickedOff, recipeId, imageUrl,
+  int get hashCode => Object.hash(runtimeType, isTickedOff, imageUrl,
       ingredientId, slug, displayedName, amount, unit);
 
   @JsonKey(ignore: true)
@@ -262,7 +406,6 @@ abstract class _CartPersistenceServiceModelIngredient
     implements CartPersistenceServiceModelIngredient {
   const factory _CartPersistenceServiceModelIngredient(
           {required final bool isTickedOff,
-          required final String recipeId,
           required final Option<Uri> imageUrl,
           required final String ingredientId,
           required final String slug,
@@ -273,8 +416,6 @@ abstract class _CartPersistenceServiceModelIngredient
 
   @override
   bool get isTickedOff;
-  @override
-  String get recipeId;
   @override
   Option<Uri> get imageUrl;
   @override

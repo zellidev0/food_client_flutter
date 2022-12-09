@@ -17,7 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SingleRecipePersistenceServiceIngredient {
   bool get isTickedOff => throw _privateConstructorUsedError;
-  String get recipeId => throw _privateConstructorUsedError;
   Option<Uri> get imageUrl => throw _privateConstructorUsedError;
   String get ingredientId => throw _privateConstructorUsedError;
   String get slug => throw _privateConstructorUsedError;
@@ -41,7 +40,6 @@ abstract class $SingleRecipePersistenceServiceIngredientCopyWith<$Res> {
   @useResult
   $Res call(
       {bool isTickedOff,
-      String recipeId,
       Option<Uri> imageUrl,
       String ingredientId,
       String slug,
@@ -66,7 +64,6 @@ class _$SingleRecipePersistenceServiceIngredientCopyWithImpl<$Res,
   @override
   $Res call({
     Object? isTickedOff = null,
-    Object? recipeId = null,
     Object? imageUrl = null,
     Object? ingredientId = null,
     Object? slug = null,
@@ -79,10 +76,6 @@ class _$SingleRecipePersistenceServiceIngredientCopyWithImpl<$Res,
           ? _value.isTickedOff
           : isTickedOff // ignore: cast_nullable_to_non_nullable
               as bool,
-      recipeId: null == recipeId
-          ? _value.recipeId
-          : recipeId // ignore: cast_nullable_to_non_nullable
-              as String,
       imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -122,7 +115,6 @@ abstract class _$$_SingleRecipePersistenceServiceIngredientCopyWith<$Res>
   @useResult
   $Res call(
       {bool isTickedOff,
-      String recipeId,
       Option<Uri> imageUrl,
       String ingredientId,
       String slug,
@@ -145,7 +137,6 @@ class __$$_SingleRecipePersistenceServiceIngredientCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isTickedOff = null,
-    Object? recipeId = null,
     Object? imageUrl = null,
     Object? ingredientId = null,
     Object? slug = null,
@@ -158,10 +149,6 @@ class __$$_SingleRecipePersistenceServiceIngredientCopyWithImpl<$Res>
           ? _value.isTickedOff
           : isTickedOff // ignore: cast_nullable_to_non_nullable
               as bool,
-      recipeId: null == recipeId
-          ? _value.recipeId
-          : recipeId // ignore: cast_nullable_to_non_nullable
-              as String,
       imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -196,7 +183,6 @@ class _$_SingleRecipePersistenceServiceIngredient
     implements _SingleRecipePersistenceServiceIngredient {
   const _$_SingleRecipePersistenceServiceIngredient(
       {required this.isTickedOff,
-      required this.recipeId,
       required this.imageUrl,
       required this.ingredientId,
       required this.slug,
@@ -206,8 +192,6 @@ class _$_SingleRecipePersistenceServiceIngredient
 
   @override
   final bool isTickedOff;
-  @override
-  final String recipeId;
   @override
   final Option<Uri> imageUrl;
   @override
@@ -223,7 +207,7 @@ class _$_SingleRecipePersistenceServiceIngredient
 
   @override
   String toString() {
-    return 'SingleRecipePersistenceServiceIngredient(isTickedOff: $isTickedOff, recipeId: $recipeId, imageUrl: $imageUrl, ingredientId: $ingredientId, slug: $slug, displayedName: $displayedName, amount: $amount, unit: $unit)';
+    return 'SingleRecipePersistenceServiceIngredient(isTickedOff: $isTickedOff, imageUrl: $imageUrl, ingredientId: $ingredientId, slug: $slug, displayedName: $displayedName, amount: $amount, unit: $unit)';
   }
 
   @override
@@ -233,8 +217,6 @@ class _$_SingleRecipePersistenceServiceIngredient
             other is _$_SingleRecipePersistenceServiceIngredient &&
             (identical(other.isTickedOff, isTickedOff) ||
                 other.isTickedOff == isTickedOff) &&
-            (identical(other.recipeId, recipeId) ||
-                other.recipeId == recipeId) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
             (identical(other.ingredientId, ingredientId) ||
@@ -247,7 +229,7 @@ class _$_SingleRecipePersistenceServiceIngredient
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isTickedOff, recipeId, imageUrl,
+  int get hashCode => Object.hash(runtimeType, isTickedOff, imageUrl,
       ingredientId, slug, displayedName, amount, unit);
 
   @JsonKey(ignore: true)
@@ -263,7 +245,6 @@ abstract class _SingleRecipePersistenceServiceIngredient
     implements SingleRecipePersistenceServiceIngredient {
   const factory _SingleRecipePersistenceServiceIngredient(
           {required final bool isTickedOff,
-          required final String recipeId,
           required final Option<Uri> imageUrl,
           required final String ingredientId,
           required final String slug,
@@ -274,8 +255,6 @@ abstract class _SingleRecipePersistenceServiceIngredient
 
   @override
   bool get isTickedOff;
-  @override
-  String get recipeId;
   @override
   Option<Uri> get imageUrl;
   @override
@@ -292,5 +271,191 @@ abstract class _SingleRecipePersistenceServiceIngredient
   @JsonKey(ignore: true)
   _$$_SingleRecipePersistenceServiceIngredientCopyWith<
           _$_SingleRecipePersistenceServiceIngredient>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$SingleRecipePersistenceServiceRecipe {
+  List<SingleRecipePersistenceServiceIngredient> get ingredients =>
+      throw _privateConstructorUsedError;
+  String get recipeId => throw _privateConstructorUsedError;
+  int get servings => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $SingleRecipePersistenceServiceRecipeCopyWith<
+          SingleRecipePersistenceServiceRecipe>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SingleRecipePersistenceServiceRecipeCopyWith<$Res> {
+  factory $SingleRecipePersistenceServiceRecipeCopyWith(
+          SingleRecipePersistenceServiceRecipe value,
+          $Res Function(SingleRecipePersistenceServiceRecipe) then) =
+      _$SingleRecipePersistenceServiceRecipeCopyWithImpl<$Res,
+          SingleRecipePersistenceServiceRecipe>;
+  @useResult
+  $Res call(
+      {List<SingleRecipePersistenceServiceIngredient> ingredients,
+      String recipeId,
+      int servings});
+}
+
+/// @nodoc
+class _$SingleRecipePersistenceServiceRecipeCopyWithImpl<$Res,
+        $Val extends SingleRecipePersistenceServiceRecipe>
+    implements $SingleRecipePersistenceServiceRecipeCopyWith<$Res> {
+  _$SingleRecipePersistenceServiceRecipeCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? ingredients = null,
+    Object? recipeId = null,
+    Object? servings = null,
+  }) {
+    return _then(_value.copyWith(
+      ingredients: null == ingredients
+          ? _value.ingredients
+          : ingredients // ignore: cast_nullable_to_non_nullable
+              as List<SingleRecipePersistenceServiceIngredient>,
+      recipeId: null == recipeId
+          ? _value.recipeId
+          : recipeId // ignore: cast_nullable_to_non_nullable
+              as String,
+      servings: null == servings
+          ? _value.servings
+          : servings // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_SingleRecipePersistenceServiceRecipeCopyWith<$Res>
+    implements $SingleRecipePersistenceServiceRecipeCopyWith<$Res> {
+  factory _$$_SingleRecipePersistenceServiceRecipeCopyWith(
+          _$_SingleRecipePersistenceServiceRecipe value,
+          $Res Function(_$_SingleRecipePersistenceServiceRecipe) then) =
+      __$$_SingleRecipePersistenceServiceRecipeCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {List<SingleRecipePersistenceServiceIngredient> ingredients,
+      String recipeId,
+      int servings});
+}
+
+/// @nodoc
+class __$$_SingleRecipePersistenceServiceRecipeCopyWithImpl<$Res>
+    extends _$SingleRecipePersistenceServiceRecipeCopyWithImpl<$Res,
+        _$_SingleRecipePersistenceServiceRecipe>
+    implements _$$_SingleRecipePersistenceServiceRecipeCopyWith<$Res> {
+  __$$_SingleRecipePersistenceServiceRecipeCopyWithImpl(
+      _$_SingleRecipePersistenceServiceRecipe _value,
+      $Res Function(_$_SingleRecipePersistenceServiceRecipe) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? ingredients = null,
+    Object? recipeId = null,
+    Object? servings = null,
+  }) {
+    return _then(_$_SingleRecipePersistenceServiceRecipe(
+      ingredients: null == ingredients
+          ? _value._ingredients
+          : ingredients // ignore: cast_nullable_to_non_nullable
+              as List<SingleRecipePersistenceServiceIngredient>,
+      recipeId: null == recipeId
+          ? _value.recipeId
+          : recipeId // ignore: cast_nullable_to_non_nullable
+              as String,
+      servings: null == servings
+          ? _value.servings
+          : servings // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SingleRecipePersistenceServiceRecipe
+    implements _SingleRecipePersistenceServiceRecipe {
+  const _$_SingleRecipePersistenceServiceRecipe(
+      {required final List<SingleRecipePersistenceServiceIngredient>
+          ingredients,
+      required this.recipeId,
+      required this.servings})
+      : _ingredients = ingredients;
+
+  final List<SingleRecipePersistenceServiceIngredient> _ingredients;
+  @override
+  List<SingleRecipePersistenceServiceIngredient> get ingredients {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_ingredients);
+  }
+
+  @override
+  final String recipeId;
+  @override
+  final int servings;
+
+  @override
+  String toString() {
+    return 'SingleRecipePersistenceServiceRecipe(ingredients: $ingredients, recipeId: $recipeId, servings: $servings)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SingleRecipePersistenceServiceRecipe &&
+            const DeepCollectionEquality()
+                .equals(other._ingredients, _ingredients) &&
+            (identical(other.recipeId, recipeId) ||
+                other.recipeId == recipeId) &&
+            (identical(other.servings, servings) ||
+                other.servings == servings));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_ingredients), recipeId, servings);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SingleRecipePersistenceServiceRecipeCopyWith<
+          _$_SingleRecipePersistenceServiceRecipe>
+      get copyWith => __$$_SingleRecipePersistenceServiceRecipeCopyWithImpl<
+          _$_SingleRecipePersistenceServiceRecipe>(this, _$identity);
+}
+
+abstract class _SingleRecipePersistenceServiceRecipe
+    implements SingleRecipePersistenceServiceRecipe {
+  const factory _SingleRecipePersistenceServiceRecipe(
+      {required final List<SingleRecipePersistenceServiceIngredient>
+          ingredients,
+      required final String recipeId,
+      required final int servings}) = _$_SingleRecipePersistenceServiceRecipe;
+
+  @override
+  List<SingleRecipePersistenceServiceIngredient> get ingredients;
+  @override
+  String get recipeId;
+  @override
+  int get servings;
+  @override
+  @JsonKey(ignore: true)
+  _$$_SingleRecipePersistenceServiceRecipeCopyWith<
+          _$_SingleRecipePersistenceServiceRecipe>
       get copyWith => throw _privateConstructorUsedError;
 }
