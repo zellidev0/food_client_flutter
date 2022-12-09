@@ -16,5 +16,11 @@ CachedNetworkImage buildCachedNetworkImage({
         ],
       ),
       errorWidget: (final _, final __, final ___) =>
-          const Icon(Icons.image_not_supported),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const <Widget>[
+              Icon(Icons.image_not_supported),
+            ],
+          ),
+
     );
