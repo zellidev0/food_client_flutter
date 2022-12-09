@@ -32,23 +32,29 @@ class PersistenceService implements PersistenceServiceAggregator {
     required final SingleRecipePersistenceServiceIngredient ingredient,
   }) =>
       Task<void>(
-        () async => await shoppingListIngredientsBox.put(
-          buildKey(
-            ingredientId: ingredient.ingredientId,
-            recipeId: ingredient.recipeId,
-          ),
-          PersistenceServiceModelShoppingListIngredient(
-            ingredientId: ingredient.ingredientId,
-            imageUrl: ingredient.imageUrl,
-            slug: ingredient.slug,
-            isTickedOff: ingredient.isTickedOff,
-            recipeId: ingredient.recipeId,
-            displayedName: ingredient.displayedName,
-            amount: ingredient.amount,
-            unit: ingredient.unit,
-          ),
+        () async => await _putIngredientIntoShoppingCartBox(
+          ingredient: ingredient,
         ),
       );
+
+  @override
+  Task<void> addIngredients({
+    required final List<SingleRecipePersistenceServiceIngredient> ingredients,
+  }) =>
+      ingredients
+          .map(
+            (final SingleRecipePersistenceServiceIngredient ingredient) =>
+                Task<void>(
+              () async => await _putIngredientIntoShoppingCartBox(
+                ingredient: ingredient,
+              ),
+            ),
+          )
+          .fold(
+            Task<void>(() async {}),
+            (final Task<void> first, final Task<void> second) =>
+                first.andThen(() => second),
+          );
 
   @override
   bool isInShoppingCart({
@@ -116,6 +122,26 @@ class PersistenceService implements PersistenceServiceAggregator {
               ingredientId: ids[1],
             ),
           ),
+        ),
+      );
+
+  Future<void> _putIngredientIntoShoppingCartBox({
+    required final SingleRecipePersistenceServiceIngredient ingredient,
+  }) async =>
+      await shoppingListIngredientsBox.put(
+        buildKey(
+          ingredientId: ingredient.ingredientId,
+          recipeId: ingredient.recipeId,
+        ),
+        PersistenceServiceModelShoppingListIngredient(
+          ingredientId: ingredient.ingredientId,
+          imageUrl: ingredient.imageUrl,
+          slug: ingredient.slug,
+          isTickedOff: ingredient.isTickedOff,
+          recipeId: ingredient.recipeId,
+          displayedName: ingredient.displayedName,
+          amount: ingredient.amount,
+          unit: ingredient.unit,
         ),
       );
 

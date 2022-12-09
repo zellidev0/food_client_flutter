@@ -199,6 +199,7 @@ class SingleRecipeView extends ConsumerWidget {
                         ) +
                         1) %
                     yields.length],
+                recipeId: _recipeId,
               ),
               icon: const Icon(Icons.person_add),
             )
@@ -361,7 +362,10 @@ class SingleRecipeView extends ConsumerWidget {
 abstract class SingleRecipeController extends StateNotifier<SingleRecipeModel> {
   SingleRecipeController(super.state);
 
-  void setSelectedYield({required final int yield});
+  void setSelectedYield({
+    required final int yield,
+    required final String recipeId,
+  });
   void goBack();
 
   void addIngredientToShoppingCart({

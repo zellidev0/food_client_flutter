@@ -27,23 +27,67 @@ class SingleRecipeControllerImplementation extends SingleRecipeController {
         _webImageSizerService = webImageSizerService,
         _navigationService = navigationService,
         _persistenceService = persistenceService {
-    unawaited(init(initialTask: fetchSingleRecipeTask(recipeId: recipeId)));
+    unawaited(
+      setRecipe(initialRecipeTask: fetchSingleRecipeTask(recipeId: recipeId)),
+    );
   }
 
-  Future<void> init({
-    required final TaskEither<Exception, SingleRecipeModel> initialTask,
+  Future<void> setRecipe({
+    required final TaskEither<Exception, SingleRecipeModelRecipe>
+        initialRecipeTask,
   }) async {
-    (await initialTask.run()).fold(
-      (final Exception l) => debugPrint(l.toString()),
-      (final SingleRecipeModel model) {
-        state = model;
-      },
+    final Either<Exception, SingleRecipeModelRecipe> recipeTask =
+        await initialRecipeTask.run();
+    state = SingleRecipeModel(
+      recipe: recipeTask.map(some),
+      selectedYield: recipeTask.toOption().flatMap(
+            (final SingleRecipeModelRecipe recipe) =>
+                recipe.yields.firstOption.flatMap(
+              (final SingleRecipeModelYield yield) => yield.yields,
+            ),
+          ),
     );
   }
 
   @override
-  void setSelectedYield({required final int yield}) {
+  void setSelectedYield({
+    required final int yield,
+    required final String recipeId,
+  }) {
     state = state.copyWith(selectedYield: some(yield));
+    addAllCurrentlySelectedYieldIngredientsToShoppingCart(
+      yield: yield,
+      recipeId: recipeId,
+    );
+  }
+
+  void addAllCurrentlySelectedYieldIngredientsToShoppingCart({
+    required final int yield,
+    required final String recipeId,
+  }) {
+    state.recipe
+        .flatMap(
+          (final Option<SingleRecipeModelRecipe> optionalRecipe) =>
+              optionalRecipe
+                  .flatMap(
+                    (final SingleRecipeModelRecipe recipe) => optionOf(
+                      recipe.yields.firstWhereOrNull(
+                        (final SingleRecipeModelYield element) =>
+                            element.yields == some(yield),
+                      ),
+                    ),
+                  )
+                  .toEither(Exception.new),
+        )
+        .fold(
+          (final Exception exception) => debugPrint(exception.toString()),
+          (final SingleRecipeModelYield singleYield) => unawaited(
+            addIngredientsToShoppingCart(
+              ingredients: singleYield.ingredients,
+              recipeId: recipeId,
+            ),
+          ),
+        );
   }
 
   @override
@@ -58,24 +102,76 @@ class SingleRecipeControllerImplementation extends SingleRecipeController {
   }) async {
     (await TaskEither<Exception, void>.fromTask(
       _persistenceService.addIngredient(
-        ingredient: SingleRecipePersistenceServiceIngredient(
-          isTickedOff: false,
+        ingredient: mapToSingleRecipePersistenceServiceIngredient(
           recipeId: recipeId,
-          imageUrl: ingredient.imageUrl,
-          ingredientId: ingredient.ingredientId,
-          slug: ingredient.slug,
-          displayedName: ingredient.displayedName,
-          amount: ingredient.amount,
-          unit: ingredient.unit,
+          ingredient: ingredient,
         ),
       ),
-    ).andThen(() => fetchSingleRecipeTask(recipeId: recipeId)).run())
+    ).run())
         .fold(
       (final Exception exception) =>
-          debugPrint('Error adding ingredient: $exception'),
-      (final SingleRecipeModel recipeModel) {
-        state = recipeModel;
+          debugPrint('Error removing ingredient: $exception'),
+      (final _) {
+        updateIngredientsWIthShoppingCartInfo(
+          ingredient: ingredient,
+          recipeId: recipeId,
+        );
       },
+    );
+  }
+
+  void updateIngredientsWIthShoppingCartInfo({
+    required final SingleRecipeModelIngredient ingredient,
+    required final String recipeId,
+  }) =>
+      state = state.copyWith(
+        recipe: state.recipe.map(
+          (final Option<SingleRecipeModelRecipe> r) => r.map(
+            (final SingleRecipeModelRecipe recipe) => recipe.copyWith(
+              yields: recipe.yields
+                  .map(
+                    (final SingleRecipeModelYield yield) => yield.copyWith(
+                      ingredients: yield.ingredients
+                          .map(
+                            (final SingleRecipeModelIngredient newIngredient) =>
+                                newIngredient.copyWith(
+                              isInShoppingCard:
+                                  _persistenceService.isInShoppingCart(
+                                ingredientId: newIngredient.ingredientId,
+                                recipeId: recipeId,
+                              ),
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  )
+                  .toList(),
+            ),
+          ),
+        ),
+      );
+
+  Future<void> addIngredientsToShoppingCart({
+    required final List<SingleRecipeModelIngredient> ingredients,
+    required final String recipeId,
+  }) async {
+    (await TaskEither<Exception, void>.fromTask(
+      _persistenceService.addIngredients(
+        ingredients: ingredients
+            .map(
+              (final SingleRecipeModelIngredient ingredient) =>
+                  mapToSingleRecipePersistenceServiceIngredient(
+                recipeId: recipeId,
+                ingredient: ingredient,
+              ),
+            )
+            .toList(),
+      ),
+    ).run())
+        .fold(
+      (final Exception exception) =>
+          debugPrint('Error removing ingredient: $exception'),
+      (final _) {},
     );
   }
 
@@ -89,17 +185,20 @@ class SingleRecipeControllerImplementation extends SingleRecipeController {
         ingredientId: ingredient.ingredientId,
         recipeId: recipeId,
       ),
-    ).andThen(() => fetchSingleRecipeTask(recipeId: recipeId)).run())
+    ).run())
         .fold(
       (final Exception exception) =>
           debugPrint('Error removing ingredient: $exception'),
-      (final SingleRecipeModel recipeModel) {
-        state = recipeModel;
+      (final _) {
+        updateIngredientsWIthShoppingCartInfo(
+          ingredient: ingredient,
+          recipeId: recipeId,
+        );
       },
     );
   }
 
-  TaskEither<Exception, SingleRecipeModel> fetchSingleRecipeTask({
+  TaskEither<Exception, SingleRecipeModelRecipe> fetchSingleRecipeTask({
     required final String recipeId,
   }) =>
       _webClientService.fetchSingleRecipe(recipeId: recipeId).map(
@@ -112,44 +211,51 @@ class SingleRecipeControllerImplementation extends SingleRecipeController {
           );
 }
 
-SingleRecipeModel mapToSingleRecipeModelRecipe({
+SingleRecipePersistenceServiceIngredient
+    mapToSingleRecipePersistenceServiceIngredient({
+  required final String recipeId,
+  required final SingleRecipeModelIngredient ingredient,
+}) =>
+        SingleRecipePersistenceServiceIngredient(
+          isTickedOff: false,
+          recipeId: recipeId,
+          imageUrl: ingredient.imageUrl,
+          ingredientId: ingredient.ingredientId,
+          slug: ingredient.slug,
+          displayedName: ingredient.displayedName,
+          amount: ingredient.amount,
+          unit: ingredient.unit,
+        );
+
+SingleRecipeModelRecipe mapToSingleRecipeModelRecipe({
   required final SingleRecipeWebClientModelRecipe recipe,
   required final SingleRecipeWebImageSizerService imageResizerService,
   required final SingleRecipePersistenceService persistenceService,
 }) =>
-    SingleRecipeModel(
-      recipe: Either<Exception, Option<SingleRecipeModelRecipe>>.right(
-        some(
-          SingleRecipeModelRecipe(
-            id: recipe.id,
-            displayedAttributes: _mapDisplayedAttributes(
-              displayedAttributes: recipe.displayedAttributes,
-            ),
-            difficulty: recipe.difficulty,
-            yields: _mapYields(
-              yields: recipe.yields,
-              imageResizerService: imageResizerService,
-              persistenceService: persistenceService,
-              recipeId: recipe.id,
-            ),
-            imageUri: recipe.imagePath.flatMap(
-              (final Uri imagePath) => imageResizerService
-                  .getUrl(
-                    filePath: imagePath,
-                    widthPixels: 1000,
-                  )
-                  .toOption(),
-            ),
-            tags: _mapTags(tags: recipe.tags),
-            steps: _mapSteps(
-              steps: recipe.steps,
-              imageResizerService: imageResizerService,
-            ),
-          ),
-        ),
+    SingleRecipeModelRecipe(
+      id: recipe.id,
+      displayedAttributes: _mapDisplayedAttributes(
+        displayedAttributes: recipe.displayedAttributes,
       ),
-      selectedYield: optionOf(recipe.yields.firstOrNull).flatMap(
-        (final SingleRecipeWebClientModelYield yield) => yield.yields,
+      difficulty: recipe.difficulty,
+      yields: _mapYields(
+        yields: recipe.yields,
+        imageResizerService: imageResizerService,
+        persistenceService: persistenceService,
+        recipeId: recipe.id,
+      ),
+      imageUri: recipe.imagePath.flatMap(
+        (final Uri imagePath) => imageResizerService
+            .getUrl(
+              filePath: imagePath,
+              widthPixels: 1000,
+            )
+            .toOption(),
+      ),
+      tags: _mapTags(tags: recipe.tags),
+      steps: _mapSteps(
+        steps: recipe.steps,
+        imageResizerService: imageResizerService,
       ),
     );
 

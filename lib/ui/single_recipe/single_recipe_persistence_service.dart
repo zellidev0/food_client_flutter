@@ -15,6 +15,9 @@ abstract class SingleRecipePersistenceService {
     required final String ingredientId,
     required final String recipeId,
   });
+  Task<void> addIngredients({
+    required final List<SingleRecipePersistenceServiceIngredient> ingredients,
+  });
 }
 
 @freezed
