@@ -130,9 +130,12 @@ class CartView extends ConsumerWidget {
               enabled: !ingredient.isTickedOff,
               leading: AspectRatio(
                 aspectRatio: 1,
-                child: ingredient.ingredient.imageUrl.fold(
-                  () => const Icon(Icons.image_not_supported),
-                  (final Uri url) => buildCachedNetworkImage(imageUrl: url),
+                child: Opacity(
+                  opacity: ingredient.isTickedOff ? 0.5: 1,
+                  child: ingredient.ingredient.imageUrl.fold(
+                    () => const Icon(Icons.image_not_supported),
+                    (final Uri url) => buildCachedNetworkImage(imageUrl: url),
+                  ),
                 ),
               ),
               title: Text(ingredient.ingredient.displayedName),
