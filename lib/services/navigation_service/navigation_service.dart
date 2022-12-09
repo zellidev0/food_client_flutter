@@ -83,7 +83,8 @@ class BeamerNavigationService implements NavigationServiceAggregator {
                   onPressed: () async {
                     action.onPressed.call();
                     // This is not working
-                    await _beamerDelegate.popRoute();
+                    material.Navigator.of(_beamerDelegate.navigator.context).pop();
+                    // await _beamerDelegate.popRoute();
                   },
                   child: material.Text(action.text),
                 ),

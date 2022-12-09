@@ -212,19 +212,24 @@ class SingleRecipeView extends ConsumerWidget {
             'Ingredients\n ${selectedYield.getOrElse(() => 1)} Persons',
           ),
           IconButton(
-            onPressed: () {
-              controller.setSelectedYield(
-                yield: yields
-                    .map(
-                      (final SingleRecipeModelYield yield) => yield.servings,
-                    )
-                    .toList()[index],
-                recipeId: _recipeId,
-              );
-            },
-            icon: yields.toList().length - index == yields.toList().length
-                ? const Icon(Icons.group_remove)
-                : const Icon(Icons.group_add),
+            onPressed: yields.toList().length < 2
+                ? null
+                : () {
+                    controller.setSelectedYield(
+                      yield: yields
+                          .map(
+                            (final SingleRecipeModelYield yield) =>
+                                yield.servings,
+                          )
+                          .toList()[index],
+                      recipeId: _recipeId,
+                    );
+                  },
+            icon: yields.toList().length < 2
+                ? const Icon(Icons.group)
+                : (yields.toList().length - index != yields.toList().length
+                    ? const Icon(Icons.group_add)
+                    : const Icon(Icons.group_remove)),
           )
         ],
       ),
