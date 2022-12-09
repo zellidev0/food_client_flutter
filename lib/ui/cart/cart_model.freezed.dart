@@ -142,6 +142,7 @@ mixin _$CartModelRecipe {
       throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get recipeId => throw _privateConstructorUsedError;
+  int get serving => throw _privateConstructorUsedError;
   Option<Uri> get imageUrl => throw _privateConstructorUsedError;
   Color get color => throw _privateConstructorUsedError;
 
@@ -160,6 +161,7 @@ abstract class $CartModelRecipeCopyWith<$Res> {
       {List<CartModelIngredient> ingredients,
       String title,
       String recipeId,
+      int serving,
       Option<Uri> imageUrl,
       Color color});
 }
@@ -180,6 +182,7 @@ class _$CartModelRecipeCopyWithImpl<$Res, $Val extends CartModelRecipe>
     Object? ingredients = null,
     Object? title = null,
     Object? recipeId = null,
+    Object? serving = null,
     Object? imageUrl = null,
     Object? color = null,
   }) {
@@ -196,6 +199,10 @@ class _$CartModelRecipeCopyWithImpl<$Res, $Val extends CartModelRecipe>
           ? _value.recipeId
           : recipeId // ignore: cast_nullable_to_non_nullable
               as String,
+      serving: null == serving
+          ? _value.serving
+          : serving // ignore: cast_nullable_to_non_nullable
+              as int,
       imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -220,6 +227,7 @@ abstract class _$$_CartModelRecipeCopyWith<$Res>
       {List<CartModelIngredient> ingredients,
       String title,
       String recipeId,
+      int serving,
       Option<Uri> imageUrl,
       Color color});
 }
@@ -238,6 +246,7 @@ class __$$_CartModelRecipeCopyWithImpl<$Res>
     Object? ingredients = null,
     Object? title = null,
     Object? recipeId = null,
+    Object? serving = null,
     Object? imageUrl = null,
     Object? color = null,
   }) {
@@ -254,6 +263,10 @@ class __$$_CartModelRecipeCopyWithImpl<$Res>
           ? _value.recipeId
           : recipeId // ignore: cast_nullable_to_non_nullable
               as String,
+      serving: null == serving
+          ? _value.serving
+          : serving // ignore: cast_nullable_to_non_nullable
+              as int,
       imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -273,6 +286,7 @@ class _$_CartModelRecipe implements _CartModelRecipe {
       {required final List<CartModelIngredient> ingredients,
       required this.title,
       required this.recipeId,
+      required this.serving,
       required this.imageUrl,
       required this.color})
       : _ingredients = ingredients;
@@ -289,13 +303,15 @@ class _$_CartModelRecipe implements _CartModelRecipe {
   @override
   final String recipeId;
   @override
+  final int serving;
+  @override
   final Option<Uri> imageUrl;
   @override
   final Color color;
 
   @override
   String toString() {
-    return 'CartModelRecipe(ingredients: $ingredients, title: $title, recipeId: $recipeId, imageUrl: $imageUrl, color: $color)';
+    return 'CartModelRecipe(ingredients: $ingredients, title: $title, recipeId: $recipeId, serving: $serving, imageUrl: $imageUrl, color: $color)';
   }
 
   @override
@@ -308,6 +324,7 @@ class _$_CartModelRecipe implements _CartModelRecipe {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.recipeId, recipeId) ||
                 other.recipeId == recipeId) &&
+            (identical(other.serving, serving) || other.serving == serving) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
             const DeepCollectionEquality().equals(other.color, color));
@@ -319,6 +336,7 @@ class _$_CartModelRecipe implements _CartModelRecipe {
       const DeepCollectionEquality().hash(_ingredients),
       title,
       recipeId,
+      serving,
       imageUrl,
       const DeepCollectionEquality().hash(color));
 
@@ -334,6 +352,7 @@ abstract class _CartModelRecipe implements CartModelRecipe {
       {required final List<CartModelIngredient> ingredients,
       required final String title,
       required final String recipeId,
+      required final int serving,
       required final Option<Uri> imageUrl,
       required final Color color}) = _$_CartModelRecipe;
 
@@ -343,6 +362,8 @@ abstract class _CartModelRecipe implements CartModelRecipe {
   String get title;
   @override
   String get recipeId;
+  @override
+  int get serving;
   @override
   Option<Uri> get imageUrl;
   @override

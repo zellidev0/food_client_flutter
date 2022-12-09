@@ -18,8 +18,10 @@ class GeneratedMocks {}
 
 class MockHomeControllerImplementation extends AutoDisposeNotifier<HomeModel>
     // ignore: prefer_mixin
-    with Mock
-    implements HomeControllerImplementation {
+    with
+        Mock
+    implements
+        HomeControllerImplementation {
   final HomeModel _model;
   MockHomeControllerImplementation(final HomeModel model) : _model = model;
 

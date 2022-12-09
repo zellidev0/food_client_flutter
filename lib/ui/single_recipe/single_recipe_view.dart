@@ -197,33 +197,39 @@ class SingleRecipeView extends ConsumerWidget {
     required final Option<int> selectedYield,
     required final SingleRecipeController controller,
     required final List<SingleRecipeModelYield> yields,
-  }) =>
-      Tab(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            Text(
-              'Ingredients\n ${selectedYield.getOrElse(() => 1)} Persons',
-            ),
-            IconButton(
-              onPressed: () => controller.setSelectedYield(
+  }) {
+    final int index = (yields.indexWhere(
+              (final SingleRecipeModelYield yield) =>
+                  some(yield.servings) == selectedYield,
+            ) +
+            1) %
+        yields.length;
+    return Tab(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          Text(
+            'Ingredients\n ${selectedYield.getOrElse(() => 1)} Persons',
+          ),
+          IconButton(
+            onPressed: () {
+              controller.setSelectedYield(
                 yield: yields
                     .map(
                       (final SingleRecipeModelYield yield) => yield.servings,
                     )
-                    .toList()[(yields.indexWhere(
-                          (final SingleRecipeModelYield yield) =>
-                              some(yield.servings) == selectedYield,
-                        ) +
-                        1) %
-                    yields.length],
+                    .toList()[index],
                 recipeId: _recipeId,
-              ),
-              icon: const Icon(Icons.person_add),
-            )
-          ],
-        ),
-      );
+              );
+            },
+            icon: yields.toList().length - index == yields.toList().length
+                ? const Icon(Icons.group_remove)
+                : const Icon(Icons.group_add),
+          )
+        ],
+      ),
+    );
+  }
 
   Widget _buildDescriptionStepsTab({
     required final List<SingleRecipeModelStep> steps,

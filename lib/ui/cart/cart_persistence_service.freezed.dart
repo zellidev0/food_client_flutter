@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CartPersistenceServiceModelRecipe {
   String get recipeId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
+  int get serving => throw _privateConstructorUsedError;
   Option<Uri> get imagePath => throw _privateConstructorUsedError;
   List<CartPersistenceServiceModelIngredient> get ingredients =>
       throw _privateConstructorUsedError;
@@ -38,6 +39,7 @@ abstract class $CartPersistenceServiceModelRecipeCopyWith<$Res> {
   $Res call(
       {String recipeId,
       String title,
+      int serving,
       Option<Uri> imagePath,
       List<CartPersistenceServiceModelIngredient> ingredients});
 }
@@ -58,6 +60,7 @@ class _$CartPersistenceServiceModelRecipeCopyWithImpl<$Res,
   $Res call({
     Object? recipeId = null,
     Object? title = null,
+    Object? serving = null,
     Object? imagePath = null,
     Object? ingredients = null,
   }) {
@@ -70,6 +73,10 @@ class _$CartPersistenceServiceModelRecipeCopyWithImpl<$Res,
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      serving: null == serving
+          ? _value.serving
+          : serving // ignore: cast_nullable_to_non_nullable
+              as int,
       imagePath: null == imagePath
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
@@ -94,6 +101,7 @@ abstract class _$$_CartPersistenceServiceModelRecipeCopyWith<$Res>
   $Res call(
       {String recipeId,
       String title,
+      int serving,
       Option<Uri> imagePath,
       List<CartPersistenceServiceModelIngredient> ingredients});
 }
@@ -113,6 +121,7 @@ class __$$_CartPersistenceServiceModelRecipeCopyWithImpl<$Res>
   $Res call({
     Object? recipeId = null,
     Object? title = null,
+    Object? serving = null,
     Object? imagePath = null,
     Object? ingredients = null,
   }) {
@@ -125,6 +134,10 @@ class __$$_CartPersistenceServiceModelRecipeCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      serving: null == serving
+          ? _value.serving
+          : serving // ignore: cast_nullable_to_non_nullable
+              as int,
       imagePath: null == imagePath
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
@@ -144,6 +157,7 @@ class _$_CartPersistenceServiceModelRecipe
   const _$_CartPersistenceServiceModelRecipe(
       {required this.recipeId,
       required this.title,
+      required this.serving,
       required this.imagePath,
       required final List<CartPersistenceServiceModelIngredient> ingredients})
       : _ingredients = ingredients;
@@ -152,6 +166,8 @@ class _$_CartPersistenceServiceModelRecipe
   final String recipeId;
   @override
   final String title;
+  @override
+  final int serving;
   @override
   final Option<Uri> imagePath;
   final List<CartPersistenceServiceModelIngredient> _ingredients;
@@ -163,7 +179,7 @@ class _$_CartPersistenceServiceModelRecipe
 
   @override
   String toString() {
-    return 'CartPersistenceServiceModelRecipe(recipeId: $recipeId, title: $title, imagePath: $imagePath, ingredients: $ingredients)';
+    return 'CartPersistenceServiceModelRecipe(recipeId: $recipeId, title: $title, serving: $serving, imagePath: $imagePath, ingredients: $ingredients)';
   }
 
   @override
@@ -174,6 +190,7 @@ class _$_CartPersistenceServiceModelRecipe
             (identical(other.recipeId, recipeId) ||
                 other.recipeId == recipeId) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.serving, serving) || other.serving == serving) &&
             (identical(other.imagePath, imagePath) ||
                 other.imagePath == imagePath) &&
             const DeepCollectionEquality()
@@ -181,8 +198,8 @@ class _$_CartPersistenceServiceModelRecipe
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, recipeId, title, imagePath,
-      const DeepCollectionEquality().hash(_ingredients));
+  int get hashCode => Object.hash(runtimeType, recipeId, title, serving,
+      imagePath, const DeepCollectionEquality().hash(_ingredients));
 
   @JsonKey(ignore: true)
   @override
@@ -198,6 +215,7 @@ abstract class _CartPersistenceServiceModelRecipe
   const factory _CartPersistenceServiceModelRecipe(
       {required final String recipeId,
       required final String title,
+      required final int serving,
       required final Option<Uri> imagePath,
       required final List<CartPersistenceServiceModelIngredient>
           ingredients}) = _$_CartPersistenceServiceModelRecipe;
@@ -206,6 +224,8 @@ abstract class _CartPersistenceServiceModelRecipe
   String get recipeId;
   @override
   String get title;
+  @override
+  int get serving;
   @override
   Option<Uri> get imagePath;
   @override

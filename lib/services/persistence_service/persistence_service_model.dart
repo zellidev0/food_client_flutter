@@ -8,8 +8,7 @@ part 'persistence_service_model.g.dart';
 @freezed
 class PersistenceServiceModel with _$PersistenceServiceModel {
   const factory PersistenceServiceModel({
-    required final List<PersistenceServiceModelShoppingListRecipe>
-        recipes,
+    required final List<PersistenceServiceModelShoppingListRecipe> recipes,
   }) = _PersistenceServiceModel;
 }
 
@@ -18,9 +17,12 @@ class PersistenceServiceModelShoppingListRecipe
     with _$PersistenceServiceModelShoppingListRecipe {
   @HiveType(
     typeId: 1,
-    adapterName: 'PersistenceServiceModelShoppingListRecipeAdapter',)
+    adapterName: 'PersistenceServiceModelShoppingListRecipeAdapter',
+  )
   const factory PersistenceServiceModelShoppingListRecipe({
-    @HiveField(0) required final List<PersistenceServiceModelShoppingListIngredient> ingredients,
+    @HiveField(0)
+        required final List<PersistenceServiceModelShoppingListIngredient>
+            ingredients,
     @HiveField(1) required final String title,
     @HiveField(2) required final Option<Uri> imagePath,
     @HiveField(3) required final int servings,
@@ -28,7 +30,8 @@ class PersistenceServiceModelShoppingListRecipe
   }) = _PersistenceServiceModelShoppingListRecipe;
 
   factory PersistenceServiceModelShoppingListRecipe.fromJson(
-      final Map<String, dynamic> json,) =>
+    final Map<String, dynamic> json,
+  ) =>
       _$PersistenceServiceModelShoppingListRecipeFromJson(json);
 }
 
@@ -36,8 +39,9 @@ class PersistenceServiceModelShoppingListRecipe
 class PersistenceServiceModelShoppingListIngredient
     with _$PersistenceServiceModelShoppingListIngredient {
   @HiveType(
-      typeId: 0,
-      adapterName: 'PersistenceServiceModelShoppingListIngredientAdapter',)
+    typeId: 0,
+    adapterName: 'PersistenceServiceModelShoppingListIngredientAdapter',
+  )
   const factory PersistenceServiceModelShoppingListIngredient({
     @HiveField(0) required final String ingredientId,
     @HiveField(1) required final bool isTickedOff,
@@ -49,6 +53,7 @@ class PersistenceServiceModelShoppingListIngredient
   }) = _PersistenceServiceModelShoppingListIngredient;
 
   factory PersistenceServiceModelShoppingListIngredient.fromJson(
-          final Map<String, dynamic> json,) =>
+    final Map<String, dynamic> json,
+  ) =>
       _$PersistenceServiceModelShoppingListIngredientFromJson(json);
 }

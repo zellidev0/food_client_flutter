@@ -102,7 +102,7 @@ class CartView extends ConsumerWidget {
             ),
             indicatorColor: Colors.red,
             tabs: const <Widget>[
-              Tab(text: 'Einkaufen'),
+              Tab(text: 'Einkaufsliste'),
             ],
           ),
         ),
@@ -215,7 +215,7 @@ class CustomDelegate extends SliverPersistentHeaderDelegate {
                           _buildCardText(recipe: recipe),
                         ],
                       ),
-                      _buildServingsChip(),
+                      _buildServingsChip(serving: recipe.serving),
                     ],
                   ),
                 ),
@@ -264,7 +264,7 @@ class CustomDelegate extends SliverPersistentHeaderDelegate {
         ),
       );
 
-  Widget _buildServingsChip() => Padding(
+  Widget _buildServingsChip({required final int serving}) => Padding(
         padding: const EdgeInsets.all(8),
         child: Align(
           alignment: Alignment.topCenter,
@@ -273,9 +273,9 @@ class CustomDelegate extends SliverPersistentHeaderDelegate {
               const Expanded(child: SizedBox.shrink()),
               Chip(
                 label: Row(
-                  children: const <Widget>[
-                    Icon(Icons.group),
-                    Text('1'),
+                  children: <Widget>[
+                    const Icon(Icons.group),
+                    Text(serving.toString()),
                   ],
                 ),
               ),

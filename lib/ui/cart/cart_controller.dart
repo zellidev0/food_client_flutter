@@ -9,7 +9,6 @@ import 'package:food_client/ui/cart/cart_view.dart';
 import 'package:food_client/ui/cart/cart_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
 
-
 const int _widthPixels = 200;
 
 class CartControllerImplementation extends CartController {
@@ -95,6 +94,7 @@ class CartControllerImplementation extends CartController {
                 .toOption(),
           ),
           title: recipe.title,
+          serving: recipe.serving,
         ),
       )
       .toList();

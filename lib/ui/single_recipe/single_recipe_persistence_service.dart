@@ -25,7 +25,6 @@ class SingleRecipePersistenceServiceRecipe
   }) = _SingleRecipePersistenceServiceRecipe;
 }
 
-
 @freezed
 class SingleRecipePersistenceServiceIngredient
     with _$SingleRecipePersistenceServiceIngredient {

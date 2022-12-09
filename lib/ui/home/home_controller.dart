@@ -12,7 +12,6 @@ import 'package:food_client/ui/home/home_web_client_service.dart';
 import 'package:food_client/ui/home/home_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
 
-
 const int widthPixels = 1200;
 
 class HomeControllerImplementation extends HomeController {

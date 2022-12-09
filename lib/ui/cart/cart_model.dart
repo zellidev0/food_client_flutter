@@ -18,10 +18,12 @@ class CartModelRecipe with _$CartModelRecipe {
     required final List<CartModelIngredient> ingredients,
     required final String title,
     required final String recipeId,
+    required final int serving,
     required final Option<Uri> imageUrl,
     required final Color color,
   }) = _CartModelRecipe;
 }
+
 @freezed
 class CartModelIngredient with _$CartModelIngredient {
   const factory CartModelIngredient({

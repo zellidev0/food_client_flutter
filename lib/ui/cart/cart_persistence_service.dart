@@ -22,6 +22,7 @@ class CartPersistenceServiceModelRecipe
   const factory CartPersistenceServiceModelRecipe({
     required final String recipeId,
     required final String title,
+    required final int serving,
     required final Option<Uri> imagePath,
     required final List<CartPersistenceServiceModelIngredient> ingredients,
   }) = _CartPersistenceServiceModelRecipe;
