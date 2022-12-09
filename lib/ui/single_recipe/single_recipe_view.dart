@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:food_client/commons/widgets.dart';
 import 'package:food_client/providers/providers.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_model.dart';
 import 'package:fpdart/fpdart.dart';
@@ -105,11 +106,8 @@ class SingleRecipeView extends ConsumerWidget {
   Widget buildTopImage({required final SingleRecipeModelRecipe recipe}) =>
       recipe.imageUrl
           .map<Widget>(
-            (final Uri imageUri) => Image.network(
-              imageUri.toString(),
-              fit: BoxFit.fitWidth,
-              errorBuilder: (final _, final __, final ___) =>
-                  const Icon(Icons.image_not_supported),
+            (final Uri imageUri) => buildCachedNetworkImage(
+              imageUrl: imageUri,
             ),
           )
           .getOrElse(() => const Icon(Icons.image_not_supported));
@@ -279,12 +277,7 @@ class SingleRecipeView extends ConsumerWidget {
                         topLeft: Radius.circular(12),
                         topRight: Radius.circular(12),
                       ),
-                      child: Image.network(
-                        url.toString(),
-                        fit: BoxFit.fill,
-                        errorBuilder: (final _, final __, final ___) =>
-                            const Icon(Icons.image_not_supported),
-                      ),
+                      child: buildCachedNetworkImage(imageUrl: url),
                     ),
                   ),
                 ),
@@ -336,10 +329,8 @@ class SingleRecipeView extends ConsumerWidget {
                       aspectRatio: 1,
                       child: ingredient.imageUrl.fold(
                         () => const Icon(Icons.image_not_supported),
-                        (final Uri url) => Image.network(
-                          url.toString(),
-                          errorBuilder: (final _, final __, final ___) =>
-                              const Icon(Icons.image_not_supported),
+                        (final Uri url) => buildCachedNetworkImage(
+                          imageUrl: url,
                         ),
                       ),
                     ),

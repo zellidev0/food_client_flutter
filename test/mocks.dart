@@ -17,8 +17,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 class GeneratedMocks {}
 
 class MockHomeControllerImplementation extends AutoDisposeNotifier<HomeModel>
-    // ignore: prefer_mixin
     with
+        // ignore: prefer_mixin
         Mock
     implements
         HomeControllerImplementation {

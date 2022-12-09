@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:food_client/commons/widgets.dart';
 import 'package:food_client/providers/providers.dart';
 import 'package:food_client/ui/home/home_model.dart';
 import 'package:fpdart/fpdart.dart';
@@ -130,11 +131,7 @@ class HomeView extends ConsumerWidget {
               children: <Widget>[
                 AspectRatio(
                   aspectRatio: 1.5 / 1,
-                  child: Image.network(
-                    recipe.imageUriLarge.toString(),
-                    errorBuilder: (final _, final __, final ___) =>
-                        const Icon(Icons.image_not_supported),
-                  ),
+                  child: buildCachedNetworkImage(imageUrl: recipe.imageUri),
                 ),
                 buildRecipeCardItemDescription(
                   recipe: recipe,

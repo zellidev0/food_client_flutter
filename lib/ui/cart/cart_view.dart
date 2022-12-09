@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:food_client/commons/widgets.dart';
 import 'package:food_client/providers/providers.dart';
 import 'package:food_client/ui/cart/cart_model.dart';
 
@@ -131,11 +132,7 @@ class CartView extends ConsumerWidget {
                 aspectRatio: 1,
                 child: ingredient.ingredient.imageUrl.fold(
                   () => const Icon(Icons.image_not_supported),
-                  (final Uri url) => Image.network(
-                    url.toString(),
-                    errorBuilder: (final _, final __, final ___) =>
-                        const Icon(Icons.image_not_supported),
-                  ),
+                  (final Uri url) => buildCachedNetworkImage(imageUrl: url),
                 ),
               ),
               title: Text(ingredient.ingredient.displayedName),
@@ -238,12 +235,7 @@ class CustomDelegate extends SliverPersistentHeaderDelegate {
               topLeft: Radius.circular(12),
               topRight: Radius.circular(12),
             ),
-            child: Image.network(
-              url.toString(),
-              fit: BoxFit.fill,
-              errorBuilder: (final _, final __, final ___) =>
-                  const Icon(Icons.image_not_supported),
-            ),
+            child: buildCachedNetworkImage(imageUrl: url),
           ),
         ),
       );

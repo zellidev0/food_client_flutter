@@ -23,7 +23,7 @@ class HomeModelRecipe with _$HomeModelRecipe {
     required final List<HomeModelYield> yields,
     required final List<String> tagIds,
     required final List<String> cuisineIds,
-    required final Uri imageUriLarge,
+    required final Uri imageUri,
   }) = _HomeModelRecipe;
 }
 

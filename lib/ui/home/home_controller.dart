@@ -300,7 +300,7 @@ List<HomeModelRecipe> mapToHomeModelRecipes({
                   ingredients: _mapIngredients(ingredients: recipe.ingredients),
                   yields: _mapYields(yields: recipe.yields),
                   tagIds: _mapTagsToTagIds(tags: recipe.tags),
-                  imageUriLarge: imageUri,
+                  imageUri: imageUri,
                   cuisineIds: _mapCuisinesToCuisineIds(
                     cuisines: recipe.cuisines,
                   ),
