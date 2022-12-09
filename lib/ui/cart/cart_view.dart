@@ -23,7 +23,10 @@ class CartView extends ConsumerWidget {
         child: Builder(
           builder: (final BuildContext context) => CustomScrollView(
             slivers: <Widget>[
-              _buildRecipeListSliver(model: model),
+              _buildRecipeListSliver(
+                model: model,
+                controller: controller,
+              ),
               _buildTabBarSliver(),
               _buildIngredientsListSliver(
                 model: model,
@@ -72,6 +75,7 @@ class CartView extends ConsumerWidget {
 
   Widget _buildRecipeListSliver({
     required final CartModel model,
+    required final CartController controller,
   }) =>
       Builder(
         builder: (final BuildContext context) => SliverPersistentHeader(
@@ -79,6 +83,7 @@ class CartView extends ConsumerWidget {
           pinned: true,
           delegate: CustomDelegate(
             model: model,
+            controller: controller,
             extendedHeight: MediaQuery.of(context).size.height * 0.24,
             collapsedHeight: MediaQuery.of(context).size.height * 0.16,
           ),
@@ -90,10 +95,10 @@ class CartView extends ConsumerWidget {
           length: 1,
           child: TabBar(
             labelColor: Theme.of(context).indicatorColor,
-            splashBorderRadius: const BorderRadius.all(Radius.circular(20)),
+            splashBorderRadius: const BorderRadius.all(Radius.circular(12)),
             indicator: const BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.all(Radius.circular(20)),
+              borderRadius: BorderRadius.all(Radius.circular(12)),
             ),
             indicatorColor: Colors.red,
             tabs: const <Widget>[
@@ -140,12 +145,6 @@ class CartView extends ConsumerWidget {
                   (final double amount) => amount.toString(),
                 )} ${ingredient.ingredient.unit.getOrElse(() => '')}',
               ),
-              trailing: IconButton(
-                padding: const EdgeInsets.all(16),
-                onPressed: () =>
-                    controller.openSingleRecipe(recipeId: recipeId),
-                icon: const Icon(Icons.forward),
-              ),
             ),
           ),
         ),
@@ -169,11 +168,13 @@ abstract class CartController extends StateNotifier<CartModel> {
 
 class CustomDelegate extends SliverPersistentHeaderDelegate {
   final CartModel model;
+  final CartController controller;
   final double extendedHeight;
   final double collapsedHeight;
 
   CustomDelegate({
     required this.model,
+    required this.controller,
     required this.extendedHeight,
     required this.collapsedHeight,
   });
@@ -198,18 +199,25 @@ class CustomDelegate extends SliverPersistentHeaderDelegate {
             (final CartModelRecipe recipe) => SizedBox(
               width: height * 0.75,
               child: Card(
+                color: recipe.color,
                 margin: const EdgeInsets.all(8),
-                child: Stack(
-                  children: <Widget>[
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        _buildCardImage(recipe: recipe),
-                        _buildCardText(recipe: recipe),
-                      ],
-                    ),
-                    _buildServingsChip(),
-                  ],
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(12),
+                  onTap: () => controller.openSingleRecipe(
+                    recipeId: recipe.recipeId,
+                  ),
+                  child: Stack(
+                    children: <Widget>[
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          _buildCardImage(recipe: recipe),
+                          _buildCardText(recipe: recipe),
+                        ],
+                      ),
+                      _buildServingsChip(),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -227,8 +235,8 @@ class CustomDelegate extends SliverPersistentHeaderDelegate {
           () => const Icon(Icons.image_not_supported),
           (final Uri url) => ClipRRect(
             borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(16),
-              topRight: Radius.circular(16),
+              topLeft: Radius.circular(12),
+              topRight: Radius.circular(12),
             ),
             child: Image.network(
               url.toString(),

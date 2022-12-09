@@ -178,9 +178,9 @@ class SingleRecipeView extends ConsumerWidget {
           labelColor: Theme.of(context).colorScheme.primary,
           indicatorColor: Theme.of(context).colorScheme.primary,
           unselectedLabelColor: Theme.of(context).colorScheme.onSurfaceVariant,
-          splashBorderRadius: const BorderRadius.all(Radius.circular(20)),
+          splashBorderRadius: const BorderRadius.all(Radius.circular(12)),
           indicator: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(20)),
+            borderRadius: BorderRadius.all(Radius.circular(12)),
           ),
           tabs: <Widget>[
             _buildTabIngredients(
@@ -253,7 +253,7 @@ class SingleRecipeView extends ConsumerWidget {
   }) =>
       Card(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(12),
         ),
         child: Column(
           children: <Widget>[
@@ -265,8 +265,8 @@ class SingleRecipeView extends ConsumerWidget {
                     () => const Icon(Icons.image_not_supported),
                     (final Uri url) => ClipRRect(
                       borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
+                        topLeft: Radius.circular(12),
+                        topRight: Radius.circular(12),
                       ),
                       child: Image.network(
                         url.toString(),

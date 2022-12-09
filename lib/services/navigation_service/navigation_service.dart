@@ -101,7 +101,7 @@ class BeamerNavigationService implements NavigationServiceAggregator {
   }) async {
     await material.showModalBottomSheet(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(12),
       ),
       backgroundColor: backgroundColor,
       context: _beamerDelegate.navigator.context,

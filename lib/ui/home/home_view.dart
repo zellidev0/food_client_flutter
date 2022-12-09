@@ -120,12 +120,12 @@ class HomeView extends ConsumerWidget {
     required final List<HomeModelFilterTag> tags,
   }) =>
       Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: InkWell(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(12),
           onTap: () => controller.goToSingleRecipeView(recipeId: recipe.id),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(12),
             child: Column(
               children: <Widget>[
                 AspectRatio(
