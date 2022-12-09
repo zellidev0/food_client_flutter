@@ -21,22 +21,25 @@ class CartView extends ConsumerWidget {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: Builder(
-          builder: (final BuildContext context) => CustomScrollView(
-            slivers: <Widget>[
-              _buildRecipeListSliver(
-                model: model,
-                controller: controller,
-              ),
-              _buildTabBarSliver(
-                model: model,
-                controller: controller,
-              ),
-              _buildIngredientsListSliver(
-                model: model,
-                controller: controller,
-              ),
-            ],
+        child: DefaultTabController(
+          length: 2,
+          child: Builder(
+            builder: (final BuildContext context) => CustomScrollView(
+              slivers: <Widget>[
+                _buildRecipeListSliver(
+                  model: model,
+                  controller: controller,
+                ),
+                _buildTabBarSliver(
+                  model: model,
+                  controller: controller,
+                ),
+                _buildIngredientsListSliver(
+                  model: model,
+                  controller: controller,
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -297,22 +300,19 @@ class TabBarSliverDelegate extends SliverPersistentHeaderDelegate {
     final bool overlapsContent,
   ) =>
       Builder(
-        builder: (final BuildContext context) => DefaultTabController(
-          length: 2,
-          child: TabBar(
-            labelColor: Theme.of(context).indicatorColor,
-            splashBorderRadius: const BorderRadius.all(Radius.circular(12)),
-            indicator: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(Radius.circular(12)),
-            ),
-            indicatorColor: Colors.red,
-            tabs: const <Widget>[
-              Tab(text: 'Einkaufsliste'),
-              Tab(text: 'Fehlt noch'),
-              // Tab(text: 'Abgehackt'),
-            ],
+        builder: (final BuildContext context) => TabBar(
+          labelColor: Theme.of(context).indicatorColor,
+          splashBorderRadius: const BorderRadius.all(Radius.circular(12)),
+          indicator: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(12)),
           ),
+          indicatorColor: Colors.red,
+          tabs: const <Widget>[
+            Tab(text: 'Einkaufsliste'),
+            Tab(text: 'Fehlt noch'),
+            // Tab(text: 'Abgehackt'),
+          ],
         ),
       );
 
