@@ -28,7 +28,10 @@ class CartView extends ConsumerWidget {
                 model: model,
                 controller: controller,
               ),
-              _buildTabBarSliver(),
+              _buildTabBarSliver(
+                model: model,
+                controller: controller,
+              ),
               _buildIngredientsListSliver(
                 model: model,
                 controller: controller,
@@ -68,10 +71,17 @@ class CartView extends ConsumerWidget {
         ),
       );
 
-  Widget _buildTabBarSliver() => SliverList(
-        delegate: SliverChildListDelegate(<Widget>[
-          _buildTabBar(),
-        ]),
+  Widget _buildTabBarSliver({
+    required final CartModel model,
+    required final CartController controller,
+  }) =>
+      SliverPersistentHeader(
+        floating: true,
+        pinned: true,
+        delegate: TabBarSliverDelegate(
+          extendedHeight: const TabBar(tabs: <Widget>[]).preferredSize.height,
+          collapsedHeight: const TabBar(tabs: <Widget>[]).preferredSize.height,
+        ),
       );
 
   Widget _buildRecipeListSliver({
@@ -87,24 +97,6 @@ class CartView extends ConsumerWidget {
             controller: controller,
             extendedHeight: MediaQuery.of(context).size.height * 0.24,
             collapsedHeight: MediaQuery.of(context).size.height * 0.16,
-          ),
-        ),
-      );
-
-  Widget _buildTabBar() => Builder(
-        builder: (final BuildContext context) => DefaultTabController(
-          length: 1,
-          child: TabBar(
-            labelColor: Theme.of(context).indicatorColor,
-            splashBorderRadius: const BorderRadius.all(Radius.circular(12)),
-            indicator: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(Radius.circular(12)),
-            ),
-            indicatorColor: Colors.red,
-            tabs: const <Widget>[
-              Tab(text: 'Einkaufsliste'),
-            ],
           ),
         ),
       );
@@ -131,7 +123,7 @@ class CartView extends ConsumerWidget {
               leading: AspectRatio(
                 aspectRatio: 1,
                 child: Opacity(
-                  opacity: ingredient.isTickedOff ? 0.5: 1,
+                  opacity: ingredient.isTickedOff ? 0.5 : 1,
                   child: ingredient.ingredient.imageUrl.fold(
                     () => const Icon(Icons.image_not_supported),
                     (final Uri url) => buildCachedNetworkImage(imageUrl: url),
@@ -274,6 +266,51 @@ class CustomDelegate extends SliverPersistentHeaderDelegate {
                   ],
                 ),
               ),
+            ],
+          ),
+        ),
+      );
+
+  @override
+  double get maxExtent => extendedHeight;
+
+  @override
+  double get minExtent => collapsedHeight;
+
+  @override
+  bool shouldRebuild(final SliverPersistentHeaderDelegate oldDelegate) => true;
+}
+
+class TabBarSliverDelegate extends SliverPersistentHeaderDelegate {
+  final double extendedHeight;
+  final double collapsedHeight;
+
+  TabBarSliverDelegate({
+    required this.extendedHeight,
+    required this.collapsedHeight,
+  });
+
+  @override
+  Widget build(
+    final BuildContext context,
+    final double shrinkOffset,
+    final bool overlapsContent,
+  ) =>
+      Builder(
+        builder: (final BuildContext context) => DefaultTabController(
+          length: 2,
+          child: TabBar(
+            labelColor: Theme.of(context).indicatorColor,
+            splashBorderRadius: const BorderRadius.all(Radius.circular(12)),
+            indicator: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+            ),
+            indicatorColor: Colors.red,
+            tabs: const <Widget>[
+              Tab(text: 'Einkaufsliste'),
+              Tab(text: 'Fehlt noch'),
+              // Tab(text: 'Abgehackt'),
             ],
           ),
         ),
