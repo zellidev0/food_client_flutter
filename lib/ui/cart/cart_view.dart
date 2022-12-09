@@ -22,10 +22,10 @@ class CartView extends ConsumerWidget {
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: DefaultTabController(
-          length: 2,
+          length: 3,
           child: Builder(
-            builder: (final BuildContext context) => CustomScrollView(
-              slivers: <Widget>[
+            builder: (final BuildContext context) => NestedScrollView(
+              headerSliverBuilder: (final _, final __) => <Widget>[
                 _buildRecipeListSliver(
                   model: model,
                   controller: controller,
@@ -34,45 +34,72 @@ class CartView extends ConsumerWidget {
                   model: model,
                   controller: controller,
                 ),
-                _buildIngredientsListSliver(
-                  model: model,
-                  controller: controller,
-                ),
               ],
+              body: TabBarView(
+                children: <Widget>[
+                  ListView(
+                    children: model.recipes
+                        .map(
+                          (final CartModelRecipe recipe) =>
+                              recipe.ingredients.map(
+                            (final CartModelIngredient ingredient) =>
+                                buildSingleIngredient(
+                              ingredient: ingredient,
+                              controller: controller,
+                              recipeId: recipe.recipeId,
+                              color: recipe.color,
+                            ),
+                          ),
+                        )
+                        .flattened
+                        .toList(),
+                  ),
+                  ListView(
+                    children: model.recipes
+                        .map(
+                          (final CartModelRecipe recipe) => recipe.ingredients
+                              .where((final CartModelIngredient element) =>
+                                  !element.isTickedOff)
+                              .map(
+                                (final CartModelIngredient ingredient) =>
+                                    buildSingleIngredient(
+                                  ingredient: ingredient,
+                                  controller: controller,
+                                  recipeId: recipe.recipeId,
+                                  color: recipe.color,
+                                ),
+                              ),
+                        )
+                        .flattened
+                        .toList(),
+                  ),
+                  ListView(
+                    children: model.recipes
+                        .map(
+                          (final CartModelRecipe recipe) => recipe.ingredients
+                              .where((final CartModelIngredient element) =>
+                                  element.isTickedOff)
+                              .map(
+                                (final CartModelIngredient ingredient) =>
+                                    buildSingleIngredient(
+                                  ingredient: ingredient,
+                                  controller: controller,
+                                  recipeId: recipe.recipeId,
+                                  color: recipe.color,
+                                ),
+                              ),
+                        )
+                        .flattened
+                        .toList(),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
       ),
     );
   }
-
-  Widget _buildIngredientsListSliver({
-    required final CartModel model,
-    required final CartController controller,
-  }) =>
-      SliverList(
-        delegate: SliverChildBuilderDelegate(
-          (final _, final int index) => model.recipes
-              .map(
-                (final CartModelRecipe recipe) => recipe.ingredients.map(
-                  (final CartModelIngredient ingredient) =>
-                      buildSingleIngredient(
-                    ingredient: ingredient,
-                    controller: controller,
-                    recipeId: recipe.recipeId,
-                    color: recipe.color,
-                  ),
-                ),
-              )
-              .flattened
-              .toList()[index],
-          childCount: model.recipes
-              .map((final CartModelRecipe recipe) => recipe.ingredients)
-              .flattened
-              .toList()
-              .length,
-        ),
-      );
 
   Widget _buildTabBarSliver({
     required final CartModel model,
@@ -309,8 +336,9 @@ class TabBarSliverDelegate extends SliverPersistentHeaderDelegate {
           ),
           indicatorColor: Colors.red,
           tabs: const <Widget>[
-            Tab(text: 'Einkaufsliste'),
+            Tab(text: 'Gesamt'),
             Tab(text: 'Fehlt noch'),
+            Tab(text: 'Abgehackt'),
             // Tab(text: 'Abgehackt'),
           ],
         ),
