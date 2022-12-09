@@ -6,18 +6,25 @@ import 'package:food_client/ui/cart/cart_model.dart';
 import 'package:food_client/ui/cart/cart_navigation_service.dart';
 import 'package:food_client/ui/cart/cart_persistence_service.dart';
 import 'package:food_client/ui/cart/cart_view.dart';
+import 'package:food_client/ui/cart/cart_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
+
+
+const int _widthPixels = 200;
 
 class CartControllerImplementation extends CartController {
   final CartNavigationService _navigationService;
   final CartPersistenceService _persistenceService;
+  final CartWebImageSizerService _imageSizerService;
 
   CartControllerImplementation(
     super.state, {
     required final CartNavigationService navigationService,
     required final CartPersistenceService persistenceService,
+    required final CartWebImageSizerService imageSizerService,
   })  : _navigationService = navigationService,
-        _persistenceService = persistenceService {
+        _persistenceService = persistenceService,
+        _imageSizerService = imageSizerService {
     state = state.copyWith(recipes: _getAllRecipes());
   }
 
@@ -76,7 +83,20 @@ class CartControllerImplementation extends CartController {
 
   List<CartModelRecipe> _getAllRecipes() => _persistenceService
       .getShoppingCardRecipes()
-      .map(mapToCartModelRecipe)
+      .map(
+        (final CartPersistenceServiceModelRecipe recipe) => CartModelRecipe(
+          ingredients:
+              recipe.ingredients.map(mapToCartModelIngredient).toList(),
+          color: generateRandomPastelColor(seed: recipe.recipeId.hashCode),
+          recipeId: recipe.recipeId,
+          imageUrl: recipe.imagePath.flatMap(
+            (final Uri uri) => _imageSizerService
+                .getUrl(filePath: uri, widthPixels: _widthPixels)
+                .toOption(),
+          ),
+          title: recipe.title,
+        ),
+      )
       .toList();
 
   @override
@@ -127,15 +147,6 @@ class CartControllerImplementation extends CartController {
     );
   }
 }
-
-CartModelRecipe mapToCartModelRecipe(
-  final CartPersistenceServiceModelRecipe recipe,
-) =>
-    CartModelRecipe(
-      ingredients: recipe.ingredients.map(mapToCartModelIngredient).toList(),
-      color: generateRandomPastelColor(seed: recipe.recipeId.hashCode),
-      recipeId: recipe.recipeId,
-    );
 
 CartModelIngredient mapToCartModelIngredient(
   final CartPersistenceServiceModelIngredient ingredient,

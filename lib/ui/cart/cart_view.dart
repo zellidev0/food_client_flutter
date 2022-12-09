@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,39 +16,18 @@ class CartView extends ConsumerWidget {
     final CartController controller = ref.watch(
       providers.cartControllerProvider.notifier,
     );
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: DefaultTabController(
-          length: 1,
-          child: Column(
-            children: <Widget>[
-              _buildTabBar(),
-              const SizedBox(height: 8),
-              Expanded(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: model.recipes
-                      .map((final CartModelRecipe recipe) => recipe.ingredients)
-                      .flattened
-                      .length,
-                  itemBuilder: (final BuildContext context, final int index) =>
-                      model.recipes
-                          .map(
-                            (final CartModelRecipe recipe) =>
-                                recipe.ingredients.map(
-                              (final CartModelIngredient ingredient) =>
-                                  buildSingleIngredient(
-                                ingredient: ingredient,
-                                controller: controller,
-                                recipeId: recipe.recipeId,
-                                color: recipe.color,
-                              ),
-                            ),
-                          )
-                          .flattened
-                          .toList()[index],
-                ),
+        child: Builder(
+          builder: (final BuildContext context) => CustomScrollView(
+            slivers: <Widget>[
+              _buildRecipeListSliver(model: model),
+              _buildTabBarSliver(),
+              _buildIngredientsListSliver(
+                model: model,
+                controller: controller,
               ),
             ],
           ),
@@ -56,18 +36,70 @@ class CartView extends ConsumerWidget {
     );
   }
 
-  Widget _buildTabBar() => Builder(
-        builder: (final BuildContext context) => TabBar(
-          labelColor: Theme.of(context).indicatorColor,
-          splashBorderRadius: const BorderRadius.all(Radius.circular(20)),
-          indicator: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(20)),
+  Widget _buildIngredientsListSliver({
+    required final CartModel model,
+    required final CartController controller,
+  }) =>
+      SliverList(
+        delegate: SliverChildBuilderDelegate(
+          (final _, final int index) => model.recipes
+              .map(
+                (final CartModelRecipe recipe) => recipe.ingredients.map(
+                  (final CartModelIngredient ingredient) =>
+                      buildSingleIngredient(
+                    ingredient: ingredient,
+                    controller: controller,
+                    recipeId: recipe.recipeId,
+                    color: recipe.color,
+                  ),
+                ),
+              )
+              .flattened
+              .toList()[index],
+          childCount: model.recipes
+              .map((final CartModelRecipe recipe) => recipe.ingredients)
+              .flattened
+              .toList()
+              .length,
+        ),
+      );
+
+  Widget _buildTabBarSliver() => SliverList(
+        delegate: SliverChildListDelegate(<Widget>[
+          _buildTabBar(),
+        ]),
+      );
+
+  Widget _buildRecipeListSliver({
+    required final CartModel model,
+  }) =>
+      Builder(
+        builder: (final BuildContext context) => SliverPersistentHeader(
+          floating: false,
+          pinned: true,
+          delegate: CustomDelegate(
+            model: model,
+            extendedHeight: MediaQuery.of(context).size.height * 0.24,
+            collapsedHeight: MediaQuery.of(context).size.height * 0.16,
           ),
-          indicatorColor: Colors.red,
-          tabs: const <Widget>[
-            Tab(text: 'Einkaufen'),
-          ],
+        ),
+      );
+
+  Widget _buildTabBar() => Builder(
+        builder: (final BuildContext context) => DefaultTabController(
+          length: 1,
+          child: TabBar(
+            labelColor: Theme.of(context).indicatorColor,
+            splashBorderRadius: const BorderRadius.all(Radius.circular(20)),
+            indicator: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+            ),
+            indicatorColor: Colors.red,
+            tabs: const <Widget>[
+              Tab(text: 'Einkaufen'),
+            ],
+          ),
         ),
       );
 
@@ -133,4 +165,123 @@ abstract class CartController extends StateNotifier<CartModel> {
     required final bool isTickedOff,
   });
   void showDeleteDialog();
+}
+
+class CustomDelegate extends SliverPersistentHeaderDelegate {
+  final CartModel model;
+  final double extendedHeight;
+  final double collapsedHeight;
+
+  CustomDelegate({
+    required this.model,
+    required this.extendedHeight,
+    required this.collapsedHeight,
+  });
+
+  @override
+  Widget build(
+    final BuildContext context,
+    final double shrinkOffset,
+    final bool overlapsContent,
+  ) {
+    final double height = (extendedHeight - shrinkOffset).clamp(
+      collapsedHeight,
+      extendedHeight,
+    );
+    if (height == collapsedHeight) {
+      return SizedBox(height: collapsedHeight);
+    }
+    return ListView(
+      scrollDirection: Axis.horizontal,
+      children: model.recipes
+          .map(
+            (final CartModelRecipe recipe) => SizedBox(
+              width: height * 0.75,
+              child: Card(
+                margin: const EdgeInsets.all(8),
+                child: Stack(
+                  children: <Widget>[
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        _buildCardImage(recipe: recipe),
+                        _buildCardText(recipe: recipe),
+                      ],
+                    ),
+                    _buildServingsChip(),
+                  ],
+                ),
+              ),
+            ),
+          )
+          .toList(),
+    );
+  }
+
+  Widget _buildCardImage({
+    required final CartModelRecipe recipe,
+  }) =>
+      AspectRatio(
+        aspectRatio: 1.5 / 1,
+        child: recipe.imageUrl.fold(
+          () => const Icon(Icons.image_not_supported),
+          (final Uri url) => ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(16),
+              topRight: Radius.circular(16),
+            ),
+            child: Image.network(
+              url.toString(),
+              fit: BoxFit.fill,
+              errorBuilder: (final _, final __, final ___) =>
+                  const Icon(Icons.image_not_supported),
+            ),
+          ),
+        ),
+      );
+
+  Widget _buildCardText({
+    required final CartModelRecipe recipe,
+  }) =>
+      Builder(
+        builder: (final BuildContext context) => Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: AutoSizeText(
+              recipe.title,
+              minFontSize: 1,
+              style: Theme.of(context).textTheme.bodyText2,
+            ),
+          ),
+        ),
+      );
+
+  Widget _buildServingsChip() => Padding(
+        padding: const EdgeInsets.all(8),
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: Row(
+            children: <Widget>[
+              const Expanded(child: SizedBox.shrink()),
+              Chip(
+                label: Row(
+                  children: const <Widget>[
+                    Icon(Icons.group),
+                    Text('1'),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+  @override
+  double get maxExtent => extendedHeight;
+
+  @override
+  double get minExtent => collapsedHeight;
+
+  @override
+  bool shouldRebuild(final SliverPersistentHeaderDelegate oldDelegate) => true;
 }

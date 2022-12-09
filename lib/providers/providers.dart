@@ -29,13 +29,15 @@ class Providers {
       final AutoDisposeStateNotifierProviderRef<CartController, CartModel> ref,
     ) =>
         CartControllerImplementation(
-            const CartModel(recipes: <CartModelRecipe>[]),
-            navigationService: ref.read(
-              providers.bottomNavigationBarNavigationServiceProvider,
-            ),
-            persistenceService: ref.read(
-              providers.persistenceServiceProvider.notifier,
-            )),
+      const CartModel(recipes: <CartModelRecipe>[]),
+      navigationService: ref.read(
+        providers.bottomNavigationBarNavigationServiceProvider,
+      ),
+      persistenceService: ref.read(
+        providers.persistenceServiceProvider.notifier,
+      ),
+      imageSizerService: ref.read(providers.webImageSizerServiceProvider),
+    ),
   );
 
   final StateNotifierProvider<MainController, MainModel>
@@ -52,7 +54,8 @@ class Providers {
   );
 
   final AutoDisposeStateNotifierProvider<HomeController, HomeModel>
-      homeControllerProvider = StateNotifierProvider.autoDispose<HomeController, HomeModel>(
+      homeControllerProvider =
+      StateNotifierProvider.autoDispose<HomeController, HomeModel>(
     (
       final AutoDisposeStateNotifierProviderRef<HomeController, HomeModel> ref,
     ) =>

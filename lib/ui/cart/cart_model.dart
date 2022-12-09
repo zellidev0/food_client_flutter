@@ -16,7 +16,9 @@ class CartModel with _$CartModel {
 class CartModelRecipe with _$CartModelRecipe {
   const factory CartModelRecipe({
     required final List<CartModelIngredient> ingredients,
+    required final String title,
     required final String recipeId,
+    required final Option<Uri> imageUrl,
     required final Color color,
   }) = _CartModelRecipe;
 }

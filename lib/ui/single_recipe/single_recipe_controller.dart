@@ -107,6 +107,8 @@ class SingleRecipeControllerImplementation extends SingleRecipeController {
                                   .toList(),
                               recipeId: recipeId,
                               servings: yield.servings,
+                              imagePath: recipe.imagePath,
+                              title: recipe.displayedAttributes.name,
                             ),
                           )
                           .run(),
@@ -152,7 +154,7 @@ SingleRecipeModelRecipe mapToSingleRecipeModelRecipe({
         persistenceService: persistenceService,
         recipeId: recipe.id,
       ),
-      imageUri: recipe.imagePath.flatMap(
+      imageUrl: recipe.imagePath.flatMap(
         (final Uri imagePath) => imageResizerService
             .getUrl(
               filePath: imagePath,
@@ -165,6 +167,7 @@ SingleRecipeModelRecipe mapToSingleRecipeModelRecipe({
         steps: recipe.steps,
         imageResizerService: imageResizerService,
       ),
+      imagePath: recipe.imagePath,
     );
 
 SingleRecipeModelDisplayedAttributes _mapDisplayedAttributes({

@@ -156,10 +156,14 @@ mixin _$PersistenceServiceModelShoppingListRecipe {
   @HiveField(0)
   List<PersistenceServiceModelShoppingListIngredient> get ingredients =>
       throw _privateConstructorUsedError;
+  @HiveField(1)
+  String get title => throw _privateConstructorUsedError;
   @HiveField(2)
-  String get recipeId => throw _privateConstructorUsedError;
-  @HiveField(7)
+  Option<Uri> get imagePath => throw _privateConstructorUsedError;
+  @HiveField(3)
   int get servings => throw _privateConstructorUsedError;
+  @HiveField(4)
+  String get recipeId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -179,10 +183,14 @@ abstract class $PersistenceServiceModelShoppingListRecipeCopyWith<$Res> {
   $Res call(
       {@HiveField(0)
           List<PersistenceServiceModelShoppingListIngredient> ingredients,
+      @HiveField(1)
+          String title,
       @HiveField(2)
-          String recipeId,
-      @HiveField(7)
-          int servings});
+          Option<Uri> imagePath,
+      @HiveField(3)
+          int servings,
+      @HiveField(4)
+          String recipeId});
 }
 
 /// @nodoc
@@ -201,22 +209,32 @@ class _$PersistenceServiceModelShoppingListRecipeCopyWithImpl<$Res,
   @override
   $Res call({
     Object? ingredients = null,
-    Object? recipeId = null,
+    Object? title = null,
+    Object? imagePath = null,
     Object? servings = null,
+    Object? recipeId = null,
   }) {
     return _then(_value.copyWith(
       ingredients: null == ingredients
           ? _value.ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
               as List<PersistenceServiceModelShoppingListIngredient>,
-      recipeId: null == recipeId
-          ? _value.recipeId
-          : recipeId // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
+      imagePath: null == imagePath
+          ? _value.imagePath
+          : imagePath // ignore: cast_nullable_to_non_nullable
+              as Option<Uri>,
       servings: null == servings
           ? _value.servings
           : servings // ignore: cast_nullable_to_non_nullable
               as int,
+      recipeId: null == recipeId
+          ? _value.recipeId
+          : recipeId // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -233,10 +251,14 @@ abstract class _$$_PersistenceServiceModelShoppingListRecipeCopyWith<$Res>
   $Res call(
       {@HiveField(0)
           List<PersistenceServiceModelShoppingListIngredient> ingredients,
+      @HiveField(1)
+          String title,
       @HiveField(2)
-          String recipeId,
-      @HiveField(7)
-          int servings});
+          Option<Uri> imagePath,
+      @HiveField(3)
+          int servings,
+      @HiveField(4)
+          String recipeId});
 }
 
 /// @nodoc
@@ -253,22 +275,32 @@ class __$$_PersistenceServiceModelShoppingListRecipeCopyWithImpl<$Res>
   @override
   $Res call({
     Object? ingredients = null,
-    Object? recipeId = null,
+    Object? title = null,
+    Object? imagePath = null,
     Object? servings = null,
+    Object? recipeId = null,
   }) {
     return _then(_$_PersistenceServiceModelShoppingListRecipe(
       ingredients: null == ingredients
           ? _value._ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
               as List<PersistenceServiceModelShoppingListIngredient>,
-      recipeId: null == recipeId
-          ? _value.recipeId
-          : recipeId // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
+      imagePath: null == imagePath
+          ? _value.imagePath
+          : imagePath // ignore: cast_nullable_to_non_nullable
+              as Option<Uri>,
       servings: null == servings
           ? _value.servings
           : servings // ignore: cast_nullable_to_non_nullable
               as int,
+      recipeId: null == recipeId
+          ? _value.recipeId
+          : recipeId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -283,10 +315,14 @@ class _$_PersistenceServiceModelShoppingListRecipe
       {@HiveField(0)
           required final List<PersistenceServiceModelShoppingListIngredient>
               ingredients,
+      @HiveField(1)
+          required this.title,
       @HiveField(2)
-          required this.recipeId,
-      @HiveField(7)
-          required this.servings})
+          required this.imagePath,
+      @HiveField(3)
+          required this.servings,
+      @HiveField(4)
+          required this.recipeId})
       : _ingredients = ingredients;
 
   factory _$_PersistenceServiceModelShoppingListRecipe.fromJson(
@@ -302,15 +338,21 @@ class _$_PersistenceServiceModelShoppingListRecipe
   }
 
   @override
-  @HiveField(2)
-  final String recipeId;
+  @HiveField(1)
+  final String title;
   @override
-  @HiveField(7)
+  @HiveField(2)
+  final Option<Uri> imagePath;
+  @override
+  @HiveField(3)
   final int servings;
+  @override
+  @HiveField(4)
+  final String recipeId;
 
   @override
   String toString() {
-    return 'PersistenceServiceModelShoppingListRecipe(ingredients: $ingredients, recipeId: $recipeId, servings: $servings)';
+    return 'PersistenceServiceModelShoppingListRecipe(ingredients: $ingredients, title: $title, imagePath: $imagePath, servings: $servings, recipeId: $recipeId)';
   }
 
   @override
@@ -320,16 +362,24 @@ class _$_PersistenceServiceModelShoppingListRecipe
             other is _$_PersistenceServiceModelShoppingListRecipe &&
             const DeepCollectionEquality()
                 .equals(other._ingredients, _ingredients) &&
-            (identical(other.recipeId, recipeId) ||
-                other.recipeId == recipeId) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.imagePath, imagePath) ||
+                other.imagePath == imagePath) &&
             (identical(other.servings, servings) ||
-                other.servings == servings));
+                other.servings == servings) &&
+            (identical(other.recipeId, recipeId) ||
+                other.recipeId == recipeId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_ingredients), recipeId, servings);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_ingredients),
+      title,
+      imagePath,
+      servings,
+      recipeId);
 
   @JsonKey(ignore: true)
   @override
@@ -354,10 +404,14 @@ abstract class _PersistenceServiceModelShoppingListRecipe
           {@HiveField(0)
               required final List<PersistenceServiceModelShoppingListIngredient>
                   ingredients,
+          @HiveField(1)
+              required final String title,
           @HiveField(2)
-              required final String recipeId,
-          @HiveField(7)
-              required final int servings}) =
+              required final Option<Uri> imagePath,
+          @HiveField(3)
+              required final int servings,
+          @HiveField(4)
+              required final String recipeId}) =
       _$_PersistenceServiceModelShoppingListRecipe;
 
   factory _PersistenceServiceModelShoppingListRecipe.fromJson(
@@ -368,11 +422,17 @@ abstract class _PersistenceServiceModelShoppingListRecipe
   @HiveField(0)
   List<PersistenceServiceModelShoppingListIngredient> get ingredients;
   @override
-  @HiveField(2)
-  String get recipeId;
+  @HiveField(1)
+  String get title;
   @override
-  @HiveField(7)
+  @HiveField(2)
+  Option<Uri> get imagePath;
+  @override
+  @HiveField(3)
   int get servings;
+  @override
+  @HiveField(4)
+  String get recipeId;
   @override
   @JsonKey(ignore: true)
   _$$_PersistenceServiceModelShoppingListRecipeCopyWith<

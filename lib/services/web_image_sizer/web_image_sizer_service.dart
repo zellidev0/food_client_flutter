@@ -1,9 +1,13 @@
+import 'package:food_client/ui/cart/cart_web_image_sizer_service.dart';
 import 'package:food_client/ui/home/home_web_image_sizer_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
 
 abstract class WebImageSizerServiceAggregator
-    implements HomeWebImageSizerService, SingleRecipeWebImageSizerService {}
+    implements
+        HomeWebImageSizerService,
+        SingleRecipeWebImageSizerService,
+        CartWebImageSizerService {}
 
 class WebImageSizerService implements WebImageSizerServiceAggregator {
   @override

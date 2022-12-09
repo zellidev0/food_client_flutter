@@ -20,8 +20,10 @@ class PersistenceServiceModelShoppingListRecipeAdapter
     return _$_PersistenceServiceModelShoppingListRecipe(
       ingredients: (fields[0] as List)
           .cast<PersistenceServiceModelShoppingListIngredient>(),
-      recipeId: fields[2] as String,
-      servings: fields[7] as int,
+      title: fields[1] as String,
+      imagePath: fields[2] as Option<Uri>,
+      servings: fields[3] as int,
+      recipeId: fields[4] as String,
     );
   }
 
@@ -29,11 +31,15 @@ class PersistenceServiceModelShoppingListRecipeAdapter
   void write(
       BinaryWriter writer, _$_PersistenceServiceModelShoppingListRecipe obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(5)
+      ..writeByte(1)
+      ..write(obj.title)
       ..writeByte(2)
-      ..write(obj.recipeId)
-      ..writeByte(7)
+      ..write(obj.imagePath)
+      ..writeByte(3)
       ..write(obj.servings)
+      ..writeByte(4)
+      ..write(obj.recipeId)
       ..writeByte(0)
       ..write(obj.ingredients);
   }
@@ -116,16 +122,22 @@ _$_PersistenceServiceModelShoppingListRecipe
                   PersistenceServiceModelShoppingListIngredient.fromJson(
                       e as Map<String, dynamic>))
               .toList(),
-          recipeId: json['recipeId'] as String,
+          title: json['title'] as String,
+          imagePath: Option<Uri>.fromJson(json['imagePath']),
           servings: json['servings'] as int,
+          recipeId: json['recipeId'] as String,
         );
 
 Map<String, dynamic> _$$_PersistenceServiceModelShoppingListRecipeToJson(
         _$_PersistenceServiceModelShoppingListRecipe instance) =>
     <String, dynamic>{
       'ingredients': instance.ingredients,
-      'recipeId': instance.recipeId,
+      'title': instance.title,
+      'imagePath': instance.imagePath.toJson(
+        (value) => value.toString(),
+      ),
       'servings': instance.servings,
+      'recipeId': instance.recipeId,
     };
 
 _$_PersistenceServiceModelShoppingListIngredient

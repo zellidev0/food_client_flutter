@@ -103,7 +103,7 @@ class SingleRecipeView extends ConsumerWidget {
       );
 
   Widget buildTopImage({required final SingleRecipeModelRecipe recipe}) =>
-      recipe.imageUri
+      recipe.imageUrl
           .map<Widget>(
             (final Uri imageUri) => Image.network(
               imageUri.toString(),
@@ -280,9 +280,12 @@ class SingleRecipeView extends ConsumerWidget {
                 _buildDescriptionTextStepIndicator(stepNumber: index)
               ],
             ),
-            Markdown(
-              data: step.instructionMarkdown,
-              shrinkWrap: true,
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: MarkdownBody(
+                data: step.instructionMarkdown,
+                shrinkWrap: true,
+              ),
             ),
           ],
         ),

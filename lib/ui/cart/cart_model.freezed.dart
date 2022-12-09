@@ -140,7 +140,9 @@ abstract class _CartModel implements CartModel {
 mixin _$CartModelRecipe {
   List<CartModelIngredient> get ingredients =>
       throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
   String get recipeId => throw _privateConstructorUsedError;
+  Option<Uri> get imageUrl => throw _privateConstructorUsedError;
   Color get color => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -155,7 +157,11 @@ abstract class $CartModelRecipeCopyWith<$Res> {
       _$CartModelRecipeCopyWithImpl<$Res, CartModelRecipe>;
   @useResult
   $Res call(
-      {List<CartModelIngredient> ingredients, String recipeId, Color color});
+      {List<CartModelIngredient> ingredients,
+      String title,
+      String recipeId,
+      Option<Uri> imageUrl,
+      Color color});
 }
 
 /// @nodoc
@@ -172,7 +178,9 @@ class _$CartModelRecipeCopyWithImpl<$Res, $Val extends CartModelRecipe>
   @override
   $Res call({
     Object? ingredients = null,
+    Object? title = null,
     Object? recipeId = null,
+    Object? imageUrl = null,
     Object? color = null,
   }) {
     return _then(_value.copyWith(
@@ -180,10 +188,18 @@ class _$CartModelRecipeCopyWithImpl<$Res, $Val extends CartModelRecipe>
           ? _value.ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
               as List<CartModelIngredient>,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
       recipeId: null == recipeId
           ? _value.recipeId
           : recipeId // ignore: cast_nullable_to_non_nullable
               as String,
+      imageUrl: null == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as Option<Uri>,
       color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
@@ -201,7 +217,11 @@ abstract class _$$_CartModelRecipeCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<CartModelIngredient> ingredients, String recipeId, Color color});
+      {List<CartModelIngredient> ingredients,
+      String title,
+      String recipeId,
+      Option<Uri> imageUrl,
+      Color color});
 }
 
 /// @nodoc
@@ -216,7 +236,9 @@ class __$$_CartModelRecipeCopyWithImpl<$Res>
   @override
   $Res call({
     Object? ingredients = null,
+    Object? title = null,
     Object? recipeId = null,
+    Object? imageUrl = null,
     Object? color = null,
   }) {
     return _then(_$_CartModelRecipe(
@@ -224,10 +246,18 @@ class __$$_CartModelRecipeCopyWithImpl<$Res>
           ? _value._ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
               as List<CartModelIngredient>,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
       recipeId: null == recipeId
           ? _value.recipeId
           : recipeId // ignore: cast_nullable_to_non_nullable
               as String,
+      imageUrl: null == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as Option<Uri>,
       color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
@@ -241,7 +271,9 @@ class __$$_CartModelRecipeCopyWithImpl<$Res>
 class _$_CartModelRecipe implements _CartModelRecipe {
   const _$_CartModelRecipe(
       {required final List<CartModelIngredient> ingredients,
+      required this.title,
       required this.recipeId,
+      required this.imageUrl,
       required this.color})
       : _ingredients = ingredients;
 
@@ -253,13 +285,17 @@ class _$_CartModelRecipe implements _CartModelRecipe {
   }
 
   @override
+  final String title;
+  @override
   final String recipeId;
+  @override
+  final Option<Uri> imageUrl;
   @override
   final Color color;
 
   @override
   String toString() {
-    return 'CartModelRecipe(ingredients: $ingredients, recipeId: $recipeId, color: $color)';
+    return 'CartModelRecipe(ingredients: $ingredients, title: $title, recipeId: $recipeId, imageUrl: $imageUrl, color: $color)';
   }
 
   @override
@@ -269,8 +305,11 @@ class _$_CartModelRecipe implements _CartModelRecipe {
             other is _$_CartModelRecipe &&
             const DeepCollectionEquality()
                 .equals(other._ingredients, _ingredients) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.recipeId, recipeId) ||
                 other.recipeId == recipeId) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl) &&
             const DeepCollectionEquality().equals(other.color, color));
   }
 
@@ -278,7 +317,9 @@ class _$_CartModelRecipe implements _CartModelRecipe {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_ingredients),
+      title,
       recipeId,
+      imageUrl,
       const DeepCollectionEquality().hash(color));
 
   @JsonKey(ignore: true)
@@ -291,13 +332,19 @@ class _$_CartModelRecipe implements _CartModelRecipe {
 abstract class _CartModelRecipe implements CartModelRecipe {
   const factory _CartModelRecipe(
       {required final List<CartModelIngredient> ingredients,
+      required final String title,
       required final String recipeId,
+      required final Option<Uri> imageUrl,
       required final Color color}) = _$_CartModelRecipe;
 
   @override
   List<CartModelIngredient> get ingredients;
   @override
+  String get title;
+  @override
   String get recipeId;
+  @override
+  Option<Uri> get imageUrl;
   @override
   Color get color;
   @override

@@ -17,6 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$CartPersistenceServiceModelRecipe {
   String get recipeId => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  Option<Uri> get imagePath => throw _privateConstructorUsedError;
   List<CartPersistenceServiceModelIngredient> get ingredients =>
       throw _privateConstructorUsedError;
 
@@ -35,6 +37,8 @@ abstract class $CartPersistenceServiceModelRecipeCopyWith<$Res> {
   @useResult
   $Res call(
       {String recipeId,
+      String title,
+      Option<Uri> imagePath,
       List<CartPersistenceServiceModelIngredient> ingredients});
 }
 
@@ -53,6 +57,8 @@ class _$CartPersistenceServiceModelRecipeCopyWithImpl<$Res,
   @override
   $Res call({
     Object? recipeId = null,
+    Object? title = null,
+    Object? imagePath = null,
     Object? ingredients = null,
   }) {
     return _then(_value.copyWith(
@@ -60,6 +66,14 @@ class _$CartPersistenceServiceModelRecipeCopyWithImpl<$Res,
           ? _value.recipeId
           : recipeId // ignore: cast_nullable_to_non_nullable
               as String,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      imagePath: null == imagePath
+          ? _value.imagePath
+          : imagePath // ignore: cast_nullable_to_non_nullable
+              as Option<Uri>,
       ingredients: null == ingredients
           ? _value.ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
@@ -79,6 +93,8 @@ abstract class _$$_CartPersistenceServiceModelRecipeCopyWith<$Res>
   @useResult
   $Res call(
       {String recipeId,
+      String title,
+      Option<Uri> imagePath,
       List<CartPersistenceServiceModelIngredient> ingredients});
 }
 
@@ -96,6 +112,8 @@ class __$$_CartPersistenceServiceModelRecipeCopyWithImpl<$Res>
   @override
   $Res call({
     Object? recipeId = null,
+    Object? title = null,
+    Object? imagePath = null,
     Object? ingredients = null,
   }) {
     return _then(_$_CartPersistenceServiceModelRecipe(
@@ -103,6 +121,14 @@ class __$$_CartPersistenceServiceModelRecipeCopyWithImpl<$Res>
           ? _value.recipeId
           : recipeId // ignore: cast_nullable_to_non_nullable
               as String,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      imagePath: null == imagePath
+          ? _value.imagePath
+          : imagePath // ignore: cast_nullable_to_non_nullable
+              as Option<Uri>,
       ingredients: null == ingredients
           ? _value._ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
@@ -117,11 +143,17 @@ class _$_CartPersistenceServiceModelRecipe
     implements _CartPersistenceServiceModelRecipe {
   const _$_CartPersistenceServiceModelRecipe(
       {required this.recipeId,
+      required this.title,
+      required this.imagePath,
       required final List<CartPersistenceServiceModelIngredient> ingredients})
       : _ingredients = ingredients;
 
   @override
   final String recipeId;
+  @override
+  final String title;
+  @override
+  final Option<Uri> imagePath;
   final List<CartPersistenceServiceModelIngredient> _ingredients;
   @override
   List<CartPersistenceServiceModelIngredient> get ingredients {
@@ -131,7 +163,7 @@ class _$_CartPersistenceServiceModelRecipe
 
   @override
   String toString() {
-    return 'CartPersistenceServiceModelRecipe(recipeId: $recipeId, ingredients: $ingredients)';
+    return 'CartPersistenceServiceModelRecipe(recipeId: $recipeId, title: $title, imagePath: $imagePath, ingredients: $ingredients)';
   }
 
   @override
@@ -141,13 +173,16 @@ class _$_CartPersistenceServiceModelRecipe
             other is _$_CartPersistenceServiceModelRecipe &&
             (identical(other.recipeId, recipeId) ||
                 other.recipeId == recipeId) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.imagePath, imagePath) ||
+                other.imagePath == imagePath) &&
             const DeepCollectionEquality()
                 .equals(other._ingredients, _ingredients));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, recipeId, const DeepCollectionEquality().hash(_ingredients));
+  int get hashCode => Object.hash(runtimeType, recipeId, title, imagePath,
+      const DeepCollectionEquality().hash(_ingredients));
 
   @JsonKey(ignore: true)
   @override
@@ -162,11 +197,17 @@ abstract class _CartPersistenceServiceModelRecipe
     implements CartPersistenceServiceModelRecipe {
   const factory _CartPersistenceServiceModelRecipe(
       {required final String recipeId,
+      required final String title,
+      required final Option<Uri> imagePath,
       required final List<CartPersistenceServiceModelIngredient>
           ingredients}) = _$_CartPersistenceServiceModelRecipe;
 
   @override
   String get recipeId;
+  @override
+  String get title;
+  @override
+  Option<Uri> get imagePath;
   @override
   List<CartPersistenceServiceModelIngredient> get ingredients;
   @override

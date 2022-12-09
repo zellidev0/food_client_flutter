@@ -20,7 +20,8 @@ class SingleRecipeModelRecipe with _$SingleRecipeModelRecipe {
     required final List<SingleRecipeModelYield> yields,
     required final List<SingleRecipeModelTag> tags,
     required final List<SingleRecipeModelStep> steps,
-    required final Option<Uri> imageUri,
+    required final Option<Uri> imageUrl,
+    required final Option<Uri> imagePath,
   }) = _SingleRecipeModelRecipe;
 }
 

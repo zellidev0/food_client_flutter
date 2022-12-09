@@ -14,6 +14,19 @@ abstract class SingleRecipePersistenceService {
 }
 
 @freezed
+class SingleRecipePersistenceServiceRecipe
+    with _$SingleRecipePersistenceServiceRecipe {
+  const factory SingleRecipePersistenceServiceRecipe({
+    required final List<SingleRecipePersistenceServiceIngredient> ingredients,
+    required final Option<Uri> imagePath,
+    required final String recipeId,
+    required final String title,
+    required final int servings,
+  }) = _SingleRecipePersistenceServiceRecipe;
+}
+
+
+@freezed
 class SingleRecipePersistenceServiceIngredient
     with _$SingleRecipePersistenceServiceIngredient {
   const factory SingleRecipePersistenceServiceIngredient({
@@ -25,15 +38,4 @@ class SingleRecipePersistenceServiceIngredient
     required final Option<double> amount,
     required final Option<String> unit,
   }) = _SingleRecipePersistenceServiceIngredient;
-}
-
-
-@freezed
-class SingleRecipePersistenceServiceRecipe
-    with _$SingleRecipePersistenceServiceRecipe {
-  const factory SingleRecipePersistenceServiceRecipe({
-    required final List<SingleRecipePersistenceServiceIngredient> ingredients,
-    required final String recipeId,
-    required final int servings,
-  }) = _SingleRecipePersistenceServiceRecipe;
 }

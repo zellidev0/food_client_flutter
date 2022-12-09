@@ -166,7 +166,8 @@ mixin _$SingleRecipeModelRecipe {
   List<SingleRecipeModelYield> get yields => throw _privateConstructorUsedError;
   List<SingleRecipeModelTag> get tags => throw _privateConstructorUsedError;
   List<SingleRecipeModelStep> get steps => throw _privateConstructorUsedError;
-  Option<Uri> get imageUri => throw _privateConstructorUsedError;
+  Option<Uri> get imageUrl => throw _privateConstructorUsedError;
+  Option<Uri> get imagePath => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SingleRecipeModelRecipeCopyWith<SingleRecipeModelRecipe> get copyWith =>
@@ -186,7 +187,8 @@ abstract class $SingleRecipeModelRecipeCopyWith<$Res> {
       List<SingleRecipeModelYield> yields,
       List<SingleRecipeModelTag> tags,
       List<SingleRecipeModelStep> steps,
-      Option<Uri> imageUri});
+      Option<Uri> imageUrl,
+      Option<Uri> imagePath});
 
   $SingleRecipeModelDisplayedAttributesCopyWith<$Res> get displayedAttributes;
 }
@@ -211,7 +213,8 @@ class _$SingleRecipeModelRecipeCopyWithImpl<$Res,
     Object? yields = null,
     Object? tags = null,
     Object? steps = null,
-    Object? imageUri = null,
+    Object? imageUrl = null,
+    Object? imagePath = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -238,9 +241,13 @@ class _$SingleRecipeModelRecipeCopyWithImpl<$Res,
           ? _value.steps
           : steps // ignore: cast_nullable_to_non_nullable
               as List<SingleRecipeModelStep>,
-      imageUri: null == imageUri
-          ? _value.imageUri
-          : imageUri // ignore: cast_nullable_to_non_nullable
+      imageUrl: null == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as Option<Uri>,
+      imagePath: null == imagePath
+          ? _value.imagePath
+          : imagePath // ignore: cast_nullable_to_non_nullable
               as Option<Uri>,
     ) as $Val);
   }
@@ -270,7 +277,8 @@ abstract class _$$_SingleRecipeModelRecipeCopyWith<$Res>
       List<SingleRecipeModelYield> yields,
       List<SingleRecipeModelTag> tags,
       List<SingleRecipeModelStep> steps,
-      Option<Uri> imageUri});
+      Option<Uri> imageUrl,
+      Option<Uri> imagePath});
 
   @override
   $SingleRecipeModelDisplayedAttributesCopyWith<$Res> get displayedAttributes;
@@ -294,7 +302,8 @@ class __$$_SingleRecipeModelRecipeCopyWithImpl<$Res>
     Object? yields = null,
     Object? tags = null,
     Object? steps = null,
-    Object? imageUri = null,
+    Object? imageUrl = null,
+    Object? imagePath = null,
   }) {
     return _then(_$_SingleRecipeModelRecipe(
       id: null == id
@@ -321,9 +330,13 @@ class __$$_SingleRecipeModelRecipeCopyWithImpl<$Res>
           ? _value._steps
           : steps // ignore: cast_nullable_to_non_nullable
               as List<SingleRecipeModelStep>,
-      imageUri: null == imageUri
-          ? _value.imageUri
-          : imageUri // ignore: cast_nullable_to_non_nullable
+      imageUrl: null == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as Option<Uri>,
+      imagePath: null == imagePath
+          ? _value.imagePath
+          : imagePath // ignore: cast_nullable_to_non_nullable
               as Option<Uri>,
     ));
   }
@@ -339,7 +352,8 @@ class _$_SingleRecipeModelRecipe implements _SingleRecipeModelRecipe {
       required final List<SingleRecipeModelYield> yields,
       required final List<SingleRecipeModelTag> tags,
       required final List<SingleRecipeModelStep> steps,
-      required this.imageUri})
+      required this.imageUrl,
+      required this.imagePath})
       : _yields = yields,
         _tags = tags,
         _steps = steps;
@@ -372,11 +386,13 @@ class _$_SingleRecipeModelRecipe implements _SingleRecipeModelRecipe {
   }
 
   @override
-  final Option<Uri> imageUri;
+  final Option<Uri> imageUrl;
+  @override
+  final Option<Uri> imagePath;
 
   @override
   String toString() {
-    return 'SingleRecipeModelRecipe(id: $id, displayedAttributes: $displayedAttributes, difficulty: $difficulty, yields: $yields, tags: $tags, steps: $steps, imageUri: $imageUri)';
+    return 'SingleRecipeModelRecipe(id: $id, displayedAttributes: $displayedAttributes, difficulty: $difficulty, yields: $yields, tags: $tags, steps: $steps, imageUrl: $imageUrl, imagePath: $imagePath)';
   }
 
   @override
@@ -392,8 +408,10 @@ class _$_SingleRecipeModelRecipe implements _SingleRecipeModelRecipe {
             const DeepCollectionEquality().equals(other._yields, _yields) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
             const DeepCollectionEquality().equals(other._steps, _steps) &&
-            (identical(other.imageUri, imageUri) ||
-                other.imageUri == imageUri));
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl) &&
+            (identical(other.imagePath, imagePath) ||
+                other.imagePath == imagePath));
   }
 
   @override
@@ -405,7 +423,8 @@ class _$_SingleRecipeModelRecipe implements _SingleRecipeModelRecipe {
       const DeepCollectionEquality().hash(_yields),
       const DeepCollectionEquality().hash(_tags),
       const DeepCollectionEquality().hash(_steps),
-      imageUri);
+      imageUrl,
+      imagePath);
 
   @JsonKey(ignore: true)
   @override
@@ -424,7 +443,8 @@ abstract class _SingleRecipeModelRecipe implements SingleRecipeModelRecipe {
       required final List<SingleRecipeModelYield> yields,
       required final List<SingleRecipeModelTag> tags,
       required final List<SingleRecipeModelStep> steps,
-      required final Option<Uri> imageUri}) = _$_SingleRecipeModelRecipe;
+      required final Option<Uri> imageUrl,
+      required final Option<Uri> imagePath}) = _$_SingleRecipeModelRecipe;
 
   @override
   String get id;
@@ -439,7 +459,9 @@ abstract class _SingleRecipeModelRecipe implements SingleRecipeModelRecipe {
   @override
   List<SingleRecipeModelStep> get steps;
   @override
-  Option<Uri> get imageUri;
+  Option<Uri> get imageUrl;
+  @override
+  Option<Uri> get imagePath;
   @override
   @JsonKey(ignore: true)
   _$$_SingleRecipeModelRecipeCopyWith<_$_SingleRecipeModelRecipe>

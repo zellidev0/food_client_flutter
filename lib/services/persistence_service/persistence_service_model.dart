@@ -21,8 +21,10 @@ class PersistenceServiceModelShoppingListRecipe
     adapterName: 'PersistenceServiceModelShoppingListRecipeAdapter',)
   const factory PersistenceServiceModelShoppingListRecipe({
     @HiveField(0) required final List<PersistenceServiceModelShoppingListIngredient> ingredients,
-    @HiveField(2) required final String recipeId,
-    @HiveField(7) required final int servings,
+    @HiveField(1) required final String title,
+    @HiveField(2) required final Option<Uri> imagePath,
+    @HiveField(3) required final int servings,
+    @HiveField(4) required final String recipeId,
   }) = _PersistenceServiceModelShoppingListRecipe;
 
   factory PersistenceServiceModelShoppingListRecipe.fromJson(

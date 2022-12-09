@@ -60,7 +60,7 @@ class PersistenceService extends PersistenceServiceAggregator {
                 )
                 .toList(),
             recipeId: recipe.recipeId,
-            servings: recipe.servings,
+            servings: recipe.servings, imagePath: recipe.imagePath, title: recipe.title,
           ),
         ),
       );
@@ -138,7 +138,7 @@ CartPersistenceServiceModelRecipe mapToCartPersistenceServiceModelRecipe(
       recipeId: recipe.recipeId,
       ingredients: recipe.ingredients
           .map(mapToCartPersistenceServiceModelIngredient)
-          .toList(),
+          .toList(), imagePath: recipe.imagePath, title: recipe.title,
     );
 
 CartPersistenceServiceModelIngredient
