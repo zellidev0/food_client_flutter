@@ -12,42 +12,44 @@ class MainView extends ConsumerWidget {
     final MainModel model = ref.watch(providers.mainControllerProvider);
     final MainController controller =
         ref.read(providers.mainControllerProvider.notifier);
-    return SelectionArea(
+    return Material(
       child: SafeArea(
-        child: Scaffold(
-          bottomNavigationBar: ClipRRect(
-            child: BottomNavigationBar(
-              backgroundColor: Theme.of(context).colorScheme.background,
-              selectedItemColor: Theme.of(context).colorScheme.onBackground,
-              unselectedItemColor:
-                  Theme.of(context).colorScheme.onBackground.withOpacity(0.24),
-              currentIndex: model.bottomNavigationBarIndex,
-              items: const <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.view_list),
-                  label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.shopping_cart),
-                  label: 'Cart',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.add),
-                  label: 'TODO',
-                ),
-              ],
-              onTap: (final int selectedIndex) {
-                if (selectedIndex == 0) {
-                  controller.goToHome();
-                } else if (selectedIndex == 1) {
-                  controller.goToCart();
-                }
-              },
+        child: SelectionArea(
+          child: Scaffold(
+            bottomNavigationBar: ClipRRect(
+              child: BottomNavigationBar(
+                backgroundColor: Theme.of(context).colorScheme.background,
+                selectedItemColor: Theme.of(context).colorScheme.onBackground,
+                unselectedItemColor:
+                    Theme.of(context).colorScheme.onBackground.withOpacity(0.24),
+                currentIndex: model.bottomNavigationBarIndex,
+                items: const <BottomNavigationBarItem>[
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.view_list),
+                    label: 'Home',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.shopping_cart),
+                    label: 'Cart',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.add),
+                    label: 'TODO',
+                  ),
+                ],
+                onTap: (final int selectedIndex) {
+                  if (selectedIndex == 0) {
+                    controller.goToHome();
+                  } else if (selectedIndex == 1) {
+                    controller.goToCart();
+                  }
+                },
+              ),
             ),
-          ),
-          body: Beamer(
-            routerDelegate: ref.read(
-              providers.bottomNavigationBarBeamerDelegate,
+            body: Beamer(
+              routerDelegate: ref.read(
+                providers.bottomNavigationBarBeamerDelegate,
+              ),
             ),
           ),
         ),
