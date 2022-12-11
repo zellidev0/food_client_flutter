@@ -1,23 +1,61 @@
-import 'dart:convert';
 import 'dart:core';
 
 import 'package:collection/collection.dart';
-import 'package:flutter/foundation.dart';
+import 'package:dio/dio.dart';
 import 'package:food_client/services/web_client/web_client_model.dart';
 import 'package:food_client/ui/home/home_web_client_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_web_client_service.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:http/http.dart' as http;
+import 'package:retrofit/retrofit.dart';
+
+part 'web_client_service.g.dart';
 
 abstract class WebClientServiceAggregator
     implements HomeWebClientService, SingleRecipeWebClientService {}
 
+@RestApi(baseUrl: '')
+abstract class RestClient {
+  factory RestClient(final Dio dio, {final String baseUrl}) = _RestClient;
+
+  @GET('/recipes/search')
+  Future<WebClientModelRecipeApiRecipeResponse> getRecipes({
+    @Query('country') required final String country,
+    @Query('ingredient') final List<String>? ingredients,
+    @Query('cuisine') final List<String>? cuisines,
+    @Query('tag') final List<String>? tags,
+    @Query('q') final String? query,
+    @Query('take') final int? take,
+    @Query('limit') final int? limit,
+  });
+
+  @GET('/recipes/{id}')
+  Future<WebClientModelRecipe> getSingleRecipe({
+    @Path('id') required final String id,
+  });
+
+  @GET('/tags')
+  Future<WebClientModelRecipeApiTagResponse> getTags({
+    @Query('country') required final String country,
+    @Query('take') final int? take,
+  });
+
+  @GET('/cuisines')
+  Future<WebClientModelRecipeApiCuisineResponse> getCuisines({
+    @Query('country') required final String country,
+    @Query('take') final int? take,
+  });
+}
+
 class WebClientService implements WebClientServiceAggregator {
-  final Uri apiBaseUrl = Uri.parse('https://www.hellofresh.de/gw/api');
-  final Map<String, String> headers = <String, String>{
+  static const String apiBaseUrl1 = 'https://www.hellofresh.de/gw/api';
+  static const Map<String, String> headers = <String, String>{
     'Authorization':
         'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzE0OTk5OTMsImlhdCI6MTY2ODg3MDI1MCwiaXNzIjoic2VuZiIsImp0aSI6IjE4MjBiZmVmLTYwM2ItNDEyZS05Yzg4LTU1ZDQwMjMyYzhkYiJ9.ym3BOCZAuL52rcMzfL_1zKOQbxcuVp7dPgnknif72tQ',
   };
+  final RestClient client = RestClient(
+    Dio(BaseOptions(headers: headers)),
+    baseUrl: apiBaseUrl1,
+  );
 
   @override
   TaskEither<Exception, List<HomeWebClientModelRecipe>> fetchAllRecipes({
@@ -29,46 +67,24 @@ class WebClientService implements WebClientServiceAggregator {
     final Option<List<String>> ingredients = const None<List<String>>(),
     final Option<String> searchTerm = const None<String>(),
   }) =>
-      TaskEither<Exception, String>.tryCatch(
-        () async => await http.read(
-          () {
-            final Uri x = _recipesQueryApiUrl(
-              country: country,
-              limit: limit,
-              take: take,
-              tags: tags,
-              cuisines: cuisines,
-              ingredients: ingredients,
-              searchTerm: searchTerm,
-            );
-            if (kDebugMode) {
-              print(x);
-            }
-            return x;
-          }.call(),
-          headers: headers,
+      TaskEither<Exception, WebClientModelRecipeApiRecipeResponse>.tryCatch(
+        () async => await client.getRecipes(
+          country: country,
+          limit: limit.toNullable(),
+          take: take.toNullable(),
+          tags: tags.toNullable(),
+          cuisines: cuisines.toNullable(),
+          ingredients: ingredients.toNullable(),
         ),
-        (final Object error, final _) => Exception(
-          'Failed to fetch recipes: $error',
+        (final Object error, final StackTrace stacktrace) => Exception(
+          'Failed to fetch recipes: $error, $stacktrace',
         ),
-      ).flatMap(
-        (final String response) =>
-            Either<Exception, WebClientModelRecipeApiRecipeResponse>.tryCatch(
-          () => WebClientModelRecipeApiRecipeResponse.fromJson(
-            jsonDecode(response),
-          ),
-          (final Object error, final StackTrace stacktrace) => Exception(
-            'Failed to parse response: $error, $stacktrace',
-          ),
-        )
-                .map(
-                  (final WebClientModelRecipeApiRecipeResponse response) =>
-                      _mapToHomeWebClientModelRecipe(
-                    response: response,
-                    country: country,
-                  ),
-                )
-                .toTaskEither(),
+      ).map(
+        (final WebClientModelRecipeApiRecipeResponse response) =>
+            _mapToHomeWebClientModelRecipe(
+          response: response,
+          country: country,
+        ),
       );
 
   @override
@@ -76,227 +92,72 @@ class WebClientService implements WebClientServiceAggregator {
     required final String country,
     final Option<int> take = const None<int>(),
   }) =>
-      TaskEither<Exception, String>.tryCatch(
-        () async => await http.read(
-          _tagsApiUrl(
-            country: country,
-            take: take,
-          ),
-          headers: headers,
+      TaskEither<Exception, WebClientModelRecipeApiTagResponse>.tryCatch(
+        () async => await client.getTags(
+          country: country,
+          take: take.toNullable(),
         ),
-        (final Object error, final _) => Exception(
-          'Failed to fetch tags: $error',
+        (final Object error, final StackTrace stacktrace) => Exception(
+          'Failed to fetch tags: $error, $stacktrace',
         ),
-      ).flatMap(
-        (final String response) =>
-            Either<Exception, WebClientModelRecipeApiTagResponse>.tryCatch(
-          () =>
-              WebClientModelRecipeApiTagResponse.fromJson(jsonDecode(response)),
-          (final Object error, final StackTrace stacktrace) => Exception(
-            'Failed to parse response: $error, $stacktrace',
-          ),
-        )
-                .map(
-                  (final WebClientModelRecipeApiTagResponse response) =>
-                      response.items
-                          .map(
-                            (final WebClientModelTag tag) =>
-                                HomeWebClientModelTag(
-                              id: tag.id,
-                              type: tag.type,
-                              displayedName: tag.name,
-                              numberOfRecipes: optionOf(
-                                tag.numberOfRecipesByCountry[country],
-                              ).getOrElse(() => 0),
-                            ),
-                          )
-                          .toList(),
-                )
-                .toTaskEither(),
+      ).map(
+        (final WebClientModelRecipeApiTagResponse response) => response.items
+            .map(
+              (final WebClientModelTag tag) => HomeWebClientModelTag(
+                id: tag.id,
+                type: tag.type,
+                displayedName: tag.name,
+                numberOfRecipes: optionOf(
+                  tag.numberOfRecipesByCountry[country],
+                ).getOrElse(() => 0),
+              ),
+            )
+            .toList(),
       );
 
   @override
   TaskEither<Exception, SingleRecipeWebClientModelRecipe> fetchSingleRecipe({
     required final String recipeId,
   }) =>
-      TaskEither<Exception, String>.tryCatch(
-        () async => await http.read(
-          _singleRecipeApiUrl(recipeId: recipeId),
-          headers: headers,
-        ),
+      TaskEither<Exception, WebClientModelRecipe>.tryCatch(
+        () async => await client.getSingleRecipe(id: recipeId),
         (final Object error, final _) => Exception(
           'Failed to fetch recipe with id: $recipeId: $error',
         ),
-      ).flatMap(
-        (final String response) =>
-            Either<Exception, WebClientModelRecipe>.tryCatch(
-          () => WebClientModelRecipe.fromJson(jsonDecode(response)),
-          (final Object error, final _) => Exception(
-            'Failed to parse response: $error',
-          ),
-        )
-                .map(
-                  (final WebClientModelRecipe responseRecipe) =>
-                      _mapToSingleRecipeWebClientModelRecipe(
-                    recipe: responseRecipe,
-                  ),
-                )
-                .toTaskEither(),
+      ).map(
+        (final WebClientModelRecipe responseRecipe) =>
+            _mapToSingleRecipeWebClientModelRecipe(
+          recipe: responseRecipe,
+        ),
       );
+
   @override
   TaskEither<Exception, List<HomeWebClientModelCuisine>> fetchAllCuisines({
     required final String country,
     final Option<int> take = const None<int>(),
   }) =>
-      TaskEither<Exception, String>.tryCatch(
-        () async => await http.read(
-          _cuisinesApiUrl(
-            country: country,
-            take: take,
-          ),
-          headers: headers,
+      TaskEither<Exception, WebClientModelRecipeApiCuisineResponse>.tryCatch(
+        () async => await client.getCuisines(
+          country: country,
+          take: take.toNullable(),
         ),
         (final Object error, final _) => Exception(
           'Failed to fetch cuisines: $error',
         ),
-      ).flatMap(
-        (final String response) =>
-            Either<Exception, WebClientModelRecipeApiCuisineResponse>.tryCatch(
-          () => WebClientModelRecipeApiCuisineResponse.fromJson(
-            jsonDecode(response),
-          ),
-          (final Object error, final StackTrace stacktrace) => Exception(
-            'Failed to parse response: $error, $stacktrace',
-          ),
-        )
+      ).map(
+        (final WebClientModelRecipeApiCuisineResponse response) =>
+            response.items
                 .map(
-                  (final WebClientModelRecipeApiCuisineResponse response) =>
-                      response.items
-                          .map(
-                            (final WebClientModelCuisine cuisine) =>
-                                HomeWebClientModelCuisine(
-                              id: cuisine.id,
-                              slug: cuisine.slug,
-                              iconPath: cuisine.iconPath.map(Uri.parse),
-                              displayedName: cuisine.name,
-                              numberOfRecipes: cuisine.usage,
-                            ),
-                          )
-                          .toList(),
-                )
-                .toTaskEither(),
-      );
-
-  Uri get _recipesApiUrl => Uri.parse('${apiBaseUrl.toString()}/recipes');
-  Uri _tagsApiUrl({
-    required final String country,
-    final Option<int> take = const None<int>(),
-  }) =>
-      Uri.parse('${apiBaseUrl.toString()}/tags').replace(
-        queryParameters: buildQueryParams(
-          map: <String, Either<Option<String>, Option<List<String>>>>{
-            'country': Either<Option<String>, Option<List<String>>>.left(
-              some(country),
-            ),
-            'take': Either<Option<String>, Option<List<String>>>.left(
-              take.map((final int amount) => amount.toString()),
-            ),
-          },
-        ),
-      );
-
-  Uri _cuisinesApiUrl({
-    required final String country,
-    final Option<int> take = const None<int>(),
-  }) =>
-      Uri.parse('${apiBaseUrl.toString()}/cuisines').replace(
-        queryParameters: buildQueryParams(
-          map: <String, Either<Option<String>, Option<List<String>>>>{
-            'country': Either<Option<String>, Option<List<String>>>.left(
-              some(country),
-            ),
-            'take': Either<Option<String>, Option<List<String>>>.left(
-              take.map((final int amount) => amount.toString()),
-            ),
-          },
-        ),
-      );
-
-  Uri _singleRecipeApiUrl({required final String recipeId}) =>
-      Uri.parse('$_recipesApiUrl/$recipeId');
-
-  Uri _recipesQueryApiUrl({
-    required final String country,
-    final Option<int> limit = const None<int>(),
-    final Option<int> take = const None<int>(),
-    final Option<List<String>> tags = const None<List<String>>(),
-    final Option<List<String>> cuisines = const None<List<String>>(),
-    final Option<List<String>> ingredients = const None<List<String>>(),
-    final Option<String> searchTerm = const None<String>(),
-  }) =>
-      Uri.parse('$_recipesApiUrl/search').replace(
-        queryParameters: buildQueryParams(
-          map: <String, Either<Option<String>, Option<List<String>>>>{
-            'country': Either<Option<String>, Option<List<String>>>.left(
-              some(country),
-            ),
-            'limit': Either<Option<String>, Option<List<String>>>.left(
-              limit.map((final int amount) => amount.toString()),
-            ),
-            'take': Either<Option<String>, Option<List<String>>>.left(
-              take.map((final int amount) => amount.toString()),
-            ),
-            'tags': Either<Option<String>, Option<List<String>>>.right(tags),
-            'ingredient': Either<Option<String>, Option<List<String>>>.right(
-              ingredients,
-            ),
-            'cuisines': Either<Option<String>, Option<List<String>>>.right(
-              cuisines,
-            ),
-            'q': Either<Option<String>, Option<List<String>>>.left(searchTerm),
-          },
-        ),
-      );
-
-  Map<String, String> buildQueryParams({
-    required final Map<String, Either<Option<String>, Option<List<String>>>>
-        map,
-  }) =>
-      Map<String, String>.fromEntries(
-        map.entries
-            .map(
-              (
-                final MapEntry<String,
-                        Either<Option<String>, Option<List<String>>>>
-                    entry,
-              ) =>
-                  entry.value.fold(
-                (final Option<String> l) => l.fold(
-                  none<MapEntry<String, String>>,
-                  (final String string) => some<MapEntry<String, String>>(
-                    MapEntry<String, String>(entry.key, string),
+                  (final WebClientModelCuisine cuisine) =>
+                      HomeWebClientModelCuisine(
+                    id: cuisine.id,
+                    slug: cuisine.slug,
+                    iconPath: cuisine.iconPath.map(Uri.parse),
+                    displayedName: cuisine.name,
+                    numberOfRecipes: cuisine.usage,
                   ),
-                ),
-                (final Option<List<String>> r) => r.fold(
-                  none<MapEntry<String, String>>,
-                  (final List<String> list) => list.isEmpty
-                      ? none
-                      : some<MapEntry<String, String>>(
-                          MapEntry<String, String>(
-                            entry.key,
-                            list.reduce(
-                              (final String a, final String b) => '$a,$b',
-                            ),
-                          ),
-                        ),
-                ),
-              ),
-            )
-            .toList()
-            .whereType<Some<MapEntry<String, String>>>()
-            .map(
-              (final Some<MapEntry<String, String>> mapEntry) => mapEntry.value,
-            ),
+                )
+                .toList(),
       );
 }
 
