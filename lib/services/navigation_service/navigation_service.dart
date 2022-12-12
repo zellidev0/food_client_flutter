@@ -82,9 +82,7 @@ class BeamerNavigationService implements NavigationServiceAggregator {
                     material.TextButton(
                   onPressed: () async {
                     action.onPressed.call();
-                    // This is not working
                     Navigator.of(context, rootNavigator: true).pop();
-                    // await _beamerDelegate.popRoute();
                   },
                   child: material.Text(action.text),
                 ),
@@ -114,4 +112,9 @@ class BeamerNavigationService implements NavigationServiceAggregator {
   void showSnackBar({required final String message}) =>
       material.ScaffoldMessenger.of(_beamerDelegate.navigator.context)
           .showSnackBar(material.SnackBar(content: material.Text(message)));
+
+  @override
+  void closeDialog() {
+    Navigator.of(_beamerDelegate.navigator.context, rootNavigator: true).pop();
+  }
 }

@@ -58,8 +58,10 @@ class CartView extends ConsumerWidget {
                     children: model.recipes
                         .map(
                           (final CartModelRecipe recipe) => recipe.ingredients
-                              .where((final CartModelIngredient element) =>
-                                  !element.isTickedOff)
+                              .where(
+                                (final CartModelIngredient element) =>
+                                    !element.isTickedOff,
+                              )
                               .map(
                                 (final CartModelIngredient ingredient) =>
                                     buildSingleIngredient(
@@ -77,8 +79,10 @@ class CartView extends ConsumerWidget {
                     children: model.recipes
                         .map(
                           (final CartModelRecipe recipe) => recipe.ingredients
-                              .where((final CartModelIngredient element) =>
-                                  element.isTickedOff)
+                              .where(
+                                (final CartModelIngredient element) =>
+                                    element.isTickedOff,
+                              )
                               .map(
                                 (final CartModelIngredient ingredient) =>
                                     buildSingleIngredient(

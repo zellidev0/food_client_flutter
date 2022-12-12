@@ -4,6 +4,7 @@ import 'package:food_client/commons/widgets.dart';
 import 'package:food_client/providers/providers.dart';
 import 'package:food_client/ui/home/home_model.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class HomeView extends ConsumerWidget {
   const HomeView({super.key});
@@ -25,16 +26,12 @@ class HomeView extends ConsumerWidget {
             model: model,
           ),
           const SizedBox(height: 16),
-          if (model.allRecipes.isEmpty)
-            const Expanded(
-              child: Center(child: CircularProgressIndicator()),
-            )
-          else
-            _buildRecipesList(
-              controller: controller,
-              recipes: model.filteredRecipes,
-              tags: model.allTags,
-            ),
+          _buildRecipesList(
+            controller: controller,
+            model: model,
+            recipes: model.filteredRecipes,
+            tags: model.allTags,
+          ),
         ],
       ),
     );
@@ -89,27 +86,59 @@ class HomeView extends ConsumerWidget {
 
   Widget _buildRecipesList({
     required final HomeController controller,
+    required final HomeModel model,
     required final List<HomeModelRecipe> recipes,
     required final List<HomeModelFilterTag> tags,
   }) =>
       Expanded(
         child: Column(
           children: <Widget>[
-            Builder(
-              builder: (final BuildContext context) => Text(
-                recipes.length.toString(),
-                style: Theme.of(context).textTheme.headline6,
-              ),
-            ),
             Expanded(
-              child: ListView.builder(
-                itemCount: recipes.length,
-                itemBuilder: (final _, final int index) => _buildRecipeCardItem(
-                  recipe: recipes[index],
-                  tags: tags,
-                  controller: controller,
+              child: PagedListView<int, HomeModelRecipe>(
+                pagingController: model.pagingController,
+                builderDelegate: PagedChildBuilderDelegate<HomeModelRecipe>(
+                  itemBuilder: (
+                    final BuildContext context,
+                    final HomeModelRecipe recipe,
+                    final _,
+                  ) =>
+                      _buildRecipeCardItem(
+                    recipe: recipe,
+                    tags: tags,
+                    controller: controller,
+                  ),
+                  noItemsFoundIndicatorBuilder: (final _) =>
+                      _buildNoItemsFound(),
+                  noMoreItemsIndicatorBuilder: (final _) => const Center(
+                    child: Text('No more recipes'),
+                  ),
                 ),
               ),
+            ),
+          ],
+        ),
+      );
+
+  Widget _buildNoItemsFound() => Builder(
+        builder: (final BuildContext context) => Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              padding: const EdgeInsets.all(32),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Theme.of(context).colorScheme.tertiary,
+              ),
+              child: Icon(
+                Icons.no_drinks,
+                size: 64,
+                color: Theme.of(context).colorScheme.onTertiary,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'No recipes found',
+              style: Theme.of(context).textTheme.headline6,
             ),
           ],
         ),

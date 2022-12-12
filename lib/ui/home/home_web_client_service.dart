@@ -4,10 +4,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'home_web_client_service.freezed.dart';
 
 abstract class HomeWebClientService {
-  TaskEither<Exception, List<HomeWebClientModelRecipe>> fetchAllRecipes({
+  TaskEither<Exception, HomeWebClientModelRecipeResponse> fetchRecipes({
     required final String country,
-    final Option<int> limit = const None<int>(),
-    final Option<int> take = const None<int>(),
+    required final int take,
+    required final int skip,
     final Option<List<String>> tags = const None<List<String>>(),
     final Option<List<String>> cuisines = const None<List<String>>(),
     final Option<List<String>> ingredients = const None<List<String>>(),
@@ -22,6 +22,24 @@ abstract class HomeWebClientService {
     final Option<int> take = const None<int>(),
   });
 }
+
+@freezed
+class HomeWebClientModelRecipeResponse with _$HomeWebClientModelRecipeResponse {
+  const factory HomeWebClientModelRecipeResponse({
+    required final HomeWebClientModelRecipePagination pagination,
+    required final List<HomeWebClientModelRecipe> recipes,
+  }) = _HomeWebClientModelRecipeResponse;
+}
+
+@freezed
+class HomeWebClientModelRecipePagination with _$HomeWebClientModelRecipePagination {
+  const factory HomeWebClientModelRecipePagination({
+    required final int skip,
+    required final int take,
+    required final int total,
+  }) = _HomeWebClientModelRecipePagination;
+}
+
 
 @freezed
 class HomeWebClientModelRecipe with _$HomeWebClientModelRecipe {
@@ -55,6 +73,13 @@ class HomeWebClientModelIngredient with _$HomeWebClientModelIngredient {
     required final String slug,
     required final String displayedName,
   }) = _HomeWebClientModelIngredient;
+}
+
+@freezed
+class HomeWebClientModelPagination with _$HomeWebClientModelPagination {
+  const factory HomeWebClientModelPagination({
+    required final int total,
+  }) = _HomeWebClientModelPagination;
 }
 
 @freezed

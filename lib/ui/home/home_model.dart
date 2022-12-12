@@ -1,16 +1,28 @@
+import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 part 'home_model.freezed.dart';
 
 @freezed
 class HomeModel with _$HomeModel {
   const factory HomeModel({
+    required final PagingController<int, HomeModelRecipe> pagingController,
     required final List<HomeModelRecipe> allRecipes,
     required final List<HomeModelRecipe> filteredRecipes,
     required final List<HomeModelFilterTag> allTags,
     required final List<HomeModelFilterCuisine> allCuisines,
   }) = _HomeModel;
+}
+
+@freezed
+class HomeModelPagination with _$HomeModelPagination {
+  const factory HomeModelPagination({
+    required final bool isCurrentlyFetching,
+    required final int skip,
+    required final int totalAmountOfRecipes,
+  }) = _HomeModelPagination;
 }
 
 @freezed

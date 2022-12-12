@@ -20,6 +20,7 @@ import 'package:food_client/ui/single_recipe/single_recipe_controller.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_model.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_view.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class Providers {
   final AutoDisposeStateNotifierProvider<CartController, CartModel>
@@ -60,11 +61,14 @@ class Providers {
       final AutoDisposeStateNotifierProviderRef<HomeController, HomeModel> ref,
     ) =>
         HomeControllerImplementation(
-      const HomeModel(
+      HomeModel(
         allRecipes: <HomeModelRecipe>[],
         filteredRecipes: <HomeModelRecipe>[],
         allTags: <HomeModelFilterTag>[],
         allCuisines: <HomeModelFilterCuisine>[],
+        pagingController: PagingController<int, HomeModelRecipe>(
+          firstPageKey: 0,
+        ),
       ),
       navigationService: ref.read(
         providers.bottomNavigationBarNavigationServiceProvider,

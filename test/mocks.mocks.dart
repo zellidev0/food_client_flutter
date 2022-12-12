@@ -49,11 +49,10 @@ class MockWebClientServiceAggregator extends _i1.Mock
   }
 
   @override
-  _i2.TaskEither<Exception,
-      List<_i4.HomeWebClientModelRecipe>> fetchAllRecipes({
+  _i2.TaskEither<Exception, _i4.HomeWebClientModelRecipeResponse> fetchRecipes({
     required String? country,
-    _i2.Option<int>? limit = const _i2.None(),
-    _i2.Option<int>? take = const _i2.None(),
+    required int? take,
+    required int? skip,
     _i2.Option<List<String>>? tags = const _i2.None(),
     _i2.Option<List<String>>? cuisines = const _i2.None(),
     _i2.Option<List<String>>? ingredients = const _i2.None(),
@@ -61,12 +60,12 @@ class MockWebClientServiceAggregator extends _i1.Mock
   }) =>
       (super.noSuchMethod(
         Invocation.method(
-          #fetchAllRecipes,
+          #fetchRecipes,
           [],
           {
             #country: country,
-            #limit: limit,
             #take: take,
+            #skip: skip,
             #tags: tags,
             #cuisines: cuisines,
             #ingredients: ingredients,
@@ -74,15 +73,15 @@ class MockWebClientServiceAggregator extends _i1.Mock
           },
         ),
         returnValue:
-            _FakeTaskEither_0<Exception, List<_i4.HomeWebClientModelRecipe>>(
+            _FakeTaskEither_0<Exception, _i4.HomeWebClientModelRecipeResponse>(
           this,
           Invocation.method(
-            #fetchAllRecipes,
+            #fetchRecipes,
             [],
             {
               #country: country,
-              #limit: limit,
               #take: take,
+              #skip: skip,
               #tags: tags,
               #cuisines: cuisines,
               #ingredients: ingredients,
@@ -90,7 +89,7 @@ class MockWebClientServiceAggregator extends _i1.Mock
             },
           ),
         ),
-      ) as _i2.TaskEither<Exception, List<_i4.HomeWebClientModelRecipe>>);
+      ) as _i2.TaskEither<Exception, _i4.HomeWebClientModelRecipeResponse>);
   @override
   _i2.TaskEither<Exception,
       List<_i4.HomeWebClientModelCuisine>> fetchAllCuisines({

@@ -15,6 +15,347 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
+mixin _$HomeWebClientModelRecipeResponse {
+  HomeWebClientModelRecipePagination get pagination =>
+      throw _privateConstructorUsedError;
+  List<HomeWebClientModelRecipe> get recipes =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $HomeWebClientModelRecipeResponseCopyWith<HomeWebClientModelRecipeResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $HomeWebClientModelRecipeResponseCopyWith<$Res> {
+  factory $HomeWebClientModelRecipeResponseCopyWith(
+          HomeWebClientModelRecipeResponse value,
+          $Res Function(HomeWebClientModelRecipeResponse) then) =
+      _$HomeWebClientModelRecipeResponseCopyWithImpl<$Res,
+          HomeWebClientModelRecipeResponse>;
+  @useResult
+  $Res call(
+      {HomeWebClientModelRecipePagination pagination,
+      List<HomeWebClientModelRecipe> recipes});
+
+  $HomeWebClientModelRecipePaginationCopyWith<$Res> get pagination;
+}
+
+/// @nodoc
+class _$HomeWebClientModelRecipeResponseCopyWithImpl<$Res,
+        $Val extends HomeWebClientModelRecipeResponse>
+    implements $HomeWebClientModelRecipeResponseCopyWith<$Res> {
+  _$HomeWebClientModelRecipeResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? pagination = null,
+    Object? recipes = null,
+  }) {
+    return _then(_value.copyWith(
+      pagination: null == pagination
+          ? _value.pagination
+          : pagination // ignore: cast_nullable_to_non_nullable
+              as HomeWebClientModelRecipePagination,
+      recipes: null == recipes
+          ? _value.recipes
+          : recipes // ignore: cast_nullable_to_non_nullable
+              as List<HomeWebClientModelRecipe>,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $HomeWebClientModelRecipePaginationCopyWith<$Res> get pagination {
+    return $HomeWebClientModelRecipePaginationCopyWith<$Res>(_value.pagination,
+        (value) {
+      return _then(_value.copyWith(pagination: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_HomeWebClientModelRecipeResponseCopyWith<$Res>
+    implements $HomeWebClientModelRecipeResponseCopyWith<$Res> {
+  factory _$$_HomeWebClientModelRecipeResponseCopyWith(
+          _$_HomeWebClientModelRecipeResponse value,
+          $Res Function(_$_HomeWebClientModelRecipeResponse) then) =
+      __$$_HomeWebClientModelRecipeResponseCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {HomeWebClientModelRecipePagination pagination,
+      List<HomeWebClientModelRecipe> recipes});
+
+  @override
+  $HomeWebClientModelRecipePaginationCopyWith<$Res> get pagination;
+}
+
+/// @nodoc
+class __$$_HomeWebClientModelRecipeResponseCopyWithImpl<$Res>
+    extends _$HomeWebClientModelRecipeResponseCopyWithImpl<$Res,
+        _$_HomeWebClientModelRecipeResponse>
+    implements _$$_HomeWebClientModelRecipeResponseCopyWith<$Res> {
+  __$$_HomeWebClientModelRecipeResponseCopyWithImpl(
+      _$_HomeWebClientModelRecipeResponse _value,
+      $Res Function(_$_HomeWebClientModelRecipeResponse) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? pagination = null,
+    Object? recipes = null,
+  }) {
+    return _then(_$_HomeWebClientModelRecipeResponse(
+      pagination: null == pagination
+          ? _value.pagination
+          : pagination // ignore: cast_nullable_to_non_nullable
+              as HomeWebClientModelRecipePagination,
+      recipes: null == recipes
+          ? _value._recipes
+          : recipes // ignore: cast_nullable_to_non_nullable
+              as List<HomeWebClientModelRecipe>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_HomeWebClientModelRecipeResponse
+    implements _HomeWebClientModelRecipeResponse {
+  const _$_HomeWebClientModelRecipeResponse(
+      {required this.pagination,
+      required final List<HomeWebClientModelRecipe> recipes})
+      : _recipes = recipes;
+
+  @override
+  final HomeWebClientModelRecipePagination pagination;
+  final List<HomeWebClientModelRecipe> _recipes;
+  @override
+  List<HomeWebClientModelRecipe> get recipes {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_recipes);
+  }
+
+  @override
+  String toString() {
+    return 'HomeWebClientModelRecipeResponse(pagination: $pagination, recipes: $recipes)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_HomeWebClientModelRecipeResponse &&
+            (identical(other.pagination, pagination) ||
+                other.pagination == pagination) &&
+            const DeepCollectionEquality().equals(other._recipes, _recipes));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, pagination, const DeepCollectionEquality().hash(_recipes));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_HomeWebClientModelRecipeResponseCopyWith<
+          _$_HomeWebClientModelRecipeResponse>
+      get copyWith => __$$_HomeWebClientModelRecipeResponseCopyWithImpl<
+          _$_HomeWebClientModelRecipeResponse>(this, _$identity);
+}
+
+abstract class _HomeWebClientModelRecipeResponse
+    implements HomeWebClientModelRecipeResponse {
+  const factory _HomeWebClientModelRecipeResponse(
+          {required final HomeWebClientModelRecipePagination pagination,
+          required final List<HomeWebClientModelRecipe> recipes}) =
+      _$_HomeWebClientModelRecipeResponse;
+
+  @override
+  HomeWebClientModelRecipePagination get pagination;
+  @override
+  List<HomeWebClientModelRecipe> get recipes;
+  @override
+  @JsonKey(ignore: true)
+  _$$_HomeWebClientModelRecipeResponseCopyWith<
+          _$_HomeWebClientModelRecipeResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$HomeWebClientModelRecipePagination {
+  int get skip => throw _privateConstructorUsedError;
+  int get take => throw _privateConstructorUsedError;
+  int get total => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $HomeWebClientModelRecipePaginationCopyWith<
+          HomeWebClientModelRecipePagination>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $HomeWebClientModelRecipePaginationCopyWith<$Res> {
+  factory $HomeWebClientModelRecipePaginationCopyWith(
+          HomeWebClientModelRecipePagination value,
+          $Res Function(HomeWebClientModelRecipePagination) then) =
+      _$HomeWebClientModelRecipePaginationCopyWithImpl<$Res,
+          HomeWebClientModelRecipePagination>;
+  @useResult
+  $Res call({int skip, int take, int total});
+}
+
+/// @nodoc
+class _$HomeWebClientModelRecipePaginationCopyWithImpl<$Res,
+        $Val extends HomeWebClientModelRecipePagination>
+    implements $HomeWebClientModelRecipePaginationCopyWith<$Res> {
+  _$HomeWebClientModelRecipePaginationCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? skip = null,
+    Object? take = null,
+    Object? total = null,
+  }) {
+    return _then(_value.copyWith(
+      skip: null == skip
+          ? _value.skip
+          : skip // ignore: cast_nullable_to_non_nullable
+              as int,
+      take: null == take
+          ? _value.take
+          : take // ignore: cast_nullable_to_non_nullable
+              as int,
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_HomeWebClientModelRecipePaginationCopyWith<$Res>
+    implements $HomeWebClientModelRecipePaginationCopyWith<$Res> {
+  factory _$$_HomeWebClientModelRecipePaginationCopyWith(
+          _$_HomeWebClientModelRecipePagination value,
+          $Res Function(_$_HomeWebClientModelRecipePagination) then) =
+      __$$_HomeWebClientModelRecipePaginationCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int skip, int take, int total});
+}
+
+/// @nodoc
+class __$$_HomeWebClientModelRecipePaginationCopyWithImpl<$Res>
+    extends _$HomeWebClientModelRecipePaginationCopyWithImpl<$Res,
+        _$_HomeWebClientModelRecipePagination>
+    implements _$$_HomeWebClientModelRecipePaginationCopyWith<$Res> {
+  __$$_HomeWebClientModelRecipePaginationCopyWithImpl(
+      _$_HomeWebClientModelRecipePagination _value,
+      $Res Function(_$_HomeWebClientModelRecipePagination) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? skip = null,
+    Object? take = null,
+    Object? total = null,
+  }) {
+    return _then(_$_HomeWebClientModelRecipePagination(
+      skip: null == skip
+          ? _value.skip
+          : skip // ignore: cast_nullable_to_non_nullable
+              as int,
+      take: null == take
+          ? _value.take
+          : take // ignore: cast_nullable_to_non_nullable
+              as int,
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_HomeWebClientModelRecipePagination
+    implements _HomeWebClientModelRecipePagination {
+  const _$_HomeWebClientModelRecipePagination(
+      {required this.skip, required this.take, required this.total});
+
+  @override
+  final int skip;
+  @override
+  final int take;
+  @override
+  final int total;
+
+  @override
+  String toString() {
+    return 'HomeWebClientModelRecipePagination(skip: $skip, take: $take, total: $total)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_HomeWebClientModelRecipePagination &&
+            (identical(other.skip, skip) || other.skip == skip) &&
+            (identical(other.take, take) || other.take == take) &&
+            (identical(other.total, total) || other.total == total));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, skip, take, total);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_HomeWebClientModelRecipePaginationCopyWith<
+          _$_HomeWebClientModelRecipePagination>
+      get copyWith => __$$_HomeWebClientModelRecipePaginationCopyWithImpl<
+          _$_HomeWebClientModelRecipePagination>(this, _$identity);
+}
+
+abstract class _HomeWebClientModelRecipePagination
+    implements HomeWebClientModelRecipePagination {
+  const factory _HomeWebClientModelRecipePagination(
+      {required final int skip,
+      required final int take,
+      required final int total}) = _$_HomeWebClientModelRecipePagination;
+
+  @override
+  int get skip;
+  @override
+  int get take;
+  @override
+  int get total;
+  @override
+  @JsonKey(ignore: true)
+  _$$_HomeWebClientModelRecipePaginationCopyWith<
+          _$_HomeWebClientModelRecipePagination>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$HomeWebClientModelRecipe {
   String get id => throw _privateConstructorUsedError;
   HomeWebClientModelDisplayedAttributes get displayedAttributes =>
@@ -691,6 +1032,132 @@ abstract class _HomeWebClientModelIngredient
   @override
   @JsonKey(ignore: true)
   _$$_HomeWebClientModelIngredientCopyWith<_$_HomeWebClientModelIngredient>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$HomeWebClientModelPagination {
+  int get total => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $HomeWebClientModelPaginationCopyWith<HomeWebClientModelPagination>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $HomeWebClientModelPaginationCopyWith<$Res> {
+  factory $HomeWebClientModelPaginationCopyWith(
+          HomeWebClientModelPagination value,
+          $Res Function(HomeWebClientModelPagination) then) =
+      _$HomeWebClientModelPaginationCopyWithImpl<$Res,
+          HomeWebClientModelPagination>;
+  @useResult
+  $Res call({int total});
+}
+
+/// @nodoc
+class _$HomeWebClientModelPaginationCopyWithImpl<$Res,
+        $Val extends HomeWebClientModelPagination>
+    implements $HomeWebClientModelPaginationCopyWith<$Res> {
+  _$HomeWebClientModelPaginationCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? total = null,
+  }) {
+    return _then(_value.copyWith(
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_HomeWebClientModelPaginationCopyWith<$Res>
+    implements $HomeWebClientModelPaginationCopyWith<$Res> {
+  factory _$$_HomeWebClientModelPaginationCopyWith(
+          _$_HomeWebClientModelPagination value,
+          $Res Function(_$_HomeWebClientModelPagination) then) =
+      __$$_HomeWebClientModelPaginationCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int total});
+}
+
+/// @nodoc
+class __$$_HomeWebClientModelPaginationCopyWithImpl<$Res>
+    extends _$HomeWebClientModelPaginationCopyWithImpl<$Res,
+        _$_HomeWebClientModelPagination>
+    implements _$$_HomeWebClientModelPaginationCopyWith<$Res> {
+  __$$_HomeWebClientModelPaginationCopyWithImpl(
+      _$_HomeWebClientModelPagination _value,
+      $Res Function(_$_HomeWebClientModelPagination) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? total = null,
+  }) {
+    return _then(_$_HomeWebClientModelPagination(
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_HomeWebClientModelPagination implements _HomeWebClientModelPagination {
+  const _$_HomeWebClientModelPagination({required this.total});
+
+  @override
+  final int total;
+
+  @override
+  String toString() {
+    return 'HomeWebClientModelPagination(total: $total)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_HomeWebClientModelPagination &&
+            (identical(other.total, total) || other.total == total));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, total);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_HomeWebClientModelPaginationCopyWith<_$_HomeWebClientModelPagination>
+      get copyWith => __$$_HomeWebClientModelPaginationCopyWithImpl<
+          _$_HomeWebClientModelPagination>(this, _$identity);
+}
+
+abstract class _HomeWebClientModelPagination
+    implements HomeWebClientModelPagination {
+  const factory _HomeWebClientModelPagination({required final int total}) =
+      _$_HomeWebClientModelPagination;
+
+  @override
+  int get total;
+  @override
+  @JsonKey(ignore: true)
+  _$$_HomeWebClientModelPaginationCopyWith<_$_HomeWebClientModelPagination>
       get copyWith => throw _privateConstructorUsedError;
 }
 

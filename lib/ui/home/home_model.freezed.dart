@@ -16,6 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomeModel {
+  PagingController<int, HomeModelRecipe> get pagingController =>
+      throw _privateConstructorUsedError;
   List<HomeModelRecipe> get allRecipes => throw _privateConstructorUsedError;
   List<HomeModelRecipe> get filteredRecipes =>
       throw _privateConstructorUsedError;
@@ -34,7 +36,8 @@ abstract class $HomeModelCopyWith<$Res> {
       _$HomeModelCopyWithImpl<$Res, HomeModel>;
   @useResult
   $Res call(
-      {List<HomeModelRecipe> allRecipes,
+      {PagingController<int, HomeModelRecipe> pagingController,
+      List<HomeModelRecipe> allRecipes,
       List<HomeModelRecipe> filteredRecipes,
       List<HomeModelFilterTag> allTags,
       List<HomeModelFilterCuisine> allCuisines});
@@ -53,12 +56,17 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? pagingController = null,
     Object? allRecipes = null,
     Object? filteredRecipes = null,
     Object? allTags = null,
     Object? allCuisines = null,
   }) {
     return _then(_value.copyWith(
+      pagingController: null == pagingController
+          ? _value.pagingController
+          : pagingController // ignore: cast_nullable_to_non_nullable
+              as PagingController<int, HomeModelRecipe>,
       allRecipes: null == allRecipes
           ? _value.allRecipes
           : allRecipes // ignore: cast_nullable_to_non_nullable
@@ -87,7 +95,8 @@ abstract class _$$_HomeModelCopyWith<$Res> implements $HomeModelCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {List<HomeModelRecipe> allRecipes,
+      {PagingController<int, HomeModelRecipe> pagingController,
+      List<HomeModelRecipe> allRecipes,
       List<HomeModelRecipe> filteredRecipes,
       List<HomeModelFilterTag> allTags,
       List<HomeModelFilterCuisine> allCuisines});
@@ -104,12 +113,17 @@ class __$$_HomeModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? pagingController = null,
     Object? allRecipes = null,
     Object? filteredRecipes = null,
     Object? allTags = null,
     Object? allCuisines = null,
   }) {
     return _then(_$_HomeModel(
+      pagingController: null == pagingController
+          ? _value.pagingController
+          : pagingController // ignore: cast_nullable_to_non_nullable
+              as PagingController<int, HomeModelRecipe>,
       allRecipes: null == allRecipes
           ? _value._allRecipes
           : allRecipes // ignore: cast_nullable_to_non_nullable
@@ -134,7 +148,8 @@ class __$$_HomeModelCopyWithImpl<$Res>
 
 class _$_HomeModel implements _HomeModel {
   const _$_HomeModel(
-      {required final List<HomeModelRecipe> allRecipes,
+      {required this.pagingController,
+      required final List<HomeModelRecipe> allRecipes,
       required final List<HomeModelRecipe> filteredRecipes,
       required final List<HomeModelFilterTag> allTags,
       required final List<HomeModelFilterCuisine> allCuisines})
@@ -143,6 +158,8 @@ class _$_HomeModel implements _HomeModel {
         _allTags = allTags,
         _allCuisines = allCuisines;
 
+  @override
+  final PagingController<int, HomeModelRecipe> pagingController;
   final List<HomeModelRecipe> _allRecipes;
   @override
   List<HomeModelRecipe> get allRecipes {
@@ -173,7 +190,7 @@ class _$_HomeModel implements _HomeModel {
 
   @override
   String toString() {
-    return 'HomeModel(allRecipes: $allRecipes, filteredRecipes: $filteredRecipes, allTags: $allTags, allCuisines: $allCuisines)';
+    return 'HomeModel(pagingController: $pagingController, allRecipes: $allRecipes, filteredRecipes: $filteredRecipes, allTags: $allTags, allCuisines: $allCuisines)';
   }
 
   @override
@@ -181,6 +198,8 @@ class _$_HomeModel implements _HomeModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_HomeModel &&
+            (identical(other.pagingController, pagingController) ||
+                other.pagingController == pagingController) &&
             const DeepCollectionEquality()
                 .equals(other._allRecipes, _allRecipes) &&
             const DeepCollectionEquality()
@@ -193,6 +212,7 @@ class _$_HomeModel implements _HomeModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      pagingController,
       const DeepCollectionEquality().hash(_allRecipes),
       const DeepCollectionEquality().hash(_filteredRecipes),
       const DeepCollectionEquality().hash(_allTags),
@@ -207,11 +227,14 @@ class _$_HomeModel implements _HomeModel {
 
 abstract class _HomeModel implements HomeModel {
   const factory _HomeModel(
-      {required final List<HomeModelRecipe> allRecipes,
+      {required final PagingController<int, HomeModelRecipe> pagingController,
+      required final List<HomeModelRecipe> allRecipes,
       required final List<HomeModelRecipe> filteredRecipes,
       required final List<HomeModelFilterTag> allTags,
       required final List<HomeModelFilterCuisine> allCuisines}) = _$_HomeModel;
 
+  @override
+  PagingController<int, HomeModelRecipe> get pagingController;
   @override
   List<HomeModelRecipe> get allRecipes;
   @override
@@ -223,6 +246,165 @@ abstract class _HomeModel implements HomeModel {
   @override
   @JsonKey(ignore: true)
   _$$_HomeModelCopyWith<_$_HomeModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$HomeModelPagination {
+  bool get isCurrentlyFetching => throw _privateConstructorUsedError;
+  int get skip => throw _privateConstructorUsedError;
+  int get totalAmountOfRecipes => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $HomeModelPaginationCopyWith<HomeModelPagination> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $HomeModelPaginationCopyWith<$Res> {
+  factory $HomeModelPaginationCopyWith(
+          HomeModelPagination value, $Res Function(HomeModelPagination) then) =
+      _$HomeModelPaginationCopyWithImpl<$Res, HomeModelPagination>;
+  @useResult
+  $Res call({bool isCurrentlyFetching, int skip, int totalAmountOfRecipes});
+}
+
+/// @nodoc
+class _$HomeModelPaginationCopyWithImpl<$Res, $Val extends HomeModelPagination>
+    implements $HomeModelPaginationCopyWith<$Res> {
+  _$HomeModelPaginationCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isCurrentlyFetching = null,
+    Object? skip = null,
+    Object? totalAmountOfRecipes = null,
+  }) {
+    return _then(_value.copyWith(
+      isCurrentlyFetching: null == isCurrentlyFetching
+          ? _value.isCurrentlyFetching
+          : isCurrentlyFetching // ignore: cast_nullable_to_non_nullable
+              as bool,
+      skip: null == skip
+          ? _value.skip
+          : skip // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalAmountOfRecipes: null == totalAmountOfRecipes
+          ? _value.totalAmountOfRecipes
+          : totalAmountOfRecipes // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_HomeModelPaginationCopyWith<$Res>
+    implements $HomeModelPaginationCopyWith<$Res> {
+  factory _$$_HomeModelPaginationCopyWith(_$_HomeModelPagination value,
+          $Res Function(_$_HomeModelPagination) then) =
+      __$$_HomeModelPaginationCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool isCurrentlyFetching, int skip, int totalAmountOfRecipes});
+}
+
+/// @nodoc
+class __$$_HomeModelPaginationCopyWithImpl<$Res>
+    extends _$HomeModelPaginationCopyWithImpl<$Res, _$_HomeModelPagination>
+    implements _$$_HomeModelPaginationCopyWith<$Res> {
+  __$$_HomeModelPaginationCopyWithImpl(_$_HomeModelPagination _value,
+      $Res Function(_$_HomeModelPagination) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isCurrentlyFetching = null,
+    Object? skip = null,
+    Object? totalAmountOfRecipes = null,
+  }) {
+    return _then(_$_HomeModelPagination(
+      isCurrentlyFetching: null == isCurrentlyFetching
+          ? _value.isCurrentlyFetching
+          : isCurrentlyFetching // ignore: cast_nullable_to_non_nullable
+              as bool,
+      skip: null == skip
+          ? _value.skip
+          : skip // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalAmountOfRecipes: null == totalAmountOfRecipes
+          ? _value.totalAmountOfRecipes
+          : totalAmountOfRecipes // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_HomeModelPagination implements _HomeModelPagination {
+  const _$_HomeModelPagination(
+      {required this.isCurrentlyFetching,
+      required this.skip,
+      required this.totalAmountOfRecipes});
+
+  @override
+  final bool isCurrentlyFetching;
+  @override
+  final int skip;
+  @override
+  final int totalAmountOfRecipes;
+
+  @override
+  String toString() {
+    return 'HomeModelPagination(isCurrentlyFetching: $isCurrentlyFetching, skip: $skip, totalAmountOfRecipes: $totalAmountOfRecipes)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_HomeModelPagination &&
+            (identical(other.isCurrentlyFetching, isCurrentlyFetching) ||
+                other.isCurrentlyFetching == isCurrentlyFetching) &&
+            (identical(other.skip, skip) || other.skip == skip) &&
+            (identical(other.totalAmountOfRecipes, totalAmountOfRecipes) ||
+                other.totalAmountOfRecipes == totalAmountOfRecipes));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, isCurrentlyFetching, skip, totalAmountOfRecipes);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_HomeModelPaginationCopyWith<_$_HomeModelPagination> get copyWith =>
+      __$$_HomeModelPaginationCopyWithImpl<_$_HomeModelPagination>(
+          this, _$identity);
+}
+
+abstract class _HomeModelPagination implements HomeModelPagination {
+  const factory _HomeModelPagination(
+      {required final bool isCurrentlyFetching,
+      required final int skip,
+      required final int totalAmountOfRecipes}) = _$_HomeModelPagination;
+
+  @override
+  bool get isCurrentlyFetching;
+  @override
+  int get skip;
+  @override
+  int get totalAmountOfRecipes;
+  @override
+  @JsonKey(ignore: true)
+  _$$_HomeModelPaginationCopyWith<_$_HomeModelPagination> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
