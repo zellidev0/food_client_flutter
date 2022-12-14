@@ -83,7 +83,7 @@ class SingleRecipeView extends ConsumerWidget {
                     filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                     child: Text(
                       recipe.displayedAttributes.name,
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ),
                 ),
@@ -172,15 +172,8 @@ class SingleRecipeView extends ConsumerWidget {
     required final Option<int> selectedYield,
   }) =>
       Builder(
-        builder: (final BuildContext context) => TabBar(
-          labelColor: Theme.of(context).colorScheme.primary,
-          indicatorColor: Theme.of(context).colorScheme.primary,
-          unselectedLabelColor: Theme.of(context).colorScheme.onSurfaceVariant,
-          splashBorderRadius: const BorderRadius.all(Radius.circular(12)),
-          indicator: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(12)),
-          ),
-          tabs: <Widget>[
+        builder: (final BuildContext context) => buildTabBar(
+          tabs: <Tab>[
             _buildTabIngredients(
               selectedYield: selectedYield,
               controller: controller,

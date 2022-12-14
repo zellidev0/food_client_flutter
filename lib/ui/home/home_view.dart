@@ -16,23 +16,25 @@ class HomeView extends ConsumerWidget {
       providers.homeControllerProvider.notifier,
     );
 
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          buildFilterChips(
-            controller: controller,
-            model: model,
-          ),
-          const SizedBox(height: 16),
-          _buildRecipesList(
-            controller: controller,
-            model: model,
-            recipes: model.filteredRecipes,
-            tags: model.allTags,
-          ),
-        ],
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            buildFilterChips(
+              controller: controller,
+              model: model,
+            ),
+            const SizedBox(height: 16),
+            _buildRecipesList(
+              controller: controller,
+              model: model,
+              recipes: model.filteredRecipes,
+              tags: model.allTags,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -70,16 +72,13 @@ class HomeView extends ConsumerWidget {
     required final Widget widgetToOpenOnClick,
   }) =>
       Builder(
-        builder: (final BuildContext context) => ChoiceChip(
+        builder: (final BuildContext context) => FilterChip(
           label: Text(
             '$text${selectedFilters.isEmpty ? '' : ' #${selectedFilters.length.toString()}'}',
           ),
           selected: selectedFilters.isNotEmpty,
           onSelected: (final _) {
-            controller.openDialog(
-              child: widgetToOpenOnClick,
-              backgroundColor: Theme.of(context).dialogBackgroundColor,
-            );
+            controller.openDialog(child: widgetToOpenOnClick);
           },
         ),
       );
@@ -127,18 +126,18 @@ class HomeView extends ConsumerWidget {
               padding: const EdgeInsets.all(32),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Theme.of(context).colorScheme.tertiary,
+                color: Theme.of(context).colorScheme.primary,
               ),
               child: Icon(
                 Icons.no_drinks,
                 size: 64,
-                color: Theme.of(context).colorScheme.onTertiary,
+                color: Theme.of(context).colorScheme.onPrimary,
               ),
             ),
             const SizedBox(height: 8),
             Text(
               'No recipes found',
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ],
         ),
@@ -149,24 +148,28 @@ class HomeView extends ConsumerWidget {
     required final HomeController controller,
     required final List<HomeModelFilterTag> tags,
   }) =>
-      Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        child: InkWell(
-          borderRadius: BorderRadius.circular(12),
-          onTap: () => controller.goToSingleRecipeView(recipeId: recipe.id),
-          child: ClipRRect(
+      Builder(
+        builder: (final BuildContext context) => Card(
+          color: Theme.of(context).colorScheme.surface,
+          child: InkWell(
             borderRadius: BorderRadius.circular(12),
-            child: Column(
-              children: <Widget>[
-                AspectRatio(
-                  aspectRatio: 1.5 / 1,
-                  child: buildCachedNetworkImage(imageUrl: recipe.imageUri),
-                ),
-                buildRecipeCardItemDescription(
-                  recipe: recipe,
-                  tags: tags,
-                ),
-              ],
+            onTap: () => controller.goToSingleRecipeView(recipeId: recipe.id),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Column(
+                children: <Widget>[
+                  AspectRatio(
+                    aspectRatio: 1.5 / 1,
+                    child: buildCachedNetworkImage(
+                      imageUrl: recipe.imageUri,
+                    ),
+                  ),
+                  buildRecipeCardItemDescription(
+                    recipe: recipe,
+                    tags: tags,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -181,9 +184,7 @@ class HomeView extends ConsumerWidget {
         children: <Widget>[
           ListTile(
             title: Text(recipe.displayedAttributes.name),
-            subtitle: Text(
-              recipe.displayedAttributes.headline,
-            ),
+            subtitle: Text(recipe.displayedAttributes.headline),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -217,18 +218,15 @@ Widget buildDialogTags({
             .allTags
             .filter((final HomeModelFilterTag tag) => tag.numberOfRecipes > 0)
             .map(
-              (final HomeModelFilterTag tag) => Tooltip(
-                message: tag.toString(),
-                child: ChoiceChip(
-                  label: Text('${tag.displayedName} (${tag.numberOfRecipes})'),
-                  selected: tag.isSelected,
-                  onSelected: (final bool selected) => ref
-                      .watch(providers.homeControllerProvider.notifier)
-                      .setTagSelected(
-                        tagId: tag.id,
-                        selected: selected,
-                      ),
-                ),
+              (final HomeModelFilterTag tag) => ChoiceChip(
+                label: Text('${tag.displayedName} (${tag.numberOfRecipes})'),
+                selected: tag.isSelected,
+                onSelected: (final bool selected) => ref
+                    .watch(providers.homeControllerProvider.notifier)
+                    .setTagSelected(
+                      tagId: tag.id,
+                      selected: selected,
+                    ),
               ),
             )
             .toList(),
@@ -307,6 +305,5 @@ abstract class HomeController extends StateNotifier<HomeModel> {
 
   void openDialog({
     required final Widget child,
-    required final Color backgroundColor,
   });
 }

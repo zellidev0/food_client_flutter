@@ -18,10 +18,6 @@ class MainView extends ConsumerWidget {
           child: Scaffold(
             bottomNavigationBar: ClipRRect(
               child: BottomNavigationBar(
-                backgroundColor: Theme.of(context).colorScheme.background,
-                selectedItemColor: Theme.of(context).colorScheme.onBackground,
-                unselectedItemColor:
-                    Theme.of(context).colorScheme.onBackground.withOpacity(0.24),
                 currentIndex: model.bottomNavigationBarIndex,
                 items: const <BottomNavigationBarItem>[
                   BottomNavigationBarItem(

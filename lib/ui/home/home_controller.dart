@@ -137,11 +137,9 @@ class HomeControllerImplementation extends HomeController {
   @override
   Future<void> openDialog({
     required final Widget child,
-    required final Color backgroundColor,
   }) async {
     await _navigationService.showModalBottomSheet(
       child: child,
-      backgroundColor: backgroundColor,
     );
   }
 

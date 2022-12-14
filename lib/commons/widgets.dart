@@ -15,12 +15,28 @@ CachedNetworkImage buildCachedNetworkImage({
           CircularProgressIndicator(),
         ],
       ),
-      errorWidget: (final _, final __, final ___) =>
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const <Widget>[
-              Icon(Icons.image_not_supported),
-            ],
-          ),
-
+      errorWidget: (final _, final __, final ___) => Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const <Widget>[
+          Icon(Icons.image_not_supported),
+        ],
+      ),
     );
+
+
+Widget buildTabBar({
+  required final List<Tab> tabs,
+}) =>
+    Builder(
+      builder: (final BuildContext context) => TabBar(
+        labelColor: Theme.of(context).colorScheme.onSecondaryContainer,
+        unselectedLabelColor: Theme.of(context).colorScheme.onSurfaceVariant,
+        splashBorderRadius: const BorderRadius.all(Radius.circular(64)),
+        indicator: BoxDecoration(
+          color: Theme.of(context).colorScheme.secondaryContainer,
+          borderRadius: const BorderRadius.all(Radius.circular(64)),
+        ),
+        tabs: tabs,
+      ),
+    );
+

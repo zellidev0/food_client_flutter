@@ -19,6 +19,7 @@ class CartView extends ConsumerWidget {
     );
 
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: DefaultTabController(
@@ -285,7 +286,7 @@ class CustomDelegate extends SliverPersistentHeaderDelegate {
             child: AutoSizeText(
               recipe.title,
               minFontSize: 1,
-              style: Theme.of(context).textTheme.bodyText2,
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
           ),
         ),
@@ -337,20 +338,18 @@ class TabBarSliverDelegate extends SliverPersistentHeaderDelegate {
     final bool overlapsContent,
   ) =>
       Builder(
-        builder: (final BuildContext context) => TabBar(
-          labelColor: Theme.of(context).indicatorColor,
-          splashBorderRadius: const BorderRadius.all(Radius.circular(12)),
-          indicator: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(12)),
+        builder: (final BuildContext context) => DecoratedBox(
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(64)),
+            color: Theme.of(context).colorScheme.surface,
           ),
-          indicatorColor: Colors.red,
-          tabs: const <Widget>[
-            Tab(text: 'Gesamt'),
-            Tab(text: 'Fehlt noch'),
-            Tab(text: 'Abgehackt'),
-            // Tab(text: 'Abgehackt'),
-          ],
+          child: buildTabBar(
+            tabs: const <Tab>[
+              Tab(text: 'Gesamt'),
+              Tab(text: 'Fehlt noch'),
+              Tab(text: 'Abgehackt'),
+            ],
+          ),
         ),
       );
 

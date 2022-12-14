@@ -96,13 +96,14 @@ class BeamerNavigationService implements NavigationServiceAggregator {
   @override
   Future<void> showModalBottomSheet({
     required final Widget child,
-    required final Color backgroundColor,
   }) async {
     await material.showModalBottomSheet(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(28),
+          topRight: Radius.circular(28),
+        ),
       ),
-      backgroundColor: backgroundColor,
       context: _beamerDelegate.navigator.context,
       builder: (final _) => child,
     );
@@ -112,9 +113,4 @@ class BeamerNavigationService implements NavigationServiceAggregator {
   void showSnackBar({required final String message}) =>
       material.ScaffoldMessenger.of(_beamerDelegate.navigator.context)
           .showSnackBar(material.SnackBar(content: material.Text(message)));
-
-  @override
-  void closeDialog() {
-    Navigator.of(_beamerDelegate.navigator.context, rootNavigator: true).pop();
-  }
 }
