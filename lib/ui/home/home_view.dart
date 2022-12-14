@@ -106,37 +106,12 @@ class HomeView extends ConsumerWidget {
                     controller: controller,
                   ),
                   noItemsFoundIndicatorBuilder: (final _) =>
-                      _buildNoItemsFound(),
+                      buildNoItemsFoundIcon(message: 'No recipes found'),
                   noMoreItemsIndicatorBuilder: (final _) => const Center(
                     child: Text('No more recipes'),
                   ),
                 ),
               ),
-            ),
-          ],
-        ),
-      );
-
-  Widget _buildNoItemsFound() => Builder(
-        builder: (final BuildContext context) => Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              padding: const EdgeInsets.all(32),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-              child: Icon(
-                Icons.no_drinks,
-                size: 64,
-                color: Theme.of(context).colorScheme.onPrimary,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'No recipes found',
-              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ],
         ),

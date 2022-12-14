@@ -25,78 +25,85 @@ class CartView extends ConsumerWidget {
         child: Builder(
           builder: (final BuildContext context) => NestedScrollView(
             headerSliverBuilder: (final _, final __) => <Widget>[
-              _buildRecipeListSliver(
-                model: model,
-                controller: controller,
-              ),
+              if (model.recipes.isEmpty)
+                const SliverToBoxAdapter()
+              else
+                _buildRecipeListSliver(
+                  model: model,
+                  controller: controller,
+                ),
               _buildTabBarSliver(
                 model: model,
                 controller: controller,
               ),
             ],
-            body: TabBarView(
-              children: <Widget>[
-                ListView(
-                  children: model.recipes
-                      .map(
-                        (final CartModelRecipe recipe) =>
-                            recipe.ingredients.map(
-                          (final CartModelIngredient ingredient) =>
-                              buildSingleIngredient(
-                            ingredient: ingredient,
-                            controller: controller,
-                            recipeId: recipe.recipeId,
-                            color: recipe.color,
-                          ),
-                        ),
-                      )
-                      .flattened
-                      .toList(),
-                ),
-                ListView(
-                  children: model.recipes
-                      .map(
-                        (final CartModelRecipe recipe) => recipe.ingredients
-                            .where(
-                              (final CartModelIngredient element) =>
-                                  !element.isTickedOff,
-                            )
+            body: model.recipes.isEmpty
+                ? buildNoItemsFoundIcon(message: 'Nothing in your \n shopping cart yet')
+                : TabBarView(
+                    children: <Widget>[
+                      ListView(
+                        children: model.recipes
                             .map(
-                              (final CartModelIngredient ingredient) =>
-                                  buildSingleIngredient(
-                                ingredient: ingredient,
-                                controller: controller,
-                                recipeId: recipe.recipeId,
-                                color: recipe.color,
+                              (final CartModelRecipe recipe) =>
+                                  recipe.ingredients.map(
+                                (final CartModelIngredient ingredient) =>
+                                    buildSingleIngredient(
+                                  ingredient: ingredient,
+                                  controller: controller,
+                                  recipeId: recipe.recipeId,
+                                  color: recipe.color,
+                                ),
                               ),
-                            ),
-                      )
-                      .flattened
-                      .toList(),
-                ),
-                ListView(
-                  children: model.recipes
-                      .map(
-                        (final CartModelRecipe recipe) => recipe.ingredients
-                            .where(
-                              (final CartModelIngredient element) =>
-                                  element.isTickedOff,
                             )
+                            .flattened
+                            .toList(),
+                      ),
+                      ListView(
+                        children: model.recipes
                             .map(
-                              (final CartModelIngredient ingredient) =>
-                                  buildSingleIngredient(
-                                ingredient: ingredient,
-                                controller: controller,
-                                recipeId: recipe.recipeId,
-                                color: recipe.color,
-                              ),
-                            ),
-                      )
-                      .flattened
-                      .toList(),
-                ),
-              ],
-            ),
+                              (final CartModelRecipe recipe) => recipe
+                                  .ingredients
+                                  .where(
+                                    (final CartModelIngredient element) =>
+                                        !element.isTickedOff,
+                                  )
+                                  .map(
+                                    (final CartModelIngredient ingredient) =>
+                                        buildSingleIngredient(
+                                      ingredient: ingredient,
+                                      controller: controller,
+                                      recipeId: recipe.recipeId,
+                                      color: recipe.color,
+                                    ),
+                                  ),
+                            )
+                            .flattened
+                            .toList(),
+                      ),
+                      ListView(
+                        children: model.recipes
+                            .map(
+                              (final CartModelRecipe recipe) => recipe
+                                  .ingredients
+                                  .where(
+                                    (final CartModelIngredient element) =>
+                                        element.isTickedOff,
+                                  )
+                                  .map(
+                                    (final CartModelIngredient ingredient) =>
+                                        buildSingleIngredient(
+                                      ingredient: ingredient,
+                                      controller: controller,
+                                      recipeId: recipe.recipeId,
+                                      color: recipe.color,
+                                    ),
+                                  ),
+                            )
+                            .flattened
+                            .toList(),
+                      ),
+                    ],
+                  ),
           ),
         ),
       ),
