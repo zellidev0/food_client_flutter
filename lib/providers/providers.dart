@@ -171,20 +171,32 @@ class Providers {
       locationBuilder: RoutesLocationBuilder(
         routes: <Pattern, dynamic Function(BuildContext, BeamState, Object?)>{
           NavigationServiceUris.homeRouteUri.toString():
-              (final _, final __, final ___) => const HomeView(),
+              (final _, final __, final ___) => BeamPage(
+                    key: UniqueKey(),
+                    child: const HomeView(),
+                    type: BeamPageType.noTransition,
+                  ),
           NavigationServiceUris.cartRouteUri.toString():
-              (final _, final __, final ___) => const CartView(),
-          '${NavigationServiceUris.singleRecipeUri}': (
+              (final _, final __, final ___) => BeamPage(
+                    key: UniqueKey(),
+                    child: const CartView(),
+                    type: BeamPageType.material,
+                  ),
+          NavigationServiceUris.singleRecipeUri.toString(): (
             final _,
             final BeamState state,
             final ___,
-          ) =>
-              SingleRecipeView(
-                recipeId: state
-                    .queryParameters[NavigationServiceUris.singleRecipeIdKey]!,
+          ) {
+            final String recipeId =
+                state.queryParameters[NavigationServiceUris.singleRecipeIdKey]!;
+            return BeamPage(
+              key: ValueKey<String>('singleRecipe-$recipeId'),
+              child: SingleRecipeView(
+                recipeId: recipeId,
               ),
-          // '*': (final _, final __, final ___) => const HomeView(),
-          // '/': (final _, final __, final ___) => const HomeView(),
+              type: BeamPageType.noTransition,
+            );
+          },
         },
       ),
     ),
