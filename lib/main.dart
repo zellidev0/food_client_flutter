@@ -30,7 +30,7 @@ void main() async {
         Locale('de'),
       ],
       path: 'assets/translations',
-      fallbackLocale: const Locale('de'),
+      fallbackLocale: const Locale('en'),
       child: const ProviderScope(
         child: MyApp(),
       ),
