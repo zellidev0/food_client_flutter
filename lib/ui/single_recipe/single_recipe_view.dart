@@ -348,27 +348,25 @@ class TabBarSliverDelegate extends SliverPersistentHeaderDelegate {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           const Text('Ingredients'),
-          ElevatedButton.icon(
-            onPressed: yields.toList().length < 2
-                ? null
-                : () {
-                    controller.setSelectedYield(
-                      yield: yields
-                          .map(
-                            (final SingleRecipeModelYield yield) =>
-                                yield.servings,
-                          )
-                          .toList()[index],
-                      recipeId: recipeId,
-                    );
-                  },
-            icon: yields.toList().length < 2
-                ? const Icon(Icons.group)
-                : (yields.toList().length - index != yields.toList().length
-                    ? const Icon(Icons.group_add)
-                    : const Icon(Icons.group_remove)),
-            label: Text('${selectedYield.getOrElse(() => 1)}'),
-          )
+          if (yields.toList().length > 1)
+            ElevatedButton.icon(
+              onPressed: () {
+                controller.setSelectedYield(
+                  yield: yields
+                      .map(
+                        (final SingleRecipeModelYield yield) => yield.servings,
+                      )
+                      .toList()[index],
+                  recipeId: recipeId,
+                );
+              },
+              icon: yields.toList().length < 2
+                  ? const Icon(Icons.group)
+                  : (yields.toList().length - index != yields.toList().length
+                      ? const Icon(Icons.group_add)
+                      : const Icon(Icons.group_remove)),
+              label: Text('${selectedYield.getOrElse(() => 1)}'),
+            )
         ],
       ),
     );
