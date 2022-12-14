@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/services/persistence_service/persistence_service_model.dart';
 import 'package:food_client/ui/cart/cart_persistence_service.dart';
@@ -113,24 +112,33 @@ class PersistenceService extends PersistenceServiceAggregator {
   @override
   Task<void> deleteIngredients({
     required final List<String> ingredientKeys,
-    required final List<String> recipeKeys,
-  }) =>
-      Task<void>(
-        () async => await shoppingListBox.deleteAll(
-          IterableZip<String>(<List<String>>[recipeKeys, ingredientKeys]).map(
-            (final List<String> ids) => buildKey(
-              recipeId: ids[0],
-              ingredientId: ids[1],
-            ),
-          ),
-        ),
-      );
-
-  String buildKey({
-    required final String ingredientId,
     required final String recipeId,
   }) =>
-      '$recipeId\$$ingredientId';
+      optionOf(shoppingListBox.get(recipeId))
+          .map(
+            (final PersistenceServiceModelShoppingListRecipe recipe) =>
+                recipe.copyWith(
+              ingredients: recipe.ingredients
+                  .filter(
+                    (final PersistenceServiceModelShoppingListIngredient
+                            ingredient) =>
+                        !ingredientKeys.contains(ingredient.ingredientId),
+                  )
+                  .toList(),
+            ),
+          )
+          .fold(
+            () => Task<void>(() async {}),
+            (final PersistenceServiceModelShoppingListRecipe recipe) =>
+                Task<void>(
+              () async => await shoppingListBox.put(recipeId, recipe),
+            ),
+          );
+
+  @override
+  Task<void> deleteRecipe({required final String recipeId}) => Task<void>(
+        () async => await shoppingListBox.delete(recipeId),
+      );
 }
 
 CartPersistenceServiceModelRecipe mapToCartPersistenceServiceModelRecipe(

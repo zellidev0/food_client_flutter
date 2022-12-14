@@ -12,8 +12,10 @@ abstract class CartPersistenceService {
   });
   Task<void> deleteIngredients({
     required final List<String> ingredientKeys,
-    required final List<String> recipeKeys,
+    required final String recipeId,
   });
+
+  Task<void> deleteRecipe({required String recipeId});
 }
 
 @freezed

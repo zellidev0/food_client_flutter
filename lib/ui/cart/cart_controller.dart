@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
 import 'package:food_client/commons/utils.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/ui/cart/cart_model.dart';
@@ -100,47 +101,62 @@ class CartControllerImplementation extends CartController {
       .toList();
 
   @override
-  void showDeleteDialog() {
+  void showDeleteRecipeDialog({
+    required final String recipeId,
+  }) {
     unawaited(
       _navigationService.showDialog(
-        title: 'Delete all ticked off?',
-        content: 'Delete all ticket off ingredients, permanently?',
+        title: 'Remove recipe?',
+        content:
+            'Remove this recipe from your shopping cart or only the ticked off ingredients?',
         actions: some(
           <NavigationServiceDialogAction>[
             NavigationServiceDialogAction(
-              text: 'Cancel',
+              text: 'cancel',
               onPressed: () {},
             ),
-            // NavigationServiceDialogAction(
-            //   text: 'Delete',
-            //   onPressed: () async {
-            //     await _persistenceService
-            //         .deleteIngredients(
-            //           ingredientKeys: state.ingredients
-            //               .where(
-            //                 (final CartModelIngredient element) =>
-            //                     element.isTickedOff,
-            //               )
-            //               .map(
-            //                 (final CartModelIngredient ingredient) =>
-            //                     ingredient.ingredient.ingredientId,
-            //               )
-            //               .toList(),
-            //           recipeKeys: state.ingredients
-            //               .where(
-            //                 (final CartModelIngredient element) =>
-            //                     element.isTickedOff,
-            //               )
-            //               .map(
-            //                 (final CartModelIngredient ingredient) =>
-            //                     ingredient.ingredient.recipeId,
-            //               )
-            //               .toList(),
-            //         )
-            //         .run();
-            //     state = state.copyWith(ingredients: _getAllIngredients());
-            //   },
-            // ),
+            NavigationServiceDialogAction(
+              text: 'only ticket off',
+              onPressed: () async {
+                await optionOf(
+                  state.recipes.firstWhereOrNull(
+                    (final CartModelRecipe recipe) =>
+                        recipe.recipeId == recipeId,
+                  ),
+                )
+                    .map(
+                      (final CartModelRecipe recipe) => recipe.ingredients
+                          .filter(
+                            (final CartModelIngredient ingredient) =>
+                                ingredient.isTickedOff,
+                          )
+                          .map(
+                            (final CartModelIngredient ingredient) =>
+                                ingredient.ingredient.ingredientId,
+                          )
+                          .toList(),
+                    )
+                    .fold(
+                      () => null,
+                      (final List<String> ingredientIds) => _persistenceService
+                          .deleteIngredients(
+                            ingredientKeys: ingredientIds,
+                            recipeId: recipeId,
+                          )
+                          .run(),
+                    );
+                state = state.copyWith(recipes: _getAllRecipes());
+              },
+            ),
+            NavigationServiceDialogAction(
+              text: 'whole recipe',
+              onPressed: () async {
+                await _persistenceService
+                    .deleteRecipe(recipeId: recipeId)
+                    .run();
+                state = state.copyWith(recipes: _getAllRecipes());
+              },
+            ),
           ],
         ),
       ),

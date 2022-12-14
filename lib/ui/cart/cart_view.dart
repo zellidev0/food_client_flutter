@@ -151,7 +151,8 @@ class CartView extends ConsumerWidget {
               recipeId: recipeId,
               isTickedOff: !ingredient.isTickedOff,
             ),
-            onLongPress: controller.showDeleteDialog,
+            onLongPress: () =>
+                controller.showDeleteRecipeDialog(recipeId: recipeId),
             child: ListTile(
               enabled: !ingredient.isTickedOff,
               leading: AspectRatio(
@@ -189,7 +190,9 @@ abstract class CartController extends StateNotifier<CartModel> {
     required final String recipeId,
     required final bool isTickedOff,
   });
-  void showDeleteDialog();
+  void showDeleteRecipeDialog({
+    required final String recipeId,
+  });
 }
 
 class CustomDelegate extends SliverPersistentHeaderDelegate {
@@ -230,6 +233,9 @@ class CustomDelegate extends SliverPersistentHeaderDelegate {
                 child: InkWell(
                   borderRadius: BorderRadius.circular(12),
                   onTap: () => controller.openSingleRecipe(
+                    recipeId: recipe.recipeId,
+                  ),
+                  onLongPress: () => controller.showDeleteRecipeDialog(
                     recipeId: recipe.recipeId,
                   ),
                   child: Stack(
