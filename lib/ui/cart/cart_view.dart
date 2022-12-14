@@ -20,85 +20,82 @@ class CartView extends ConsumerWidget {
 
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: DefaultTabController(
-          length: 3,
-          child: Builder(
-            builder: (final BuildContext context) => NestedScrollView(
-              headerSliverBuilder: (final _, final __) => <Widget>[
-                _buildRecipeListSliver(
-                  model: model,
-                  controller: controller,
+      body: DefaultTabController(
+        length: 3,
+        child: Builder(
+          builder: (final BuildContext context) => NestedScrollView(
+            headerSliverBuilder: (final _, final __) => <Widget>[
+              _buildRecipeListSliver(
+                model: model,
+                controller: controller,
+              ),
+              _buildTabBarSliver(
+                model: model,
+                controller: controller,
+              ),
+            ],
+            body: TabBarView(
+              children: <Widget>[
+                ListView(
+                  children: model.recipes
+                      .map(
+                        (final CartModelRecipe recipe) =>
+                            recipe.ingredients.map(
+                          (final CartModelIngredient ingredient) =>
+                              buildSingleIngredient(
+                            ingredient: ingredient,
+                            controller: controller,
+                            recipeId: recipe.recipeId,
+                            color: recipe.color,
+                          ),
+                        ),
+                      )
+                      .flattened
+                      .toList(),
                 ),
-                _buildTabBarSliver(
-                  model: model,
-                  controller: controller,
+                ListView(
+                  children: model.recipes
+                      .map(
+                        (final CartModelRecipe recipe) => recipe.ingredients
+                            .where(
+                              (final CartModelIngredient element) =>
+                                  !element.isTickedOff,
+                            )
+                            .map(
+                              (final CartModelIngredient ingredient) =>
+                                  buildSingleIngredient(
+                                ingredient: ingredient,
+                                controller: controller,
+                                recipeId: recipe.recipeId,
+                                color: recipe.color,
+                              ),
+                            ),
+                      )
+                      .flattened
+                      .toList(),
+                ),
+                ListView(
+                  children: model.recipes
+                      .map(
+                        (final CartModelRecipe recipe) => recipe.ingredients
+                            .where(
+                              (final CartModelIngredient element) =>
+                                  element.isTickedOff,
+                            )
+                            .map(
+                              (final CartModelIngredient ingredient) =>
+                                  buildSingleIngredient(
+                                ingredient: ingredient,
+                                controller: controller,
+                                recipeId: recipe.recipeId,
+                                color: recipe.color,
+                              ),
+                            ),
+                      )
+                      .flattened
+                      .toList(),
                 ),
               ],
-              body: TabBarView(
-                children: <Widget>[
-                  ListView(
-                    children: model.recipes
-                        .map(
-                          (final CartModelRecipe recipe) =>
-                              recipe.ingredients.map(
-                            (final CartModelIngredient ingredient) =>
-                                buildSingleIngredient(
-                              ingredient: ingredient,
-                              controller: controller,
-                              recipeId: recipe.recipeId,
-                              color: recipe.color,
-                            ),
-                          ),
-                        )
-                        .flattened
-                        .toList(),
-                  ),
-                  ListView(
-                    children: model.recipes
-                        .map(
-                          (final CartModelRecipe recipe) => recipe.ingredients
-                              .where(
-                                (final CartModelIngredient element) =>
-                                    !element.isTickedOff,
-                              )
-                              .map(
-                                (final CartModelIngredient ingredient) =>
-                                    buildSingleIngredient(
-                                  ingredient: ingredient,
-                                  controller: controller,
-                                  recipeId: recipe.recipeId,
-                                  color: recipe.color,
-                                ),
-                              ),
-                        )
-                        .flattened
-                        .toList(),
-                  ),
-                  ListView(
-                    children: model.recipes
-                        .map(
-                          (final CartModelRecipe recipe) => recipe.ingredients
-                              .where(
-                                (final CartModelIngredient element) =>
-                                    element.isTickedOff,
-                              )
-                              .map(
-                                (final CartModelIngredient ingredient) =>
-                                    buildSingleIngredient(
-                                  ingredient: ingredient,
-                                  controller: controller,
-                                  recipeId: recipe.recipeId,
-                                  color: recipe.color,
-                                ),
-                              ),
-                        )
-                        .flattened
-                        .toList(),
-                  ),
-                ],
-              ),
             ),
           ),
         ),
@@ -114,8 +111,10 @@ class CartView extends ConsumerWidget {
         floating: true,
         pinned: true,
         delegate: TabBarSliverDelegate(
-          extendedHeight: const TabBar(tabs: <Widget>[]).preferredSize.height,
-          collapsedHeight: const TabBar(tabs: <Widget>[]).preferredSize.height,
+          extendedHeight:
+              const TabBar(tabs: <Widget>[]).preferredSize.height + 32,
+          collapsedHeight:
+              const TabBar(tabs: <Widget>[]).preferredSize.height + 32,
         ),
       );
 
@@ -127,7 +126,7 @@ class CartView extends ConsumerWidget {
         builder: (final BuildContext context) => SliverPersistentHeader(
           floating: false,
           pinned: true,
-          delegate: CustomDelegate(
+          delegate: RecipesListDelegate(
             model: model,
             controller: controller,
             extendedHeight: MediaQuery.of(context).size.height * 0.24,
@@ -142,36 +141,39 @@ class CartView extends ConsumerWidget {
     required final CartModelIngredient ingredient,
     required final CartController controller,
   }) =>
-      Card(
-        color: ingredient.isTickedOff ? Colors.grey.shade300 : color,
-        child: Builder(
-          builder: (final BuildContext context) => InkWell(
-            borderRadius: BorderRadius.circular(8),
-            onTap: () async => controller.tickOff(
-              ingredientId: ingredient.ingredient.ingredientId,
-              recipeId: recipeId,
-              isTickedOff: !ingredient.isTickedOff,
-            ),
-            onLongPress: () =>
-                controller.showDeleteRecipeDialog(recipeId: recipeId),
-            child: ListTile(
-              enabled: !ingredient.isTickedOff,
-              leading: AspectRatio(
-                aspectRatio: 1,
-                child: Opacity(
-                  opacity: ingredient.isTickedOff ? 0.5 : 1,
-                  child: ingredient.ingredient.imageUrl.fold(
-                    () => const Icon(Icons.image_not_supported),
-                    (final Uri url) => buildCachedNetworkImage(imageUrl: url),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Card(
+          color: ingredient.isTickedOff ? Colors.grey.shade300 : color,
+          child: Builder(
+            builder: (final BuildContext context) => InkWell(
+              borderRadius: BorderRadius.circular(8),
+              onTap: () async => controller.tickOff(
+                ingredientId: ingredient.ingredient.ingredientId,
+                recipeId: recipeId,
+                isTickedOff: !ingredient.isTickedOff,
+              ),
+              onLongPress: () =>
+                  controller.showDeleteRecipeDialog(recipeId: recipeId),
+              child: ListTile(
+                enabled: !ingredient.isTickedOff,
+                leading: AspectRatio(
+                  aspectRatio: 1,
+                  child: Opacity(
+                    opacity: ingredient.isTickedOff ? 0.5 : 1,
+                    child: ingredient.ingredient.imageUrl.fold(
+                      () => const Icon(Icons.image_not_supported),
+                      (final Uri url) => buildCachedNetworkImage(imageUrl: url),
+                    ),
                   ),
                 ),
-              ),
-              title: Text(ingredient.ingredient.displayedName),
-              subtitle: Text(
-                '${ingredient.ingredient.amount.fold(
-                  () => 'nach Ermessen',
-                  (final double amount) => amount.toString(),
-                )} ${ingredient.ingredient.unit.getOrElse(() => '')}',
+                title: Text(ingredient.ingredient.displayedName),
+                subtitle: Text(
+                  '${ingredient.ingredient.amount.fold(
+                    () => 'nach Ermessen',
+                    (final double amount) => amount.toString(),
+                  )} ${ingredient.ingredient.unit.getOrElse(() => '')}',
+                ),
               ),
             ),
           ),
@@ -196,13 +198,13 @@ abstract class CartController extends StateNotifier<CartModel> {
   });
 }
 
-class CustomDelegate extends SliverPersistentHeaderDelegate {
+class RecipesListDelegate extends SliverPersistentHeaderDelegate {
   final CartModel model;
   final CartController controller;
   final double extendedHeight;
   final double collapsedHeight;
 
-  CustomDelegate({
+  RecipesListDelegate({
     required this.model,
     required this.controller,
     required this.extendedHeight,
@@ -223,6 +225,7 @@ class CustomDelegate extends SliverPersistentHeaderDelegate {
       return SizedBox(height: collapsedHeight);
     }
     return ListView(
+      padding: const EdgeInsets.all(16).copyWith(bottom: 0),
       scrollDirection: Axis.horizontal,
       children: model.recipes
           .map(
@@ -230,7 +233,6 @@ class CustomDelegate extends SliverPersistentHeaderDelegate {
               width: height * 0.75,
               child: Card(
                 color: recipe.color,
-                margin: const EdgeInsets.all(8),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(12),
                   onTap: () => controller.openSingleRecipe(
@@ -338,17 +340,20 @@ class TabBarSliverDelegate extends SliverPersistentHeaderDelegate {
     final bool overlapsContent,
   ) =>
       Builder(
-        builder: (final BuildContext context) => DecoratedBox(
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(64)),
-            color: Theme.of(context).colorScheme.surface,
-          ),
-          child: buildTabBar(
-            tabs: const <Tab>[
-              Tab(text: 'Gesamt'),
-              Tab(text: 'Fehlt noch'),
-              Tab(text: 'Abgehackt'),
-            ],
+        builder: (final BuildContext context) => Padding(
+          padding: const EdgeInsets.all(16),
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(64)),
+              color: Theme.of(context).colorScheme.surface,
+            ),
+            child: buildTabBar(
+              tabs: const <Tab>[
+                Tab(text: 'Gesamt'),
+                Tab(text: 'Fehlt noch'),
+                Tab(text: 'Abgehackt'),
+              ],
+            ),
           ),
         ),
       );

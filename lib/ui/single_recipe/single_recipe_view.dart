@@ -69,7 +69,6 @@ class SingleRecipeView extends ConsumerWidget {
   }) =>
       Builder(
         builder: (final BuildContext context) => NestedScrollView(
-          physics: const ClampingScrollPhysics(),
           headerSliverBuilder: (final _, final __) => <Widget>[
             SliverAppBar(
               floating: true,
@@ -101,9 +100,9 @@ class SingleRecipeView extends ConsumerWidget {
               pinned: true,
               delegate: TabBarSliverDelegate(
                 extendedHeight:
-                    const TabBar(tabs: <Widget>[]).preferredSize.height + 8,
+                    const TabBar(tabs: <Widget>[]).preferredSize.height + 32,
                 collapsedHeight:
-                    const TabBar(tabs: <Widget>[]).preferredSize.height + 8,
+                    const TabBar(tabs: <Widget>[]).preferredSize.height + 32,
                 controller: controller,
                 yields: recipe.yields,
                 selectedYield: selectedYield,
@@ -111,13 +110,10 @@ class SingleRecipeView extends ConsumerWidget {
               ),
             ),
           ],
-          body: Padding(
-            padding: const EdgeInsets.all(8),
-            child: buildTabsContent(
-              recipe: recipe,
-              selectedYield: selectedYield,
-              controller: controller,
-            ),
+          body: buildTabsContent(
+            recipe: recipe,
+            selectedYield: selectedYield,
+            controller: controller,
           ),
         ),
       );
@@ -152,61 +148,54 @@ class SingleRecipeView extends ConsumerWidget {
   Widget _buildDescriptionStepsTab({
     required final List<SingleRecipeModelStep> steps,
   }) =>
-      Column(
-        children: <Widget>[
-          const SizedBox(height: 8),
-          Expanded(
-            child: ListView(
-              children: steps
-                  .mapIndexed(
-                    (final int index, final SingleRecipeModelStep step) =>
-                        buildSingleDescriptionCard(
-                      index: index,
-                      step: step,
-                    ),
-                  )
-                  .toList(),
-            ),
-          ),
-        ],
+      ListView(
+        children: steps
+            .mapIndexed(
+              (final int index, final SingleRecipeModelStep step) =>
+                  buildSingleDescriptionCard(
+                index: index,
+                step: step,
+              ),
+            )
+            .toList(),
       );
 
-  Card buildSingleDescriptionCard({
+  Widget buildSingleDescriptionCard({
     required final SingleRecipeModelStep step,
     required final int index,
   }) =>
-      Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Column(
-          children: <Widget>[
-            Stack(
-              children: <Widget>[
-                AspectRatio(
-                  aspectRatio: 1.5 / 1,
-                  child: step.imageUrl.fold(
-                    () => const Icon(Icons.image_not_supported),
-                    (final Uri url) => ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(12),
-                        topRight: Radius.circular(12),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Card(
+          child: Column(
+            children: <Widget>[
+              Stack(
+                children: <Widget>[
+                  AspectRatio(
+                    aspectRatio: 1.5 / 1,
+                    child: step.imageUrl.fold(
+                      () => const Icon(Icons.image_not_supported),
+                      (final Uri url) => ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(12),
+                          topRight: Radius.circular(12),
+                        ),
+                        child: buildCachedNetworkImage(imageUrl: url),
                       ),
-                      child: buildCachedNetworkImage(imageUrl: url),
                     ),
                   ),
-                ),
-                _buildDescriptionTextStepIndicator(stepNumber: index)
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: MarkdownBody(
-                data: step.instructionMarkdown,
-                shrinkWrap: true,
+                  _buildDescriptionTextStepIndicator(stepNumber: index)
+                ],
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: MarkdownBody(
+                  data: step.instructionMarkdown,
+                  shrinkWrap: true,
+                ),
+              ),
+            ],
+          ),
         ),
       );
 
@@ -215,11 +204,9 @@ class SingleRecipeView extends ConsumerWidget {
   }) =>
       Padding(
         padding: const EdgeInsets.all(16),
-        child: Builder(
-          builder: (final BuildContext context) => FloatingActionButton(
-            onPressed: null,
-            child: Text((stepNumber + 1).toString()),
-          ),
+        child: FloatingActionButton(
+          onPressed: null,
+          child: Text((stepNumber + 1).toString()),
         ),
       );
 
@@ -238,23 +225,26 @@ class SingleRecipeView extends ConsumerWidget {
         (final SingleRecipeModelYield yield) => ListView(
           children: yield.ingredients
               .map(
-                (final SingleRecipeModelIngredient ingredient) => Card(
-                  child: ListTile(
-                    leading: AspectRatio(
-                      aspectRatio: 1,
-                      child: ingredient.imageUrl.fold(
-                        () => const Icon(Icons.image_not_supported),
-                        (final Uri url) => buildCachedNetworkImage(
-                          imageUrl: url,
+                (final SingleRecipeModelIngredient ingredient) => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Card(
+                    child: ListTile(
+                      leading: AspectRatio(
+                        aspectRatio: 1,
+                        child: ingredient.imageUrl.fold(
+                          () => const Icon(Icons.image_not_supported),
+                          (final Uri url) => buildCachedNetworkImage(
+                            imageUrl: url,
+                          ),
                         ),
                       ),
-                    ),
-                    title: Text(ingredient.displayedName),
-                    subtitle: Text(
-                      '${ingredient.amount.fold(
-                        () => 'nach Ermessen',
-                        (final double amount) => amount.toString(),
-                      )} ${ingredient.unit.getOrElse(() => '')}',
+                      title: Text(ingredient.displayedName),
+                      subtitle: Text(
+                        '${ingredient.amount.fold(
+                          () => 'nach Ermessen',
+                          (final double amount) => amount.toString(),
+                        )} ${ingredient.unit.getOrElse(() => '')}',
+                      ),
                     ),
                   ),
                 ),
@@ -319,7 +309,7 @@ class TabBarSliverDelegate extends SliverPersistentHeaderDelegate {
     final bool overlapsContent,
   ) =>
       Padding(
-        padding: const EdgeInsets.only(left: 8,top: 8,right: 8),
+        padding: const EdgeInsets.all(16),
         child: DecoratedBox(
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(64)),
