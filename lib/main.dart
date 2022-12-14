@@ -47,7 +47,9 @@ class MyApp extends ConsumerWidget {
         title: 'Food client',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
-            brightness: MediaQuery.of(context).platformBrightness,
+            brightness:
+                MediaQueryData.fromWindow(WidgetsBinding.instance.window)
+                    .platformBrightness,
             seedColor: Colors.amberAccent,
           ),
           useMaterial3: true,
