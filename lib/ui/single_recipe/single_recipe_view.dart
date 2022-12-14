@@ -34,10 +34,13 @@ class SingleRecipeView extends ConsumerWidget {
           () => const Center(child: CircularProgressIndicator()),
           (final SingleRecipeModelRecipe recipe) => Stack(
             children: <Widget>[
-              _buildContent(
-                recipe: recipe,
-                selectedYield: model.selectedYield,
-                controller: controller,
+              DefaultTabController(
+                length: 2,
+                child: _buildContent(
+                  recipe: recipe,
+                  selectedYield: model.selectedYield,
+                  controller: controller,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(16),
@@ -65,8 +68,9 @@ class SingleRecipeView extends ConsumerWidget {
     required final Option<int> selectedYield,
   }) =>
       Builder(
-        builder: (final BuildContext context) => CustomScrollView(
-          slivers: <Widget>[
+        builder: (final BuildContext context) => NestedScrollView(
+          physics: const ClampingScrollPhysics(),
+          headerSliverBuilder: (final _, final __) => <Widget>[
             SliverAppBar(
               floating: true,
               shadowColor: Colors.transparent,
@@ -87,19 +91,34 @@ class SingleRecipeView extends ConsumerWidget {
                     ),
                   ),
                 ),
-                // background: buildTopImage(recipe: recipe),
+                background: buildTopImage(recipe: recipe),
               ),
               pinned: true,
               expandedHeight: MediaQuery.of(context).size.height * 0.3,
             ),
-            SliverFillRemaining(
-              child: buildTabContent(
-                recipe: recipe,
-                selectedYield: selectedYield,
+            SliverPersistentHeader(
+              floating: false,
+              pinned: true,
+              delegate: TabBarSliverDelegate(
+                extendedHeight:
+                    const TabBar(tabs: <Widget>[]).preferredSize.height + 8,
+                collapsedHeight:
+                    const TabBar(tabs: <Widget>[]).preferredSize.height + 8,
                 controller: controller,
+                yields: recipe.yields,
+                selectedYield: selectedYield,
+                recipeId: _recipeId,
               ),
             ),
           ],
+          body: Padding(
+            padding: const EdgeInsets.all(8),
+            child: buildTabsContent(
+              recipe: recipe,
+              selectedYield: selectedYield,
+              controller: controller,
+            ),
+          ),
         ),
       );
 
@@ -112,35 +131,6 @@ class SingleRecipeView extends ConsumerWidget {
           )
           .getOrElse(() => const Icon(Icons.image_not_supported));
 
-  Widget buildTabContent({
-    required final SingleRecipeModelRecipe recipe,
-    required final Option<int> selectedYield,
-    required final SingleRecipeController controller,
-  }) =>
-      Padding(
-        padding: const EdgeInsets.all(16),
-        child: DefaultTabController(
-          length: 2,
-          child: Column(
-            children: <Widget>[
-              _buildTabBar(
-                controller: controller,
-                yields: recipe.yields,
-                selectedYield: selectedYield,
-              ),
-              // _buildCookingDetails(),
-              Expanded(
-                child: buildTabsContent(
-                  recipe: recipe,
-                  selectedYield: selectedYield,
-                  controller: controller,
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-
   Widget buildTabsContent({
     required final SingleRecipeModelRecipe recipe,
     required final Option<int> selectedYield,
@@ -148,82 +138,16 @@ class SingleRecipeView extends ConsumerWidget {
   }) =>
       TabBarView(
         children: <Widget>[
-          Column(
-            children: <Widget>[
-              const SizedBox(height: 8),
-              Expanded(
-                child: buildIngredients(
-                  controller: controller,
-                  yields: recipe.yields,
-                  selectedYield: selectedYield,
-                ),
-              )
-            ],
+          buildIngredients(
+            controller: controller,
+            yields: recipe.yields,
+            selectedYield: selectedYield,
           ),
           _buildDescriptionStepsTab(
             steps: recipe.steps,
           ),
         ],
       );
-
-  Widget _buildTabBar({
-    required final SingleRecipeController controller,
-    required final List<SingleRecipeModelYield> yields,
-    required final Option<int> selectedYield,
-  }) =>
-      buildTabBar(
-        tabs: <Tab>[
-          _buildTabIngredients(
-            selectedYield: selectedYield,
-            controller: controller,
-            yields: yields,
-          ),
-          const Tab(text: 'Instructions'),
-        ],
-      );
-
-  Tab _buildTabIngredients({
-    required final Option<int> selectedYield,
-    required final SingleRecipeController controller,
-    required final List<SingleRecipeModelYield> yields,
-  }) {
-    final int index = (yields.indexWhere(
-              (final SingleRecipeModelYield yield) =>
-                  some(yield.servings) == selectedYield,
-            ) +
-            1) %
-        yields.length;
-    return Tab(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          Text(
-            'Ingredients\n ${selectedYield.getOrElse(() => 1)} Persons',
-          ),
-          IconButton(
-            onPressed: yields.toList().length < 2
-                ? null
-                : () {
-                    controller.setSelectedYield(
-                      yield: yields
-                          .map(
-                            (final SingleRecipeModelYield yield) =>
-                                yield.servings,
-                          )
-                          .toList()[index],
-                      recipeId: _recipeId,
-                    );
-                  },
-            icon: yields.toList().length < 2
-                ? const Icon(Icons.group)
-                : (yields.toList().length - index != yields.toList().length
-                    ? const Icon(Icons.group_add)
-                    : const Icon(Icons.group_remove)),
-          )
-        ],
-      ),
-    );
-  }
 
   Widget _buildDescriptionStepsTab({
     required final List<SingleRecipeModelStep> steps,
@@ -369,4 +293,102 @@ abstract class SingleRecipeController extends StateNotifier<SingleRecipeModel> {
     required final String recipeId,
   });
   void goBack();
+}
+
+class TabBarSliverDelegate extends SliverPersistentHeaderDelegate {
+  final double extendedHeight;
+  final double collapsedHeight;
+  final Option<int> selectedYield;
+  final SingleRecipeController controller;
+  final List<SingleRecipeModelYield> yields;
+  final String recipeId;
+
+  TabBarSliverDelegate({
+    required this.extendedHeight,
+    required this.collapsedHeight,
+    required this.selectedYield,
+    required this.controller,
+    required this.yields,
+    required this.recipeId,
+  });
+
+  @override
+  Widget build(
+    final BuildContext context,
+    final double shrinkOffset,
+    final bool overlapsContent,
+  ) =>
+      Padding(
+        padding: const EdgeInsets.only(left: 8,top: 8,right: 8),
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(64)),
+            color: Theme.of(context).colorScheme.surface,
+          ),
+          child: buildTabBar(
+            tabs: <Tab>[
+              _buildTabIngredients(
+                selectedYield: selectedYield,
+                controller: controller,
+                yields: yields,
+                recipeId: recipeId,
+              ),
+              const Tab(text: 'Instructions'),
+            ],
+          ),
+        ),
+      );
+
+  Tab _buildTabIngredients({
+    required final Option<int> selectedYield,
+    required final SingleRecipeController controller,
+    required final List<SingleRecipeModelYield> yields,
+    required final String recipeId,
+  }) {
+    final int index = (yields.indexWhere(
+              (final SingleRecipeModelYield yield) =>
+                  some(yield.servings) == selectedYield,
+            ) +
+            1) %
+        yields.length;
+    return Tab(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          Text(
+            'Ingredients\n ${selectedYield.getOrElse(() => 1)} Persons',
+          ),
+          IconButton(
+            onPressed: yields.toList().length < 2
+                ? null
+                : () {
+                    controller.setSelectedYield(
+                      yield: yields
+                          .map(
+                            (final SingleRecipeModelYield yield) =>
+                                yield.servings,
+                          )
+                          .toList()[index],
+                      recipeId: recipeId,
+                    );
+                  },
+            icon: yields.toList().length < 2
+                ? const Icon(Icons.group)
+                : (yields.toList().length - index != yields.toList().length
+                    ? const Icon(Icons.group_add)
+                    : const Icon(Icons.group_remove)),
+          )
+        ],
+      ),
+    );
+  }
+
+  @override
+  double get maxExtent => extendedHeight;
+
+  @override
+  double get minExtent => collapsedHeight;
+
+  @override
+  bool shouldRebuild(final SliverPersistentHeaderDelegate oldDelegate) => true;
 }
