@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_model.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_navigation_service.dart';
@@ -80,15 +81,20 @@ class SingleRecipeControllerImplementation extends SingleRecipeController {
   }) {
     unawaited(
       _navigationService.showDialog(
-        title: 'Add to shopping cart?',
+        title: 'ui.single_recipe_view.dialogs.add_to_shopping_cart.title'.tr(),
         content:
-            'Add this recipe to the shopping cart, with the following serving',
+            'ui.single_recipe_view.dialogs.add_to_shopping_cart.content'.tr(),
         actions: some(
           recipe.yields
               .map(
                 (final SingleRecipeModelYield yield) =>
                     NavigationServiceDialogAction(
-                  text: '${yield.servings} Persons',
+                  text: plural(
+                      'ui.single_recipe_view.dialogs.add_to_shopping_cart.actions.amount_persons',
+                      yield.servings,
+                      namedArgs: <String, String>{
+                        'amount': yield.servings.toString(),
+                      }),
                   onPressed: () {
                     unawaited(
                       _persistenceService

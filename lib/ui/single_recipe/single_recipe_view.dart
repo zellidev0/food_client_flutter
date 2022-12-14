@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:collection/collection.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -73,7 +74,7 @@ class SingleRecipeView extends ConsumerWidget {
             SliverAppBar(
               floating: true,
               shadowColor: Colors.transparent,
-              actions: [
+              actions: <Widget>[
                 IconButton(
                   onPressed: controller.goBack,
                   icon: const Icon(Icons.close),
@@ -243,7 +244,8 @@ class SingleRecipeView extends ConsumerWidget {
                       title: Text(ingredient.displayedName),
                       subtitle: Text(
                         '${ingredient.amount.fold(
-                          () => 'nach Ermessen',
+                          () =>
+                              'ui.general.ingredients.unknownAmount'.tr(),
                           (final double amount) => amount.toString(),
                         )} ${ingredient.unit.getOrElse(() => '')}',
                       ),
@@ -325,7 +327,7 @@ class TabBarSliverDelegate extends SliverPersistentHeaderDelegate {
                 yields: yields,
                 recipeId: recipeId,
               ),
-              const Tab(text: 'Instructions'),
+              Tab(text: 'general.others.instructions'.tr()),
             ],
           ),
         ),

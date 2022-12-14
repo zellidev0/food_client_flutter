@@ -1,0 +1,58 @@
+{
+  "ui": {
+    "single_recipe_view": {
+      "dialogs": {
+        "add_to_shopping_cart": {
+          "title": "Add to shopping cart?",
+          "content": "Add this recipe to the shopping cart, with the following serving:",
+          "actions": {
+            "amount_persons": {
+              "one":"{amount} Person",
+              "other": "{amount} Persons"
+            }
+          }
+        }
+      }
+    },
+    "main_view": {
+      "bottom_navigation_destination": {
+        "explore": "Explore",
+        "shopping_cart": "Shopping Cart"
+      }
+    },
+    "home_view": {
+      "filters": {
+        "tags": "Tags",
+        "cuisines": "Cuisines"
+      },
+      "filter_with_amount:": "{name} #{amount}",
+      "empty_states": {
+        "no_recipes": "No recipes found",
+        "no_more_recipes": "No more recipes found"
+      },
+      "error_states": {
+        "no_recipes": "Error fetching recipes from the server",
+        "no_more_recipes": "Error fetching more recipes from the server"
+      },
+      "buttons": {
+        "try_again": "Try again"
+      }
+    },
+    "cart_view":{
+      "empty_states": {
+        "empty_cart": "Nothing in your \n shopping cart yet"
+      }
+    }
+  },
+  "general": {
+    "ingredients": {
+      "unknown_amount": "at your discretion"
+    },
+    "others": {
+      "instructions": "Instructions",
+      "total": "Total",
+      "missing": "Missing",
+      "ticket_off": "Missing"
+    }
+  }
+}

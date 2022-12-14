@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/ui/home/home_model.dart';
@@ -37,8 +38,8 @@ class HomeControllerImplementation extends HomeController {
   void _listenToPaginationController() {
     state.pagingController.addPageRequestListener((final int pageKey) async {
       (await _fetchRecipes(paginationSkip: pageKey).run()).fold(
-        (final Exception l) =>
-            state.pagingController.error = 'Could not fetch more recipes',
+        (final Exception l) => state.pagingController.error =
+            'ui.home_view.error_states.no_recipes'.tr(),
         (final List<HomeModelRecipe> recipes) {
           _setRecipesAndFilteredRecipes(
             newRecipes: recipes,

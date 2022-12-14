@@ -1,4 +1,5 @@
 import 'package:beamer/beamer.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/commons/type_adapters.dart';
@@ -8,6 +9,8 @@ import 'package:food_client/services/persistence_service/persistence_service_mod
 import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   Hive
     ..registerAdapter(OptionUriAdapter())
     ..registerAdapter(OptionDoubleAdapter())
@@ -21,8 +24,16 @@ void main() async {
   );
 
   runApp(
-    const ProviderScope(
-      child: MyApp(),
+    EasyLocalization(
+      supportedLocales: const <Locale>[
+        Locale('en'),
+        Locale('de'),
+      ],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('de'),
+      child: const ProviderScope(
+        child: MyApp(),
+      ),
     ),
   );
 }
@@ -36,7 +47,7 @@ class MyApp extends ConsumerWidget {
         title: 'Food client',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
-            brightness: Brightness.light,
+            brightness: MediaQuery.of(context).platformBrightness,
             seedColor: Colors.amberAccent,
           ),
           useMaterial3: true,
@@ -46,5 +57,8 @@ class MyApp extends ConsumerWidget {
           delegate: ref.read(providers.globalBeamerDelegate),
         ),
         routerDelegate: ref.read(providers.globalBeamerDelegate),
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
       );
 }

@@ -15,7 +15,7 @@ abstract class CartPersistenceService {
     required final String recipeId,
   });
 
-  Task<void> deleteRecipe({required String recipeId});
+  Task<void> deleteRecipe({required final String recipeId});
 }
 
 @freezed

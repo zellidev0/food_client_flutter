@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:collection/collection.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/commons/widgets.dart';
@@ -38,7 +39,9 @@ class CartView extends ConsumerWidget {
               ),
             ],
             body: model.recipes.isEmpty
-                ? buildNoItemsFoundIcon(message: 'Nothing in your \n shopping cart yet')
+                ? buildNoItemsFoundIcon(
+                    message: 'ui.cart_view.empty_states.empty_cart'.tr(),
+                  )
                 : TabBarView(
                     children: <Widget>[
                       ListView(
@@ -177,7 +180,7 @@ class CartView extends ConsumerWidget {
                 title: Text(ingredient.ingredient.displayedName),
                 subtitle: Text(
                   '${ingredient.ingredient.amount.fold(
-                    () => 'nach Ermessen',
+                    () => 'ui.general.ingredients.unknownAmount'.tr(),
                     (final double amount) => amount.toString(),
                   )} ${ingredient.ingredient.unit.getOrElse(() => '')}',
                 ),
@@ -355,10 +358,10 @@ class TabBarSliverDelegate extends SliverPersistentHeaderDelegate {
               color: Theme.of(context).colorScheme.surface,
             ),
             child: buildTabBar(
-              tabs: const <Tab>[
-                Tab(text: 'Gesamt'),
-                Tab(text: 'Fehlt noch'),
-                Tab(text: 'Abgehackt'),
+              tabs: <Tab>[
+                Tab(text: 'general.others.total'.tr()),
+                Tab(text: 'general.others.missing'.tr()),
+                Tab(text: 'general.others.ticket_off'.tr()),
               ],
             ),
           ),

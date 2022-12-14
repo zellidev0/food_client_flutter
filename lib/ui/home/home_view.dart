@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/commons/widgets.dart';
@@ -47,21 +48,21 @@ class HomeView extends ConsumerWidget {
       Row(
         children: <Widget>[
           buildSingleFilterChip(
-            text: 'Tags',
+            text: 'ui.home_view.filters.tags'.tr(),
             controller: controller,
             selectedFilters: model.allTags
                 .filter((final HomeModelFilter filter) => filter.isSelected)
                 .toList(),
-            widgetToOpenOnClick: buildDialogTags(title: 'Tags'),
+            widgetToOpenOnClick: buildDialogTags(),
           ),
           const SizedBox(width: 8),
           buildSingleFilterChip(
-            text: 'Cuisines',
+            text: 'ui.home_view.filters.cuisines'.tr(),
             controller: controller,
             selectedFilters: model.allCuisines
                 .filter((final HomeModelFilter filter) => filter.isSelected)
                 .toList(),
-            widgetToOpenOnClick: buildDialogCuisines(title: 'Cuisines'),
+            widgetToOpenOnClick: buildDialogCuisines(),
           ),
         ],
       );
@@ -74,7 +75,14 @@ class HomeView extends ConsumerWidget {
   }) =>
       FilterChip(
         label: Text(
-          '$text${selectedFilters.isEmpty ? '' : ' #${selectedFilters.length.toString()}'}',
+          selectedFilters.isEmpty
+              ? text
+              : 'ui.home_view.filter_with_amount'.tr(
+                  namedArgs: <String, String>{
+                    'name': text,
+                    'amount': selectedFilters.length.toString(),
+                  },
+                ),
         ),
         selected: selectedFilters.isNotEmpty,
         onSelected: (final _) {
@@ -106,15 +114,19 @@ class HomeView extends ConsumerWidget {
                     controller: controller,
                   ),
                   noItemsFoundIndicatorBuilder: (final _) =>
-                      buildNoItemsFoundIcon(message: 'No recipes found'),
-                  noMoreItemsIndicatorBuilder: (final _) => const Center(
-                    child: Text('No more recipes'),
+                      buildNoItemsFoundIcon(
+                    message: 'ui.home_view.empty_states.no_recipes'.tr(),
+                  ),
+                  noMoreItemsIndicatorBuilder: (final _) =>  Center(
+                    child: Text(
+                      'ui.home_view.empty_states.no_more_recipes'.tr(),
+                    ),
                   ),
                   firstPageErrorIndicatorBuilder: (final _) => Column(
                     children: <Widget>[
                       const SizedBox(height: 64),
                       buildNoItemsFoundIcon(
-                        message: 'Error fetching recipes from the server',
+                        message:'ui.home_view.error_states.no_recipes'.tr(),
                       ),
                       const SizedBox(height: 8),
                       _buildTryFetchingRecipesAgainButton(
@@ -127,7 +139,7 @@ class HomeView extends ConsumerWidget {
                       const SizedBox(height: 8),
                       Builder(
                         builder: (final BuildContext context) => Text(
-                          'Error fetching more recipes from the server',
+                          'ui.home_view.error_states.no_more_recipes'.tr(),
                           style: Theme.of(context).textTheme.caption,
                         ),
                       ),
@@ -160,7 +172,7 @@ class HomeView extends ConsumerWidget {
       ElevatedButton.icon(
         onPressed: controller.fetchRecipes,
         icon: const Icon(Icons.refresh),
-        label: const Text('Try again'),
+        label:  Text('ui.home_view.buttons.try_again'.tr()),
       );
 
   Widget _buildRecipeCardItem({
@@ -227,10 +239,7 @@ class HomeView extends ConsumerWidget {
       );
 }
 
-Widget buildDialogTags({
-  required final String title,
-}) =>
-    Consumer(
+Widget buildDialogTags() => Consumer(
       builder: (final _, final WidgetRef ref, final __) => buildDialog(
         children: ref
             .watch(providers.homeControllerProvider)
@@ -252,10 +261,7 @@ Widget buildDialogTags({
       ),
     );
 
-Widget buildDialogCuisines({
-  required final String title,
-}) =>
-    Consumer(
+Widget buildDialogCuisines() => Consumer(
       builder: (final _, final WidgetRef ref, final __) => buildDialog(
         children: ref
             .watch(providers.homeControllerProvider)

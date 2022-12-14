@@ -1,4 +1,5 @@
 import 'package:beamer/beamer.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/providers/providers.dart';
@@ -26,16 +27,19 @@ class MainView extends ConsumerWidget {
                   }
                 },
                 selectedIndex: model.bottomNavigationBarIndex,
-                destinations: const <Widget>[
+                destinations: <Widget>[
                   NavigationDestination(
-                    icon: Icon(Icons.explore),
-                    label: 'Explore',
+                    icon: const Icon(Icons.explore),
+                    label: 'ui.main_view.bottom_navigation_destination.explore'
+                        .tr(),
                   ),
                   NavigationDestination(
-                    icon: Icon(Icons.shopping_cart),
-                    label: 'Cart',
+                    icon: const Icon(Icons.shopping_cart),
+                    label:
+                        'ui.main_view.bottom_navigation_destination.shopping_cart'
+                            .tr(),
                   ),
-                  NavigationDestination(
+                  const NavigationDestination(
                     icon: Icon(Icons.add),
                     label: 'TODO',
                   ),
