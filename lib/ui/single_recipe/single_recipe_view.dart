@@ -73,10 +73,12 @@ class SingleRecipeView extends ConsumerWidget {
             SliverAppBar(
               floating: true,
               shadowColor: Colors.transparent,
-              leading: IconButton(
-                icon: const Icon(Icons.arrow_back),
-                onPressed: controller.goBack,
-              ),
+              actions: [
+                IconButton(
+                  onPressed: controller.goBack,
+                  icon: const Icon(Icons.close),
+                ),
+              ],
               stretch: true,
               flexibleSpace: FlexibleSpaceBar(
                 titlePadding: const EdgeInsets.all(16),
