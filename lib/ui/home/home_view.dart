@@ -17,6 +17,7 @@ class HomeView extends ConsumerWidget {
     );
 
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

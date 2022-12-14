@@ -19,7 +19,7 @@ class CartView extends ConsumerWidget {
     );
 
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: DefaultTabController(
         length: 3,
         child: Builder(
