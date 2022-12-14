@@ -71,16 +71,14 @@ class HomeView extends ConsumerWidget {
     required final HomeController controller,
     required final Widget widgetToOpenOnClick,
   }) =>
-      Builder(
-        builder: (final BuildContext context) => FilterChip(
-          label: Text(
-            '$text${selectedFilters.isEmpty ? '' : ' #${selectedFilters.length.toString()}'}',
-          ),
-          selected: selectedFilters.isNotEmpty,
-          onSelected: (final _) {
-            controller.openDialog(child: widgetToOpenOnClick);
-          },
+      FilterChip(
+        label: Text(
+          '$text${selectedFilters.isEmpty ? '' : ' #${selectedFilters.length.toString()}'}',
         ),
+        selected: selectedFilters.isNotEmpty,
+        onSelected: (final _) {
+          controller.openDialog(child: widgetToOpenOnClick);
+        },
       );
 
   Widget _buildRecipesList({
@@ -148,28 +146,26 @@ class HomeView extends ConsumerWidget {
     required final HomeController controller,
     required final List<HomeModelFilterTag> tags,
   }) =>
-      Builder(
-        builder: (final BuildContext context) => Card(
-          color: Theme.of(context).colorScheme.surface,
-          child: InkWell(
-            borderRadius: BorderRadius.circular(12),
-            onTap: () => controller.goToSingleRecipeView(recipeId: recipe.id),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Column(
-                children: <Widget>[
-                  AspectRatio(
-                    aspectRatio: 1.5 / 1,
-                    child: buildCachedNetworkImage(
-                      imageUrl: recipe.imageUri,
-                    ),
+      Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(24),
+          onTap: () => controller.goToSingleRecipeView(recipeId: recipe.id),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(24),
+            child: Column(
+              children: <Widget>[
+                AspectRatio(
+                  aspectRatio: 1.5 / 1,
+                  child: buildCachedNetworkImage(
+                    imageUrl: recipe.imageUri,
                   ),
-                  buildRecipeCardItemDescription(
-                    recipe: recipe,
-                    tags: tags,
-                  ),
-                ],
-              ),
+                ),
+                buildRecipeCardItemDescription(
+                  recipe: recipe,
+                  tags: tags,
+                ),
+              ],
             ),
           ),
         ),
@@ -187,9 +183,9 @@ class HomeView extends ConsumerWidget {
             subtitle: Text(recipe.displayedAttributes.headline),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
             child: Wrap(
-              spacing: 8,
+              spacing: 4,
               runSpacing: 4,
               children: tags
                   .filter(
@@ -199,6 +195,7 @@ class HomeView extends ConsumerWidget {
                   .map(
                     (final HomeModelFilterTag tag) => Chip(
                       label: Text(tag.displayedName),
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
                   )
                   .toList(),
@@ -269,22 +266,20 @@ Widget buildDialogCuisines({
 Widget buildDialog({
   required final List<Widget> children,
 }) =>
-    Builder(
-      builder: (final BuildContext context) => Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: SingleChildScrollView(
-                child: Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: children,
-                ),
+    Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        children: <Widget>[
+          Expanded(
+            child: SingleChildScrollView(
+              child: Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: children,
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
 

@@ -87,7 +87,7 @@ class SingleRecipeView extends ConsumerWidget {
                     ),
                   ),
                 ),
-                background: buildTopImage(recipe: recipe),
+                // background: buildTopImage(recipe: recipe),
               ),
               pinned: true,
               expandedHeight: MediaQuery.of(context).size.height * 0.3,
@@ -171,17 +171,15 @@ class SingleRecipeView extends ConsumerWidget {
     required final List<SingleRecipeModelYield> yields,
     required final Option<int> selectedYield,
   }) =>
-      Builder(
-        builder: (final BuildContext context) => buildTabBar(
-          tabs: <Tab>[
-            _buildTabIngredients(
-              selectedYield: selectedYield,
-              controller: controller,
-              yields: yields,
-            ),
-            const Tab(text: 'Instructions'),
-          ],
-        ),
+      buildTabBar(
+        tabs: <Tab>[
+          _buildTabIngredients(
+            selectedYield: selectedYield,
+            controller: controller,
+            yields: yields,
+          ),
+          const Tab(text: 'Instructions'),
+        ],
       );
 
   Tab _buildTabIngredients({
