@@ -17,29 +17,29 @@ class MainView extends ConsumerWidget {
         child: SelectionArea(
           child: Scaffold(
             bottomNavigationBar: ClipRRect(
-              child: BottomNavigationBar(
-                currentIndex: model.bottomNavigationBarIndex,
-                items: const <BottomNavigationBarItem>[
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.view_list),
-                    label: 'Home',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.shopping_cart),
-                    label: 'Cart',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.add),
-                    label: 'TODO',
-                  ),
-                ],
-                onTap: (final int selectedIndex) {
+              child: NavigationBar(
+                onDestinationSelected: (final int selectedIndex) {
                   if (selectedIndex == 0) {
                     controller.goToHome();
                   } else if (selectedIndex == 1) {
                     controller.goToCart();
                   }
                 },
+                selectedIndex: model.bottomNavigationBarIndex,
+                destinations: const <Widget>[
+                  NavigationDestination(
+                    icon: Icon(Icons.explore),
+                    label: 'Explore',
+                  ),
+                  NavigationDestination(
+                    icon: Icon(Icons.shopping_cart),
+                    label: 'Cart',
+                  ),
+                  NavigationDestination(
+                    icon: Icon(Icons.add),
+                    label: 'TODO',
+                  ),
+                ],
               ),
             ),
             body: Beamer(

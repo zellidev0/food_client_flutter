@@ -345,10 +345,8 @@ class TabBarSliverDelegate extends SliverPersistentHeaderDelegate {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          Text(
-            'Ingredients\n ${selectedYield.getOrElse(() => 1)} Persons',
-          ),
-          IconButton(
+          const Text('Ingredients'),
+          ElevatedButton.icon(
             onPressed: yields.toList().length < 2
                 ? null
                 : () {
@@ -367,6 +365,7 @@ class TabBarSliverDelegate extends SliverPersistentHeaderDelegate {
                 : (yields.toList().length - index != yields.toList().length
                     ? const Icon(Icons.group_add)
                     : const Icon(Icons.group_remove)),
+            label: Text('${selectedYield.getOrElse(() => 1)}'),
           )
         ],
       ),
