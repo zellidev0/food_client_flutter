@@ -110,11 +110,57 @@ class HomeView extends ConsumerWidget {
                   noMoreItemsIndicatorBuilder: (final _) => const Center(
                     child: Text('No more recipes'),
                   ),
+                  firstPageErrorIndicatorBuilder: (final _) => Column(
+                    children: <Widget>[
+                      const SizedBox(height: 64),
+                      buildNoItemsFoundIcon(
+                        message: 'Error fetching recipes from the server',
+                      ),
+                      const SizedBox(height: 8),
+                      _buildTryFetchingRecipesAgainButton(
+                        controller: controller,
+                      ),
+                    ],
+                  ),
+                  newPageErrorIndicatorBuilder: (final _) => Column(
+                    children: <Widget>[
+                      const SizedBox(height: 8),
+                      Builder(
+                        builder: (final BuildContext context) => Text(
+                          'Error fetching more recipes from the server',
+                          style: Theme.of(context).textTheme.caption,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      _buildTryFetchingRecipesAgainButton(
+                        controller: controller,
+                      ),
+                    ],
+                  ),
+                  firstPageProgressIndicatorBuilder: (final _) => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  newPageProgressIndicatorBuilder: (final _) => Column(
+                    children: const <Widget>[
+                      SizedBox(height: 16),
+                      CircularProgressIndicator(),
+                      SizedBox(height: 8),
+                    ],
+                  ),
                 ),
               ),
             ),
           ],
         ),
+      );
+
+  ElevatedButton _buildTryFetchingRecipesAgainButton({
+    required final HomeController controller,
+  }) =>
+      ElevatedButton.icon(
+        onPressed: controller.fetchRecipes,
+        icon: const Icon(Icons.refresh),
+        label: const Text('Try again'),
       );
 
   Widget _buildRecipeCardItem({
@@ -262,6 +308,7 @@ Widget buildDialog({
 abstract class HomeController extends StateNotifier<HomeModel> {
   HomeController(super.state);
 
+  void fetchRecipes();
   void setTagSelected({
     required final String tagId,
     required final bool selected,
@@ -273,7 +320,6 @@ abstract class HomeController extends StateNotifier<HomeModel> {
   void goToSingleRecipeView({
     required final String recipeId,
   });
-
   void openDialog({
     required final Widget child,
   });

@@ -143,6 +143,11 @@ class HomeControllerImplementation extends HomeController {
     );
   }
 
+  @override
+  void fetchRecipes() {
+    state.pagingController.retryLastFailedRequest();
+  }
+
   void _setRecipesAndFilteredRecipes({
     required final int pageKey,
     required final List<HomeModelRecipe> newRecipes,
