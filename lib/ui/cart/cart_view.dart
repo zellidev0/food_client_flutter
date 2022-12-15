@@ -198,8 +198,8 @@ class CartView extends ConsumerWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
-              enabled: !ingredient.isTickedOff,
-              selected: ingredient.isTickedOff,
+              enabled: ingredient.isTickedOff,
+              selected: !ingredient.isTickedOff,
               leading: AspectRatio(
                 aspectRatio: 1,
                 child: ingredient.ingredient.imageUrl.fold(
@@ -211,7 +211,7 @@ class CartView extends ConsumerWidget {
               subtitle: Text(
                 '${ingredient.ingredient.amount.fold(
                   () => '',
-                  (final double amount) => amount.toString(),
+                  (final double amount) => amount.toStringAsFixed(0),
                 )} ${ingredient.ingredient.unit.getOrElse(() => '')}',
               ),
             ),
