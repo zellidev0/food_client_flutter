@@ -20,7 +20,6 @@ class CartModelRecipe with _$CartModelRecipe {
     required final String recipeId,
     required final int serving,
     required final Option<Uri> imageUrl,
-    required final Color color,
   }) = _CartModelRecipe;
 }
 

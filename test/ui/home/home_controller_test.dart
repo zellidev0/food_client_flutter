@@ -1,7 +1,7 @@
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:flutter_test/flutter_test.dart';
 // import 'package:food_client/providers/providers.dart';
-// import 'package:food_client/services/recipe_language_service/recipe_language_service.dart';
+// import 'package:food_client/services/recipe_language_service/app_settings_service.dart';
 // import 'package:food_client/ui/home/home_controller.dart';
 // import 'package:food_client/ui/home/home_model.dart';
 // import 'package:food_client/ui/home/home_web_client_service.dart';

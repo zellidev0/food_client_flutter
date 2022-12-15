@@ -23,6 +23,8 @@ void main() async {
     ingredientsBoxName,
   );
 
+  providers = Providers();
+
   runApp(
     EasyLocalization(
       supportedLocales: const <Locale>[
@@ -47,9 +49,10 @@ class MyApp extends ConsumerWidget {
         title: 'Food client',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
-            brightness:
-                MediaQueryData.fromWindow(WidgetsBinding.instance.window)
-                    .platformBrightness,
+            // brightness:
+            //     MediaQueryData.fromWindow(WidgetsBinding.instance.window)
+            //         .platformBrightness,
+            brightness: Brightness.dark,
             seedColor: Colors.amberAccent,
           ),
           useMaterial3: true,

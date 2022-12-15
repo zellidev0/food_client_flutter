@@ -1,3 +1,3 @@
-abstract class HomeRecipeLanguageService {
+abstract class HomeAppSettingsService {
   List<String> getSupportedRecipeLanguages();
 }

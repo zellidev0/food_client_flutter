@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:food_client/commons/utils.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/ui/cart/cart_model.dart';
@@ -88,7 +89,6 @@ class CartControllerImplementation extends CartController {
         (final CartPersistenceServiceModelRecipe recipe) => CartModelRecipe(
           ingredients:
               recipe.ingredients.map(mapToCartModelIngredient).toList(),
-          color: generateRandomPastelColor(seed: recipe.recipeId.hashCode),
           recipeId: recipe.recipeId,
           imageUrl: recipe.imagePath.flatMap(
             (final Uri uri) => _imageSizerService
@@ -150,7 +150,8 @@ class CartControllerImplementation extends CartController {
               },
             ),
             NavigationServiceDialogAction(
-              text: 'ui.cart_view.dialogs.remove_recipe.actions.whole_recipe'.tr(),
+              text: 'ui.cart_view.dialogs.remove_recipe.actions.whole_recipe'
+                  .tr(),
               onPressed: () async {
                 await _persistenceService
                     .deleteRecipe(recipeId: recipeId)

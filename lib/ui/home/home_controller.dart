@@ -5,32 +5,31 @@ import 'package:flutter/material.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/ui/home/home_model.dart';
 import 'package:food_client/ui/home/home_navigation_service.dart';
-import 'package:food_client/ui/home/home_recipe_language_service.dart';
 import 'package:food_client/ui/home/home_view.dart';
 import 'package:food_client/ui/home/home_web_client_service.dart';
 import 'package:food_client/ui/home/home_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
-const int widthPixels = 1200;
+const int widthPixels = 600;
 const int recipesPerPage = 16;
 
 class HomeControllerImplementation extends HomeController {
   final HomeWebClientService _webClientService;
   final HomeWebImageSizerService _webImageSizerService;
   final HomeNavigationService _navigationService;
-  final HomeRecipeLanguageService _recipeLanguageService;
+  final List<Locale> _recipeLocales;
 
   HomeControllerImplementation(
     super.state, {
     required final HomeWebClientService webClientService,
     required final HomeWebImageSizerService webImageSizerService,
     required final HomeNavigationService navigationService,
-    required final HomeRecipeLanguageService recipeLanguageService,
+    required final List<Locale> recipeLocales,
   })  : _webClientService = webClientService,
         _webImageSizerService = webImageSizerService,
         _navigationService = navigationService,
-        _recipeLanguageService = recipeLanguageService {
+        _recipeLocales = recipeLocales {
     _listenToPaginationController();
     unawaited(_init());
   }
@@ -202,7 +201,7 @@ class HomeControllerImplementation extends HomeController {
   }) =>
       _webClientService
           .fetchRecipes(
-            country: _recipeLanguageService.getSupportedRecipeLanguages().first,
+            country: _recipeLocales.first.languageCode,
             skip: paginationSkip,
             take: recipesPerPage,
             tags: some(selectedTagTypes(tags: state.allTags)),
@@ -219,7 +218,7 @@ class HomeControllerImplementation extends HomeController {
   TaskEither<Exception, List<HomeModelFilterTag>> _fetchTags() =>
       _webClientService
           .fetchAllTags(
-            country: _recipeLanguageService.getSupportedRecipeLanguages().first,
+            country: _recipeLocales.first.languageCode,
             take: some(100),
           )
           .map(
@@ -239,7 +238,7 @@ class HomeControllerImplementation extends HomeController {
   TaskEither<Exception, List<HomeModelFilterCuisine>> _fetchCuisines() =>
       _webClientService
           .fetchAllCuisines(
-            country: _recipeLanguageService.getSupportedRecipeLanguages().first,
+            country: _recipeLocales.first.languageCode,
             take: some(1000),
           )
           .map(

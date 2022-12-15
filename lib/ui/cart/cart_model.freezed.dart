@@ -144,7 +144,6 @@ mixin _$CartModelRecipe {
   String get recipeId => throw _privateConstructorUsedError;
   int get serving => throw _privateConstructorUsedError;
   Option<Uri> get imageUrl => throw _privateConstructorUsedError;
-  Color get color => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CartModelRecipeCopyWith<CartModelRecipe> get copyWith =>
@@ -162,8 +161,7 @@ abstract class $CartModelRecipeCopyWith<$Res> {
       String title,
       String recipeId,
       int serving,
-      Option<Uri> imageUrl,
-      Color color});
+      Option<Uri> imageUrl});
 }
 
 /// @nodoc
@@ -184,7 +182,6 @@ class _$CartModelRecipeCopyWithImpl<$Res, $Val extends CartModelRecipe>
     Object? recipeId = null,
     Object? serving = null,
     Object? imageUrl = null,
-    Object? color = null,
   }) {
     return _then(_value.copyWith(
       ingredients: null == ingredients
@@ -207,10 +204,6 @@ class _$CartModelRecipeCopyWithImpl<$Res, $Val extends CartModelRecipe>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as Option<Uri>,
-      color: null == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as Color,
     ) as $Val);
   }
 }
@@ -228,8 +221,7 @@ abstract class _$$_CartModelRecipeCopyWith<$Res>
       String title,
       String recipeId,
       int serving,
-      Option<Uri> imageUrl,
-      Color color});
+      Option<Uri> imageUrl});
 }
 
 /// @nodoc
@@ -248,7 +240,6 @@ class __$$_CartModelRecipeCopyWithImpl<$Res>
     Object? recipeId = null,
     Object? serving = null,
     Object? imageUrl = null,
-    Object? color = null,
   }) {
     return _then(_$_CartModelRecipe(
       ingredients: null == ingredients
@@ -271,10 +262,6 @@ class __$$_CartModelRecipeCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as Option<Uri>,
-      color: null == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as Color,
     ));
   }
 }
@@ -287,8 +274,7 @@ class _$_CartModelRecipe implements _CartModelRecipe {
       required this.title,
       required this.recipeId,
       required this.serving,
-      required this.imageUrl,
-      required this.color})
+      required this.imageUrl})
       : _ingredients = ingredients;
 
   final List<CartModelIngredient> _ingredients;
@@ -306,12 +292,10 @@ class _$_CartModelRecipe implements _CartModelRecipe {
   final int serving;
   @override
   final Option<Uri> imageUrl;
-  @override
-  final Color color;
 
   @override
   String toString() {
-    return 'CartModelRecipe(ingredients: $ingredients, title: $title, recipeId: $recipeId, serving: $serving, imageUrl: $imageUrl, color: $color)';
+    return 'CartModelRecipe(ingredients: $ingredients, title: $title, recipeId: $recipeId, serving: $serving, imageUrl: $imageUrl)';
   }
 
   @override
@@ -326,8 +310,7 @@ class _$_CartModelRecipe implements _CartModelRecipe {
                 other.recipeId == recipeId) &&
             (identical(other.serving, serving) || other.serving == serving) &&
             (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl) &&
-            const DeepCollectionEquality().equals(other.color, color));
+                other.imageUrl == imageUrl));
   }
 
   @override
@@ -337,8 +320,7 @@ class _$_CartModelRecipe implements _CartModelRecipe {
       title,
       recipeId,
       serving,
-      imageUrl,
-      const DeepCollectionEquality().hash(color));
+      imageUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -353,8 +335,7 @@ abstract class _CartModelRecipe implements CartModelRecipe {
       required final String title,
       required final String recipeId,
       required final int serving,
-      required final Option<Uri> imageUrl,
-      required final Color color}) = _$_CartModelRecipe;
+      required final Option<Uri> imageUrl}) = _$_CartModelRecipe;
 
   @override
   List<CartModelIngredient> get ingredients;
@@ -366,8 +347,6 @@ abstract class _CartModelRecipe implements CartModelRecipe {
   int get serving;
   @override
   Option<Uri> get imageUrl;
-  @override
-  Color get color;
   @override
   @JsonKey(ignore: true)
   _$$_CartModelRecipeCopyWith<_$_CartModelRecipe> get copyWith =>

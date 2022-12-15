@@ -1,10 +1,11 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:food_client/services/app_settings_service/app_settings_service.dart';
+import 'package:food_client/services/app_settings_service/app_settings_service_model.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/services/persistence_service/persistence_service.dart';
 import 'package:food_client/services/persistence_service/persistence_service_model.dart';
-import 'package:food_client/services/recipe_language_service/recipe_language_service.dart';
 import 'package:food_client/services/web_client/web_client_service.dart';
 import 'package:food_client/services/web_image_sizer/web_image_sizer_service.dart';
 import 'package:food_client/ui/cart/cart_controller.dart';
@@ -55,8 +56,7 @@ class Providers {
   );
 
   final StateNotifierProvider<HomeController, HomeModel>
-      homeControllerProvider =
-      StateNotifierProvider<HomeController, HomeModel>(
+      homeControllerProvider = StateNotifierProvider<HomeController, HomeModel>(
     (
       final StateNotifierProviderRef<HomeController, HomeModel> ref,
     ) =>
@@ -75,7 +75,8 @@ class Providers {
       ),
       webClientService: ref.read(providers.webClientServiceProvider),
       webImageSizerService: ref.read(providers.webImageSizerServiceProvider),
-      recipeLanguageService: ref.read(providers.recipeLanguageServiceProvider),
+      recipeLocales:
+          ref.watch(providers.appSettingsServiceProvider).recipeLocales,
     ),
   );
 
@@ -119,16 +120,29 @@ class Providers {
         PersistenceService(),
   );
 
-  final Provider<RecipeLanguageServiceAggregator>
-      recipeLanguageServiceProvider = Provider<RecipeLanguageServiceAggregator>(
-    (final ProviderRef<RecipeLanguageServiceAggregator> ref) =>
-        RecipeLanguageService(),
+  final StateNotifierProvider<AppSettingsServiceAggregator,
+          AppSettingsServiceModel> appSettingsServiceProvider =
+      StateNotifierProvider<AppSettingsServiceAggregator,
+          AppSettingsServiceModel>(
+    (
+      final StateNotifierProviderRef<AppSettingsServiceAggregator,
+              AppSettingsServiceModel>
+          ref,
+    ) =>
+        AppSettingsService(
+      AppSettingsServiceModel(
+        recipeLocales: [
+          const Locale('de'),
+        ],
+      ),
+    ),
   );
 
   final Provider<WebClientServiceAggregator> webClientServiceProvider =
       Provider<WebClientServiceAggregator>(
     (final ProviderRef<WebClientServiceAggregator> ref) => WebClientService(),
   );
+
   final Provider<WebImageSizerServiceAggregator> webImageSizerServiceProvider =
       Provider<WebImageSizerServiceAggregator>(
     (final ProviderRef<WebImageSizerServiceAggregator> ref) =>
@@ -207,4 +221,4 @@ class Providers {
   );
 }
 
-Providers providers = Providers();
+late Providers providers;

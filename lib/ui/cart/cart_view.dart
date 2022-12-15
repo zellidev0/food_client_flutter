@@ -3,6 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:food_client/commons/utils.dart';
 import 'package:food_client/commons/widgets.dart';
 import 'package:food_client/providers/providers.dart';
 import 'package:food_client/ui/cart/cart_model.dart';
@@ -44,66 +45,23 @@ class CartView extends ConsumerWidget {
                   )
                 : TabBarView(
                     children: <Widget>[
-                      ListView(
-                        children: model.recipes
-                            .map(
-                              (final CartModelRecipe recipe) =>
-                                  recipe.ingredients.map(
-                                (final CartModelIngredient ingredient) =>
-                                    buildSingleIngredient(
-                                  ingredient: ingredient,
-                                  controller: controller,
-                                  recipeId: recipe.recipeId,
-                                  color: recipe.color,
-                                ),
-                              ),
-                            )
-                            .flattened
-                            .toList(),
+                      buildIngredientsListView(
+                        children: ingredientsList(
+                          recipes: model.recipes,
+                          controller: controller,
+                        ),
                       ),
-                      ListView(
-                        children: model.recipes
-                            .map(
-                              (final CartModelRecipe recipe) => recipe
-                                  .ingredients
-                                  .where(
-                                    (final CartModelIngredient element) =>
-                                        !element.isTickedOff,
-                                  )
-                                  .map(
-                                    (final CartModelIngredient ingredient) =>
-                                        buildSingleIngredient(
-                                      ingredient: ingredient,
-                                      controller: controller,
-                                      recipeId: recipe.recipeId,
-                                      color: recipe.color,
-                                    ),
-                                  ),
-                            )
-                            .flattened
-                            .toList(),
+                      buildIngredientsListView(
+                        children: tickedOffIngredientsList(
+                          recipes: model.recipes,
+                          controller: controller,
+                        ),
                       ),
-                      ListView(
-                        children: model.recipes
-                            .map(
-                              (final CartModelRecipe recipe) => recipe
-                                  .ingredients
-                                  .where(
-                                    (final CartModelIngredient element) =>
-                                        element.isTickedOff,
-                                  )
-                                  .map(
-                                    (final CartModelIngredient ingredient) =>
-                                        buildSingleIngredient(
-                                      ingredient: ingredient,
-                                      controller: controller,
-                                      recipeId: recipe.recipeId,
-                                      color: recipe.color,
-                                    ),
-                                  ),
-                            )
-                            .flattened
-                            .toList(),
+                      buildIngredientsListView(
+                        children: notTickedOffIngredientsList(
+                          recipes: model.recipes,
+                          controller: controller,
+                        ),
                       ),
                     ],
                   ),
@@ -112,6 +70,76 @@ class CartView extends ConsumerWidget {
       ),
     );
   }
+
+  ListView buildIngredientsListView({required final List<Widget> children}) =>
+      ListView.separated(
+        itemBuilder: (final BuildContext context, final int index) =>
+            children[index],
+        itemCount: children.length,
+        separatorBuilder: (final BuildContext context, final int index) =>
+            const Divider(),
+      );
+
+  List<Widget> ingredientsList({
+    required final List<CartModelRecipe> recipes,
+    required final CartController controller,
+  }) =>
+      recipes
+          .map(
+            (final CartModelRecipe recipe) => recipe.ingredients.map(
+              (final CartModelIngredient ingredient) => buildSingleIngredient(
+                ingredient: ingredient,
+                controller: controller,
+                recipeId: recipe.recipeId,
+              ),
+            ),
+          )
+          .flattened
+          .toList();
+
+  List<Widget> tickedOffIngredientsList({
+    required final List<CartModelRecipe> recipes,
+    required final CartController controller,
+  }) =>
+      recipes
+          .map(
+            (final CartModelRecipe recipe) => recipe.ingredients
+                .where(
+                  (final CartModelIngredient element) => element.isTickedOff,
+                )
+                .map(
+                  (final CartModelIngredient ingredient) =>
+                      buildSingleIngredient(
+                    ingredient: ingredient,
+                    controller: controller,
+                    recipeId: recipe.recipeId,
+                  ),
+                ),
+          )
+          .flattened
+          .toList();
+
+  List<Widget> notTickedOffIngredientsList({
+    required final List<CartModelRecipe> recipes,
+    required final CartController controller,
+  }) =>
+      recipes
+          .map(
+            (final CartModelRecipe recipe) => recipe.ingredients
+                .where(
+                  (final CartModelIngredient element) => !element.isTickedOff,
+                )
+                .map(
+                  (final CartModelIngredient ingredient) =>
+                      buildSingleIngredient(
+                    ingredient: ingredient,
+                    controller: controller,
+                    recipeId: recipe.recipeId,
+                  ),
+                ),
+          )
+          .flattened
+          .toList();
 
   Widget _buildTabBarSliver({
     required final CartModel model,
@@ -147,40 +175,44 @@ class CartView extends ConsumerWidget {
 
   Widget buildSingleIngredient({
     required final String recipeId,
-    required final Color color,
     required final CartModelIngredient ingredient,
     required final CartController controller,
   }) =>
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Card(
-          color: ingredient.isTickedOff ? Colors.grey.shade300 : color,
-          child: Builder(
-            builder: (final BuildContext context) => InkWell(
-              borderRadius: BorderRadius.circular(8),
-              onTap: () async => controller.tickOff(
-                ingredientId: ingredient.ingredient.ingredientId,
-                recipeId: recipeId,
-                isTickedOff: !ingredient.isTickedOff,
+        child: Builder(
+          builder: (final BuildContext context) => InkWell(
+            borderRadius: BorderRadius.circular(8),
+            onTap: () async => controller.tickOff(
+              ingredientId: ingredient.ingredient.ingredientId,
+              recipeId: recipeId,
+              isTickedOff: !ingredient.isTickedOff,
+            ),
+            onLongPress: () =>
+                controller.showDeleteRecipeDialog(recipeId: recipeId),
+            child: ListTile(
+              tileColor: generateRandomPastelColor(
+                seed: recipeId.hashCode,
+                brightness: Theme.of(context).brightness,
               ),
-              onLongPress: () =>
-                  controller.showDeleteRecipeDialog(recipeId: recipeId),
-              child: ListTile(
-                enabled: !ingredient.isTickedOff,
-                leading: AspectRatio(
-                  aspectRatio: 1,
-                  child: ingredient.ingredient.imageUrl.fold(
-                    () => const Icon(Icons.image_not_supported),
-                    (final Uri url) => buildCachedNetworkImage(imageUrl: url),
-                  ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              enabled: !ingredient.isTickedOff,
+              selected: ingredient.isTickedOff,
+              leading: AspectRatio(
+                aspectRatio: 1,
+                child: ingredient.ingredient.imageUrl.fold(
+                  () => const Icon(Icons.image_not_supported),
+                  (final Uri url) => buildCachedNetworkImage(imageUrl: url),
                 ),
-                title: Text(ingredient.ingredient.displayedName),
-                subtitle: Text(
-                  '${ingredient.ingredient.amount.fold(
-                    () => '',
-                    (final double amount) => amount.toString(),
-                  )} ${ingredient.ingredient.unit.getOrElse(() => '')}',
-                ),
+              ),
+              title: Text(ingredient.ingredient.displayedName),
+              subtitle: Text(
+                '${ingredient.ingredient.amount.fold(
+                  () => '',
+                  (final double amount) => amount.toString(),
+                )} ${ingredient.ingredient.unit.getOrElse(() => '')}',
               ),
             ),
           ),
@@ -238,38 +270,43 @@ class RecipesListDelegate extends SliverPersistentHeaderDelegate {
         height: height,
         recipe: model.recipes[index],
       ),
-      separatorBuilder: (final _,final __) => const SizedBox(height: 8),
+      separatorBuilder: (final _, final __) => const SizedBox(height: 8),
       itemCount: model.recipes.length,
     );
   }
 
-  SizedBox buildCardElement({
+  Widget buildCardElement({
     required final double height,
     required final CartModelRecipe recipe,
   }) =>
-      SizedBox(
-        width: height * 0.75,
-        child: Card(
-          color: recipe.color,
-          child: InkWell(
-            borderRadius: BorderRadius.circular(12),
-            onTap: () => controller.openSingleRecipe(
-              recipeId: recipe.recipeId,
+      Builder(
+        builder: (final BuildContext context) => SizedBox(
+          width: height * 0.75,
+          child: Card(
+            color: generateRandomPastelColor(
+              seed: recipe.recipeId.hashCode,
+              brightness: Theme.of(context).brightness,
             ),
-            onLongPress: () => controller.showDeleteRecipeDialog(
-              recipeId: recipe.recipeId,
-            ),
-            child: Stack(
-              children: <Widget>[
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    _buildCardImage(recipe: recipe),
-                    _buildCardText(recipe: recipe),
-                  ],
-                ),
-                _buildServingsChip(serving: recipe.serving),
-              ],
+            child: InkWell(
+              borderRadius: BorderRadius.circular(12),
+              onTap: () => controller.openSingleRecipe(
+                recipeId: recipe.recipeId,
+              ),
+              onLongPress: () => controller.showDeleteRecipeDialog(
+                recipeId: recipe.recipeId,
+              ),
+              child: Stack(
+                children: <Widget>[
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      _buildCardImage(recipe: recipe),
+                      _buildCardText(recipe: recipe),
+                    ],
+                  ),
+                  _buildServingsChip(serving: recipe.serving),
+                ],
+              ),
             ),
           ),
         ),
