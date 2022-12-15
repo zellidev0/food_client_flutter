@@ -169,12 +169,9 @@ class CartView extends ConsumerWidget {
                 enabled: !ingredient.isTickedOff,
                 leading: AspectRatio(
                   aspectRatio: 1,
-                  child: Opacity(
-                    opacity: ingredient.isTickedOff ? 0.5 : 1,
-                    child: ingredient.ingredient.imageUrl.fold(
-                      () => const Icon(Icons.image_not_supported),
-                      (final Uri url) => buildCachedNetworkImage(imageUrl: url),
-                    ),
+                  child: ingredient.ingredient.imageUrl.fold(
+                    () => const Icon(Icons.image_not_supported),
+                    (final Uri url) => buildCachedNetworkImage(imageUrl: url),
                   ),
                 ),
                 title: Text(ingredient.ingredient.displayedName),
@@ -234,42 +231,49 @@ class RecipesListDelegate extends SliverPersistentHeaderDelegate {
     if (height == collapsedHeight) {
       return SizedBox(height: collapsedHeight);
     }
-    return ListView(
+    return ListView.separated(
       padding: const EdgeInsets.all(16).copyWith(bottom: 0),
       scrollDirection: Axis.horizontal,
-      children: model.recipes
-          .map(
-            (final CartModelRecipe recipe) => SizedBox(
-              width: height * 0.75,
-              child: Card(
-                color: recipe.color,
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(12),
-                  onTap: () => controller.openSingleRecipe(
-                    recipeId: recipe.recipeId,
-                  ),
-                  onLongPress: () => controller.showDeleteRecipeDialog(
-                    recipeId: recipe.recipeId,
-                  ),
-                  child: Stack(
-                    children: <Widget>[
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          _buildCardImage(recipe: recipe),
-                          _buildCardText(recipe: recipe),
-                        ],
-                      ),
-                      _buildServingsChip(serving: recipe.serving),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          )
-          .toList(),
+      itemBuilder: (final _, final int index) => buildCardElement(
+        height: height,
+        recipe: model.recipes[index],
+      ),
+      separatorBuilder: (final _,final __) => const SizedBox(height: 8),
+      itemCount: model.recipes.length,
     );
   }
+
+  SizedBox buildCardElement({
+    required final double height,
+    required final CartModelRecipe recipe,
+  }) =>
+      SizedBox(
+        width: height * 0.75,
+        child: Card(
+          color: recipe.color,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(12),
+            onTap: () => controller.openSingleRecipe(
+              recipeId: recipe.recipeId,
+            ),
+            onLongPress: () => controller.showDeleteRecipeDialog(
+              recipeId: recipe.recipeId,
+            ),
+            child: Stack(
+              children: <Widget>[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    _buildCardImage(recipe: recipe),
+                    _buildCardText(recipe: recipe),
+                  ],
+                ),
+                _buildServingsChip(serving: recipe.serving),
+              ],
+            ),
+          ),
+        ),
+      );
 
   Widget _buildCardImage({
     required final CartModelRecipe recipe,
@@ -278,13 +282,7 @@ class RecipesListDelegate extends SliverPersistentHeaderDelegate {
         aspectRatio: 1.5 / 1,
         child: recipe.imageUrl.fold(
           () => const Icon(Icons.image_not_supported),
-          (final Uri url) => ClipRRect(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(12),
-              topRight: Radius.circular(12),
-            ),
-            child: buildCachedNetworkImage(imageUrl: url),
-          ),
+          (final Uri url) => buildCachedNetworkImage(imageUrl: url),
         ),
       );
 

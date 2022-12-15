@@ -108,8 +108,7 @@ class CartControllerImplementation extends CartController {
     unawaited(
       _navigationService.showDialog(
         title: 'ui.cart_view.dialogs.remove_recipe.title'.tr(),
-        content:
-        'ui.cart_view.dialogs.remove_recipe.content'.tr(),
+        content: 'ui.cart_view.dialogs.remove_recipe.content'.tr(),
         actions: some(
           <NavigationServiceDialogAction>[
             NavigationServiceDialogAction(
@@ -117,7 +116,8 @@ class CartControllerImplementation extends CartController {
               onPressed: () {},
             ),
             NavigationServiceDialogAction(
-              text: 'ui.cart_view.dialogs.remove_recipe.actions.only_ticked_off'.tr(),
+              text: 'ui.cart_view.dialogs.remove_recipe.actions.only_ticked_off'
+                  .tr(),
               onPressed: () async {
                 await optionOf(
                   state.recipes.firstWhereOrNull(
