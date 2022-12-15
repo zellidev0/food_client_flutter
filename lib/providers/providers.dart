@@ -54,11 +54,11 @@ class Providers {
     ),
   );
 
-  final AutoDisposeStateNotifierProvider<HomeController, HomeModel>
+  final StateNotifierProvider<HomeController, HomeModel>
       homeControllerProvider =
-      StateNotifierProvider.autoDispose<HomeController, HomeModel>(
+      StateNotifierProvider<HomeController, HomeModel>(
     (
-      final AutoDisposeStateNotifierProviderRef<HomeController, HomeModel> ref,
+      final StateNotifierProviderRef<HomeController, HomeModel> ref,
     ) =>
         HomeControllerImplementation(
       HomeModel(
@@ -172,13 +172,17 @@ class Providers {
         routes: <Pattern, dynamic Function(BuildContext, BeamState, Object?)>{
           NavigationServiceUris.homeRouteUri.toString():
               (final _, final __, final ___) => BeamPage(
-                    key: UniqueKey(),
+                    key: ValueKey<String>(
+                      NavigationServiceUris.homeRouteUri.toString(),
+                    ),
                     child: const HomeView(),
                     type: BeamPageType.noTransition,
                   ),
           NavigationServiceUris.cartRouteUri.toString():
               (final _, final __, final ___) => BeamPage(
-                    key: UniqueKey(),
+                    key: ValueKey<String>(
+                      NavigationServiceUris.cartRouteUri.toString(),
+                    ),
                     child: const CartView(),
                     type: BeamPageType.material,
                   ),
