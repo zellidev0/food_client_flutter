@@ -9,6 +9,7 @@ part 'cart_model.freezed.dart';
 class CartModel with _$CartModel {
   const factory CartModel({
     required final List<CartModelRecipe> recipes,
+    required final bool combineIngredients,
   }) = _CartModel;
 }
 

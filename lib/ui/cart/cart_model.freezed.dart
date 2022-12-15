@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$CartModel {
   List<CartModelRecipe> get recipes => throw _privateConstructorUsedError;
+  bool get combineIngredients => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CartModelCopyWith<CartModel> get copyWith =>
@@ -28,7 +29,7 @@ abstract class $CartModelCopyWith<$Res> {
   factory $CartModelCopyWith(CartModel value, $Res Function(CartModel) then) =
       _$CartModelCopyWithImpl<$Res, CartModel>;
   @useResult
-  $Res call({List<CartModelRecipe> recipes});
+  $Res call({List<CartModelRecipe> recipes, bool combineIngredients});
 }
 
 /// @nodoc
@@ -45,12 +46,17 @@ class _$CartModelCopyWithImpl<$Res, $Val extends CartModel>
   @override
   $Res call({
     Object? recipes = null,
+    Object? combineIngredients = null,
   }) {
     return _then(_value.copyWith(
       recipes: null == recipes
           ? _value.recipes
           : recipes // ignore: cast_nullable_to_non_nullable
               as List<CartModelRecipe>,
+      combineIngredients: null == combineIngredients
+          ? _value.combineIngredients
+          : combineIngredients // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -62,7 +68,7 @@ abstract class _$$_CartModelCopyWith<$Res> implements $CartModelCopyWith<$Res> {
       __$$_CartModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<CartModelRecipe> recipes});
+  $Res call({List<CartModelRecipe> recipes, bool combineIngredients});
 }
 
 /// @nodoc
@@ -77,12 +83,17 @@ class __$$_CartModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? recipes = null,
+    Object? combineIngredients = null,
   }) {
     return _then(_$_CartModel(
       recipes: null == recipes
           ? _value._recipes
           : recipes // ignore: cast_nullable_to_non_nullable
               as List<CartModelRecipe>,
+      combineIngredients: null == combineIngredients
+          ? _value.combineIngredients
+          : combineIngredients // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -90,7 +101,9 @@ class __$$_CartModelCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_CartModel implements _CartModel {
-  const _$_CartModel({required final List<CartModelRecipe> recipes})
+  const _$_CartModel(
+      {required final List<CartModelRecipe> recipes,
+      required this.combineIngredients})
       : _recipes = recipes;
 
   final List<CartModelRecipe> _recipes;
@@ -101,8 +114,11 @@ class _$_CartModel implements _CartModel {
   }
 
   @override
+  final bool combineIngredients;
+
+  @override
   String toString() {
-    return 'CartModel(recipes: $recipes)';
+    return 'CartModel(recipes: $recipes, combineIngredients: $combineIngredients)';
   }
 
   @override
@@ -110,12 +126,14 @@ class _$_CartModel implements _CartModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CartModel &&
-            const DeepCollectionEquality().equals(other._recipes, _recipes));
+            const DeepCollectionEquality().equals(other._recipes, _recipes) &&
+            (identical(other.combineIngredients, combineIngredients) ||
+                other.combineIngredients == combineIngredients));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_recipes));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_recipes), combineIngredients);
 
   @JsonKey(ignore: true)
   @override
@@ -125,11 +143,14 @@ class _$_CartModel implements _CartModel {
 }
 
 abstract class _CartModel implements CartModel {
-  const factory _CartModel({required final List<CartModelRecipe> recipes}) =
-      _$_CartModel;
+  const factory _CartModel(
+      {required final List<CartModelRecipe> recipes,
+      required final bool combineIngredients}) = _$_CartModel;
 
   @override
   List<CartModelRecipe> get recipes;
+  @override
+  bool get combineIngredients;
   @override
   @JsonKey(ignore: true)
   _$$_CartModelCopyWith<_$_CartModel> get copyWith =>

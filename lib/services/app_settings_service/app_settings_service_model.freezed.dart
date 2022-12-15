@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AppSettingsServiceModel {
   List<Locale> get recipeLocales => throw _privateConstructorUsedError;
+  bool get combineIngredients => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AppSettingsServiceModelCopyWith<AppSettingsServiceModel> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $AppSettingsServiceModelCopyWith<$Res> {
           $Res Function(AppSettingsServiceModel) then) =
       _$AppSettingsServiceModelCopyWithImpl<$Res, AppSettingsServiceModel>;
   @useResult
-  $Res call({List<Locale> recipeLocales});
+  $Res call({List<Locale> recipeLocales, bool combineIngredients});
 }
 
 /// @nodoc
@@ -47,12 +48,17 @@ class _$AppSettingsServiceModelCopyWithImpl<$Res,
   @override
   $Res call({
     Object? recipeLocales = null,
+    Object? combineIngredients = null,
   }) {
     return _then(_value.copyWith(
       recipeLocales: null == recipeLocales
           ? _value.recipeLocales
           : recipeLocales // ignore: cast_nullable_to_non_nullable
               as List<Locale>,
+      combineIngredients: null == combineIngredients
+          ? _value.combineIngredients
+          : combineIngredients // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -65,7 +71,7 @@ abstract class _$$_AppSettingsServiceModelCopyWith<$Res>
       __$$_AppSettingsServiceModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Locale> recipeLocales});
+  $Res call({List<Locale> recipeLocales, bool combineIngredients});
 }
 
 /// @nodoc
@@ -81,12 +87,17 @@ class __$$_AppSettingsServiceModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? recipeLocales = null,
+    Object? combineIngredients = null,
   }) {
     return _then(_$_AppSettingsServiceModel(
       recipeLocales: null == recipeLocales
           ? _value._recipeLocales
           : recipeLocales // ignore: cast_nullable_to_non_nullable
               as List<Locale>,
+      combineIngredients: null == combineIngredients
+          ? _value.combineIngredients
+          : combineIngredients // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -94,7 +105,9 @@ class __$$_AppSettingsServiceModelCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AppSettingsServiceModel implements _AppSettingsServiceModel {
-  const _$_AppSettingsServiceModel({required final List<Locale> recipeLocales})
+  const _$_AppSettingsServiceModel(
+      {required final List<Locale> recipeLocales,
+      required this.combineIngredients})
       : _recipeLocales = recipeLocales;
 
   final List<Locale> _recipeLocales;
@@ -105,8 +118,11 @@ class _$_AppSettingsServiceModel implements _AppSettingsServiceModel {
   }
 
   @override
+  final bool combineIngredients;
+
+  @override
   String toString() {
-    return 'AppSettingsServiceModel(recipeLocales: $recipeLocales)';
+    return 'AppSettingsServiceModel(recipeLocales: $recipeLocales, combineIngredients: $combineIngredients)';
   }
 
   @override
@@ -115,12 +131,14 @@ class _$_AppSettingsServiceModel implements _AppSettingsServiceModel {
         (other.runtimeType == runtimeType &&
             other is _$_AppSettingsServiceModel &&
             const DeepCollectionEquality()
-                .equals(other._recipeLocales, _recipeLocales));
+                .equals(other._recipeLocales, _recipeLocales) &&
+            (identical(other.combineIngredients, combineIngredients) ||
+                other.combineIngredients == combineIngredients));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_recipeLocales));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_recipeLocales), combineIngredients);
 
   @JsonKey(ignore: true)
   @override
@@ -133,10 +151,13 @@ class _$_AppSettingsServiceModel implements _AppSettingsServiceModel {
 
 abstract class _AppSettingsServiceModel implements AppSettingsServiceModel {
   const factory _AppSettingsServiceModel(
-      {required final List<Locale> recipeLocales}) = _$_AppSettingsServiceModel;
+      {required final List<Locale> recipeLocales,
+      required final bool combineIngredients}) = _$_AppSettingsServiceModel;
 
   @override
   List<Locale> get recipeLocales;
+  @override
+  bool get combineIngredients;
   @override
   @JsonKey(ignore: true)
   _$$_AppSettingsServiceModelCopyWith<_$_AppSettingsServiceModel>

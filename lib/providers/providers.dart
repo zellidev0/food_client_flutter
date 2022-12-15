@@ -31,7 +31,11 @@ class Providers {
       final AutoDisposeStateNotifierProviderRef<CartController, CartModel> ref,
     ) =>
         CartControllerImplementation(
-      const CartModel(recipes: <CartModelRecipe>[]),
+      CartModel(
+        recipes: <CartModelRecipe>[],
+        combineIngredients:
+            ref.watch(providers.appSettingsServiceProvider).combineIngredients,
+      ),
       navigationService: ref.read(
         providers.bottomNavigationBarNavigationServiceProvider,
       ),
@@ -69,14 +73,14 @@ class Providers {
         pagingController: PagingController<int, HomeModelRecipe>(
           firstPageKey: 0,
         ),
+        recipeLocales:
+            ref.watch(providers.appSettingsServiceProvider).recipeLocales,
       ),
       navigationService: ref.read(
         providers.bottomNavigationBarNavigationServiceProvider,
       ),
       webClientService: ref.read(providers.webClientServiceProvider),
       webImageSizerService: ref.read(providers.webImageSizerServiceProvider),
-      recipeLocales:
-          ref.watch(providers.appSettingsServiceProvider).recipeLocales,
     ),
   );
 
@@ -130,10 +134,9 @@ class Providers {
           ref,
     ) =>
         AppSettingsService(
-      AppSettingsServiceModel(
-        recipeLocales: [
-          const Locale('de'),
-        ],
+      const AppSettingsServiceModel(
+        recipeLocales: <Locale>[Locale('DE')],
+        combineIngredients: true,
       ),
     ),
   );

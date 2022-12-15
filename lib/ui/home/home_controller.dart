@@ -18,18 +18,15 @@ class HomeControllerImplementation extends HomeController {
   final HomeWebClientService _webClientService;
   final HomeWebImageSizerService _webImageSizerService;
   final HomeNavigationService _navigationService;
-  final List<Locale> _recipeLocales;
 
   HomeControllerImplementation(
     super.state, {
     required final HomeWebClientService webClientService,
     required final HomeWebImageSizerService webImageSizerService,
     required final HomeNavigationService navigationService,
-    required final List<Locale> recipeLocales,
   })  : _webClientService = webClientService,
         _webImageSizerService = webImageSizerService,
-        _navigationService = navigationService,
-        _recipeLocales = recipeLocales {
+        _navigationService = navigationService {
     _listenToPaginationController();
     unawaited(_init());
   }
@@ -201,7 +198,7 @@ class HomeControllerImplementation extends HomeController {
   }) =>
       _webClientService
           .fetchRecipes(
-            country: _recipeLocales.first.languageCode,
+            country: state.recipeLocales.first.languageCode,
             skip: paginationSkip,
             take: recipesPerPage,
             tags: some(selectedTagTypes(tags: state.allTags)),
@@ -218,7 +215,7 @@ class HomeControllerImplementation extends HomeController {
   TaskEither<Exception, List<HomeModelFilterTag>> _fetchTags() =>
       _webClientService
           .fetchAllTags(
-            country: _recipeLocales.first.languageCode,
+            country: state.recipeLocales.first.languageCode,
             take: some(100),
           )
           .map(
@@ -238,7 +235,7 @@ class HomeControllerImplementation extends HomeController {
   TaskEither<Exception, List<HomeModelFilterCuisine>> _fetchCuisines() =>
       _webClientService
           .fetchAllCuisines(
-            country: _recipeLocales.first.languageCode,
+            country: state.recipeLocales.first.languageCode,
             take: some(1000),
           )
           .map(

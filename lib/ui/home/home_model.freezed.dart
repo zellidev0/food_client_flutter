@@ -24,6 +24,7 @@ mixin _$HomeModel {
   List<HomeModelFilterTag> get allTags => throw _privateConstructorUsedError;
   List<HomeModelFilterCuisine> get allCuisines =>
       throw _privateConstructorUsedError;
+  List<Locale> get recipeLocales => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeModelCopyWith<HomeModel> get copyWith =>
@@ -40,7 +41,8 @@ abstract class $HomeModelCopyWith<$Res> {
       List<HomeModelRecipe> allRecipes,
       List<HomeModelRecipe> filteredRecipes,
       List<HomeModelFilterTag> allTags,
-      List<HomeModelFilterCuisine> allCuisines});
+      List<HomeModelFilterCuisine> allCuisines,
+      List<Locale> recipeLocales});
 }
 
 /// @nodoc
@@ -61,6 +63,7 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
     Object? filteredRecipes = null,
     Object? allTags = null,
     Object? allCuisines = null,
+    Object? recipeLocales = null,
   }) {
     return _then(_value.copyWith(
       pagingController: null == pagingController
@@ -83,6 +86,10 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
           ? _value.allCuisines
           : allCuisines // ignore: cast_nullable_to_non_nullable
               as List<HomeModelFilterCuisine>,
+      recipeLocales: null == recipeLocales
+          ? _value.recipeLocales
+          : recipeLocales // ignore: cast_nullable_to_non_nullable
+              as List<Locale>,
     ) as $Val);
   }
 }
@@ -99,7 +106,8 @@ abstract class _$$_HomeModelCopyWith<$Res> implements $HomeModelCopyWith<$Res> {
       List<HomeModelRecipe> allRecipes,
       List<HomeModelRecipe> filteredRecipes,
       List<HomeModelFilterTag> allTags,
-      List<HomeModelFilterCuisine> allCuisines});
+      List<HomeModelFilterCuisine> allCuisines,
+      List<Locale> recipeLocales});
 }
 
 /// @nodoc
@@ -118,6 +126,7 @@ class __$$_HomeModelCopyWithImpl<$Res>
     Object? filteredRecipes = null,
     Object? allTags = null,
     Object? allCuisines = null,
+    Object? recipeLocales = null,
   }) {
     return _then(_$_HomeModel(
       pagingController: null == pagingController
@@ -140,6 +149,10 @@ class __$$_HomeModelCopyWithImpl<$Res>
           ? _value._allCuisines
           : allCuisines // ignore: cast_nullable_to_non_nullable
               as List<HomeModelFilterCuisine>,
+      recipeLocales: null == recipeLocales
+          ? _value._recipeLocales
+          : recipeLocales // ignore: cast_nullable_to_non_nullable
+              as List<Locale>,
     ));
   }
 }
@@ -152,11 +165,13 @@ class _$_HomeModel implements _HomeModel {
       required final List<HomeModelRecipe> allRecipes,
       required final List<HomeModelRecipe> filteredRecipes,
       required final List<HomeModelFilterTag> allTags,
-      required final List<HomeModelFilterCuisine> allCuisines})
+      required final List<HomeModelFilterCuisine> allCuisines,
+      required final List<Locale> recipeLocales})
       : _allRecipes = allRecipes,
         _filteredRecipes = filteredRecipes,
         _allTags = allTags,
-        _allCuisines = allCuisines;
+        _allCuisines = allCuisines,
+        _recipeLocales = recipeLocales;
 
   @override
   final PagingController<int, HomeModelRecipe> pagingController;
@@ -188,9 +203,16 @@ class _$_HomeModel implements _HomeModel {
     return EqualUnmodifiableListView(_allCuisines);
   }
 
+  final List<Locale> _recipeLocales;
+  @override
+  List<Locale> get recipeLocales {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_recipeLocales);
+  }
+
   @override
   String toString() {
-    return 'HomeModel(pagingController: $pagingController, allRecipes: $allRecipes, filteredRecipes: $filteredRecipes, allTags: $allTags, allCuisines: $allCuisines)';
+    return 'HomeModel(pagingController: $pagingController, allRecipes: $allRecipes, filteredRecipes: $filteredRecipes, allTags: $allTags, allCuisines: $allCuisines, recipeLocales: $recipeLocales)';
   }
 
   @override
@@ -206,7 +228,9 @@ class _$_HomeModel implements _HomeModel {
                 .equals(other._filteredRecipes, _filteredRecipes) &&
             const DeepCollectionEquality().equals(other._allTags, _allTags) &&
             const DeepCollectionEquality()
-                .equals(other._allCuisines, _allCuisines));
+                .equals(other._allCuisines, _allCuisines) &&
+            const DeepCollectionEquality()
+                .equals(other._recipeLocales, _recipeLocales));
   }
 
   @override
@@ -216,7 +240,8 @@ class _$_HomeModel implements _HomeModel {
       const DeepCollectionEquality().hash(_allRecipes),
       const DeepCollectionEquality().hash(_filteredRecipes),
       const DeepCollectionEquality().hash(_allTags),
-      const DeepCollectionEquality().hash(_allCuisines));
+      const DeepCollectionEquality().hash(_allCuisines),
+      const DeepCollectionEquality().hash(_recipeLocales));
 
   @JsonKey(ignore: true)
   @override
@@ -231,7 +256,8 @@ abstract class _HomeModel implements HomeModel {
       required final List<HomeModelRecipe> allRecipes,
       required final List<HomeModelRecipe> filteredRecipes,
       required final List<HomeModelFilterTag> allTags,
-      required final List<HomeModelFilterCuisine> allCuisines}) = _$_HomeModel;
+      required final List<HomeModelFilterCuisine> allCuisines,
+      required final List<Locale> recipeLocales}) = _$_HomeModel;
 
   @override
   PagingController<int, HomeModelRecipe> get pagingController;
@@ -243,6 +269,8 @@ abstract class _HomeModel implements HomeModel {
   List<HomeModelFilterTag> get allTags;
   @override
   List<HomeModelFilterCuisine> get allCuisines;
+  @override
+  List<Locale> get recipeLocales;
   @override
   @JsonKey(ignore: true)
   _$$_HomeModelCopyWith<_$_HomeModel> get copyWith =>

@@ -13,6 +13,7 @@ class HomeModel with _$HomeModel {
     required final List<HomeModelRecipe> filteredRecipes,
     required final List<HomeModelFilterTag> allTags,
     required final List<HomeModelFilterCuisine> allCuisines,
+    required final List<Locale> recipeLocales,
   }) = _HomeModel;
 }
 
