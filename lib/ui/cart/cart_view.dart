@@ -180,7 +180,7 @@ class CartView extends ConsumerWidget {
                 title: Text(ingredient.ingredient.displayedName),
                 subtitle: Text(
                   '${ingredient.ingredient.amount.fold(
-                    () => 'ui.general.ingredients.unknownAmount'.tr(),
+                    () => '',
                     (final double amount) => amount.toString(),
                   )} ${ingredient.ingredient.unit.getOrElse(() => '')}',
                 ),

@@ -7,7 +7,7 @@
           "content": "Add this recipe to the shopping cart, with the following serving:",
           "actions": {
             "amount_persons": {
-              "one":"{amount} Person",
+              "one": "{amount} Person",
               "other": "{amount} Persons"
             }
           }
@@ -38,16 +38,24 @@
         "try_again": "Try again"
       }
     },
-    "cart_view":{
+    "cart_view": {
       "empty_states": {
         "empty_cart": "Nothing in your \n shopping cart yet"
+      },
+      "dialogs": {
+        "remove_recipe": {
+          "title": "Remove recipe?",
+          "content": "Remove this recipe from your shopping cart or only the ticked off ingredients?",
+          "actions": {
+            "cancel": "Cancel",
+            "only_ticked_off": "Only ticked off",
+            "whole_recipe": "Whole recipe"
+          }
+        }
       }
     }
   },
   "general": {
-    "ingredients": {
-      "unknown_amount": "at your discretion"
-    },
     "others": {
       "instructions": "Instructions",
       "total": "Total",

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:collection/collection.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:food_client/commons/utils.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/ui/cart/cart_model.dart';
@@ -106,17 +107,17 @@ class CartControllerImplementation extends CartController {
   }) {
     unawaited(
       _navigationService.showDialog(
-        title: 'Remove recipe?',
+        title: 'ui.cart_view.dialogs.remove_recipe.title'.tr(),
         content:
-            'Remove this recipe from your shopping cart or only the ticked off ingredients?',
+        'ui.cart_view.dialogs.remove_recipe.content'.tr(),
         actions: some(
           <NavigationServiceDialogAction>[
             NavigationServiceDialogAction(
-              text: 'cancel',
+              text: 'ui.cart_view.dialogs.remove_recipe.actions.cancel'.tr(),
               onPressed: () {},
             ),
             NavigationServiceDialogAction(
-              text: 'only ticket off',
+              text: 'ui.cart_view.dialogs.remove_recipe.actions.only_ticked_off'.tr(),
               onPressed: () async {
                 await optionOf(
                   state.recipes.firstWhereOrNull(
@@ -149,7 +150,7 @@ class CartControllerImplementation extends CartController {
               },
             ),
             NavigationServiceDialogAction(
-              text: 'whole recipe',
+              text: 'ui.cart_view.dialogs.remove_recipe.actions.whole_recipe'.tr(),
               onPressed: () async {
                 await _persistenceService
                     .deleteRecipe(recipeId: recipeId)

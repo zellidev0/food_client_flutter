@@ -244,10 +244,9 @@ class SingleRecipeView extends ConsumerWidget {
                       title: Text(ingredient.displayedName),
                       subtitle: Text(
                         '${ingredient.amount.fold(
-                          () =>
-                              'ui.general.ingredients.unknownAmount'.tr(),
-                          (final double amount) => amount.toString(),
-                        )} ${ingredient.unit.getOrElse(() => '')}',
+                          () => '',
+                          (final double amount) => '$amount ',
+                        )}${ingredient.unit.getOrElse(() => '')}',
                       ),
                     ),
                   ),

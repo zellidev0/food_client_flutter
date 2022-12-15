@@ -7,7 +7,7 @@
           "content": "Für wie viele Personen soll dieses Rezept hinzugefügt werden?",
           "actions": {
             "amount_persons": {
-              "one":"{amount} Person",
+              "one": "{amount} Person",
               "other": "{amount} Personen"
             }
           }
@@ -17,7 +17,7 @@
     "main_view": {
       "bottom_navigation_destination": {
         "explore": "Entdecken",
-        "shopping_cart": "Einkaufsliste",
+        "shopping_cart": "Einkaufsliste"
       }
     },
     "home_view": {
@@ -38,16 +38,24 @@
         "try_again": "Nochmal versuchen"
       }
     },
-    "cart_view":{
+    "cart_view": {
       "empty_states": {
         "empty_cart": "Es sind bisher keine\n Rezepte im Einkaufswagen"
+      },
+      "dialogs": {
+        "remove_recipe": {
+          "title": "Rezept entfernen?",
+          "content": "Soll das komplette Rezept aus deiner Einkaufsliste entfernt werden, oder nur die abgehakten Zutaten?",
+          "actions": {
+            "cancel": "Abbrechen",
+            "only_ticked_off": "Nur abgehaktes",
+            "whole_recipe": "Das ganze Rezept"
+          }
+        }
       }
     }
   },
   "general": {
-    "ingredients": {
-      "unknown_amount": "nach Ermessen"
-    },
     "others": {
       "instructions": "Anleitung",
       "total": "Gesamt",

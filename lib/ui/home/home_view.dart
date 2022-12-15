@@ -117,7 +117,7 @@ class HomeView extends ConsumerWidget {
                       buildNoItemsFoundIcon(
                     message: 'ui.home_view.empty_states.no_recipes'.tr(),
                   ),
-                  noMoreItemsIndicatorBuilder: (final _) =>  Center(
+                  noMoreItemsIndicatorBuilder: (final _) => Center(
                     child: Text(
                       'ui.home_view.empty_states.no_more_recipes'.tr(),
                     ),
@@ -126,7 +126,7 @@ class HomeView extends ConsumerWidget {
                     children: <Widget>[
                       const SizedBox(height: 64),
                       buildNoItemsFoundIcon(
-                        message:'ui.home_view.error_states.no_recipes'.tr(),
+                        message: 'ui.home_view.error_states.no_recipes'.tr(),
                       ),
                       const SizedBox(height: 8),
                       _buildTryFetchingRecipesAgainButton(
@@ -172,7 +172,7 @@ class HomeView extends ConsumerWidget {
       ElevatedButton.icon(
         onPressed: controller.fetchRecipes,
         icon: const Icon(Icons.refresh),
-        label:  Text('ui.home_view.buttons.try_again'.tr()),
+        label: Text('ui.home_view.buttons.try_again'.tr()),
       );
 
   Widget _buildRecipeCardItem({
