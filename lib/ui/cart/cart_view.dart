@@ -1,5 +1,4 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,7 +6,6 @@ import 'package:food_client/commons/utils.dart';
 import 'package:food_client/commons/widgets.dart';
 import 'package:food_client/providers/providers.dart';
 import 'package:food_client/ui/cart/cart_model.dart';
-import 'package:fpdart/fpdart.dart';
 
 class CartView extends ConsumerWidget {
   const CartView({super.key});
@@ -295,22 +293,25 @@ class RecipesListDelegate extends SliverPersistentHeaderDelegate {
               seed: recipe.recipeId.hashCode,
               brightness: Theme.of(context).brightness,
             ),
-            child: InkWell(
+            child: ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              onTap: () => controller.openSingleRecipe(
-                recipeId: recipe.recipeId,
-              ),
-              child: Stack(
-                children: <Widget>[
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      _buildCardImage(recipe: recipe),
-                      _buildCardText(recipe: recipe),
-                    ],
-                  ),
-                  _buildServingsChip(serving: recipe.serving),
-                ],
+              child: InkWell(
+                borderRadius: BorderRadius.circular(12),
+                onTap: () => controller.openSingleRecipe(
+                  recipeId: recipe.recipeId,
+                ),
+                child: Stack(
+                  children: <Widget>[
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        _buildCardImage(recipe: recipe),
+                        _buildCardText(recipe: recipe),
+                      ],
+                    ),
+                    _buildServingsChip(serving: recipe.serving),
+                  ],
+                ),
               ),
             ),
           ),
