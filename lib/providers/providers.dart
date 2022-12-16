@@ -33,6 +33,7 @@ class Providers {
         CartControllerImplementation(
       CartModel(
         recipes: <CartModelRecipe>[],
+        ingredients: [],
         combineIngredients:
             ref.watch(providers.appSettingsServiceProvider).combineIngredients,
       ),

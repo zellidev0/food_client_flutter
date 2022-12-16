@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/ui/cart/cart_model.dart';
 import 'package:food_client/ui/cart/cart_navigation_service.dart';
@@ -25,19 +26,11 @@ class CartControllerImplementation extends CartController {
   })  : _navigationService = navigationService,
         _persistenceService = persistenceService,
         _imageSizerService = imageSizerService {
-    state = state.copyWith(recipes: _getAllRecipes());
+    state = state.copyWith(
+      recipes: _getAllRecipes(),
+      ingredients: _getAllIngredients(),
+    );
   }
-
-  @override
-  void goBack() {
-    _navigationService.goBack();
-  }
-
-  @override
-  void goToCart() {}
-
-  @override
-  void goToHome() {}
 
   @override
   void openSingleRecipe({required final String recipeId}) {
@@ -53,55 +46,27 @@ class CartControllerImplementation extends CartController {
   @override
   Future<void> tickOff({
     required final String ingredientId,
-    required final String recipeId,
+    required final List<String> recipeIds,
     required final bool isTickedOff,
   }) async {
-    await _persistenceService
-        .updateIngredient(
-          isTickedOff: isTickedOff,
-          ingredientId: ingredientId,
-          recipeId: recipeId,
-        )
-        .run();
-    state = state.copyWith(recipes: _getAllRecipes());
-  }
-
-  CartPersistenceServiceModelIngredient
-      mapToCartPersistenceServiceModelIngredient({
-    required final bool isTickedOff,
-    required final CartModelIngredient ingredient,
-  }) =>
-          CartPersistenceServiceModelIngredient(
+    for (final String recipeId in recipeIds) {
+      await _persistenceService
+          .updateIngredient(
             isTickedOff: isTickedOff,
-            imageUrl: ingredient.ingredient.imageUrl,
-            ingredientId: ingredient.ingredient.ingredientId,
-            slug: ingredient.ingredient.slug,
-            displayedName: ingredient.ingredient.displayedName,
-            amount: ingredient.ingredient.amount,
-            unit: ingredient.ingredient.unit,
-          );
-
-  List<CartModelRecipe> _getAllRecipes() => _persistenceService
-      .getShoppingCardRecipes()
-      .map(
-        (final CartPersistenceServiceModelRecipe recipe) => CartModelRecipe(
-          ingredients:
-              recipe.ingredients.map(mapToCartModelIngredient).toList(),
-          recipeId: recipe.recipeId,
-          imageUrl: recipe.imagePath.flatMap(
-            (final Uri uri) => _imageSizerService
-                .getUrl(filePath: uri, widthPixels: _widthPixels)
-                .toOption(),
-          ),
-          title: recipe.title,
-          serving: recipe.serving,
-        ),
-      )
-      .toList();
+            ingredientId: ingredientId,
+            recipeId: recipeId,
+          )
+          .run();
+    }
+    state = state.copyWith(
+      recipes: _getAllRecipes(),
+      ingredients: _getAllIngredients(),
+    );
+  }
 
   @override
   void showDeleteRecipeDialog({
-    required final String recipeId,
+    required final List<String> recipeIds,
   }) {
     unawaited(
       _navigationService.showDialog(
@@ -117,44 +82,22 @@ class CartControllerImplementation extends CartController {
               text: 'ui.cart_view.dialogs.remove_recipe.actions.only_ticked_off'
                   .tr(),
               onPressed: () async {
-                await optionOf(
-                  state.recipes.firstWhereOrNull(
-                    (final CartModelRecipe recipe) =>
-                        recipe.recipeId == recipeId,
-                  ),
-                )
-                    .map(
-                      (final CartModelRecipe recipe) => recipe.ingredients
-                          .filter(
-                            (final CartModelIngredient ingredient) =>
-                                ingredient.isTickedOff,
-                          )
-                          .map(
-                            (final CartModelIngredient ingredient) =>
-                                ingredient.ingredient.ingredientId,
-                          )
-                          .toList(),
-                    )
-                    .fold(
-                      () => null,
-                      (final List<String> ingredientIds) => _persistenceService
-                          .deleteIngredients(
-                            ingredientKeys: ingredientIds,
-                            recipeId: recipeId,
-                          )
-                          .run(),
-                    );
-                state = state.copyWith(recipes: _getAllRecipes());
+                debugPrint('TODO');
               },
             ),
             NavigationServiceDialogAction(
               text: 'ui.cart_view.dialogs.remove_recipe.actions.whole_recipe'
                   .tr(),
               onPressed: () async {
-                await _persistenceService
-                    .deleteRecipe(recipeId: recipeId)
-                    .run();
-                state = state.copyWith(recipes: _getAllRecipes());
+                for (final String recipeId in recipeIds) {
+                  await _persistenceService
+                      .deleteRecipe(recipeId: recipeId)
+                      .run();
+                }
+                state = state.copyWith(
+                  recipes: _getAllRecipes(),
+                  ingredients: _getAllIngredients(),
+                );
               },
             ),
           ],
@@ -162,10 +105,106 @@ class CartControllerImplementation extends CartController {
       ),
     );
   }
+
+  List<CartModelRecipe> _getAllRecipes() => _persistenceService
+      .getShoppingCardRecipes()
+      .map(
+        (final CartPersistenceServiceModelRecipe recipe) => CartModelRecipe(
+          recipeId: recipe.recipeId,
+          imageUrl: recipe.imagePath.flatMap(
+            (final Uri uri) => _imageSizerService
+                .getUrl(filePath: uri, widthPixels: _widthPixels)
+                .toOption(),
+          ),
+          title: recipe.title,
+          serving: recipe.serving,
+        ),
+      )
+      .toList();
+
+  List<CartModelIngredient> _getAllIngredients() {
+    final List<CartModelIngredient> ingredients = _persistenceService
+        .getShoppingCardRecipes()
+        .flatMap(
+          (final CartPersistenceServiceModelRecipe recipe) => recipe.ingredients
+              .map(
+                (final CartPersistenceServiceModelIngredient ingredient) =>
+                    mapToCartModelIngredient(
+                  ingredient,
+                  <String>[recipe.recipeId],
+                ),
+              )
+              .toList(),
+        )
+        .toList();
+    if (state.combineIngredients) {
+      return _combineIngredients(allIngredients: ingredients);
+    }
+    return ingredients;
+  }
+
+  List<CartModelIngredient> _combineIngredients({
+    required final List<CartModelIngredient> allIngredients,
+  }) =>
+      allIngredients
+          .toList()
+          .groupFoldBy(
+            (final CartModelIngredient ingredient) =>
+                ingredient.ingredient.ingredientId,
+            (
+              final CartModelIngredient? previous,
+              final CartModelIngredient element,
+            ) =>
+                element.ingredient.unit == previous?.ingredient.unit
+                    ? element.copyWith(
+                        ingredient: element.ingredient.copyWith(
+                          recipeIds: <String>[
+                            ...element.ingredient.recipeIds,
+                            ...optionOf(previous)
+                                .map(
+                                  (final CartModelIngredient ingredient) =>
+                                      ingredient.ingredient.recipeIds,
+                                )
+                                .getOrElse(() => <String>[]),
+                          ],
+                          amount: element.ingredient.amount.map(
+                            (final double elementAmount) => optionOf(previous)
+                                .flatMap(
+                                  (final CartModelIngredient ingredient) =>
+                                      ingredient.ingredient.amount,
+                                )
+                                .fold(
+                                  () => elementAmount,
+                                  (final double previousAmount) =>
+                                      elementAmount + previousAmount,
+                                ),
+                          ),
+                        ),
+                      )
+                    : element,
+          )
+          .values
+          .toList();
+
+  CartPersistenceServiceModelIngredient
+      mapToCartPersistenceServiceModelIngredient({
+    required final bool isTickedOff,
+    required final CartModelIngredient ingredient,
+  }) =>
+          CartPersistenceServiceModelIngredient(
+            isTickedOff: isTickedOff,
+            imageUrl: ingredient.ingredient.imageUrl,
+            ingredientId: ingredient.ingredient.ingredientId,
+            slug: ingredient.ingredient.slug,
+            displayedName: ingredient.ingredient.displayedName,
+            amount: ingredient.ingredient.amount,
+            unit: ingredient.ingredient.unit,
+          );
 }
 
 CartModelIngredient mapToCartModelIngredient(
   final CartPersistenceServiceModelIngredient ingredient,
+  final List<String> recipeIds,
 ) =>
     CartModelIngredient(
       ingredient: CartModelIngredientInfo(
@@ -175,6 +214,7 @@ CartModelIngredient mapToCartModelIngredient(
         displayedName: ingredient.displayedName,
         amount: ingredient.amount,
         unit: ingredient.unit,
+        recipeIds: recipeIds,
       ),
       isTickedOff: ingredient.isTickedOff,
     );

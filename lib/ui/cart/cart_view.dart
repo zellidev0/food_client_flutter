@@ -7,6 +7,7 @@ import 'package:food_client/commons/utils.dart';
 import 'package:food_client/commons/widgets.dart';
 import 'package:food_client/providers/providers.dart';
 import 'package:food_client/ui/cart/cart_model.dart';
+import 'package:fpdart/fpdart.dart';
 
 class CartView extends ConsumerWidget {
   const CartView({super.key});
@@ -47,19 +48,20 @@ class CartView extends ConsumerWidget {
                     children: <Widget>[
                       buildIngredientsListView(
                         children: ingredientsList(
-                          recipes: model.recipes,
+                          ingredients: model.ingredients,
+                          controller: controller,
+                          model: model,
+                        ),
+                      ),
+                      buildIngredientsListView(
+                        children: notTickedOffIngredientsList(
+                          ingredients: model.ingredients,
                           controller: controller,
                         ),
                       ),
                       buildIngredientsListView(
                         children: tickedOffIngredientsList(
-                          recipes: model.recipes,
-                          controller: controller,
-                        ),
-                      ),
-                      buildIngredientsListView(
-                        children: notTickedOffIngredientsList(
-                          recipes: model.recipes,
+                          ingredients: model.ingredients,
                           controller: controller,
                         ),
                       ),
@@ -81,64 +83,52 @@ class CartView extends ConsumerWidget {
       );
 
   List<Widget> ingredientsList({
-    required final List<CartModelRecipe> recipes,
+    required final List<CartModelIngredient> ingredients,
     required final CartController controller,
+    required final CartModel model,
   }) =>
-      recipes
+      ingredients
           .map(
-            (final CartModelRecipe recipe) => recipe.ingredients.map(
-              (final CartModelIngredient ingredient) => buildSingleIngredient(
-                ingredient: ingredient,
-                controller: controller,
-                recipeId: recipe.recipeId,
-              ),
+            (final CartModelIngredient ingredient) => buildSingleIngredient(
+              ingredient: ingredient,
+              controller: controller,
+              recipeIds: ingredient.ingredient.recipeIds,
             ),
           )
-          .flattened
           .toList();
 
   List<Widget> tickedOffIngredientsList({
-    required final List<CartModelRecipe> recipes,
+    required final List<CartModelIngredient> ingredients,
     required final CartController controller,
   }) =>
-      recipes
-          .map(
-            (final CartModelRecipe recipe) => recipe.ingredients
-                .where(
-                  (final CartModelIngredient element) => element.isTickedOff,
-                )
-                .map(
-                  (final CartModelIngredient ingredient) =>
-                      buildSingleIngredient(
-                    ingredient: ingredient,
-                    controller: controller,
-                    recipeId: recipe.recipeId,
-                  ),
-                ),
+      ingredients
+          .where(
+            (final CartModelIngredient element) => element.isTickedOff,
           )
-          .flattened
+          .map(
+            (final CartModelIngredient ingredient) => buildSingleIngredient(
+              ingredient: ingredient,
+              controller: controller,
+              recipeIds: ingredient.ingredient.recipeIds,
+            ),
+          )
           .toList();
 
   List<Widget> notTickedOffIngredientsList({
-    required final List<CartModelRecipe> recipes,
+    required final List<CartModelIngredient> ingredients,
     required final CartController controller,
   }) =>
-      recipes
-          .map(
-            (final CartModelRecipe recipe) => recipe.ingredients
-                .where(
-                  (final CartModelIngredient element) => !element.isTickedOff,
-                )
-                .map(
-                  (final CartModelIngredient ingredient) =>
-                      buildSingleIngredient(
-                    ingredient: ingredient,
-                    controller: controller,
-                    recipeId: recipe.recipeId,
-                  ),
-                ),
+      ingredients
+          .where(
+            (final CartModelIngredient element) => !element.isTickedOff,
           )
-          .flattened
+          .map(
+            (final CartModelIngredient ingredient) => buildSingleIngredient(
+              ingredient: ingredient,
+              controller: controller,
+              recipeIds: ingredient.ingredient.recipeIds,
+            ),
+          )
           .toList();
 
   Widget _buildTabBarSliver({
@@ -174,7 +164,7 @@ class CartView extends ConsumerWidget {
       );
 
   Widget buildSingleIngredient({
-    required final String recipeId,
+    required final List<String> recipeIds,
     required final CartModelIngredient ingredient,
     required final CartController controller,
   }) =>
@@ -183,36 +173,57 @@ class CartView extends ConsumerWidget {
         child: Builder(
           builder: (final BuildContext context) => InkWell(
             borderRadius: BorderRadius.circular(8),
-            onTap: () async => controller.tickOff(
+            onTap: () async => await controller.tickOff(
               ingredientId: ingredient.ingredient.ingredientId,
-              recipeId: recipeId,
+              recipeIds: recipeIds,
               isTickedOff: !ingredient.isTickedOff,
             ),
             onLongPress: () =>
-                controller.showDeleteRecipeDialog(recipeId: recipeId),
-            child: ListTile(
-              tileColor: generateRandomPastelColor(
-                seed: recipeId.hashCode,
-                brightness: Theme.of(context).brightness,
+                controller.showDeleteRecipeDialog(recipeIds: recipeIds),
+            child: Ink(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: !ingredient.isTickedOff && recipeIds.length == 1
+                    ? generateRandomPastelColor(
+                        seed: recipeIds.first.hashCode,
+                        brightness: Theme.of(context).brightness,
+                      )
+                    : null,
+                gradient: !ingredient.isTickedOff && recipeIds.length > 1
+                    ? LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        colors: recipeIds
+                            .map(
+                              (final String recipeId) =>
+                                  generateRandomPastelColor(
+                                seed: recipeId.hashCode,
+                                brightness: Theme.of(context).brightness,
+                              ),
+                            )
+                            .toList(),
+                      )
+                    : null,
               ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              enabled: ingredient.isTickedOff,
-              selected: !ingredient.isTickedOff,
-              leading: AspectRatio(
-                aspectRatio: 1,
-                child: ingredient.ingredient.imageUrl.fold(
-                  () => const Icon(Icons.image_not_supported),
-                  (final Uri url) => buildCachedNetworkImage(imageUrl: url),
+              child: ListTile(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
                 ),
-              ),
-              title: Text(ingredient.ingredient.displayedName),
-              subtitle: Text(
-                '${ingredient.ingredient.amount.fold(
-                  () => '',
-                  (final double amount) => amount.toStringAsFixed(0),
-                )} ${ingredient.ingredient.unit.getOrElse(() => '')}',
+                enabled: !ingredient.isTickedOff,
+                leading: AspectRatio(
+                  aspectRatio: 1,
+                  child: ingredient.ingredient.imageUrl.fold(
+                    () => const Icon(Icons.image_not_supported),
+                    (final Uri url) => buildCachedNetworkImage(imageUrl: url),
+                  ),
+                ),
+                title: Text(ingredient.ingredient.displayedName),
+                subtitle: Text(
+                  '${ingredient.ingredient.amount.fold(
+                    () => '',
+                    (final double amount) => amount.toStringAsFixed(0),
+                  )} ${ingredient.ingredient.unit.getOrElse(() => '')}',
+                ),
               ),
             ),
           ),
@@ -223,17 +234,14 @@ class CartView extends ConsumerWidget {
 abstract class CartController extends StateNotifier<CartModel> {
   CartController(super.state);
 
-  void goToHome();
-  void goToCart();
-  void goBack();
   void openSingleRecipe({required final String recipeId});
   Future<void> tickOff({
     required final String ingredientId,
-    required final String recipeId,
+    required final List<String> recipeIds,
     required final bool isTickedOff,
   });
   void showDeleteRecipeDialog({
-    required final String recipeId,
+    required final List<String> recipeIds,
   });
 }
 
@@ -290,9 +298,6 @@ class RecipesListDelegate extends SliverPersistentHeaderDelegate {
             child: InkWell(
               borderRadius: BorderRadius.circular(12),
               onTap: () => controller.openSingleRecipe(
-                recipeId: recipe.recipeId,
-              ),
-              onLongPress: () => controller.showDeleteRecipeDialog(
                 recipeId: recipe.recipeId,
               ),
               child: Stack(
