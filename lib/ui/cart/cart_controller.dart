@@ -66,7 +66,7 @@ class CartControllerImplementation extends CartController {
 
   @override
   void showDeleteRecipeDialog({
-    required final List<String> recipeIds,
+    required final String recipeId,
   }) {
     unawaited(
       _navigationService.showDialog(
@@ -82,18 +82,22 @@ class CartControllerImplementation extends CartController {
               text: 'ui.cart_view.dialogs.remove_recipe.actions.only_ticked_off'
                   .tr(),
               onPressed: () async {
-                debugPrint('TODO');
+                await _persistenceService
+                    .deleteTicketOffIngredientsOfRecipe(recipeId: recipeId)
+                    .run();
+                state = state.copyWith(
+                  recipes: _getAllRecipes(),
+                  ingredients: _getAllIngredients(),
+                );
               },
             ),
             NavigationServiceDialogAction(
               text: 'ui.cart_view.dialogs.remove_recipe.actions.whole_recipe'
                   .tr(),
               onPressed: () async {
-                for (final String recipeId in recipeIds) {
-                  await _persistenceService
-                      .deleteRecipe(recipeId: recipeId)
-                      .run();
-                }
+                await _persistenceService
+                    .deleteRecipe(recipeId: recipeId)
+                    .run();
                 state = state.copyWith(
                   recipes: _getAllRecipes(),
                   ingredients: _getAllIngredients(),

@@ -120,9 +120,38 @@ class PersistenceService extends PersistenceServiceAggregator {
                 recipe.copyWith(
               ingredients: recipe.ingredients
                   .filter(
-                    (final PersistenceServiceModelShoppingListIngredient
-                            ingredient) =>
+                    (
+                      final PersistenceServiceModelShoppingListIngredient
+                          ingredient,
+                    ) =>
                         !ingredientKeys.contains(ingredient.ingredientId),
+                  )
+                  .toList(),
+            ),
+          )
+          .fold(
+            () => Task<void>(() async {}),
+            (final PersistenceServiceModelShoppingListRecipe recipe) =>
+                Task<void>(
+              () async => await shoppingListBox.put(recipeId, recipe),
+            ),
+          );
+
+  @override
+  Task<void> deleteTicketOffIngredientsOfRecipe({
+    required final String recipeId,
+  }) =>
+      optionOf(shoppingListBox.get(recipeId))
+          .map(
+            (final PersistenceServiceModelShoppingListRecipe recipe) =>
+                recipe.copyWith(
+              ingredients: recipe.ingredients
+                  .filter(
+                    (
+                      final PersistenceServiceModelShoppingListIngredient
+                          ingredient,
+                    ) =>
+                        !ingredient.isTickedOff,
                   )
                   .toList(),
             ),

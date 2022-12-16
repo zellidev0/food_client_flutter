@@ -176,8 +176,6 @@ class CartView extends ConsumerWidget {
               recipeIds: recipeIds,
               isTickedOff: !ingredient.isTickedOff,
             ),
-            onLongPress: () =>
-                controller.showDeleteRecipeDialog(recipeIds: recipeIds),
             child: Ink(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
@@ -239,7 +237,7 @@ abstract class CartController extends StateNotifier<CartModel> {
     required final bool isTickedOff,
   });
   void showDeleteRecipeDialog({
-    required final List<String> recipeIds,
+    required final String recipeId,
   });
 }
 
@@ -300,6 +298,8 @@ class RecipesListDelegate extends SliverPersistentHeaderDelegate {
                 onTap: () => controller.openSingleRecipe(
                   recipeId: recipe.recipeId,
                 ),
+                onLongPress: () =>
+                    controller.showDeleteRecipeDialog(recipeId: recipe.recipeId),
                 child: Stack(
                   children: <Widget>[
                     Column(
