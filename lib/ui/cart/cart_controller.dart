@@ -189,20 +189,6 @@ class CartControllerImplementation extends CartController {
           .values
           .toList();
 
-  CartPersistenceServiceModelIngredient
-      mapToCartPersistenceServiceModelIngredient({
-    required final bool isTickedOff,
-    required final CartModelIngredient ingredient,
-  }) =>
-          CartPersistenceServiceModelIngredient(
-            isTickedOff: isTickedOff,
-            imageUrl: ingredient.ingredient.imageUrl,
-            ingredientId: ingredient.ingredient.ingredientId,
-            slug: ingredient.ingredient.slug,
-            displayedName: ingredient.ingredient.displayedName,
-            amount: ingredient.ingredient.amount,
-            unit: ingredient.ingredient.unit,
-          );
 }
 
 CartModelIngredient mapToCartModelIngredient(

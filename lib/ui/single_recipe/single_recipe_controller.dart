@@ -10,6 +10,9 @@ import 'package:food_client/ui/single_recipe/single_recipe_web_client_service.da
 import 'package:food_client/ui/single_recipe/single_recipe_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
 
+const int widthPixelsDescriptionSteps = 512;
+const int widthPixelsIngredientThumbNail = 256;
+
 class SingleRecipeControllerImplementation extends SingleRecipeController {
   late final SingleRecipeWebClientService _webClientService;
   late final SingleRecipeWebImageSizerService _webImageSizerService;
@@ -90,11 +93,12 @@ class SingleRecipeControllerImplementation extends SingleRecipeController {
                 (final SingleRecipeModelYield yield) =>
                     NavigationServiceDialogAction(
                   text: plural(
-                      'ui.single_recipe_view.dialogs.add_to_shopping_cart.actions.amount_persons',
-                      yield.servings,
-                      namedArgs: <String, String>{
-                        'amount': yield.servings.toString(),
-                      },),
+                    'ui.single_recipe_view.dialogs.add_to_shopping_cart.actions.amount_persons',
+                    yield.servings,
+                    namedArgs: <String, String>{
+                      'amount': yield.servings.toString(),
+                    },
+                  ),
                   onPressed: () {
                     unawaited(
                       _persistenceService
@@ -212,7 +216,7 @@ List<SingleRecipeModelStep> _mapSteps({
               (final Uri imagePath) => imageResizerService
                   .getUrl(
                     filePath: imagePath,
-                    widthPixels: 1000,
+                    widthPixels: widthPixelsDescriptionSteps,
                   )
                   .toOption(),
             ),
@@ -242,7 +246,7 @@ List<SingleRecipeModelYield> _mapYields({
                     displayedName: ingredient.displayedName,
                     imageUrl: ingredient.imagePath.flatMap(
                       (final Uri imagePath) => imageResizerService
-                          .getUrl(filePath: imagePath, widthPixels: 500)
+                          .getUrl(filePath: imagePath, widthPixels: widthPixelsIngredientThumbNail)
                           .toOption(),
                     ),
                     amount: ingredient.amount,
