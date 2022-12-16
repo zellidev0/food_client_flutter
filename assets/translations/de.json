@@ -23,9 +23,9 @@
     "home_view": {
       "filters": {
         "tags": "Tags",
-        "cuisines": "Küchen"
+        "cuisines": "Küchen",
+        "name_with_amount": "{name} #{amount}"
       },
-      "filter_with_amount:": "{name} #{amount}",
       "empty_states": {
         "no_recipes": "Keine Rezepte gefunden!",
         "no_more_recipes": "Keine weiteren Rezepte gefunden!"

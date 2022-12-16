@@ -77,7 +77,7 @@ class HomeView extends ConsumerWidget {
         label: Text(
           selectedFilters.isEmpty
               ? text
-              : 'ui.home_view.filter_with_amount'.tr(
+              : 'ui.home_view.filters.name_with_amount'.tr(
                   namedArgs: <String, String>{
                     'name': text,
                     'amount': selectedFilters.length.toString(),
