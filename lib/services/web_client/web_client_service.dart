@@ -167,24 +167,6 @@ class WebClientService implements WebClientServiceAggregator {
                 .toList(),
       );
 
-  @override
-  TaskEither<Exception, HomeWebClientModelPagination> fetchRecipePagination({
-    required final String country,
-  }) =>
-      TaskEither<Exception, WebClientModelRecipeApiRecipeResponse>.tryCatch(
-        () async => await client.getRecipes(
-          country: country,
-          take: 0,
-        ),
-        (final Object error, final StackTrace stacktrace) => Exception(
-          'Failed to fetch recipe pagination: $error, $stacktrace',
-        ),
-      ).map(
-        (final WebClientModelRecipeApiRecipeResponse response) =>
-            HomeWebClientModelPagination(
-          total: response.total,
-        ),
-      );
 }
 
 SingleRecipeWebClientModelRecipe _mapToSingleRecipeWebClientModelRecipe({

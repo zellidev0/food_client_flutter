@@ -94,7 +94,7 @@ class SingleRecipeControllerImplementation extends SingleRecipeController {
                       yield.servings,
                       namedArgs: <String, String>{
                         'amount': yield.servings.toString(),
-                      }),
+                      },),
                   onPressed: () {
                     unawaited(
                       _persistenceService
