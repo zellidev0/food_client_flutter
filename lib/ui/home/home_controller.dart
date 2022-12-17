@@ -150,6 +150,7 @@ class HomeControllerImplementation extends HomeController {
         error: null,
         nextPageKey: 0,
       );
+      state.pagingController.refresh();
     } else {
       if (isLastPage) {
         state.pagingController.appendLastPage(newRecipes);
