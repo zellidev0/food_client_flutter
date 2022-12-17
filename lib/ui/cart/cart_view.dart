@@ -50,18 +50,21 @@ class CartView extends ConsumerWidget {
                           controller: controller,
                           model: model,
                         ),
+                        keyId: 'total',
                       ),
                       buildIngredientsListView(
                         children: notTickedOffIngredientsList(
                           ingredients: model.ingredients,
                           controller: controller,
                         ),
+                        keyId: 'missing',
                       ),
                       buildIngredientsListView(
                         children: tickedOffIngredientsList(
                           ingredients: model.ingredients,
                           controller: controller,
                         ),
+                        keyId: 'ticked-off',
                       ),
                     ],
                   ),
@@ -71,8 +74,12 @@ class CartView extends ConsumerWidget {
     );
   }
 
-  ListView buildIngredientsListView({required final List<Widget> children}) =>
+  ListView buildIngredientsListView({
+    required final List<Widget> children,
+    required final String keyId,
+  }) =>
       ListView.separated(
+        key: PageStorageKey<String>('cart_view-ingredients-list-$keyId'),
         itemBuilder: (final BuildContext context, final int index) =>
             children[index],
         itemCount: children.length,
@@ -298,8 +305,8 @@ class RecipesListDelegate extends SliverPersistentHeaderDelegate {
                 onTap: () => controller.openSingleRecipe(
                   recipeId: recipe.recipeId,
                 ),
-                onLongPress: () =>
-                    controller.showDeleteRecipeDialog(recipeId: recipe.recipeId),
+                onLongPress: () => controller.showDeleteRecipeDialog(
+                    recipeId: recipe.recipeId),
                 child: Stack(
                   children: <Widget>[
                     Column(
