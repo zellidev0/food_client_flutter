@@ -9,8 +9,6 @@ part 'home_model.freezed.dart';
 class HomeModel with _$HomeModel {
   const factory HomeModel({
     required final PagingController<int, HomeModelRecipe> pagingController,
-    required final List<HomeModelRecipe> allRecipes,
-    required final List<HomeModelRecipe> filteredRecipes,
     required final List<HomeModelFilterTag> allTags,
     required final List<HomeModelFilterCuisine> allCuisines,
     required final List<Locale> recipeLocales,

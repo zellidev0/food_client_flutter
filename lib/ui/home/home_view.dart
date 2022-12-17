@@ -32,7 +32,6 @@ class HomeView extends ConsumerWidget {
             _buildRecipesList(
               controller: controller,
               model: model,
-              recipes: model.filteredRecipes,
               tags: model.allTags,
             ),
           ],
@@ -93,7 +92,6 @@ class HomeView extends ConsumerWidget {
   Widget _buildRecipesList({
     required final HomeController controller,
     required final HomeModel model,
-    required final List<HomeModelRecipe> recipes,
     required final List<HomeModelFilterTag> tags,
   }) =>
       Expanded(

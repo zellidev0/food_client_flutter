@@ -67,8 +67,6 @@ class Providers {
     ) =>
         HomeControllerImplementation(
       HomeModel(
-        allRecipes: <HomeModelRecipe>[],
-        filteredRecipes: <HomeModelRecipe>[],
         allTags: <HomeModelFilterTag>[],
         allCuisines: <HomeModelFilterCuisine>[],
         pagingController: PagingController<int, HomeModelRecipe>(

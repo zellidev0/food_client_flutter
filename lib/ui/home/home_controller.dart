@@ -48,21 +48,14 @@ class HomeControllerImplementation extends HomeController {
   }
 
   Future<void> _init() async {
-    (await _fetchRecipes(paginationSkip: 0)
-            .map3(
-              _fetchTags(),
+    (await _fetchTags()
+            .map2(
               _fetchCuisines(),
               (
-                final List<HomeModelRecipe> recipes,
                 final List<HomeModelFilterTag> tags,
                 final List<HomeModelFilterCuisine> cuisines,
               ) =>
-                  state.copyWith(
-                allRecipes: recipes,
-                allTags: tags,
-                allCuisines: cuisines,
-                filteredRecipes: recipes,
-              ),
+                  state.copyWith(allTags: tags, allCuisines: cuisines),
             )
             .run())
         .fold(
@@ -165,18 +158,6 @@ class HomeControllerImplementation extends HomeController {
         state.pagingController.appendPage(newRecipes, nextPageKey);
       }
     }
-    final List<HomeModelRecipe> allRecipes = <HomeModelRecipe>{
-      ...state.allRecipes,
-      ...newRecipes,
-    }.toList();
-    state = state.copyWith(
-      allRecipes: allRecipes,
-      filteredRecipes: createFilteredRecipes(
-        recipes: allRecipes,
-        tagIds: selectedFilterIds(filters: state.allTags),
-        cuisineIds: selectedFilterIds(filters: state.allCuisines),
-      ),
-    );
   }
 
   List<HomeModelRecipe> createFilteredRecipes({
