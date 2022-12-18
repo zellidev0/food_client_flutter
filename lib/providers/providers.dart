@@ -288,6 +288,14 @@ class Providers {
                     child: const CartView(),
                     type: BeamPageType.material,
                   ),
+          NavigationServiceUris.ingredientsSortingRouteUri.toString():
+              (final _, final __, final ___) => BeamPage(
+                    key: ValueKey<String>(
+                      NavigationServiceUris.ingredientsSortingRouteUri.toString(),
+                    ),
+                    child: const IngredientsSortingView(),
+                    type: BeamPageType.material,
+                  ),
           NavigationServiceUris.singleRecipeUri.toString(): (
             final _,
             final BeamState state,

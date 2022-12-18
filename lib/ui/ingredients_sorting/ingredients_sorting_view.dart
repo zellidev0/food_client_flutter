@@ -14,13 +14,25 @@ class IngredientsSortingView extends ConsumerWidget {
     // ignore: unused_local_variable
     final IngredientsSortingController controller =
         ref.read(providers.ingredientsSortingControllerProvider.notifier);
-    return Scaffold(
-      body: ListView.builder(
-        itemCount: model.ingredientFamilies.length,
-        itemBuilder: (final BuildContext context, final int index) => ListTile(
-          title: Text(model.ingredientFamilies[index].name),
+    return Stack(
+      children: <Widget>[
+        Scaffold(
+          extendBodyBehindAppBar: true,
+          body: ListView.builder(
+            itemCount: model.ingredientFamilies.length,
+            itemBuilder: (final BuildContext context, final int index) => ListTile(
+              title: Text(model.ingredientFamilies[index].name),
+            ),
+          ),
         ),
-      ),
+        Align(
+          alignment: Alignment.topRight,
+          child: IconButton(
+            onPressed: controller.goBack,
+            icon: const Icon(Icons.close),
+          ),
+        ),
+      ],
     );
   }
 }

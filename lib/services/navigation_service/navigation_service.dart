@@ -29,6 +29,7 @@ class NavigationServiceUris {
   static Uri homeRouteUri = Uri.parse('/main/home');
   static Uri accountRouteUri = Uri.parse('/main/account');
   static Uri cartRouteUri = Uri.parse('/main/cart');
+  static Uri ingredientsSortingRouteUri = Uri.parse('/main/preferences/ingredients-sorting');
 }
 
 @freezed

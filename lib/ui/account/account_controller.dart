@@ -11,17 +11,9 @@ class AccountControllerImplementation extends AccountController {
   }) : _navigationService = navigationService;
 
   @override
-  void goToCart() {
-    _navigationService.navigateToNamed(uri: NavigationServiceUris.cartRouteUri);
-  }
-
-  @override
-  void goToHome() {
-    _navigationService.navigateToNamed(uri: NavigationServiceUris.homeRouteUri);
-  }
-
-  @override
-  void goBack() {
-    _navigationService.goBack();
+  void goToIngredientsSorting() {
+    _navigationService.navigateToNamed(
+      uri: NavigationServiceUris.ingredientsSortingRouteUri,
+    );
   }
 }

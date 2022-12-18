@@ -10,11 +10,25 @@ class AccountView extends ConsumerWidget {
   Widget build(final BuildContext context, final WidgetRef ref) {
     // ignore: unused_local_variable
     final AccountModel model = ref.watch(providers.accountControllerProvider);
-    // ignore: unused_local_variable
     final AccountController controller =
         ref.read(providers.accountControllerProvider.notifier);
     return Scaffold(
-      body: Container(),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text('Preferences', style: Theme.of(context).textTheme.headline6),
+            const SizedBox(height: 16),
+            const Divider(),
+            ListTile(
+              title: const Text('Ingredients Sorting'),
+              onTap: controller.goToIngredientsSorting,
+            ),
+            const Divider(),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -22,7 +36,5 @@ class AccountView extends ConsumerWidget {
 abstract class AccountController extends StateNotifier<AccountModel> {
   AccountController(super.state);
 
-  void goToHome();
-  void goToCart();
-  void goBack();
+  void goToIngredientsSorting();
 }
