@@ -6,8 +6,20 @@ part 'ingredients_sorting_model.freezed.dart';
 @freezed
 class IngredientsSortingModel with _$IngredientsSortingModel {
   const factory IngredientsSortingModel({
-    required final List<IngredientsSortingModelIngredientFamily> ingredientFamilies,
+    required final List<IngredientsSortingModelUnit> units,
   }) = _IngredientsSortingModel;
+}
+
+
+
+@freezed
+class IngredientsSortingModelUnit with _$IngredientsSortingModelUnit {
+  const factory IngredientsSortingModelUnit({
+    required final String id,
+    required final String title,
+    required final bool selected,
+    required final List<IngredientsSortingModelIngredientFamily> ingredientFamilies,
+  }) = _IngredientsSortingModelUnit;
 }
 
 @freezed
@@ -19,5 +31,4 @@ class IngredientsSortingModelIngredientFamily with _$IngredientsSortingModelIngr
     required final String slug,
     required final List<String> familyIds,
   }) = _IngredientsSortingModelIngredientFamily;
-
 }

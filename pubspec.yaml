@@ -11,7 +11,6 @@ environment:
 dependencies:
   auto_size_text: ^3.0.0
   beamer: ^1.5.3
-  path_provider: ^2.0.11
   cached_network_image: ^3.2.3
   collection: ^1.16.0
   cupertino_icons: ^1.0.2
@@ -30,6 +29,7 @@ dependencies:
   json_annotation: ^4.6.0
   logging: ^1.1.0
   mockito: ^5.3.2
+  path_provider: ^2.0.11
   retrofit: ^3.3.1
   riverpod_annotation: ^1.0.6
   uuid: ^3.0.4

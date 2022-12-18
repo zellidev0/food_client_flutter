@@ -8,6 +8,7 @@ import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_navigatio
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_view.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_web_client_service.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:uuid/uuid.dart';
 
 const int takeSize = 250;
 
@@ -21,36 +22,7 @@ class IngredientsSortingControllerImplementation
     required final IngredientsSortingNavigationService navigationService,
     required final IngredientsSortingWebClientService webClientService,
   })  : _navigationService = navigationService,
-        _webClientService = webClientService {
-    unawaited(init());
-  }
-
-  Future<void> init() async {
-    final List<IngredientsSortingWebClientModelIngredientFamily> families =
-        <IngredientsSortingWebClientModelIngredientFamily>[
-      ...await _fetchIngredients(pageKey: 0),
-      ...await _fetchIngredients(pageKey: 1),
-      ...await _fetchIngredients(pageKey: 2),
-      ...await _fetchIngredients(pageKey: 3),
-      ...await _fetchIngredients(pageKey: 4),
-      ...await _fetchIngredients(pageKey: 5),
-      ...await _fetchIngredients(pageKey: 6),
-    ];
-
-    state = state.copyWith(
-      ingredientFamilies: removeDuplicates(families: families),
-    );
-  }
-
-  @override
-  void goToCart() {
-    _navigationService.navigateToNamed(uri: NavigationServiceUris.cartRouteUri);
-  }
-
-  @override
-  void goToHome() {
-    _navigationService.navigateToNamed(uri: NavigationServiceUris.homeRouteUri);
-  }
+        _webClientService = webClientService;
 
   @override
   void goBack() {
@@ -79,6 +51,75 @@ class IngredientsSortingControllerImplementation
             ) =>
                 families,
           );
+
+  @override
+  Future<void> addSortingUnit() async {
+    state = state.copyWith(
+      units: <IngredientsSortingModelUnit>[
+        ...state.units,
+        IngredientsSortingModelUnit(
+          selected: state.units.isEmpty,
+          title: 'Test',
+          ingredientFamilies: await fetchIngredientFamilies(),
+          id: const Uuid().v4(),
+        ),
+      ],
+    );
+  }
+
+  Future<List<IngredientsSortingModelIngredientFamily>>
+      fetchIngredientFamilies() async => removeDuplicates(
+            families: (await Future.wait(
+              <Future<List<IngredientsSortingWebClientModelIngredientFamily>>>[
+                _fetchIngredients(pageKey: 0),
+                _fetchIngredients(pageKey: 1),
+                _fetchIngredients(pageKey: 2),
+                _fetchIngredients(pageKey: 3),
+                _fetchIngredients(pageKey: 4),
+                _fetchIngredients(pageKey: 5),
+                _fetchIngredients(pageKey: 6),
+              ],
+            ))
+                .expand(
+                  (
+                    final List<IngredientsSortingWebClientModelIngredientFamily>
+                        families,
+                  ) =>
+                      families,
+                )
+                .toList(),
+          );
+
+  @override
+  void showDeleteUnitDialog({required final IngredientsSortingModelUnit unit}) {
+    unawaited(
+      _navigationService.showDialog(
+        title: 'Delete Supermarket?',
+        content: ' Do you really want to delete the unit ${unit.title}?',
+        actions: some(
+          <NavigationServiceDialogAction>[
+            NavigationServiceDialogAction(
+              text: 'cancel',
+              onPressed: () {},
+            ),
+            NavigationServiceDialogAction(
+              text: 'yes',
+              onPressed: () {
+                state = state.copyWith(
+                  units: state.units
+                      .where(
+                        (final IngredientsSortingModelUnit element) =>
+                            element.id != unit.id,
+                      )
+                      .toList(),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 List<IngredientsSortingModelIngredientFamily> removeDuplicates({
