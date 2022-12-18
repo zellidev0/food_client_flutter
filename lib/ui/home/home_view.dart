@@ -312,18 +312,12 @@ Widget buildDialog({
 }) =>
     Padding(
       padding: const EdgeInsets.all(16),
-      child: Column(
-        children: <Widget>[
-          Expanded(
-            child: SingleChildScrollView(
-              child: Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: children,
-              ),
-            ),
-          ),
-        ],
+      child: SingleChildScrollView(
+        child: Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: children,
+        ),
       ),
     );
 
