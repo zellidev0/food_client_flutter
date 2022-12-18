@@ -8,7 +8,9 @@ class AccountView extends ConsumerWidget {
 
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
+    // ignore: unused_local_variable
     final AccountModel model = ref.watch(providers.accountControllerProvider);
+    // ignore: unused_local_variable
     final AccountController controller =
         ref.read(providers.accountControllerProvider.notifier);
     return Scaffold(
