@@ -9,7 +9,7 @@ abstract class HomeWebClientService {
     required final int take,
     required final int skip,
     final Option<List<String>> tags = const None<List<String>>(),
-    final Option<List<String>> cuisines = const None<List<String>>(),
+    final Option<String> cuisine = const None<String>(),
     final Option<List<String>> ingredients = const None<List<String>>(),
     final Option<String> searchTerm = const None<String>(),
   });

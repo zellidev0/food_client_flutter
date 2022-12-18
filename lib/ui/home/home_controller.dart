@@ -37,7 +37,7 @@ class HomeControllerImplementation extends HomeController {
         (final Exception l) => state.pagingController.error =
             'ui.home_view.error_states.no_recipes'.tr(),
         (final List<HomeModelRecipe> recipes) {
-          _setRecipesAndFilteredRecipes(
+          setRecipesInPageController(
             newRecipes: recipes,
             pageKey: pageKey,
             replaceRecipes: false,
@@ -87,7 +87,7 @@ class HomeControllerImplementation extends HomeController {
     );
     (await _fetchRecipes(paginationSkip: 0).run()).fold(
       (final Exception exception) => debugPrint(exception.toString()),
-      (final List<HomeModelRecipe> recipes) => _setRecipesAndFilteredRecipes(
+      (final List<HomeModelRecipe> recipes) => setRecipesInPageController(
         pageKey: 0,
         newRecipes: recipes,
         replaceRecipes: true,
@@ -111,7 +111,7 @@ class HomeControllerImplementation extends HomeController {
     );
     (await _fetchRecipes(paginationSkip: 0).run()).fold(
       (final Exception exception) => debugPrint(exception.toString()),
-      (final List<HomeModelRecipe> recipes) => _setRecipesAndFilteredRecipes(
+      (final List<HomeModelRecipe> recipes) => setRecipesInPageController(
         pageKey: 0,
         newRecipes: recipes,
         replaceRecipes: true,
@@ -144,7 +144,7 @@ class HomeControllerImplementation extends HomeController {
     state.pagingController.retryLastFailedRequest();
   }
 
-  void _setRecipesAndFilteredRecipes({
+  void setRecipesInPageController({
     required final int pageKey,
     required final List<HomeModelRecipe> newRecipes,
     required final bool replaceRecipes,
@@ -190,7 +190,7 @@ class HomeControllerImplementation extends HomeController {
             skip: paginationSkip,
             take: recipesPerPage,
             tags: some(selectedTagTypes(tags: state.allTags)),
-            cuisines: some(selectedCuisineSlugs(cuisines: state.allCuisines)),
+            cuisine: selectedCuisineSlugs(cuisines: state.allCuisines).firstOption,
           )
           .map(
             (final HomeWebClientModelRecipeResponse recipeResponse) =>

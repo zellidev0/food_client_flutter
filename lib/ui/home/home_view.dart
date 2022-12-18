@@ -7,7 +7,6 @@ import 'package:food_client/ui/home/home_model.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
-
 final PageStorageBucket pageStorageBucket = PageStorageBucket();
 
 class HomeView extends ConsumerWidget {
@@ -122,8 +121,11 @@ class HomeView extends ConsumerWidget {
                       message: 'ui.home_view.empty_states.no_recipes'.tr(),
                     ),
                     noMoreItemsIndicatorBuilder: (final _) => Center(
-                      child: Text(
-                        'ui.home_view.empty_states.no_more_recipes'.tr(),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Text(
+                          'ui.home_view.empty_states.no_more_recipes'.tr(),
+                        ),
                       ),
                     ),
                     firstPageErrorIndicatorBuilder: (final _) => Column(
@@ -153,7 +155,8 @@ class HomeView extends ConsumerWidget {
                         ),
                       ],
                     ),
-                    firstPageProgressIndicatorBuilder: (final _) => const Center(
+                    firstPageProgressIndicatorBuilder: (final _) =>
+                        const Center(
                       child: CircularProgressIndicator(),
                     ),
                     newPageProgressIndicatorBuilder: (final _) => Column(
@@ -283,12 +286,20 @@ Widget buildDialogCuisines() => Consumer(
                     '${cuisine.displayedName} (${cuisine.numberOfRecipes})',
                   ),
                   selected: cuisine.isSelected,
-                  onSelected: (final bool selected) => ref
-                      .watch(providers.homeControllerProvider.notifier)
-                      .setCuisineSelected(
-                        cuisineId: cuisine.id,
-                        selected: selected,
-                      ),
+                  onSelected: ref
+                          .watch(providers.homeControllerProvider)
+                          .allCuisines
+                          .any(
+                            (final HomeModelFilterCuisine element) =>
+                                element.isSelected && element.id != cuisine.id,
+                          )
+                      ? null
+                      : (final bool selected) => ref
+                          .watch(providers.homeControllerProvider.notifier)
+                          .setCuisineSelected(
+                            cuisineId: cuisine.id,
+                            selected: selected,
+                          ),
                 ),
               ),
             )

@@ -21,8 +21,8 @@ abstract class RestClient {
   Future<WebClientModelRecipeApiRecipeResponse> getRecipes({
     @Query('country') required final String country,
     @Query('ingredient') final List<String>? ingredients,
-    @Query('cuisine') final List<String>? cuisines,
-    @Query('tag') final List<String>? tags,
+    @Query('cuisine') final String? cuisine,
+    @Query('tag') final String? tags,
     @Query('q') final String? query,
     @Query('take') final int? take,
     @Query('skip') final int? skip,
@@ -63,7 +63,7 @@ class WebClientService implements WebClientServiceAggregator {
     required final int take,
     required final int skip,
     final Option<List<String>> tags = const None<List<String>>(),
-    final Option<List<String>> cuisines = const None<List<String>>(),
+    final Option<String> cuisine = const None<String>(),
     final Option<List<String>> ingredients = const None<List<String>>(),
     final Option<String> searchTerm = const None<String>(),
   }) =>
@@ -72,8 +72,8 @@ class WebClientService implements WebClientServiceAggregator {
           country: country,
           take: take,
           skip: skip,
-          tags: tags.toNullable(),
-          cuisines: cuisines.toNullable(),
+          tags: _combineFiltersForApi(filters: tags).toNullable(),
+          cuisine: cuisine.toNullable(),
           ingredients: ingredients.toNullable(),
         ),
         (final Object error, final StackTrace stacktrace) => Exception(
@@ -166,7 +166,6 @@ class WebClientService implements WebClientServiceAggregator {
                 )
                 .toList(),
       );
-
 }
 
 SingleRecipeWebClientModelRecipe _mapToSingleRecipeWebClientModelRecipe({
@@ -329,24 +328,13 @@ List<HomeWebClientModelRecipe> _mapToHomeWebClientModelRecipe({
         )
         .toList();
 
-// void main(List<String> arguments) async {
-//   var url = 'https://www.hellofresh.de/gw/api/recipes?take=XXX&skip=YYY';
-//   var json = [];
-//
-//   for (int i = 0; i < 186339; i += 1) {
-//     var response = await http.get(
-//       Uri.parse(url
-//           .replaceAll('XXX', 50.toString())
-//           .replaceAll('YYY', (i * 50).toString())),
-//       headers: {
-//         'Authorization':
-//         'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzE0OTk5OTMsImlhdCI6MTY2ODg3MDI1MCwiaXNzIjoic2VuZiIsImp0aSI6IjE4MjBiZmVmLTYwM2ItNDEyZS05Yzg4LTU1ZDQwMjMyYzhkYiJ9.ym3BOCZAuL52rcMzfL_1zKOQbxcuVp7dPgnknif72tQ',
-//       },
-//     );
-//     await File('recipes/recipes_${i * 50}.json').writeAsString(
-//       response.body,
-//     );
-//   }
-//
-//   exit(0);
-// }
+Option<String> _combineFiltersForApi({
+  required final Option<List<String>> filters,
+}) =>
+    filters.map(
+      (final List<String> allFilters) => allFilters.join(','),
+    );
+
+main() {
+  print(_combineFiltersForApi(filters: some(['hallo'])));
+}

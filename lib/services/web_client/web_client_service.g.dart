@@ -22,7 +22,7 @@ class _RestClient implements RestClient {
   Future<WebClientModelRecipeApiRecipeResponse> getRecipes({
     required country,
     ingredients,
-    cuisines,
+    cuisine,
     tags,
     query,
     take,
@@ -32,7 +32,7 @@ class _RestClient implements RestClient {
     final queryParameters = <String, dynamic>{
       r'country': country,
       r'ingredient': ingredients,
-      r'cuisine': cuisines,
+      r'cuisine': cuisine,
       r'tag': tags,
       r'q': query,
       r'take': take,
