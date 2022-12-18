@@ -53,6 +53,11 @@
             "whole_recipe": "Das ganze Rezept"
           }
         }
+      },
+      "modals": {
+        "sorting_modal": {
+          "button_text": "Sortieren"
+        }
       }
     }
   },

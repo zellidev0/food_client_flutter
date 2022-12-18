@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/widgets.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/ui/cart/cart_model.dart';
 import 'package:food_client/ui/cart/cart_navigation_service.dart';
@@ -61,6 +62,13 @@ class CartControllerImplementation extends CartController {
       recipes: _getAllRecipes(),
       ingredients: _getAllIngredients(),
     );
+  }
+
+  @override
+  Future<void> openDialog({
+    required final Widget child,
+  }) async {
+    await _navigationService.showModalBottomSheet(child: child);
   }
 
   @override
@@ -188,7 +196,6 @@ class CartControllerImplementation extends CartController {
           )
           .values
           .toList();
-
 }
 
 CartModelIngredient mapToCartModelIngredient(

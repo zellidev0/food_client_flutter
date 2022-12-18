@@ -53,6 +53,11 @@
             "whole_recipe": "Whole recipe"
           }
         }
+      },
+      "modals": {
+        "sorting_modal": {
+          "button_text": "Sorting"
+        }
       }
     }
   },

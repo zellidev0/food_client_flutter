@@ -33,6 +33,24 @@ class CartView extends ConsumerWidget {
                   model: model,
                   controller: controller,
                 ),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      TextButton.icon(
+                        onPressed: () => controller.openDialog(
+                            child: buildSortingDialogWidget()),
+                        icon: const Icon(Icons.sort),
+                        label: const Text(
+                          'ui.cart_view.modals.sorting_modal.button_text',
+                        ).tr(),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               _buildTabBarSliver(
                 model: model,
                 controller: controller,
@@ -234,18 +252,8 @@ class CartView extends ConsumerWidget {
       );
 }
 
-abstract class CartController extends StateNotifier<CartModel> {
-  CartController(super.state);
-
-  void openSingleRecipe({required final String recipeId});
-  Future<void> tickOff({
-    required final String ingredientId,
-    required final List<String> recipeIds,
-    required final bool isTickedOff,
-  });
-  void showDeleteRecipeDialog({
-    required final String recipeId,
-  });
+Widget buildSortingDialogWidget() {
+  return Container();
 }
 
 class RecipesListDelegate extends SliverPersistentHeaderDelegate {
@@ -425,4 +433,21 @@ class TabBarSliverDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   bool shouldRebuild(final SliverPersistentHeaderDelegate oldDelegate) => true;
+}
+
+abstract class CartController extends StateNotifier<CartModel> {
+  CartController(super.state);
+
+  void openSingleRecipe({required final String recipeId});
+  Future<void> tickOff({
+    required final String ingredientId,
+    required final List<String> recipeIds,
+    required final bool isTickedOff,
+  });
+  void showDeleteRecipeDialog({
+    required final String recipeId,
+  });
+  void openDialog({
+    required final Widget child,
+  });
 }

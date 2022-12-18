@@ -134,9 +134,7 @@ class HomeControllerImplementation extends HomeController {
   Future<void> openDialog({
     required final Widget child,
   }) async {
-    await _navigationService.showModalBottomSheet(
-      child: child,
-    );
+    await _navigationService.showModalBottomSheet(child: child);
   }
 
   @override
@@ -190,7 +188,8 @@ class HomeControllerImplementation extends HomeController {
             skip: paginationSkip,
             take: recipesPerPage,
             tags: some(selectedTagTypes(tags: state.allTags)),
-            cuisine: selectedCuisineSlugs(cuisines: state.allCuisines).firstOption,
+            cuisine:
+                selectedCuisineSlugs(cuisines: state.allCuisines).firstOption,
           )
           .map(
             (final HomeWebClientModelRecipeResponse recipeResponse) =>
