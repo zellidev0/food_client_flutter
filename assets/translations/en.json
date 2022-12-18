@@ -17,7 +17,8 @@
     "main_view": {
       "bottom_navigation_destination": {
         "explore": "Explore",
-        "shopping_cart": "Shopping Cart"
+        "shopping_cart": "Shopping Cart",
+        "account": "Account"
       }
     },
     "home_view": {

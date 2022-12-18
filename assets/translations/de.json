@@ -17,7 +17,8 @@
     "main_view": {
       "bottom_navigation_destination": {
         "explore": "Entdecken",
-        "shopping_cart": "Einkaufsliste"
+        "shopping_cart": "Einkaufsliste",
+        "account": "Konto"
       }
     },
     "home_view": {

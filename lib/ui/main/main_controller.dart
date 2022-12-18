@@ -23,6 +23,12 @@ class MainControllerImplementation extends MainController {
   }
 
   @override
+  void goToAccount() {
+    _navigationService.navigateToNamed(uri: NavigationServiceUris.accountRouteUri);
+    state = state.copyWith(bottomNavigationBarIndex: 2);
+  }
+
+  @override
   void goBack() {
     _navigationService.goBack();
   }

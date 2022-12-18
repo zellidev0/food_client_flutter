@@ -334,7 +334,3 @@ Option<String> _combineFiltersForApi({
     filters.map(
       (final List<String> allFilters) => allFilters.join(','),
     );
-
-main() {
-  print(_combineFiltersForApi(filters: some(['hallo'])));
-}

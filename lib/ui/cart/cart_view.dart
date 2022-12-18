@@ -306,7 +306,8 @@ class RecipesListDelegate extends SliverPersistentHeaderDelegate {
                   recipeId: recipe.recipeId,
                 ),
                 onLongPress: () => controller.showDeleteRecipeDialog(
-                    recipeId: recipe.recipeId),
+                  recipeId: recipe.recipeId,
+                ),
                 child: Stack(
                   children: <Widget>[
                     Column(

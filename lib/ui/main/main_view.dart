@@ -24,6 +24,8 @@ class MainView extends ConsumerWidget {
                     controller.goToHome();
                   } else if (selectedIndex == 1) {
                     controller.goToCart();
+                  } else if (selectedIndex == 2) {
+                    controller.goToAccount();
                   }
                 },
                 selectedIndex: model.bottomNavigationBarIndex,
@@ -39,9 +41,10 @@ class MainView extends ConsumerWidget {
                         'ui.main_view.bottom_navigation_destination.shopping_cart'
                             .tr(),
                   ),
-                  const NavigationDestination(
-                    icon: Icon(Icons.add),
-                    label: 'TODO',
+                  NavigationDestination(
+                    icon: const Icon(Icons.account_circle),
+                    label: 'ui.main_view.bottom_navigation_destination.account'
+                        .tr(),
                   ),
                 ],
               ),
@@ -62,6 +65,7 @@ abstract class MainController extends StateNotifier<MainModel> {
   MainController(super.state);
 
   void goToHome();
+  void goToAccount();
   void goToCart();
   void goBack();
 }

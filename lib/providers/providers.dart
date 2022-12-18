@@ -8,6 +8,9 @@ import 'package:food_client/services/persistence_service/persistence_service.dar
 import 'package:food_client/services/persistence_service/persistence_service_model.dart';
 import 'package:food_client/services/web_client/web_client_service.dart';
 import 'package:food_client/services/web_image_sizer/web_image_sizer_service.dart';
+import 'package:food_client/ui/account/account_controller.dart';
+import 'package:food_client/ui/account/account_model.dart';
+import 'package:food_client/ui/account/account_view.dart';
 import 'package:food_client/ui/cart/cart_controller.dart';
 import 'package:food_client/ui/cart/cart_model.dart';
 import 'package:food_client/ui/cart/cart_view.dart';
@@ -44,6 +47,23 @@ class Providers {
         providers.persistenceServiceProvider.notifier,
       ),
       imageSizerService: ref.read(providers.webImageSizerServiceProvider),
+    ),
+  );
+
+  final AutoDisposeStateNotifierProvider<AccountController, AccountModel>
+      accountControllerProvider =
+      StateNotifierProvider.autoDispose<AccountController, AccountModel>(
+    (
+      final AutoDisposeStateNotifierProviderRef<AccountController, AccountModel>
+          ref,
+    ) =>
+        AccountControllerImplementation(
+      const AccountModel(
+        combineIngredients: false,
+      ),
+      navigationService: ref.read(
+        providers.bottomNavigationBarNavigationServiceProvider,
+      ),
     ),
   );
 
@@ -193,6 +213,14 @@ class Providers {
                     ),
                     child: const HomeView(),
                     type: BeamPageType.noTransition,
+                  ),
+          NavigationServiceUris.accountRouteUri.toString():
+              (final _, final __, final ___) => BeamPage(
+                    key: ValueKey<String>(
+                      NavigationServiceUris.accountRouteUri.toString(),
+                    ),
+                    child: const AccountView(),
+                    type: BeamPageType.material,
                   ),
           NavigationServiceUris.cartRouteUri.toString():
               (final _, final __, final ___) => BeamPage(

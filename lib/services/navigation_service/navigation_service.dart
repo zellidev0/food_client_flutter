@@ -1,6 +1,7 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/material.dart';
+import 'package:food_client/ui/account/account_navigation_service.dart';
 import 'package:food_client/ui/cart/cart_navigation_service.dart';
 import 'package:food_client/ui/home/home_navigation_service.dart';
 import 'package:food_client/ui/main/main_navigation_service.dart';
@@ -15,7 +16,7 @@ abstract class NavigationServiceAggregator
         HomeNavigationService,
         SingleRecipeNavigationService,
         MainNavigationService,
-        CartNavigationService {}
+        CartNavigationService, AccountNavigationService {}
 
 class NavigationServiceUris {
   NavigationServiceUris._();
@@ -23,6 +24,7 @@ class NavigationServiceUris {
   static Uri singleRecipeUri = Uri.parse('/main/recipes');
   static String singleRecipeIdKey = 'single-recipe-id';
   static Uri homeRouteUri = Uri.parse('/main/home');
+  static Uri accountRouteUri = Uri.parse('/main/account');
   static Uri cartRouteUri = Uri.parse('/main/cart');
 }
 
