@@ -293,7 +293,7 @@ Widget buildSortingDialogWidget() => Padding(
                             Icons.star,
                             color: ingredientUnit.isActive
                                 ? Theme.of(context).colorScheme.primary
-                                : Theme.of(context).colorScheme.onPrimary
+                                : Theme.of(context).colorScheme.onPrimary,
                           ),
                         ),
                       ),
@@ -333,7 +333,7 @@ class RecipesListDelegate extends SliverPersistentHeaderDelegate {
       return SizedBox(height: collapsedHeight);
     }
     return ListView.separated(
-      padding: const EdgeInsets.all(16).copyWith(bottom: 0),
+      padding: const EdgeInsets.all(16).copyWith(bottom: 12),
       scrollDirection: Axis.horizontal,
       itemBuilder: (final _, final int index) => buildCardElement(
         height: height,
