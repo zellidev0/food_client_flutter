@@ -47,6 +47,12 @@ class HomeControllerImplementation extends HomeController {
     });
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    state.pagingController.dispose();
+  }
+
   Future<void> _init() async {
     (await _fetchTags()
             .map2(

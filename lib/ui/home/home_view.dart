@@ -7,6 +7,9 @@ import 'package:food_client/ui/home/home_model.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
+
+final PageStorageBucket pageStorageBucket = PageStorageBucket();
+
 class HomeView extends ConsumerWidget {
   const HomeView({super.key});
 
@@ -98,64 +101,68 @@ class HomeView extends ConsumerWidget {
         child: Column(
           children: <Widget>[
             Expanded(
-              child: PagedListView<int, HomeModelRecipe>(
-                pagingController: model.pagingController,
-                builderDelegate: PagedChildBuilderDelegate<HomeModelRecipe>(
-                  itemBuilder: (
-                    final BuildContext context,
-                    final HomeModelRecipe recipe,
-                    final _,
-                  ) =>
-                      _buildRecipeCardItem(
-                    recipe: recipe,
-                    tags: tags,
-                    controller: controller,
-                  ),
-                  noItemsFoundIndicatorBuilder: (final _) =>
-                      buildNoItemsFoundIcon(
-                    message: 'ui.home_view.empty_states.no_recipes'.tr(),
-                  ),
-                  noMoreItemsIndicatorBuilder: (final _) => Center(
-                    child: Text(
-                      'ui.home_view.empty_states.no_more_recipes'.tr(),
+              child: PageStorage(
+                bucket: pageStorageBucket,
+                child: PagedListView<int, HomeModelRecipe>(
+                  key: const PageStorageKey<String>('recipes'),
+                  pagingController: model.pagingController,
+                  builderDelegate: PagedChildBuilderDelegate<HomeModelRecipe>(
+                    itemBuilder: (
+                      final BuildContext context,
+                      final HomeModelRecipe recipe,
+                      final _,
+                    ) =>
+                        _buildRecipeCardItem(
+                      recipe: recipe,
+                      tags: tags,
+                      controller: controller,
                     ),
-                  ),
-                  firstPageErrorIndicatorBuilder: (final _) => Column(
-                    children: <Widget>[
-                      const SizedBox(height: 64),
-                      buildNoItemsFoundIcon(
-                        message: 'ui.home_view.error_states.no_recipes'.tr(),
+                    noItemsFoundIndicatorBuilder: (final _) =>
+                        buildNoItemsFoundIcon(
+                      message: 'ui.home_view.empty_states.no_recipes'.tr(),
+                    ),
+                    noMoreItemsIndicatorBuilder: (final _) => Center(
+                      child: Text(
+                        'ui.home_view.empty_states.no_more_recipes'.tr(),
                       ),
-                      const SizedBox(height: 8),
-                      _buildTryFetchingRecipesAgainButton(
-                        controller: controller,
-                      ),
-                    ],
-                  ),
-                  newPageErrorIndicatorBuilder: (final _) => Column(
-                    children: <Widget>[
-                      const SizedBox(height: 8),
-                      Builder(
-                        builder: (final BuildContext context) => Text(
-                          'ui.home_view.error_states.no_more_recipes'.tr(),
-                          style: Theme.of(context).textTheme.caption,
+                    ),
+                    firstPageErrorIndicatorBuilder: (final _) => Column(
+                      children: <Widget>[
+                        const SizedBox(height: 64),
+                        buildNoItemsFoundIcon(
+                          message: 'ui.home_view.error_states.no_recipes'.tr(),
                         ),
-                      ),
-                      const SizedBox(height: 8),
-                      _buildTryFetchingRecipesAgainButton(
-                        controller: controller,
-                      ),
-                    ],
-                  ),
-                  firstPageProgressIndicatorBuilder: (final _) => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                  newPageProgressIndicatorBuilder: (final _) => Column(
-                    children: const <Widget>[
-                      SizedBox(height: 16),
-                      CircularProgressIndicator(),
-                      SizedBox(height: 8),
-                    ],
+                        const SizedBox(height: 8),
+                        _buildTryFetchingRecipesAgainButton(
+                          controller: controller,
+                        ),
+                      ],
+                    ),
+                    newPageErrorIndicatorBuilder: (final _) => Column(
+                      children: <Widget>[
+                        const SizedBox(height: 8),
+                        Builder(
+                          builder: (final BuildContext context) => Text(
+                            'ui.home_view.error_states.no_more_recipes'.tr(),
+                            style: Theme.of(context).textTheme.caption,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        _buildTryFetchingRecipesAgainButton(
+                          controller: controller,
+                        ),
+                      ],
+                    ),
+                    firstPageProgressIndicatorBuilder: (final _) => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    newPageProgressIndicatorBuilder: (final _) => Column(
+                      children: const <Widget>[
+                        SizedBox(height: 16),
+                        CircularProgressIndicator(),
+                        SizedBox(height: 8),
+                      ],
+                    ),
                   ),
                 ),
               ),
