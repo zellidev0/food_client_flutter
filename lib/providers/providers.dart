@@ -25,6 +25,7 @@ import 'package:food_client/ui/single_recipe/single_recipe_model.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_view.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:uuid/uuid.dart';
 
 class Providers {
   final AutoDisposeStateNotifierProvider<CartController, CartModel>
@@ -39,6 +40,40 @@ class Providers {
         ingredients: <CartModelIngredient>[],
         combineIngredients:
             ref.watch(providers.appSettingsServiceProvider).combineIngredients,
+        sorting: CartModelSorting(
+          units: <CartModelSortingUnit>[
+            CartModelSortingUnit(
+              name: 'Rewe',
+              ingredientFamilies: <CartModelSortingIngredientFamily>[
+                const CartModelSortingIngredientFamily(
+                  name: 'Fleisch',
+                  familyId: '1',
+                ),
+                const CartModelSortingIngredientFamily(
+                  name: 'Salat',
+                  familyId: '2',
+                ),
+              ],
+              isActive: true,
+              id: const Uuid().v4(),
+            ),
+            CartModelSortingUnit(
+              name: 'Kaufland',
+              ingredientFamilies: <CartModelSortingIngredientFamily>[
+                const CartModelSortingIngredientFamily(
+                  name: 'Lebensmittel',
+                  familyId: '1',
+                ),
+                const CartModelSortingIngredientFamily(
+                  name: 'Gemüse',
+                  familyId: '2',
+                ),
+              ],
+              isActive: false,
+              id: const Uuid().v4(),
+            ),
+          ],
+        ),
       ),
       navigationService: ref.read(
         providers.bottomNavigationBarNavigationServiceProvider,

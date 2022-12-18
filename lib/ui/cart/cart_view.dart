@@ -41,7 +41,8 @@ class CartView extends ConsumerWidget {
                     children: <Widget>[
                       TextButton.icon(
                         onPressed: () => controller.openDialog(
-                            child: buildSortingDialogWidget()),
+                          child: buildSortingDialogWidget(),
+                        ),
                         icon: const Icon(Icons.sort),
                         label: const Text(
                           'ui.cart_view.modals.sorting_modal.button_text',
@@ -252,9 +253,58 @@ class CartView extends ConsumerWidget {
       );
 }
 
-Widget buildSortingDialogWidget() {
-  return Container();
-}
+Widget buildSortingDialogWidget() => Padding(
+      padding: const EdgeInsets.all(16),
+      child: Consumer(
+        builder: (final _, final WidgetRef ref, final __) => GridView.count(
+          crossAxisCount: 3,
+          children: ref
+              .watch(providers.cartControllerProvider)
+              .sorting
+              .units
+              .map(
+                (final CartModelSortingUnit ingredientUnit) => Stack(
+                  children: <Widget>[
+                    SizedBox.expand(
+                      child: Card(
+                        child: InkWell(
+                          onTap: () => ref
+                              .read(providers.cartControllerProvider.notifier)
+                              .setActiveSortingUnit(
+                                sortingUnitId: ingredientUnit.id,
+                              ),
+                          borderRadius: BorderRadius.circular(12),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              const Icon(Icons.shopping_basket),
+                              Text(ingredientUnit.name),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Builder(
+                          builder: (final BuildContext context) => Icon(
+                            Icons.star,
+                            color: ingredientUnit.isActive
+                                ? Theme.of(context).colorScheme.primary
+                                : Theme.of(context).colorScheme.onPrimary
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              )
+              .toList(),
+        ),
+      ),
+    );
 
 class RecipesListDelegate extends SliverPersistentHeaderDelegate {
   final CartModel model;
@@ -438,16 +488,13 @@ class TabBarSliverDelegate extends SliverPersistentHeaderDelegate {
 abstract class CartController extends StateNotifier<CartModel> {
   CartController(super.state);
 
-  void openSingleRecipe({required final String recipeId});
   Future<void> tickOff({
     required final String ingredientId,
     required final List<String> recipeIds,
     required final bool isTickedOff,
   });
-  void showDeleteRecipeDialog({
-    required final String recipeId,
-  });
-  void openDialog({
-    required final Widget child,
-  });
+  void openSingleRecipe({required final String recipeId});
+  void showDeleteRecipeDialog({required final String recipeId});
+  void openDialog({required final Widget child});
+  void setActiveSortingUnit({required final String sortingUnitId});
 }

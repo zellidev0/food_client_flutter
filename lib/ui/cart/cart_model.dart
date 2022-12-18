@@ -9,7 +9,33 @@ class CartModel with _$CartModel {
     required final List<CartModelRecipe> recipes,
     required final List<CartModelIngredient> ingredients,
     required final bool combineIngredients,
+    required final CartModelSorting sorting,
   }) = _CartModel;
+}
+
+@freezed
+class CartModelSorting with _$CartModelSorting {
+  const factory CartModelSorting({
+    required final List<CartModelSortingUnit> units,
+  }) = _CartModelSorting;
+}
+
+@freezed
+class CartModelSortingUnit with _$CartModelSortingUnit {
+  const factory CartModelSortingUnit({
+    required final String id,
+    required final String name,
+    required final bool isActive,
+    required final List<CartModelSortingIngredientFamily> ingredientFamilies,
+  }) = _CartModelSortingUnit;
+}
+
+@freezed
+class CartModelSortingIngredientFamily with _$CartModelSortingIngredientFamily {
+  const factory CartModelSortingIngredientFamily({
+    required final String name,
+    required final String familyId,
+  }) = _CartModelSortingIngredientFamily;
 }
 
 @freezed

@@ -196,6 +196,22 @@ class CartControllerImplementation extends CartController {
           )
           .values
           .toList();
+
+  @override
+  void setActiveSortingUnit({required final String sortingUnitId}) {
+    state = state.copyWith(
+      sorting: state.sorting.copyWith(
+        units: state.sorting.units
+            .map(
+              (final CartModelSortingUnit sortingUnit) =>
+                  sortingUnit.id == sortingUnitId
+                      ? sortingUnit.copyWith(isActive: true)
+                      : sortingUnit.copyWith(isActive: false),
+            )
+            .toList(),
+      ),
+    );
+  }
 }
 
 CartModelIngredient mapToCartModelIngredient(
