@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
 import 'package:food_client/services/web_client/web_client_model.dart';
 import 'package:food_client/ui/home/home_web_client_service.dart';
+import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_web_client_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_web_client_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:retrofit/retrofit.dart';
@@ -11,7 +12,10 @@ import 'package:retrofit/retrofit.dart';
 part 'web_client_service.g.dart';
 
 abstract class WebClientServiceAggregator
-    implements HomeWebClientService, SingleRecipeWebClientService {}
+    implements
+        HomeWebClientService,
+        SingleRecipeWebClientService,
+        IngredientsSortingWebClientService {}
 
 @RestApi(baseUrl: '')
 abstract class RestClient {
@@ -43,6 +47,13 @@ abstract class RestClient {
   Future<WebClientModelRecipeApiCuisineResponse> getCuisines({
     @Query('country') required final String country,
     @Query('take') final int? take,
+  });
+
+  @GET('/ingredients')
+  Future<WebClientModelRecipeApiIngredientsResponse> getIngredients({
+    @Query('country') required final String country,
+    @Query('take') final int? take,
+    @Query('skip') final int? skip,
   });
 }
 
@@ -166,6 +177,51 @@ class WebClientService implements WebClientServiceAggregator {
                 )
                 .toList(),
       );
+
+  @override
+  TaskEither<Exception,
+      List<IngredientsSortingWebClientModelIngredientFamily>> fetchAllIngredientFamilies({
+    required final String country,
+    final Option<int> take = const None<int>(),
+    final Option<int> skip = const None<int>(),
+  }) =>
+      TaskEither<Exception,
+          WebClientModelRecipeApiIngredientsResponse>.tryCatch(
+        () async => await client.getIngredients(
+          country: country,
+          take: take.toNullable(),
+          skip: skip.toNullable(),
+        ),
+        (final Object error, final StackTrace stacktrace) => Exception(
+          'Failed to fetch ingredients: $error, $stacktrace',
+        ),
+      ).map(
+        (final WebClientModelRecipeApiIngredientsResponse response) => response
+            .items
+            .map(
+              (final WebClientModelIngredient ingredient) =>
+                  optionOf(ingredient.family).map(
+                (final WebClientModelIngredientFamily family) =>
+                    IngredientsSortingWebClientModelIngredientFamily(
+                  id: family.id,
+                  type: family.type,
+                  iconPath: family.iconPath.map(Uri.parse),
+                  name: family.name,
+                  slug: family.slug,
+                ),
+              ),
+            )
+            .where(
+              (final Option<IngredientsSortingWebClientModelIngredientFamily> family) =>
+                  family.isSome(),
+            )
+            .whereType<Some<IngredientsSortingWebClientModelIngredientFamily>>()
+            .map(
+              (final Some<IngredientsSortingWebClientModelIngredientFamily> family) =>
+                  family.value,
+            )
+            .toList(),
+      );
 }
 
 SingleRecipeWebClientModelRecipe _mapToSingleRecipeWebClientModelRecipe({
@@ -197,27 +253,10 @@ SingleRecipeWebClientModelRecipe _mapToSingleRecipeWebClientModelRecipe({
                         ),
                       ).map(
                         (final WebClientModelIngredient otherIngredient) =>
-                            SingleRecipeWebClientModelIngredient(
-                          ingredientId: yieldIngredient.id,
-                          amount: yieldIngredient.amount.map(
-                            (final num number) => number.toDouble(),
-                          ),
+                            mapSingleRecipeWebClientModelIngredient(
+                          amount: yieldIngredient.amount,
                           unit: yieldIngredient.unit,
-                          imagePath: otherIngredient.imagePath.map(Uri.parse),
-                          slug: otherIngredient.slug,
-                          displayedName: otherIngredient.name,
-                          family: optionOf(otherIngredient.family).map(
-                            (
-                              final WebClientModelIngredientFamily family,
-                            ) =>
-                                SingleRecipeWebClientModelIngredientFamily(
-                              id: family.id,
-                              slug: family.slug,
-                              type: family.type,
-                              iconPath: family.iconPath,
-                              name: family.name,
-                            ),
-                          ),
+                          ingredient: otherIngredient,
                         ),
                       ),
                     )
@@ -259,6 +298,34 @@ SingleRecipeWebClientModelRecipe _mapToSingleRecipeWebClientModelRecipe({
             ),
           )
           .toList(),
+    );
+
+SingleRecipeWebClientModelIngredient mapSingleRecipeWebClientModelIngredient({
+  required final Option<num> amount,
+  required final Option<String> unit,
+  required final WebClientModelIngredient ingredient,
+}) =>
+    SingleRecipeWebClientModelIngredient(
+      ingredientId: ingredient.id,
+      amount: amount.map(
+        (final num number) => number.toDouble(),
+      ),
+      unit: unit,
+      imagePath: ingredient.imagePath.map(Uri.parse),
+      slug: ingredient.slug,
+      displayedName: ingredient.name,
+      family: optionOf(ingredient.family).map(
+        (
+          final WebClientModelIngredientFamily family,
+        ) =>
+            SingleRecipeWebClientModelIngredientFamily(
+          id: family.id,
+          slug: family.slug,
+          type: family.type,
+          iconPath: family.iconPath,
+          name: family.name,
+        ),
+      ),
     );
 
 List<HomeWebClientModelRecipe> _mapToHomeWebClientModelRecipe({

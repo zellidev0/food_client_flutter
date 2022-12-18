@@ -4,7 +4,5 @@ part 'account_model.freezed.dart';
 
 @freezed
 class AccountModel with _$AccountModel {
-  const factory AccountModel({
-    required final bool combineIngredients,
-  }) = _AccountModel;
+  const factory AccountModel() = _AccountModel;
 }

@@ -76,6 +76,30 @@ Map<String, dynamic> _$$_WebClientModelRecipeApiCuisineResponseToJson(
       'items': instance.items,
     };
 
+_$_WebClientModelRecipeApiIngredientsResponse
+    _$$_WebClientModelRecipeApiIngredientsResponseFromJson(
+            Map<String, dynamic> json) =>
+        _$_WebClientModelRecipeApiIngredientsResponse(
+          total: json['total'] as int,
+          take: json['take'] as int,
+          count: json['count'] as int,
+          skip: json['skip'] as int,
+          items: (json['items'] as List<dynamic>)
+              .map((e) =>
+                  WebClientModelIngredient.fromJson(e as Map<String, dynamic>))
+              .toList(),
+        );
+
+Map<String, dynamic> _$$_WebClientModelRecipeApiIngredientsResponseToJson(
+        _$_WebClientModelRecipeApiIngredientsResponse instance) =>
+    <String, dynamic>{
+      'total': instance.total,
+      'take': instance.take,
+      'count': instance.count,
+      'skip': instance.skip,
+      'items': instance.items,
+    };
+
 _$_WebClientModelTagsApiResponse _$$_WebClientModelTagsApiResponseFromJson(
         Map<String, dynamic> json) =>
     _$_WebClientModelTagsApiResponse(

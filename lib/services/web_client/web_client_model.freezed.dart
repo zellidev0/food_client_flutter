@@ -741,6 +741,252 @@ abstract class _WebClientModelRecipeApiCuisineResponse
       get copyWith => throw _privateConstructorUsedError;
 }
 
+WebClientModelRecipeApiIngredientsResponse
+    _$WebClientModelRecipeApiIngredientsResponseFromJson(
+        Map<String, dynamic> json) {
+  return _WebClientModelRecipeApiIngredientsResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$WebClientModelRecipeApiIngredientsResponse {
+  int get total => throw _privateConstructorUsedError;
+  int get take => throw _privateConstructorUsedError;
+  int get count => throw _privateConstructorUsedError;
+  int get skip => throw _privateConstructorUsedError;
+  List<WebClientModelIngredient> get items =>
+      throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $WebClientModelRecipeApiIngredientsResponseCopyWith<
+          WebClientModelRecipeApiIngredientsResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WebClientModelRecipeApiIngredientsResponseCopyWith<$Res> {
+  factory $WebClientModelRecipeApiIngredientsResponseCopyWith(
+          WebClientModelRecipeApiIngredientsResponse value,
+          $Res Function(WebClientModelRecipeApiIngredientsResponse) then) =
+      _$WebClientModelRecipeApiIngredientsResponseCopyWithImpl<$Res,
+          WebClientModelRecipeApiIngredientsResponse>;
+  @useResult
+  $Res call(
+      {int total,
+      int take,
+      int count,
+      int skip,
+      List<WebClientModelIngredient> items});
+}
+
+/// @nodoc
+class _$WebClientModelRecipeApiIngredientsResponseCopyWithImpl<$Res,
+        $Val extends WebClientModelRecipeApiIngredientsResponse>
+    implements $WebClientModelRecipeApiIngredientsResponseCopyWith<$Res> {
+  _$WebClientModelRecipeApiIngredientsResponseCopyWithImpl(
+      this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? total = null,
+    Object? take = null,
+    Object? count = null,
+    Object? skip = null,
+    Object? items = null,
+  }) {
+    return _then(_value.copyWith(
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int,
+      take: null == take
+          ? _value.take
+          : take // ignore: cast_nullable_to_non_nullable
+              as int,
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
+      skip: null == skip
+          ? _value.skip
+          : skip // ignore: cast_nullable_to_non_nullable
+              as int,
+      items: null == items
+          ? _value.items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<WebClientModelIngredient>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_WebClientModelRecipeApiIngredientsResponseCopyWith<$Res>
+    implements $WebClientModelRecipeApiIngredientsResponseCopyWith<$Res> {
+  factory _$$_WebClientModelRecipeApiIngredientsResponseCopyWith(
+          _$_WebClientModelRecipeApiIngredientsResponse value,
+          $Res Function(_$_WebClientModelRecipeApiIngredientsResponse) then) =
+      __$$_WebClientModelRecipeApiIngredientsResponseCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int total,
+      int take,
+      int count,
+      int skip,
+      List<WebClientModelIngredient> items});
+}
+
+/// @nodoc
+class __$$_WebClientModelRecipeApiIngredientsResponseCopyWithImpl<$Res>
+    extends _$WebClientModelRecipeApiIngredientsResponseCopyWithImpl<$Res,
+        _$_WebClientModelRecipeApiIngredientsResponse>
+    implements _$$_WebClientModelRecipeApiIngredientsResponseCopyWith<$Res> {
+  __$$_WebClientModelRecipeApiIngredientsResponseCopyWithImpl(
+      _$_WebClientModelRecipeApiIngredientsResponse _value,
+      $Res Function(_$_WebClientModelRecipeApiIngredientsResponse) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? total = null,
+    Object? take = null,
+    Object? count = null,
+    Object? skip = null,
+    Object? items = null,
+  }) {
+    return _then(_$_WebClientModelRecipeApiIngredientsResponse(
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int,
+      take: null == take
+          ? _value.take
+          : take // ignore: cast_nullable_to_non_nullable
+              as int,
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
+      skip: null == skip
+          ? _value.skip
+          : skip // ignore: cast_nullable_to_non_nullable
+              as int,
+      items: null == items
+          ? _value._items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<WebClientModelIngredient>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_WebClientModelRecipeApiIngredientsResponse
+    implements _WebClientModelRecipeApiIngredientsResponse {
+  const _$_WebClientModelRecipeApiIngredientsResponse(
+      {required this.total,
+      required this.take,
+      required this.count,
+      required this.skip,
+      required final List<WebClientModelIngredient> items})
+      : _items = items;
+
+  factory _$_WebClientModelRecipeApiIngredientsResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$$_WebClientModelRecipeApiIngredientsResponseFromJson(json);
+
+  @override
+  final int total;
+  @override
+  final int take;
+  @override
+  final int count;
+  @override
+  final int skip;
+  final List<WebClientModelIngredient> _items;
+  @override
+  List<WebClientModelIngredient> get items {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_items);
+  }
+
+  @override
+  String toString() {
+    return 'WebClientModelRecipeApiIngredientsResponse(total: $total, take: $take, count: $count, skip: $skip, items: $items)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_WebClientModelRecipeApiIngredientsResponse &&
+            (identical(other.total, total) || other.total == total) &&
+            (identical(other.take, take) || other.take == take) &&
+            (identical(other.count, count) || other.count == count) &&
+            (identical(other.skip, skip) || other.skip == skip) &&
+            const DeepCollectionEquality().equals(other._items, _items));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, total, take, count, skip,
+      const DeepCollectionEquality().hash(_items));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_WebClientModelRecipeApiIngredientsResponseCopyWith<
+          _$_WebClientModelRecipeApiIngredientsResponse>
+      get copyWith =>
+          __$$_WebClientModelRecipeApiIngredientsResponseCopyWithImpl<
+              _$_WebClientModelRecipeApiIngredientsResponse>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_WebClientModelRecipeApiIngredientsResponseToJson(
+      this,
+    );
+  }
+}
+
+abstract class _WebClientModelRecipeApiIngredientsResponse
+    implements WebClientModelRecipeApiIngredientsResponse {
+  const factory _WebClientModelRecipeApiIngredientsResponse(
+          {required final int total,
+          required final int take,
+          required final int count,
+          required final int skip,
+          required final List<WebClientModelIngredient> items}) =
+      _$_WebClientModelRecipeApiIngredientsResponse;
+
+  factory _WebClientModelRecipeApiIngredientsResponse.fromJson(
+          Map<String, dynamic> json) =
+      _$_WebClientModelRecipeApiIngredientsResponse.fromJson;
+
+  @override
+  int get total;
+  @override
+  int get take;
+  @override
+  int get count;
+  @override
+  int get skip;
+  @override
+  List<WebClientModelIngredient> get items;
+  @override
+  @JsonKey(ignore: true)
+  _$$_WebClientModelRecipeApiIngredientsResponseCopyWith<
+          _$_WebClientModelRecipeApiIngredientsResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
 WebClientModelTagsApiResponse _$WebClientModelTagsApiResponseFromJson(
     Map<String, dynamic> json) {
   return _WebClientModelTagsApiResponse.fromJson(json);

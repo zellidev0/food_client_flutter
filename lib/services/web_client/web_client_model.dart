@@ -56,6 +56,23 @@ class WebClientModelRecipeApiCuisineResponse
 }
 
 @freezed
+class WebClientModelRecipeApiIngredientsResponse
+    with _$WebClientModelRecipeApiIngredientsResponse {
+  const factory WebClientModelRecipeApiIngredientsResponse({
+    required final int total,
+    required final int take,
+    required final int count,
+    required final int skip,
+    required final List<WebClientModelIngredient> items,
+  }) = _WebClientModelRecipeApiIngredientsResponse;
+
+  factory WebClientModelRecipeApiIngredientsResponse.fromJson(
+      final Map<String, dynamic> json,
+      ) =>
+      _$WebClientModelRecipeApiIngredientsResponseFromJson(json);
+}
+
+@freezed
 class WebClientModelTagsApiResponse with _$WebClientModelTagsApiResponse {
   const factory WebClientModelTagsApiResponse({
     required final int total,

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:food_client/ui/account/account_navigation_service.dart';
 import 'package:food_client/ui/cart/cart_navigation_service.dart';
 import 'package:food_client/ui/home/home_navigation_service.dart';
+import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_navigation_service.dart';
 import 'package:food_client/ui/main/main_navigation_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_navigation_service.dart';
 import 'package:fpdart/fpdart.dart';
@@ -16,7 +17,9 @@ abstract class NavigationServiceAggregator
         HomeNavigationService,
         SingleRecipeNavigationService,
         MainNavigationService,
-        CartNavigationService, AccountNavigationService {}
+        CartNavigationService,
+        AccountNavigationService,
+        IngredientsSortingNavigationService {}
 
 class NavigationServiceUris {
   NavigationServiceUris._();

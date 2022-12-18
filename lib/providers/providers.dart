@@ -17,6 +17,9 @@ import 'package:food_client/ui/cart/cart_view.dart';
 import 'package:food_client/ui/home/home_controller.dart';
 import 'package:food_client/ui/home/home_model.dart';
 import 'package:food_client/ui/home/home_view.dart';
+import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_controller.dart';
+import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_model.dart';
+import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_view.dart';
 import 'package:food_client/ui/main/main_controller.dart';
 import 'package:food_client/ui/main/main_model.dart';
 import 'package:food_client/ui/main/main_view.dart';
@@ -93,11 +96,31 @@ class Providers {
           ref,
     ) =>
         AccountControllerImplementation(
-      const AccountModel(
-        combineIngredients: false,
+      const AccountModel(),
+      navigationService: ref.read(
+        providers.bottomNavigationBarNavigationServiceProvider,
+      ),
+    ),
+  );
+
+  final AutoDisposeStateNotifierProvider<IngredientsSortingController,
+          IngredientsSortingModel> ingredientsSortingControllerProvider =
+      StateNotifierProvider.autoDispose<IngredientsSortingController,
+          IngredientsSortingModel>(
+    (
+      final AutoDisposeStateNotifierProviderRef<IngredientsSortingController,
+              IngredientsSortingModel>
+          ref,
+    ) =>
+        IngredientsSortingControllerImplementation(
+      const IngredientsSortingModel(
+        ingredientFamilies: <IngredientsSortingModelIngredientFamily>[],
       ),
       navigationService: ref.read(
         providers.bottomNavigationBarNavigationServiceProvider,
+      ),
+      webClientService: ref.read(
+        providers.webClientServiceProvider,
       ),
     ),
   );

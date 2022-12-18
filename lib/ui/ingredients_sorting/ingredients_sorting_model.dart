@@ -1,0 +1,23 @@
+import 'package:fpdart/fpdart.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'ingredients_sorting_model.freezed.dart';
+
+@freezed
+class IngredientsSortingModel with _$IngredientsSortingModel {
+  const factory IngredientsSortingModel({
+    required final List<IngredientsSortingModelIngredientFamily> ingredientFamilies,
+  }) = _IngredientsSortingModel;
+}
+
+@freezed
+class IngredientsSortingModelIngredientFamily with _$IngredientsSortingModelIngredientFamily {
+  const factory IngredientsSortingModelIngredientFamily({
+    required final String type,
+    required final Option<Uri> iconPath,
+    required final String name,
+    required final String slug,
+    required final List<String> familyIds,
+  }) = _IngredientsSortingModelIngredientFamily;
+
+}

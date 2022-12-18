@@ -15,21 +15,13 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$AccountModel {
-  bool get combineIngredients => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $AccountModelCopyWith<AccountModel> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+mixin _$AccountModel {}
 
 /// @nodoc
 abstract class $AccountModelCopyWith<$Res> {
   factory $AccountModelCopyWith(
           AccountModel value, $Res Function(AccountModel) then) =
       _$AccountModelCopyWithImpl<$Res, AccountModel>;
-  @useResult
-  $Res call({bool combineIngredients});
 }
 
 /// @nodoc
@@ -41,30 +33,13 @@ class _$AccountModelCopyWithImpl<$Res, $Val extends AccountModel>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? combineIngredients = null,
-  }) {
-    return _then(_value.copyWith(
-      combineIngredients: null == combineIngredients
-          ? _value.combineIngredients
-          : combineIngredients // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$_AccountModelCopyWith<$Res>
-    implements $AccountModelCopyWith<$Res> {
+abstract class _$$_AccountModelCopyWith<$Res> {
   factory _$$_AccountModelCopyWith(
           _$_AccountModel value, $Res Function(_$_AccountModel) then) =
       __$$_AccountModelCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({bool combineIngredients});
 }
 
 /// @nodoc
@@ -74,61 +49,28 @@ class __$$_AccountModelCopyWithImpl<$Res>
   __$$_AccountModelCopyWithImpl(
       _$_AccountModel _value, $Res Function(_$_AccountModel) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? combineIngredients = null,
-  }) {
-    return _then(_$_AccountModel(
-      combineIngredients: null == combineIngredients
-          ? _value.combineIngredients
-          : combineIngredients // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_AccountModel implements _AccountModel {
-  const _$_AccountModel({required this.combineIngredients});
-
-  @override
-  final bool combineIngredients;
+  const _$_AccountModel();
 
   @override
   String toString() {
-    return 'AccountModel(combineIngredients: $combineIngredients)';
+    return 'AccountModel()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_AccountModel &&
-            (identical(other.combineIngredients, combineIngredients) ||
-                other.combineIngredients == combineIngredients));
+        (other.runtimeType == runtimeType && other is _$_AccountModel);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, combineIngredients);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_AccountModelCopyWith<_$_AccountModel> get copyWith =>
-      __$$_AccountModelCopyWithImpl<_$_AccountModel>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 }
 
 abstract class _AccountModel implements AccountModel {
-  const factory _AccountModel({required final bool combineIngredients}) =
-      _$_AccountModel;
-
-  @override
-  bool get combineIngredients;
-  @override
-  @JsonKey(ignore: true)
-  _$$_AccountModelCopyWith<_$_AccountModel> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _AccountModel() = _$_AccountModel;
 }
