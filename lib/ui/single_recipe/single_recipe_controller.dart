@@ -145,6 +145,16 @@ SingleRecipePersistenceServiceIngredient
           displayedName: ingredient.displayedName,
           amount: ingredient.amount,
           unit: ingredient.unit,
+          family: ingredient.family.map(
+            (final SingleRecipeModelIngredientFamily family) =>
+                SingleRecipePersistenceServiceIngredientFamily(
+              id: family.id,
+              type: family.type,
+              iconPath: family.iconPath,
+              name: family.name,
+              slug: family.slug,
+            ),
+          ),
         );
 
 SingleRecipeModelRecipe mapToSingleRecipeModelRecipe({
@@ -246,11 +256,26 @@ List<SingleRecipeModelYield> _mapYields({
                     displayedName: ingredient.displayedName,
                     imageUrl: ingredient.imagePath.flatMap(
                       (final Uri imagePath) => imageResizerService
-                          .getUrl(filePath: imagePath, widthPixels: widthPixelsIngredientThumbNail)
+                          .getUrl(
+                            filePath: imagePath,
+                            widthPixels: widthPixelsIngredientThumbNail,
+                          )
                           .toOption(),
                     ),
                     amount: ingredient.amount,
                     unit: ingredient.unit,
+                    family: ingredient.family.map(
+                      (
+                        final SingleRecipeWebClientModelIngredientFamily family,
+                      ) =>
+                          SingleRecipeModelIngredientFamily(
+                        id: family.id,
+                        type: family.type,
+                        iconPath: family.iconPath,
+                        name: family.name,
+                        slug: family.slug,
+                      ),
+                    ),
                   ),
                 )
                 .toList(),

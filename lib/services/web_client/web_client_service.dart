@@ -187,25 +187,37 @@ SingleRecipeWebClientModelRecipe _mapToSingleRecipeWebClientModelRecipe({
                 servings: serving,
                 ingredients: yield.ingredients
                     .map(
-                      (final WebClientModelYieldIngredient ingredient) =>
+                      (final WebClientModelYieldIngredient yieldIngredient) =>
                           optionOf(
                         recipe.ingredients.firstWhereOrNull(
                           (
-                            final WebClientModelIngredient otherIngredient,
+                            final WebClientModelIngredient ingredient,
                           ) =>
-                              otherIngredient.id == ingredient.id,
+                              ingredient.id == yieldIngredient.id,
                         ),
                       ).map(
                         (final WebClientModelIngredient otherIngredient) =>
                             SingleRecipeWebClientModelIngredient(
-                          ingredientId: ingredient.id,
-                          amount: ingredient.amount.map(
+                          ingredientId: yieldIngredient.id,
+                          amount: yieldIngredient.amount.map(
                             (final num number) => number.toDouble(),
                           ),
-                          unit: ingredient.unit,
+                          unit: yieldIngredient.unit,
                           imagePath: otherIngredient.imagePath.map(Uri.parse),
                           slug: otherIngredient.slug,
                           displayedName: otherIngredient.name,
+                          family: optionOf(otherIngredient.family).map(
+                            (
+                              final WebClientModelIngredientFamily family,
+                            ) =>
+                                SingleRecipeWebClientModelIngredientFamily(
+                              id: family.id,
+                              slug: family.slug,
+                              type: family.type,
+                              iconPath: family.iconPath,
+                              name: family.name,
+                            ),
+                          ),
                         ),
                       ),
                     )

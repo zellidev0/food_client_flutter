@@ -107,6 +107,7 @@ class WebClientModelIngredient with _$WebClientModelIngredient {
     required final String name,
     required final String type,
     required final Option<String> imagePath,
+    required final WebClientModelIngredientFamily? family,
   }) = _WebClientModelIngredient;
 
   factory WebClientModelIngredient.fromJson(
@@ -202,6 +203,23 @@ class WebClientModelYieldIngredient with _$WebClientModelYieldIngredient {
     final Map<String, dynamic> json,
   ) =>
       _$WebClientModelYieldIngredientFromJson(json);
+}
+
+@freezed
+class WebClientModelIngredientFamily
+    with _$WebClientModelIngredientFamily {
+  const factory WebClientModelIngredientFamily({
+    required final String id,
+    required final String type,
+    required final Option<String> iconPath,
+    required final String name,
+    required final String slug,
+  }) = _WebClientModelIngredientFamily;
+
+  factory WebClientModelIngredientFamily.fromJson(
+    final Map<String, dynamic> json,
+  ) =>
+      _$WebClientModelIngredientFamilyFromJson(json);
 }
 
 @freezed

@@ -26,6 +26,7 @@ class CartControllerImplementation extends CartController {
   })  : _navigationService = navigationService,
         _persistenceService = persistenceService,
         _imageSizerService = imageSizerService {
+
     state = state.copyWith(
       recipes: _getAllRecipes(),
       ingredients: _getAllIngredients(),
@@ -227,6 +228,16 @@ CartModelIngredient mapToCartModelIngredient(
         amount: ingredient.amount,
         unit: ingredient.unit,
         recipeIds: recipeIds,
+        family: ingredient.family.map(
+          (final CartPersistenceServiceModelIngredientFamilyFamily family) =>
+              CartModelIngredientFamily(
+            id: family.id,
+            type: family.type,
+            iconPath: family.iconPath,
+            name: family.name,
+            slug: family.slug,
+          ),
+        ),
       ),
       isTickedOff: ingredient.isTickedOff,
     );

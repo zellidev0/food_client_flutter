@@ -53,7 +53,20 @@ class SingleRecipeModelIngredient with _$SingleRecipeModelIngredient {
     required final String displayedName,
     required final Option<double> amount,
     required final Option<String> unit,
+    required final Option<SingleRecipeModelIngredientFamily> family,
   }) = _SingleRecipeModelIngredient;
+}
+
+@freezed
+class SingleRecipeModelIngredientFamily
+    with _$SingleRecipeModelIngredientFamily {
+  const factory SingleRecipeModelIngredientFamily({
+    required final String id,
+    required final String type,
+    required final Option<String> iconPath,
+    required final String name,
+    required final String slug,
+  }) = _SingleRecipeModelIngredientFamily;
 }
 
 @freezed

@@ -255,6 +255,8 @@ mixin _$SingleRecipePersistenceServiceIngredient {
   String get displayedName => throw _privateConstructorUsedError;
   Option<double> get amount => throw _privateConstructorUsedError;
   Option<String> get unit => throw _privateConstructorUsedError;
+  Option<SingleRecipePersistenceServiceIngredientFamily> get family =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SingleRecipePersistenceServiceIngredientCopyWith<
@@ -277,7 +279,8 @@ abstract class $SingleRecipePersistenceServiceIngredientCopyWith<$Res> {
       String slug,
       String displayedName,
       Option<double> amount,
-      Option<String> unit});
+      Option<String> unit,
+      Option<SingleRecipePersistenceServiceIngredientFamily> family});
 }
 
 /// @nodoc
@@ -302,6 +305,7 @@ class _$SingleRecipePersistenceServiceIngredientCopyWithImpl<$Res,
     Object? displayedName = null,
     Object? amount = null,
     Object? unit = null,
+    Object? family = null,
   }) {
     return _then(_value.copyWith(
       isTickedOff: null == isTickedOff
@@ -332,6 +336,10 @@ class _$SingleRecipePersistenceServiceIngredientCopyWithImpl<$Res,
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
               as Option<String>,
+      family: null == family
+          ? _value.family
+          : family // ignore: cast_nullable_to_non_nullable
+              as Option<SingleRecipePersistenceServiceIngredientFamily>,
     ) as $Val);
   }
 }
@@ -352,7 +360,8 @@ abstract class _$$_SingleRecipePersistenceServiceIngredientCopyWith<$Res>
       String slug,
       String displayedName,
       Option<double> amount,
-      Option<String> unit});
+      Option<String> unit,
+      Option<SingleRecipePersistenceServiceIngredientFamily> family});
 }
 
 /// @nodoc
@@ -375,6 +384,7 @@ class __$$_SingleRecipePersistenceServiceIngredientCopyWithImpl<$Res>
     Object? displayedName = null,
     Object? amount = null,
     Object? unit = null,
+    Object? family = null,
   }) {
     return _then(_$_SingleRecipePersistenceServiceIngredient(
       isTickedOff: null == isTickedOff
@@ -405,6 +415,10 @@ class __$$_SingleRecipePersistenceServiceIngredientCopyWithImpl<$Res>
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
               as Option<String>,
+      family: null == family
+          ? _value.family
+          : family // ignore: cast_nullable_to_non_nullable
+              as Option<SingleRecipePersistenceServiceIngredientFamily>,
     ));
   }
 }
@@ -420,7 +434,8 @@ class _$_SingleRecipePersistenceServiceIngredient
       required this.slug,
       required this.displayedName,
       required this.amount,
-      required this.unit});
+      required this.unit,
+      required this.family});
 
   @override
   final bool isTickedOff;
@@ -436,10 +451,12 @@ class _$_SingleRecipePersistenceServiceIngredient
   final Option<double> amount;
   @override
   final Option<String> unit;
+  @override
+  final Option<SingleRecipePersistenceServiceIngredientFamily> family;
 
   @override
   String toString() {
-    return 'SingleRecipePersistenceServiceIngredient(isTickedOff: $isTickedOff, imageUrl: $imageUrl, ingredientId: $ingredientId, slug: $slug, displayedName: $displayedName, amount: $amount, unit: $unit)';
+    return 'SingleRecipePersistenceServiceIngredient(isTickedOff: $isTickedOff, imageUrl: $imageUrl, ingredientId: $ingredientId, slug: $slug, displayedName: $displayedName, amount: $amount, unit: $unit, family: $family)';
   }
 
   @override
@@ -457,12 +474,13 @@ class _$_SingleRecipePersistenceServiceIngredient
             (identical(other.displayedName, displayedName) ||
                 other.displayedName == displayedName) &&
             (identical(other.amount, amount) || other.amount == amount) &&
-            (identical(other.unit, unit) || other.unit == unit));
+            (identical(other.unit, unit) || other.unit == unit) &&
+            (identical(other.family, family) || other.family == family));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, isTickedOff, imageUrl,
-      ingredientId, slug, displayedName, amount, unit);
+      ingredientId, slug, displayedName, amount, unit, family);
 
   @JsonKey(ignore: true)
   @override
@@ -476,14 +494,15 @@ class _$_SingleRecipePersistenceServiceIngredient
 abstract class _SingleRecipePersistenceServiceIngredient
     implements SingleRecipePersistenceServiceIngredient {
   const factory _SingleRecipePersistenceServiceIngredient(
-          {required final bool isTickedOff,
-          required final Option<Uri> imageUrl,
-          required final String ingredientId,
-          required final String slug,
-          required final String displayedName,
-          required final Option<double> amount,
-          required final Option<String> unit}) =
-      _$_SingleRecipePersistenceServiceIngredient;
+      {required final bool isTickedOff,
+      required final Option<Uri> imageUrl,
+      required final String ingredientId,
+      required final String slug,
+      required final String displayedName,
+      required final Option<double> amount,
+      required final Option<String> unit,
+      required final Option<SingleRecipePersistenceServiceIngredientFamily>
+          family}) = _$_SingleRecipePersistenceServiceIngredient;
 
   @override
   bool get isTickedOff;
@@ -500,8 +519,230 @@ abstract class _SingleRecipePersistenceServiceIngredient
   @override
   Option<String> get unit;
   @override
+  Option<SingleRecipePersistenceServiceIngredientFamily> get family;
+  @override
   @JsonKey(ignore: true)
   _$$_SingleRecipePersistenceServiceIngredientCopyWith<
           _$_SingleRecipePersistenceServiceIngredient>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$SingleRecipePersistenceServiceIngredientFamily {
+  String get id => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
+  Option<String> get iconPath => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get slug => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $SingleRecipePersistenceServiceIngredientFamilyCopyWith<
+          SingleRecipePersistenceServiceIngredientFamily>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SingleRecipePersistenceServiceIngredientFamilyCopyWith<$Res> {
+  factory $SingleRecipePersistenceServiceIngredientFamilyCopyWith(
+          SingleRecipePersistenceServiceIngredientFamily value,
+          $Res Function(SingleRecipePersistenceServiceIngredientFamily) then) =
+      _$SingleRecipePersistenceServiceIngredientFamilyCopyWithImpl<$Res,
+          SingleRecipePersistenceServiceIngredientFamily>;
+  @useResult
+  $Res call(
+      {String id,
+      String type,
+      Option<String> iconPath,
+      String name,
+      String slug});
+}
+
+/// @nodoc
+class _$SingleRecipePersistenceServiceIngredientFamilyCopyWithImpl<$Res,
+        $Val extends SingleRecipePersistenceServiceIngredientFamily>
+    implements $SingleRecipePersistenceServiceIngredientFamilyCopyWith<$Res> {
+  _$SingleRecipePersistenceServiceIngredientFamilyCopyWithImpl(
+      this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? type = null,
+    Object? iconPath = null,
+    Object? name = null,
+    Object? slug = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      iconPath: null == iconPath
+          ? _value.iconPath
+          : iconPath // ignore: cast_nullable_to_non_nullable
+              as Option<String>,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      slug: null == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_SingleRecipePersistenceServiceIngredientFamilyCopyWith<$Res>
+    implements $SingleRecipePersistenceServiceIngredientFamilyCopyWith<$Res> {
+  factory _$$_SingleRecipePersistenceServiceIngredientFamilyCopyWith(
+          _$_SingleRecipePersistenceServiceIngredientFamily value,
+          $Res Function(_$_SingleRecipePersistenceServiceIngredientFamily)
+              then) =
+      __$$_SingleRecipePersistenceServiceIngredientFamilyCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      String type,
+      Option<String> iconPath,
+      String name,
+      String slug});
+}
+
+/// @nodoc
+class __$$_SingleRecipePersistenceServiceIngredientFamilyCopyWithImpl<$Res>
+    extends _$SingleRecipePersistenceServiceIngredientFamilyCopyWithImpl<$Res,
+        _$_SingleRecipePersistenceServiceIngredientFamily>
+    implements
+        _$$_SingleRecipePersistenceServiceIngredientFamilyCopyWith<$Res> {
+  __$$_SingleRecipePersistenceServiceIngredientFamilyCopyWithImpl(
+      _$_SingleRecipePersistenceServiceIngredientFamily _value,
+      $Res Function(_$_SingleRecipePersistenceServiceIngredientFamily) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? type = null,
+    Object? iconPath = null,
+    Object? name = null,
+    Object? slug = null,
+  }) {
+    return _then(_$_SingleRecipePersistenceServiceIngredientFamily(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      iconPath: null == iconPath
+          ? _value.iconPath
+          : iconPath // ignore: cast_nullable_to_non_nullable
+              as Option<String>,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      slug: null == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SingleRecipePersistenceServiceIngredientFamily
+    implements _SingleRecipePersistenceServiceIngredientFamily {
+  const _$_SingleRecipePersistenceServiceIngredientFamily(
+      {required this.id,
+      required this.type,
+      required this.iconPath,
+      required this.name,
+      required this.slug});
+
+  @override
+  final String id;
+  @override
+  final String type;
+  @override
+  final Option<String> iconPath;
+  @override
+  final String name;
+  @override
+  final String slug;
+
+  @override
+  String toString() {
+    return 'SingleRecipePersistenceServiceIngredientFamily(id: $id, type: $type, iconPath: $iconPath, name: $name, slug: $slug)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SingleRecipePersistenceServiceIngredientFamily &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.iconPath, iconPath) ||
+                other.iconPath == iconPath) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.slug, slug) || other.slug == slug));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, type, iconPath, name, slug);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SingleRecipePersistenceServiceIngredientFamilyCopyWith<
+          _$_SingleRecipePersistenceServiceIngredientFamily>
+      get copyWith =>
+          __$$_SingleRecipePersistenceServiceIngredientFamilyCopyWithImpl<
+                  _$_SingleRecipePersistenceServiceIngredientFamily>(
+              this, _$identity);
+}
+
+abstract class _SingleRecipePersistenceServiceIngredientFamily
+    implements SingleRecipePersistenceServiceIngredientFamily {
+  const factory _SingleRecipePersistenceServiceIngredientFamily(
+          {required final String id,
+          required final String type,
+          required final Option<String> iconPath,
+          required final String name,
+          required final String slug}) =
+      _$_SingleRecipePersistenceServiceIngredientFamily;
+
+  @override
+  String get id;
+  @override
+  String get type;
+  @override
+  Option<String> get iconPath;
+  @override
+  String get name;
+  @override
+  String get slug;
+  @override
+  @JsonKey(ignore: true)
+  _$$_SingleRecipePersistenceServiceIngredientFamilyCopyWith<
+          _$_SingleRecipePersistenceServiceIngredientFamily>
       get copyWith => throw _privateConstructorUsedError;
 }

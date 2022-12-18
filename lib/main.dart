@@ -15,8 +15,10 @@ void main() async {
     ..registerAdapter(OptionUriAdapter())
     ..registerAdapter(OptionDoubleAdapter())
     ..registerAdapter(OptionStringAdapter())
+    ..registerAdapter(OptionPersistenceServiceModelShoppingListIngredientFamilyAdapter())
     ..registerAdapter(UriAdapter())
     ..registerAdapter(PersistenceServiceModelShoppingListIngredientAdapter())
+    ..registerAdapter(PersistenceServiceModelShoppingListIngredientFamilyAdapter())
     ..registerAdapter(PersistenceServiceModelShoppingListRecipeAdapter());
   await Hive.initFlutter();
   await Hive.openBox<PersistenceServiceModelShoppingListRecipe>(

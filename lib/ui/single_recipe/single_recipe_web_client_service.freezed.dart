@@ -676,6 +676,8 @@ mixin _$SingleRecipeWebClientModelIngredient {
   String get displayedName => throw _privateConstructorUsedError;
   Option<double> get amount => throw _privateConstructorUsedError;
   Option<String> get unit => throw _privateConstructorUsedError;
+  Option<SingleRecipeWebClientModelIngredientFamily> get family =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SingleRecipeWebClientModelIngredientCopyWith<
@@ -697,7 +699,8 @@ abstract class $SingleRecipeWebClientModelIngredientCopyWith<$Res> {
       String slug,
       String displayedName,
       Option<double> amount,
-      Option<String> unit});
+      Option<String> unit,
+      Option<SingleRecipeWebClientModelIngredientFamily> family});
 }
 
 /// @nodoc
@@ -720,6 +723,7 @@ class _$SingleRecipeWebClientModelIngredientCopyWithImpl<$Res,
     Object? displayedName = null,
     Object? amount = null,
     Object? unit = null,
+    Object? family = null,
   }) {
     return _then(_value.copyWith(
       imagePath: null == imagePath
@@ -746,6 +750,10 @@ class _$SingleRecipeWebClientModelIngredientCopyWithImpl<$Res,
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
               as Option<String>,
+      family: null == family
+          ? _value.family
+          : family // ignore: cast_nullable_to_non_nullable
+              as Option<SingleRecipeWebClientModelIngredientFamily>,
     ) as $Val);
   }
 }
@@ -765,7 +773,8 @@ abstract class _$$_SingleRecipeWebClientModelIngredientCopyWith<$Res>
       String slug,
       String displayedName,
       Option<double> amount,
-      Option<String> unit});
+      Option<String> unit,
+      Option<SingleRecipeWebClientModelIngredientFamily> family});
 }
 
 /// @nodoc
@@ -787,6 +796,7 @@ class __$$_SingleRecipeWebClientModelIngredientCopyWithImpl<$Res>
     Object? displayedName = null,
     Object? amount = null,
     Object? unit = null,
+    Object? family = null,
   }) {
     return _then(_$_SingleRecipeWebClientModelIngredient(
       imagePath: null == imagePath
@@ -813,6 +823,10 @@ class __$$_SingleRecipeWebClientModelIngredientCopyWithImpl<$Res>
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
               as Option<String>,
+      family: null == family
+          ? _value.family
+          : family // ignore: cast_nullable_to_non_nullable
+              as Option<SingleRecipeWebClientModelIngredientFamily>,
     ));
   }
 }
@@ -827,7 +841,8 @@ class _$_SingleRecipeWebClientModelIngredient
       required this.slug,
       required this.displayedName,
       required this.amount,
-      required this.unit});
+      required this.unit,
+      required this.family});
 
   @override
   final Option<Uri> imagePath;
@@ -841,10 +856,12 @@ class _$_SingleRecipeWebClientModelIngredient
   final Option<double> amount;
   @override
   final Option<String> unit;
+  @override
+  final Option<SingleRecipeWebClientModelIngredientFamily> family;
 
   @override
   String toString() {
-    return 'SingleRecipeWebClientModelIngredient(imagePath: $imagePath, ingredientId: $ingredientId, slug: $slug, displayedName: $displayedName, amount: $amount, unit: $unit)';
+    return 'SingleRecipeWebClientModelIngredient(imagePath: $imagePath, ingredientId: $ingredientId, slug: $slug, displayedName: $displayedName, amount: $amount, unit: $unit, family: $family)';
   }
 
   @override
@@ -860,12 +877,13 @@ class _$_SingleRecipeWebClientModelIngredient
             (identical(other.displayedName, displayedName) ||
                 other.displayedName == displayedName) &&
             (identical(other.amount, amount) || other.amount == amount) &&
-            (identical(other.unit, unit) || other.unit == unit));
+            (identical(other.unit, unit) || other.unit == unit) &&
+            (identical(other.family, family) || other.family == family));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, imagePath, ingredientId, slug, displayedName, amount, unit);
+  int get hashCode => Object.hash(runtimeType, imagePath, ingredientId, slug,
+      displayedName, amount, unit, family);
 
   @JsonKey(ignore: true)
   @override
@@ -879,13 +897,14 @@ class _$_SingleRecipeWebClientModelIngredient
 abstract class _SingleRecipeWebClientModelIngredient
     implements SingleRecipeWebClientModelIngredient {
   const factory _SingleRecipeWebClientModelIngredient(
-          {required final Option<Uri> imagePath,
-          required final String ingredientId,
-          required final String slug,
-          required final String displayedName,
-          required final Option<double> amount,
-          required final Option<String> unit}) =
-      _$_SingleRecipeWebClientModelIngredient;
+      {required final Option<Uri> imagePath,
+      required final String ingredientId,
+      required final String slug,
+      required final String displayedName,
+      required final Option<double> amount,
+      required final Option<String> unit,
+      required final Option<SingleRecipeWebClientModelIngredientFamily>
+          family}) = _$_SingleRecipeWebClientModelIngredient;
 
   @override
   Option<Uri> get imagePath;
@@ -900,9 +919,228 @@ abstract class _SingleRecipeWebClientModelIngredient
   @override
   Option<String> get unit;
   @override
+  Option<SingleRecipeWebClientModelIngredientFamily> get family;
+  @override
   @JsonKey(ignore: true)
   _$$_SingleRecipeWebClientModelIngredientCopyWith<
           _$_SingleRecipeWebClientModelIngredient>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$SingleRecipeWebClientModelIngredientFamily {
+  String get id => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
+  Option<String> get iconPath => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get slug => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $SingleRecipeWebClientModelIngredientFamilyCopyWith<
+          SingleRecipeWebClientModelIngredientFamily>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SingleRecipeWebClientModelIngredientFamilyCopyWith<$Res> {
+  factory $SingleRecipeWebClientModelIngredientFamilyCopyWith(
+          SingleRecipeWebClientModelIngredientFamily value,
+          $Res Function(SingleRecipeWebClientModelIngredientFamily) then) =
+      _$SingleRecipeWebClientModelIngredientFamilyCopyWithImpl<$Res,
+          SingleRecipeWebClientModelIngredientFamily>;
+  @useResult
+  $Res call(
+      {String id,
+      String type,
+      Option<String> iconPath,
+      String name,
+      String slug});
+}
+
+/// @nodoc
+class _$SingleRecipeWebClientModelIngredientFamilyCopyWithImpl<$Res,
+        $Val extends SingleRecipeWebClientModelIngredientFamily>
+    implements $SingleRecipeWebClientModelIngredientFamilyCopyWith<$Res> {
+  _$SingleRecipeWebClientModelIngredientFamilyCopyWithImpl(
+      this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? type = null,
+    Object? iconPath = null,
+    Object? name = null,
+    Object? slug = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      iconPath: null == iconPath
+          ? _value.iconPath
+          : iconPath // ignore: cast_nullable_to_non_nullable
+              as Option<String>,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      slug: null == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_SingleRecipeWebClientModelIngredientFamilyCopyWith<$Res>
+    implements $SingleRecipeWebClientModelIngredientFamilyCopyWith<$Res> {
+  factory _$$_SingleRecipeWebClientModelIngredientFamilyCopyWith(
+          _$_SingleRecipeWebClientModelIngredientFamily value,
+          $Res Function(_$_SingleRecipeWebClientModelIngredientFamily) then) =
+      __$$_SingleRecipeWebClientModelIngredientFamilyCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      String type,
+      Option<String> iconPath,
+      String name,
+      String slug});
+}
+
+/// @nodoc
+class __$$_SingleRecipeWebClientModelIngredientFamilyCopyWithImpl<$Res>
+    extends _$SingleRecipeWebClientModelIngredientFamilyCopyWithImpl<$Res,
+        _$_SingleRecipeWebClientModelIngredientFamily>
+    implements _$$_SingleRecipeWebClientModelIngredientFamilyCopyWith<$Res> {
+  __$$_SingleRecipeWebClientModelIngredientFamilyCopyWithImpl(
+      _$_SingleRecipeWebClientModelIngredientFamily _value,
+      $Res Function(_$_SingleRecipeWebClientModelIngredientFamily) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? type = null,
+    Object? iconPath = null,
+    Object? name = null,
+    Object? slug = null,
+  }) {
+    return _then(_$_SingleRecipeWebClientModelIngredientFamily(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      iconPath: null == iconPath
+          ? _value.iconPath
+          : iconPath // ignore: cast_nullable_to_non_nullable
+              as Option<String>,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      slug: null == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SingleRecipeWebClientModelIngredientFamily
+    implements _SingleRecipeWebClientModelIngredientFamily {
+  const _$_SingleRecipeWebClientModelIngredientFamily(
+      {required this.id,
+      required this.type,
+      required this.iconPath,
+      required this.name,
+      required this.slug});
+
+  @override
+  final String id;
+  @override
+  final String type;
+  @override
+  final Option<String> iconPath;
+  @override
+  final String name;
+  @override
+  final String slug;
+
+  @override
+  String toString() {
+    return 'SingleRecipeWebClientModelIngredientFamily(id: $id, type: $type, iconPath: $iconPath, name: $name, slug: $slug)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SingleRecipeWebClientModelIngredientFamily &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.iconPath, iconPath) ||
+                other.iconPath == iconPath) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.slug, slug) || other.slug == slug));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, type, iconPath, name, slug);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SingleRecipeWebClientModelIngredientFamilyCopyWith<
+          _$_SingleRecipeWebClientModelIngredientFamily>
+      get copyWith =>
+          __$$_SingleRecipeWebClientModelIngredientFamilyCopyWithImpl<
+              _$_SingleRecipeWebClientModelIngredientFamily>(this, _$identity);
+}
+
+abstract class _SingleRecipeWebClientModelIngredientFamily
+    implements SingleRecipeWebClientModelIngredientFamily {
+  const factory _SingleRecipeWebClientModelIngredientFamily(
+          {required final String id,
+          required final String type,
+          required final Option<String> iconPath,
+          required final String name,
+          required final String slug}) =
+      _$_SingleRecipeWebClientModelIngredientFamily;
+
+  @override
+  String get id;
+  @override
+  String get type;
+  @override
+  Option<String> get iconPath;
+  @override
+  String get name;
+  @override
+  String get slug;
+  @override
+  @JsonKey(ignore: true)
+  _$$_SingleRecipeWebClientModelIngredientFamilyCopyWith<
+          _$_SingleRecipeWebClientModelIngredientFamily>
       get copyWith => throw _privateConstructorUsedError;
 }
 

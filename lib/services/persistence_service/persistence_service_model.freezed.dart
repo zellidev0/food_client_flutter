@@ -462,6 +462,9 @@ mixin _$PersistenceServiceModelShoppingListIngredient {
   Option<double> get amount => throw _privateConstructorUsedError;
   @HiveField(7)
   Option<String> get unit => throw _privateConstructorUsedError;
+  @HiveField(8)
+  Option<PersistenceServiceModelShoppingListIngredientFamily> get family =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -479,13 +482,22 @@ abstract class $PersistenceServiceModelShoppingListIngredientCopyWith<$Res> {
           PersistenceServiceModelShoppingListIngredient>;
   @useResult
   $Res call(
-      {@HiveField(0) String ingredientId,
-      @HiveField(1) bool isTickedOff,
-      @HiveField(3) Option<Uri> imageUrl,
-      @HiveField(4) String slug,
-      @HiveField(5) String displayedName,
-      @HiveField(6) Option<double> amount,
-      @HiveField(7) Option<String> unit});
+      {@HiveField(0)
+          String ingredientId,
+      @HiveField(1)
+          bool isTickedOff,
+      @HiveField(3)
+          Option<Uri> imageUrl,
+      @HiveField(4)
+          String slug,
+      @HiveField(5)
+          String displayedName,
+      @HiveField(6)
+          Option<double> amount,
+      @HiveField(7)
+          Option<String> unit,
+      @HiveField(8)
+          Option<PersistenceServiceModelShoppingListIngredientFamily> family});
 }
 
 /// @nodoc
@@ -510,6 +522,7 @@ class _$PersistenceServiceModelShoppingListIngredientCopyWithImpl<$Res,
     Object? displayedName = null,
     Object? amount = null,
     Object? unit = null,
+    Object? family = null,
   }) {
     return _then(_value.copyWith(
       ingredientId: null == ingredientId
@@ -540,6 +553,10 @@ class _$PersistenceServiceModelShoppingListIngredientCopyWithImpl<$Res,
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
               as Option<String>,
+      family: null == family
+          ? _value.family
+          : family // ignore: cast_nullable_to_non_nullable
+              as Option<PersistenceServiceModelShoppingListIngredientFamily>,
     ) as $Val);
   }
 }
@@ -555,13 +572,22 @@ abstract class _$$_PersistenceServiceModelShoppingListIngredientCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@HiveField(0) String ingredientId,
-      @HiveField(1) bool isTickedOff,
-      @HiveField(3) Option<Uri> imageUrl,
-      @HiveField(4) String slug,
-      @HiveField(5) String displayedName,
-      @HiveField(6) Option<double> amount,
-      @HiveField(7) Option<String> unit});
+      {@HiveField(0)
+          String ingredientId,
+      @HiveField(1)
+          bool isTickedOff,
+      @HiveField(3)
+          Option<Uri> imageUrl,
+      @HiveField(4)
+          String slug,
+      @HiveField(5)
+          String displayedName,
+      @HiveField(6)
+          Option<double> amount,
+      @HiveField(7)
+          Option<String> unit,
+      @HiveField(8)
+          Option<PersistenceServiceModelShoppingListIngredientFamily> family});
 }
 
 /// @nodoc
@@ -584,6 +610,7 @@ class __$$_PersistenceServiceModelShoppingListIngredientCopyWithImpl<$Res>
     Object? displayedName = null,
     Object? amount = null,
     Object? unit = null,
+    Object? family = null,
   }) {
     return _then(_$_PersistenceServiceModelShoppingListIngredient(
       ingredientId: null == ingredientId
@@ -614,6 +641,10 @@ class __$$_PersistenceServiceModelShoppingListIngredientCopyWithImpl<$Res>
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
               as Option<String>,
+      family: null == family
+          ? _value.family
+          : family // ignore: cast_nullable_to_non_nullable
+              as Option<PersistenceServiceModelShoppingListIngredientFamily>,
     ));
   }
 }
@@ -632,7 +663,8 @@ class _$_PersistenceServiceModelShoppingListIngredient
       @HiveField(4) required this.slug,
       @HiveField(5) required this.displayedName,
       @HiveField(6) required this.amount,
-      @HiveField(7) required this.unit});
+      @HiveField(7) required this.unit,
+      @HiveField(8) required this.family});
 
   factory _$_PersistenceServiceModelShoppingListIngredient.fromJson(
           Map<String, dynamic> json) =>
@@ -659,10 +691,13 @@ class _$_PersistenceServiceModelShoppingListIngredient
   @override
   @HiveField(7)
   final Option<String> unit;
+  @override
+  @HiveField(8)
+  final Option<PersistenceServiceModelShoppingListIngredientFamily> family;
 
   @override
   String toString() {
-    return 'PersistenceServiceModelShoppingListIngredient(ingredientId: $ingredientId, isTickedOff: $isTickedOff, imageUrl: $imageUrl, slug: $slug, displayedName: $displayedName, amount: $amount, unit: $unit)';
+    return 'PersistenceServiceModelShoppingListIngredient(ingredientId: $ingredientId, isTickedOff: $isTickedOff, imageUrl: $imageUrl, slug: $slug, displayedName: $displayedName, amount: $amount, unit: $unit, family: $family)';
   }
 
   @override
@@ -680,13 +715,14 @@ class _$_PersistenceServiceModelShoppingListIngredient
             (identical(other.displayedName, displayedName) ||
                 other.displayedName == displayedName) &&
             (identical(other.amount, amount) || other.amount == amount) &&
-            (identical(other.unit, unit) || other.unit == unit));
+            (identical(other.unit, unit) || other.unit == unit) &&
+            (identical(other.family, family) || other.family == family));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, ingredientId, isTickedOff,
-      imageUrl, slug, displayedName, amount, unit);
+      imageUrl, slug, displayedName, amount, unit, family);
 
   @JsonKey(ignore: true)
   @override
@@ -709,14 +745,24 @@ class _$_PersistenceServiceModelShoppingListIngredient
 abstract class _PersistenceServiceModelShoppingListIngredient
     implements PersistenceServiceModelShoppingListIngredient {
   const factory _PersistenceServiceModelShoppingListIngredient(
-          {@HiveField(0) required final String ingredientId,
-          @HiveField(1) required final bool isTickedOff,
-          @HiveField(3) required final Option<Uri> imageUrl,
-          @HiveField(4) required final String slug,
-          @HiveField(5) required final String displayedName,
-          @HiveField(6) required final Option<double> amount,
-          @HiveField(7) required final Option<String> unit}) =
-      _$_PersistenceServiceModelShoppingListIngredient;
+      {@HiveField(0)
+          required final String ingredientId,
+      @HiveField(1)
+          required final bool isTickedOff,
+      @HiveField(3)
+          required final Option<Uri> imageUrl,
+      @HiveField(4)
+          required final String slug,
+      @HiveField(5)
+          required final String displayedName,
+      @HiveField(6)
+          required final Option<double> amount,
+      @HiveField(7)
+          required final Option<String> unit,
+      @HiveField(8)
+          required final Option<
+                  PersistenceServiceModelShoppingListIngredientFamily>
+              family}) = _$_PersistenceServiceModelShoppingListIngredient;
 
   factory _PersistenceServiceModelShoppingListIngredient.fromJson(
           Map<String, dynamic> json) =
@@ -744,8 +790,279 @@ abstract class _PersistenceServiceModelShoppingListIngredient
   @HiveField(7)
   Option<String> get unit;
   @override
+  @HiveField(8)
+  Option<PersistenceServiceModelShoppingListIngredientFamily> get family;
+  @override
   @JsonKey(ignore: true)
   _$$_PersistenceServiceModelShoppingListIngredientCopyWith<
           _$_PersistenceServiceModelShoppingListIngredient>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+PersistenceServiceModelShoppingListIngredientFamily
+    _$PersistenceServiceModelShoppingListIngredientFamilyFromJson(
+        Map<String, dynamic> json) {
+  return _PersistenceServiceModelShoppingListIngredientFamily.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PersistenceServiceModelShoppingListIngredientFamily {
+  @HiveField(0)
+  String get id => throw _privateConstructorUsedError;
+  @HiveField(1)
+  String get type => throw _privateConstructorUsedError;
+  @HiveField(2)
+  Option<String> get iconPath => throw _privateConstructorUsedError;
+  @HiveField(3)
+  String get name => throw _privateConstructorUsedError;
+  @HiveField(4)
+  String get slug => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $PersistenceServiceModelShoppingListIngredientFamilyCopyWith<
+          PersistenceServiceModelShoppingListIngredientFamily>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PersistenceServiceModelShoppingListIngredientFamilyCopyWith<
+    $Res> {
+  factory $PersistenceServiceModelShoppingListIngredientFamilyCopyWith(
+          PersistenceServiceModelShoppingListIngredientFamily value,
+          $Res Function(PersistenceServiceModelShoppingListIngredientFamily)
+              then) =
+      _$PersistenceServiceModelShoppingListIngredientFamilyCopyWithImpl<$Res,
+          PersistenceServiceModelShoppingListIngredientFamily>;
+  @useResult
+  $Res call(
+      {@HiveField(0) String id,
+      @HiveField(1) String type,
+      @HiveField(2) Option<String> iconPath,
+      @HiveField(3) String name,
+      @HiveField(4) String slug});
+}
+
+/// @nodoc
+class _$PersistenceServiceModelShoppingListIngredientFamilyCopyWithImpl<$Res,
+        $Val extends PersistenceServiceModelShoppingListIngredientFamily>
+    implements
+        $PersistenceServiceModelShoppingListIngredientFamilyCopyWith<$Res> {
+  _$PersistenceServiceModelShoppingListIngredientFamilyCopyWithImpl(
+      this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? type = null,
+    Object? iconPath = null,
+    Object? name = null,
+    Object? slug = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      iconPath: null == iconPath
+          ? _value.iconPath
+          : iconPath // ignore: cast_nullable_to_non_nullable
+              as Option<String>,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      slug: null == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_PersistenceServiceModelShoppingListIngredientFamilyCopyWith<
+        $Res>
+    implements
+        $PersistenceServiceModelShoppingListIngredientFamilyCopyWith<$Res> {
+  factory _$$_PersistenceServiceModelShoppingListIngredientFamilyCopyWith(
+          _$_PersistenceServiceModelShoppingListIngredientFamily value,
+          $Res Function(_$_PersistenceServiceModelShoppingListIngredientFamily)
+              then) =
+      __$$_PersistenceServiceModelShoppingListIngredientFamilyCopyWithImpl<
+          $Res>;
+  @override
+  @useResult
+  $Res call(
+      {@HiveField(0) String id,
+      @HiveField(1) String type,
+      @HiveField(2) Option<String> iconPath,
+      @HiveField(3) String name,
+      @HiveField(4) String slug});
+}
+
+/// @nodoc
+class __$$_PersistenceServiceModelShoppingListIngredientFamilyCopyWithImpl<$Res>
+    extends _$PersistenceServiceModelShoppingListIngredientFamilyCopyWithImpl<
+        $Res, _$_PersistenceServiceModelShoppingListIngredientFamily>
+    implements
+        _$$_PersistenceServiceModelShoppingListIngredientFamilyCopyWith<$Res> {
+  __$$_PersistenceServiceModelShoppingListIngredientFamilyCopyWithImpl(
+      _$_PersistenceServiceModelShoppingListIngredientFamily _value,
+      $Res Function(_$_PersistenceServiceModelShoppingListIngredientFamily)
+          _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? type = null,
+    Object? iconPath = null,
+    Object? name = null,
+    Object? slug = null,
+  }) {
+    return _then(_$_PersistenceServiceModelShoppingListIngredientFamily(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      iconPath: null == iconPath
+          ? _value.iconPath
+          : iconPath // ignore: cast_nullable_to_non_nullable
+              as Option<String>,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      slug: null == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+@HiveType(
+    typeId: 2,
+    adapterName: 'PersistenceServiceModelShoppingListIngredientFamilyAdapter')
+class _$_PersistenceServiceModelShoppingListIngredientFamily
+    implements _PersistenceServiceModelShoppingListIngredientFamily {
+  const _$_PersistenceServiceModelShoppingListIngredientFamily(
+      {@HiveField(0) required this.id,
+      @HiveField(1) required this.type,
+      @HiveField(2) required this.iconPath,
+      @HiveField(3) required this.name,
+      @HiveField(4) required this.slug});
+
+  factory _$_PersistenceServiceModelShoppingListIngredientFamily.fromJson(
+          Map<String, dynamic> json) =>
+      _$$_PersistenceServiceModelShoppingListIngredientFamilyFromJson(json);
+
+  @override
+  @HiveField(0)
+  final String id;
+  @override
+  @HiveField(1)
+  final String type;
+  @override
+  @HiveField(2)
+  final Option<String> iconPath;
+  @override
+  @HiveField(3)
+  final String name;
+  @override
+  @HiveField(4)
+  final String slug;
+
+  @override
+  String toString() {
+    return 'PersistenceServiceModelShoppingListIngredientFamily(id: $id, type: $type, iconPath: $iconPath, name: $name, slug: $slug)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_PersistenceServiceModelShoppingListIngredientFamily &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.iconPath, iconPath) ||
+                other.iconPath == iconPath) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.slug, slug) || other.slug == slug));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, type, iconPath, name, slug);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_PersistenceServiceModelShoppingListIngredientFamilyCopyWith<
+          _$_PersistenceServiceModelShoppingListIngredientFamily>
+      get copyWith =>
+          __$$_PersistenceServiceModelShoppingListIngredientFamilyCopyWithImpl<
+                  _$_PersistenceServiceModelShoppingListIngredientFamily>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_PersistenceServiceModelShoppingListIngredientFamilyToJson(
+      this,
+    );
+  }
+}
+
+abstract class _PersistenceServiceModelShoppingListIngredientFamily
+    implements PersistenceServiceModelShoppingListIngredientFamily {
+  const factory _PersistenceServiceModelShoppingListIngredientFamily(
+          {@HiveField(0) required final String id,
+          @HiveField(1) required final String type,
+          @HiveField(2) required final Option<String> iconPath,
+          @HiveField(3) required final String name,
+          @HiveField(4) required final String slug}) =
+      _$_PersistenceServiceModelShoppingListIngredientFamily;
+
+  factory _PersistenceServiceModelShoppingListIngredientFamily.fromJson(
+          Map<String, dynamic> json) =
+      _$_PersistenceServiceModelShoppingListIngredientFamily.fromJson;
+
+  @override
+  @HiveField(0)
+  String get id;
+  @override
+  @HiveField(1)
+  String get type;
+  @override
+  @HiveField(2)
+  Option<String> get iconPath;
+  @override
+  @HiveField(3)
+  String get name;
+  @override
+  @HiveField(4)
+  String get slug;
+  @override
+  @JsonKey(ignore: true)
+  _$$_PersistenceServiceModelShoppingListIngredientFamilyCopyWith<
+          _$_PersistenceServiceModelShoppingListIngredientFamily>
       get copyWith => throw _privateConstructorUsedError;
 }

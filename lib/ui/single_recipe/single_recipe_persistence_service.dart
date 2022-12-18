@@ -36,5 +36,19 @@ class SingleRecipePersistenceServiceIngredient
     required final String displayedName,
     required final Option<double> amount,
     required final Option<String> unit,
+    required final Option<SingleRecipePersistenceServiceIngredientFamily>
+        family,
   }) = _SingleRecipePersistenceServiceIngredient;
+}
+
+@freezed
+class SingleRecipePersistenceServiceIngredientFamily
+    with _$SingleRecipePersistenceServiceIngredientFamily {
+  const factory SingleRecipePersistenceServiceIngredientFamily({
+    required final String id,
+    required final String type,
+    required final Option<String> iconPath,
+    required final String name,
+    required final String slug,
+  }) = _SingleRecipePersistenceServiceIngredientFamily;
 }

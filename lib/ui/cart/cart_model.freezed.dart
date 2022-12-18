@@ -1028,6 +1028,8 @@ mixin _$CartModelIngredientInfo {
   Option<double> get amount => throw _privateConstructorUsedError;
   Option<String> get unit => throw _privateConstructorUsedError;
   List<String> get recipeIds => throw _privateConstructorUsedError;
+  Option<CartModelIngredientFamily> get family =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CartModelIngredientInfoCopyWith<CartModelIngredientInfo> get copyWith =>
@@ -1047,7 +1049,8 @@ abstract class $CartModelIngredientInfoCopyWith<$Res> {
       String displayedName,
       Option<double> amount,
       Option<String> unit,
-      List<String> recipeIds});
+      List<String> recipeIds,
+      Option<CartModelIngredientFamily> family});
 }
 
 /// @nodoc
@@ -1071,6 +1074,7 @@ class _$CartModelIngredientInfoCopyWithImpl<$Res,
     Object? amount = null,
     Object? unit = null,
     Object? recipeIds = null,
+    Object? family = null,
   }) {
     return _then(_value.copyWith(
       imageUrl: null == imageUrl
@@ -1101,6 +1105,10 @@ class _$CartModelIngredientInfoCopyWithImpl<$Res,
           ? _value.recipeIds
           : recipeIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      family: null == family
+          ? _value.family
+          : family // ignore: cast_nullable_to_non_nullable
+              as Option<CartModelIngredientFamily>,
     ) as $Val);
   }
 }
@@ -1120,7 +1128,8 @@ abstract class _$$_CartModelIngredientInfoCopyWith<$Res>
       String displayedName,
       Option<double> amount,
       Option<String> unit,
-      List<String> recipeIds});
+      List<String> recipeIds,
+      Option<CartModelIngredientFamily> family});
 }
 
 /// @nodoc
@@ -1142,6 +1151,7 @@ class __$$_CartModelIngredientInfoCopyWithImpl<$Res>
     Object? amount = null,
     Object? unit = null,
     Object? recipeIds = null,
+    Object? family = null,
   }) {
     return _then(_$_CartModelIngredientInfo(
       imageUrl: null == imageUrl
@@ -1172,6 +1182,10 @@ class __$$_CartModelIngredientInfoCopyWithImpl<$Res>
           ? _value._recipeIds
           : recipeIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      family: null == family
+          ? _value.family
+          : family // ignore: cast_nullable_to_non_nullable
+              as Option<CartModelIngredientFamily>,
     ));
   }
 }
@@ -1186,7 +1200,8 @@ class _$_CartModelIngredientInfo implements _CartModelIngredientInfo {
       required this.displayedName,
       required this.amount,
       required this.unit,
-      required final List<String> recipeIds})
+      required final List<String> recipeIds,
+      required this.family})
       : _recipeIds = recipeIds;
 
   @override
@@ -1209,8 +1224,11 @@ class _$_CartModelIngredientInfo implements _CartModelIngredientInfo {
   }
 
   @override
+  final Option<CartModelIngredientFamily> family;
+
+  @override
   String toString() {
-    return 'CartModelIngredientInfo(imageUrl: $imageUrl, ingredientId: $ingredientId, slug: $slug, displayedName: $displayedName, amount: $amount, unit: $unit, recipeIds: $recipeIds)';
+    return 'CartModelIngredientInfo(imageUrl: $imageUrl, ingredientId: $ingredientId, slug: $slug, displayedName: $displayedName, amount: $amount, unit: $unit, recipeIds: $recipeIds, family: $family)';
   }
 
   @override
@@ -1228,7 +1246,8 @@ class _$_CartModelIngredientInfo implements _CartModelIngredientInfo {
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.unit, unit) || other.unit == unit) &&
             const DeepCollectionEquality()
-                .equals(other._recipeIds, _recipeIds));
+                .equals(other._recipeIds, _recipeIds) &&
+            (identical(other.family, family) || other.family == family));
   }
 
   @override
@@ -1240,7 +1259,8 @@ class _$_CartModelIngredientInfo implements _CartModelIngredientInfo {
       displayedName,
       amount,
       unit,
-      const DeepCollectionEquality().hash(_recipeIds));
+      const DeepCollectionEquality().hash(_recipeIds),
+      family);
 
   @JsonKey(ignore: true)
   @override
@@ -1253,13 +1273,15 @@ class _$_CartModelIngredientInfo implements _CartModelIngredientInfo {
 
 abstract class _CartModelIngredientInfo implements CartModelIngredientInfo {
   const factory _CartModelIngredientInfo(
-      {required final Option<Uri> imageUrl,
-      required final String ingredientId,
-      required final String slug,
-      required final String displayedName,
-      required final Option<double> amount,
-      required final Option<String> unit,
-      required final List<String> recipeIds}) = _$_CartModelIngredientInfo;
+          {required final Option<Uri> imageUrl,
+          required final String ingredientId,
+          required final String slug,
+          required final String displayedName,
+          required final Option<double> amount,
+          required final Option<String> unit,
+          required final List<String> recipeIds,
+          required final Option<CartModelIngredientFamily> family}) =
+      _$_CartModelIngredientInfo;
 
   @override
   Option<Uri> get imageUrl;
@@ -1276,7 +1298,216 @@ abstract class _CartModelIngredientInfo implements CartModelIngredientInfo {
   @override
   List<String> get recipeIds;
   @override
+  Option<CartModelIngredientFamily> get family;
+  @override
   @JsonKey(ignore: true)
   _$$_CartModelIngredientInfoCopyWith<_$_CartModelIngredientInfo>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$CartModelIngredientFamily {
+  String get id => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
+  Option<String> get iconPath => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get slug => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $CartModelIngredientFamilyCopyWith<CartModelIngredientFamily> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CartModelIngredientFamilyCopyWith<$Res> {
+  factory $CartModelIngredientFamilyCopyWith(CartModelIngredientFamily value,
+          $Res Function(CartModelIngredientFamily) then) =
+      _$CartModelIngredientFamilyCopyWithImpl<$Res, CartModelIngredientFamily>;
+  @useResult
+  $Res call(
+      {String id,
+      String type,
+      Option<String> iconPath,
+      String name,
+      String slug});
+}
+
+/// @nodoc
+class _$CartModelIngredientFamilyCopyWithImpl<$Res,
+        $Val extends CartModelIngredientFamily>
+    implements $CartModelIngredientFamilyCopyWith<$Res> {
+  _$CartModelIngredientFamilyCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? type = null,
+    Object? iconPath = null,
+    Object? name = null,
+    Object? slug = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      iconPath: null == iconPath
+          ? _value.iconPath
+          : iconPath // ignore: cast_nullable_to_non_nullable
+              as Option<String>,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      slug: null == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_CartModelIngredientFamilyCopyWith<$Res>
+    implements $CartModelIngredientFamilyCopyWith<$Res> {
+  factory _$$_CartModelIngredientFamilyCopyWith(
+          _$_CartModelIngredientFamily value,
+          $Res Function(_$_CartModelIngredientFamily) then) =
+      __$$_CartModelIngredientFamilyCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      String type,
+      Option<String> iconPath,
+      String name,
+      String slug});
+}
+
+/// @nodoc
+class __$$_CartModelIngredientFamilyCopyWithImpl<$Res>
+    extends _$CartModelIngredientFamilyCopyWithImpl<$Res,
+        _$_CartModelIngredientFamily>
+    implements _$$_CartModelIngredientFamilyCopyWith<$Res> {
+  __$$_CartModelIngredientFamilyCopyWithImpl(
+      _$_CartModelIngredientFamily _value,
+      $Res Function(_$_CartModelIngredientFamily) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? type = null,
+    Object? iconPath = null,
+    Object? name = null,
+    Object? slug = null,
+  }) {
+    return _then(_$_CartModelIngredientFamily(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      iconPath: null == iconPath
+          ? _value.iconPath
+          : iconPath // ignore: cast_nullable_to_non_nullable
+              as Option<String>,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      slug: null == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_CartModelIngredientFamily implements _CartModelIngredientFamily {
+  const _$_CartModelIngredientFamily(
+      {required this.id,
+      required this.type,
+      required this.iconPath,
+      required this.name,
+      required this.slug});
+
+  @override
+  final String id;
+  @override
+  final String type;
+  @override
+  final Option<String> iconPath;
+  @override
+  final String name;
+  @override
+  final String slug;
+
+  @override
+  String toString() {
+    return 'CartModelIngredientFamily(id: $id, type: $type, iconPath: $iconPath, name: $name, slug: $slug)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CartModelIngredientFamily &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.iconPath, iconPath) ||
+                other.iconPath == iconPath) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.slug, slug) || other.slug == slug));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, type, iconPath, name, slug);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CartModelIngredientFamilyCopyWith<_$_CartModelIngredientFamily>
+      get copyWith => __$$_CartModelIngredientFamilyCopyWithImpl<
+          _$_CartModelIngredientFamily>(this, _$identity);
+}
+
+abstract class _CartModelIngredientFamily implements CartModelIngredientFamily {
+  const factory _CartModelIngredientFamily(
+      {required final String id,
+      required final String type,
+      required final Option<String> iconPath,
+      required final String name,
+      required final String slug}) = _$_CartModelIngredientFamily;
+
+  @override
+  String get id;
+  @override
+  String get type;
+  @override
+  Option<String> get iconPath;
+  @override
+  String get name;
+  @override
+  String get slug;
+  @override
+  @JsonKey(ignore: true)
+  _$$_CartModelIngredientFamilyCopyWith<_$_CartModelIngredientFamily>
       get copyWith => throw _privateConstructorUsedError;
 }

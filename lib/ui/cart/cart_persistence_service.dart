@@ -43,5 +43,18 @@ class CartPersistenceServiceModelIngredient
     required final String displayedName,
     required final Option<double> amount,
     required final Option<String> unit,
+    required final Option<CartPersistenceServiceModelIngredientFamilyFamily> family,
   }) = _CartPersistenceServiceModelIngredient;
+}
+
+@freezed
+class CartPersistenceServiceModelIngredientFamilyFamily
+    with _$CartPersistenceServiceModelIngredientFamilyFamily {
+  const factory CartPersistenceServiceModelIngredientFamilyFamily({
+    required final String id,
+    required final String type,
+    required final Option<String> iconPath,
+    required final String name,
+    required final String slug,
+  }) = _CartPersistenceServiceModelIngredientFamilyFamily;
 }

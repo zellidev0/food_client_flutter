@@ -50,10 +50,35 @@ class PersistenceServiceModelShoppingListIngredient
     @HiveField(5) required final String displayedName,
     @HiveField(6) required final Option<double> amount,
     @HiveField(7) required final Option<String> unit,
+    @HiveField(8)
+        required final Option<
+                PersistenceServiceModelShoppingListIngredientFamily>
+            family,
   }) = _PersistenceServiceModelShoppingListIngredient;
 
   factory PersistenceServiceModelShoppingListIngredient.fromJson(
     final Map<String, dynamic> json,
   ) =>
       _$PersistenceServiceModelShoppingListIngredientFromJson(json);
+}
+
+@freezed
+class PersistenceServiceModelShoppingListIngredientFamily
+    with _$PersistenceServiceModelShoppingListIngredientFamily {
+  @HiveType(
+    typeId: 2,
+    adapterName: 'PersistenceServiceModelShoppingListIngredientFamilyAdapter',
+  )
+  const factory PersistenceServiceModelShoppingListIngredientFamily({
+    @HiveField(0) required final String id,
+    @HiveField(1) required final String type,
+    @HiveField(2) required final Option<String> iconPath,
+    @HiveField(3) required final String name,
+    @HiveField(4) required final String slug,
+  }) = _PersistenceServiceModelShoppingListIngredientFamily;
+
+  factory PersistenceServiceModelShoppingListIngredientFamily.fromJson(
+    final Map<String, dynamic> json,
+  ) =>
+      _$PersistenceServiceModelShoppingListIngredientFamilyFromJson(json);
 }

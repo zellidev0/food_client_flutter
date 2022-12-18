@@ -169,6 +169,10 @@ _$_WebClientModelIngredient _$$_WebClientModelIngredientFromJson(
       name: json['name'] as String,
       type: json['type'] as String,
       imagePath: Option<String>.fromJson(json['imagePath']),
+      family: json['family'] == null
+          ? null
+          : WebClientModelIngredientFamily.fromJson(
+              json['family'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_WebClientModelIngredientToJson(
@@ -182,6 +186,7 @@ Map<String, dynamic> _$$_WebClientModelIngredientToJson(
       'imagePath': instance.imagePath.toJson(
         (value) => value,
       ),
+      'family': instance.family,
     };
 
 _$_WebClientModelRecipeTag _$$_WebClientModelRecipeTagFromJson(
@@ -307,6 +312,28 @@ Map<String, dynamic> _$$_WebClientModelYieldIngredientToJson(
       'unit': instance.unit.toJson(
         (value) => value,
       ),
+    };
+
+_$_WebClientModelIngredientFamily _$$_WebClientModelIngredientFamilyFromJson(
+        Map<String, dynamic> json) =>
+    _$_WebClientModelIngredientFamily(
+      id: json['id'] as String,
+      type: json['type'] as String,
+      iconPath: Option<String>.fromJson(json['iconPath']),
+      name: json['name'] as String,
+      slug: json['slug'] as String,
+    );
+
+Map<String, dynamic> _$$_WebClientModelIngredientFamilyToJson(
+        _$_WebClientModelIngredientFamily instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'type': instance.type,
+      'iconPath': instance.iconPath.toJson(
+        (value) => value,
+      ),
+      'name': instance.name,
+      'slug': instance.slug,
     };
 
 _$_WebClientModelTag _$$_WebClientModelTagFromJson(Map<String, dynamic> json) =>

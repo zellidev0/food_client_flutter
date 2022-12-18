@@ -55,6 +55,19 @@ class PersistenceService extends PersistenceServiceAggregator {
                     displayedName: ingredient.displayedName,
                     amount: ingredient.amount,
                     unit: ingredient.unit,
+                    family: ingredient.family.map(
+                      (
+                        final SingleRecipePersistenceServiceIngredientFamily
+                            family,
+                      ) =>
+                          PersistenceServiceModelShoppingListIngredientFamily(
+                        id: family.id,
+                        type: family.type,
+                        iconPath: family.iconPath,
+                        name: family.name,
+                        slug: family.slug,
+                      ),
+                    ),
                   ),
                 )
                 .toList(),
@@ -195,4 +208,16 @@ CartPersistenceServiceModelIngredient
           displayedName: ingredient.displayedName,
           amount: ingredient.amount,
           unit: ingredient.unit,
+          family: ingredient.family.map(
+            (
+              final PersistenceServiceModelShoppingListIngredientFamily family,
+            ) =>
+                CartPersistenceServiceModelIngredientFamilyFamily(
+              id: family.id,
+              type: family.type,
+              iconPath: family.iconPath,
+              name: family.name,
+              slug: family.slug,
+            ),
+          ),
         );

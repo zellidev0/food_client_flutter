@@ -1,3 +1,4 @@
+import 'package:food_client/services/persistence_service/persistence_service_model.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -50,5 +51,23 @@ class UriAdapter extends TypeAdapter<Uri> {
   @override
   void write(final BinaryWriter writer, final Uri obj) {
     writer.write(obj.toString());
+  }
+}
+
+class OptionPersistenceServiceModelShoppingListIngredientFamilyAdapter
+    extends TypeAdapter<
+        Option<PersistenceServiceModelShoppingListIngredientFamily>> {
+  @override
+  final int typeId = 104;
+
+  @override
+  Option<PersistenceServiceModelShoppingListIngredientFamily> read(
+          final BinaryReader reader,) =>
+      optionOf(reader.read());
+
+  @override
+  void write(final BinaryWriter writer,
+      final Option<PersistenceServiceModelShoppingListIngredientFamily> obj,) {
+    writer.write(obj.toNullable());
   }
 }

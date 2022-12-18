@@ -66,5 +66,17 @@ class CartModelIngredientInfo with _$CartModelIngredientInfo {
     required final Option<double> amount,
     required final Option<String> unit,
     required final List<String> recipeIds,
+    required final Option<CartModelIngredientFamily> family,
   }) = _CartModelIngredientInfo;
+}
+
+@freezed
+class CartModelIngredientFamily with _$CartModelIngredientFamily {
+  const factory CartModelIngredientFamily({
+    required final String id,
+    required final String type,
+    required final Option<String> iconPath,
+    required final String name,
+    required final String slug,
+  }) = _CartModelIngredientFamily;
 }

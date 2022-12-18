@@ -52,7 +52,20 @@ class SingleRecipeWebClientModelIngredient
     required final String displayedName,
     required final Option<double> amount,
     required final Option<String> unit,
+    required final Option<SingleRecipeWebClientModelIngredientFamily> family,
   }) = _SingleRecipeWebClientModelIngredient;
+}
+
+@freezed
+class SingleRecipeWebClientModelIngredientFamily
+    with _$SingleRecipeWebClientModelIngredientFamily {
+  const factory SingleRecipeWebClientModelIngredientFamily({
+    required final String id,
+    required final String type,
+    required final Option<String> iconPath,
+    required final String name,
+    required final String slug,
+  }) = _SingleRecipeWebClientModelIngredientFamily;
 }
 
 @freezed
