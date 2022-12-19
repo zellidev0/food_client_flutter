@@ -44,7 +44,6 @@ class IngredientsSortingView extends ConsumerWidget {
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: <Widget>[
-                    _buildCardItem(controller: controller),
                     ...model.units.map(
                       (final IngredientsSortingModelUnit unit) =>
                           _buildCardItem(
@@ -52,6 +51,7 @@ class IngredientsSortingView extends ConsumerWidget {
                         unit: some(unit),
                       ),
                     ),
+                    _buildCardItem(controller: controller),
                   ],
                 ),
               ),
@@ -91,30 +91,100 @@ class IngredientsSortingView extends ConsumerWidget {
   }) =>
       AspectRatio(
         aspectRatio: 1 / 1,
-        child: Card(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-          child: InkWell(
-            borderRadius: BorderRadius.circular(24),
-            onTap: controller.addSortingUnit,
-            onLongPress: unit.fold(
-              () => null,
-              (final IngredientsSortingModelUnit card) =>
-                  () => controller.showDeleteUnitDialog(unit: card),
+        child: Builder(
+          builder: (final BuildContext context) => Card(
+            color: unit.fold(
+              () => Theme.of(context).colorScheme.surface,
+              (final IngredientsSortingModelUnit unit) => unit.selected
+                  ? Theme.of(context).colorScheme.primaryContainer
+                  : Theme.of(context).colorScheme.surface,
             ),
-            child: ClipRRect(
+            shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(24),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  unit.fold(
-                    () => const Icon(Icons.plus_one),
-                    (final IngredientsSortingModelUnit card) =>
-                        Text(card.title),
-                  ),
-                ],
+            ),
+            child: InkWell(
+              borderRadius: BorderRadius.circular(24),
+              onTap: unit.fold(
+                () => () => controller.openAddUnitModal(
+                      child: buildAddUnitModalContent(),
+                    ),
+                (final IngredientsSortingModelUnit card) =>
+                    () => controller.setUnitSelected(unit: card),
+              ),
+              onLongPress: unit.fold(
+                () => null,
+                (final IngredientsSortingModelUnit card) =>
+                    () => controller.showDeleteUnitDialog(unit: card),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(24),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    unit.fold(
+                      () => const Icon(Icons.plus_one),
+                      (final IngredientsSortingModelUnit card) =>
+                          Text(card.title),
+                    ),
+                  ],
+                ),
               ),
             ),
+          ),
+        ),
+      );
+
+  Widget buildAddUnitModalContent() => Consumer(
+        builder: (final BuildContext context, final WidgetRef ref, final _) =>
+            Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                'Create new sorting unit',
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Add a new sorting unit. This can be used to sort all ingredients in the shopping cart according to your needs.',
+              ),
+              const SizedBox(height: 8),
+              TextField(
+                decoration: const InputDecoration(
+                  labelText: 'Suparmarket name',
+                ),
+                onChanged: (final String value) {
+                  ref
+                      .read(
+                        providers.ingredientsSortingControllerProvider.notifier,
+                      ).updateCurrentEditingUnitTitle(title: value.trim().isNotEmpty ? some(value) : none());
+                },
+              ),
+              const SizedBox(height: 16),
+              Center(
+                child: ElevatedButton(
+                  onPressed: ref
+                      .watch(
+                        providers.ingredientsSortingControllerProvider,
+                      )
+                      .currentlyEditingUnitName
+                      .fold(
+                        () => null,
+                        (final String name) => () => ref
+                            .read(
+                              providers.ingredientsSortingControllerProvider
+                                  .notifier,
+                            )
+                            .addSortingUnit(name: name),
+                      ),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Text('Create'),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       );
@@ -125,6 +195,9 @@ abstract class IngredientsSortingController
   IngredientsSortingController(super.state);
 
   void goBack();
-  void addSortingUnit();
+  void addSortingUnit({required final String name});
   void showDeleteUnitDialog({required final IngredientsSortingModelUnit unit});
+  void openAddUnitModal({required final Widget child});
+  void setUnitSelected({required final IngredientsSortingModelUnit unit});
+  void updateCurrentEditingUnitTitle({required final Option<String> title});
 }

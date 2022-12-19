@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/material.dart';
@@ -119,4 +121,9 @@ class BeamerNavigationService implements NavigationServiceAggregator {
   void showSnackBar({required final String message}) =>
       material.ScaffoldMessenger.of(_beamerDelegate.navigator.context)
           .showSnackBar(material.SnackBar(content: material.Text(message)));
+
+  @override
+  void pop() {
+    unawaited(_beamerDelegate.popRoute());
+  }
 }

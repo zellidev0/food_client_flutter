@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:collection/collection.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_model.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_navigation_service.dart';
@@ -53,13 +53,14 @@ class IngredientsSortingControllerImplementation
           );
 
   @override
-  Future<void> addSortingUnit() async {
+  Future<void> addSortingUnit({required final String name}) async {
+    _navigationService.pop();
     state = state.copyWith(
       units: <IngredientsSortingModelUnit>[
         ...state.units,
         IngredientsSortingModelUnit(
           selected: state.units.isEmpty,
-          title: 'Test',
+          title: name,
           ingredientFamilies: await fetchIngredientFamilies(),
           id: const Uuid().v4(),
         ),
@@ -72,12 +73,12 @@ class IngredientsSortingControllerImplementation
             families: (await Future.wait(
               <Future<List<IngredientsSortingWebClientModelIngredientFamily>>>[
                 _fetchIngredients(pageKey: 0),
-                _fetchIngredients(pageKey: 1),
-                _fetchIngredients(pageKey: 2),
-                _fetchIngredients(pageKey: 3),
-                _fetchIngredients(pageKey: 4),
-                _fetchIngredients(pageKey: 5),
-                _fetchIngredients(pageKey: 6),
+                // _fetchIngredients(pageKey: 1),
+                // _fetchIngredients(pageKey: 2),
+                // _fetchIngredients(pageKey: 3),
+                // _fetchIngredients(pageKey: 4),
+                // _fetchIngredients(pageKey: 5),
+                // _fetchIngredients(pageKey: 6),
               ],
             ))
                 .expand(
@@ -119,6 +120,35 @@ class IngredientsSortingControllerImplementation
         ),
       ),
     );
+  }
+
+  @override
+  void openAddUnitModal({
+    required final Widget child,
+  }) {
+    unawaited(
+      _navigationService.showModalBottomSheet(
+        child: child,
+      ),
+    );
+  }
+
+  @override
+  void setUnitSelected({required final IngredientsSortingModelUnit unit}) {
+    state = state.copyWith(
+      units: state.units
+          .map(
+            (final IngredientsSortingModelUnit element) => element.copyWith(
+              selected: element.id == unit.id,
+            ),
+          )
+          .toList(),
+    );
+  }
+
+  @override
+  void updateCurrentEditingUnitTitle({required final Option<String> title}) {
+    state = state.copyWith(currentlyEditingUnitName: title);
   }
 }
 

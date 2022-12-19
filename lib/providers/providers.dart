@@ -113,8 +113,8 @@ class Providers {
           ref,
     ) =>
         IngredientsSortingControllerImplementation(
-      const IngredientsSortingModel(
-        units: <IngredientsSortingModelUnit>[],
+       IngredientsSortingModel(
+        units: <IngredientsSortingModelUnit>[], currentlyEditingUnitName: none(),
       ),
       navigationService: ref.read(
         providers.bottomNavigationBarNavigationServiceProvider,
