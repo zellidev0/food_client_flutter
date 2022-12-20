@@ -64,6 +64,7 @@ class IngredientsSortingView extends ConsumerWidget {
             )
           else
             buildIngredientsList(
+              controller: controller,
               unit: model.units.firstWhere(
                 (final IngredientsSortingModelUnit unit) => unit.selected,
               ),
@@ -72,14 +73,31 @@ class IngredientsSortingView extends ConsumerWidget {
       );
 
   Expanded buildIngredientsList({
+    required final IngredientsSortingController controller,
     required final IngredientsSortingModelUnit unit,
   }) =>
       Expanded(
-        child: ListView.builder(
-          itemCount: unit.ingredientFamilies.length,
-          itemBuilder: (final BuildContext context, final int index) =>
-              ListTile(
-            title: Text(unit.ingredientFamilies[index].name),
+        child: Padding(
+          padding: const EdgeInsets.all(8),
+          child: ReorderableListView.builder(
+            itemCount: unit.ingredientFamilies.length,
+            buildDefaultDragHandles: false,
+            onReorder: (final int oldIndex, final int newIndex) {
+              controller.reorderIngredientFamily(
+                unit: unit,
+                oldIndex: oldIndex,
+                newIndex: newIndex,
+              );
+            },
+            itemBuilder: (final BuildContext context, final int index) =>
+                ListTile(
+              key: Key(unit.ingredientFamilies[index].elementId),
+              title: Text(unit.ingredientFamilies[index].name),
+              trailing:  ReorderableDragStartListener(
+                index: index,
+                child: const Icon(Icons.drag_handle),
+              ),
+            ),
           ),
         ),
       );
@@ -142,12 +160,12 @@ class IngredientsSortingView extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                'Create new sorting unit',
+                'Sorting unit',
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
               const SizedBox(height: 8),
               const Text(
-                'Add a new sorting unit. This can be used to sort all ingredients in the shopping cart according to your needs.',
+                'A sorting unit is used to sort all ingredients in the shopping cart according to your needs.',
               ),
               const SizedBox(height: 8),
               TextField(
@@ -158,7 +176,10 @@ class IngredientsSortingView extends ConsumerWidget {
                   ref
                       .read(
                         providers.ingredientsSortingControllerProvider.notifier,
-                      ).updateCurrentEditingUnitTitle(title: value.trim().isNotEmpty ? some(value) : none());
+                      )
+                      .updateCurrentEditingUnitTitle(
+                          title:
+                              value.trim().isNotEmpty ? some(value) : none());
                 },
               ),
               const SizedBox(height: 16),
@@ -200,4 +221,9 @@ abstract class IngredientsSortingController
   void openAddUnitModal({required final Widget child});
   void setUnitSelected({required final IngredientsSortingModelUnit unit});
   void updateCurrentEditingUnitTitle({required final Option<String> title});
+  void reorderIngredientFamily({
+    required final IngredientsSortingModelUnit unit,
+    required final int oldIndex,
+    required final int newIndex,
+  });
 }

@@ -61,7 +61,7 @@ class WebClientService implements WebClientServiceAggregator {
   static const String apiBaseUrl1 = 'https://www.hellofresh.de/gw/api';
   static const Map<String, String> headers = <String, String>{
     'Authorization':
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzE0OTk5OTMsImlhdCI6MTY2ODg3MDI1MCwiaXNzIjoic2VuZiIsImp0aSI6IjE4MjBiZmVmLTYwM2ItNDEyZS05Yzg4LTU1ZDQwMjMyYzhkYiJ9.ym3BOCZAuL52rcMzfL_1zKOQbxcuVp7dPgnknif72tQ',
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzE4MzgwNDIsImlhdCI6MTY2OTIwODI5OSwiaXNzIjoic2VuZiIsImp0aSI6ImM0ZDRmNDU5LTIyMzEtNGIzMi1iOTkxLTkzZjA3NWQ1ZmE2ZSJ9.XZh7xVvZ6HRyNkUYcXIyiD14msT9WR2dZ57kCcMa0ZE',
   };
   final RestClient client = RestClient(
     Dio(BaseOptions(headers: headers)),

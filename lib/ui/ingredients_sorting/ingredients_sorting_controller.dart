@@ -150,6 +150,34 @@ class IngredientsSortingControllerImplementation
   void updateCurrentEditingUnitTitle({required final Option<String> title}) {
     state = state.copyWith(currentlyEditingUnitName: title);
   }
+
+  @override
+  void reorderIngredientFamily({
+    required final IngredientsSortingModelUnit unit,
+    required final int oldIndex,
+    required final int newIndex,
+  }) {
+    state = state.copyWith(
+      units: state.units
+          .map(
+            (final IngredientsSortingModelUnit element) => element.copyWith(
+              ingredientFamilies: element.id == unit.id
+                  ? () {
+                      final List<IngredientsSortingModelIngredientFamily>
+                          families =
+                          List<IngredientsSortingModelIngredientFamily>.from(
+                              element.ingredientFamilies);
+                      final IngredientsSortingModelIngredientFamily family =
+                          families.removeAt(oldIndex);
+                      families.insert(newIndex, family);
+                      return families;
+                    }.call()
+                  : element.ingredientFamilies,
+            ),
+          )
+          .toList(),
+    );
+  }
 }
 
 List<IngredientsSortingModelIngredientFamily> removeDuplicates({
@@ -183,6 +211,7 @@ List<IngredientsSortingModelIngredientFamily> removeDuplicates({
                 )
                 .toSet()
                 .toList(),
+            elementId: const Uuid().v4(),
           ),
         )
         .toList();
