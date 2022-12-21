@@ -3221,6 +3221,216 @@ abstract class _WebClientModelYieldIngredient
       get copyWith => throw _privateConstructorUsedError;
 }
 
+WebClientModelTag _$WebClientModelTagFromJson(Map<String, dynamic> json) {
+  return _WebClientModelTag.fromJson(json);
+}
+
+/// @nodoc
+mixin _$WebClientModelTag {
+  String get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
+  Map<String, int> get numberOfRecipesByCountry =>
+      throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $WebClientModelTagCopyWith<WebClientModelTag> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WebClientModelTagCopyWith<$Res> {
+  factory $WebClientModelTagCopyWith(
+          WebClientModelTag value, $Res Function(WebClientModelTag) then) =
+      _$WebClientModelTagCopyWithImpl<$Res, WebClientModelTag>;
+  @useResult
+  $Res call(
+      {String id,
+      String name,
+      String type,
+      Map<String, int> numberOfRecipesByCountry});
+}
+
+/// @nodoc
+class _$WebClientModelTagCopyWithImpl<$Res, $Val extends WebClientModelTag>
+    implements $WebClientModelTagCopyWith<$Res> {
+  _$WebClientModelTagCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+    Object? type = null,
+    Object? numberOfRecipesByCountry = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      numberOfRecipesByCountry: null == numberOfRecipesByCountry
+          ? _value.numberOfRecipesByCountry
+          : numberOfRecipesByCountry // ignore: cast_nullable_to_non_nullable
+              as Map<String, int>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_WebClientModelTagCopyWith<$Res>
+    implements $WebClientModelTagCopyWith<$Res> {
+  factory _$$_WebClientModelTagCopyWith(_$_WebClientModelTag value,
+          $Res Function(_$_WebClientModelTag) then) =
+      __$$_WebClientModelTagCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      String name,
+      String type,
+      Map<String, int> numberOfRecipesByCountry});
+}
+
+/// @nodoc
+class __$$_WebClientModelTagCopyWithImpl<$Res>
+    extends _$WebClientModelTagCopyWithImpl<$Res, _$_WebClientModelTag>
+    implements _$$_WebClientModelTagCopyWith<$Res> {
+  __$$_WebClientModelTagCopyWithImpl(
+      _$_WebClientModelTag _value, $Res Function(_$_WebClientModelTag) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+    Object? type = null,
+    Object? numberOfRecipesByCountry = null,
+  }) {
+    return _then(_$_WebClientModelTag(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      numberOfRecipesByCountry: null == numberOfRecipesByCountry
+          ? _value._numberOfRecipesByCountry
+          : numberOfRecipesByCountry // ignore: cast_nullable_to_non_nullable
+              as Map<String, int>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_WebClientModelTag implements _WebClientModelTag {
+  const _$_WebClientModelTag(
+      {required this.id,
+      required this.name,
+      required this.type,
+      required final Map<String, int> numberOfRecipesByCountry})
+      : _numberOfRecipesByCountry = numberOfRecipesByCountry;
+
+  factory _$_WebClientModelTag.fromJson(Map<String, dynamic> json) =>
+      _$$_WebClientModelTagFromJson(json);
+
+  @override
+  final String id;
+  @override
+  final String name;
+  @override
+  final String type;
+  final Map<String, int> _numberOfRecipesByCountry;
+  @override
+  Map<String, int> get numberOfRecipesByCountry {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_numberOfRecipesByCountry);
+  }
+
+  @override
+  String toString() {
+    return 'WebClientModelTag(id: $id, name: $name, type: $type, numberOfRecipesByCountry: $numberOfRecipesByCountry)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_WebClientModelTag &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.type, type) || other.type == type) &&
+            const DeepCollectionEquality().equals(
+                other._numberOfRecipesByCountry, _numberOfRecipesByCountry));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, name, type,
+      const DeepCollectionEquality().hash(_numberOfRecipesByCountry));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_WebClientModelTagCopyWith<_$_WebClientModelTag> get copyWith =>
+      __$$_WebClientModelTagCopyWithImpl<_$_WebClientModelTag>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_WebClientModelTagToJson(
+      this,
+    );
+  }
+}
+
+abstract class _WebClientModelTag implements WebClientModelTag {
+  const factory _WebClientModelTag(
+          {required final String id,
+          required final String name,
+          required final String type,
+          required final Map<String, int> numberOfRecipesByCountry}) =
+      _$_WebClientModelTag;
+
+  factory _WebClientModelTag.fromJson(Map<String, dynamic> json) =
+      _$_WebClientModelTag.fromJson;
+
+  @override
+  String get id;
+  @override
+  String get name;
+  @override
+  String get type;
+  @override
+  Map<String, int> get numberOfRecipesByCountry;
+  @override
+  @JsonKey(ignore: true)
+  _$$_WebClientModelTagCopyWith<_$_WebClientModelTag> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 WebClientModelIngredientFamily _$WebClientModelIngredientFamilyFromJson(
     Map<String, dynamic> json) {
   return _WebClientModelIngredientFamily.fromJson(json);

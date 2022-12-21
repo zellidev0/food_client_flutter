@@ -140,7 +140,6 @@ class WebClientModelRecipeTag with _$WebClientModelRecipeTag {
     required final String slug,
     required final String type,
     required final String name,
-    required final List<String> preferences,
     required final Map<String, int> numberOfRecipesByCountry,
   }) = _WebClientModelRecipeTag;
 
@@ -223,8 +222,22 @@ class WebClientModelYieldIngredient with _$WebClientModelYieldIngredient {
 }
 
 @freezed
-class WebClientModelIngredientFamily
-    with _$WebClientModelIngredientFamily {
+class WebClientModelTag with _$WebClientModelTag {
+  const factory WebClientModelTag({
+    required final String id,
+    required final String name,
+    required final String type,
+    required final Map<String, int> numberOfRecipesByCountry,
+  }) = _WebClientModelTag;
+
+  factory WebClientModelTag.fromJson(
+    final Map<String, dynamic> json,
+  ) =>
+      _$WebClientModelTagFromJson(json);
+}
+
+@freezed
+class WebClientModelIngredientFamily with _$WebClientModelIngredientFamily {
   const factory WebClientModelIngredientFamily({
     required final String id,
     required final String type,
@@ -233,10 +246,10 @@ class WebClientModelIngredientFamily
     required final String slug,
   }) = _WebClientModelIngredientFamily;
 
-
-
-  factory WebClientModelTag.fromJson(
+  factory WebClientModelIngredientFamily.fromJson(
     final Map<String, dynamic> json,
   ) =>
-      _$WebClientModelTagFromJson(json);
+      _$WebClientModelIngredientFamilyFromJson(json);
 }
+
+// numberOfRecipesByCountry
