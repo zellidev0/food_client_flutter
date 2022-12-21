@@ -113,14 +113,18 @@ class Providers {
           ref,
     ) =>
         IngredientsSortingControllerImplementation(
-       IngredientsSortingModel(
-        units: <IngredientsSortingModelUnit>[], currentlyEditingUnitName: none(),
+      IngredientsSortingModel(
+        units: <IngredientsSortingModelUnit>[],
+        currentlyEditingUnitName: none(),
       ),
       navigationService: ref.read(
         providers.bottomNavigationBarNavigationServiceProvider,
       ),
       webClientService: ref.read(
         providers.webClientServiceProvider,
+      ),
+      webImageSizerService: ref.read(
+        providers.webImageSizerServiceProvider,
       ),
     ),
   );
@@ -288,8 +292,11 @@ class Providers {
                     child: const CartView(),
                     type: BeamPageType.material,
                   ),
-          NavigationServiceUris.ingredientsSortingRouteUri.toString(): (final _,
-                  final __, final ___,) =>
+          NavigationServiceUris.ingredientsSortingRouteUri.toString(): (
+            final _,
+            final __,
+            final ___,
+          ) =>
               BeamPage(
                 key: ValueKey<String>(
                   NavigationServiceUris.ingredientsSortingRouteUri.toString(),

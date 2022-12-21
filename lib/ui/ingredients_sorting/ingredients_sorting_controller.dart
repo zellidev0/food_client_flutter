@@ -7,22 +7,27 @@ import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_model.dar
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_navigation_service.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_view.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_web_client_service.dart';
+import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:uuid/uuid.dart';
 
 const int takeSize = 250;
+const int _widthPixels = 256;
 
 class IngredientsSortingControllerImplementation
     extends IngredientsSortingController {
   final IngredientsSortingNavigationService _navigationService;
   final IngredientsSortingWebClientService _webClientService;
+  final IngredientsSortingWebImageSizerService _webImageSizerService;
 
   IngredientsSortingControllerImplementation(
     super.state, {
     required final IngredientsSortingNavigationService navigationService,
     required final IngredientsSortingWebClientService webClientService,
+    required final IngredientsSortingWebImageSizerService webImageSizerService,
   })  : _navigationService = navigationService,
-        _webClientService = webClientService;
+        _webClientService = webClientService,
+        _webImageSizerService = webImageSizerService;
 
   @override
   void goBack() {
@@ -89,6 +94,7 @@ class IngredientsSortingControllerImplementation
                       families,
                 )
                 .toList(),
+            imageSizerService: _webImageSizerService,
           );
 
   @override
@@ -166,7 +172,8 @@ class IngredientsSortingControllerImplementation
                       final List<IngredientsSortingModelIngredientFamily>
                           families =
                           List<IngredientsSortingModelIngredientFamily>.from(
-                              element.ingredientFamilies);
+                        element.ingredientFamilies,
+                      );
                       final IngredientsSortingModelIngredientFamily family =
                           families.removeAt(oldIndex);
                       families.insert(newIndex, family);
@@ -183,6 +190,7 @@ class IngredientsSortingControllerImplementation
 List<IngredientsSortingModelIngredientFamily> removeDuplicates({
   required final List<IngredientsSortingWebClientModelIngredientFamily>
       families,
+  required final IngredientsSortingWebImageSizerService imageSizerService,
 }) =>
     families
         .groupListsBy(
@@ -198,7 +206,11 @@ List<IngredientsSortingModelIngredientFamily> removeDuplicates({
           ) =>
               IngredientsSortingModelIngredientFamily(
             type: entry.key,
-            iconPath: entry.value.first.iconPath,
+            iconUrl: entry.value.first.iconPath.flatMap(
+              (final Uri t) => imageSizerService
+                  .getUrl(filePath: t, widthPixels: _widthPixels)
+                  .toOption(),
+            ),
             name: entry.value.first.name,
             slug: entry.value.first.slug,
             familyIds: entry.value

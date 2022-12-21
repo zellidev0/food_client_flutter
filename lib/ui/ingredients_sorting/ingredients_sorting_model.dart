@@ -28,7 +28,7 @@ class IngredientsSortingModelIngredientFamily with _$IngredientsSortingModelIngr
   const factory IngredientsSortingModelIngredientFamily({
     required final String elementId,
     required final String type,
-    required final Option<Uri> iconPath,
+    required final Option<Uri> iconUrl,
     required final String name,
     required final String slug,
     required final List<String> familyIds,

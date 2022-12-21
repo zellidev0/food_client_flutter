@@ -93,10 +93,17 @@ class IngredientsSortingView extends ConsumerWidget {
                 ListTile(
               key: Key(unit.ingredientFamilies[index].elementId),
               title: Text(unit.ingredientFamilies[index].name),
-              leading: unit.ingredientFamilies[index].iconPath.fold(
-                Container.new,
-                (final Uri imageUrl) => buildCachedNetworkImage(
-                  imageUrl: imageUrl,
+              leading: unit.ingredientFamilies[index].iconUrl.fold(
+                () => Container(
+                  width: 64,
+                  height: 64,
+                ),
+                (final Uri imageUrl) => SizedBox(
+                  width: 64,
+                  height: 64,
+                  child: buildCachedNetworkImage(
+                    imageUrl: imageUrl,
+                  ),
                 ),
               ),
               trailing: ReorderableDragStartListener(

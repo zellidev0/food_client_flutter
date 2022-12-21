@@ -233,20 +233,7 @@ class WebClientModelIngredientFamily
     required final String slug,
   }) = _WebClientModelIngredientFamily;
 
-  factory WebClientModelIngredientFamily.fromJson(
-    final Map<String, dynamic> json,
-  ) =>
-      _$WebClientModelIngredientFamilyFromJson(json);
-}
 
-@freezed
-class WebClientModelTag with _$WebClientModelTag {
-  const factory WebClientModelTag({
-    required final String id,
-    required final String name,
-    required final String type,
-    required final Map<String, int> numberOfRecipesByCountry,
-  }) = _WebClientModelTag;
 
   factory WebClientModelTag.fromJson(
     final Map<String, dynamic> json,
