@@ -94,7 +94,7 @@ class IngredientsSortingView extends ConsumerWidget {
               key: Key(unit.ingredientFamilies[index].elementId),
               title: Text(unit.ingredientFamilies[index].name),
               leading: unit.ingredientFamilies[index].iconUrl.fold(
-                () => Container(
+                () => const SizedBox(
                   width: 64,
                   height: 64,
                 ),
@@ -191,8 +191,8 @@ class IngredientsSortingView extends ConsumerWidget {
                         providers.ingredientsSortingControllerProvider.notifier,
                       )
                       .updateCurrentEditingUnitTitle(
-                          title:
-                              value.trim().isNotEmpty ? some(value) : none());
+                        title: value.trim().isNotEmpty ? some(value) : none(),
+                      );
                 },
               ),
               const SizedBox(height: 16),
