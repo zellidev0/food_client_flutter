@@ -127,6 +127,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.16.0"
+  commons_graphql:
+    dependency: "direct main"
+    description:
+      path: "../../commons_graphql"
+      relative: true
+    source: path
+    version: "1.0.0"
   convert:
     dependency: transitive
     description:

@@ -1,10 +1,7 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:collection/collection.dart';
-import 'package:console/graphql/mutations.graphql.dart';
-import 'package:console/graphql/queries.graphql.dart';
-import 'package:console/graphql/schema.graphql.dart';
+import 'package:commons_graphql/commons_graphql.dart';
 import 'package:console/hello_fresh_fetcher.dart';
 import 'package:console/hello_fresh_model.dart';
 import 'package:fpdart/fpdart.dart';
@@ -18,7 +15,7 @@ void main() async {
     (Exception exception) => throw exception,
     (HelloFreshModelRecipeApiRecipeResponse response) => response,
   );
-
+m
   print('Total: ${response.total}');
   for (int i = 0; i <= response.total + 300; i += 200) {
     print('Fetching 200 and skipping $i');
