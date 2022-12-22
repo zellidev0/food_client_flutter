@@ -1,0 +1,8 @@
+mutation CreateRecipes($families: [ingredient_family_insert_input!]!, $ingredients: [ingredients_insert_input!]!) {
+    insert_ingredient_family(objects: $families) {
+        affected_rows
+    }
+    insert_ingredients(objects: $ingredients) {
+        affected_rows
+    }
+}

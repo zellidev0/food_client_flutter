@@ -12,6 +12,8 @@ dependencies:
   dio: ^4.0.6
   fpdart: ^0.3.0
   freezed_annotation: ^2.0.3
+  graphql: ^5.1.1
+  graphql_codegen: ^0.11.2
   http: ^0.13.5
   json_annotation: ^4.6.0
   retrofit: ^3.3.1

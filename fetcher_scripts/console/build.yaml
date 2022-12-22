@@ -1,0 +1,12 @@
+# build.yaml
+
+targets:
+  $default:
+    builders:
+      graphql_codegen:
+        options:
+          scalars:
+            uuid:
+              type: String
+            jsonb:
+              type: String
