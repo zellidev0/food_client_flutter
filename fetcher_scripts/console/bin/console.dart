@@ -1,24 +1,186 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:collection/collection.dart';
 import 'package:console/graphql/mutations.graphql.dart';
 import 'package:console/graphql/queries.graphql.dart';
 import 'package:console/graphql/schema.graphql.dart';
+import 'package:console/hello_fresh_fetcher.dart';
+import 'package:console/hello_fresh_model.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:graphql/client.dart';
 
 void main() async {
-  // final data = fetchDataFromSomewhereMaybeOuterSpace();
+  fetchAllFromHasura();
 
-  // final Query$Recipes parsedData = Query$Recipes.fromJson(data);
-  // final name = parsedData.fetchPerson?.name;
+  HelloFreshModelRecipeApiRecipeResponse response =
+      (await fetchAllFromHelloFresh(take: 0, skip: 0)).fold(
+    (Exception exception) => throw exception,
+    (HelloFreshModelRecipeApiRecipeResponse response) => response,
+  );
 
-  // final parsedData = QueryR;
-  // final name = parsedData.fetchPerson?.name;
-  // print(name);
+  print('Total: ${response.total}');
+  for (int i = 0; i <= response.total + 300; i += 200) {
+    print('Fetching 200 and skipping $i');
+    Either<Exception, HelloFreshModelRecipeApiRecipeResponse> result =
+        await fetchAllFromHelloFresh(take: 200, skip: i);
+    await result.fold(
+      (Exception error) async => print('Error: $error'),
+      (HelloFreshModelRecipeApiRecipeResponse response) async {
+        QueryResult<Object?> hasuraResult = await writeAllToHasura(response);
+        print('Success: $hasuraResult');
+      },
+    );
+    await Future.delayed(Duration(milliseconds: 1500));
+  }
 
-  // QueryResult<Query$Recipes> result =
-  //     await GraphQlBackendService().fetchRecipes(country: 'DE');
-  // print(result);
+  // String input =
+  //     await File('./assets/json/example_hf_recipe.json').readAsString();
+}
 
-  var res = await GraphQlBackendService().createRecipe();
-  print(res);
+Future<QueryResult<Object?>> writeAllToHasura(
+    HelloFreshModelRecipeApiRecipeResponse response) async {
+  List<Input$ingredient_family_insert_input> families = response.items
+      .flatMap((HelloFreshModelRecipe recipe) =>
+          recipe.ingredients.map((ingredient) => ingredient.family))
+      .whereNotNull()
+      .map(
+        (HelloFreshModelIngredientFamily family) =>
+            Input$ingredient_family_insert_input(
+          iconPath: family.iconPath.toNullable(),
+          id: family.id,
+          name: family.name,
+          slug: family.slug,
+          type: family.type,
+        ),
+      )
+      .toList();
+
+  List<Input$ingredients_insert_input> ingredients = response.items
+      .flatMap((HelloFreshModelRecipe recipe) => recipe.ingredients)
+      .map(
+        (HelloFreshModelIngredient ingredient) =>
+            Input$ingredients_insert_input(
+          id: ingredient.id,
+          name: ingredient.name,
+          slug: ingredient.slug,
+          type: ingredient.type,
+          $_family: ingredient.family?.id,
+          country: ingredient.country,
+          imagePath: ingredient.imagePath.toNullable(),
+        ),
+      )
+      .toList();
+
+  List<Input$tags_insert_input> tags = response.items
+      .flatMap((HelloFreshModelRecipe recipe) => recipe.tags)
+      .map(
+        (tag) => Input$tags_insert_input(
+          id: tag.id,
+          name: tag.name,
+          numberOfRecipesByCountry: jsonEncode(tag.numberOfRecipesByCountry),
+          slug: tag.slug,
+          type: tag.type,
+        ),
+      )
+      .toList();
+
+  List<Input$cuisines_insert_input> cuisines = response.items
+      .flatMap((HelloFreshModelRecipe recipe) => recipe.cuisines)
+      .map(
+        (cuisine) => Input$cuisines_insert_input(
+          iconPath: cuisine.iconPath.toNullable(),
+          id: cuisine.id,
+          name: cuisine.name,
+          slug: cuisine.slug,
+          type: cuisine.type,
+        ),
+      )
+      .toList();
+
+  List<Input$recipes_insert_input> recipes = response.items
+      .map((HelloFreshModelRecipe recipe) => recipe)
+      .map(
+        (HelloFreshModelRecipe recipe) => Input$recipes_insert_input(
+          country: recipe.country,
+          description: recipe.description,
+          descriptionMarkdown: recipe.descriptionMarkdown.toNullable(),
+          difficulty: recipe.difficulty,
+          headline: recipe.headline,
+          id: recipe.id,
+          imagePath: recipe.imagePath.toNullable(),
+          name: recipe.name,
+          prepTime: recipe.prepTime.toNullable(),
+          slug: recipe.slug,
+          steps: jsonEncode(recipe.steps),
+          totalTime: recipe.totalTime.toNullable(),
+          yields_json: jsonEncode(recipe.yields),
+        ),
+      )
+      .toList();
+
+  List<Input$bridge_recipes_tags_insert_input> recipeTags = response.items
+      .flatMap((HelloFreshModelRecipe recipe) =>
+          recipe.tags.map((tag) => Tuple2(recipe.id, tag.id)))
+      .map(
+        (Tuple2<String, String> recipeIdAndTagId) =>
+            Input$bridge_recipes_tags_insert_input(
+          $_recipe_id: recipeIdAndTagId.first,
+          $_tag_id: recipeIdAndTagId.second,
+        ),
+      )
+      .toList();
+
+  List<Input$bridge_recipes_cuisines_insert_input> recipeCuisines = response
+      .items
+      .flatMap((HelloFreshModelRecipe recipe) =>
+          recipe.cuisines.map((cuisine) => Tuple2(recipe.id, cuisine.id)))
+      .map(
+        (recipeIdAndTagId) => Input$bridge_recipes_cuisines_insert_input(
+          $_recipe_id: recipeIdAndTagId.first,
+          $_cuisine_id: recipeIdAndTagId.second,
+        ),
+      )
+      .toList();
+
+  List<Input$bridge_recipes_ingredients_insert_input> recipeIngredients =
+      response.items
+          .flatMap((HelloFreshModelRecipe recipe) => recipe.ingredients
+              .map((ingredient) => Tuple2(recipe.id, ingredient.id)))
+          .map(
+            (recipeIdAndTagId) => Input$bridge_recipes_ingredients_insert_input(
+              $_recipe_id: recipeIdAndTagId.first,
+              $_ingredient_id: recipeIdAndTagId.second,
+            ),
+          )
+          .toList();
+
+  return await GraphQlBackendService().createRecipe(
+    families: families,
+    ingredients: ingredients,
+    tags: tags,
+    cuisines: cuisines,
+    recipes: recipes,
+    recipesTags: recipeTags,
+    recipesCuisines: recipeCuisines,
+    recipesIngredients: recipeIngredients,
+  );
+}
+
+Future<Either<Exception, HelloFreshModelRecipeApiRecipeResponse>>
+    fetchAllFromHelloFresh({
+  required int take,
+  required int skip,
+}) async {
+  return await HelloFreshFetcher()
+      .fetchRecipes(country: 'AT', take: take, skip: skip)
+      .run();
+}
+
+Future<Map<String, dynamic>?> fetchAllFromHasura() async {
+  QueryResult<Query$Recipes> result =
+      await GraphQlBackendService().fetchRecipes(country: 'DE');
+  return result.data;
 }
 
 class GraphQlBackendService {
@@ -96,29 +258,27 @@ class GraphQlBackendService {
     return await _client.query(options);
   }
 
-  Future<QueryResult<Object?>> createRecipe() async {
+  Future<QueryResult<Object?>> createRecipe({
+    required List<Input$ingredient_family_insert_input> families,
+    required List<Input$ingredients_insert_input> ingredients,
+    required List<Input$tags_insert_input> tags,
+    required List<Input$cuisines_insert_input> cuisines,
+    required List<Input$recipes_insert_input> recipes,
+    required List<Input$bridge_recipes_tags_insert_input> recipesTags,
+    required List<Input$bridge_recipes_ingredients_insert_input>
+        recipesIngredients,
+    required List<Input$bridge_recipes_cuisines_insert_input> recipesCuisines,
+  }) async {
     Variables$Mutation$CreateRecipes variables =
         Variables$Mutation$CreateRecipes(
-      families: [
-        Input$ingredient_family_insert_input(
-          iconPath: 'family_iconPath',
-          id: 'family_id',
-          name: 'family_name',
-          slug: 'family_slug',
-          type: 'family_type',
-        ),
-      ],
-      ingredients: [
-        Input$ingredients_insert_input(
-          $_family: 'family_id',
-          country: 'ing_country',
-          id: 'ing_id',
-          imagePath: 'ing_imagePath',
-          name: 'ing_name',
-          slug: 'ing_slug',
-          type: 'ing_type',
-        ),
-      ],
+      families: families,
+      ingredients: ingredients,
+      tags: tags,
+      cuisines: cuisines,
+      recipes: recipes,
+      recipes_tags: recipesTags,
+      recipes_ingredients: recipesIngredients,
+      recipes_cuisines: recipesCuisines,
     );
 
     final MutationOptions options = MutationOptions(

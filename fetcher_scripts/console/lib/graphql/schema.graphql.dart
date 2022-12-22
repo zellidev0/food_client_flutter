@@ -2170,15 +2170,15 @@ class _CopyWithStubImpl$Input$bridge_recipes_cuisines_bool_exp<TRes>
 
 class Input$bridge_recipes_cuisines_insert_input {
   factory Input$bridge_recipes_cuisines_insert_input({
-    String? $_cuisine_id,
-    String? $_recipe_id,
+    required String $_cuisine_id,
+    required String $_recipe_id,
     Input$cuisines_obj_rel_insert_input? cuisines,
     String? id,
     Input$recipes_obj_rel_insert_input? recipes,
   }) =>
       Input$bridge_recipes_cuisines_insert_input._({
-        if ($_cuisine_id != null) r'_cuisine_id': $_cuisine_id,
-        if ($_recipe_id != null) r'_recipe_id': $_recipe_id,
+        r'_cuisine_id': $_cuisine_id,
+        r'_recipe_id': $_recipe_id,
         if (cuisines != null) r'cuisines': cuisines,
         if (id != null) r'id': id,
         if (recipes != null) r'recipes': recipes,
@@ -2189,14 +2189,10 @@ class Input$bridge_recipes_cuisines_insert_input {
   factory Input$bridge_recipes_cuisines_insert_input.fromJson(
       Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    if (data.containsKey('_cuisine_id')) {
-      final l$$_cuisine_id = data['_cuisine_id'];
-      result$data['_cuisine_id'] = (l$$_cuisine_id as String?);
-    }
-    if (data.containsKey('_recipe_id')) {
-      final l$$_recipe_id = data['_recipe_id'];
-      result$data['_recipe_id'] = (l$$_recipe_id as String?);
-    }
+    final l$$_cuisine_id = data['_cuisine_id'];
+    result$data['_cuisine_id'] = (l$$_cuisine_id as String);
+    final l$$_recipe_id = data['_recipe_id'];
+    result$data['_recipe_id'] = (l$$_recipe_id as String);
     if (data.containsKey('cuisines')) {
       final l$cuisines = data['cuisines'];
       result$data['cuisines'] = l$cuisines == null
@@ -2220,8 +2216,8 @@ class Input$bridge_recipes_cuisines_insert_input {
 
   Map<String, dynamic> _$data;
 
-  String? get $_cuisine_id => (_$data['_cuisine_id'] as String?);
-  String? get $_recipe_id => (_$data['_recipe_id'] as String?);
+  String get $_cuisine_id => (_$data['_cuisine_id'] as String);
+  String get $_recipe_id => (_$data['_recipe_id'] as String);
   Input$cuisines_obj_rel_insert_input? get cuisines =>
       (_$data['cuisines'] as Input$cuisines_obj_rel_insert_input?);
   String? get id => (_$data['id'] as String?);
@@ -2229,14 +2225,10 @@ class Input$bridge_recipes_cuisines_insert_input {
       (_$data['recipes'] as Input$recipes_obj_rel_insert_input?);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    if (_$data.containsKey('_cuisine_id')) {
-      final l$$_cuisine_id = $_cuisine_id;
-      result$data['_cuisine_id'] = l$$_cuisine_id;
-    }
-    if (_$data.containsKey('_recipe_id')) {
-      final l$$_recipe_id = $_recipe_id;
-      result$data['_recipe_id'] = l$$_recipe_id;
-    }
+    final l$$_cuisine_id = $_cuisine_id;
+    result$data['_cuisine_id'] = l$$_cuisine_id;
+    final l$$_recipe_id = $_recipe_id;
+    result$data['_recipe_id'] = l$$_recipe_id;
     if (_$data.containsKey('cuisines')) {
       final l$cuisines = cuisines;
       result$data['cuisines'] = l$cuisines?.toJson();
@@ -2269,19 +2261,11 @@ class Input$bridge_recipes_cuisines_insert_input {
     }
     final l$$_cuisine_id = $_cuisine_id;
     final lOther$$_cuisine_id = other.$_cuisine_id;
-    if (_$data.containsKey('_cuisine_id') !=
-        other._$data.containsKey('_cuisine_id')) {
-      return false;
-    }
     if (l$$_cuisine_id != lOther$$_cuisine_id) {
       return false;
     }
     final l$$_recipe_id = $_recipe_id;
     final lOther$$_recipe_id = other.$_recipe_id;
-    if (_$data.containsKey('_recipe_id') !=
-        other._$data.containsKey('_recipe_id')) {
-      return false;
-    }
     if (l$$_recipe_id != lOther$$_recipe_id) {
       return false;
     }
@@ -2321,8 +2305,8 @@ class Input$bridge_recipes_cuisines_insert_input {
     final l$id = id;
     final l$recipes = recipes;
     return Object.hashAll([
-      _$data.containsKey('_cuisine_id') ? l$$_cuisine_id : const {},
-      _$data.containsKey('_recipe_id') ? l$$_recipe_id : const {},
+      l$$_cuisine_id,
+      l$$_recipe_id,
       _$data.containsKey('cuisines') ? l$cuisines : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('recipes') ? l$recipes : const {},
@@ -2372,9 +2356,10 @@ class _CopyWithImpl$Input$bridge_recipes_cuisines_insert_input<TRes>
   }) =>
       _then(Input$bridge_recipes_cuisines_insert_input._({
         ..._instance._$data,
-        if ($_cuisine_id != _undefined)
-          '_cuisine_id': ($_cuisine_id as String?),
-        if ($_recipe_id != _undefined) '_recipe_id': ($_recipe_id as String?),
+        if ($_cuisine_id != _undefined && $_cuisine_id != null)
+          '_cuisine_id': ($_cuisine_id as String),
+        if ($_recipe_id != _undefined && $_recipe_id != null)
+          '_recipe_id': ($_recipe_id as String),
         if (cuisines != _undefined)
           'cuisines': (cuisines as Input$cuisines_obj_rel_insert_input?),
         if (id != _undefined) 'id': (id as String?),
@@ -5235,15 +5220,15 @@ class _CopyWithStubImpl$Input$bridge_recipes_ingredients_bool_exp<TRes>
 
 class Input$bridge_recipes_ingredients_insert_input {
   factory Input$bridge_recipes_ingredients_insert_input({
-    String? $_ingredient_id,
-    String? $_recipe_id,
+    required String $_ingredient_id,
+    required String $_recipe_id,
     String? id,
     Input$ingredients_obj_rel_insert_input? ingredients,
     Input$recipes_obj_rel_insert_input? recipes,
   }) =>
       Input$bridge_recipes_ingredients_insert_input._({
-        if ($_ingredient_id != null) r'_ingredient_id': $_ingredient_id,
-        if ($_recipe_id != null) r'_recipe_id': $_recipe_id,
+        r'_ingredient_id': $_ingredient_id,
+        r'_recipe_id': $_recipe_id,
         if (id != null) r'id': id,
         if (ingredients != null) r'ingredients': ingredients,
         if (recipes != null) r'recipes': recipes,
@@ -5254,14 +5239,10 @@ class Input$bridge_recipes_ingredients_insert_input {
   factory Input$bridge_recipes_ingredients_insert_input.fromJson(
       Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    if (data.containsKey('_ingredient_id')) {
-      final l$$_ingredient_id = data['_ingredient_id'];
-      result$data['_ingredient_id'] = (l$$_ingredient_id as String?);
-    }
-    if (data.containsKey('_recipe_id')) {
-      final l$$_recipe_id = data['_recipe_id'];
-      result$data['_recipe_id'] = (l$$_recipe_id as String?);
-    }
+    final l$$_ingredient_id = data['_ingredient_id'];
+    result$data['_ingredient_id'] = (l$$_ingredient_id as String);
+    final l$$_recipe_id = data['_recipe_id'];
+    result$data['_recipe_id'] = (l$$_recipe_id as String);
     if (data.containsKey('id')) {
       final l$id = data['id'];
       result$data['id'] = (l$id as String?);
@@ -5285,8 +5266,8 @@ class Input$bridge_recipes_ingredients_insert_input {
 
   Map<String, dynamic> _$data;
 
-  String? get $_ingredient_id => (_$data['_ingredient_id'] as String?);
-  String? get $_recipe_id => (_$data['_recipe_id'] as String?);
+  String get $_ingredient_id => (_$data['_ingredient_id'] as String);
+  String get $_recipe_id => (_$data['_recipe_id'] as String);
   String? get id => (_$data['id'] as String?);
   Input$ingredients_obj_rel_insert_input? get ingredients =>
       (_$data['ingredients'] as Input$ingredients_obj_rel_insert_input?);
@@ -5294,14 +5275,10 @@ class Input$bridge_recipes_ingredients_insert_input {
       (_$data['recipes'] as Input$recipes_obj_rel_insert_input?);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    if (_$data.containsKey('_ingredient_id')) {
-      final l$$_ingredient_id = $_ingredient_id;
-      result$data['_ingredient_id'] = l$$_ingredient_id;
-    }
-    if (_$data.containsKey('_recipe_id')) {
-      final l$$_recipe_id = $_recipe_id;
-      result$data['_recipe_id'] = l$$_recipe_id;
-    }
+    final l$$_ingredient_id = $_ingredient_id;
+    result$data['_ingredient_id'] = l$$_ingredient_id;
+    final l$$_recipe_id = $_recipe_id;
+    result$data['_recipe_id'] = l$$_recipe_id;
     if (_$data.containsKey('id')) {
       final l$id = id;
       result$data['id'] = l$id;
@@ -5334,19 +5311,11 @@ class Input$bridge_recipes_ingredients_insert_input {
     }
     final l$$_ingredient_id = $_ingredient_id;
     final lOther$$_ingredient_id = other.$_ingredient_id;
-    if (_$data.containsKey('_ingredient_id') !=
-        other._$data.containsKey('_ingredient_id')) {
-      return false;
-    }
     if (l$$_ingredient_id != lOther$$_ingredient_id) {
       return false;
     }
     final l$$_recipe_id = $_recipe_id;
     final lOther$$_recipe_id = other.$_recipe_id;
-    if (_$data.containsKey('_recipe_id') !=
-        other._$data.containsKey('_recipe_id')) {
-      return false;
-    }
     if (l$$_recipe_id != lOther$$_recipe_id) {
       return false;
     }
@@ -5386,8 +5355,8 @@ class Input$bridge_recipes_ingredients_insert_input {
     final l$ingredients = ingredients;
     final l$recipes = recipes;
     return Object.hashAll([
-      _$data.containsKey('_ingredient_id') ? l$$_ingredient_id : const {},
-      _$data.containsKey('_recipe_id') ? l$$_recipe_id : const {},
+      l$$_ingredient_id,
+      l$$_recipe_id,
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('ingredients') ? l$ingredients : const {},
       _$data.containsKey('recipes') ? l$recipes : const {},
@@ -5438,9 +5407,10 @@ class _CopyWithImpl$Input$bridge_recipes_ingredients_insert_input<TRes>
   }) =>
       _then(Input$bridge_recipes_ingredients_insert_input._({
         ..._instance._$data,
-        if ($_ingredient_id != _undefined)
-          '_ingredient_id': ($_ingredient_id as String?),
-        if ($_recipe_id != _undefined) '_recipe_id': ($_recipe_id as String?),
+        if ($_ingredient_id != _undefined && $_ingredient_id != null)
+          '_ingredient_id': ($_ingredient_id as String),
+        if ($_recipe_id != _undefined && $_recipe_id != null)
+          '_recipe_id': ($_recipe_id as String),
         if (id != _undefined) 'id': (id as String?),
         if (ingredients != _undefined)
           'ingredients':
@@ -8275,15 +8245,15 @@ class _CopyWithStubImpl$Input$bridge_recipes_tags_bool_exp<TRes>
 
 class Input$bridge_recipes_tags_insert_input {
   factory Input$bridge_recipes_tags_insert_input({
-    String? $_recipe_id,
-    String? $_tag_id,
+    required String $_recipe_id,
+    required String $_tag_id,
     String? id,
     Input$recipes_obj_rel_insert_input? recipes,
     Input$tags_obj_rel_insert_input? tags,
   }) =>
       Input$bridge_recipes_tags_insert_input._({
-        if ($_recipe_id != null) r'_recipe_id': $_recipe_id,
-        if ($_tag_id != null) r'_tag_id': $_tag_id,
+        r'_recipe_id': $_recipe_id,
+        r'_tag_id': $_tag_id,
         if (id != null) r'id': id,
         if (recipes != null) r'recipes': recipes,
         if (tags != null) r'tags': tags,
@@ -8294,14 +8264,10 @@ class Input$bridge_recipes_tags_insert_input {
   factory Input$bridge_recipes_tags_insert_input.fromJson(
       Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    if (data.containsKey('_recipe_id')) {
-      final l$$_recipe_id = data['_recipe_id'];
-      result$data['_recipe_id'] = (l$$_recipe_id as String?);
-    }
-    if (data.containsKey('_tag_id')) {
-      final l$$_tag_id = data['_tag_id'];
-      result$data['_tag_id'] = (l$$_tag_id as String?);
-    }
+    final l$$_recipe_id = data['_recipe_id'];
+    result$data['_recipe_id'] = (l$$_recipe_id as String);
+    final l$$_tag_id = data['_tag_id'];
+    result$data['_tag_id'] = (l$$_tag_id as String);
     if (data.containsKey('id')) {
       final l$id = data['id'];
       result$data['id'] = (l$id as String?);
@@ -8325,8 +8291,8 @@ class Input$bridge_recipes_tags_insert_input {
 
   Map<String, dynamic> _$data;
 
-  String? get $_recipe_id => (_$data['_recipe_id'] as String?);
-  String? get $_tag_id => (_$data['_tag_id'] as String?);
+  String get $_recipe_id => (_$data['_recipe_id'] as String);
+  String get $_tag_id => (_$data['_tag_id'] as String);
   String? get id => (_$data['id'] as String?);
   Input$recipes_obj_rel_insert_input? get recipes =>
       (_$data['recipes'] as Input$recipes_obj_rel_insert_input?);
@@ -8334,14 +8300,10 @@ class Input$bridge_recipes_tags_insert_input {
       (_$data['tags'] as Input$tags_obj_rel_insert_input?);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    if (_$data.containsKey('_recipe_id')) {
-      final l$$_recipe_id = $_recipe_id;
-      result$data['_recipe_id'] = l$$_recipe_id;
-    }
-    if (_$data.containsKey('_tag_id')) {
-      final l$$_tag_id = $_tag_id;
-      result$data['_tag_id'] = l$$_tag_id;
-    }
+    final l$$_recipe_id = $_recipe_id;
+    result$data['_recipe_id'] = l$$_recipe_id;
+    final l$$_tag_id = $_tag_id;
+    result$data['_tag_id'] = l$$_tag_id;
     if (_$data.containsKey('id')) {
       final l$id = id;
       result$data['id'] = l$id;
@@ -8374,18 +8336,11 @@ class Input$bridge_recipes_tags_insert_input {
     }
     final l$$_recipe_id = $_recipe_id;
     final lOther$$_recipe_id = other.$_recipe_id;
-    if (_$data.containsKey('_recipe_id') !=
-        other._$data.containsKey('_recipe_id')) {
-      return false;
-    }
     if (l$$_recipe_id != lOther$$_recipe_id) {
       return false;
     }
     final l$$_tag_id = $_tag_id;
     final lOther$$_tag_id = other.$_tag_id;
-    if (_$data.containsKey('_tag_id') != other._$data.containsKey('_tag_id')) {
-      return false;
-    }
     if (l$$_tag_id != lOther$$_tag_id) {
       return false;
     }
@@ -8424,8 +8379,8 @@ class Input$bridge_recipes_tags_insert_input {
     final l$recipes = recipes;
     final l$tags = tags;
     return Object.hashAll([
-      _$data.containsKey('_recipe_id') ? l$$_recipe_id : const {},
-      _$data.containsKey('_tag_id') ? l$$_tag_id : const {},
+      l$$_recipe_id,
+      l$$_tag_id,
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('recipes') ? l$recipes : const {},
       _$data.containsKey('tags') ? l$tags : const {},
@@ -8475,8 +8430,10 @@ class _CopyWithImpl$Input$bridge_recipes_tags_insert_input<TRes>
   }) =>
       _then(Input$bridge_recipes_tags_insert_input._({
         ..._instance._$data,
-        if ($_recipe_id != _undefined) '_recipe_id': ($_recipe_id as String?),
-        if ($_tag_id != _undefined) '_tag_id': ($_tag_id as String?),
+        if ($_recipe_id != _undefined && $_recipe_id != null)
+          '_recipe_id': ($_recipe_id as String),
+        if ($_tag_id != _undefined && $_tag_id != null)
+          '_tag_id': ($_tag_id as String),
         if (id != _undefined) 'id': (id as String?),
         if (recipes != _undefined)
           'recipes': (recipes as Input$recipes_obj_rel_insert_input?),
@@ -10633,19 +10590,19 @@ class Input$cuisines_insert_input {
   factory Input$cuisines_insert_input({
     Input$bridge_recipes_cuisines_arr_rel_insert_input? bridge_recipes_cuisines,
     String? iconPath,
-    String? id,
-    String? name,
-    String? slug,
-    String? type,
+    required String id,
+    required String name,
+    required String slug,
+    required String type,
   }) =>
       Input$cuisines_insert_input._({
         if (bridge_recipes_cuisines != null)
           r'bridge_recipes_cuisines': bridge_recipes_cuisines,
         if (iconPath != null) r'iconPath': iconPath,
-        if (id != null) r'id': id,
-        if (name != null) r'name': name,
-        if (slug != null) r'slug': slug,
-        if (type != null) r'type': type,
+        r'id': id,
+        r'name': name,
+        r'slug': slug,
+        r'type': type,
       });
 
   Input$cuisines_insert_input._(this._$data);
@@ -10663,22 +10620,14 @@ class Input$cuisines_insert_input {
       final l$iconPath = data['iconPath'];
       result$data['iconPath'] = (l$iconPath as String?);
     }
-    if (data.containsKey('id')) {
-      final l$id = data['id'];
-      result$data['id'] = (l$id as String?);
-    }
-    if (data.containsKey('name')) {
-      final l$name = data['name'];
-      result$data['name'] = (l$name as String?);
-    }
-    if (data.containsKey('slug')) {
-      final l$slug = data['slug'];
-      result$data['slug'] = (l$slug as String?);
-    }
-    if (data.containsKey('type')) {
-      final l$type = data['type'];
-      result$data['type'] = (l$type as String?);
-    }
+    final l$id = data['id'];
+    result$data['id'] = (l$id as String);
+    final l$name = data['name'];
+    result$data['name'] = (l$name as String);
+    final l$slug = data['slug'];
+    result$data['slug'] = (l$slug as String);
+    final l$type = data['type'];
+    result$data['type'] = (l$type as String);
     return Input$cuisines_insert_input._(result$data);
   }
 
@@ -10688,10 +10637,10 @@ class Input$cuisines_insert_input {
       get bridge_recipes_cuisines => (_$data['bridge_recipes_cuisines']
           as Input$bridge_recipes_cuisines_arr_rel_insert_input?);
   String? get iconPath => (_$data['iconPath'] as String?);
-  String? get id => (_$data['id'] as String?);
-  String? get name => (_$data['name'] as String?);
-  String? get slug => (_$data['slug'] as String?);
-  String? get type => (_$data['type'] as String?);
+  String get id => (_$data['id'] as String);
+  String get name => (_$data['name'] as String);
+  String get slug => (_$data['slug'] as String);
+  String get type => (_$data['type'] as String);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('bridge_recipes_cuisines')) {
@@ -10703,22 +10652,14 @@ class Input$cuisines_insert_input {
       final l$iconPath = iconPath;
       result$data['iconPath'] = l$iconPath;
     }
-    if (_$data.containsKey('id')) {
-      final l$id = id;
-      result$data['id'] = l$id;
-    }
-    if (_$data.containsKey('name')) {
-      final l$name = name;
-      result$data['name'] = l$name;
-    }
-    if (_$data.containsKey('slug')) {
-      final l$slug = slug;
-      result$data['slug'] = l$slug;
-    }
-    if (_$data.containsKey('type')) {
-      final l$type = type;
-      result$data['type'] = l$type;
-    }
+    final l$id = id;
+    result$data['id'] = l$id;
+    final l$name = name;
+    result$data['name'] = l$name;
+    final l$slug = slug;
+    result$data['slug'] = l$slug;
+    final l$type = type;
+    result$data['type'] = l$type;
     return result$data;
   }
 
@@ -10756,33 +10697,21 @@ class Input$cuisines_insert_input {
     }
     final l$id = id;
     final lOther$id = other.id;
-    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
-      return false;
-    }
     if (l$id != lOther$id) {
       return false;
     }
     final l$name = name;
     final lOther$name = other.name;
-    if (_$data.containsKey('name') != other._$data.containsKey('name')) {
-      return false;
-    }
     if (l$name != lOther$name) {
       return false;
     }
     final l$slug = slug;
     final lOther$slug = other.slug;
-    if (_$data.containsKey('slug') != other._$data.containsKey('slug')) {
-      return false;
-    }
     if (l$slug != lOther$slug) {
       return false;
     }
     final l$type = type;
     final lOther$type = other.type;
-    if (_$data.containsKey('type') != other._$data.containsKey('type')) {
-      return false;
-    }
     if (l$type != lOther$type) {
       return false;
     }
@@ -10802,10 +10731,10 @@ class Input$cuisines_insert_input {
           ? l$bridge_recipes_cuisines
           : const {},
       _$data.containsKey('iconPath') ? l$iconPath : const {},
-      _$data.containsKey('id') ? l$id : const {},
-      _$data.containsKey('name') ? l$name : const {},
-      _$data.containsKey('slug') ? l$slug : const {},
-      _$data.containsKey('type') ? l$type : const {},
+      l$id,
+      l$name,
+      l$slug,
+      l$type,
     ]);
   }
 }
@@ -10858,10 +10787,10 @@ class _CopyWithImpl$Input$cuisines_insert_input<TRes>
           'bridge_recipes_cuisines': (bridge_recipes_cuisines
               as Input$bridge_recipes_cuisines_arr_rel_insert_input?),
         if (iconPath != _undefined) 'iconPath': (iconPath as String?),
-        if (id != _undefined) 'id': (id as String?),
-        if (name != _undefined) 'name': (name as String?),
-        if (slug != _undefined) 'slug': (slug as String?),
-        if (type != _undefined) 'type': (type as String?),
+        if (id != _undefined && id != null) 'id': (id as String),
+        if (name != _undefined && name != null) 'name': (name as String),
+        if (slug != _undefined && slug != null) 'slug': (slug as String),
+        if (type != _undefined && type != null) 'type': (type as String),
       }));
   CopyWith$Input$bridge_recipes_cuisines_arr_rel_insert_input<TRes>
       get bridge_recipes_cuisines {
@@ -12818,17 +12747,17 @@ class _CopyWithStubImpl$Input$ingredient_family_bool_exp<TRes>
 class Input$ingredient_family_insert_input {
   factory Input$ingredient_family_insert_input({
     String? iconPath,
-    String? id,
-    String? name,
-    String? slug,
-    String? type,
+    required String id,
+    required String name,
+    required String slug,
+    required String type,
   }) =>
       Input$ingredient_family_insert_input._({
         if (iconPath != null) r'iconPath': iconPath,
-        if (id != null) r'id': id,
-        if (name != null) r'name': name,
-        if (slug != null) r'slug': slug,
-        if (type != null) r'type': type,
+        r'id': id,
+        r'name': name,
+        r'slug': slug,
+        r'type': type,
       });
 
   Input$ingredient_family_insert_input._(this._$data);
@@ -12840,54 +12769,38 @@ class Input$ingredient_family_insert_input {
       final l$iconPath = data['iconPath'];
       result$data['iconPath'] = (l$iconPath as String?);
     }
-    if (data.containsKey('id')) {
-      final l$id = data['id'];
-      result$data['id'] = (l$id as String?);
-    }
-    if (data.containsKey('name')) {
-      final l$name = data['name'];
-      result$data['name'] = (l$name as String?);
-    }
-    if (data.containsKey('slug')) {
-      final l$slug = data['slug'];
-      result$data['slug'] = (l$slug as String?);
-    }
-    if (data.containsKey('type')) {
-      final l$type = data['type'];
-      result$data['type'] = (l$type as String?);
-    }
+    final l$id = data['id'];
+    result$data['id'] = (l$id as String);
+    final l$name = data['name'];
+    result$data['name'] = (l$name as String);
+    final l$slug = data['slug'];
+    result$data['slug'] = (l$slug as String);
+    final l$type = data['type'];
+    result$data['type'] = (l$type as String);
     return Input$ingredient_family_insert_input._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
   String? get iconPath => (_$data['iconPath'] as String?);
-  String? get id => (_$data['id'] as String?);
-  String? get name => (_$data['name'] as String?);
-  String? get slug => (_$data['slug'] as String?);
-  String? get type => (_$data['type'] as String?);
+  String get id => (_$data['id'] as String);
+  String get name => (_$data['name'] as String);
+  String get slug => (_$data['slug'] as String);
+  String get type => (_$data['type'] as String);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('iconPath')) {
       final l$iconPath = iconPath;
       result$data['iconPath'] = l$iconPath;
     }
-    if (_$data.containsKey('id')) {
-      final l$id = id;
-      result$data['id'] = l$id;
-    }
-    if (_$data.containsKey('name')) {
-      final l$name = name;
-      result$data['name'] = l$name;
-    }
-    if (_$data.containsKey('slug')) {
-      final l$slug = slug;
-      result$data['slug'] = l$slug;
-    }
-    if (_$data.containsKey('type')) {
-      final l$type = type;
-      result$data['type'] = l$type;
-    }
+    final l$id = id;
+    result$data['id'] = l$id;
+    final l$name = name;
+    result$data['name'] = l$name;
+    final l$slug = slug;
+    result$data['slug'] = l$slug;
+    final l$type = type;
+    result$data['type'] = l$type;
     return result$data;
   }
 
@@ -12917,33 +12830,21 @@ class Input$ingredient_family_insert_input {
     }
     final l$id = id;
     final lOther$id = other.id;
-    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
-      return false;
-    }
     if (l$id != lOther$id) {
       return false;
     }
     final l$name = name;
     final lOther$name = other.name;
-    if (_$data.containsKey('name') != other._$data.containsKey('name')) {
-      return false;
-    }
     if (l$name != lOther$name) {
       return false;
     }
     final l$slug = slug;
     final lOther$slug = other.slug;
-    if (_$data.containsKey('slug') != other._$data.containsKey('slug')) {
-      return false;
-    }
     if (l$slug != lOther$slug) {
       return false;
     }
     final l$type = type;
     final lOther$type = other.type;
-    if (_$data.containsKey('type') != other._$data.containsKey('type')) {
-      return false;
-    }
     if (l$type != lOther$type) {
       return false;
     }
@@ -12959,10 +12860,10 @@ class Input$ingredient_family_insert_input {
     final l$type = type;
     return Object.hashAll([
       _$data.containsKey('iconPath') ? l$iconPath : const {},
-      _$data.containsKey('id') ? l$id : const {},
-      _$data.containsKey('name') ? l$name : const {},
-      _$data.containsKey('slug') ? l$slug : const {},
-      _$data.containsKey('type') ? l$type : const {},
+      l$id,
+      l$name,
+      l$slug,
+      l$type,
     ]);
   }
 }
@@ -13008,10 +12909,10 @@ class _CopyWithImpl$Input$ingredient_family_insert_input<TRes>
       _then(Input$ingredient_family_insert_input._({
         ..._instance._$data,
         if (iconPath != _undefined) 'iconPath': (iconPath as String?),
-        if (id != _undefined) 'id': (id as String?),
-        if (name != _undefined) 'name': (name as String?),
-        if (slug != _undefined) 'slug': (slug as String?),
-        if (type != _undefined) 'type': (type as String?),
+        if (id != _undefined && id != null) 'id': (id as String),
+        if (name != _undefined && name != null) 'name': (name as String),
+        if (slug != _undefined && slug != null) 'slug': (slug as String),
+        if (type != _undefined && type != null) 'type': (type as String),
       }));
 }
 
@@ -15157,25 +15058,25 @@ class Input$ingredients_insert_input {
     String? $_family,
     Input$bridge_recipes_ingredients_arr_rel_insert_input?
         bridge_recipes_ingredients,
-    String? country,
+    required String country,
     Input$ingredient_family_obj_rel_insert_input? family,
-    String? id,
+    required String id,
     String? imagePath,
-    String? name,
-    String? slug,
-    String? type,
+    required String name,
+    required String slug,
+    required String type,
   }) =>
       Input$ingredients_insert_input._({
         if ($_family != null) r'_family': $_family,
         if (bridge_recipes_ingredients != null)
           r'bridge_recipes_ingredients': bridge_recipes_ingredients,
-        if (country != null) r'country': country,
+        r'country': country,
         if (family != null) r'family': family,
-        if (id != null) r'id': id,
+        r'id': id,
         if (imagePath != null) r'imagePath': imagePath,
-        if (name != null) r'name': name,
-        if (slug != null) r'slug': slug,
-        if (type != null) r'type': type,
+        r'name': name,
+        r'slug': slug,
+        r'type': type,
       });
 
   Input$ingredients_insert_input._(this._$data);
@@ -15194,10 +15095,8 @@ class Input$ingredients_insert_input {
               : Input$bridge_recipes_ingredients_arr_rel_insert_input.fromJson(
                   (l$bridge_recipes_ingredients as Map<String, dynamic>));
     }
-    if (data.containsKey('country')) {
-      final l$country = data['country'];
-      result$data['country'] = (l$country as String?);
-    }
+    final l$country = data['country'];
+    result$data['country'] = (l$country as String);
     if (data.containsKey('family')) {
       final l$family = data['family'];
       result$data['family'] = l$family == null
@@ -15205,26 +15104,18 @@ class Input$ingredients_insert_input {
           : Input$ingredient_family_obj_rel_insert_input.fromJson(
               (l$family as Map<String, dynamic>));
     }
-    if (data.containsKey('id')) {
-      final l$id = data['id'];
-      result$data['id'] = (l$id as String?);
-    }
+    final l$id = data['id'];
+    result$data['id'] = (l$id as String);
     if (data.containsKey('imagePath')) {
       final l$imagePath = data['imagePath'];
       result$data['imagePath'] = (l$imagePath as String?);
     }
-    if (data.containsKey('name')) {
-      final l$name = data['name'];
-      result$data['name'] = (l$name as String?);
-    }
-    if (data.containsKey('slug')) {
-      final l$slug = data['slug'];
-      result$data['slug'] = (l$slug as String?);
-    }
-    if (data.containsKey('type')) {
-      final l$type = data['type'];
-      result$data['type'] = (l$type as String?);
-    }
+    final l$name = data['name'];
+    result$data['name'] = (l$name as String);
+    final l$slug = data['slug'];
+    result$data['slug'] = (l$slug as String);
+    final l$type = data['type'];
+    result$data['type'] = (l$type as String);
     return Input$ingredients_insert_input._(result$data);
   }
 
@@ -15234,14 +15125,14 @@ class Input$ingredients_insert_input {
   Input$bridge_recipes_ingredients_arr_rel_insert_input?
       get bridge_recipes_ingredients => (_$data['bridge_recipes_ingredients']
           as Input$bridge_recipes_ingredients_arr_rel_insert_input?);
-  String? get country => (_$data['country'] as String?);
+  String get country => (_$data['country'] as String);
   Input$ingredient_family_obj_rel_insert_input? get family =>
       (_$data['family'] as Input$ingredient_family_obj_rel_insert_input?);
-  String? get id => (_$data['id'] as String?);
+  String get id => (_$data['id'] as String);
   String? get imagePath => (_$data['imagePath'] as String?);
-  String? get name => (_$data['name'] as String?);
-  String? get slug => (_$data['slug'] as String?);
-  String? get type => (_$data['type'] as String?);
+  String get name => (_$data['name'] as String);
+  String get slug => (_$data['slug'] as String);
+  String get type => (_$data['type'] as String);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('_family')) {
@@ -15253,34 +15144,24 @@ class Input$ingredients_insert_input {
       result$data['bridge_recipes_ingredients'] =
           l$bridge_recipes_ingredients?.toJson();
     }
-    if (_$data.containsKey('country')) {
-      final l$country = country;
-      result$data['country'] = l$country;
-    }
+    final l$country = country;
+    result$data['country'] = l$country;
     if (_$data.containsKey('family')) {
       final l$family = family;
       result$data['family'] = l$family?.toJson();
     }
-    if (_$data.containsKey('id')) {
-      final l$id = id;
-      result$data['id'] = l$id;
-    }
+    final l$id = id;
+    result$data['id'] = l$id;
     if (_$data.containsKey('imagePath')) {
       final l$imagePath = imagePath;
       result$data['imagePath'] = l$imagePath;
     }
-    if (_$data.containsKey('name')) {
-      final l$name = name;
-      result$data['name'] = l$name;
-    }
-    if (_$data.containsKey('slug')) {
-      final l$slug = slug;
-      result$data['slug'] = l$slug;
-    }
-    if (_$data.containsKey('type')) {
-      final l$type = type;
-      result$data['type'] = l$type;
-    }
+    final l$name = name;
+    result$data['name'] = l$name;
+    final l$slug = slug;
+    result$data['slug'] = l$slug;
+    final l$type = type;
+    result$data['type'] = l$type;
     return result$data;
   }
 
@@ -15317,9 +15198,6 @@ class Input$ingredients_insert_input {
     }
     final l$country = country;
     final lOther$country = other.country;
-    if (_$data.containsKey('country') != other._$data.containsKey('country')) {
-      return false;
-    }
     if (l$country != lOther$country) {
       return false;
     }
@@ -15333,9 +15211,6 @@ class Input$ingredients_insert_input {
     }
     final l$id = id;
     final lOther$id = other.id;
-    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
-      return false;
-    }
     if (l$id != lOther$id) {
       return false;
     }
@@ -15350,25 +15225,16 @@ class Input$ingredients_insert_input {
     }
     final l$name = name;
     final lOther$name = other.name;
-    if (_$data.containsKey('name') != other._$data.containsKey('name')) {
-      return false;
-    }
     if (l$name != lOther$name) {
       return false;
     }
     final l$slug = slug;
     final lOther$slug = other.slug;
-    if (_$data.containsKey('slug') != other._$data.containsKey('slug')) {
-      return false;
-    }
     if (l$slug != lOther$slug) {
       return false;
     }
     final l$type = type;
     final lOther$type = other.type;
-    if (_$data.containsKey('type') != other._$data.containsKey('type')) {
-      return false;
-    }
     if (l$type != lOther$type) {
       return false;
     }
@@ -15391,13 +15257,13 @@ class Input$ingredients_insert_input {
       _$data.containsKey('bridge_recipes_ingredients')
           ? l$bridge_recipes_ingredients
           : const {},
-      _$data.containsKey('country') ? l$country : const {},
+      l$country,
       _$data.containsKey('family') ? l$family : const {},
-      _$data.containsKey('id') ? l$id : const {},
+      l$id,
       _$data.containsKey('imagePath') ? l$imagePath : const {},
-      _$data.containsKey('name') ? l$name : const {},
-      _$data.containsKey('slug') ? l$slug : const {},
-      _$data.containsKey('type') ? l$type : const {},
+      l$name,
+      l$slug,
+      l$type,
     ]);
   }
 }
@@ -15458,14 +15324,15 @@ class _CopyWithImpl$Input$ingredients_insert_input<TRes>
         if (bridge_recipes_ingredients != _undefined)
           'bridge_recipes_ingredients': (bridge_recipes_ingredients
               as Input$bridge_recipes_ingredients_arr_rel_insert_input?),
-        if (country != _undefined) 'country': (country as String?),
+        if (country != _undefined && country != null)
+          'country': (country as String),
         if (family != _undefined)
           'family': (family as Input$ingredient_family_obj_rel_insert_input?),
-        if (id != _undefined) 'id': (id as String?),
+        if (id != _undefined && id != null) 'id': (id as String),
         if (imagePath != _undefined) 'imagePath': (imagePath as String?),
-        if (name != _undefined) 'name': (name as String?),
-        if (slug != _undefined) 'slug': (slug as String?),
-        if (type != _undefined) 'type': (type as String?),
+        if (name != _undefined && name != null) 'name': (name as String),
+        if (slug != _undefined && slug != null) 'slug': (slug as String),
+        if (type != _undefined && type != null) 'type': (type as String),
       }));
   CopyWith$Input$bridge_recipes_ingredients_arr_rel_insert_input<TRes>
       get bridge_recipes_ingredients {
@@ -19692,19 +19559,19 @@ class Input$recipes_insert_input {
     Input$bridge_recipes_ingredients_arr_rel_insert_input?
         bridge_recipes_ingredients,
     Input$bridge_recipes_tags_arr_rel_insert_input? bridge_recipes_tags,
-    String? country,
-    String? description,
+    required String country,
+    required String description,
     String? descriptionMarkdown,
-    int? difficulty,
-    String? headline,
-    String? id,
+    required int difficulty,
+    required String headline,
+    required String id,
     String? imagePath,
-    String? name,
+    required String name,
     String? prepTime,
-    String? slug,
-    String? steps,
+    required String slug,
+    required String steps,
     String? totalTime,
-    String? yields_json,
+    required String yields_json,
   }) =>
       Input$recipes_insert_input._({
         if (bridge_recipes_cuisines != null)
@@ -19713,20 +19580,20 @@ class Input$recipes_insert_input {
           r'bridge_recipes_ingredients': bridge_recipes_ingredients,
         if (bridge_recipes_tags != null)
           r'bridge_recipes_tags': bridge_recipes_tags,
-        if (country != null) r'country': country,
-        if (description != null) r'description': description,
+        r'country': country,
+        r'description': description,
         if (descriptionMarkdown != null)
           r'descriptionMarkdown': descriptionMarkdown,
-        if (difficulty != null) r'difficulty': difficulty,
-        if (headline != null) r'headline': headline,
-        if (id != null) r'id': id,
+        r'difficulty': difficulty,
+        r'headline': headline,
+        r'id': id,
         if (imagePath != null) r'imagePath': imagePath,
-        if (name != null) r'name': name,
+        r'name': name,
         if (prepTime != null) r'prepTime': prepTime,
-        if (slug != null) r'slug': slug,
-        if (steps != null) r'steps': steps,
+        r'slug': slug,
+        r'steps': steps,
         if (totalTime != null) r'totalTime': totalTime,
-        if (yields_json != null) r'yields_json': yields_json,
+        r'yields_json': yields_json,
       });
 
   Input$recipes_insert_input._(this._$data);
@@ -19755,58 +19622,40 @@ class Input$recipes_insert_input {
           : Input$bridge_recipes_tags_arr_rel_insert_input.fromJson(
               (l$bridge_recipes_tags as Map<String, dynamic>));
     }
-    if (data.containsKey('country')) {
-      final l$country = data['country'];
-      result$data['country'] = (l$country as String?);
-    }
-    if (data.containsKey('description')) {
-      final l$description = data['description'];
-      result$data['description'] = (l$description as String?);
-    }
+    final l$country = data['country'];
+    result$data['country'] = (l$country as String);
+    final l$description = data['description'];
+    result$data['description'] = (l$description as String);
     if (data.containsKey('descriptionMarkdown')) {
       final l$descriptionMarkdown = data['descriptionMarkdown'];
       result$data['descriptionMarkdown'] = (l$descriptionMarkdown as String?);
     }
-    if (data.containsKey('difficulty')) {
-      final l$difficulty = data['difficulty'];
-      result$data['difficulty'] = (l$difficulty as int?);
-    }
-    if (data.containsKey('headline')) {
-      final l$headline = data['headline'];
-      result$data['headline'] = (l$headline as String?);
-    }
-    if (data.containsKey('id')) {
-      final l$id = data['id'];
-      result$data['id'] = (l$id as String?);
-    }
+    final l$difficulty = data['difficulty'];
+    result$data['difficulty'] = (l$difficulty as int);
+    final l$headline = data['headline'];
+    result$data['headline'] = (l$headline as String);
+    final l$id = data['id'];
+    result$data['id'] = (l$id as String);
     if (data.containsKey('imagePath')) {
       final l$imagePath = data['imagePath'];
       result$data['imagePath'] = (l$imagePath as String?);
     }
-    if (data.containsKey('name')) {
-      final l$name = data['name'];
-      result$data['name'] = (l$name as String?);
-    }
+    final l$name = data['name'];
+    result$data['name'] = (l$name as String);
     if (data.containsKey('prepTime')) {
       final l$prepTime = data['prepTime'];
       result$data['prepTime'] = (l$prepTime as String?);
     }
-    if (data.containsKey('slug')) {
-      final l$slug = data['slug'];
-      result$data['slug'] = (l$slug as String?);
-    }
-    if (data.containsKey('steps')) {
-      final l$steps = data['steps'];
-      result$data['steps'] = (l$steps as String?);
-    }
+    final l$slug = data['slug'];
+    result$data['slug'] = (l$slug as String);
+    final l$steps = data['steps'];
+    result$data['steps'] = (l$steps as String);
     if (data.containsKey('totalTime')) {
       final l$totalTime = data['totalTime'];
       result$data['totalTime'] = (l$totalTime as String?);
     }
-    if (data.containsKey('yields_json')) {
-      final l$yields_json = data['yields_json'];
-      result$data['yields_json'] = (l$yields_json as String?);
-    }
+    final l$yields_json = data['yields_json'];
+    result$data['yields_json'] = (l$yields_json as String);
     return Input$recipes_insert_input._(result$data);
   }
 
@@ -19821,19 +19670,19 @@ class Input$recipes_insert_input {
   Input$bridge_recipes_tags_arr_rel_insert_input? get bridge_recipes_tags =>
       (_$data['bridge_recipes_tags']
           as Input$bridge_recipes_tags_arr_rel_insert_input?);
-  String? get country => (_$data['country'] as String?);
-  String? get description => (_$data['description'] as String?);
+  String get country => (_$data['country'] as String);
+  String get description => (_$data['description'] as String);
   String? get descriptionMarkdown => (_$data['descriptionMarkdown'] as String?);
-  int? get difficulty => (_$data['difficulty'] as int?);
-  String? get headline => (_$data['headline'] as String?);
-  String? get id => (_$data['id'] as String?);
+  int get difficulty => (_$data['difficulty'] as int);
+  String get headline => (_$data['headline'] as String);
+  String get id => (_$data['id'] as String);
   String? get imagePath => (_$data['imagePath'] as String?);
-  String? get name => (_$data['name'] as String?);
+  String get name => (_$data['name'] as String);
   String? get prepTime => (_$data['prepTime'] as String?);
-  String? get slug => (_$data['slug'] as String?);
-  String? get steps => (_$data['steps'] as String?);
+  String get slug => (_$data['slug'] as String);
+  String get steps => (_$data['steps'] as String);
   String? get totalTime => (_$data['totalTime'] as String?);
-  String? get yields_json => (_$data['yields_json'] as String?);
+  String get yields_json => (_$data['yields_json'] as String);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('bridge_recipes_cuisines')) {
@@ -19850,58 +19699,40 @@ class Input$recipes_insert_input {
       final l$bridge_recipes_tags = bridge_recipes_tags;
       result$data['bridge_recipes_tags'] = l$bridge_recipes_tags?.toJson();
     }
-    if (_$data.containsKey('country')) {
-      final l$country = country;
-      result$data['country'] = l$country;
-    }
-    if (_$data.containsKey('description')) {
-      final l$description = description;
-      result$data['description'] = l$description;
-    }
+    final l$country = country;
+    result$data['country'] = l$country;
+    final l$description = description;
+    result$data['description'] = l$description;
     if (_$data.containsKey('descriptionMarkdown')) {
       final l$descriptionMarkdown = descriptionMarkdown;
       result$data['descriptionMarkdown'] = l$descriptionMarkdown;
     }
-    if (_$data.containsKey('difficulty')) {
-      final l$difficulty = difficulty;
-      result$data['difficulty'] = l$difficulty;
-    }
-    if (_$data.containsKey('headline')) {
-      final l$headline = headline;
-      result$data['headline'] = l$headline;
-    }
-    if (_$data.containsKey('id')) {
-      final l$id = id;
-      result$data['id'] = l$id;
-    }
+    final l$difficulty = difficulty;
+    result$data['difficulty'] = l$difficulty;
+    final l$headline = headline;
+    result$data['headline'] = l$headline;
+    final l$id = id;
+    result$data['id'] = l$id;
     if (_$data.containsKey('imagePath')) {
       final l$imagePath = imagePath;
       result$data['imagePath'] = l$imagePath;
     }
-    if (_$data.containsKey('name')) {
-      final l$name = name;
-      result$data['name'] = l$name;
-    }
+    final l$name = name;
+    result$data['name'] = l$name;
     if (_$data.containsKey('prepTime')) {
       final l$prepTime = prepTime;
       result$data['prepTime'] = l$prepTime;
     }
-    if (_$data.containsKey('slug')) {
-      final l$slug = slug;
-      result$data['slug'] = l$slug;
-    }
-    if (_$data.containsKey('steps')) {
-      final l$steps = steps;
-      result$data['steps'] = l$steps;
-    }
+    final l$slug = slug;
+    result$data['slug'] = l$slug;
+    final l$steps = steps;
+    result$data['steps'] = l$steps;
     if (_$data.containsKey('totalTime')) {
       final l$totalTime = totalTime;
       result$data['totalTime'] = l$totalTime;
     }
-    if (_$data.containsKey('yields_json')) {
-      final l$yields_json = yields_json;
-      result$data['yields_json'] = l$yields_json;
-    }
+    final l$yields_json = yields_json;
+    result$data['yields_json'] = l$yields_json;
     return result$data;
   }
 
@@ -19948,18 +19779,11 @@ class Input$recipes_insert_input {
     }
     final l$country = country;
     final lOther$country = other.country;
-    if (_$data.containsKey('country') != other._$data.containsKey('country')) {
-      return false;
-    }
     if (l$country != lOther$country) {
       return false;
     }
     final l$description = description;
     final lOther$description = other.description;
-    if (_$data.containsKey('description') !=
-        other._$data.containsKey('description')) {
-      return false;
-    }
     if (l$description != lOther$description) {
       return false;
     }
@@ -19974,27 +19798,16 @@ class Input$recipes_insert_input {
     }
     final l$difficulty = difficulty;
     final lOther$difficulty = other.difficulty;
-    if (_$data.containsKey('difficulty') !=
-        other._$data.containsKey('difficulty')) {
-      return false;
-    }
     if (l$difficulty != lOther$difficulty) {
       return false;
     }
     final l$headline = headline;
     final lOther$headline = other.headline;
-    if (_$data.containsKey('headline') !=
-        other._$data.containsKey('headline')) {
-      return false;
-    }
     if (l$headline != lOther$headline) {
       return false;
     }
     final l$id = id;
     final lOther$id = other.id;
-    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
-      return false;
-    }
     if (l$id != lOther$id) {
       return false;
     }
@@ -20009,9 +19822,6 @@ class Input$recipes_insert_input {
     }
     final l$name = name;
     final lOther$name = other.name;
-    if (_$data.containsKey('name') != other._$data.containsKey('name')) {
-      return false;
-    }
     if (l$name != lOther$name) {
       return false;
     }
@@ -20026,17 +19836,11 @@ class Input$recipes_insert_input {
     }
     final l$slug = slug;
     final lOther$slug = other.slug;
-    if (_$data.containsKey('slug') != other._$data.containsKey('slug')) {
-      return false;
-    }
     if (l$slug != lOther$slug) {
       return false;
     }
     final l$steps = steps;
     final lOther$steps = other.steps;
-    if (_$data.containsKey('steps') != other._$data.containsKey('steps')) {
-      return false;
-    }
     if (l$steps != lOther$steps) {
       return false;
     }
@@ -20051,10 +19855,6 @@ class Input$recipes_insert_input {
     }
     final l$yields_json = yields_json;
     final lOther$yields_json = other.yields_json;
-    if (_$data.containsKey('yields_json') !=
-        other._$data.containsKey('yields_json')) {
-      return false;
-    }
     if (l$yields_json != lOther$yields_json) {
       return false;
     }
@@ -20089,21 +19889,21 @@ class Input$recipes_insert_input {
       _$data.containsKey('bridge_recipes_tags')
           ? l$bridge_recipes_tags
           : const {},
-      _$data.containsKey('country') ? l$country : const {},
-      _$data.containsKey('description') ? l$description : const {},
+      l$country,
+      l$description,
       _$data.containsKey('descriptionMarkdown')
           ? l$descriptionMarkdown
           : const {},
-      _$data.containsKey('difficulty') ? l$difficulty : const {},
-      _$data.containsKey('headline') ? l$headline : const {},
-      _$data.containsKey('id') ? l$id : const {},
+      l$difficulty,
+      l$headline,
+      l$id,
       _$data.containsKey('imagePath') ? l$imagePath : const {},
-      _$data.containsKey('name') ? l$name : const {},
+      l$name,
       _$data.containsKey('prepTime') ? l$prepTime : const {},
-      _$data.containsKey('slug') ? l$slug : const {},
-      _$data.containsKey('steps') ? l$steps : const {},
+      l$slug,
+      l$steps,
       _$data.containsKey('totalTime') ? l$totalTime : const {},
-      _$data.containsKey('yields_json') ? l$yields_json : const {},
+      l$yields_json,
     ]);
   }
 }
@@ -20186,20 +19986,25 @@ class _CopyWithImpl$Input$recipes_insert_input<TRes>
         if (bridge_recipes_tags != _undefined)
           'bridge_recipes_tags': (bridge_recipes_tags
               as Input$bridge_recipes_tags_arr_rel_insert_input?),
-        if (country != _undefined) 'country': (country as String?),
-        if (description != _undefined) 'description': (description as String?),
+        if (country != _undefined && country != null)
+          'country': (country as String),
+        if (description != _undefined && description != null)
+          'description': (description as String),
         if (descriptionMarkdown != _undefined)
           'descriptionMarkdown': (descriptionMarkdown as String?),
-        if (difficulty != _undefined) 'difficulty': (difficulty as int?),
-        if (headline != _undefined) 'headline': (headline as String?),
-        if (id != _undefined) 'id': (id as String?),
+        if (difficulty != _undefined && difficulty != null)
+          'difficulty': (difficulty as int),
+        if (headline != _undefined && headline != null)
+          'headline': (headline as String),
+        if (id != _undefined && id != null) 'id': (id as String),
         if (imagePath != _undefined) 'imagePath': (imagePath as String?),
-        if (name != _undefined) 'name': (name as String?),
+        if (name != _undefined && name != null) 'name': (name as String),
         if (prepTime != _undefined) 'prepTime': (prepTime as String?),
-        if (slug != _undefined) 'slug': (slug as String?),
-        if (steps != _undefined) 'steps': (steps as String?),
+        if (slug != _undefined && slug != null) 'slug': (slug as String),
+        if (steps != _undefined && steps != null) 'steps': (steps as String),
         if (totalTime != _undefined) 'totalTime': (totalTime as String?),
-        if (yields_json != _undefined) 'yields_json': (yields_json as String?),
+        if (yields_json != _undefined && yields_json != null)
+          'yields_json': (yields_json as String),
       }));
   CopyWith$Input$bridge_recipes_cuisines_arr_rel_insert_input<TRes>
       get bridge_recipes_cuisines {
@@ -23930,21 +23735,20 @@ class _CopyWithStubImpl$Input$tags_delete_key_input<TRes>
 class Input$tags_insert_input {
   factory Input$tags_insert_input({
     Input$bridge_recipes_tags_arr_rel_insert_input? bridge_recipes_tags,
-    String? id,
-    String? name,
-    String? numberOfRecipesByCountry,
-    String? slug,
-    String? type,
+    required String id,
+    required String name,
+    required String numberOfRecipesByCountry,
+    required String slug,
+    required String type,
   }) =>
       Input$tags_insert_input._({
         if (bridge_recipes_tags != null)
           r'bridge_recipes_tags': bridge_recipes_tags,
-        if (id != null) r'id': id,
-        if (name != null) r'name': name,
-        if (numberOfRecipesByCountry != null)
-          r'numberOfRecipesByCountry': numberOfRecipesByCountry,
-        if (slug != null) r'slug': slug,
-        if (type != null) r'type': type,
+        r'id': id,
+        r'name': name,
+        r'numberOfRecipesByCountry': numberOfRecipesByCountry,
+        r'slug': slug,
+        r'type': type,
       });
 
   Input$tags_insert_input._(this._$data);
@@ -23958,27 +23762,17 @@ class Input$tags_insert_input {
           : Input$bridge_recipes_tags_arr_rel_insert_input.fromJson(
               (l$bridge_recipes_tags as Map<String, dynamic>));
     }
-    if (data.containsKey('id')) {
-      final l$id = data['id'];
-      result$data['id'] = (l$id as String?);
-    }
-    if (data.containsKey('name')) {
-      final l$name = data['name'];
-      result$data['name'] = (l$name as String?);
-    }
-    if (data.containsKey('numberOfRecipesByCountry')) {
-      final l$numberOfRecipesByCountry = data['numberOfRecipesByCountry'];
-      result$data['numberOfRecipesByCountry'] =
-          (l$numberOfRecipesByCountry as String?);
-    }
-    if (data.containsKey('slug')) {
-      final l$slug = data['slug'];
-      result$data['slug'] = (l$slug as String?);
-    }
-    if (data.containsKey('type')) {
-      final l$type = data['type'];
-      result$data['type'] = (l$type as String?);
-    }
+    final l$id = data['id'];
+    result$data['id'] = (l$id as String);
+    final l$name = data['name'];
+    result$data['name'] = (l$name as String);
+    final l$numberOfRecipesByCountry = data['numberOfRecipesByCountry'];
+    result$data['numberOfRecipesByCountry'] =
+        (l$numberOfRecipesByCountry as String);
+    final l$slug = data['slug'];
+    result$data['slug'] = (l$slug as String);
+    final l$type = data['type'];
+    result$data['type'] = (l$type as String);
     return Input$tags_insert_input._(result$data);
   }
 
@@ -23987,38 +23781,28 @@ class Input$tags_insert_input {
   Input$bridge_recipes_tags_arr_rel_insert_input? get bridge_recipes_tags =>
       (_$data['bridge_recipes_tags']
           as Input$bridge_recipes_tags_arr_rel_insert_input?);
-  String? get id => (_$data['id'] as String?);
-  String? get name => (_$data['name'] as String?);
-  String? get numberOfRecipesByCountry =>
-      (_$data['numberOfRecipesByCountry'] as String?);
-  String? get slug => (_$data['slug'] as String?);
-  String? get type => (_$data['type'] as String?);
+  String get id => (_$data['id'] as String);
+  String get name => (_$data['name'] as String);
+  String get numberOfRecipesByCountry =>
+      (_$data['numberOfRecipesByCountry'] as String);
+  String get slug => (_$data['slug'] as String);
+  String get type => (_$data['type'] as String);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('bridge_recipes_tags')) {
       final l$bridge_recipes_tags = bridge_recipes_tags;
       result$data['bridge_recipes_tags'] = l$bridge_recipes_tags?.toJson();
     }
-    if (_$data.containsKey('id')) {
-      final l$id = id;
-      result$data['id'] = l$id;
-    }
-    if (_$data.containsKey('name')) {
-      final l$name = name;
-      result$data['name'] = l$name;
-    }
-    if (_$data.containsKey('numberOfRecipesByCountry')) {
-      final l$numberOfRecipesByCountry = numberOfRecipesByCountry;
-      result$data['numberOfRecipesByCountry'] = l$numberOfRecipesByCountry;
-    }
-    if (_$data.containsKey('slug')) {
-      final l$slug = slug;
-      result$data['slug'] = l$slug;
-    }
-    if (_$data.containsKey('type')) {
-      final l$type = type;
-      result$data['type'] = l$type;
-    }
+    final l$id = id;
+    result$data['id'] = l$id;
+    final l$name = name;
+    result$data['name'] = l$name;
+    final l$numberOfRecipesByCountry = numberOfRecipesByCountry;
+    result$data['numberOfRecipesByCountry'] = l$numberOfRecipesByCountry;
+    final l$slug = slug;
+    result$data['slug'] = l$slug;
+    final l$type = type;
+    result$data['type'] = l$type;
     return result$data;
   }
 
@@ -24047,42 +23831,26 @@ class Input$tags_insert_input {
     }
     final l$id = id;
     final lOther$id = other.id;
-    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
-      return false;
-    }
     if (l$id != lOther$id) {
       return false;
     }
     final l$name = name;
     final lOther$name = other.name;
-    if (_$data.containsKey('name') != other._$data.containsKey('name')) {
-      return false;
-    }
     if (l$name != lOther$name) {
       return false;
     }
     final l$numberOfRecipesByCountry = numberOfRecipesByCountry;
     final lOther$numberOfRecipesByCountry = other.numberOfRecipesByCountry;
-    if (_$data.containsKey('numberOfRecipesByCountry') !=
-        other._$data.containsKey('numberOfRecipesByCountry')) {
-      return false;
-    }
     if (l$numberOfRecipesByCountry != lOther$numberOfRecipesByCountry) {
       return false;
     }
     final l$slug = slug;
     final lOther$slug = other.slug;
-    if (_$data.containsKey('slug') != other._$data.containsKey('slug')) {
-      return false;
-    }
     if (l$slug != lOther$slug) {
       return false;
     }
     final l$type = type;
     final lOther$type = other.type;
-    if (_$data.containsKey('type') != other._$data.containsKey('type')) {
-      return false;
-    }
     if (l$type != lOther$type) {
       return false;
     }
@@ -24101,13 +23869,11 @@ class Input$tags_insert_input {
       _$data.containsKey('bridge_recipes_tags')
           ? l$bridge_recipes_tags
           : const {},
-      _$data.containsKey('id') ? l$id : const {},
-      _$data.containsKey('name') ? l$name : const {},
-      _$data.containsKey('numberOfRecipesByCountry')
-          ? l$numberOfRecipesByCountry
-          : const {},
-      _$data.containsKey('slug') ? l$slug : const {},
-      _$data.containsKey('type') ? l$type : const {},
+      l$id,
+      l$name,
+      l$numberOfRecipesByCountry,
+      l$slug,
+      l$type,
     ]);
   }
 }
@@ -24159,12 +23925,13 @@ class _CopyWithImpl$Input$tags_insert_input<TRes>
         if (bridge_recipes_tags != _undefined)
           'bridge_recipes_tags': (bridge_recipes_tags
               as Input$bridge_recipes_tags_arr_rel_insert_input?),
-        if (id != _undefined) 'id': (id as String?),
-        if (name != _undefined) 'name': (name as String?),
-        if (numberOfRecipesByCountry != _undefined)
-          'numberOfRecipesByCountry': (numberOfRecipesByCountry as String?),
-        if (slug != _undefined) 'slug': (slug as String?),
-        if (type != _undefined) 'type': (type as String?),
+        if (id != _undefined && id != null) 'id': (id as String),
+        if (name != _undefined && name != null) 'name': (name as String),
+        if (numberOfRecipesByCountry != _undefined &&
+            numberOfRecipesByCountry != null)
+          'numberOfRecipesByCountry': (numberOfRecipesByCountry as String),
+        if (slug != _undefined && slug != null) 'slug': (slug as String),
+        if (type != _undefined && type != null) 'type': (type as String),
       }));
   CopyWith$Input$bridge_recipes_tags_arr_rel_insert_input<TRes>
       get bridge_recipes_tags {

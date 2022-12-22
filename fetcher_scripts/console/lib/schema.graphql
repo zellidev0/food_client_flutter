@@ -171,8 +171,8 @@ enum bridge_recipes_cuisines_constraint {
 input type for inserting data into table "bridge_recipes_cuisines"
 """
 input bridge_recipes_cuisines_insert_input {
-  _cuisine_id: String
-  _recipe_id: String
+  _cuisine_id: String!
+  _recipe_id: String!
   cuisines: cuisines_obj_rel_insert_input
   id: uuid
   recipes: recipes_obj_rel_insert_input
@@ -395,8 +395,8 @@ enum bridge_recipes_ingredients_constraint {
 input type for inserting data into table "bridge_recipes_ingredients"
 """
 input bridge_recipes_ingredients_insert_input {
-  _ingredient_id: String
-  _recipe_id: String
+  _ingredient_id: String!
+  _recipe_id: String!
   id: uuid
   ingredients: ingredients_obj_rel_insert_input
   recipes: recipes_obj_rel_insert_input
@@ -621,8 +621,8 @@ enum bridge_recipes_tags_constraint {
 input type for inserting data into table "bridge_recipes_tags"
 """
 input bridge_recipes_tags_insert_input {
-  _recipe_id: String
-  _tag_id: String
+  _recipe_id: String!
+  _tag_id: String!
   id: uuid
   recipes: recipes_obj_rel_insert_input
   tags: tags_obj_rel_insert_input
@@ -850,10 +850,10 @@ input type for inserting data into table "cuisines"
 input cuisines_insert_input {
   bridge_recipes_cuisines: bridge_recipes_cuisines_arr_rel_insert_input
   iconPath: String
-  id: String
-  name: String
-  slug: String
-  type: String
+  id: String!
+  name: String!
+  slug: String!
+  type: String!
 }
 
 """aggregate max on columns"""
@@ -1062,10 +1062,10 @@ input type for inserting data into table "ingredient_family"
 """
 input ingredient_family_insert_input {
   iconPath: String
-  id: String
-  name: String
-  slug: String
-  type: String
+  id: String!
+  name: String!
+  slug: String!
+  type: String!
 }
 
 """aggregate max on columns"""
@@ -1311,13 +1311,13 @@ input type for inserting data into table "ingredients"
 input ingredients_insert_input {
   _family: String
   bridge_recipes_ingredients: bridge_recipes_ingredients_arr_rel_insert_input
-  country: String
+  country: String!
   family: ingredient_family_obj_rel_insert_input
-  id: String
+  id: String!
   imagePath: String
-  name: String
-  slug: String
-  type: String
+  name: String!
+  slug: String!
+  type: String!
 }
 
 """aggregate max on columns"""
@@ -2724,19 +2724,19 @@ input recipes_insert_input {
   bridge_recipes_cuisines: bridge_recipes_cuisines_arr_rel_insert_input
   bridge_recipes_ingredients: bridge_recipes_ingredients_arr_rel_insert_input
   bridge_recipes_tags: bridge_recipes_tags_arr_rel_insert_input
-  country: String
-  description: String
+  country: String!
+  description: String!
   descriptionMarkdown: String
-  difficulty: Int
-  headline: String
-  id: String
+  difficulty: Int!
+  headline: String!
+  id: String!
   imagePath: String
-  name: String
+  name: String!
   prepTime: String
-  slug: String
-  steps: jsonb
+  slug: String!
+  steps: jsonb!
   totalTime: String
-  yields_json: jsonb
+  yields_json: jsonb!
 }
 
 """aggregate max on columns"""
@@ -3607,11 +3607,11 @@ input type for inserting data into table "tags"
 """
 input tags_insert_input {
   bridge_recipes_tags: bridge_recipes_tags_arr_rel_insert_input
-  id: String
-  name: String
-  numberOfRecipesByCountry: jsonb
-  slug: String
-  type: String
+  id: String!
+  name: String!
+  numberOfRecipesByCountry: jsonb!
+  slug: String!
+  type: String!
 }
 
 """aggregate max on columns"""
