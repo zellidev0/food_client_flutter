@@ -15,7 +15,7 @@ void main() async {
     (Exception exception) => throw exception,
     (HelloFreshModelRecipeApiRecipeResponse response) => response,
   );
-m
+
   print('Total: ${response.total}');
   for (int i = 0; i <= response.total + 300; i += 200) {
     print('Fetching 200 and skipping $i');
