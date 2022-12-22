@@ -1,0 +1,52 @@
+query Recipes {
+  recipes {
+    yields_json
+    totalTime
+    steps
+    slug
+    prepTime
+    name
+    imagePath
+    id
+    headline
+    difficulty
+    descriptionMarkdown
+    description
+    country
+    bridge_recipes_tags {
+      tags {
+        type
+        slug
+        numberOfRecipesByCountry
+        name
+        id
+      }
+    }
+    bridge_recipes_ingredients {
+      ingredients {
+        type
+        slug
+        name
+        imagePath
+        id
+        country
+        family {
+          type
+          slug
+          name
+          id
+          iconPath
+        }
+      }
+    }
+    bridge_recipes_cuisines {
+      cuisines {
+        iconPath
+        id
+        name
+        slug
+        type
+      }
+    }
+  }
+}

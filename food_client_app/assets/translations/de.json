@@ -1,0 +1,72 @@
+{
+  "ui": {
+    "single_recipe_view": {
+      "dialogs": {
+        "add_to_shopping_cart": {
+          "title": "Zur Einkaufsliste hinzufügen?",
+          "content": "Für wie viele Personen soll dieses Rezept hinzugefügt werden?",
+          "actions": {
+            "amount_persons": {
+              "one": "{amount} Person",
+              "other": "{amount} Personen"
+            }
+          }
+        }
+      }
+    },
+    "main_view": {
+      "bottom_navigation_destination": {
+        "explore": "Entdecken",
+        "shopping_cart": "Einkaufsliste",
+        "account": "Konto"
+      }
+    },
+    "home_view": {
+      "filters": {
+        "tags": "Tags",
+        "cuisines": "Küchen",
+        "name_with_amount": "{name} #{amount}"
+      },
+      "empty_states": {
+        "no_recipes": "Keine Rezepte gefunden!",
+        "no_more_recipes": "Keine weiteren Rezepte gefunden!"
+      },
+      "error_states": {
+        "no_recipes": "Fehler beim suchen nach Rezepten!",
+        "no_more_recipes": "Fehler beim suchen nach weiteren Rezepten!"
+      },
+      "buttons": {
+        "try_again": "Nochmal versuchen"
+      }
+    },
+    "cart_view": {
+      "empty_states": {
+        "empty_cart": "Es sind bisher keine\n Rezepte im Einkaufswagen"
+      },
+      "dialogs": {
+        "remove_recipe": {
+          "title": "Rezept entfernen?",
+          "content": "Soll das komplette Rezept aus deiner Einkaufsliste entfernt werden, oder nur die abgehakten Zutaten?",
+          "actions": {
+            "cancel": "Abbrechen",
+            "only_ticked_off": "Nur abgehaktes",
+            "whole_recipe": "Das ganze Rezept"
+          }
+        }
+      },
+      "modals": {
+        "sorting_modal": {
+          "button_text": "Sortieren"
+        }
+      }
+    }
+  },
+  "general": {
+    "others": {
+      "instructions": "Anleitung",
+      "total": "Gesamt",
+      "missing": "Fehlt noch",
+      "ticket_off": "Abgehakt"
+    }
+  }
+}
