@@ -208,7 +208,7 @@ class PersistenceServiceModelSortingUnitAdapter
 class PersistenceServiceModelSortingUnitIngredientFamilyAdapter
     extends TypeAdapter<_$_PersistenceServiceModelSortingUnitIngredientFamily> {
   @override
-  final int typeId = 3;
+  final int typeId = 4;
 
   @override
   _$_PersistenceServiceModelSortingUnitIngredientFamily read(

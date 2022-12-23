@@ -291,7 +291,10 @@ Widget buildDialogCuisines() => Consumer(
                 message: cuisine.toString(),
                 child: ChoiceChip(
                   label: Text(
-                    '${cuisine.displayedName} (${cuisine.numberOfRecipes})',
+                    '${cuisine.displayedName} (${cuisine.numberOfRecipes.fold(
+                      () => '',
+                      (final int number) => number < 1 ? '' : '$number',
+                    )})',
                   ),
                   selected: cuisine.isSelected,
                   onSelected: ref

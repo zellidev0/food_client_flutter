@@ -1455,7 +1455,7 @@ class __$$_PersistenceServiceModelSortingUnitIngredientFamilyCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 @HiveType(
-    typeId: 3,
+    typeId: 4,
     adapterName: 'PersistenceServiceModelSortingUnitIngredientFamilyAdapter')
 class _$_PersistenceServiceModelSortingUnitIngredientFamily
     implements _PersistenceServiceModelSortingUnitIngredientFamily {

@@ -106,7 +106,7 @@ class PersistenceServiceModelSortingUnit
 class PersistenceServiceModelSortingUnitIngredientFamily
     with _$PersistenceServiceModelSortingUnitIngredientFamily {
   @HiveType(
-    typeId: 3,
+    typeId: 4,
     adapterName: 'PersistenceServiceModelSortingUnitIngredientFamilyAdapter',
   )
   const factory PersistenceServiceModelSortingUnitIngredientFamily({
