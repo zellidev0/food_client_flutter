@@ -120,12 +120,8 @@ class Providers {
       navigationService: ref.read(
         providers.bottomNavigationBarNavigationServiceProvider,
       ),
-      webClientService: ref.read(
-        providers.webClientServiceProvider,
-      ),
-      webImageSizerService: ref.read(
-        providers.webImageSizerServiceProvider,
-      ),
+      webClientService: ref.read(providers.webClientServiceProvider),
+      webImageSizerService: ref.read(providers.webImageSizerServiceProvider),
       persistenceService: ref.read(
         providers.persistenceServiceProvider.notifier,
       ),
