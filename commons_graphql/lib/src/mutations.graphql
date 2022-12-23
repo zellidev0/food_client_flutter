@@ -72,3 +72,31 @@ mutation CreateRecipes($families: [ingredient_family_insert_input!]!, $ingredien
         affected_rows
     }
 }
+
+
+mutation delete_all {
+    delete_cuisines(where: {}) {
+        affected_rows
+    }
+    delete_bridge_recipes_cuisines(where: {}) {
+        affected_rows
+    }
+    delete_bridge_recipes_ingredients(where: {}) {
+        affected_rows
+    }
+    delete_bridge_recipes_tags(where: {}) {
+        affected_rows
+    }
+    delete_ingredient_family(where: {}) {
+        affected_rows
+    }
+    delete_ingredients(where: {}) {
+        affected_rows
+    }
+    delete_recipes(where: {}) {
+        affected_rows
+    }
+    delete_tags(where: {}) {
+        affected_rows
+    }
+}

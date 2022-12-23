@@ -34,8 +34,11 @@ class HomeControllerImplementation extends HomeController {
   void _listenToPaginationController() {
     state.pagingController.addPageRequestListener((final int pageKey) async {
       (await _fetchRecipes(paginationSkip: pageKey).run()).fold(
-        (final Exception l) => state.pagingController.error =
-            'ui.home_view.error_states.no_recipes'.tr(),
+        (final Exception exception) {
+          debugPrint(exception.toString());
+          return state.pagingController.error =
+            'ui.home_view.error_states.no_recipes'.tr();
+        },
         (final List<HomeModelRecipe> recipes) {
           setRecipesInPageController(
             newRecipes: recipes,
@@ -187,7 +190,7 @@ class HomeControllerImplementation extends HomeController {
             country: state.recipeLocales.first.languageCode,
             skip: paginationSkip,
             take: recipesPerPage,
-            tags: some(selectedTagTypes(tags: state.allTags)),
+            tagIds: some(selectedTagTypes(tags: state.allTags)),
             cuisine:
                 selectedCuisineSlugs(cuisines: state.allCuisines).firstOption,
           )
@@ -271,26 +274,6 @@ List<HomeModelFilter> selectedFilters({
         .filter((final HomeModelFilter filter) => filter.isSelected)
         .toList();
 
-List<HomeModelFilterTag> mapToHomeModelRecipeTags({
-  required final List<HomeWebClientModelRecipe> recipes,
-}) =>
-    recipes
-        .map(
-          (final HomeWebClientModelRecipe recipe) => recipe.tags
-              .map(
-                (final HomeWebClientModelTag tag) => HomeModelFilterTag(
-                  id: tag.id,
-                  displayedName: tag.displayedName,
-                  type: tag.type,
-                  isSelected: true,
-                  numberOfRecipes: tag.numberOfRecipes,
-                ),
-              )
-              .toList(),
-        )
-        .expand((final List<HomeModelFilterTag> tags) => tags.toList())
-        .toSet()
-        .toList();
 
 List<HomeModelRecipe> mapToHomeModelRecipes({
   required final List<HomeWebClientModelRecipe> recipes,
@@ -314,11 +297,9 @@ List<HomeModelRecipe> mapToHomeModelRecipes({
                   difficulty: recipe.difficulty,
                   ingredients: _mapIngredients(ingredients: recipe.ingredients),
                   yields: _mapYields(yields: recipe.yields),
-                  tagIds: _mapTagsToTagIds(tags: recipe.tags),
+                  tagIds: recipe.tagIds,
                   imageUri: imageUri,
-                  cuisineIds: _mapCuisinesToCuisineIds(
-                    cuisines: recipe.cuisines,
-                  ),
+                  cuisineIds: recipe.cuisineIds,
                 ),
               ),
         )
@@ -391,15 +372,3 @@ HomeModelYieldIngredient _mapToYieldIngredient({
       amount: ingredient.amount,
       unit: ingredient.unit,
     );
-
-List<String> _mapTagsToTagIds({
-  required final List<HomeWebClientModelTag> tags,
-}) =>
-    tags.map((final HomeWebClientModelTag tag) => tag.id).toList();
-
-List<String> _mapCuisinesToCuisineIds({
-  required final List<HomeWebClientModelCuisine> cuisines,
-}) =>
-    cuisines
-        .map((final HomeWebClientModelCuisine cuisine) => cuisine.id)
-        .toList();

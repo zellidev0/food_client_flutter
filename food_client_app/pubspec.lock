@@ -456,7 +456,7 @@ packages:
     source: hosted
     version: "5.1.1"
   graphql_codegen:
-    dependency: "direct dev"
+    dependency: transitive
     description:
       name: graphql_codegen
       url: "https://pub.dartlang.org"

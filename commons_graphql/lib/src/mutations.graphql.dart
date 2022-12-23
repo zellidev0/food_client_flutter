@@ -2255,3 +2255,1693 @@ class _CopyWithStubImpl$Mutation$CreateRecipes$insert_bridge_recipes_cuisines<
   }) =>
       _res;
 }
+
+class Mutation$delete_all {
+  Mutation$delete_all({
+    this.delete_cuisines,
+    this.delete_bridge_recipes_cuisines,
+    this.delete_bridge_recipes_ingredients,
+    this.delete_bridge_recipes_tags,
+    this.delete_ingredient_family,
+    this.delete_ingredients,
+    this.delete_recipes,
+    this.delete_tags,
+    required this.$__typename,
+  });
+
+  factory Mutation$delete_all.fromJson(Map<String, dynamic> json) {
+    final l$delete_cuisines = json['delete_cuisines'];
+    final l$delete_bridge_recipes_cuisines =
+        json['delete_bridge_recipes_cuisines'];
+    final l$delete_bridge_recipes_ingredients =
+        json['delete_bridge_recipes_ingredients'];
+    final l$delete_bridge_recipes_tags = json['delete_bridge_recipes_tags'];
+    final l$delete_ingredient_family = json['delete_ingredient_family'];
+    final l$delete_ingredients = json['delete_ingredients'];
+    final l$delete_recipes = json['delete_recipes'];
+    final l$delete_tags = json['delete_tags'];
+    final l$$__typename = json['__typename'];
+    return Mutation$delete_all(
+      delete_cuisines: l$delete_cuisines == null
+          ? null
+          : Mutation$delete_all$delete_cuisines.fromJson(
+              (l$delete_cuisines as Map<String, dynamic>)),
+      delete_bridge_recipes_cuisines: l$delete_bridge_recipes_cuisines == null
+          ? null
+          : Mutation$delete_all$delete_bridge_recipes_cuisines.fromJson(
+              (l$delete_bridge_recipes_cuisines as Map<String, dynamic>)),
+      delete_bridge_recipes_ingredients: l$delete_bridge_recipes_ingredients ==
+              null
+          ? null
+          : Mutation$delete_all$delete_bridge_recipes_ingredients.fromJson(
+              (l$delete_bridge_recipes_ingredients as Map<String, dynamic>)),
+      delete_bridge_recipes_tags: l$delete_bridge_recipes_tags == null
+          ? null
+          : Mutation$delete_all$delete_bridge_recipes_tags.fromJson(
+              (l$delete_bridge_recipes_tags as Map<String, dynamic>)),
+      delete_ingredient_family: l$delete_ingredient_family == null
+          ? null
+          : Mutation$delete_all$delete_ingredient_family.fromJson(
+              (l$delete_ingredient_family as Map<String, dynamic>)),
+      delete_ingredients: l$delete_ingredients == null
+          ? null
+          : Mutation$delete_all$delete_ingredients.fromJson(
+              (l$delete_ingredients as Map<String, dynamic>)),
+      delete_recipes: l$delete_recipes == null
+          ? null
+          : Mutation$delete_all$delete_recipes.fromJson(
+              (l$delete_recipes as Map<String, dynamic>)),
+      delete_tags: l$delete_tags == null
+          ? null
+          : Mutation$delete_all$delete_tags.fromJson(
+              (l$delete_tags as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$delete_all$delete_cuisines? delete_cuisines;
+
+  final Mutation$delete_all$delete_bridge_recipes_cuisines?
+      delete_bridge_recipes_cuisines;
+
+  final Mutation$delete_all$delete_bridge_recipes_ingredients?
+      delete_bridge_recipes_ingredients;
+
+  final Mutation$delete_all$delete_bridge_recipes_tags?
+      delete_bridge_recipes_tags;
+
+  final Mutation$delete_all$delete_ingredient_family? delete_ingredient_family;
+
+  final Mutation$delete_all$delete_ingredients? delete_ingredients;
+
+  final Mutation$delete_all$delete_recipes? delete_recipes;
+
+  final Mutation$delete_all$delete_tags? delete_tags;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$delete_cuisines = delete_cuisines;
+    _resultData['delete_cuisines'] = l$delete_cuisines?.toJson();
+    final l$delete_bridge_recipes_cuisines = delete_bridge_recipes_cuisines;
+    _resultData['delete_bridge_recipes_cuisines'] =
+        l$delete_bridge_recipes_cuisines?.toJson();
+    final l$delete_bridge_recipes_ingredients =
+        delete_bridge_recipes_ingredients;
+    _resultData['delete_bridge_recipes_ingredients'] =
+        l$delete_bridge_recipes_ingredients?.toJson();
+    final l$delete_bridge_recipes_tags = delete_bridge_recipes_tags;
+    _resultData['delete_bridge_recipes_tags'] =
+        l$delete_bridge_recipes_tags?.toJson();
+    final l$delete_ingredient_family = delete_ingredient_family;
+    _resultData['delete_ingredient_family'] =
+        l$delete_ingredient_family?.toJson();
+    final l$delete_ingredients = delete_ingredients;
+    _resultData['delete_ingredients'] = l$delete_ingredients?.toJson();
+    final l$delete_recipes = delete_recipes;
+    _resultData['delete_recipes'] = l$delete_recipes?.toJson();
+    final l$delete_tags = delete_tags;
+    _resultData['delete_tags'] = l$delete_tags?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$delete_cuisines = delete_cuisines;
+    final l$delete_bridge_recipes_cuisines = delete_bridge_recipes_cuisines;
+    final l$delete_bridge_recipes_ingredients =
+        delete_bridge_recipes_ingredients;
+    final l$delete_bridge_recipes_tags = delete_bridge_recipes_tags;
+    final l$delete_ingredient_family = delete_ingredient_family;
+    final l$delete_ingredients = delete_ingredients;
+    final l$delete_recipes = delete_recipes;
+    final l$delete_tags = delete_tags;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$delete_cuisines,
+      l$delete_bridge_recipes_cuisines,
+      l$delete_bridge_recipes_ingredients,
+      l$delete_bridge_recipes_tags,
+      l$delete_ingredient_family,
+      l$delete_ingredients,
+      l$delete_recipes,
+      l$delete_tags,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Mutation$delete_all) || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$delete_cuisines = delete_cuisines;
+    final lOther$delete_cuisines = other.delete_cuisines;
+    if (l$delete_cuisines != lOther$delete_cuisines) {
+      return false;
+    }
+    final l$delete_bridge_recipes_cuisines = delete_bridge_recipes_cuisines;
+    final lOther$delete_bridge_recipes_cuisines =
+        other.delete_bridge_recipes_cuisines;
+    if (l$delete_bridge_recipes_cuisines !=
+        lOther$delete_bridge_recipes_cuisines) {
+      return false;
+    }
+    final l$delete_bridge_recipes_ingredients =
+        delete_bridge_recipes_ingredients;
+    final lOther$delete_bridge_recipes_ingredients =
+        other.delete_bridge_recipes_ingredients;
+    if (l$delete_bridge_recipes_ingredients !=
+        lOther$delete_bridge_recipes_ingredients) {
+      return false;
+    }
+    final l$delete_bridge_recipes_tags = delete_bridge_recipes_tags;
+    final lOther$delete_bridge_recipes_tags = other.delete_bridge_recipes_tags;
+    if (l$delete_bridge_recipes_tags != lOther$delete_bridge_recipes_tags) {
+      return false;
+    }
+    final l$delete_ingredient_family = delete_ingredient_family;
+    final lOther$delete_ingredient_family = other.delete_ingredient_family;
+    if (l$delete_ingredient_family != lOther$delete_ingredient_family) {
+      return false;
+    }
+    final l$delete_ingredients = delete_ingredients;
+    final lOther$delete_ingredients = other.delete_ingredients;
+    if (l$delete_ingredients != lOther$delete_ingredients) {
+      return false;
+    }
+    final l$delete_recipes = delete_recipes;
+    final lOther$delete_recipes = other.delete_recipes;
+    if (l$delete_recipes != lOther$delete_recipes) {
+      return false;
+    }
+    final l$delete_tags = delete_tags;
+    final lOther$delete_tags = other.delete_tags;
+    if (l$delete_tags != lOther$delete_tags) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$delete_all on Mutation$delete_all {
+  CopyWith$Mutation$delete_all<Mutation$delete_all> get copyWith =>
+      CopyWith$Mutation$delete_all(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$delete_all<TRes> {
+  factory CopyWith$Mutation$delete_all(
+    Mutation$delete_all instance,
+    TRes Function(Mutation$delete_all) then,
+  ) = _CopyWithImpl$Mutation$delete_all;
+
+  factory CopyWith$Mutation$delete_all.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$delete_all;
+
+  TRes call({
+    Mutation$delete_all$delete_cuisines? delete_cuisines,
+    Mutation$delete_all$delete_bridge_recipes_cuisines?
+        delete_bridge_recipes_cuisines,
+    Mutation$delete_all$delete_bridge_recipes_ingredients?
+        delete_bridge_recipes_ingredients,
+    Mutation$delete_all$delete_bridge_recipes_tags? delete_bridge_recipes_tags,
+    Mutation$delete_all$delete_ingredient_family? delete_ingredient_family,
+    Mutation$delete_all$delete_ingredients? delete_ingredients,
+    Mutation$delete_all$delete_recipes? delete_recipes,
+    Mutation$delete_all$delete_tags? delete_tags,
+    String? $__typename,
+  });
+  CopyWith$Mutation$delete_all$delete_cuisines<TRes> get delete_cuisines;
+  CopyWith$Mutation$delete_all$delete_bridge_recipes_cuisines<TRes>
+      get delete_bridge_recipes_cuisines;
+  CopyWith$Mutation$delete_all$delete_bridge_recipes_ingredients<TRes>
+      get delete_bridge_recipes_ingredients;
+  CopyWith$Mutation$delete_all$delete_bridge_recipes_tags<TRes>
+      get delete_bridge_recipes_tags;
+  CopyWith$Mutation$delete_all$delete_ingredient_family<TRes>
+      get delete_ingredient_family;
+  CopyWith$Mutation$delete_all$delete_ingredients<TRes> get delete_ingredients;
+  CopyWith$Mutation$delete_all$delete_recipes<TRes> get delete_recipes;
+  CopyWith$Mutation$delete_all$delete_tags<TRes> get delete_tags;
+}
+
+class _CopyWithImpl$Mutation$delete_all<TRes>
+    implements CopyWith$Mutation$delete_all<TRes> {
+  _CopyWithImpl$Mutation$delete_all(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$delete_all _instance;
+
+  final TRes Function(Mutation$delete_all) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? delete_cuisines = _undefined,
+    Object? delete_bridge_recipes_cuisines = _undefined,
+    Object? delete_bridge_recipes_ingredients = _undefined,
+    Object? delete_bridge_recipes_tags = _undefined,
+    Object? delete_ingredient_family = _undefined,
+    Object? delete_ingredients = _undefined,
+    Object? delete_recipes = _undefined,
+    Object? delete_tags = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$delete_all(
+        delete_cuisines: delete_cuisines == _undefined
+            ? _instance.delete_cuisines
+            : (delete_cuisines as Mutation$delete_all$delete_cuisines?),
+        delete_bridge_recipes_cuisines:
+            delete_bridge_recipes_cuisines == _undefined
+                ? _instance.delete_bridge_recipes_cuisines
+                : (delete_bridge_recipes_cuisines
+                    as Mutation$delete_all$delete_bridge_recipes_cuisines?),
+        delete_bridge_recipes_ingredients:
+            delete_bridge_recipes_ingredients == _undefined
+                ? _instance.delete_bridge_recipes_ingredients
+                : (delete_bridge_recipes_ingredients
+                    as Mutation$delete_all$delete_bridge_recipes_ingredients?),
+        delete_bridge_recipes_tags: delete_bridge_recipes_tags == _undefined
+            ? _instance.delete_bridge_recipes_tags
+            : (delete_bridge_recipes_tags
+                as Mutation$delete_all$delete_bridge_recipes_tags?),
+        delete_ingredient_family: delete_ingredient_family == _undefined
+            ? _instance.delete_ingredient_family
+            : (delete_ingredient_family
+                as Mutation$delete_all$delete_ingredient_family?),
+        delete_ingredients: delete_ingredients == _undefined
+            ? _instance.delete_ingredients
+            : (delete_ingredients as Mutation$delete_all$delete_ingredients?),
+        delete_recipes: delete_recipes == _undefined
+            ? _instance.delete_recipes
+            : (delete_recipes as Mutation$delete_all$delete_recipes?),
+        delete_tags: delete_tags == _undefined
+            ? _instance.delete_tags
+            : (delete_tags as Mutation$delete_all$delete_tags?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Mutation$delete_all$delete_cuisines<TRes> get delete_cuisines {
+    final local$delete_cuisines = _instance.delete_cuisines;
+    return local$delete_cuisines == null
+        ? CopyWith$Mutation$delete_all$delete_cuisines.stub(_then(_instance))
+        : CopyWith$Mutation$delete_all$delete_cuisines(
+            local$delete_cuisines, (e) => call(delete_cuisines: e));
+  }
+
+  CopyWith$Mutation$delete_all$delete_bridge_recipes_cuisines<TRes>
+      get delete_bridge_recipes_cuisines {
+    final local$delete_bridge_recipes_cuisines =
+        _instance.delete_bridge_recipes_cuisines;
+    return local$delete_bridge_recipes_cuisines == null
+        ? CopyWith$Mutation$delete_all$delete_bridge_recipes_cuisines.stub(
+            _then(_instance))
+        : CopyWith$Mutation$delete_all$delete_bridge_recipes_cuisines(
+            local$delete_bridge_recipes_cuisines,
+            (e) => call(delete_bridge_recipes_cuisines: e));
+  }
+
+  CopyWith$Mutation$delete_all$delete_bridge_recipes_ingredients<TRes>
+      get delete_bridge_recipes_ingredients {
+    final local$delete_bridge_recipes_ingredients =
+        _instance.delete_bridge_recipes_ingredients;
+    return local$delete_bridge_recipes_ingredients == null
+        ? CopyWith$Mutation$delete_all$delete_bridge_recipes_ingredients.stub(
+            _then(_instance))
+        : CopyWith$Mutation$delete_all$delete_bridge_recipes_ingredients(
+            local$delete_bridge_recipes_ingredients,
+            (e) => call(delete_bridge_recipes_ingredients: e));
+  }
+
+  CopyWith$Mutation$delete_all$delete_bridge_recipes_tags<TRes>
+      get delete_bridge_recipes_tags {
+    final local$delete_bridge_recipes_tags =
+        _instance.delete_bridge_recipes_tags;
+    return local$delete_bridge_recipes_tags == null
+        ? CopyWith$Mutation$delete_all$delete_bridge_recipes_tags.stub(
+            _then(_instance))
+        : CopyWith$Mutation$delete_all$delete_bridge_recipes_tags(
+            local$delete_bridge_recipes_tags,
+            (e) => call(delete_bridge_recipes_tags: e));
+  }
+
+  CopyWith$Mutation$delete_all$delete_ingredient_family<TRes>
+      get delete_ingredient_family {
+    final local$delete_ingredient_family = _instance.delete_ingredient_family;
+    return local$delete_ingredient_family == null
+        ? CopyWith$Mutation$delete_all$delete_ingredient_family.stub(
+            _then(_instance))
+        : CopyWith$Mutation$delete_all$delete_ingredient_family(
+            local$delete_ingredient_family,
+            (e) => call(delete_ingredient_family: e));
+  }
+
+  CopyWith$Mutation$delete_all$delete_ingredients<TRes> get delete_ingredients {
+    final local$delete_ingredients = _instance.delete_ingredients;
+    return local$delete_ingredients == null
+        ? CopyWith$Mutation$delete_all$delete_ingredients.stub(_then(_instance))
+        : CopyWith$Mutation$delete_all$delete_ingredients(
+            local$delete_ingredients, (e) => call(delete_ingredients: e));
+  }
+
+  CopyWith$Mutation$delete_all$delete_recipes<TRes> get delete_recipes {
+    final local$delete_recipes = _instance.delete_recipes;
+    return local$delete_recipes == null
+        ? CopyWith$Mutation$delete_all$delete_recipes.stub(_then(_instance))
+        : CopyWith$Mutation$delete_all$delete_recipes(
+            local$delete_recipes, (e) => call(delete_recipes: e));
+  }
+
+  CopyWith$Mutation$delete_all$delete_tags<TRes> get delete_tags {
+    final local$delete_tags = _instance.delete_tags;
+    return local$delete_tags == null
+        ? CopyWith$Mutation$delete_all$delete_tags.stub(_then(_instance))
+        : CopyWith$Mutation$delete_all$delete_tags(
+            local$delete_tags, (e) => call(delete_tags: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$delete_all<TRes>
+    implements CopyWith$Mutation$delete_all<TRes> {
+  _CopyWithStubImpl$Mutation$delete_all(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$delete_all$delete_cuisines? delete_cuisines,
+    Mutation$delete_all$delete_bridge_recipes_cuisines?
+        delete_bridge_recipes_cuisines,
+    Mutation$delete_all$delete_bridge_recipes_ingredients?
+        delete_bridge_recipes_ingredients,
+    Mutation$delete_all$delete_bridge_recipes_tags? delete_bridge_recipes_tags,
+    Mutation$delete_all$delete_ingredient_family? delete_ingredient_family,
+    Mutation$delete_all$delete_ingredients? delete_ingredients,
+    Mutation$delete_all$delete_recipes? delete_recipes,
+    Mutation$delete_all$delete_tags? delete_tags,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Mutation$delete_all$delete_cuisines<TRes> get delete_cuisines =>
+      CopyWith$Mutation$delete_all$delete_cuisines.stub(_res);
+  CopyWith$Mutation$delete_all$delete_bridge_recipes_cuisines<TRes>
+      get delete_bridge_recipes_cuisines =>
+          CopyWith$Mutation$delete_all$delete_bridge_recipes_cuisines.stub(
+              _res);
+  CopyWith$Mutation$delete_all$delete_bridge_recipes_ingredients<TRes>
+      get delete_bridge_recipes_ingredients =>
+          CopyWith$Mutation$delete_all$delete_bridge_recipes_ingredients.stub(
+              _res);
+  CopyWith$Mutation$delete_all$delete_bridge_recipes_tags<TRes>
+      get delete_bridge_recipes_tags =>
+          CopyWith$Mutation$delete_all$delete_bridge_recipes_tags.stub(_res);
+  CopyWith$Mutation$delete_all$delete_ingredient_family<TRes>
+      get delete_ingredient_family =>
+          CopyWith$Mutation$delete_all$delete_ingredient_family.stub(_res);
+  CopyWith$Mutation$delete_all$delete_ingredients<TRes>
+      get delete_ingredients =>
+          CopyWith$Mutation$delete_all$delete_ingredients.stub(_res);
+  CopyWith$Mutation$delete_all$delete_recipes<TRes> get delete_recipes =>
+      CopyWith$Mutation$delete_all$delete_recipes.stub(_res);
+  CopyWith$Mutation$delete_all$delete_tags<TRes> get delete_tags =>
+      CopyWith$Mutation$delete_all$delete_tags.stub(_res);
+}
+
+const documentNodeMutationdelete_all = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'delete_all'),
+    variableDefinitions: [],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'delete_cuisines'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'where'),
+            value: ObjectValueNode(fields: []),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'affected_rows'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: 'delete_bridge_recipes_cuisines'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'where'),
+            value: ObjectValueNode(fields: []),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'affected_rows'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: 'delete_bridge_recipes_ingredients'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'where'),
+            value: ObjectValueNode(fields: []),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'affected_rows'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: 'delete_bridge_recipes_tags'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'where'),
+            value: ObjectValueNode(fields: []),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'affected_rows'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: 'delete_ingredient_family'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'where'),
+            value: ObjectValueNode(fields: []),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'affected_rows'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: 'delete_ingredients'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'where'),
+            value: ObjectValueNode(fields: []),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'affected_rows'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: 'delete_recipes'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'where'),
+            value: ObjectValueNode(fields: []),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'affected_rows'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: 'delete_tags'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'where'),
+            value: ObjectValueNode(fields: []),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'affected_rows'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+
+class Mutation$delete_all$delete_cuisines {
+  Mutation$delete_all$delete_cuisines({
+    required this.affected_rows,
+    required this.$__typename,
+  });
+
+  factory Mutation$delete_all$delete_cuisines.fromJson(
+      Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
+    final l$$__typename = json['__typename'];
+    return Mutation$delete_all$delete_cuisines(
+      affected_rows: (l$affected_rows as int),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int affected_rows;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$affected_rows = affected_rows;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$affected_rows,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Mutation$delete_all$delete_cuisines) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$delete_all$delete_cuisines
+    on Mutation$delete_all$delete_cuisines {
+  CopyWith$Mutation$delete_all$delete_cuisines<
+          Mutation$delete_all$delete_cuisines>
+      get copyWith => CopyWith$Mutation$delete_all$delete_cuisines(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$delete_all$delete_cuisines<TRes> {
+  factory CopyWith$Mutation$delete_all$delete_cuisines(
+    Mutation$delete_all$delete_cuisines instance,
+    TRes Function(Mutation$delete_all$delete_cuisines) then,
+  ) = _CopyWithImpl$Mutation$delete_all$delete_cuisines;
+
+  factory CopyWith$Mutation$delete_all$delete_cuisines.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$delete_all$delete_cuisines;
+
+  TRes call({
+    int? affected_rows,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$delete_all$delete_cuisines<TRes>
+    implements CopyWith$Mutation$delete_all$delete_cuisines<TRes> {
+  _CopyWithImpl$Mutation$delete_all$delete_cuisines(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$delete_all$delete_cuisines _instance;
+
+  final TRes Function(Mutation$delete_all$delete_cuisines) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? affected_rows = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$delete_all$delete_cuisines(
+        affected_rows: affected_rows == _undefined || affected_rows == null
+            ? _instance.affected_rows
+            : (affected_rows as int),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$delete_all$delete_cuisines<TRes>
+    implements CopyWith$Mutation$delete_all$delete_cuisines<TRes> {
+  _CopyWithStubImpl$Mutation$delete_all$delete_cuisines(this._res);
+
+  TRes _res;
+
+  call({
+    int? affected_rows,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Mutation$delete_all$delete_bridge_recipes_cuisines {
+  Mutation$delete_all$delete_bridge_recipes_cuisines({
+    required this.affected_rows,
+    required this.$__typename,
+  });
+
+  factory Mutation$delete_all$delete_bridge_recipes_cuisines.fromJson(
+      Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
+    final l$$__typename = json['__typename'];
+    return Mutation$delete_all$delete_bridge_recipes_cuisines(
+      affected_rows: (l$affected_rows as int),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int affected_rows;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$affected_rows = affected_rows;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$affected_rows,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Mutation$delete_all$delete_bridge_recipes_cuisines) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$delete_all$delete_bridge_recipes_cuisines
+    on Mutation$delete_all$delete_bridge_recipes_cuisines {
+  CopyWith$Mutation$delete_all$delete_bridge_recipes_cuisines<
+          Mutation$delete_all$delete_bridge_recipes_cuisines>
+      get copyWith =>
+          CopyWith$Mutation$delete_all$delete_bridge_recipes_cuisines(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$delete_all$delete_bridge_recipes_cuisines<
+    TRes> {
+  factory CopyWith$Mutation$delete_all$delete_bridge_recipes_cuisines(
+    Mutation$delete_all$delete_bridge_recipes_cuisines instance,
+    TRes Function(Mutation$delete_all$delete_bridge_recipes_cuisines) then,
+  ) = _CopyWithImpl$Mutation$delete_all$delete_bridge_recipes_cuisines;
+
+  factory CopyWith$Mutation$delete_all$delete_bridge_recipes_cuisines.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$delete_all$delete_bridge_recipes_cuisines;
+
+  TRes call({
+    int? affected_rows,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$delete_all$delete_bridge_recipes_cuisines<TRes>
+    implements
+        CopyWith$Mutation$delete_all$delete_bridge_recipes_cuisines<TRes> {
+  _CopyWithImpl$Mutation$delete_all$delete_bridge_recipes_cuisines(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$delete_all$delete_bridge_recipes_cuisines _instance;
+
+  final TRes Function(Mutation$delete_all$delete_bridge_recipes_cuisines) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? affected_rows = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$delete_all$delete_bridge_recipes_cuisines(
+        affected_rows: affected_rows == _undefined || affected_rows == null
+            ? _instance.affected_rows
+            : (affected_rows as int),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$delete_all$delete_bridge_recipes_cuisines<TRes>
+    implements
+        CopyWith$Mutation$delete_all$delete_bridge_recipes_cuisines<TRes> {
+  _CopyWithStubImpl$Mutation$delete_all$delete_bridge_recipes_cuisines(
+      this._res);
+
+  TRes _res;
+
+  call({
+    int? affected_rows,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Mutation$delete_all$delete_bridge_recipes_ingredients {
+  Mutation$delete_all$delete_bridge_recipes_ingredients({
+    required this.affected_rows,
+    required this.$__typename,
+  });
+
+  factory Mutation$delete_all$delete_bridge_recipes_ingredients.fromJson(
+      Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
+    final l$$__typename = json['__typename'];
+    return Mutation$delete_all$delete_bridge_recipes_ingredients(
+      affected_rows: (l$affected_rows as int),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int affected_rows;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$affected_rows = affected_rows;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$affected_rows,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Mutation$delete_all$delete_bridge_recipes_ingredients) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$delete_all$delete_bridge_recipes_ingredients
+    on Mutation$delete_all$delete_bridge_recipes_ingredients {
+  CopyWith$Mutation$delete_all$delete_bridge_recipes_ingredients<
+          Mutation$delete_all$delete_bridge_recipes_ingredients>
+      get copyWith =>
+          CopyWith$Mutation$delete_all$delete_bridge_recipes_ingredients(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$delete_all$delete_bridge_recipes_ingredients<
+    TRes> {
+  factory CopyWith$Mutation$delete_all$delete_bridge_recipes_ingredients(
+    Mutation$delete_all$delete_bridge_recipes_ingredients instance,
+    TRes Function(Mutation$delete_all$delete_bridge_recipes_ingredients) then,
+  ) = _CopyWithImpl$Mutation$delete_all$delete_bridge_recipes_ingredients;
+
+  factory CopyWith$Mutation$delete_all$delete_bridge_recipes_ingredients.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$delete_all$delete_bridge_recipes_ingredients;
+
+  TRes call({
+    int? affected_rows,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$delete_all$delete_bridge_recipes_ingredients<TRes>
+    implements
+        CopyWith$Mutation$delete_all$delete_bridge_recipes_ingredients<TRes> {
+  _CopyWithImpl$Mutation$delete_all$delete_bridge_recipes_ingredients(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$delete_all$delete_bridge_recipes_ingredients _instance;
+
+  final TRes Function(Mutation$delete_all$delete_bridge_recipes_ingredients)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? affected_rows = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$delete_all$delete_bridge_recipes_ingredients(
+        affected_rows: affected_rows == _undefined || affected_rows == null
+            ? _instance.affected_rows
+            : (affected_rows as int),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$delete_all$delete_bridge_recipes_ingredients<
+        TRes>
+    implements
+        CopyWith$Mutation$delete_all$delete_bridge_recipes_ingredients<TRes> {
+  _CopyWithStubImpl$Mutation$delete_all$delete_bridge_recipes_ingredients(
+      this._res);
+
+  TRes _res;
+
+  call({
+    int? affected_rows,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Mutation$delete_all$delete_bridge_recipes_tags {
+  Mutation$delete_all$delete_bridge_recipes_tags({
+    required this.affected_rows,
+    required this.$__typename,
+  });
+
+  factory Mutation$delete_all$delete_bridge_recipes_tags.fromJson(
+      Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
+    final l$$__typename = json['__typename'];
+    return Mutation$delete_all$delete_bridge_recipes_tags(
+      affected_rows: (l$affected_rows as int),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int affected_rows;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$affected_rows = affected_rows;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$affected_rows,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Mutation$delete_all$delete_bridge_recipes_tags) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$delete_all$delete_bridge_recipes_tags
+    on Mutation$delete_all$delete_bridge_recipes_tags {
+  CopyWith$Mutation$delete_all$delete_bridge_recipes_tags<
+          Mutation$delete_all$delete_bridge_recipes_tags>
+      get copyWith => CopyWith$Mutation$delete_all$delete_bridge_recipes_tags(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$delete_all$delete_bridge_recipes_tags<TRes> {
+  factory CopyWith$Mutation$delete_all$delete_bridge_recipes_tags(
+    Mutation$delete_all$delete_bridge_recipes_tags instance,
+    TRes Function(Mutation$delete_all$delete_bridge_recipes_tags) then,
+  ) = _CopyWithImpl$Mutation$delete_all$delete_bridge_recipes_tags;
+
+  factory CopyWith$Mutation$delete_all$delete_bridge_recipes_tags.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$delete_all$delete_bridge_recipes_tags;
+
+  TRes call({
+    int? affected_rows,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$delete_all$delete_bridge_recipes_tags<TRes>
+    implements CopyWith$Mutation$delete_all$delete_bridge_recipes_tags<TRes> {
+  _CopyWithImpl$Mutation$delete_all$delete_bridge_recipes_tags(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$delete_all$delete_bridge_recipes_tags _instance;
+
+  final TRes Function(Mutation$delete_all$delete_bridge_recipes_tags) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? affected_rows = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$delete_all$delete_bridge_recipes_tags(
+        affected_rows: affected_rows == _undefined || affected_rows == null
+            ? _instance.affected_rows
+            : (affected_rows as int),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$delete_all$delete_bridge_recipes_tags<TRes>
+    implements CopyWith$Mutation$delete_all$delete_bridge_recipes_tags<TRes> {
+  _CopyWithStubImpl$Mutation$delete_all$delete_bridge_recipes_tags(this._res);
+
+  TRes _res;
+
+  call({
+    int? affected_rows,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Mutation$delete_all$delete_ingredient_family {
+  Mutation$delete_all$delete_ingredient_family({
+    required this.affected_rows,
+    required this.$__typename,
+  });
+
+  factory Mutation$delete_all$delete_ingredient_family.fromJson(
+      Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
+    final l$$__typename = json['__typename'];
+    return Mutation$delete_all$delete_ingredient_family(
+      affected_rows: (l$affected_rows as int),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int affected_rows;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$affected_rows = affected_rows;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$affected_rows,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Mutation$delete_all$delete_ingredient_family) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$delete_all$delete_ingredient_family
+    on Mutation$delete_all$delete_ingredient_family {
+  CopyWith$Mutation$delete_all$delete_ingredient_family<
+          Mutation$delete_all$delete_ingredient_family>
+      get copyWith => CopyWith$Mutation$delete_all$delete_ingredient_family(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$delete_all$delete_ingredient_family<TRes> {
+  factory CopyWith$Mutation$delete_all$delete_ingredient_family(
+    Mutation$delete_all$delete_ingredient_family instance,
+    TRes Function(Mutation$delete_all$delete_ingredient_family) then,
+  ) = _CopyWithImpl$Mutation$delete_all$delete_ingredient_family;
+
+  factory CopyWith$Mutation$delete_all$delete_ingredient_family.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$delete_all$delete_ingredient_family;
+
+  TRes call({
+    int? affected_rows,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$delete_all$delete_ingredient_family<TRes>
+    implements CopyWith$Mutation$delete_all$delete_ingredient_family<TRes> {
+  _CopyWithImpl$Mutation$delete_all$delete_ingredient_family(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$delete_all$delete_ingredient_family _instance;
+
+  final TRes Function(Mutation$delete_all$delete_ingredient_family) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? affected_rows = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$delete_all$delete_ingredient_family(
+        affected_rows: affected_rows == _undefined || affected_rows == null
+            ? _instance.affected_rows
+            : (affected_rows as int),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$delete_all$delete_ingredient_family<TRes>
+    implements CopyWith$Mutation$delete_all$delete_ingredient_family<TRes> {
+  _CopyWithStubImpl$Mutation$delete_all$delete_ingredient_family(this._res);
+
+  TRes _res;
+
+  call({
+    int? affected_rows,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Mutation$delete_all$delete_ingredients {
+  Mutation$delete_all$delete_ingredients({
+    required this.affected_rows,
+    required this.$__typename,
+  });
+
+  factory Mutation$delete_all$delete_ingredients.fromJson(
+      Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
+    final l$$__typename = json['__typename'];
+    return Mutation$delete_all$delete_ingredients(
+      affected_rows: (l$affected_rows as int),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int affected_rows;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$affected_rows = affected_rows;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$affected_rows,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Mutation$delete_all$delete_ingredients) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$delete_all$delete_ingredients
+    on Mutation$delete_all$delete_ingredients {
+  CopyWith$Mutation$delete_all$delete_ingredients<
+          Mutation$delete_all$delete_ingredients>
+      get copyWith => CopyWith$Mutation$delete_all$delete_ingredients(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$delete_all$delete_ingredients<TRes> {
+  factory CopyWith$Mutation$delete_all$delete_ingredients(
+    Mutation$delete_all$delete_ingredients instance,
+    TRes Function(Mutation$delete_all$delete_ingredients) then,
+  ) = _CopyWithImpl$Mutation$delete_all$delete_ingredients;
+
+  factory CopyWith$Mutation$delete_all$delete_ingredients.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$delete_all$delete_ingredients;
+
+  TRes call({
+    int? affected_rows,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$delete_all$delete_ingredients<TRes>
+    implements CopyWith$Mutation$delete_all$delete_ingredients<TRes> {
+  _CopyWithImpl$Mutation$delete_all$delete_ingredients(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$delete_all$delete_ingredients _instance;
+
+  final TRes Function(Mutation$delete_all$delete_ingredients) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? affected_rows = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$delete_all$delete_ingredients(
+        affected_rows: affected_rows == _undefined || affected_rows == null
+            ? _instance.affected_rows
+            : (affected_rows as int),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$delete_all$delete_ingredients<TRes>
+    implements CopyWith$Mutation$delete_all$delete_ingredients<TRes> {
+  _CopyWithStubImpl$Mutation$delete_all$delete_ingredients(this._res);
+
+  TRes _res;
+
+  call({
+    int? affected_rows,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Mutation$delete_all$delete_recipes {
+  Mutation$delete_all$delete_recipes({
+    required this.affected_rows,
+    required this.$__typename,
+  });
+
+  factory Mutation$delete_all$delete_recipes.fromJson(
+      Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
+    final l$$__typename = json['__typename'];
+    return Mutation$delete_all$delete_recipes(
+      affected_rows: (l$affected_rows as int),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int affected_rows;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$affected_rows = affected_rows;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$affected_rows,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Mutation$delete_all$delete_recipes) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$delete_all$delete_recipes
+    on Mutation$delete_all$delete_recipes {
+  CopyWith$Mutation$delete_all$delete_recipes<
+          Mutation$delete_all$delete_recipes>
+      get copyWith => CopyWith$Mutation$delete_all$delete_recipes(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$delete_all$delete_recipes<TRes> {
+  factory CopyWith$Mutation$delete_all$delete_recipes(
+    Mutation$delete_all$delete_recipes instance,
+    TRes Function(Mutation$delete_all$delete_recipes) then,
+  ) = _CopyWithImpl$Mutation$delete_all$delete_recipes;
+
+  factory CopyWith$Mutation$delete_all$delete_recipes.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$delete_all$delete_recipes;
+
+  TRes call({
+    int? affected_rows,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$delete_all$delete_recipes<TRes>
+    implements CopyWith$Mutation$delete_all$delete_recipes<TRes> {
+  _CopyWithImpl$Mutation$delete_all$delete_recipes(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$delete_all$delete_recipes _instance;
+
+  final TRes Function(Mutation$delete_all$delete_recipes) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? affected_rows = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$delete_all$delete_recipes(
+        affected_rows: affected_rows == _undefined || affected_rows == null
+            ? _instance.affected_rows
+            : (affected_rows as int),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$delete_all$delete_recipes<TRes>
+    implements CopyWith$Mutation$delete_all$delete_recipes<TRes> {
+  _CopyWithStubImpl$Mutation$delete_all$delete_recipes(this._res);
+
+  TRes _res;
+
+  call({
+    int? affected_rows,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Mutation$delete_all$delete_tags {
+  Mutation$delete_all$delete_tags({
+    required this.affected_rows,
+    required this.$__typename,
+  });
+
+  factory Mutation$delete_all$delete_tags.fromJson(Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
+    final l$$__typename = json['__typename'];
+    return Mutation$delete_all$delete_tags(
+      affected_rows: (l$affected_rows as int),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int affected_rows;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$affected_rows = affected_rows;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$affected_rows,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Mutation$delete_all$delete_tags) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$delete_all$delete_tags
+    on Mutation$delete_all$delete_tags {
+  CopyWith$Mutation$delete_all$delete_tags<Mutation$delete_all$delete_tags>
+      get copyWith => CopyWith$Mutation$delete_all$delete_tags(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$delete_all$delete_tags<TRes> {
+  factory CopyWith$Mutation$delete_all$delete_tags(
+    Mutation$delete_all$delete_tags instance,
+    TRes Function(Mutation$delete_all$delete_tags) then,
+  ) = _CopyWithImpl$Mutation$delete_all$delete_tags;
+
+  factory CopyWith$Mutation$delete_all$delete_tags.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$delete_all$delete_tags;
+
+  TRes call({
+    int? affected_rows,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$delete_all$delete_tags<TRes>
+    implements CopyWith$Mutation$delete_all$delete_tags<TRes> {
+  _CopyWithImpl$Mutation$delete_all$delete_tags(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$delete_all$delete_tags _instance;
+
+  final TRes Function(Mutation$delete_all$delete_tags) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? affected_rows = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$delete_all$delete_tags(
+        affected_rows: affected_rows == _undefined || affected_rows == null
+            ? _instance.affected_rows
+            : (affected_rows as int),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$delete_all$delete_tags<TRes>
+    implements CopyWith$Mutation$delete_all$delete_tags<TRes> {
+  _CopyWithStubImpl$Mutation$delete_all$delete_tags(this._res);
+
+  TRes _res;
+
+  call({
+    int? affected_rows,
+    String? $__typename,
+  }) =>
+      _res;
+}

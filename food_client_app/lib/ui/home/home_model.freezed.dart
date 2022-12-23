@@ -1048,34 +1048,34 @@ mixin _$HomeModelFilter {
   String get id => throw _privateConstructorUsedError;
   String get displayedName => throw _privateConstructorUsedError;
   bool get isSelected => throw _privateConstructorUsedError;
-  int get numberOfRecipes => throw _privateConstructorUsedError;
+  Option<int> get numberOfRecipes => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String id, String displayedName, String type,
-            bool isSelected, int numberOfRecipes)
+            bool isSelected, Option<int> numberOfRecipes)
         tag,
     required TResult Function(String id, String displayedName, String slug,
-            bool isSelected, int numberOfRecipes)
+            bool isSelected, Option<int> numberOfRecipes)
         cuisine,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String id, String displayedName, String type,
-            bool isSelected, int numberOfRecipes)?
+            bool isSelected, Option<int> numberOfRecipes)?
         tag,
     TResult? Function(String id, String displayedName, String slug,
-            bool isSelected, int numberOfRecipes)?
+            bool isSelected, Option<int> numberOfRecipes)?
         cuisine,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String id, String displayedName, String type,
-            bool isSelected, int numberOfRecipes)?
+            bool isSelected, Option<int> numberOfRecipes)?
         tag,
     TResult Function(String id, String displayedName, String slug,
-            bool isSelected, int numberOfRecipes)?
+            bool isSelected, Option<int> numberOfRecipes)?
         cuisine,
     required TResult orElse(),
   }) =>
@@ -1112,7 +1112,10 @@ abstract class $HomeModelFilterCopyWith<$Res> {
       _$HomeModelFilterCopyWithImpl<$Res, HomeModelFilter>;
   @useResult
   $Res call(
-      {String id, String displayedName, bool isSelected, int numberOfRecipes});
+      {String id,
+      String displayedName,
+      bool isSelected,
+      Option<int> numberOfRecipes});
 }
 
 /// @nodoc
@@ -1149,7 +1152,7 @@ class _$HomeModelFilterCopyWithImpl<$Res, $Val extends HomeModelFilter>
       numberOfRecipes: null == numberOfRecipes
           ? _value.numberOfRecipes
           : numberOfRecipes // ignore: cast_nullable_to_non_nullable
-              as int,
+              as Option<int>,
     ) as $Val);
   }
 }
@@ -1167,7 +1170,7 @@ abstract class _$$HomeModelFilterTagCopyWith<$Res>
       String displayedName,
       String type,
       bool isSelected,
-      int numberOfRecipes});
+      Option<int> numberOfRecipes});
 }
 
 /// @nodoc
@@ -1207,7 +1210,7 @@ class __$$HomeModelFilterTagCopyWithImpl<$Res>
       numberOfRecipes: null == numberOfRecipes
           ? _value.numberOfRecipes
           : numberOfRecipes // ignore: cast_nullable_to_non_nullable
-              as int,
+              as Option<int>,
     ));
   }
 }
@@ -1231,7 +1234,7 @@ class _$HomeModelFilterTag implements HomeModelFilterTag {
   @override
   final bool isSelected;
   @override
-  final int numberOfRecipes;
+  final Option<int> numberOfRecipes;
 
   @override
   String toString() {
@@ -1268,10 +1271,10 @@ class _$HomeModelFilterTag implements HomeModelFilterTag {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String id, String displayedName, String type,
-            bool isSelected, int numberOfRecipes)
+            bool isSelected, Option<int> numberOfRecipes)
         tag,
     required TResult Function(String id, String displayedName, String slug,
-            bool isSelected, int numberOfRecipes)
+            bool isSelected, Option<int> numberOfRecipes)
         cuisine,
   }) {
     return tag(id, displayedName, type, isSelected, numberOfRecipes);
@@ -1281,10 +1284,10 @@ class _$HomeModelFilterTag implements HomeModelFilterTag {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String id, String displayedName, String type,
-            bool isSelected, int numberOfRecipes)?
+            bool isSelected, Option<int> numberOfRecipes)?
         tag,
     TResult? Function(String id, String displayedName, String slug,
-            bool isSelected, int numberOfRecipes)?
+            bool isSelected, Option<int> numberOfRecipes)?
         cuisine,
   }) {
     return tag?.call(id, displayedName, type, isSelected, numberOfRecipes);
@@ -1294,10 +1297,10 @@ class _$HomeModelFilterTag implements HomeModelFilterTag {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String id, String displayedName, String type,
-            bool isSelected, int numberOfRecipes)?
+            bool isSelected, Option<int> numberOfRecipes)?
         tag,
     TResult Function(String id, String displayedName, String slug,
-            bool isSelected, int numberOfRecipes)?
+            bool isSelected, Option<int> numberOfRecipes)?
         cuisine,
     required TResult orElse(),
   }) {
@@ -1345,7 +1348,7 @@ abstract class HomeModelFilterTag implements HomeModelFilter {
       required final String displayedName,
       required final String type,
       required final bool isSelected,
-      required final int numberOfRecipes}) = _$HomeModelFilterTag;
+      required final Option<int> numberOfRecipes}) = _$HomeModelFilterTag;
 
   @override
   String get id;
@@ -1355,7 +1358,7 @@ abstract class HomeModelFilterTag implements HomeModelFilter {
   @override
   bool get isSelected;
   @override
-  int get numberOfRecipes;
+  Option<int> get numberOfRecipes;
   @override
   @JsonKey(ignore: true)
   _$$HomeModelFilterTagCopyWith<_$HomeModelFilterTag> get copyWith =>
@@ -1375,7 +1378,7 @@ abstract class _$$HomeModelFilterCuisineCopyWith<$Res>
       String displayedName,
       String slug,
       bool isSelected,
-      int numberOfRecipes});
+      Option<int> numberOfRecipes});
 }
 
 /// @nodoc
@@ -1415,7 +1418,7 @@ class __$$HomeModelFilterCuisineCopyWithImpl<$Res>
       numberOfRecipes: null == numberOfRecipes
           ? _value.numberOfRecipes
           : numberOfRecipes // ignore: cast_nullable_to_non_nullable
-              as int,
+              as Option<int>,
     ));
   }
 }
@@ -1439,7 +1442,7 @@ class _$HomeModelFilterCuisine implements HomeModelFilterCuisine {
   @override
   final bool isSelected;
   @override
-  final int numberOfRecipes;
+  final Option<int> numberOfRecipes;
 
   @override
   String toString() {
@@ -1476,10 +1479,10 @@ class _$HomeModelFilterCuisine implements HomeModelFilterCuisine {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String id, String displayedName, String type,
-            bool isSelected, int numberOfRecipes)
+            bool isSelected, Option<int> numberOfRecipes)
         tag,
     required TResult Function(String id, String displayedName, String slug,
-            bool isSelected, int numberOfRecipes)
+            bool isSelected, Option<int> numberOfRecipes)
         cuisine,
   }) {
     return cuisine(id, displayedName, slug, isSelected, numberOfRecipes);
@@ -1489,10 +1492,10 @@ class _$HomeModelFilterCuisine implements HomeModelFilterCuisine {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String id, String displayedName, String type,
-            bool isSelected, int numberOfRecipes)?
+            bool isSelected, Option<int> numberOfRecipes)?
         tag,
     TResult? Function(String id, String displayedName, String slug,
-            bool isSelected, int numberOfRecipes)?
+            bool isSelected, Option<int> numberOfRecipes)?
         cuisine,
   }) {
     return cuisine?.call(id, displayedName, slug, isSelected, numberOfRecipes);
@@ -1502,10 +1505,10 @@ class _$HomeModelFilterCuisine implements HomeModelFilterCuisine {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String id, String displayedName, String type,
-            bool isSelected, int numberOfRecipes)?
+            bool isSelected, Option<int> numberOfRecipes)?
         tag,
     TResult Function(String id, String displayedName, String slug,
-            bool isSelected, int numberOfRecipes)?
+            bool isSelected, Option<int> numberOfRecipes)?
         cuisine,
     required TResult orElse(),
   }) {
@@ -1553,7 +1556,7 @@ abstract class HomeModelFilterCuisine implements HomeModelFilter {
       required final String displayedName,
       required final String slug,
       required final bool isSelected,
-      required final int numberOfRecipes}) = _$HomeModelFilterCuisine;
+      required final Option<int> numberOfRecipes}) = _$HomeModelFilterCuisine;
 
   @override
   String get id;
@@ -1563,7 +1566,7 @@ abstract class HomeModelFilterCuisine implements HomeModelFilter {
   @override
   bool get isSelected;
   @override
-  int get numberOfRecipes;
+  Option<int> get numberOfRecipes;
   @override
   @JsonKey(ignore: true)
   _$$HomeModelFilterCuisineCopyWith<_$HomeModelFilterCuisine> get copyWith =>

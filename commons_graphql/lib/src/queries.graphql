@@ -1,52 +1,154 @@
-query Recipes {
-  recipes {
-    yields_json
-    totalTime
-    steps
-    slug
-    prepTime
-    name
-    imagePath
-    id
-    headline
-    difficulty
-    descriptionMarkdown
-    description
-    country
-    bridge_recipes_tags {
-      tags {
-        type
+query Recipes($country: String, $limit: Int, $offset: Int) {
+    recipes(limit: $limit, offset: $offset, where: {country: {_eq: $country}}) {
+        yields_json
+        totalTime
+        steps
         slug
-        numberOfRecipesByCountry
-        name
-        id
-      }
-    }
-    bridge_recipes_ingredients {
-      ingredients {
-        type
-        slug
+        prepTime
         name
         imagePath
         id
+        headline
+        difficulty
+        descriptionMarkdown
+        description
         country
-        family {
-          type
-          slug
-          name
-          id
-          iconPath
+        bridge_recipes_tags {
+            tags {
+                id
+            }
         }
-      }
+        bridge_recipes_ingredients {
+            ingredients {
+                type
+                slug
+                name
+                imagePath
+                id
+                country
+                family {
+                    type
+                    slug
+                    name
+                    id
+                    iconPath
+                }
+            }
+        }
+        bridge_recipes_cuisines {
+            cuisines {
+                id
+            }
+        }
     }
-    bridge_recipes_cuisines {
-      cuisines {
+    recipes_aggregate {
+        aggregate {
+            count
+        }
+    }
+}
+
+query SingleRecipe($id: String!) {
+    recipes_by_pk(id: $id) {
+        yields_json
+        totalTime
+        steps
+        slug
+        prepTime
+        name
+        imagePath
+        id
+        headline
+        difficulty
+        descriptionMarkdown
+        description
+        country
+        bridge_recipes_tags {
+            tags {
+                id
+                slug
+                name
+            }
+        }
+        bridge_recipes_ingredients {
+            ingredients {
+                type
+                slug
+                name
+                imagePath
+                id
+                country
+                family {
+                    type
+                    slug
+                    name
+                    id
+                    iconPath
+                }
+            }
+        }
+        bridge_recipes_cuisines {
+            cuisines {
+                id
+            }
+        }
+    }
+    recipes_aggregate {
+        aggregate {
+            count
+        }
+    }
+}
+
+
+query GetTags {
+    tags {
+        id
+        name
+        slug
+        type
+        bridge_recipes_tags_aggregate {
+            aggregate {
+                count
+            }
+        }
+    }
+    tags_aggregate {
+        aggregate {
+            count
+        }
+    }
+}
+
+query GetIngredientFamilies {
+    ingredient_family {
         iconPath
         id
         name
         slug
         type
-      }
     }
-  }
 }
+
+
+query GetCuisines {
+    cuisines {
+        id
+        name
+        slug
+        type
+        bridge_recipes_cuisines_aggregate {
+            aggregate {
+                count
+            }
+        }
+        iconPath
+    }
+    cuisines_aggregate {
+        aggregate {
+            count
+        }
+    }
+}
+
+

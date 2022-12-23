@@ -252,10 +252,18 @@ Widget buildDialogTags() => Consumer(
         children: ref
             .watch(providers.homeControllerProvider)
             .allTags
-            .filter((final HomeModelFilterTag tag) => tag.numberOfRecipes > 0)
+            .filter(
+              (final HomeModelFilterTag tag) =>
+                  tag.numberOfRecipes.getOrElse(() => 0) > 0,
+            )
             .map(
               (final HomeModelFilterTag tag) => ChoiceChip(
-                label: Text('${tag.displayedName} (${tag.numberOfRecipes})'),
+                label: Text(
+                  '${tag.displayedName} (${tag.numberOfRecipes.fold(
+                    () => '',
+                    (final int number) => number < 1 ? '' : '$number',
+                  )})',
+                ),
                 selected: tag.isSelected,
                 onSelected: (final bool selected) => ref
                     .watch(providers.homeControllerProvider.notifier)
@@ -276,7 +284,7 @@ Widget buildDialogCuisines() => Consumer(
             .allCuisines
             .filter(
               (final HomeModelFilterCuisine cuisine) =>
-                  cuisine.numberOfRecipes > 0,
+                  cuisine.numberOfRecipes.getOrElse(() => 0) > 0,
             )
             .map(
               (final HomeModelFilterCuisine cuisine) => Tooltip(

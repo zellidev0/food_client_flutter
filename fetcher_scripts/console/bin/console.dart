@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, always_specify_types
+
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
@@ -8,27 +10,28 @@ import 'package:fpdart/fpdart.dart';
 import 'package:graphql/client.dart';
 
 void main() async {
-  fetchAllFromHasura();
+  // await fetchAllFromHasura();
 
-  HelloFreshModelRecipeApiRecipeResponse response =
+  final HelloFreshModelRecipeApiRecipeResponse response =
       (await fetchAllFromHelloFresh(take: 0, skip: 0)).fold(
-    (Exception exception) => throw exception,
-    (HelloFreshModelRecipeApiRecipeResponse response) => response,
+    (final Exception exception) => throw exception,
+    (final HelloFreshModelRecipeApiRecipeResponse response) => response,
   );
 
   print('Total: ${response.total}');
   for (int i = 0; i <= response.total + 300; i += 200) {
     print('Fetching 200 and skipping $i');
-    Either<Exception, HelloFreshModelRecipeApiRecipeResponse> result =
+    final Either<Exception, HelloFreshModelRecipeApiRecipeResponse> result =
         await fetchAllFromHelloFresh(take: 200, skip: i);
     await result.fold(
-      (Exception error) async => print('Error: $error'),
-      (HelloFreshModelRecipeApiRecipeResponse response) async {
-        QueryResult<Object?> hasuraResult = await writeAllToHasura(response);
+      (final Exception error) async => print('Error: $error'),
+      (final HelloFreshModelRecipeApiRecipeResponse response) async {
+        final QueryResult<Object?> hasuraResult =
+            await writeAllToHasura(response);
         print('Success: $hasuraResult');
       },
     );
-    await Future.delayed(Duration(milliseconds: 1500));
+    await Future<void>.delayed(const Duration(milliseconds: 1500));
   }
 
   // String input =
@@ -36,13 +39,17 @@ void main() async {
 }
 
 Future<QueryResult<Object?>> writeAllToHasura(
-    HelloFreshModelRecipeApiRecipeResponse response) async {
-  List<Input$ingredient_family_insert_input> families = response.items
-      .flatMap((HelloFreshModelRecipe recipe) =>
-          recipe.ingredients.map((ingredient) => ingredient.family))
+  final HelloFreshModelRecipeApiRecipeResponse response,
+) async {
+  final List<Input$ingredient_family_insert_input> families = response.items
+      .flatMap(
+        (final HelloFreshModelRecipe recipe) => recipe.ingredients.map(
+          (final HelloFreshModelIngredient ingredient) => ingredient.family,
+        ),
+      )
       .whereNotNull()
       .map(
-        (HelloFreshModelIngredientFamily family) =>
+        (final HelloFreshModelIngredientFamily family) =>
             Input$ingredient_family_insert_input(
           iconPath: family.iconPath.toNullable(),
           id: family.id,
@@ -53,10 +60,10 @@ Future<QueryResult<Object?>> writeAllToHasura(
       )
       .toList();
 
-  List<Input$ingredients_insert_input> ingredients = response.items
-      .flatMap((HelloFreshModelRecipe recipe) => recipe.ingredients)
+  final List<Input$ingredients_insert_input> ingredients = response.items
+      .flatMap((final HelloFreshModelRecipe recipe) => recipe.ingredients)
       .map(
-        (HelloFreshModelIngredient ingredient) =>
+        (final HelloFreshModelIngredient ingredient) =>
             Input$ingredients_insert_input(
           id: ingredient.id,
           name: ingredient.name,
@@ -69,10 +76,10 @@ Future<QueryResult<Object?>> writeAllToHasura(
       )
       .toList();
 
-  List<Input$tags_insert_input> tags = response.items
-      .flatMap((HelloFreshModelRecipe recipe) => recipe.tags)
+  final List<Input$tags_insert_input> tags = response.items
+      .flatMap((final HelloFreshModelRecipe recipe) => recipe.tags)
       .map(
-        (tag) => Input$tags_insert_input(
+        (final tag) => Input$tags_insert_input(
           id: tag.id,
           name: tag.name,
           numberOfRecipesByCountry: jsonEncode(tag.numberOfRecipesByCountry),
@@ -82,10 +89,10 @@ Future<QueryResult<Object?>> writeAllToHasura(
       )
       .toList();
 
-  List<Input$cuisines_insert_input> cuisines = response.items
-      .flatMap((HelloFreshModelRecipe recipe) => recipe.cuisines)
+  final List<Input$cuisines_insert_input> cuisines = response.items
+      .flatMap((final HelloFreshModelRecipe recipe) => recipe.cuisines)
       .map(
-        (cuisine) => Input$cuisines_insert_input(
+        (final cuisine) => Input$cuisines_insert_input(
           iconPath: cuisine.iconPath.toNullable(),
           id: cuisine.id,
           name: cuisine.name,
@@ -95,10 +102,10 @@ Future<QueryResult<Object?>> writeAllToHasura(
       )
       .toList();
 
-  List<Input$recipes_insert_input> recipes = response.items
-      .map((HelloFreshModelRecipe recipe) => recipe)
+  final List<Input$recipes_insert_input> recipes = response.items
+      .map((final HelloFreshModelRecipe recipe) => recipe)
       .map(
-        (HelloFreshModelRecipe recipe) => Input$recipes_insert_input(
+        (final HelloFreshModelRecipe recipe) => Input$recipes_insert_input(
           country: recipe.country,
           description: recipe.description,
           descriptionMarkdown: recipe.descriptionMarkdown.toNullable(),
@@ -116,11 +123,13 @@ Future<QueryResult<Object?>> writeAllToHasura(
       )
       .toList();
 
-  List<Input$bridge_recipes_tags_insert_input> recipeTags = response.items
-      .flatMap((HelloFreshModelRecipe recipe) =>
-          recipe.tags.map((tag) => Tuple2(recipe.id, tag.id)))
+  final List<Input$bridge_recipes_tags_insert_input> recipeTags = response.items
+      .flatMap(
+        (final HelloFreshModelRecipe recipe) =>
+            recipe.tags.map((final tag) => Tuple2(recipe.id, tag.id)),
+      )
       .map(
-        (Tuple2<String, String> recipeIdAndTagId) =>
+        (final Tuple2<String, String> recipeIdAndTagId) =>
             Input$bridge_recipes_tags_insert_input(
           $_recipe_id: recipeIdAndTagId.first,
           $_tag_id: recipeIdAndTagId.second,
@@ -128,24 +137,32 @@ Future<QueryResult<Object?>> writeAllToHasura(
       )
       .toList();
 
-  List<Input$bridge_recipes_cuisines_insert_input> recipeCuisines = response
-      .items
-      .flatMap((HelloFreshModelRecipe recipe) =>
-          recipe.cuisines.map((cuisine) => Tuple2(recipe.id, cuisine.id)))
-      .map(
-        (recipeIdAndTagId) => Input$bridge_recipes_cuisines_insert_input(
-          $_recipe_id: recipeIdAndTagId.first,
-          $_cuisine_id: recipeIdAndTagId.second,
-        ),
-      )
-      .toList();
-
-  List<Input$bridge_recipes_ingredients_insert_input> recipeIngredients =
+  final List<Input$bridge_recipes_cuisines_insert_input> recipeCuisines =
       response.items
-          .flatMap((HelloFreshModelRecipe recipe) => recipe.ingredients
-              .map((ingredient) => Tuple2(recipe.id, ingredient.id)))
+          .flatMap(
+            (final HelloFreshModelRecipe recipe) => recipe.cuisines
+                .map((final cuisine) => Tuple2(recipe.id, cuisine.id)),
+          )
           .map(
-            (recipeIdAndTagId) => Input$bridge_recipes_ingredients_insert_input(
+            (final recipeIdAndTagId) =>
+                Input$bridge_recipes_cuisines_insert_input(
+              $_recipe_id: recipeIdAndTagId.first,
+              $_cuisine_id: recipeIdAndTagId.second,
+            ),
+          )
+          .toList();
+
+  final List<Input$bridge_recipes_ingredients_insert_input> recipeIngredients =
+      response.items
+          .flatMap(
+            (final HelloFreshModelRecipe recipe) => recipe.ingredients.map(
+              (final HelloFreshModelIngredient ingredient) =>
+                  Tuple2(recipe.id, ingredient.id),
+            ),
+          )
+          .map(
+            (final Tuple2<String, String> recipeIdAndTagId) =>
+                Input$bridge_recipes_ingredients_insert_input(
               $_recipe_id: recipeIdAndTagId.first,
               $_ingredient_id: recipeIdAndTagId.second,
             ),
@@ -166,19 +183,12 @@ Future<QueryResult<Object?>> writeAllToHasura(
 
 Future<Either<Exception, HelloFreshModelRecipeApiRecipeResponse>>
     fetchAllFromHelloFresh({
-  required int take,
-  required int skip,
-}) async {
-  return await HelloFreshFetcher()
-      .fetchRecipes(country: 'AT', take: take, skip: skip)
-      .run();
-}
-
-Future<Map<String, dynamic>?> fetchAllFromHasura() async {
-  QueryResult<Query$Recipes> result =
-      await GraphQlBackendService().fetchRecipes(country: 'DE');
-  return result.data;
-}
+  required final int take,
+  required final int skip,
+}) async =>
+        await HelloFreshFetcher()
+            .fetchRecipes(country: 'AT', take: take, skip: skip)
+            .run();
 
 class GraphQlBackendService {
   final GraphQLClient _client;
@@ -192,7 +202,7 @@ class GraphQlBackendService {
           ),
           link: HttpLink(
             'https://super-chigger-54.hasura.app/v1/graphql',
-            defaultHeaders: {
+            defaultHeaders: <String, String>{
               'x-hasura-admin-secret':
                   '479mMb5g4g5zESHV2Xp2xGEixaD0X7YdeOFMFdRcz0ADeRrRrW0nc1mQbb1haeE5',
             },
@@ -200,73 +210,19 @@ class GraphQlBackendService {
           cache: GraphQLCache(),
         );
 
-  Future<QueryResult<Query$Recipes>> fetchRecipes({
-    required String country,
-  }) async {
-    String query = r''' 
-    query Recipes($country: String) {
-      recipes(where: {country: {_eq: $country}}) {
-        id
-        headline
-        imagePath
-        country
-        description
-        descriptionMarkdown
-        difficulty
-        name
-        prepTime
-        slug
-        steps
-        totalTime
-        yields_json
-        bridge_recipes_tags {
-          tags {
-            name
-            numberOfRecipesByCountry
-            slug
-            id
-            type
-          }
-        }
-        bridge_recipes_ingredients {
-          ingredients {
-            _family
-            country
-            id
-            imagePath
-            name
-            slug
-            type
-          }
-        }
-      }
-    }
-    ''';
-    var options = QueryOptions(
-      parserFn: (Map<String, dynamic> map) => Query$Recipes.fromJson(
-        map['orderSummary'],
-      ),
-      document: gql(query),
-      variables: <String, dynamic>{
-        'country': country,
-      },
-    );
-
-    return await _client.query(options);
-  }
-
   Future<QueryResult<Object?>> createRecipe({
-    required List<Input$ingredient_family_insert_input> families,
-    required List<Input$ingredients_insert_input> ingredients,
-    required List<Input$tags_insert_input> tags,
-    required List<Input$cuisines_insert_input> cuisines,
-    required List<Input$recipes_insert_input> recipes,
-    required List<Input$bridge_recipes_tags_insert_input> recipesTags,
-    required List<Input$bridge_recipes_ingredients_insert_input>
+    required final List<Input$ingredient_family_insert_input> families,
+    required final List<Input$ingredients_insert_input> ingredients,
+    required final List<Input$tags_insert_input> tags,
+    required final List<Input$cuisines_insert_input> cuisines,
+    required final List<Input$recipes_insert_input> recipes,
+    required final List<Input$bridge_recipes_tags_insert_input> recipesTags,
+    required final List<Input$bridge_recipes_ingredients_insert_input>
         recipesIngredients,
-    required List<Input$bridge_recipes_cuisines_insert_input> recipesCuisines,
+    required final List<Input$bridge_recipes_cuisines_insert_input>
+        recipesCuisines,
   }) async {
-    Variables$Mutation$CreateRecipes variables =
+    final Variables$Mutation$CreateRecipes variables =
         Variables$Mutation$CreateRecipes(
       families: families,
       ingredients: ingredients,
@@ -282,6 +238,6 @@ class GraphQlBackendService {
       document: documentNodeMutationCreateRecipes,
       variables: variables.toJson(),
     );
-    return (await _client.mutate(options));
+    return await _client.mutate(options);
   }
 }

@@ -64,7 +64,7 @@ class HomeModelFilter with _$HomeModelFilter {
     required final String displayedName,
     required final String type,
     required final bool isSelected,
-    required final int numberOfRecipes,
+    required final Option<int> numberOfRecipes,
   }) = HomeModelFilterTag;
 
   const factory HomeModelFilter.cuisine({
@@ -72,7 +72,7 @@ class HomeModelFilter with _$HomeModelFilter {
     required final String displayedName,
     required final String slug,
     required final bool isSelected,
-    required final int numberOfRecipes,
+    required final Option<int> numberOfRecipes,
   }) = HomeModelFilterCuisine;
 }
 

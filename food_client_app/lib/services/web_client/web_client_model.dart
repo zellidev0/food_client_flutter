@@ -251,5 +251,3 @@ class WebClientModelIngredientFamily with _$WebClientModelIngredientFamily {
   ) =>
       _$WebClientModelIngredientFamilyFromJson(json);
 }
-
-// numberOfRecipesByCountry

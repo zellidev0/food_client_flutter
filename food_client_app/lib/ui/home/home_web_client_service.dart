@@ -8,7 +8,7 @@ abstract class HomeWebClientService {
     required final String country,
     required final int take,
     required final int skip,
-    final Option<List<String>> tags = const None<List<String>>(),
+    final Option<List<String>> tagIds = const None<List<String>>(),
     final Option<String> cuisine = const None<String>(),
     final Option<List<String>> ingredients = const None<List<String>>(),
     final Option<String> searchTerm = const None<String>(),
@@ -36,7 +36,7 @@ class HomeWebClientModelRecipePagination with _$HomeWebClientModelRecipePaginati
   const factory HomeWebClientModelRecipePagination({
     required final int skip,
     required final int take,
-    required final int total,
+    required final Option<int> total,
   }) = _HomeWebClientModelRecipePagination;
 }
 
@@ -49,8 +49,8 @@ class HomeWebClientModelRecipe with _$HomeWebClientModelRecipe {
     required final int difficulty,
     required final List<HomeWebClientModelIngredient> ingredients,
     required final List<HomeWebClientModelYield> yields,
-    required final List<HomeWebClientModelTag> tags,
-    required final List<HomeWebClientModelCuisine> cuisines,
+    required final List<String> tagIds,
+    required final List<String> cuisineIds,
     required final Option<Uri> imagePath,
   }) = _HomeWebClientModelRecipe;
 }
@@ -88,7 +88,7 @@ class HomeWebClientModelTag with _$HomeWebClientModelTag {
     required final String id,
     required final String type,
     required final String displayedName,
-    required final int numberOfRecipes,
+    required final Option<int> numberOfRecipes,
   }) = _HomeWebClientModelTag;
 }
 
@@ -99,7 +99,7 @@ class HomeWebClientModelCuisine with _$HomeWebClientModelCuisine {
     required final Option<Uri> iconPath,
     required final String displayedName,
     required final String slug,
-    required final int numberOfRecipes,
+    required final Option<int> numberOfRecipes,
   }) = _HomeWebClientModelCuisine;
 }
 
