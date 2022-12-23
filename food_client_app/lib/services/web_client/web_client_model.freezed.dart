@@ -1737,7 +1737,7 @@ mixin _$WebClientModelIngredient {
   String get name => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   Option<String> get imagePath => throw _privateConstructorUsedError;
-  WebClientModelIngredientFamily? get family =>
+  Option<WebClientModelIngredientFamily> get family =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1759,9 +1759,7 @@ abstract class $WebClientModelIngredientCopyWith<$Res> {
       String name,
       String type,
       Option<String> imagePath,
-      WebClientModelIngredientFamily? family});
-
-  $WebClientModelIngredientFamilyCopyWith<$Res>? get family;
+      Option<WebClientModelIngredientFamily> family});
 }
 
 /// @nodoc
@@ -1784,7 +1782,7 @@ class _$WebClientModelIngredientCopyWithImpl<$Res,
     Object? name = null,
     Object? type = null,
     Object? imagePath = null,
-    Object? family = freezed,
+    Object? family = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -1811,24 +1809,11 @@ class _$WebClientModelIngredientCopyWithImpl<$Res,
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
               as Option<String>,
-      family: freezed == family
+      family: null == family
           ? _value.family
           : family // ignore: cast_nullable_to_non_nullable
-              as WebClientModelIngredientFamily?,
+              as Option<WebClientModelIngredientFamily>,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $WebClientModelIngredientFamilyCopyWith<$Res>? get family {
-    if (_value.family == null) {
-      return null;
-    }
-
-    return $WebClientModelIngredientFamilyCopyWith<$Res>(_value.family!,
-        (value) {
-      return _then(_value.copyWith(family: value) as $Val);
-    });
   }
 }
 
@@ -1848,10 +1833,7 @@ abstract class _$$_WebClientModelIngredientCopyWith<$Res>
       String name,
       String type,
       Option<String> imagePath,
-      WebClientModelIngredientFamily? family});
-
-  @override
-  $WebClientModelIngredientFamilyCopyWith<$Res>? get family;
+      Option<WebClientModelIngredientFamily> family});
 }
 
 /// @nodoc
@@ -1872,7 +1854,7 @@ class __$$_WebClientModelIngredientCopyWithImpl<$Res>
     Object? name = null,
     Object? type = null,
     Object? imagePath = null,
-    Object? family = freezed,
+    Object? family = null,
   }) {
     return _then(_$_WebClientModelIngredient(
       id: null == id
@@ -1899,10 +1881,10 @@ class __$$_WebClientModelIngredientCopyWithImpl<$Res>
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
               as Option<String>,
-      family: freezed == family
+      family: null == family
           ? _value.family
           : family // ignore: cast_nullable_to_non_nullable
-              as WebClientModelIngredientFamily?,
+              as Option<WebClientModelIngredientFamily>,
     ));
   }
 }
@@ -1935,7 +1917,7 @@ class _$_WebClientModelIngredient implements _WebClientModelIngredient {
   @override
   final Option<String> imagePath;
   @override
-  final WebClientModelIngredientFamily? family;
+  final Option<WebClientModelIngredientFamily> family;
 
   @override
   String toString() {
@@ -1985,7 +1967,7 @@ abstract class _WebClientModelIngredient implements WebClientModelIngredient {
           required final String name,
           required final String type,
           required final Option<String> imagePath,
-          required final WebClientModelIngredientFamily? family}) =
+          required final Option<WebClientModelIngredientFamily> family}) =
       _$_WebClientModelIngredient;
 
   factory _WebClientModelIngredient.fromJson(Map<String, dynamic> json) =
@@ -2004,7 +1986,7 @@ abstract class _WebClientModelIngredient implements WebClientModelIngredient {
   @override
   Option<String> get imagePath;
   @override
-  WebClientModelIngredientFamily? get family;
+  Option<WebClientModelIngredientFamily> get family;
   @override
   @JsonKey(ignore: true)
   _$$_WebClientModelIngredientCopyWith<_$_WebClientModelIngredient>

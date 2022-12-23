@@ -124,7 +124,7 @@ class WebClientModelIngredient with _$WebClientModelIngredient {
     required final String name,
     required final String type,
     required final Option<String> imagePath,
-    required final WebClientModelIngredientFamily? family,
+    required final Option<WebClientModelIngredientFamily> family,
   }) = _WebClientModelIngredient;
 
   factory WebClientModelIngredient.fromJson(
