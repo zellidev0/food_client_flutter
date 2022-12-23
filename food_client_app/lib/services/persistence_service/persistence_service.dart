@@ -1,20 +1,26 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/services/persistence_service/persistence_service_model.dart';
 import 'package:food_client/ui/cart/cart_persistence_service.dart';
+import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_persistence_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_persistence_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 const String ingredientsBoxName = 'ingredientsBox';
+const String sortingUnitsBoxName = 'sortingUnitsBox';
 
 abstract class PersistenceServiceAggregator
     extends StateNotifier<PersistenceServiceModel>
-    implements CartPersistenceService, SingleRecipePersistenceService {
+    implements
+        CartPersistenceService,
+        SingleRecipePersistenceService,
+        IngredientsSortingPersistenceService {
   PersistenceServiceAggregator(super.state);
 }
 
 class PersistenceService extends PersistenceServiceAggregator {
   late Box<PersistenceServiceModelShoppingListRecipe> shoppingListBox;
+  late Box<PersistenceServiceModelSortingUnit> sortingUnits;
 
   PersistenceService()
       : super(
@@ -28,6 +34,9 @@ class PersistenceService extends PersistenceServiceAggregator {
     shoppingListBox.listenable().addListener(() {
       state = state.copyWith(recipes: shoppingListBox.values.toList());
     });
+    sortingUnits = Hive.box<PersistenceServiceModelSortingUnit>(
+      sortingUnitsBoxName,
+    );
   }
 
   @override
@@ -180,6 +189,62 @@ class PersistenceService extends PersistenceServiceAggregator {
   @override
   Task<void> deleteRecipe({required final String recipeId}) => Task<void>(
         () async => await shoppingListBox.delete(recipeId),
+      );
+
+  @override
+  List<IngredientsSortingPersistenceModelUnit> getUnits() => sortingUnits.values
+      .map(
+        (final PersistenceServiceModelSortingUnit unit) =>
+            IngredientsSortingPersistenceModelUnit(
+          id: unit.id,
+          name: unit.name,
+          families: unit.families
+              .map(
+                (
+                  final PersistenceServiceModelSortingUnitIngredientFamily
+                      family,
+                ) =>
+                    IngredientsSortingPersistenceModelIngredientFamily(
+                  id: family.id,
+                  name: family.name,
+                  iconPath: family.iconPath.map(Uri.parse),
+                  type: family.type,
+                  slug: family.slug,
+                ),
+              )
+              .toList(),
+        ),
+      )
+      .toList();
+
+  @override
+  Task<void> saveUnit({
+    required final IngredientsSortingPersistenceModelUnit unit,
+  }) =>
+      Task<void>(
+        () async => await sortingUnits.put(
+          unit.id,
+          PersistenceServiceModelSortingUnit(
+            id: unit.id,
+            name: unit.name,
+            families: unit.families
+                .map(
+                  (
+                    final IngredientsSortingPersistenceModelIngredientFamily
+                        fmaily,
+                  ) =>
+                      PersistenceServiceModelSortingUnitIngredientFamily(
+                    id: fmaily.id,
+                    type: fmaily.type,
+                    iconPath:
+                        fmaily.iconPath.map((final Uri uri) => uri.toString()),
+                    name: fmaily.name,
+                    slug: fmaily.slug,
+                  ),
+                )
+                .toList(),
+          ),
+        ),
       );
 }
 

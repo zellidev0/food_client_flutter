@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_model.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_navigation_service.dart';
+import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_persistence_service.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_view.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_web_client_service.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_web_image_sizer_service.dart';
@@ -18,6 +19,7 @@ class IngredientsSortingControllerImplementation
     extends IngredientsSortingController {
   final IngredientsSortingNavigationService _navigationService;
   final IngredientsSortingWebClientService _webClientService;
+  final IngredientsSortingPersistenceService _persistenceService;
   final IngredientsSortingWebImageSizerService _webImageSizerService;
 
   IngredientsSortingControllerImplementation(
@@ -25,9 +27,16 @@ class IngredientsSortingControllerImplementation
     required final IngredientsSortingNavigationService navigationService,
     required final IngredientsSortingWebClientService webClientService,
     required final IngredientsSortingWebImageSizerService webImageSizerService,
+    required final IngredientsSortingPersistenceService persistenceService,
   })  : _navigationService = navigationService,
         _webClientService = webClientService,
-        _webImageSizerService = webImageSizerService;
+        _webImageSizerService = webImageSizerService,
+        _persistenceService = persistenceService {
+    // state = state.copyWith(
+    //   units: _persistenceService
+    //       .getUnits()
+    // );
+  }
 
   @override
   void goBack() {

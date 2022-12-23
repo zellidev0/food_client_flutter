@@ -4,21 +4,31 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'ingredients_sorting_persistence_service.freezed.dart';
 
 abstract class IngredientsSortingPersistenceService {
-  void fetchAllIngredientFamilies({
-    required final String country,
-    final Option<int> take = const None<int>(),
-    final Option<int> skip = const None<int>(),
+  List<IngredientsSortingPersistenceModelUnit> getUnits();
+  Task<void> saveUnit({
+    required final IngredientsSortingPersistenceModelUnit unit,
   });
 }
 
 @freezed
-class IngredientsSortingWebClientModelIngredientFamily
-    with _$IngredientsSortingWebClientModelIngredientFamily {
-  const factory IngredientsSortingWebClientModelIngredientFamily({
+class IngredientsSortingPersistenceModelIngredientFamily
+    with _$IngredientsSortingPersistenceModelIngredientFamily {
+  const factory IngredientsSortingPersistenceModelIngredientFamily({
     required final String id,
     required final String type,
     required final Option<Uri> iconPath,
     required final String name,
     required final String slug,
-  }) = _IngredientsSortingWebClientModelIngredientFamily;
+  }) = _IngredientsSortingPersistenceModelIngredientFamily;
+}
+
+@freezed
+class IngredientsSortingPersistenceModelUnit
+    with _$IngredientsSortingPersistenceModelUnit {
+  const factory IngredientsSortingPersistenceModelUnit({
+    required final String id,
+    required final String name,
+    required final List<IngredientsSortingPersistenceModelIngredientFamily>
+        families,
+  }) = _IngredientsSortingPersistenceModelUnit;
 }

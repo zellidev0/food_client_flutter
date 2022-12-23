@@ -126,6 +126,9 @@ class Providers {
       webImageSizerService: ref.read(
         providers.webImageSizerServiceProvider,
       ),
+      persistenceService: ref.read(
+        providers.persistenceServiceProvider.notifier,
+      ),
     ),
   );
 

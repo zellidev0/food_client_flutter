@@ -13,6 +13,8 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   Hive
     ..registerAdapter(OptionUriAdapter())
+    ..registerAdapter(PersistenceServiceModelSortingUnitAdapter())
+    ..registerAdapter(PersistenceServiceModelSortingUnitIngredientFamilyAdapter())
     ..registerAdapter(OptionDoubleAdapter())
     ..registerAdapter(OptionStringAdapter())
     ..registerAdapter(OptionPersistenceServiceModelShoppingListIngredientFamilyAdapter())
