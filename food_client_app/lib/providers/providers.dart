@@ -253,10 +253,11 @@ class Providers {
   final Provider<BeamerDelegate> globalBeamerDelegate =
       Provider<BeamerDelegate>(
     (final ProviderRef<BeamerDelegate> ref) => BeamerDelegate(
-      initialPath: '*',
+      initialPath: NavigationServiceUris.homeRouteUri.toString(),
       locationBuilder: RoutesLocationBuilder(
         routes: <Pattern, dynamic Function(BuildContext, BeamState, Object?)>{
-          '*': (final _, final __, final ___) => const MainView(),
+          '${NavigationServiceUris.mainRouteUri}/*':
+              (final _, final __, final ___) => const MainView(),
         },
       ),
     ),

@@ -26,6 +26,7 @@ void main() async {
   );
 
   providers = Providers();
+  final ProviderContainer container = ProviderContainer();
 
   runApp(
     EasyLocalization(
@@ -35,8 +36,9 @@ void main() async {
       ],
       path: 'assets/translations',
       fallbackLocale: const Locale('en'),
-      child: const ProviderScope(
-        child: MyApp(),
+      child: UncontrolledProviderScope(
+        container: container,
+        child: const MyApp(),
       ),
     ),
   );
