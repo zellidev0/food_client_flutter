@@ -16,41 +16,6 @@ abstract class WebClientServiceAggregator
         SingleRecipeWebClientService,
         IngredientsSortingWebClientService {}
 
-// @GET('/recipes/search')
-// Future<WebClientModelRecipeApiRecipeResponse> getRecipes({
-//   @Query('country') required final String country,
-//   @Query('ingredient') final List<String>? ingredients,
-//   @Query('cuisine') final String? cuisine,
-//   @Query('tag') final String? tags,
-//   @Query('q') final String? query,
-//   @Query('take') final int? take,
-//   @Query('skip') final int? skip,
-// });
-//
-// @GET('/recipes/{id}')
-// Future<WebClientModelRecipe> getSingleRecipe({
-//   @Path('id') required final String id,
-// });
-//
-// @GET('/tags')
-// Future<WebClientModelRecipeApiTagResponse> getTags({
-//   @Query('country') required final String country,
-//   @Query('take') final int? take,
-// });
-//
-// @GET('/cuisines')
-// Future<WebClientModelRecipeApiCuisineResponse> getCuisines({
-//   @Query('country') required final String country,
-//   @Query('take') final int? take,
-// });
-//
-// @GET('/ingredients')
-// Future<WebClientModelRecipeApiIngredientsResponse> getIngredients({
-//   @Query('country') required final String country,
-//   @Query('take') final int? take,
-//   @Query('skip') final int? skip,
-// });
-
 class WebClientService implements WebClientServiceAggregator {
   final GraphQLClient _client;
 
