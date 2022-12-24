@@ -26,6 +26,9 @@ void main() async {
   await Hive.openBox<PersistenceServiceModelShoppingListRecipe>(
     ingredientsBoxName,
   );
+  await Hive.openBox<PersistenceServiceModelSortingUnit>(
+    sortingUnitsBoxName,
+  );
 
   providers = Providers();
   final ProviderContainer container = ProviderContainer();

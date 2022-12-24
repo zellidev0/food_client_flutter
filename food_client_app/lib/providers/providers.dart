@@ -265,7 +265,7 @@ class Providers {
   final Provider<BeamerDelegate> bottomNavigationBarBeamerDelegate =
       Provider<BeamerDelegate>(
     (final ProviderRef<BeamerDelegate> ref) => BeamerDelegate(
-      initialPath: NavigationServiceUris.accountRouteUri.toString(),
+      initialPath: NavigationServiceUris.homeRouteUri.toString(),
       locationBuilder: RoutesLocationBuilder(
         routes: <Pattern, dynamic Function(BuildContext, BeamState, Object?)>{
           NavigationServiceUris.homeRouteUri.toString():
@@ -276,21 +276,25 @@ class Providers {
                     child: const HomeView(),
                     type: BeamPageType.noTransition,
                   ),
-          NavigationServiceUris.accountRouteUri.toString():
-              (final _, final __, final ___) => BeamPage(
-                    key: ValueKey<String>(
-                      NavigationServiceUris.accountRouteUri.toString(),
-                    ),
-                    child: const AccountView(),
-                    type: BeamPageType.material,
-                  ),
+          NavigationServiceUris.accountRouteUri.toString(): (
+            final _,
+            final __,
+            final ___,
+          ) =>
+              BeamPage(
+                key: ValueKey<String>(
+                  NavigationServiceUris.accountRouteUri.toString(),
+                ),
+                child: const AccountView(),
+                type: BeamPageType.noTransition,
+              ),
           NavigationServiceUris.cartRouteUri.toString():
               (final _, final __, final ___) => BeamPage(
                     key: ValueKey<String>(
                       NavigationServiceUris.cartRouteUri.toString(),
                     ),
                     child: const CartView(),
-                    type: BeamPageType.material,
+                    type: BeamPageType.noTransition,
                   ),
           NavigationServiceUris.ingredientsSortingRouteUri.toString(): (
             final _,
@@ -302,7 +306,7 @@ class Providers {
                   NavigationServiceUris.ingredientsSortingRouteUri.toString(),
                 ),
                 child: const IngredientsSortingView(),
-                type: BeamPageType.material,
+                type: BeamPageType.noTransition,
               ),
           NavigationServiceUris.singleRecipeUri.toString(): (
             final _,
