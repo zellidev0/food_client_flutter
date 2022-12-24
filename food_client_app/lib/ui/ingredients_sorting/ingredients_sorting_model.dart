@@ -11,8 +11,6 @@ class IngredientsSortingModel with _$IngredientsSortingModel {
   }) = _IngredientsSortingModel;
 }
 
-
-
 @freezed
 class IngredientsSortingModelUnit with _$IngredientsSortingModelUnit {
   const factory IngredientsSortingModelUnit({
@@ -26,7 +24,6 @@ class IngredientsSortingModelUnit with _$IngredientsSortingModelUnit {
 @freezed
 class IngredientsSortingModelIngredientFamily with _$IngredientsSortingModelIngredientFamily {
   const factory IngredientsSortingModelIngredientFamily({
-    required final String elementId,
     required final String type,
     required final Option<Uri> iconUrl,
     required final String name,

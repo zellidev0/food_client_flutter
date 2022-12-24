@@ -218,9 +218,9 @@ class PersistenceServiceModelSortingUnitIngredientFamilyAdapter
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return _$_PersistenceServiceModelSortingUnitIngredientFamily(
-      id: fields[0] as String,
+      familyIds: (fields[0] as List).cast<String>(),
       type: fields[1] as String,
-      iconPath: fields[2] as Option<String>,
+      iconUrlAsString: fields[2] as Option<String>,
       name: fields[3] as String,
       slug: fields[4] as String,
     );
@@ -231,16 +231,16 @@ class PersistenceServiceModelSortingUnitIngredientFamilyAdapter
       _$_PersistenceServiceModelSortingUnitIngredientFamily obj) {
     writer
       ..writeByte(5)
-      ..writeByte(0)
-      ..write(obj.id)
       ..writeByte(1)
       ..write(obj.type)
       ..writeByte(2)
-      ..write(obj.iconPath)
+      ..write(obj.iconUrlAsString)
       ..writeByte(3)
       ..write(obj.name)
       ..writeByte(4)
-      ..write(obj.slug);
+      ..write(obj.slug)
+      ..writeByte(0)
+      ..write(obj.familyIds);
   }
 
   @override
@@ -370,9 +370,11 @@ _$_PersistenceServiceModelSortingUnitIngredientFamily
     _$$_PersistenceServiceModelSortingUnitIngredientFamilyFromJson(
             Map<String, dynamic> json) =>
         _$_PersistenceServiceModelSortingUnitIngredientFamily(
-          id: json['id'] as String,
+          familyIds: (json['familyIds'] as List<dynamic>)
+              .map((e) => e as String)
+              .toList(),
           type: json['type'] as String,
-          iconPath: Option<String>.fromJson(json['iconPath']),
+          iconUrlAsString: Option<String>.fromJson(json['iconUrlAsString']),
           name: json['name'] as String,
           slug: json['slug'] as String,
         );
@@ -381,9 +383,9 @@ Map<String, dynamic>
     _$$_PersistenceServiceModelSortingUnitIngredientFamilyToJson(
             _$_PersistenceServiceModelSortingUnitIngredientFamily instance) =>
         <String, dynamic>{
-          'id': instance.id,
+          'familyIds': instance.familyIds,
           'type': instance.type,
-          'iconPath': instance.iconPath.toJson(
+          'iconUrlAsString': instance.iconUrlAsString.toJson(
             (value) => value,
           ),
           'name': instance.name,

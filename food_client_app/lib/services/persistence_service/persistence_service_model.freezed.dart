@@ -1304,11 +1304,11 @@ PersistenceServiceModelSortingUnitIngredientFamily
 /// @nodoc
 mixin _$PersistenceServiceModelSortingUnitIngredientFamily {
   @HiveField(0)
-  String get id => throw _privateConstructorUsedError;
+  List<String> get familyIds => throw _privateConstructorUsedError;
   @HiveField(1)
   String get type => throw _privateConstructorUsedError;
   @HiveField(2)
-  Option<String> get iconPath => throw _privateConstructorUsedError;
+  Option<String> get iconUrlAsString => throw _privateConstructorUsedError;
   @HiveField(3)
   String get name => throw _privateConstructorUsedError;
   @HiveField(4)
@@ -1332,9 +1332,9 @@ abstract class $PersistenceServiceModelSortingUnitIngredientFamilyCopyWith<
           PersistenceServiceModelSortingUnitIngredientFamily>;
   @useResult
   $Res call(
-      {@HiveField(0) String id,
+      {@HiveField(0) List<String> familyIds,
       @HiveField(1) String type,
-      @HiveField(2) Option<String> iconPath,
+      @HiveField(2) Option<String> iconUrlAsString,
       @HiveField(3) String name,
       @HiveField(4) String slug});
 }
@@ -1355,24 +1355,24 @@ class _$PersistenceServiceModelSortingUnitIngredientFamilyCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? familyIds = null,
     Object? type = null,
-    Object? iconPath = null,
+    Object? iconUrlAsString = null,
     Object? name = null,
     Object? slug = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
+      familyIds: null == familyIds
+          ? _value.familyIds
+          : familyIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      iconPath: null == iconPath
-          ? _value.iconPath
-          : iconPath // ignore: cast_nullable_to_non_nullable
+      iconUrlAsString: null == iconUrlAsString
+          ? _value.iconUrlAsString
+          : iconUrlAsString // ignore: cast_nullable_to_non_nullable
               as Option<String>,
       name: null == name
           ? _value.name
@@ -1399,9 +1399,9 @@ abstract class _$$_PersistenceServiceModelSortingUnitIngredientFamilyCopyWith<
   @override
   @useResult
   $Res call(
-      {@HiveField(0) String id,
+      {@HiveField(0) List<String> familyIds,
       @HiveField(1) String type,
-      @HiveField(2) Option<String> iconPath,
+      @HiveField(2) Option<String> iconUrlAsString,
       @HiveField(3) String name,
       @HiveField(4) String slug});
 }
@@ -1421,24 +1421,24 @@ class __$$_PersistenceServiceModelSortingUnitIngredientFamilyCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? familyIds = null,
     Object? type = null,
-    Object? iconPath = null,
+    Object? iconUrlAsString = null,
     Object? name = null,
     Object? slug = null,
   }) {
     return _then(_$_PersistenceServiceModelSortingUnitIngredientFamily(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
+      familyIds: null == familyIds
+          ? _value._familyIds
+          : familyIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      iconPath: null == iconPath
-          ? _value.iconPath
-          : iconPath // ignore: cast_nullable_to_non_nullable
+      iconUrlAsString: null == iconUrlAsString
+          ? _value.iconUrlAsString
+          : iconUrlAsString // ignore: cast_nullable_to_non_nullable
               as Option<String>,
       name: null == name
           ? _value.name
@@ -1460,25 +1460,31 @@ class __$$_PersistenceServiceModelSortingUnitIngredientFamilyCopyWithImpl<$Res>
 class _$_PersistenceServiceModelSortingUnitIngredientFamily
     implements _PersistenceServiceModelSortingUnitIngredientFamily {
   const _$_PersistenceServiceModelSortingUnitIngredientFamily(
-      {@HiveField(0) required this.id,
+      {@HiveField(0) required final List<String> familyIds,
       @HiveField(1) required this.type,
-      @HiveField(2) required this.iconPath,
+      @HiveField(2) required this.iconUrlAsString,
       @HiveField(3) required this.name,
-      @HiveField(4) required this.slug});
+      @HiveField(4) required this.slug})
+      : _familyIds = familyIds;
 
   factory _$_PersistenceServiceModelSortingUnitIngredientFamily.fromJson(
           Map<String, dynamic> json) =>
       _$$_PersistenceServiceModelSortingUnitIngredientFamilyFromJson(json);
 
+  final List<String> _familyIds;
   @override
   @HiveField(0)
-  final String id;
+  List<String> get familyIds {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_familyIds);
+  }
+
   @override
   @HiveField(1)
   final String type;
   @override
   @HiveField(2)
-  final Option<String> iconPath;
+  final Option<String> iconUrlAsString;
   @override
   @HiveField(3)
   final String name;
@@ -1488,7 +1494,7 @@ class _$_PersistenceServiceModelSortingUnitIngredientFamily
 
   @override
   String toString() {
-    return 'PersistenceServiceModelSortingUnitIngredientFamily(id: $id, type: $type, iconPath: $iconPath, name: $name, slug: $slug)';
+    return 'PersistenceServiceModelSortingUnitIngredientFamily(familyIds: $familyIds, type: $type, iconUrlAsString: $iconUrlAsString, name: $name, slug: $slug)';
   }
 
   @override
@@ -1496,17 +1502,24 @@ class _$_PersistenceServiceModelSortingUnitIngredientFamily
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PersistenceServiceModelSortingUnitIngredientFamily &&
-            (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality()
+                .equals(other._familyIds, _familyIds) &&
             (identical(other.type, type) || other.type == type) &&
-            (identical(other.iconPath, iconPath) ||
-                other.iconPath == iconPath) &&
+            (identical(other.iconUrlAsString, iconUrlAsString) ||
+                other.iconUrlAsString == iconUrlAsString) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.slug, slug) || other.slug == slug));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, type, iconPath, name, slug);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_familyIds),
+      type,
+      iconUrlAsString,
+      name,
+      slug);
 
   @JsonKey(ignore: true)
   @override
@@ -1529,9 +1542,9 @@ class _$_PersistenceServiceModelSortingUnitIngredientFamily
 abstract class _PersistenceServiceModelSortingUnitIngredientFamily
     implements PersistenceServiceModelSortingUnitIngredientFamily {
   const factory _PersistenceServiceModelSortingUnitIngredientFamily(
-          {@HiveField(0) required final String id,
+          {@HiveField(0) required final List<String> familyIds,
           @HiveField(1) required final String type,
-          @HiveField(2) required final Option<String> iconPath,
+          @HiveField(2) required final Option<String> iconUrlAsString,
           @HiveField(3) required final String name,
           @HiveField(4) required final String slug}) =
       _$_PersistenceServiceModelSortingUnitIngredientFamily;
@@ -1542,13 +1555,13 @@ abstract class _PersistenceServiceModelSortingUnitIngredientFamily
 
   @override
   @HiveField(0)
-  String get id;
+  List<String> get familyIds;
   @override
   @HiveField(1)
   String get type;
   @override
   @HiveField(2)
-  Option<String> get iconPath;
+  Option<String> get iconUrlAsString;
   @override
   @HiveField(3)
   String get name;

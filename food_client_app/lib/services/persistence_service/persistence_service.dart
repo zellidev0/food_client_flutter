@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:food_client/commons/utils.dart';
 import 'package:food_client/services/persistence_service/persistence_service_model.dart';
 import 'package:food_client/ui/cart/cart_persistence_service.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_persistence_service.dart';
@@ -198,16 +199,16 @@ class PersistenceService extends PersistenceServiceAggregator {
             IngredientsSortingPersistenceModelUnit(
           id: unit.id,
           name: unit.name,
-          families: unit.families
+          ingredientFamilies: unit.families
               .map(
                 (
                   final PersistenceServiceModelSortingUnitIngredientFamily
                       family,
                 ) =>
                     IngredientsSortingPersistenceModelIngredientFamily(
-                  id: family.id,
+                  familyIds: family.familyIds,
                   name: family.name,
-                  iconPath: family.iconPath.map(Uri.parse),
+                  iconUrl: family.iconUrlAsString.map(Uri.parse),
                   type: family.type,
                   slug: family.slug,
                 ),
@@ -227,24 +228,30 @@ class PersistenceService extends PersistenceServiceAggregator {
           PersistenceServiceModelSortingUnit(
             id: unit.id,
             name: unit.name,
-            families: unit.families
+            families: unit.ingredientFamilies
                 .map(
                   (
                     final IngredientsSortingPersistenceModelIngredientFamily
-                        fmaily,
+                        family,
                   ) =>
                       PersistenceServiceModelSortingUnitIngredientFamily(
-                    id: fmaily.id,
-                    type: fmaily.type,
-                    iconPath:
-                        fmaily.iconPath.map((final Uri uri) => uri.toString()),
-                    name: fmaily.name,
-                    slug: fmaily.slug,
+                    familyIds: family.familyIds,
+                    type: family.type,
+                    iconUrlAsString: family.iconUrl.map((final Uri uri) => uri.toString()),
+                    name: family.name,
+                    slug: family.slug,
                   ),
                 )
                 .toList(),
           ),
         ),
+      );
+
+  @override
+  TaskEither<Exception, void> deleteUnit({required final String unitId}) =>
+      TaskEither<Exception, void>.tryCatch(
+        () async => await sortingUnits.delete(unitId),
+        buildException,
       );
 }
 

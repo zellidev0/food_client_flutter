@@ -91,7 +91,7 @@ class IngredientsSortingView extends ConsumerWidget {
             },
             itemBuilder: (final BuildContext context, final int index) =>
                 ListTile(
-              key: Key(unit.ingredientFamilies[index].elementId),
+              key: Key(unit.ingredientFamilies[index].type),
               title: Text(unit.ingredientFamilies[index].name),
               leading: unit.ingredientFamilies[index].iconUrl.fold(
                 () => const SizedBox(
@@ -210,7 +210,7 @@ class IngredientsSortingView extends ConsumerWidget {
                               providers.ingredientsSortingControllerProvider
                                   .notifier,
                             )
-                            .addSortingUnit(name: name),
+                            .createSortingUnit(name: name),
                       ),
                   child: const Padding(
                     padding: EdgeInsets.all(8),
@@ -229,7 +229,7 @@ abstract class IngredientsSortingController
   IngredientsSortingController(super.state);
 
   void goBack();
-  void addSortingUnit({required final String name});
+  void createSortingUnit({required final String name});
   void showDeleteUnitDialog({required final IngredientsSortingModelUnit unit});
   void openAddUnitModal({required final Widget child});
   void setUnitSelected({required final IngredientsSortingModelUnit unit});

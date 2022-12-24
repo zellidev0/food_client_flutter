@@ -110,9 +110,9 @@ class PersistenceServiceModelSortingUnitIngredientFamily
     adapterName: 'PersistenceServiceModelSortingUnitIngredientFamilyAdapter',
   )
   const factory PersistenceServiceModelSortingUnitIngredientFamily({
-    @HiveField(0) required final String id,
+    @HiveField(0) required final List<String> familyIds,
     @HiveField(1) required final String type,
-    @HiveField(2) required final Option<String> iconPath,
+    @HiveField(2) required final Option<String> iconUrlAsString,
     @HiveField(3) required final String name,
     @HiveField(4) required final String slug,
   }) = _PersistenceServiceModelSortingUnitIngredientFamily;

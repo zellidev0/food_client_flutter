@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/services/app_settings_service/app_settings_service.dart';
 import 'package:food_client/services/app_settings_service/app_settings_service_model.dart';
+import 'package:food_client/services/logging_service/logging_service.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/services/persistence_service/persistence_service.dart';
 import 'package:food_client/services/persistence_service/persistence_service_model.dart';
@@ -117,11 +118,12 @@ class Providers {
         units: <IngredientsSortingModelUnit>[],
         currentlyEditingUnitName: none(),
       ),
+      webClientService: ref.read(providers.webClientServiceProvider),
+      webImageSizerService: ref.read(providers.webImageSizerServiceProvider),
+      loggingService: ref.read(providers.loggingServiceProvider),
       navigationService: ref.read(
         providers.bottomNavigationBarNavigationServiceProvider,
       ),
-      webClientService: ref.read(providers.webClientServiceProvider),
-      webImageSizerService: ref.read(providers.webImageSizerServiceProvider),
       persistenceService: ref.read(
         providers.persistenceServiceProvider.notifier,
       ),
@@ -230,6 +232,11 @@ class Providers {
       Provider<WebImageSizerServiceAggregator>(
     (final ProviderRef<WebImageSizerServiceAggregator> ref) =>
         WebImageSizerService(),
+  );
+
+  final Provider<LoggingServiceAggregator> loggingServiceProvider =
+      Provider<LoggingServiceAggregator>(
+    (final ProviderRef<LoggingServiceAggregator> ref) => LoggingService(),
   );
 
   final Provider<NavigationServiceAggregator> globalNavigationServiceProvider =

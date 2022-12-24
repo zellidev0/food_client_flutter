@@ -26,3 +26,6 @@ Color generateRandomPastelColor({
         }
       }.call(),
     ).toColor();
+
+Exception buildException(final Object error, final StackTrace stackTrace) =>
+    Exception('$error\n$stackTrace');

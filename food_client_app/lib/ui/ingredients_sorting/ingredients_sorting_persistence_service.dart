@@ -5,6 +5,7 @@ part 'ingredients_sorting_persistence_service.freezed.dart';
 
 abstract class IngredientsSortingPersistenceService {
   List<IngredientsSortingPersistenceModelUnit> getUnits();
+  TaskEither<Exception, void> deleteUnit({required final String unitId});
   Task<void> saveUnit({
     required final IngredientsSortingPersistenceModelUnit unit,
   });
@@ -14,9 +15,9 @@ abstract class IngredientsSortingPersistenceService {
 class IngredientsSortingPersistenceModelIngredientFamily
     with _$IngredientsSortingPersistenceModelIngredientFamily {
   const factory IngredientsSortingPersistenceModelIngredientFamily({
-    required final String id,
+    required final List<String> familyIds,
     required final String type,
-    required final Option<Uri> iconPath,
+    required final Option<Uri> iconUrl,
     required final String name,
     required final String slug,
   }) = _IngredientsSortingPersistenceModelIngredientFamily;
@@ -29,6 +30,6 @@ class IngredientsSortingPersistenceModelUnit
     required final String id,
     required final String name,
     required final List<IngredientsSortingPersistenceModelIngredientFamily>
-        families,
+    ingredientFamilies,
   }) = _IngredientsSortingPersistenceModelUnit;
 }

@@ -373,7 +373,6 @@ abstract class _IngredientsSortingModelUnit
 
 /// @nodoc
 mixin _$IngredientsSortingModelIngredientFamily {
-  String get elementId => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   Option<Uri> get iconUrl => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
@@ -395,8 +394,7 @@ abstract class $IngredientsSortingModelIngredientFamilyCopyWith<$Res> {
           IngredientsSortingModelIngredientFamily>;
   @useResult
   $Res call(
-      {String elementId,
-      String type,
+      {String type,
       Option<Uri> iconUrl,
       String name,
       String slug,
@@ -418,7 +416,6 @@ class _$IngredientsSortingModelIngredientFamilyCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? elementId = null,
     Object? type = null,
     Object? iconUrl = null,
     Object? name = null,
@@ -426,10 +423,6 @@ class _$IngredientsSortingModelIngredientFamilyCopyWithImpl<$Res,
     Object? familyIds = null,
   }) {
     return _then(_value.copyWith(
-      elementId: null == elementId
-          ? _value.elementId
-          : elementId // ignore: cast_nullable_to_non_nullable
-              as String,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -464,8 +457,7 @@ abstract class _$$_IngredientsSortingModelIngredientFamilyCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String elementId,
-      String type,
+      {String type,
       Option<Uri> iconUrl,
       String name,
       String slug,
@@ -485,7 +477,6 @@ class __$$_IngredientsSortingModelIngredientFamilyCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? elementId = null,
     Object? type = null,
     Object? iconUrl = null,
     Object? name = null,
@@ -493,10 +484,6 @@ class __$$_IngredientsSortingModelIngredientFamilyCopyWithImpl<$Res>
     Object? familyIds = null,
   }) {
     return _then(_$_IngredientsSortingModelIngredientFamily(
-      elementId: null == elementId
-          ? _value.elementId
-          : elementId // ignore: cast_nullable_to_non_nullable
-              as String,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -526,16 +513,13 @@ class __$$_IngredientsSortingModelIngredientFamilyCopyWithImpl<$Res>
 class _$_IngredientsSortingModelIngredientFamily
     implements _IngredientsSortingModelIngredientFamily {
   const _$_IngredientsSortingModelIngredientFamily(
-      {required this.elementId,
-      required this.type,
+      {required this.type,
       required this.iconUrl,
       required this.name,
       required this.slug,
       required final List<String> familyIds})
       : _familyIds = familyIds;
 
-  @override
-  final String elementId;
   @override
   final String type;
   @override
@@ -553,7 +537,7 @@ class _$_IngredientsSortingModelIngredientFamily
 
   @override
   String toString() {
-    return 'IngredientsSortingModelIngredientFamily(elementId: $elementId, type: $type, iconUrl: $iconUrl, name: $name, slug: $slug, familyIds: $familyIds)';
+    return 'IngredientsSortingModelIngredientFamily(type: $type, iconUrl: $iconUrl, name: $name, slug: $slug, familyIds: $familyIds)';
   }
 
   @override
@@ -561,8 +545,6 @@ class _$_IngredientsSortingModelIngredientFamily
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_IngredientsSortingModelIngredientFamily &&
-            (identical(other.elementId, elementId) ||
-                other.elementId == elementId) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.iconUrl, iconUrl) || other.iconUrl == iconUrl) &&
             (identical(other.name, name) || other.name == name) &&
@@ -572,8 +554,8 @@ class _$_IngredientsSortingModelIngredientFamily
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, elementId, type, iconUrl, name,
-      slug, const DeepCollectionEquality().hash(_familyIds));
+  int get hashCode => Object.hash(runtimeType, type, iconUrl, name, slug,
+      const DeepCollectionEquality().hash(_familyIds));
 
   @JsonKey(ignore: true)
   @override
@@ -587,16 +569,13 @@ class _$_IngredientsSortingModelIngredientFamily
 abstract class _IngredientsSortingModelIngredientFamily
     implements IngredientsSortingModelIngredientFamily {
   const factory _IngredientsSortingModelIngredientFamily(
-          {required final String elementId,
-          required final String type,
+          {required final String type,
           required final Option<Uri> iconUrl,
           required final String name,
           required final String slug,
           required final List<String> familyIds}) =
       _$_IngredientsSortingModelIngredientFamily;
 
-  @override
-  String get elementId;
   @override
   String get type;
   @override

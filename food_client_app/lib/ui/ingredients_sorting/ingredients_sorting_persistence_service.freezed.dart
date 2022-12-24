@@ -16,9 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$IngredientsSortingPersistenceModelIngredientFamily {
-  String get id => throw _privateConstructorUsedError;
+  List<String> get familyIds => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
-  Option<Uri> get iconPath => throw _privateConstructorUsedError;
+  Option<Uri> get iconUrl => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get slug => throw _privateConstructorUsedError;
 
@@ -39,7 +39,11 @@ abstract class $IngredientsSortingPersistenceModelIngredientFamilyCopyWith<
           IngredientsSortingPersistenceModelIngredientFamily>;
   @useResult
   $Res call(
-      {String id, String type, Option<Uri> iconPath, String name, String slug});
+      {List<String> familyIds,
+      String type,
+      Option<Uri> iconUrl,
+      String name,
+      String slug});
 }
 
 /// @nodoc
@@ -58,24 +62,24 @@ class _$IngredientsSortingPersistenceModelIngredientFamilyCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? familyIds = null,
     Object? type = null,
-    Object? iconPath = null,
+    Object? iconUrl = null,
     Object? name = null,
     Object? slug = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
+      familyIds: null == familyIds
+          ? _value.familyIds
+          : familyIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      iconPath: null == iconPath
-          ? _value.iconPath
-          : iconPath // ignore: cast_nullable_to_non_nullable
+      iconUrl: null == iconUrl
+          ? _value.iconUrl
+          : iconUrl // ignore: cast_nullable_to_non_nullable
               as Option<Uri>,
       name: null == name
           ? _value.name
@@ -102,7 +106,11 @@ abstract class _$$_IngredientsSortingPersistenceModelIngredientFamilyCopyWith<
   @override
   @useResult
   $Res call(
-      {String id, String type, Option<Uri> iconPath, String name, String slug});
+      {List<String> familyIds,
+      String type,
+      Option<Uri> iconUrl,
+      String name,
+      String slug});
 }
 
 /// @nodoc
@@ -120,24 +128,24 @@ class __$$_IngredientsSortingPersistenceModelIngredientFamilyCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? familyIds = null,
     Object? type = null,
-    Object? iconPath = null,
+    Object? iconUrl = null,
     Object? name = null,
     Object? slug = null,
   }) {
     return _then(_$_IngredientsSortingPersistenceModelIngredientFamily(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
+      familyIds: null == familyIds
+          ? _value._familyIds
+          : familyIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      iconPath: null == iconPath
-          ? _value.iconPath
-          : iconPath // ignore: cast_nullable_to_non_nullable
+      iconUrl: null == iconUrl
+          ? _value.iconUrl
+          : iconUrl // ignore: cast_nullable_to_non_nullable
               as Option<Uri>,
       name: null == name
           ? _value.name
@@ -156,18 +164,24 @@ class __$$_IngredientsSortingPersistenceModelIngredientFamilyCopyWithImpl<$Res>
 class _$_IngredientsSortingPersistenceModelIngredientFamily
     implements _IngredientsSortingPersistenceModelIngredientFamily {
   const _$_IngredientsSortingPersistenceModelIngredientFamily(
-      {required this.id,
+      {required final List<String> familyIds,
       required this.type,
-      required this.iconPath,
+      required this.iconUrl,
       required this.name,
-      required this.slug});
+      required this.slug})
+      : _familyIds = familyIds;
 
+  final List<String> _familyIds;
   @override
-  final String id;
+  List<String> get familyIds {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_familyIds);
+  }
+
   @override
   final String type;
   @override
-  final Option<Uri> iconPath;
+  final Option<Uri> iconUrl;
   @override
   final String name;
   @override
@@ -175,7 +189,7 @@ class _$_IngredientsSortingPersistenceModelIngredientFamily
 
   @override
   String toString() {
-    return 'IngredientsSortingPersistenceModelIngredientFamily(id: $id, type: $type, iconPath: $iconPath, name: $name, slug: $slug)';
+    return 'IngredientsSortingPersistenceModelIngredientFamily(familyIds: $familyIds, type: $type, iconUrl: $iconUrl, name: $name, slug: $slug)';
   }
 
   @override
@@ -183,16 +197,22 @@ class _$_IngredientsSortingPersistenceModelIngredientFamily
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_IngredientsSortingPersistenceModelIngredientFamily &&
-            (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality()
+                .equals(other._familyIds, _familyIds) &&
             (identical(other.type, type) || other.type == type) &&
-            (identical(other.iconPath, iconPath) ||
-                other.iconPath == iconPath) &&
+            (identical(other.iconUrl, iconUrl) || other.iconUrl == iconUrl) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.slug, slug) || other.slug == slug));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, type, iconPath, name, slug);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_familyIds),
+      type,
+      iconUrl,
+      name,
+      slug);
 
   @JsonKey(ignore: true)
   @override
@@ -208,19 +228,19 @@ class _$_IngredientsSortingPersistenceModelIngredientFamily
 abstract class _IngredientsSortingPersistenceModelIngredientFamily
     implements IngredientsSortingPersistenceModelIngredientFamily {
   const factory _IngredientsSortingPersistenceModelIngredientFamily(
-          {required final String id,
+          {required final List<String> familyIds,
           required final String type,
-          required final Option<Uri> iconPath,
+          required final Option<Uri> iconUrl,
           required final String name,
           required final String slug}) =
       _$_IngredientsSortingPersistenceModelIngredientFamily;
 
   @override
-  String get id;
+  List<String> get familyIds;
   @override
   String get type;
   @override
-  Option<Uri> get iconPath;
+  Option<Uri> get iconUrl;
   @override
   String get name;
   @override
@@ -236,8 +256,8 @@ abstract class _IngredientsSortingPersistenceModelIngredientFamily
 mixin _$IngredientsSortingPersistenceModelUnit {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  List<IngredientsSortingPersistenceModelIngredientFamily> get families =>
-      throw _privateConstructorUsedError;
+  List<IngredientsSortingPersistenceModelIngredientFamily>
+      get ingredientFamilies => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $IngredientsSortingPersistenceModelUnitCopyWith<
@@ -256,7 +276,8 @@ abstract class $IngredientsSortingPersistenceModelUnitCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
-      List<IngredientsSortingPersistenceModelIngredientFamily> families});
+      List<IngredientsSortingPersistenceModelIngredientFamily>
+          ingredientFamilies});
 }
 
 /// @nodoc
@@ -275,7 +296,7 @@ class _$IngredientsSortingPersistenceModelUnitCopyWithImpl<$Res,
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? families = null,
+    Object? ingredientFamilies = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -286,9 +307,9 @@ class _$IngredientsSortingPersistenceModelUnitCopyWithImpl<$Res,
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      families: null == families
-          ? _value.families
-          : families // ignore: cast_nullable_to_non_nullable
+      ingredientFamilies: null == ingredientFamilies
+          ? _value.ingredientFamilies
+          : ingredientFamilies // ignore: cast_nullable_to_non_nullable
               as List<IngredientsSortingPersistenceModelIngredientFamily>,
     ) as $Val);
   }
@@ -306,7 +327,8 @@ abstract class _$$_IngredientsSortingPersistenceModelUnitCopyWith<$Res>
   $Res call(
       {String id,
       String name,
-      List<IngredientsSortingPersistenceModelIngredientFamily> families});
+      List<IngredientsSortingPersistenceModelIngredientFamily>
+          ingredientFamilies});
 }
 
 /// @nodoc
@@ -324,7 +346,7 @@ class __$$_IngredientsSortingPersistenceModelUnitCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? families = null,
+    Object? ingredientFamilies = null,
   }) {
     return _then(_$_IngredientsSortingPersistenceModelUnit(
       id: null == id
@@ -335,9 +357,9 @@ class __$$_IngredientsSortingPersistenceModelUnitCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      families: null == families
-          ? _value._families
-          : families // ignore: cast_nullable_to_non_nullable
+      ingredientFamilies: null == ingredientFamilies
+          ? _value._ingredientFamilies
+          : ingredientFamilies // ignore: cast_nullable_to_non_nullable
               as List<IngredientsSortingPersistenceModelIngredientFamily>,
     ));
   }
@@ -351,23 +373,25 @@ class _$_IngredientsSortingPersistenceModelUnit
       {required this.id,
       required this.name,
       required final List<IngredientsSortingPersistenceModelIngredientFamily>
-          families})
-      : _families = families;
+          ingredientFamilies})
+      : _ingredientFamilies = ingredientFamilies;
 
   @override
   final String id;
   @override
   final String name;
-  final List<IngredientsSortingPersistenceModelIngredientFamily> _families;
+  final List<IngredientsSortingPersistenceModelIngredientFamily>
+      _ingredientFamilies;
   @override
-  List<IngredientsSortingPersistenceModelIngredientFamily> get families {
+  List<IngredientsSortingPersistenceModelIngredientFamily>
+      get ingredientFamilies {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_families);
+    return EqualUnmodifiableListView(_ingredientFamilies);
   }
 
   @override
   String toString() {
-    return 'IngredientsSortingPersistenceModelUnit(id: $id, name: $name, families: $families)';
+    return 'IngredientsSortingPersistenceModelUnit(id: $id, name: $name, ingredientFamilies: $ingredientFamilies)';
   }
 
   @override
@@ -377,12 +401,13 @@ class _$_IngredientsSortingPersistenceModelUnit
             other is _$_IngredientsSortingPersistenceModelUnit &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            const DeepCollectionEquality().equals(other._families, _families));
+            const DeepCollectionEquality()
+                .equals(other._ingredientFamilies, _ingredientFamilies));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, name, const DeepCollectionEquality().hash(_families));
+  int get hashCode => Object.hash(runtimeType, id, name,
+      const DeepCollectionEquality().hash(_ingredientFamilies));
 
   @JsonKey(ignore: true)
   @override
@@ -399,14 +424,15 @@ abstract class _IngredientsSortingPersistenceModelUnit
       {required final String id,
       required final String name,
       required final List<IngredientsSortingPersistenceModelIngredientFamily>
-          families}) = _$_IngredientsSortingPersistenceModelUnit;
+          ingredientFamilies}) = _$_IngredientsSortingPersistenceModelUnit;
 
   @override
   String get id;
   @override
   String get name;
   @override
-  List<IngredientsSortingPersistenceModelIngredientFamily> get families;
+  List<IngredientsSortingPersistenceModelIngredientFamily>
+      get ingredientFamilies;
   @override
   @JsonKey(ignore: true)
   _$$_IngredientsSortingPersistenceModelUnitCopyWith<
