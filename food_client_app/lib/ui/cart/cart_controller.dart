@@ -260,6 +260,19 @@ class CartControllerImplementation extends CartController {
       ),
     );
   }
+
+  @override
+  void reorderIngredients({
+    required final int oldIndex,
+    required final int newIndex,
+  }) {
+    final List<CartModelIngredient> ingredients = <CartModelIngredient>[
+      ...state.ingredients,
+    ];
+    final CartModelIngredient family = ingredients.removeAt(oldIndex);
+    ingredients.insert(newIndex, family);
+    state = state.copyWith(ingredients: ingredients);
+  }
 }
 
 CartModelIngredient mapToCartModelIngredient(

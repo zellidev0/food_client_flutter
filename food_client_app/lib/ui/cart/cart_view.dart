@@ -64,26 +64,25 @@ class CartView extends ConsumerWidget {
                 : TabBarView(
                     children: <Widget>[
                       buildIngredientsListView(
-                        children: ingredientsList(
-                          ingredients: model.ingredients,
-                          controller: controller,
-                          model: model,
-                        ),
+                        ingredients: model.ingredients,
                         keyId: 'total',
+                        condition: (final CartModelIngredient ingredient) =>
+                            true,
+                        controller: controller,
                       ),
                       buildIngredientsListView(
-                        children: notTickedOffIngredientsList(
-                          ingredients: model.ingredients,
-                          controller: controller,
-                        ),
+                        ingredients: model.ingredients,
+                        condition: (final CartModelIngredient ingredient) =>
+                            !ingredient.isTickedOff,
                         keyId: 'missing',
+                        controller: controller,
                       ),
                       buildIngredientsListView(
-                        children: tickedOffIngredientsList(
-                          ingredients: model.ingredients,
-                          controller: controller,
-                        ),
+                        ingredients: model.ingredients,
+                        condition: (final CartModelIngredient ingredient) =>
+                            ingredient.isTickedOff,
                         keyId: 'ticked-off',
+                        controller: controller,
                       ),
                     ],
                   ),
@@ -93,67 +92,30 @@ class CartView extends ConsumerWidget {
     );
   }
 
-  ListView buildIngredientsListView({
-    required final List<Widget> children,
+  Widget buildIngredientsListView({
+    required final List<CartModelIngredient> ingredients,
     required final String keyId,
+    required final bool Function(CartModelIngredient ingredient) condition,
+    required final CartController controller,
   }) =>
-      ListView.separated(
+      ReorderableListView.builder(
         key: PageStorageKey<String>('cart_view-ingredients-list-$keyId'),
+        itemCount: ingredients.length,
+        buildDefaultDragHandles: false,
+        onReorder: (final int oldIndex, final int newIndex) {
+          controller.reorderIngredients(
+            oldIndex: oldIndex,
+            newIndex: newIndex,
+          );
+        },
         itemBuilder: (final BuildContext context, final int index) =>
-            children[index],
-        itemCount: children.length,
-        separatorBuilder: (final BuildContext context, final int index) =>
-            const Divider(),
+            buildSingleIngredientItem(
+          ingredient: ingredients[index],
+          controller: controller,
+          recipeIds: ingredients[index].ingredient.recipeIds,
+          listIndex: index,
+        ),
       );
-
-  List<Widget> ingredientsList({
-    required final List<CartModelIngredient> ingredients,
-    required final CartController controller,
-    required final CartModel model,
-  }) =>
-      ingredients
-          .map(
-            (final CartModelIngredient ingredient) => buildSingleIngredient(
-              ingredient: ingredient,
-              controller: controller,
-              recipeIds: ingredient.ingredient.recipeIds,
-            ),
-          )
-          .toList();
-
-  List<Widget> tickedOffIngredientsList({
-    required final List<CartModelIngredient> ingredients,
-    required final CartController controller,
-  }) =>
-      ingredients
-          .where(
-            (final CartModelIngredient element) => element.isTickedOff,
-          )
-          .map(
-            (final CartModelIngredient ingredient) => buildSingleIngredient(
-              ingredient: ingredient,
-              controller: controller,
-              recipeIds: ingredient.ingredient.recipeIds,
-            ),
-          )
-          .toList();
-
-  List<Widget> notTickedOffIngredientsList({
-    required final List<CartModelIngredient> ingredients,
-    required final CartController controller,
-  }) =>
-      ingredients
-          .where(
-            (final CartModelIngredient element) => !element.isTickedOff,
-          )
-          .map(
-            (final CartModelIngredient ingredient) => buildSingleIngredient(
-              ingredient: ingredient,
-              controller: controller,
-              recipeIds: ingredient.ingredient.recipeIds,
-            ),
-          )
-          .toList();
 
   Widget _buildTabBarSliver({
     required final CartModel model,
@@ -187,13 +149,15 @@ class CartView extends ConsumerWidget {
         ),
       );
 
-  Widget buildSingleIngredient({
+  Widget buildSingleIngredientItem({
     required final List<String> recipeIds,
+    required final int listIndex,
     required final CartModelIngredient ingredient,
     required final CartController controller,
   }) =>
       Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        key: ValueKey<String>(ingredient.ingredient.ingredientId),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
         child: Builder(
           builder: (final BuildContext context) => InkWell(
             borderRadius: BorderRadius.circular(8),
@@ -245,6 +209,10 @@ class CartView extends ConsumerWidget {
                     () => '',
                     (final double amount) => amount.toStringAsFixed(0),
                   )} ${ingredient.ingredient.unit.getOrElse(() => '')}',
+                ),
+                trailing: ReorderableDragStartListener(
+                  index: listIndex,
+                  child: const Icon(Icons.drag_handle),
                 ),
               ),
             ),
@@ -538,4 +506,8 @@ abstract class CartController extends StateNotifier<CartModel> {
   void showDeleteRecipeDialog({required final String recipeId});
   void openModalBottomSheet({required final Widget child});
   void setActiveSorting({required final CartModelSorting sorting});
+  void reorderIngredients({
+    required final int oldIndex,
+    required final int newIndex,
+  });
 }
