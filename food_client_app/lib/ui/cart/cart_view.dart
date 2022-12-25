@@ -40,8 +40,8 @@ class CartView extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       TextButton.icon(
-                        onPressed: () => controller.openDialog(
-                          child: buildSortingDialogWidget(),
+                        onPressed: () => controller.openModalBottomSheet(
+                          child: buildSortingModalBottomSheetWidget(),
                         ),
                         icon: const Icon(Icons.sort),
                         label: const Text(
@@ -253,7 +253,7 @@ class CartView extends ConsumerWidget {
       );
 }
 
-Widget buildSortingDialogWidget() => Padding(
+Widget buildSortingModalBottomSheetWidget() => Padding(
       padding: const EdgeInsets.all(16),
       child: Consumer(
         builder: (final _, final WidgetRef ref, final __) => GridView.count(
@@ -536,6 +536,6 @@ abstract class CartController extends StateNotifier<CartModel> {
   });
   void openSingleRecipe({required final String recipeId});
   void showDeleteRecipeDialog({required final String recipeId});
-  void openDialog({required final Widget child});
+  void openModalBottomSheet({required final Widget child});
   void setActiveSorting({required final CartModelSorting sorting});
 }

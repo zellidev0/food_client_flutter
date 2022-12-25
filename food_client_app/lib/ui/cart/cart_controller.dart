@@ -66,7 +66,7 @@ class CartControllerImplementation extends CartController {
   }
 
   @override
-  Future<void> openDialog({
+  Future<void> openModalBottomSheet({
     required final Widget child,
   }) async {
     await _navigationService.showModalBottomSheet(child: child);
@@ -155,6 +155,31 @@ class CartControllerImplementation extends CartController {
     return ingredients;
   }
 
+  Future<void> _showChangeSortingDialog({
+    required final CartModelSorting sorting,
+  }) async {
+    await _navigationService.showDialog(
+      title: 'Change sorting'.tr(),
+      content:
+          'Your custom sorting will be lost when switching to the sorting of a supermarket'
+              .tr(),
+      actions: some(
+        <NavigationServiceDialogAction>[
+          NavigationServiceDialogAction(
+            text: 'cancel'.tr(),
+            onPressed: () {},
+          ),
+          NavigationServiceDialogAction(
+            text: 'alright'.tr(),
+            onPressed: () async {
+              state = state.copyWith(sorting: sorting);
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
   List<CartModelSortingUnit> _getAllSortingUnit() {
     final List<CartModelSortingUnit> sortingUnits = _persistenceService
         .getSortingUnits()
@@ -166,8 +191,7 @@ class CartControllerImplementation extends CartController {
             ingredientFamilies: unit.ingredientFamilies
                 .map(
                   (
-                    final CartPersistenceServiceModelSortingUnitFamily
-                        family,
+                    final CartPersistenceServiceModelSortingUnitFamily family,
                   ) =>
                       CartModelSortingIngredientFamily(
                     name: family.name,
@@ -226,7 +250,15 @@ class CartControllerImplementation extends CartController {
 
   @override
   void setActiveSorting({required final CartModelSorting sorting}) {
-    state = state.copyWith(sorting: sorting);
+    state.sorting.map(
+      unit: (final _) => state = state.copyWith(sorting: sorting),
+      custom: (final _) => sorting.map(
+        unit: (final _) => unawaited(
+          _showChangeSortingDialog(sorting: sorting),
+        ),
+        custom: (final _) => state = state.copyWith(sorting: sorting),
+      ),
+    );
   }
 }
 
