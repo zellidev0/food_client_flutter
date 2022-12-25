@@ -102,25 +102,35 @@ class CartView extends ConsumerWidget {
     required final CartController controller,
     required final CartModelSorting sorting,
   }) =>
-      ReorderableListView.builder(
-        key: PageStorageKey<String>('cart_view-ingredients-list-$keyId'),
-        itemCount: ingredients.length,
-        buildDefaultDragHandles: false,
-        onReorder: (final int oldIndex, final int newIndex) {
-          controller.reorderIngredients(
-            oldIndex: oldIndex,
-            newIndex: newIndex,
-          );
-        },
-        itemBuilder: (final BuildContext context, final int index) =>
-            buildSingleIngredientItem(
-          ingredient: ingredients[index],
-          controller: controller,
-          recipeIds: ingredients[index].ingredient.recipeIds,
-          listIndex: index,
-          showDragHandle: sorting.map(
-            unit: (final _) => false,
-            custom: (final _) => true,
+      Builder(
+        builder: (final BuildContext context) => Theme(
+          data: Theme.of(context).copyWith(
+            canvasColor: Colors.transparent,
+            shadowColor: Colors.transparent,
+          ),
+          child: ReorderableListView.builder(
+            key: PageStorageKey<String>(
+              'cart_view-ingredients-list-$keyId',
+            ),
+            itemCount: ingredients.length,
+            buildDefaultDragHandles: false,
+            onReorder: (final int oldIndex, final int newIndex) {
+              controller.reorderIngredients(
+                oldIndex: oldIndex,
+                newIndex: newIndex,
+              );
+            },
+            itemBuilder: (final BuildContext context, final int index) =>
+                buildSingleIngredientItem(
+              ingredient: ingredients[index],
+              controller: controller,
+              recipeIds: ingredients[index].ingredient.recipeIds,
+              listIndex: index,
+              showDragHandle: sorting.map(
+                unit: (final _) => false,
+                custom: (final _) => true,
+              ),
+            ),
           ),
         ),
       );
@@ -164,67 +174,69 @@ class CartView extends ConsumerWidget {
     required final CartModelIngredient ingredient,
     required final CartController controller,
   }) =>
-      Padding(
-        key: ValueKey<String>(ingredient.ingredient.ingredientId),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-        child: Builder(
-          builder: (final BuildContext context) => InkWell(
-            borderRadius: BorderRadius.circular(8),
-            onTap: () async => await controller.tickOff(
-              ingredientId: ingredient.ingredient.ingredientId,
-              recipeIds: recipeIds,
-              isTickedOff: !ingredient.isTickedOff,
-            ),
-            child: Ink(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: !ingredient.isTickedOff && recipeIds.length == 1
-                    ? generateRandomPastelColor(
-                        seed: recipeIds.first.hashCode,
-                        brightness: Theme.of(context).brightness,
-                      )
-                    : null,
-                gradient: !ingredient.isTickedOff && recipeIds.length > 1
-                    ? LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        colors: recipeIds
-                            .map(
-                              (final String recipeId) =>
-                                  generateRandomPastelColor(
-                                seed: recipeId.hashCode,
-                                brightness: Theme.of(context).brightness,
-                              ),
-                            )
-                            .toList(),
-                      )
-                    : null,
+      Material(
+        key: ValueKey<String>(listIndex.toString()),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+          child: Builder(
+            builder: (final BuildContext context) => InkWell(
+              borderRadius: BorderRadius.circular(8),
+              onTap: () async => await controller.tickOff(
+                ingredientId: ingredient.ingredient.ingredientId,
+                recipeIds: recipeIds,
+                isTickedOff: !ingredient.isTickedOff,
               ),
-              child: ListTile(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+              child: Ink(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: !ingredient.isTickedOff && recipeIds.length == 1
+                      ? generateRandomPastelColor(
+                          seed: recipeIds.first.hashCode,
+                          brightness: Theme.of(context).brightness,
+                        )
+                      : null,
+                  gradient: !ingredient.isTickedOff && recipeIds.length > 1
+                      ? LinearGradient(
+                          begin: Alignment.topRight,
+                          end: Alignment.bottomLeft,
+                          colors: recipeIds
+                              .map(
+                                (final String recipeId) =>
+                                    generateRandomPastelColor(
+                                  seed: recipeId.hashCode,
+                                  brightness: Theme.of(context).brightness,
+                                ),
+                              )
+                              .toList(),
+                        )
+                      : null,
                 ),
-                enabled: !ingredient.isTickedOff,
-                leading: AspectRatio(
-                  aspectRatio: 1,
-                  child: ingredient.ingredient.imageUrl.fold(
-                    () => const Icon(Icons.image_not_supported),
-                    (final Uri url) => buildCachedNetworkImage(imageUrl: url),
+                child: ListTile(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
                   ),
+                  enabled: !ingredient.isTickedOff,
+                  leading: AspectRatio(
+                    aspectRatio: 1,
+                    child: ingredient.ingredient.imageUrl.fold(
+                      () => const Icon(Icons.image_not_supported),
+                      (final Uri url) => buildCachedNetworkImage(imageUrl: url),
+                    ),
+                  ),
+                  title: Text(ingredient.ingredient.displayedName),
+                  subtitle: Text(
+                    '${ingredient.ingredient.amount.fold(
+                      () => '',
+                      (final double amount) => amount.toStringAsFixed(0),
+                    )} ${ingredient.ingredient.unit.getOrElse(() => '')}',
+                  ),
+                  trailing: showDragHandle
+                      ? ReorderableDragStartListener(
+                          index: listIndex,
+                          child: const Icon(Icons.drag_handle),
+                        )
+                      : null,
                 ),
-                title: Text(ingredient.ingredient.displayedName),
-                subtitle: Text(
-                  '${ingredient.ingredient.amount.fold(
-                    () => '',
-                    (final double amount) => amount.toStringAsFixed(0),
-                  )} ${ingredient.ingredient.unit.getOrElse(() => '')}',
-                ),
-                trailing: showDragHandle
-                    ? ReorderableDragStartListener(
-                        index: listIndex,
-                        child: const Icon(Icons.drag_handle),
-                      )
-                    : null,
               ),
             ),
           ),
