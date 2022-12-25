@@ -91,7 +91,7 @@ class IngredientsSortingView extends ConsumerWidget {
             },
             itemBuilder: (final BuildContext context, final int index) =>
                 ListTile(
-              key: Key(unit.ingredientFamilies[index].type),
+              key: Key(unit.ingredientFamilies[index].slug),
               title: Text(unit.ingredientFamilies[index].name),
               leading: unit.ingredientFamilies[index].iconUrl.fold(
                 () => const SizedBox(

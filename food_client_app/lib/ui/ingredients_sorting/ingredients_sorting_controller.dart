@@ -56,13 +56,9 @@ class IngredientsSortingControllerImplementation
       (final List<IngredientsSortingModelIngredientFamily> families) async {
         await _persistenceService
             .saveUnit(
-              unit: IngredientsSortingPersistenceModelUnit(
+              unit: mapToIngredientsSortingPersistenceModelUnit(
                 name: name,
-                ingredientFamilies:
-                    mapToIngredientsSortingPersistenceModelIngredientFamily(
-                  families,
-                ),
-                id: const Uuid().v4(),
+                families: families,
               ),
             )
             .run();
@@ -71,6 +67,20 @@ class IngredientsSortingControllerImplementation
     );
     _navigationService.pop();
   }
+
+  IngredientsSortingPersistenceModelUnit
+      mapToIngredientsSortingPersistenceModelUnit({
+    required final String name,
+    required final List<IngredientsSortingModelIngredientFamily> families,
+  }) =>
+          IngredientsSortingPersistenceModelUnit(
+            name: name,
+            ingredientFamilies:
+                mapToIngredientsSortingPersistenceModelIngredientFamily(
+              families,
+            ),
+            id: const Uuid().v4(),
+          );
 
   TaskEither<Exception, List<IngredientsSortingModelIngredientFamily>>
       fetchIngredientFamiliesFromBackend() => combineFetchedResults(
@@ -81,11 +91,12 @@ class IngredientsSortingControllerImplementation
                 [
                   _fetchIngredientsPaginated(pageKey: 0).run(),
                   _fetchIngredientsPaginated(pageKey: 1).run(),
-                  // _fetchIngredients(pageKey: 2),
-                  // _fetchIngredients(pageKey: 3),
-                  // _fetchIngredients(pageKey: 4),
-                  // _fetchIngredients(pageKey: 5),
-                  // _fetchIngredients(pageKey: 6),
+                  _fetchIngredientsPaginated(pageKey: 2).run(),
+                  _fetchIngredientsPaginated(pageKey: 3).run(),
+                  _fetchIngredientsPaginated(pageKey: 4).run(),
+                  _fetchIngredientsPaginated(pageKey: 5).run(),
+                  _fetchIngredientsPaginated(pageKey: 6).run(),
+                  _fetchIngredientsPaginated(pageKey: 7).run(),
                 ],
               ),
               buildException,
@@ -171,32 +182,40 @@ class IngredientsSortingControllerImplementation
   }
 
   @override
-  void reorderIngredientFamily({
+  Future<void> reorderIngredientFamily({
     required final IngredientsSortingModelUnit unit,
     required final int oldIndex,
     required final int newIndex,
-  }) {
+  }) async {
+    final List<IngredientsSortingModelIngredientFamily> families =
+        List<IngredientsSortingModelIngredientFamily>.from(
+      unit.ingredientFamilies,
+    );
+    final IngredientsSortingModelIngredientFamily family =
+        families.removeAt(oldIndex);
+    families.insert(newIndex, family);
     state = state.copyWith(
       units: state.units
           .map(
             (final IngredientsSortingModelUnit element) => element.copyWith(
-              ingredientFamilies: element.id == unit.id
-                  ? () {
-                      final List<IngredientsSortingModelIngredientFamily>
-                          families =
-                          List<IngredientsSortingModelIngredientFamily>.from(
-                        element.ingredientFamilies,
-                      );
-                      final IngredientsSortingModelIngredientFamily family =
-                          families.removeAt(oldIndex);
-                      families.insert(newIndex, family);
-                      return families;
-                    }.call()
-                  : element.ingredientFamilies,
+              ingredientFamilies:
+                  element.id == unit.id ? families : element.ingredientFamilies,
             ),
           )
           .toList(),
     );
+    await _persistenceService
+        .saveUnit(
+          unit: IngredientsSortingPersistenceModelUnit(
+            id: unit.id,
+            name: unit.title,
+            ingredientFamilies:
+                mapToIngredientsSortingPersistenceModelIngredientFamily(
+              families,
+            ),
+          ),
+        )
+        .run();
   }
 
   TaskEither<Exception, List<IngredientsSortingWebClientModelIngredientFamily>>
@@ -242,7 +261,7 @@ class IngredientsSortingControllerImplementation
       families
           .groupListsBy(
             (final IngredientsSortingModelIngredientFamily family) =>
-                family.type,
+                family.slug,
           )
           .entries
           .map(
