@@ -26,10 +26,10 @@ class CartControllerImplementation extends CartController {
   })  : _navigationService = navigationService,
         _persistenceService = persistenceService,
         _imageSizerService = imageSizerService {
-
     state = state.copyWith(
       recipes: _getAllRecipes(),
       ingredients: _getAllIngredients(),
+      sortingUnits: _getAllSortingUnit(),
     );
   }
 
@@ -155,6 +155,32 @@ class CartControllerImplementation extends CartController {
     return ingredients;
   }
 
+  List<CartModelSortingUnit> _getAllSortingUnit() {
+    final List<CartModelSortingUnit> sortingUnits = _persistenceService
+        .getSortingUnits()
+        .map(
+          (final CartPersistenceServiceModelSortingUnit unit) =>
+              CartModelSortingUnit(
+            id: unit.id,
+            name: unit.name,
+            ingredientFamilies: unit.ingredientFamilies
+                .map(
+                  (
+                    final CartPersistenceServiceModelSortingUnitFamily
+                        family,
+                  ) =>
+                      CartModelSortingIngredientFamily(
+                    name: family.name,
+                    familyIds: family.familyIds,
+                  ),
+                )
+                .toList(),
+          ),
+        )
+        .toList();
+    return sortingUnits;
+  }
+
   List<CartModelIngredient> _combineIngredients({
     required final List<CartModelIngredient> allIngredients,
   }) =>
@@ -199,19 +225,8 @@ class CartControllerImplementation extends CartController {
           .toList();
 
   @override
-  void setActiveSortingUnit({required final String sortingUnitId}) {
-    state = state.copyWith(
-      sorting: state.sorting.copyWith(
-        units: state.sorting.units
-            .map(
-              (final CartModelSortingUnit sortingUnit) =>
-                  sortingUnit.id == sortingUnitId
-                      ? sortingUnit.copyWith(isActive: true)
-                      : sortingUnit.copyWith(isActive: false),
-            )
-            .toList(),
-      ),
-    );
+  void setActiveSorting({required final CartModelSorting sorting}) {
+    state = state.copyWith(sorting: sorting);
   }
 }
 
@@ -229,15 +244,19 @@ CartModelIngredient mapToCartModelIngredient(
         unit: ingredient.unit,
         recipeIds: recipeIds,
         family: ingredient.family.map(
-          (final CartPersistenceServiceModelIngredientFamilyFamily family) =>
-              CartModelIngredientFamily(
-            id: family.id,
-            type: family.type,
-            iconPath: family.iconPath,
-            name: family.name,
-            slug: family.slug,
-          ),
+          mapToCartModelIngredientFamily,
         ),
       ),
       isTickedOff: ingredient.isTickedOff,
+    );
+
+CartModelIngredientFamily mapToCartModelIngredientFamily(
+  final CartPersistenceServiceModelIngredientFamilyFamily family,
+) =>
+    CartModelIngredientFamily(
+      id: family.id,
+      type: family.type,
+      iconPath: family.iconPath,
+      name: family.name,
+      slug: family.slug,
     );

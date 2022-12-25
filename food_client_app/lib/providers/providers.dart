@@ -44,40 +44,8 @@ class Providers {
         ingredients: <CartModelIngredient>[],
         combineIngredients:
             ref.watch(providers.appSettingsServiceProvider).combineIngredients,
-        sorting: CartModelSorting(
-          units: <CartModelSortingUnit>[
-            CartModelSortingUnit(
-              name: 'Rewe',
-              ingredientFamilies: <CartModelSortingIngredientFamily>[
-                const CartModelSortingIngredientFamily(
-                  name: 'Fleisch',
-                  familyId: '1',
-                ),
-                const CartModelSortingIngredientFamily(
-                  name: 'Salat',
-                  familyId: '2',
-                ),
-              ],
-              isActive: true,
-              id: const Uuid().v4(),
-            ),
-            CartModelSortingUnit(
-              name: 'Kaufland',
-              ingredientFamilies: <CartModelSortingIngredientFamily>[
-                const CartModelSortingIngredientFamily(
-                  name: 'Lebensmittel',
-                  familyId: '1',
-                ),
-                const CartModelSortingIngredientFamily(
-                  name: 'Gemüse',
-                  familyId: '2',
-                ),
-              ],
-              isActive: false,
-              id: const Uuid().v4(),
-            ),
-          ],
-        ),
+        sorting: const CartModelSorting.custom(),
+        sortingUnits: <CartModelSortingUnit>[],
       ),
       navigationService: ref.read(
         providers.bottomNavigationBarNavigationServiceProvider,

@@ -237,7 +237,8 @@ class PersistenceService extends PersistenceServiceAggregator {
                       PersistenceServiceModelSortingUnitIngredientFamily(
                     familyIds: family.familyIds,
                     type: family.type,
-                    iconUrlAsString: family.iconUrl.map((final Uri uri) => uri.toString()),
+                    iconUrlAsString:
+                        family.iconUrl.map((final Uri uri) => uri.toString()),
                     name: family.name,
                     slug: family.slug,
                   ),
@@ -253,6 +254,30 @@ class PersistenceService extends PersistenceServiceAggregator {
         () async => await sortingUnits.delete(unitId),
         buildException,
       );
+
+  @override
+  List<CartPersistenceServiceModelSortingUnit> getSortingUnits() =>
+      sortingUnits.values
+          .map(
+            (final PersistenceServiceModelSortingUnit unit) =>
+                CartPersistenceServiceModelSortingUnit(
+              id: unit.id,
+              name: unit.name,
+              ingredientFamilies: unit.families
+                  .map(
+                    (
+                      final PersistenceServiceModelSortingUnitIngredientFamily
+                          family,
+                    ) =>
+                        CartPersistenceServiceModelSortingUnitFamily(
+                      familyIds: family.familyIds,
+                      name: family.name,
+                    ),
+                  )
+                  .toList(),
+            ),
+          )
+          .toList();
 }
 
 CartPersistenceServiceModelRecipe mapToCartPersistenceServiceModelRecipe(

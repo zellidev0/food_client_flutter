@@ -258,50 +258,91 @@ Widget buildSortingDialogWidget() => Padding(
       child: Consumer(
         builder: (final _, final WidgetRef ref, final __) => GridView.count(
           crossAxisCount: 3,
-          children: ref
-              .watch(providers.cartControllerProvider)
-              .sorting
-              .units
-              .map(
-                (final CartModelSortingUnit ingredientUnit) => Stack(
-                  children: <Widget>[
-                    SizedBox.expand(
-                      child: Card(
-                        child: InkWell(
-                          onTap: () => ref
-                              .read(providers.cartControllerProvider.notifier)
-                              .setActiveSortingUnit(
-                                sortingUnitId: ingredientUnit.id,
-                              ),
-                          borderRadius: BorderRadius.circular(12),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              const Icon(Icons.shopping_basket),
-                              Text(ingredientUnit.name),
-                            ],
-                          ),
-                        ),
+          children: <Widget>[
+            ...ref.watch(providers.cartControllerProvider).sortingUnits.map(
+                  (final CartModelSortingUnit ingredientUnit) => Stack(
+                    children: <Widget>[
+                      buildCard(
+                        sorting: CartModelSorting.unit(unit: ingredientUnit),
                       ),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Builder(
-                          builder: (final BuildContext context) => Icon(
-                            Icons.star,
-                            color: ingredientUnit.isActive
-                                ? Theme.of(context).colorScheme.primary
-                                : Theme.of(context).colorScheme.onPrimary,
-                          ),
-                        ),
+                      buildStarIcon(
+                        sorting: CartModelSorting.unit(unit: ingredientUnit),
+                      ),
+                    ],
+                  ),
+                ),
+            Stack(
+              children: <Widget>[
+                buildCard(sorting: const CartModelSorting.custom()),
+                buildStarIcon(sorting: const CartModelSorting.custom()),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+
+SizedBox buildCard({
+  required final CartModelSorting sorting,
+}) =>
+    SizedBox.expand(
+      child: Card(
+        child: Consumer(
+          builder: (final _, final WidgetRef ref, final __) => InkWell(
+            onTap: () => ref
+                .read(providers.cartControllerProvider.notifier)
+                .setActiveSorting(sorting: sorting),
+            borderRadius: BorderRadius.circular(12),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Icon(
+                  sorting.map(
+                    unit: (final _) => Icons.shopping_basket,
+                    custom: (final _) => Icons.list,
+                  ),
+                ),
+                Text(
+                  sorting.map(
+                    unit: (final CartModelSortingSelectedUnit unit) =>
+                        unit.unit.name,
+                    custom: (final CartModelSortingCustom custom) => 'Custom',
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+
+Align buildStarIcon({
+  required final CartModelSorting sorting,
+}) =>
+    Align(
+      alignment: Alignment.bottomRight,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Consumer(
+          builder:
+              (final BuildContext context, final WidgetRef ref, final __) =>
+                  Icon(
+            Icons.star,
+            color: ref.watch(providers.cartControllerProvider).sorting.map(
+                      unit: (final CartModelSortingSelectedUnit selectedUnit) =>
+                          sorting.map(
+                        unit: (final CartModelSortingSelectedUnit unit) =>
+                            unit.unit.id == selectedUnit.unit.id,
+                        custom: (final CartModelSortingCustom custom) => false,
+                      ),
+                      custom: (final _) => sorting.map(
+                        unit: (final _) => false,
+                        custom: (final _) => true,
                       ),
                     )
-                  ],
-                ),
-              )
-              .toList(),
+                ? Theme.of(context).colorScheme.primary
+                : Theme.of(context).colorScheme.onPrimary,
+          ),
         ),
       ),
     );
@@ -496,5 +537,5 @@ abstract class CartController extends StateNotifier<CartModel> {
   void openSingleRecipe({required final String recipeId});
   void showDeleteRecipeDialog({required final String recipeId});
   void openDialog({required final Widget child});
-  void setActiveSortingUnit({required final String sortingUnitId});
+  void setActiveSorting({required final CartModelSorting sorting});
 }
