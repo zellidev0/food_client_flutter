@@ -69,6 +69,7 @@ class CartView extends ConsumerWidget {
                         condition: (final CartModelIngredient ingredient) =>
                             true,
                         controller: controller,
+                        sorting: model.sorting,
                       ),
                       buildIngredientsListView(
                         ingredients: model.ingredients,
@@ -76,6 +77,7 @@ class CartView extends ConsumerWidget {
                             !ingredient.isTickedOff,
                         keyId: 'missing',
                         controller: controller,
+                        sorting: model.sorting,
                       ),
                       buildIngredientsListView(
                         ingredients: model.ingredients,
@@ -83,6 +85,7 @@ class CartView extends ConsumerWidget {
                             ingredient.isTickedOff,
                         keyId: 'ticked-off',
                         controller: controller,
+                        sorting: model.sorting,
                       ),
                     ],
                   ),
@@ -97,6 +100,7 @@ class CartView extends ConsumerWidget {
     required final String keyId,
     required final bool Function(CartModelIngredient ingredient) condition,
     required final CartController controller,
+    required final CartModelSorting sorting,
   }) =>
       ReorderableListView.builder(
         key: PageStorageKey<String>('cart_view-ingredients-list-$keyId'),
@@ -114,6 +118,10 @@ class CartView extends ConsumerWidget {
           controller: controller,
           recipeIds: ingredients[index].ingredient.recipeIds,
           listIndex: index,
+          showDragHandle: sorting.map(
+            unit: (final _) => false,
+            custom: (final _) => true,
+          ),
         ),
       );
 
@@ -152,6 +160,7 @@ class CartView extends ConsumerWidget {
   Widget buildSingleIngredientItem({
     required final List<String> recipeIds,
     required final int listIndex,
+    required final bool showDragHandle,
     required final CartModelIngredient ingredient,
     required final CartController controller,
   }) =>
@@ -210,10 +219,12 @@ class CartView extends ConsumerWidget {
                     (final double amount) => amount.toStringAsFixed(0),
                   )} ${ingredient.ingredient.unit.getOrElse(() => '')}',
                 ),
-                trailing: ReorderableDragStartListener(
-                  index: listIndex,
-                  child: const Icon(Icons.drag_handle),
-                ),
+                trailing: showDragHandle
+                    ? ReorderableDragStartListener(
+                        index: listIndex,
+                        child: const Icon(Icons.drag_handle),
+                      )
+                    : null,
               ),
             ),
           ),
