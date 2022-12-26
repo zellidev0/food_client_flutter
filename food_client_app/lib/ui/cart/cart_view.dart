@@ -254,18 +254,49 @@ Widget buildSortingModalBottomSheetWidget() => Padding(
                   (final CartModelSortingUnit ingredientUnit) => Stack(
                     children: <Widget>[
                       buildCard(
-                        sorting: CartModelSorting.unit(unit: ingredientUnit),
+                        sorting:
+                            ref.watch(providers.cartControllerProvider).sorting,
+                        onTap: () {
+                          ref
+                              .read(providers.cartControllerProvider.notifier)
+                              .setActiveSorting(
+                                sorting: CartModelSorting.unit(
+                                  customSortingIngredientIds: ref
+                                      .watch(providers.cartControllerProvider)
+                                      .sorting
+                                      .customSortingIngredientIds,
+                                  activeUnit: ingredientUnit,
+                                ),
+                              );
+                        },
                       ),
                       buildStarIcon(
-                        sorting: CartModelSorting.unit(unit: ingredientUnit),
+                        sorting:
+                            ref.watch(providers.cartControllerProvider).sorting,
                       ),
                     ],
                   ),
                 ),
             Stack(
               children: <Widget>[
-                buildCard(sorting: const CartModelSorting.custom()),
-                buildStarIcon(sorting: const CartModelSorting.custom()),
+                buildCard(
+                  sorting: ref.watch(providers.cartControllerProvider).sorting,
+                  onTap: () {
+                    ref
+                        .read(providers.cartControllerProvider.notifier)
+                        .setActiveSorting(
+                          sorting: CartModelSorting.custom(
+                            customSortingIngredientIds: ref
+                                .watch(providers.cartControllerProvider)
+                                .sorting
+                                .customSortingIngredientIds,
+                          ),
+                        );
+                  },
+                ),
+                buildStarIcon(
+                  sorting: ref.watch(providers.cartControllerProvider).sorting,
+                ),
               ],
             ),
           ],
@@ -275,14 +306,13 @@ Widget buildSortingModalBottomSheetWidget() => Padding(
 
 SizedBox buildCard({
   required final CartModelSorting sorting,
+  required final VoidCallback onTap,
 }) =>
     SizedBox.expand(
       child: Card(
         child: Consumer(
           builder: (final _, final WidgetRef ref, final __) => InkWell(
-            onTap: () => ref
-                .read(providers.cartControllerProvider.notifier)
-                .setActiveSorting(sorting: sorting),
+            onTap: onTap,
             borderRadius: BorderRadius.circular(12),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -296,7 +326,7 @@ SizedBox buildCard({
                 Text(
                   sorting.map(
                     unit: (final CartModelSortingSelectedUnit unit) =>
-                        unit.unit.name,
+                        unit.activeUnit.name,
                     custom: (final CartModelSortingCustom custom) => 'Custom',
                   ),
                 ),
@@ -323,7 +353,7 @@ Align buildStarIcon({
                       unit: (final CartModelSortingSelectedUnit selectedUnit) =>
                           sorting.map(
                         unit: (final CartModelSortingSelectedUnit unit) =>
-                            unit.unit.id == selectedUnit.unit.id,
+                            unit.activeUnit.id == selectedUnit.activeUnit.id,
                         custom: (final CartModelSortingCustom custom) => false,
                       ),
                       custom: (final _) => sorting.map(

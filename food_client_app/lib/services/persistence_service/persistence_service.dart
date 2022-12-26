@@ -278,6 +278,11 @@ class PersistenceService extends PersistenceServiceAggregator {
             ),
           )
           .toList();
+
+  @override
+  Task<void> saveSorting({required final CartPersistenceServiceModelActiveSorting sorting}) {
+    return Task.of(a);
+  }
 }
 
 CartPersistenceServiceModelRecipe mapToCartPersistenceServiceModelRecipe(

@@ -6,6 +6,9 @@ part 'cart_persistence_service.freezed.dart';
 abstract class CartPersistenceService {
   List<CartPersistenceServiceModelRecipe> getShoppingCardRecipes();
   List<CartPersistenceServiceModelSortingUnit> getSortingUnits();
+  Task<void> saveSorting({
+    required final CartPersistenceServiceModelActiveSorting sorting,
+  });
   Task<void> updateIngredient({
     required final bool isTickedOff,
     required final String ingredientId,
@@ -70,6 +73,19 @@ class CartPersistenceServiceModelSortingUnit
     required final List<CartPersistenceServiceModelSortingUnitFamily>
         ingredientFamilies,
   }) = _CartPersistenceServiceModelSortingUnit;
+}
+
+@freezed
+class CartPersistenceServiceModelActiveSorting
+    with _$CartPersistenceServiceModelActiveSorting {
+  const factory CartPersistenceServiceModelActiveSorting.selectedUnit({
+    required final String activeSortingUnitId,
+    required final List<String> customSortingIngredientIds,
+  }) = CartPersistenceServiceModelActiveSortingSelectedUnit;
+
+  const factory CartPersistenceServiceModelActiveSorting.custom({
+    required final List<String> customSortingIngredientIds,
+  }) = CartPersistenceServiceModelActiveSortingCustom;
 }
 
 @freezed

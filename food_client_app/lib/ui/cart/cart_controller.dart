@@ -155,31 +155,6 @@ class CartControllerImplementation extends CartController {
     return ingredients;
   }
 
-  Future<void> _showChangeSortingDialog({
-    required final CartModelSorting sorting,
-  }) async {
-    await _navigationService.showDialog(
-      title: 'Change sorting'.tr(),
-      content:
-          'Your custom sorting will be lost when switching to the sorting of a supermarket'
-              .tr(),
-      actions: some(
-        <NavigationServiceDialogAction>[
-          NavigationServiceDialogAction(
-            text: 'cancel'.tr(),
-            onPressed: () {},
-          ),
-          NavigationServiceDialogAction(
-            text: 'alright'.tr(),
-            onPressed: () async {
-              state = state.copyWith(sorting: sorting);
-            },
-          ),
-        ],
-      ),
-    );
-  }
-
   List<CartModelSortingUnit> _getAllSortingUnit() {
     final List<CartModelSortingUnit> sortingUnits = _persistenceService
         .getSortingUnits()
@@ -251,14 +226,34 @@ class CartControllerImplementation extends CartController {
   @override
   void setActiveSorting({required final CartModelSorting sorting}) {
     state.sorting.map(
-      unit: (final _) => state = state.copyWith(sorting: sorting),
-      custom: (final _) => sorting.map(
-        unit: (final _) => unawaited(
-          _showChangeSortingDialog(sorting: sorting),
+      unit: (final _) => sorting.map(
+        unit: (unitSorting) => _persistenceService.saveSorting(
+          sorting: CartPersistenceServiceModelActiveSorting.selectedUnit(
+            activeSortingUnitId: unitSorting.activeUnit.id,
+            customSortingIngredientIds: unitSorting.customSortingIngredientIds,
+          ),
         ),
-        custom: (final _) => state = state.copyWith(sorting: sorting),
+        custom: (custom) => _persistenceService.saveSorting(
+          sorting: CartPersistenceServiceModelActiveSorting.custom(
+            customSortingIngredientIds: custom.customSortingIngredientIds,
+          ),
+        ),
+      ),
+      custom: (custom) => sorting.map(
+        unit: (unitSorting) => _persistenceService.saveSorting(
+          sorting: CartPersistenceServiceModelActiveSorting.selectedUnit(
+            activeSortingUnitId: unitSorting.activeUnit.id,
+            customSortingIngredientIds: custom.customSortingIngredientIds,
+          ),
+        ),
+        custom: (custom) => _persistenceService.saveSorting(
+          sorting: CartPersistenceServiceModelActiveSorting.custom(
+            customSortingIngredientIds: custom.customSortingIngredientIds,
+          ),
+        ),
       ),
     );
+    state = state.copyWith(sorting: sorting);
   }
 
   @override

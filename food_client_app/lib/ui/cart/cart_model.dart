@@ -17,10 +17,13 @@ class CartModel with _$CartModel {
 @freezed
 class CartModelSorting with _$CartModelSorting {
   const factory CartModelSorting.unit({
-    required final CartModelSortingUnit unit,
+    required final CartModelSortingUnit activeUnit,
+    required final List<String> customSortingIngredientIds,
   }) = CartModelSortingSelectedUnit;
 
-  const factory CartModelSorting.custom() = CartModelSortingCustom;
+  const factory CartModelSorting.custom({
+    required final List<String> customSortingIngredientIds,
+  }) = CartModelSortingCustom;
 }
 
 @freezed

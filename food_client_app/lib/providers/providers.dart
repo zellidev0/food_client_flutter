@@ -44,7 +44,9 @@ class Providers {
         ingredients: <CartModelIngredient>[],
         combineIngredients:
             ref.watch(providers.appSettingsServiceProvider).combineIngredients,
-        sorting: const CartModelSorting.custom(),
+        sorting: const CartModelSorting.custom(
+          customSortingIngredientIds: [],
+        ),
         sortingUnits: <CartModelSortingUnit>[],
       ),
       navigationService: ref.read(
