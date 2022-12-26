@@ -254,6 +254,81 @@ class PersistenceServiceModelSortingUnitIngredientFamilyAdapter
           typeId == other.typeId;
 }
 
+class PersistenceServiceModelActiveSortingUnitAdapter
+    extends TypeAdapter<_$PersistenceServiceModelActiveSortingUnit> {
+  @override
+  final int typeId = 5;
+
+  @override
+  _$PersistenceServiceModelActiveSortingUnit read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return _$PersistenceServiceModelActiveSortingUnit(
+      activeSortingUnitId: fields[0] as String,
+      customSortingIngredientIds: (fields[1] as List).cast<String>(),
+    );
+  }
+
+  @override
+  void write(
+      BinaryWriter writer, _$PersistenceServiceModelActiveSortingUnit obj) {
+    writer
+      ..writeByte(2)
+      ..writeByte(0)
+      ..write(obj.activeSortingUnitId)
+      ..writeByte(1)
+      ..write(obj.customSortingIngredientIds);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PersistenceServiceModelActiveSortingUnitAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class PersistenceServiceModelActiveSortingCustomAdapter
+    extends TypeAdapter<_$PersistenceServiceModelActiveSortingCustom> {
+  @override
+  final int typeId = 6;
+
+  @override
+  _$PersistenceServiceModelActiveSortingCustom read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return _$PersistenceServiceModelActiveSortingCustom(
+      customSortingIngredientIds: (fields[0] as List).cast<String>(),
+    );
+  }
+
+  @override
+  void write(
+      BinaryWriter writer, _$PersistenceServiceModelActiveSortingCustom obj) {
+    writer
+      ..writeByte(1)
+      ..writeByte(0)
+      ..write(obj.customSortingIngredientIds);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PersistenceServiceModelActiveSortingCustomAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
@@ -391,3 +466,41 @@ Map<String, dynamic>
           'name': instance.name,
           'slug': instance.slug,
         };
+
+_$PersistenceServiceModelActiveSortingUnit
+    _$$PersistenceServiceModelActiveSortingUnitFromJson(
+            Map<String, dynamic> json) =>
+        _$PersistenceServiceModelActiveSortingUnit(
+          activeSortingUnitId: json['activeSortingUnitId'] as String,
+          customSortingIngredientIds:
+              (json['customSortingIngredientIds'] as List<dynamic>)
+                  .map((e) => e as String)
+                  .toList(),
+          $type: json['runtimeType'] as String?,
+        );
+
+Map<String, dynamic> _$$PersistenceServiceModelActiveSortingUnitToJson(
+        _$PersistenceServiceModelActiveSortingUnit instance) =>
+    <String, dynamic>{
+      'activeSortingUnitId': instance.activeSortingUnitId,
+      'customSortingIngredientIds': instance.customSortingIngredientIds,
+      'runtimeType': instance.$type,
+    };
+
+_$PersistenceServiceModelActiveSortingCustom
+    _$$PersistenceServiceModelActiveSortingCustomFromJson(
+            Map<String, dynamic> json) =>
+        _$PersistenceServiceModelActiveSortingCustom(
+          customSortingIngredientIds:
+              (json['customSortingIngredientIds'] as List<dynamic>)
+                  .map((e) => e as String)
+                  .toList(),
+          $type: json['runtimeType'] as String?,
+        );
+
+Map<String, dynamic> _$$PersistenceServiceModelActiveSortingCustomToJson(
+        _$PersistenceServiceModelActiveSortingCustom instance) =>
+    <String, dynamic>{
+      'customSortingIngredientIds': instance.customSortingIngredientIds,
+      'runtimeType': instance.$type,
+    };

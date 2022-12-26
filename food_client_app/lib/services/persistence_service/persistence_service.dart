@@ -38,6 +38,35 @@ class PersistenceService extends PersistenceServiceAggregator {
     shoppingListBox.listenable().addListener(() {
       state = state.copyWith(recipes: shoppingListBox.values.toList());
     });
+    // shoppingListBox.put(
+    //   '1',
+    //   PersistenceServiceModelShoppingListRecipe(
+    //     ingredients: [
+    //       PersistenceServiceModelShoppingListIngredient(
+    //         ingredientId: '111',
+    //         isTickedOff: false,
+    //         imageUrl: none(),
+    //         slug: 'slug',
+    //         displayedName: 'displayedName',
+    //         amount: some(1),
+    //         unit: none(),
+    //         family: some(
+    //           PersistenceServiceModelShoppingListIngredientFamily(
+    //             id: 'Family111',
+    //             type: 'Family111',
+    //             iconPath: none(),
+    //             name: 'Family111',
+    //             slug: 'Family111',
+    //           ),
+    //         ),
+    //       )
+    //     ],
+    //     title: 'First',
+    //     imagePath: none(),
+    //     servings: 1,
+    //     recipeId: '1',
+    //   ),
+    // );
     sortingUnits = Hive.box<PersistenceServiceModelSortingUnit>(
       sortingUnitsBoxName,
     );

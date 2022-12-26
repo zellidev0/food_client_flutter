@@ -26,10 +26,11 @@ class CartControllerImplementation extends CartController {
   })  : _navigationService = navigationService,
         _persistenceService = persistenceService,
         _imageSizerService = imageSizerService {
+    final CartModelSorting sorting = _getStoredSorting();
     state = state.copyWith(
-      sorting: _getStoredSorting(),
+      sorting: sorting,
       recipes: _getAllRecipes(),
-      ingredients: _getAllIngredients(),
+      ingredients: _getAllIngredients(sorting: sorting),
       sortingUnits: _getAllSortingUnit(),
     );
   }
@@ -62,7 +63,7 @@ class CartControllerImplementation extends CartController {
     }
     state = state.copyWith(
       recipes: _getAllRecipes(),
-      ingredients: _getAllIngredients(),
+      ingredients: _getAllIngredients(sorting: state.sorting),
     );
   }
 
@@ -96,7 +97,7 @@ class CartControllerImplementation extends CartController {
                     .run();
                 state = state.copyWith(
                   recipes: _getAllRecipes(),
-                  ingredients: _getAllIngredients(),
+                  ingredients: _getAllIngredients(sorting: state.sorting),
                 );
               },
             ),
@@ -109,7 +110,7 @@ class CartControllerImplementation extends CartController {
                     .run();
                 state = state.copyWith(
                   recipes: _getAllRecipes(),
-                  ingredients: _getAllIngredients(),
+                  ingredients: _getAllIngredients(sorting: state.sorting),
                 );
               },
             ),
@@ -135,8 +136,10 @@ class CartControllerImplementation extends CartController {
       )
       .toList();
 
-  List<CartModelIngredient> _getAllIngredients() {
-    final List<CartModelIngredient> ingredients = _persistenceService
+  List<CartModelIngredient> _getAllIngredients({
+    required final CartModelSorting sorting,
+  }) {
+    List<CartModelIngredient> ingredients = _persistenceService
         .getShoppingCardRecipes()
         .flatMap(
           (final CartPersistenceServiceModelRecipe recipe) => recipe.ingredients
@@ -151,9 +154,43 @@ class CartControllerImplementation extends CartController {
         )
         .toList();
     if (state.combineIngredients) {
-      return _combineIngredients(allIngredients: ingredients);
+      ingredients = _combineIngredients(allIngredients: ingredients);
     }
-    return ingredients;
+
+    return sorting.map(
+      unit: (final CartModelSortingSelectedUnit unit) =>
+          ingredients.sortedByCompare(
+        (final CartModelIngredient element) => element.ingredient.family,
+        (
+          final Option<CartModelIngredientFamily> first,
+          final Option<CartModelIngredientFamily> second,
+        ) =>
+            first
+                .map2(
+                  second,
+                  (
+                    final CartModelIngredientFamily familyOne,
+                    final CartModelIngredientFamily familyTwo,
+                  ) =>
+                      unit.activeUnit.ingredientFamilies.indexWhere(
+                        (final CartModelSortingIngredientFamily element) =>
+                            element.familyIds.contains(familyOne.id),
+                      ) -
+                      unit.activeUnit.ingredientFamilies.indexWhere(
+                        (final CartModelSortingIngredientFamily element) =>
+                            element.familyIds.contains(familyTwo.id),
+                      ),
+                )
+                .getOrElse(() => -1),
+      ),
+      custom: (final CartModelSortingCustom custom) =>
+          ingredients.sortedByCompare(
+        (final CartModelIngredient element) => element.ingredient.ingredientId,
+        (final String a, final String b) =>
+            custom.customSortingIngredientIds.indexOf(a) -
+            custom.customSortingIngredientIds.indexOf(b),
+      ),
+    );
   }
 
   List<CartModelSortingUnit> _getAllSortingUnit() {
@@ -225,58 +262,77 @@ class CartControllerImplementation extends CartController {
           .toList();
 
   @override
-  void setActiveSorting({required final CartModelSorting sorting}) {
-    unawaited(
-      state.sorting
-          .map(
-            unit: (final _) => sorting.map(
-              unit: (final CartModelSortingSelectedUnit unitSorting) =>
-                  _persistenceService.saveSorting(
-                sorting: CartPersistenceServiceModelActiveSorting.selectedUnit(
-                  activeSortingUnitId: unitSorting.activeUnit.id,
-                  customSortingIngredientIds:
-                      unitSorting.customSortingIngredientIds,
-                ),
-              ),
-              custom: (final CartModelSortingCustom custom) =>
-                  _persistenceService.saveSorting(
-                sorting: CartPersistenceServiceModelActiveSorting.custom(
-                  customSortingIngredientIds: custom.customSortingIngredientIds,
-                ),
+  void setActiveSorting({required final CartModelSorting sorting}) async {
+    await state.sorting
+        .map(
+          unit: (final _) => sorting.map(
+            unit: (final CartModelSortingSelectedUnit unitSorting) =>
+                _persistenceService.saveSorting(
+              sorting: CartPersistenceServiceModelActiveSorting.selectedUnit(
+                activeSortingUnitId: unitSorting.activeUnit.id,
+                customSortingIngredientIds:
+                    unitSorting.customSortingIngredientIds,
               ),
             ),
-            custom: (final CartModelSortingCustom custom) => sorting.map(
-              unit: (final CartModelSortingSelectedUnit unitSorting) =>
-                  _persistenceService.saveSorting(
-                sorting: CartPersistenceServiceModelActiveSorting.selectedUnit(
-                  activeSortingUnitId: unitSorting.activeUnit.id,
-                  customSortingIngredientIds: custom.customSortingIngredientIds,
-                ),
-              ),
-              custom: (final CartModelSortingCustom custom) =>
-                  _persistenceService.saveSorting(
-                sorting: CartPersistenceServiceModelActiveSorting.custom(
-                  customSortingIngredientIds: custom.customSortingIngredientIds,
-                ),
+            custom: (final CartModelSortingCustom custom) =>
+                _persistenceService.saveSorting(
+              sorting: CartPersistenceServiceModelActiveSorting.custom(
+                customSortingIngredientIds: custom.customSortingIngredientIds,
               ),
             ),
-          )
-          .run(),
-    );
-    state = state.copyWith(sorting: sorting);
+          ),
+          custom: (final CartModelSortingCustom custom) => sorting.map(
+            unit: (final CartModelSortingSelectedUnit unitSorting) =>
+                _persistenceService.saveSorting(
+              sorting: CartPersistenceServiceModelActiveSorting.selectedUnit(
+                activeSortingUnitId: unitSorting.activeUnit.id,
+                customSortingIngredientIds: custom.customSortingIngredientIds,
+              ),
+            ),
+            custom: (final CartModelSortingCustom custom) =>
+                _persistenceService.saveSorting(
+              sorting: CartPersistenceServiceModelActiveSorting.custom(
+                customSortingIngredientIds: custom.customSortingIngredientIds,
+              ),
+            ),
+          ),
+        )
+        .run();
+    state = state.copyWith(sorting: _getStoredSorting());
   }
 
   @override
-  void reorderIngredients({
+  Future<void> reorderIngredients({
     required final int oldIndex,
     required final int newIndex,
-  }) {
-    final List<CartModelIngredient> ingredients = <CartModelIngredient>[
-      ...state.ingredients,
-    ];
-    final CartModelIngredient family = ingredients.removeAt(oldIndex);
-    ingredients.insert(newIndex, family);
-    state = state.copyWith(ingredients: ingredients);
+  }) async {
+    await state.sorting.map(
+      unit: (final _) {},
+      custom: (final CartModelSortingCustom custom) async {
+        final List<CartModelIngredient> ingredients = <CartModelIngredient>[
+          ...state.ingredients,
+        ];
+        final CartModelIngredient ingredient = ingredients.removeAt(oldIndex);
+        ingredients.insert(newIndex, ingredient);
+        final List<String> ingredientIds = ingredients
+            .map(
+              (final CartModelIngredient ingredient) =>
+                  ingredient.ingredient.ingredientId,
+            )
+            .toList();
+        state = state.copyWith(
+          ingredients: ingredients,
+          sorting: custom.copyWith(customSortingIngredientIds: ingredientIds),
+        );
+        await _persistenceService
+            .saveSorting(
+          sorting: CartPersistenceServiceModelActiveSorting.custom(
+            customSortingIngredientIds: ingredientIds,
+          ),
+        )
+            .run();
+      },
+    );
   }
 
   CartModelSorting _getStoredSorting() => _persistenceService

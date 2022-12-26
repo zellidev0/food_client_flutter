@@ -1574,3 +1574,524 @@ abstract class _PersistenceServiceModelSortingUnitIngredientFamily
           _$_PersistenceServiceModelSortingUnitIngredientFamily>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+PersistenceServiceModelActiveSorting
+    _$PersistenceServiceModelActiveSortingFromJson(Map<String, dynamic> json) {
+  switch (json['runtimeType']) {
+    case 'unit':
+      return PersistenceServiceModelActiveSortingUnit.fromJson(json);
+    case 'custom':
+      return PersistenceServiceModelActiveSortingCustom.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(
+          json,
+          'runtimeType',
+          'PersistenceServiceModelActiveSorting',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
+}
+
+/// @nodoc
+mixin _$PersistenceServiceModelActiveSorting {
+  @HiveField(1)
+  List<String> get customSortingIngredientIds =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(@HiveField(0) String activeSortingUnitId,
+            @HiveField(1) List<String> customSortingIngredientIds)
+        unit,
+    required TResult Function(
+            @HiveField(0) List<String> customSortingIngredientIds)
+        custom,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(@HiveField(0) String activeSortingUnitId,
+            @HiveField(1) List<String> customSortingIngredientIds)?
+        unit,
+    TResult? Function(@HiveField(0) List<String> customSortingIngredientIds)?
+        custom,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(@HiveField(0) String activeSortingUnitId,
+            @HiveField(1) List<String> customSortingIngredientIds)?
+        unit,
+    TResult Function(@HiveField(0) List<String> customSortingIngredientIds)?
+        custom,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(PersistenceServiceModelActiveSortingUnit value)
+        unit,
+    required TResult Function(PersistenceServiceModelActiveSortingCustom value)
+        custom,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(PersistenceServiceModelActiveSortingUnit value)? unit,
+    TResult? Function(PersistenceServiceModelActiveSortingCustom value)? custom,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(PersistenceServiceModelActiveSortingUnit value)? unit,
+    TResult Function(PersistenceServiceModelActiveSortingCustom value)? custom,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $PersistenceServiceModelActiveSortingCopyWith<
+          PersistenceServiceModelActiveSorting>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PersistenceServiceModelActiveSortingCopyWith<$Res> {
+  factory $PersistenceServiceModelActiveSortingCopyWith(
+          PersistenceServiceModelActiveSorting value,
+          $Res Function(PersistenceServiceModelActiveSorting) then) =
+      _$PersistenceServiceModelActiveSortingCopyWithImpl<$Res,
+          PersistenceServiceModelActiveSorting>;
+  @useResult
+  $Res call({@HiveField(1) List<String> customSortingIngredientIds});
+}
+
+/// @nodoc
+class _$PersistenceServiceModelActiveSortingCopyWithImpl<$Res,
+        $Val extends PersistenceServiceModelActiveSorting>
+    implements $PersistenceServiceModelActiveSortingCopyWith<$Res> {
+  _$PersistenceServiceModelActiveSortingCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? customSortingIngredientIds = null,
+  }) {
+    return _then(_value.copyWith(
+      customSortingIngredientIds: null == customSortingIngredientIds
+          ? _value.customSortingIngredientIds
+          : customSortingIngredientIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$PersistenceServiceModelActiveSortingUnitCopyWith<$Res>
+    implements $PersistenceServiceModelActiveSortingCopyWith<$Res> {
+  factory _$$PersistenceServiceModelActiveSortingUnitCopyWith(
+          _$PersistenceServiceModelActiveSortingUnit value,
+          $Res Function(_$PersistenceServiceModelActiveSortingUnit) then) =
+      __$$PersistenceServiceModelActiveSortingUnitCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@HiveField(0) String activeSortingUnitId,
+      @HiveField(1) List<String> customSortingIngredientIds});
+}
+
+/// @nodoc
+class __$$PersistenceServiceModelActiveSortingUnitCopyWithImpl<$Res>
+    extends _$PersistenceServiceModelActiveSortingCopyWithImpl<$Res,
+        _$PersistenceServiceModelActiveSortingUnit>
+    implements _$$PersistenceServiceModelActiveSortingUnitCopyWith<$Res> {
+  __$$PersistenceServiceModelActiveSortingUnitCopyWithImpl(
+      _$PersistenceServiceModelActiveSortingUnit _value,
+      $Res Function(_$PersistenceServiceModelActiveSortingUnit) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? activeSortingUnitId = null,
+    Object? customSortingIngredientIds = null,
+  }) {
+    return _then(_$PersistenceServiceModelActiveSortingUnit(
+      activeSortingUnitId: null == activeSortingUnitId
+          ? _value.activeSortingUnitId
+          : activeSortingUnitId // ignore: cast_nullable_to_non_nullable
+              as String,
+      customSortingIngredientIds: null == customSortingIngredientIds
+          ? _value._customSortingIngredientIds
+          : customSortingIngredientIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+@HiveType(
+    typeId: 5, adapterName: 'PersistenceServiceModelActiveSortingUnitAdapter')
+class _$PersistenceServiceModelActiveSortingUnit
+    implements PersistenceServiceModelActiveSortingUnit {
+  const _$PersistenceServiceModelActiveSortingUnit(
+      {@HiveField(0) required this.activeSortingUnitId,
+      @HiveField(1) required final List<String> customSortingIngredientIds,
+      final String? $type})
+      : _customSortingIngredientIds = customSortingIngredientIds,
+        $type = $type ?? 'unit';
+
+  factory _$PersistenceServiceModelActiveSortingUnit.fromJson(
+          Map<String, dynamic> json) =>
+      _$$PersistenceServiceModelActiveSortingUnitFromJson(json);
+
+  @override
+  @HiveField(0)
+  final String activeSortingUnitId;
+  final List<String> _customSortingIngredientIds;
+  @override
+  @HiveField(1)
+  List<String> get customSortingIngredientIds {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_customSortingIngredientIds);
+  }
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'PersistenceServiceModelActiveSorting.unit(activeSortingUnitId: $activeSortingUnitId, customSortingIngredientIds: $customSortingIngredientIds)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PersistenceServiceModelActiveSortingUnit &&
+            (identical(other.activeSortingUnitId, activeSortingUnitId) ||
+                other.activeSortingUnitId == activeSortingUnitId) &&
+            const DeepCollectionEquality().equals(
+                other._customSortingIngredientIds,
+                _customSortingIngredientIds));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, activeSortingUnitId,
+      const DeepCollectionEquality().hash(_customSortingIngredientIds));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PersistenceServiceModelActiveSortingUnitCopyWith<
+          _$PersistenceServiceModelActiveSortingUnit>
+      get copyWith => __$$PersistenceServiceModelActiveSortingUnitCopyWithImpl<
+          _$PersistenceServiceModelActiveSortingUnit>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(@HiveField(0) String activeSortingUnitId,
+            @HiveField(1) List<String> customSortingIngredientIds)
+        unit,
+    required TResult Function(
+            @HiveField(0) List<String> customSortingIngredientIds)
+        custom,
+  }) {
+    return unit(activeSortingUnitId, customSortingIngredientIds);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(@HiveField(0) String activeSortingUnitId,
+            @HiveField(1) List<String> customSortingIngredientIds)?
+        unit,
+    TResult? Function(@HiveField(0) List<String> customSortingIngredientIds)?
+        custom,
+  }) {
+    return unit?.call(activeSortingUnitId, customSortingIngredientIds);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(@HiveField(0) String activeSortingUnitId,
+            @HiveField(1) List<String> customSortingIngredientIds)?
+        unit,
+    TResult Function(@HiveField(0) List<String> customSortingIngredientIds)?
+        custom,
+    required TResult orElse(),
+  }) {
+    if (unit != null) {
+      return unit(activeSortingUnitId, customSortingIngredientIds);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(PersistenceServiceModelActiveSortingUnit value)
+        unit,
+    required TResult Function(PersistenceServiceModelActiveSortingCustom value)
+        custom,
+  }) {
+    return unit(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(PersistenceServiceModelActiveSortingUnit value)? unit,
+    TResult? Function(PersistenceServiceModelActiveSortingCustom value)? custom,
+  }) {
+    return unit?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(PersistenceServiceModelActiveSortingUnit value)? unit,
+    TResult Function(PersistenceServiceModelActiveSortingCustom value)? custom,
+    required TResult orElse(),
+  }) {
+    if (unit != null) {
+      return unit(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PersistenceServiceModelActiveSortingUnitToJson(
+      this,
+    );
+  }
+}
+
+abstract class PersistenceServiceModelActiveSortingUnit
+    implements PersistenceServiceModelActiveSorting {
+  const factory PersistenceServiceModelActiveSortingUnit(
+          {@HiveField(0)
+              required final String activeSortingUnitId,
+          @HiveField(1)
+              required final List<String> customSortingIngredientIds}) =
+      _$PersistenceServiceModelActiveSortingUnit;
+
+  factory PersistenceServiceModelActiveSortingUnit.fromJson(
+          Map<String, dynamic> json) =
+      _$PersistenceServiceModelActiveSortingUnit.fromJson;
+
+  @HiveField(0)
+  String get activeSortingUnitId;
+  @override
+  @HiveField(1)
+  List<String> get customSortingIngredientIds;
+  @override
+  @JsonKey(ignore: true)
+  _$$PersistenceServiceModelActiveSortingUnitCopyWith<
+          _$PersistenceServiceModelActiveSortingUnit>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$PersistenceServiceModelActiveSortingCustomCopyWith<$Res>
+    implements $PersistenceServiceModelActiveSortingCopyWith<$Res> {
+  factory _$$PersistenceServiceModelActiveSortingCustomCopyWith(
+          _$PersistenceServiceModelActiveSortingCustom value,
+          $Res Function(_$PersistenceServiceModelActiveSortingCustom) then) =
+      __$$PersistenceServiceModelActiveSortingCustomCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@HiveField(0) List<String> customSortingIngredientIds});
+}
+
+/// @nodoc
+class __$$PersistenceServiceModelActiveSortingCustomCopyWithImpl<$Res>
+    extends _$PersistenceServiceModelActiveSortingCopyWithImpl<$Res,
+        _$PersistenceServiceModelActiveSortingCustom>
+    implements _$$PersistenceServiceModelActiveSortingCustomCopyWith<$Res> {
+  __$$PersistenceServiceModelActiveSortingCustomCopyWithImpl(
+      _$PersistenceServiceModelActiveSortingCustom _value,
+      $Res Function(_$PersistenceServiceModelActiveSortingCustom) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? customSortingIngredientIds = null,
+  }) {
+    return _then(_$PersistenceServiceModelActiveSortingCustom(
+      customSortingIngredientIds: null == customSortingIngredientIds
+          ? _value._customSortingIngredientIds
+          : customSortingIngredientIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+@HiveType(
+    typeId: 6, adapterName: 'PersistenceServiceModelActiveSortingCustomAdapter')
+class _$PersistenceServiceModelActiveSortingCustom
+    implements PersistenceServiceModelActiveSortingCustom {
+  const _$PersistenceServiceModelActiveSortingCustom(
+      {@HiveField(0) required final List<String> customSortingIngredientIds,
+      final String? $type})
+      : _customSortingIngredientIds = customSortingIngredientIds,
+        $type = $type ?? 'custom';
+
+  factory _$PersistenceServiceModelActiveSortingCustom.fromJson(
+          Map<String, dynamic> json) =>
+      _$$PersistenceServiceModelActiveSortingCustomFromJson(json);
+
+  final List<String> _customSortingIngredientIds;
+  @override
+  @HiveField(0)
+  List<String> get customSortingIngredientIds {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_customSortingIngredientIds);
+  }
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'PersistenceServiceModelActiveSorting.custom(customSortingIngredientIds: $customSortingIngredientIds)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PersistenceServiceModelActiveSortingCustom &&
+            const DeepCollectionEquality().equals(
+                other._customSortingIngredientIds,
+                _customSortingIngredientIds));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_customSortingIngredientIds));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PersistenceServiceModelActiveSortingCustomCopyWith<
+          _$PersistenceServiceModelActiveSortingCustom>
+      get copyWith =>
+          __$$PersistenceServiceModelActiveSortingCustomCopyWithImpl<
+              _$PersistenceServiceModelActiveSortingCustom>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(@HiveField(0) String activeSortingUnitId,
+            @HiveField(1) List<String> customSortingIngredientIds)
+        unit,
+    required TResult Function(
+            @HiveField(0) List<String> customSortingIngredientIds)
+        custom,
+  }) {
+    return custom(customSortingIngredientIds);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(@HiveField(0) String activeSortingUnitId,
+            @HiveField(1) List<String> customSortingIngredientIds)?
+        unit,
+    TResult? Function(@HiveField(0) List<String> customSortingIngredientIds)?
+        custom,
+  }) {
+    return custom?.call(customSortingIngredientIds);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(@HiveField(0) String activeSortingUnitId,
+            @HiveField(1) List<String> customSortingIngredientIds)?
+        unit,
+    TResult Function(@HiveField(0) List<String> customSortingIngredientIds)?
+        custom,
+    required TResult orElse(),
+  }) {
+    if (custom != null) {
+      return custom(customSortingIngredientIds);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(PersistenceServiceModelActiveSortingUnit value)
+        unit,
+    required TResult Function(PersistenceServiceModelActiveSortingCustom value)
+        custom,
+  }) {
+    return custom(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(PersistenceServiceModelActiveSortingUnit value)? unit,
+    TResult? Function(PersistenceServiceModelActiveSortingCustom value)? custom,
+  }) {
+    return custom?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(PersistenceServiceModelActiveSortingUnit value)? unit,
+    TResult Function(PersistenceServiceModelActiveSortingCustom value)? custom,
+    required TResult orElse(),
+  }) {
+    if (custom != null) {
+      return custom(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PersistenceServiceModelActiveSortingCustomToJson(
+      this,
+    );
+  }
+}
+
+abstract class PersistenceServiceModelActiveSortingCustom
+    implements PersistenceServiceModelActiveSorting {
+  const factory PersistenceServiceModelActiveSortingCustom(
+          {@HiveField(0)
+              required final List<String> customSortingIngredientIds}) =
+      _$PersistenceServiceModelActiveSortingCustom;
+
+  factory PersistenceServiceModelActiveSortingCustom.fromJson(
+          Map<String, dynamic> json) =
+      _$PersistenceServiceModelActiveSortingCustom.fromJson;
+
+  @override
+  @HiveField(0)
+  List<String> get customSortingIngredientIds;
+  @override
+  @JsonKey(ignore: true)
+  _$$PersistenceServiceModelActiveSortingCustomCopyWith<
+          _$PersistenceServiceModelActiveSortingCustom>
+      get copyWith => throw _privateConstructorUsedError;
+}

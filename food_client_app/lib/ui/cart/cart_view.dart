@@ -254,8 +254,13 @@ Widget buildSortingModalBottomSheetWidget() => Padding(
                   (final CartModelSortingUnit ingredientUnit) => Stack(
                     children: <Widget>[
                       buildCard(
-                        sorting:
-                            ref.watch(providers.cartControllerProvider).sorting,
+                        sorting: CartModelSorting.unit(
+                          activeUnit: ingredientUnit,
+                          customSortingIngredientIds: ref
+                              .watch(providers.cartControllerProvider)
+                              .sorting
+                              .customSortingIngredientIds,
+                        ),
                         onTap: () {
                           ref
                               .read(providers.cartControllerProvider.notifier)
@@ -272,7 +277,13 @@ Widget buildSortingModalBottomSheetWidget() => Padding(
                       ),
                       buildStarIcon(
                         sorting:
-                            ref.watch(providers.cartControllerProvider).sorting,
+                        CartModelSorting.unit(
+                          activeUnit: ingredientUnit,
+                          customSortingIngredientIds: ref
+                              .watch(providers.cartControllerProvider)
+                              .sorting
+                              .customSortingIngredientIds,
+                        ),
                       ),
                     ],
                   ),
@@ -280,7 +291,12 @@ Widget buildSortingModalBottomSheetWidget() => Padding(
             Stack(
               children: <Widget>[
                 buildCard(
-                  sorting: ref.watch(providers.cartControllerProvider).sorting,
+                  sorting: CartModelSorting.custom(
+                    customSortingIngredientIds: ref
+                        .watch(providers.cartControllerProvider)
+                        .sorting
+                        .customSortingIngredientIds,
+                  ),
                   onTap: () {
                     ref
                         .read(providers.cartControllerProvider.notifier)
@@ -295,7 +311,12 @@ Widget buildSortingModalBottomSheetWidget() => Padding(
                   },
                 ),
                 buildStarIcon(
-                  sorting: ref.watch(providers.cartControllerProvider).sorting,
+                  sorting: CartModelSorting.custom(
+                    customSortingIngredientIds: ref
+                        .watch(providers.cartControllerProvider)
+                        .sorting
+                        .customSortingIngredientIds,
+                  ),
                 ),
               ],
             ),
