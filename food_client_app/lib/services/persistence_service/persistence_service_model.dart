@@ -123,3 +123,31 @@ class PersistenceServiceModelSortingUnitIngredientFamily
       _$PersistenceServiceModelSortingUnitIngredientFamilyFromJson(json);
 }
 
+
+@freezed
+class PersistenceServiceModelActiveSorting
+    with _$PersistenceServiceModelActiveSorting {
+  @HiveType(
+    typeId: 5,
+    adapterName: 'PersistenceServiceModelActiveSortingUnitAdapter',
+  )
+  const factory PersistenceServiceModelActiveSorting.unit({
+    @HiveField(0) required final String activeSortingUnitId,
+    @HiveField(1) required final List<String> customSortingIngredientIds,
+  }) = PersistenceServiceModelActiveSortingUnit;
+
+  @HiveType(
+    typeId: 6,
+    adapterName: 'PersistenceServiceModelActiveSortingCustomAdapter',
+  )
+  const factory PersistenceServiceModelActiveSorting.custom({
+    @HiveField(0) required final List<String> customSortingIngredientIds,
+  }) = PersistenceServiceModelActiveSortingCustom;
+
+
+  factory PersistenceServiceModelActiveSorting.fromJson(
+      final Map<String, dynamic> json,
+      ) =>
+      _$PersistenceServiceModelActiveSortingFromJson(json);
+}
+

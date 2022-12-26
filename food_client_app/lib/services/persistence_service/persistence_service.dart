@@ -9,6 +9,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 const String ingredientsBoxName = 'ingredientsBox';
 const String sortingUnitsBoxName = 'sortingUnitsBox';
+const String activeShoppingListSortingBoxName = 'activeShoppingListSortingBox';
+const String activeShoppingListSortingKey = 'activeShoppingListSortingBoxKey';
 
 abstract class PersistenceServiceAggregator
     extends StateNotifier<PersistenceServiceModel>
@@ -22,6 +24,7 @@ abstract class PersistenceServiceAggregator
 class PersistenceService extends PersistenceServiceAggregator {
   late Box<PersistenceServiceModelShoppingListRecipe> shoppingListBox;
   late Box<PersistenceServiceModelSortingUnit> sortingUnits;
+  late Box<PersistenceServiceModelActiveSorting> activeShoppingListSortingBox;
 
   PersistenceService()
       : super(
@@ -37,6 +40,10 @@ class PersistenceService extends PersistenceServiceAggregator {
     });
     sortingUnits = Hive.box<PersistenceServiceModelSortingUnit>(
       sortingUnitsBoxName,
+    );
+    activeShoppingListSortingBox =
+        Hive.box<PersistenceServiceModelActiveSorting>(
+      activeShoppingListSortingBoxName,
     );
   }
 
@@ -280,9 +287,51 @@ class PersistenceService extends PersistenceServiceAggregator {
           .toList();
 
   @override
-  Task<void> saveSorting({required final CartPersistenceServiceModelActiveSorting sorting}) {
-    return Task.of(a);
-  }
+  Task<void> saveSorting({
+    required final CartPersistenceServiceModelActiveSorting sorting,
+  }) =>
+      Task<void>(
+        () async => await activeShoppingListSortingBox.put(
+          activeShoppingListSortingKey,
+          sorting.map(
+            selectedUnit: (
+              final CartPersistenceServiceModelActiveSortingSelectedUnit
+                  selectedUnit,
+            ) =>
+                PersistenceServiceModelActiveSorting.unit(
+              activeSortingUnitId: selectedUnit.activeSortingUnitId,
+              customSortingIngredientIds:
+                  selectedUnit.customSortingIngredientIds,
+            ),
+            custom:
+                (final CartPersistenceServiceModelActiveSortingCustom custom) =>
+                    PersistenceServiceModelActiveSorting.custom(
+              customSortingIngredientIds: custom.customSortingIngredientIds,
+            ),
+          ),
+        ),
+      );
+
+  @override
+  Option<CartPersistenceServiceModelActiveSorting> getActiveSorting() =>
+      optionOf(
+        activeShoppingListSortingBox.get(
+          activeShoppingListSortingKey,
+        ),
+      ).map(
+        (final PersistenceServiceModelActiveSorting activeSorting) =>
+            activeSorting.map(
+          unit: (final PersistenceServiceModelActiveSortingUnit unit) =>
+              CartPersistenceServiceModelActiveSorting.selectedUnit(
+            activeSortingUnitId: unit.activeSortingUnitId,
+            customSortingIngredientIds: unit.customSortingIngredientIds,
+          ),
+          custom: (final PersistenceServiceModelActiveSortingCustom custom) =>
+              CartPersistenceServiceModelActiveSorting.custom(
+            customSortingIngredientIds: custom.customSortingIngredientIds,
+          ),
+        ),
+      );
 }
 
 CartPersistenceServiceModelRecipe mapToCartPersistenceServiceModelRecipe(

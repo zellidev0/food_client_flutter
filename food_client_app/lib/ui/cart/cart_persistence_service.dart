@@ -9,6 +9,7 @@ abstract class CartPersistenceService {
   Task<void> saveSorting({
     required final CartPersistenceServiceModelActiveSorting sorting,
   });
+  Option<CartPersistenceServiceModelActiveSorting> getActiveSorting();
   Task<void> updateIngredient({
     required final bool isTickedOff,
     required final String ingredientId,

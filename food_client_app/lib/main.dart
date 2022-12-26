@@ -15,6 +15,8 @@ void main() async {
     ..registerAdapter(OptionUriAdapter())
     ..registerAdapter(PersistenceServiceModelSortingUnitAdapter())
     ..registerAdapter(PersistenceServiceModelSortingUnitIngredientFamilyAdapter())
+    ..registerAdapter(PersistenceServiceModelActiveSortingUnitAdapter())
+    ..registerAdapter(PersistenceServiceModelActiveSortingCustomAdapter())
     ..registerAdapter(OptionDoubleAdapter())
     ..registerAdapter(OptionStringAdapter())
     ..registerAdapter(OptionPersistenceServiceModelShoppingListIngredientFamilyAdapter())
@@ -28,6 +30,9 @@ void main() async {
   );
   await Hive.openBox<PersistenceServiceModelSortingUnit>(
     sortingUnitsBoxName,
+  );
+  await Hive.openBox<PersistenceServiceModelActiveSorting>(
+    activeShoppingListSortingBoxName,
   );
 
   providers = Providers();

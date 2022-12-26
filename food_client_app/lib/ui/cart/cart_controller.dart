@@ -27,6 +27,7 @@ class CartControllerImplementation extends CartController {
         _persistenceService = persistenceService,
         _imageSizerService = imageSizerService {
     state = state.copyWith(
+      sorting: _getStoredSorting(),
       recipes: _getAllRecipes(),
       ingredients: _getAllIngredients(),
       sortingUnits: _getAllSortingUnit(),
@@ -225,33 +226,42 @@ class CartControllerImplementation extends CartController {
 
   @override
   void setActiveSorting({required final CartModelSorting sorting}) {
-    state.sorting.map(
-      unit: (final _) => sorting.map(
-        unit: (unitSorting) => _persistenceService.saveSorting(
-          sorting: CartPersistenceServiceModelActiveSorting.selectedUnit(
-            activeSortingUnitId: unitSorting.activeUnit.id,
-            customSortingIngredientIds: unitSorting.customSortingIngredientIds,
-          ),
-        ),
-        custom: (custom) => _persistenceService.saveSorting(
-          sorting: CartPersistenceServiceModelActiveSorting.custom(
-            customSortingIngredientIds: custom.customSortingIngredientIds,
-          ),
-        ),
-      ),
-      custom: (custom) => sorting.map(
-        unit: (unitSorting) => _persistenceService.saveSorting(
-          sorting: CartPersistenceServiceModelActiveSorting.selectedUnit(
-            activeSortingUnitId: unitSorting.activeUnit.id,
-            customSortingIngredientIds: custom.customSortingIngredientIds,
-          ),
-        ),
-        custom: (custom) => _persistenceService.saveSorting(
-          sorting: CartPersistenceServiceModelActiveSorting.custom(
-            customSortingIngredientIds: custom.customSortingIngredientIds,
-          ),
-        ),
-      ),
+    unawaited(
+      state.sorting
+          .map(
+            unit: (final _) => sorting.map(
+              unit: (final CartModelSortingSelectedUnit unitSorting) =>
+                  _persistenceService.saveSorting(
+                sorting: CartPersistenceServiceModelActiveSorting.selectedUnit(
+                  activeSortingUnitId: unitSorting.activeUnit.id,
+                  customSortingIngredientIds:
+                      unitSorting.customSortingIngredientIds,
+                ),
+              ),
+              custom: (final CartModelSortingCustom custom) =>
+                  _persistenceService.saveSorting(
+                sorting: CartPersistenceServiceModelActiveSorting.custom(
+                  customSortingIngredientIds: custom.customSortingIngredientIds,
+                ),
+              ),
+            ),
+            custom: (final CartModelSortingCustom custom) => sorting.map(
+              unit: (final CartModelSortingSelectedUnit unitSorting) =>
+                  _persistenceService.saveSorting(
+                sorting: CartPersistenceServiceModelActiveSorting.selectedUnit(
+                  activeSortingUnitId: unitSorting.activeUnit.id,
+                  customSortingIngredientIds: custom.customSortingIngredientIds,
+                ),
+              ),
+              custom: (final CartModelSortingCustom custom) =>
+                  _persistenceService.saveSorting(
+                sorting: CartPersistenceServiceModelActiveSorting.custom(
+                  customSortingIngredientIds: custom.customSortingIngredientIds,
+                ),
+              ),
+            ),
+          )
+          .run(),
     );
     state = state.copyWith(sorting: sorting);
   }
@@ -268,6 +278,36 @@ class CartControllerImplementation extends CartController {
     ingredients.insert(newIndex, family);
     state = state.copyWith(ingredients: ingredients);
   }
+
+  CartModelSorting _getStoredSorting() => _persistenceService
+      .getActiveSorting()
+      .map(
+        (final CartPersistenceServiceModelActiveSorting sorting) => sorting.map(
+          selectedUnit: (
+            final CartPersistenceServiceModelActiveSortingSelectedUnit unit,
+          ) =>
+              optionOf(
+            state.sortingUnits.firstWhereOrNull(
+              (final CartModelSortingUnit element) =>
+                  element.id == unit.activeSortingUnitId,
+            ),
+          ).fold(
+            () => const CartModelSorting.custom(
+              customSortingIngredientIds: <String>[],
+            ),
+            (final CartModelSortingUnit storedUnit) => CartModelSorting.unit(
+              activeUnit: storedUnit,
+              customSortingIngredientIds: unit.customSortingIngredientIds,
+            ),
+          ),
+          custom:
+              (final CartPersistenceServiceModelActiveSortingCustom custom) =>
+                  CartModelSorting.custom(
+            customSortingIngredientIds: custom.customSortingIngredientIds,
+          ),
+        ),
+      )
+      .getOrElse(() => state.sorting);
 }
 
 CartModelIngredient mapToCartModelIngredient(
