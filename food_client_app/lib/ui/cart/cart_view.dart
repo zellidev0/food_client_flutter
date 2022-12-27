@@ -66,23 +66,27 @@ class CartView extends ConsumerWidget {
                       buildIngredientsListView(
                         ingredients: model.ingredients,
                         keyId: 'total',
-                        condition: (final CartModelIngredient ingredient) =>
-                            true,
                         controller: controller,
                         sorting: model.sorting,
                       ),
                       buildIngredientsListView(
-                        ingredients: model.ingredients,
-                        condition: (final CartModelIngredient ingredient) =>
-                            !ingredient.isTickedOff,
+                        ingredients: model.ingredients
+                            .where(
+                              (final CartModelIngredient element) =>
+                                  !element.isTickedOff,
+                            )
+                            .toList(),
                         keyId: 'missing',
                         controller: controller,
                         sorting: model.sorting,
                       ),
                       buildIngredientsListView(
-                        ingredients: model.ingredients,
-                        condition: (final CartModelIngredient ingredient) =>
-                            ingredient.isTickedOff,
+                        ingredients: model.ingredients
+                            .where(
+                              (final CartModelIngredient element) =>
+                                  element.isTickedOff,
+                            )
+                            .toList(),
                         keyId: 'ticked-off',
                         controller: controller,
                         sorting: model.sorting,
@@ -98,7 +102,6 @@ class CartView extends ConsumerWidget {
   Widget buildIngredientsListView({
     required final List<CartModelIngredient> ingredients,
     required final String keyId,
-    required final bool Function(CartModelIngredient ingredient) condition,
     required final CartController controller,
     required final CartModelSorting sorting,
   }) =>
@@ -276,8 +279,7 @@ Widget buildSortingModalBottomSheetWidget() => Padding(
                         },
                       ),
                       buildStarIcon(
-                        sorting:
-                        CartModelSorting.unit(
+                        sorting: CartModelSorting.unit(
                           activeUnit: ingredientUnit,
                           customSortingIngredientIds: ref
                               .watch(providers.cartControllerProvider)
