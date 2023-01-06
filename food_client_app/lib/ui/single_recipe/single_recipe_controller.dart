@@ -118,6 +118,9 @@ class SingleRecipeControllerImplementation extends SingleRecipeController {
                           )
                           .run(),
                     );
+                    _navigationService.showSnackBar(
+                      message: 'ui.single_recipe_view.snack_bars.add_to_cart_success'.tr(),
+                    );
                   },
                 ),
               )

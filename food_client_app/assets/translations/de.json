@@ -13,6 +13,9 @@
           }
         }
       },
+      "snack_bars": {
+        "add_to_cart_success": "Rezept wurden der Einkaufsliste hinzugefügt."
+      },
       "difficulty": {
         "easy": "Einfach",
         "medium": "Mittel",

@@ -34,10 +34,7 @@ class HomeView extends ConsumerWidget {
               elevation: 0,
               scrolledUnderElevation:0,
               flexibleSpace: FlexibleSpaceBar(
-                background: Container(
-                  color: Colors.transparent,
-                ),
-                titlePadding: const EdgeInsets.all(0),
+                titlePadding: EdgeInsets.zero,
                 title: buildFilters(
                   model: model,
                   controller: controller,
@@ -89,7 +86,7 @@ class HomeView extends ConsumerWidget {
                     ),
                   ],
                 ),
-              ));
+              ),);
 
   Widget buildSingleFilterChip({
     required final String text,

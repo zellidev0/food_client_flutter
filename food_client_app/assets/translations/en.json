@@ -13,6 +13,9 @@
           }
         }
       },
+      "snack_bars": {
+        "add_to_cart_success": "Recipe added to shopping cart."
+      },
       "difficulty": {
         "easy": "easy",
         "medium": "normal",

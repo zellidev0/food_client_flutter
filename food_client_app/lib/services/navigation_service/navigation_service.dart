@@ -123,7 +123,15 @@ class BeamerNavigationService implements NavigationServiceAggregator {
   @override
   void showSnackBar({required final String message}) =>
       material.ScaffoldMessenger.of(_beamerDelegate.navigator.context)
-          .showSnackBar(material.SnackBar(content: material.Text(message)));
+          .showSnackBar(
+        material.SnackBar(
+          behavior: SnackBarBehavior.floating,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+          ),
+          content: material.Text(message),
+        ),
+      );
 
   @override
   void pop() {
