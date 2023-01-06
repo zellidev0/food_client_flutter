@@ -28,7 +28,8 @@ class MainControllerImplementation extends MainController {
   @override
   void goToAccount() {
     _navigationService.navigateToNamed(
-        uri: NavigationServiceUris.accountRouteUri,);
+      uri: NavigationServiceUris.accountRouteUri,
+    );
     state = state.copyWith(bottomNavigationBarIndex: 2);
   }
 
@@ -54,8 +55,10 @@ class MainControllerImplementation extends MainController {
           index = 1;
         } else if (uri == NavigationServiceUris.accountRouteUri) {
           index = 2;
+        } else if (uri == NavigationServiceUris.ingredientsSortingRouteUri) {
+          index = 2;
         } else {
-          index = 0;
+          index = 1;
         }
         return index;
       });
