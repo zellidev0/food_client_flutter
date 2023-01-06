@@ -243,8 +243,13 @@ SingleRecipeWebClientModelRecipe _mapToSingleRecipeWebClientModelRecipe({
           .flatMap(
             (final String stepsJson) =>
                 Option<List<WebClientModelStep>>.tryCatch(
-              () => (jsonDecode(stepsJson) as List<Map<String, Object?>>)
-                  .map(WebClientModelStep.fromJson)
+              () => (jsonDecode(stepsJson) as List<Object?>)
+                  .map(
+                    (final Object? json) => json is Map<String, Object?>
+                        ? WebClientModelStep.fromJson(json)
+                        : null,
+                  )
+                  .whereNotNull()
                   .toList(),
             ),
           )
