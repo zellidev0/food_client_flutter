@@ -20,6 +20,7 @@ mixin _$SingleRecipeWebClientModelRecipe {
   SingleRecipeWebClientModelDisplayedAttributes get displayedAttributes =>
       throw _privateConstructorUsedError;
   int get difficulty => throw _privateConstructorUsedError;
+  Option<Duration> get totalCookingTime => throw _privateConstructorUsedError;
   List<SingleRecipeWebClientModelYield> get yields =>
       throw _privateConstructorUsedError;
   List<SingleRecipeWebClientModelTag> get tags =>
@@ -45,6 +46,7 @@ abstract class $SingleRecipeWebClientModelRecipeCopyWith<$Res> {
       {String id,
       SingleRecipeWebClientModelDisplayedAttributes displayedAttributes,
       int difficulty,
+      Option<Duration> totalCookingTime,
       List<SingleRecipeWebClientModelYield> yields,
       List<SingleRecipeWebClientModelTag> tags,
       List<SingleRecipeWebClientModelStep> steps,
@@ -71,6 +73,7 @@ class _$SingleRecipeWebClientModelRecipeCopyWithImpl<$Res,
     Object? id = null,
     Object? displayedAttributes = null,
     Object? difficulty = null,
+    Object? totalCookingTime = null,
     Object? yields = null,
     Object? tags = null,
     Object? steps = null,
@@ -89,6 +92,10 @@ class _$SingleRecipeWebClientModelRecipeCopyWithImpl<$Res,
           ? _value.difficulty
           : difficulty // ignore: cast_nullable_to_non_nullable
               as int,
+      totalCookingTime: null == totalCookingTime
+          ? _value.totalCookingTime
+          : totalCookingTime // ignore: cast_nullable_to_non_nullable
+              as Option<Duration>,
       yields: null == yields
           ? _value.yields
           : yields // ignore: cast_nullable_to_non_nullable
@@ -132,6 +139,7 @@ abstract class _$$_SingleRecipeWebClientModelRecipeCopyWith<$Res>
       {String id,
       SingleRecipeWebClientModelDisplayedAttributes displayedAttributes,
       int difficulty,
+      Option<Duration> totalCookingTime,
       List<SingleRecipeWebClientModelYield> yields,
       List<SingleRecipeWebClientModelTag> tags,
       List<SingleRecipeWebClientModelStep> steps,
@@ -158,6 +166,7 @@ class __$$_SingleRecipeWebClientModelRecipeCopyWithImpl<$Res>
     Object? id = null,
     Object? displayedAttributes = null,
     Object? difficulty = null,
+    Object? totalCookingTime = null,
     Object? yields = null,
     Object? tags = null,
     Object? steps = null,
@@ -176,6 +185,10 @@ class __$$_SingleRecipeWebClientModelRecipeCopyWithImpl<$Res>
           ? _value.difficulty
           : difficulty // ignore: cast_nullable_to_non_nullable
               as int,
+      totalCookingTime: null == totalCookingTime
+          ? _value.totalCookingTime
+          : totalCookingTime // ignore: cast_nullable_to_non_nullable
+              as Option<Duration>,
       yields: null == yields
           ? _value._yields
           : yields // ignore: cast_nullable_to_non_nullable
@@ -204,6 +217,7 @@ class _$_SingleRecipeWebClientModelRecipe
       {required this.id,
       required this.displayedAttributes,
       required this.difficulty,
+      required this.totalCookingTime,
       required final List<SingleRecipeWebClientModelYield> yields,
       required final List<SingleRecipeWebClientModelTag> tags,
       required final List<SingleRecipeWebClientModelStep> steps,
@@ -218,6 +232,8 @@ class _$_SingleRecipeWebClientModelRecipe
   final SingleRecipeWebClientModelDisplayedAttributes displayedAttributes;
   @override
   final int difficulty;
+  @override
+  final Option<Duration> totalCookingTime;
   final List<SingleRecipeWebClientModelYield> _yields;
   @override
   List<SingleRecipeWebClientModelYield> get yields {
@@ -244,7 +260,7 @@ class _$_SingleRecipeWebClientModelRecipe
 
   @override
   String toString() {
-    return 'SingleRecipeWebClientModelRecipe(id: $id, displayedAttributes: $displayedAttributes, difficulty: $difficulty, yields: $yields, tags: $tags, steps: $steps, imagePath: $imagePath)';
+    return 'SingleRecipeWebClientModelRecipe(id: $id, displayedAttributes: $displayedAttributes, difficulty: $difficulty, totalCookingTime: $totalCookingTime, yields: $yields, tags: $tags, steps: $steps, imagePath: $imagePath)';
   }
 
   @override
@@ -257,6 +273,8 @@ class _$_SingleRecipeWebClientModelRecipe
                 other.displayedAttributes == displayedAttributes) &&
             (identical(other.difficulty, difficulty) ||
                 other.difficulty == difficulty) &&
+            (identical(other.totalCookingTime, totalCookingTime) ||
+                other.totalCookingTime == totalCookingTime) &&
             const DeepCollectionEquality().equals(other._yields, _yields) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
             const DeepCollectionEquality().equals(other._steps, _steps) &&
@@ -270,6 +288,7 @@ class _$_SingleRecipeWebClientModelRecipe
       id,
       displayedAttributes,
       difficulty,
+      totalCookingTime,
       const DeepCollectionEquality().hash(_yields),
       const DeepCollectionEquality().hash(_tags),
       const DeepCollectionEquality().hash(_steps),
@@ -291,6 +310,7 @@ abstract class _SingleRecipeWebClientModelRecipe
           required final SingleRecipeWebClientModelDisplayedAttributes
               displayedAttributes,
           required final int difficulty,
+          required final Option<Duration> totalCookingTime,
           required final List<SingleRecipeWebClientModelYield> yields,
           required final List<SingleRecipeWebClientModelTag> tags,
           required final List<SingleRecipeWebClientModelStep> steps,
@@ -303,6 +323,8 @@ abstract class _SingleRecipeWebClientModelRecipe
   SingleRecipeWebClientModelDisplayedAttributes get displayedAttributes;
   @override
   int get difficulty;
+  @override
+  Option<Duration> get totalCookingTime;
   @override
   List<SingleRecipeWebClientModelYield> get yields;
   @override

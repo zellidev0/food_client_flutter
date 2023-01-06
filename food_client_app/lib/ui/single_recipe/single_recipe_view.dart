@@ -107,10 +107,20 @@ class SingleRecipeView extends ConsumerWidget {
               ),
             ),
           ],
-          body: buildTabsContent(
-            recipe: recipe,
-            selectedYield: selectedYield,
-            controller: controller,
+          body: Column(
+            children: <Widget>[
+              _buildCookingDetails(
+                difficulty: recipe.difficulty,
+                totalCookingTime: recipe.totalCookingTime,
+              ),
+              Expanded(
+                child: buildTabsContent(
+                  recipe: recipe,
+                  selectedYield: selectedYield,
+                  controller: controller,
+                ),
+              ),
+            ],
           ),
         ),
       );
@@ -241,7 +251,8 @@ class SingleRecipeView extends ConsumerWidget {
                       subtitle: Text(
                         '${ingredient.amount.fold(
                           () => '',
-                          (final double amount) => '$amount ',
+                          (final double amount) =>
+                              '${amount.toStringAsFixed(0)} ',
                         )}${ingredient.unit.getOrElse(() => '')}',
                       ),
                     ),
@@ -252,22 +263,48 @@ class SingleRecipeView extends ConsumerWidget {
         ),
       );
 
-  // Row _buildCookingDetails() => Row(
-  //       children: <Widget>[
-  //         _buildCookingDetailIconWithText(),
-  //         _buildCookingDetailIconWithText(),
-  //         _buildCookingDetailIconWithText(),
-  //       ],
-  //     );
-
-  // Expanded _buildCookingDetailIconWithText() => Expanded(
-  //       child: Column(
-  //         children: const <Widget>[
-  //           Icon(Icons.timelapse),
-  //           Text('25 min'),
-  //         ],
-  //       ),
-  //     );
+  Row _buildCookingDetails({
+    required final int difficulty,
+    required final Option<Duration> totalCookingTime,
+  }) =>
+      Row(
+        children: <Widget>[
+          Expanded(
+            child: Column(
+              children: <Widget>[
+                const Icon(Icons.hardware),
+                Text(
+                  () {
+                    switch (difficulty) {
+                      case 1:
+                        return 'ui.single_recipe_view.difficulty.easy'.tr();
+                      case 2:
+                        return 'ui.single_recipe_view.difficulty.medium'.tr();
+                      case 3:
+                        return 'ui.single_recipe_view.difficulty.hard'.tr();
+                      default:
+                        return '-';
+                    }
+                  }.call(),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Column(
+              children: <Widget>[
+                const Icon(Icons.timelapse),
+                Text(
+                  totalCookingTime.fold(
+                    () => '-',
+                    (final Duration duration) => '${duration.inMinutes} min',
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      );
 }
 
 abstract class SingleRecipeController extends StateNotifier<SingleRecipeModel> {

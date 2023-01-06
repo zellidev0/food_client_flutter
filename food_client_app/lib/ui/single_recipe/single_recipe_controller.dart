@@ -183,6 +183,7 @@ SingleRecipeModelRecipe mapToSingleRecipeModelRecipe({
         imageResizerService: imageResizerService,
       ),
       imagePath: recipe.imagePath,
+      totalCookingTime: recipe.totalCookingTime,
     );
 
 SingleRecipeModelDisplayedAttributes _mapDisplayedAttributes({

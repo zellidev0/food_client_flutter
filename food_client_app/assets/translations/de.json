@@ -12,6 +12,11 @@
             }
           }
         }
+      },
+      "difficulty": {
+        "easy": "Einfach",
+        "medium": "Mittel",
+        "hard": "Schwer"
       }
     },
     "main_view": {

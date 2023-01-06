@@ -16,6 +16,7 @@ class SingleRecipeWebClientModelRecipe with _$SingleRecipeWebClientModelRecipe {
     required final SingleRecipeWebClientModelDisplayedAttributes
         displayedAttributes,
     required final int difficulty,
+    required final Option<Duration> totalCookingTime,
     required final List<SingleRecipeWebClientModelYield> yields,
     required final List<SingleRecipeWebClientModelTag> tags,
     required final List<SingleRecipeWebClientModelStep> steps,

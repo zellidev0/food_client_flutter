@@ -163,6 +163,7 @@ mixin _$SingleRecipeModelRecipe {
   SingleRecipeModelDisplayedAttributes get displayedAttributes =>
       throw _privateConstructorUsedError;
   int get difficulty => throw _privateConstructorUsedError;
+  Option<Duration> get totalCookingTime => throw _privateConstructorUsedError;
   List<SingleRecipeModelYield> get yields => throw _privateConstructorUsedError;
   List<SingleRecipeModelTag> get tags => throw _privateConstructorUsedError;
   List<SingleRecipeModelStep> get steps => throw _privateConstructorUsedError;
@@ -184,6 +185,7 @@ abstract class $SingleRecipeModelRecipeCopyWith<$Res> {
       {String id,
       SingleRecipeModelDisplayedAttributes displayedAttributes,
       int difficulty,
+      Option<Duration> totalCookingTime,
       List<SingleRecipeModelYield> yields,
       List<SingleRecipeModelTag> tags,
       List<SingleRecipeModelStep> steps,
@@ -210,6 +212,7 @@ class _$SingleRecipeModelRecipeCopyWithImpl<$Res,
     Object? id = null,
     Object? displayedAttributes = null,
     Object? difficulty = null,
+    Object? totalCookingTime = null,
     Object? yields = null,
     Object? tags = null,
     Object? steps = null,
@@ -229,6 +232,10 @@ class _$SingleRecipeModelRecipeCopyWithImpl<$Res,
           ? _value.difficulty
           : difficulty // ignore: cast_nullable_to_non_nullable
               as int,
+      totalCookingTime: null == totalCookingTime
+          ? _value.totalCookingTime
+          : totalCookingTime // ignore: cast_nullable_to_non_nullable
+              as Option<Duration>,
       yields: null == yields
           ? _value.yields
           : yields // ignore: cast_nullable_to_non_nullable
@@ -274,6 +281,7 @@ abstract class _$$_SingleRecipeModelRecipeCopyWith<$Res>
       {String id,
       SingleRecipeModelDisplayedAttributes displayedAttributes,
       int difficulty,
+      Option<Duration> totalCookingTime,
       List<SingleRecipeModelYield> yields,
       List<SingleRecipeModelTag> tags,
       List<SingleRecipeModelStep> steps,
@@ -299,6 +307,7 @@ class __$$_SingleRecipeModelRecipeCopyWithImpl<$Res>
     Object? id = null,
     Object? displayedAttributes = null,
     Object? difficulty = null,
+    Object? totalCookingTime = null,
     Object? yields = null,
     Object? tags = null,
     Object? steps = null,
@@ -318,6 +327,10 @@ class __$$_SingleRecipeModelRecipeCopyWithImpl<$Res>
           ? _value.difficulty
           : difficulty // ignore: cast_nullable_to_non_nullable
               as int,
+      totalCookingTime: null == totalCookingTime
+          ? _value.totalCookingTime
+          : totalCookingTime // ignore: cast_nullable_to_non_nullable
+              as Option<Duration>,
       yields: null == yields
           ? _value._yields
           : yields // ignore: cast_nullable_to_non_nullable
@@ -349,6 +362,7 @@ class _$_SingleRecipeModelRecipe implements _SingleRecipeModelRecipe {
       {required this.id,
       required this.displayedAttributes,
       required this.difficulty,
+      required this.totalCookingTime,
       required final List<SingleRecipeModelYield> yields,
       required final List<SingleRecipeModelTag> tags,
       required final List<SingleRecipeModelStep> steps,
@@ -364,6 +378,8 @@ class _$_SingleRecipeModelRecipe implements _SingleRecipeModelRecipe {
   final SingleRecipeModelDisplayedAttributes displayedAttributes;
   @override
   final int difficulty;
+  @override
+  final Option<Duration> totalCookingTime;
   final List<SingleRecipeModelYield> _yields;
   @override
   List<SingleRecipeModelYield> get yields {
@@ -392,7 +408,7 @@ class _$_SingleRecipeModelRecipe implements _SingleRecipeModelRecipe {
 
   @override
   String toString() {
-    return 'SingleRecipeModelRecipe(id: $id, displayedAttributes: $displayedAttributes, difficulty: $difficulty, yields: $yields, tags: $tags, steps: $steps, imageUrl: $imageUrl, imagePath: $imagePath)';
+    return 'SingleRecipeModelRecipe(id: $id, displayedAttributes: $displayedAttributes, difficulty: $difficulty, totalCookingTime: $totalCookingTime, yields: $yields, tags: $tags, steps: $steps, imageUrl: $imageUrl, imagePath: $imagePath)';
   }
 
   @override
@@ -405,6 +421,8 @@ class _$_SingleRecipeModelRecipe implements _SingleRecipeModelRecipe {
                 other.displayedAttributes == displayedAttributes) &&
             (identical(other.difficulty, difficulty) ||
                 other.difficulty == difficulty) &&
+            (identical(other.totalCookingTime, totalCookingTime) ||
+                other.totalCookingTime == totalCookingTime) &&
             const DeepCollectionEquality().equals(other._yields, _yields) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
             const DeepCollectionEquality().equals(other._steps, _steps) &&
@@ -420,6 +438,7 @@ class _$_SingleRecipeModelRecipe implements _SingleRecipeModelRecipe {
       id,
       displayedAttributes,
       difficulty,
+      totalCookingTime,
       const DeepCollectionEquality().hash(_yields),
       const DeepCollectionEquality().hash(_tags),
       const DeepCollectionEquality().hash(_steps),
@@ -440,6 +459,7 @@ abstract class _SingleRecipeModelRecipe implements SingleRecipeModelRecipe {
       {required final String id,
       required final SingleRecipeModelDisplayedAttributes displayedAttributes,
       required final int difficulty,
+      required final Option<Duration> totalCookingTime,
       required final List<SingleRecipeModelYield> yields,
       required final List<SingleRecipeModelTag> tags,
       required final List<SingleRecipeModelStep> steps,
@@ -452,6 +472,8 @@ abstract class _SingleRecipeModelRecipe implements SingleRecipeModelRecipe {
   SingleRecipeModelDisplayedAttributes get displayedAttributes;
   @override
   int get difficulty;
+  @override
+  Option<Duration> get totalCookingTime;
   @override
   List<SingleRecipeModelYield> get yields;
   @override

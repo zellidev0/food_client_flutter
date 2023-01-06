@@ -187,33 +187,6 @@ class WebClientService implements WebClientServiceAggregator {
           ).flatMap(mapIngredientsFamiliesResponse);
 }
 
-TaskEither<Exception, List<IngredientsSortingWebClientModelIngredientFamily>>
-    mapIngredientsFamiliesResponse(
-  final QueryResult<Query$GetIngredientFamilies> response,
-) =>
-        optionOf(response.parsedData)
-            .map(
-              (final Query$GetIngredientFamilies families) =>
-                  families.ingredient_family
-                      .map(
-                        (
-                          final Query$GetIngredientFamilies$ingredient_family
-                              ingredient,
-                        ) =>
-                            optionOf(ingredient)
-                                .map(
-                                  mapToIngredientsSortingWebClientModelIngredientFamily,
-                                )
-                                .toNullable(),
-                      )
-                      .whereNotNull()
-                      .toList(),
-            )
-            .toEither(
-              () => Exception('No parsed data for ingredients: $response'),
-            )
-            .toTaskEither();
-
 SingleRecipeWebClientModelRecipe _mapToSingleRecipeWebClientModelRecipe({
   required final Query$SingleRecipe$recipes_by_pk recipe,
 }) =>
@@ -258,7 +231,43 @@ SingleRecipeWebClientModelRecipe _mapToSingleRecipeWebClientModelRecipe({
                 steps.map(mapToSingleRecipeWebClientModelStep).toList(),
           )
           .getOrElse(() => <SingleRecipeWebClientModelStep>[]),
+      totalCookingTime: Option<Option<Duration>>.tryCatch(
+        () => optionOf(recipe.prepTime).map2(
+          optionOf(recipe.totalTime),
+          (final String prepTime, final String totalTime) => Duration(
+            minutes: int.parse(prepTime.replaceAll(RegExp(r'\D'), '')) +
+                int.parse(totalTime.replaceAll(RegExp(r'\D'), '')),
+          ),
+        ),
+      ).flatMap((final Option<Duration> optional) => optional),
     );
+
+TaskEither<Exception, List<IngredientsSortingWebClientModelIngredientFamily>>
+    mapIngredientsFamiliesResponse(
+  final QueryResult<Query$GetIngredientFamilies> response,
+) =>
+        optionOf(response.parsedData)
+            .map(
+              (final Query$GetIngredientFamilies families) =>
+                  families.ingredient_family
+                      .map(
+                        (
+                          final Query$GetIngredientFamilies$ingredient_family
+                              ingredient,
+                        ) =>
+                            optionOf(ingredient)
+                                .map(
+                                  mapToIngredientsSortingWebClientModelIngredientFamily,
+                                )
+                                .toNullable(),
+                      )
+                      .whereNotNull()
+                      .toList(),
+            )
+            .toEither(
+              () => Exception('No parsed data for ingredients: $response'),
+            )
+            .toTaskEither();
 
 List<SingleRecipeWebClientModelTag> mapBridgeRecipeTags({
   required final List<Query$SingleRecipe$recipes_by_pk$bridge_recipes_tags>

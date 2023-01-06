@@ -17,6 +17,7 @@ class SingleRecipeModelRecipe with _$SingleRecipeModelRecipe {
     required final String id,
     required final SingleRecipeModelDisplayedAttributes displayedAttributes,
     required final int difficulty,
+    required final Option<Duration> totalCookingTime,
     required final List<SingleRecipeModelYield> yields,
     required final List<SingleRecipeModelTag> tags,
     required final List<SingleRecipeModelStep> steps,
