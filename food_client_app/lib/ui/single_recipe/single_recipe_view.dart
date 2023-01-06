@@ -74,12 +74,6 @@ class SingleRecipeView extends ConsumerWidget {
             SliverAppBar(
               floating: true,
               shadowColor: Colors.transparent,
-              actions: <Widget>[
-                IconButton(
-                  onPressed: controller.goBack,
-                  icon: const Icon(Icons.close),
-                ),
-              ],
               stretch: true,
               flexibleSpace: FlexibleSpaceBar(
                 titlePadding: const EdgeInsets.all(16),
@@ -285,7 +279,6 @@ abstract class SingleRecipeController extends StateNotifier<SingleRecipeModel> {
     required final SingleRecipeModelRecipe recipe,
     required final String recipeId,
   });
-  void goBack();
 }
 
 class TabBarSliverDelegate extends SliverPersistentHeaderDelegate {

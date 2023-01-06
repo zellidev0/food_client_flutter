@@ -26,13 +26,15 @@ abstract class NavigationServiceAggregator
 class NavigationServiceUris {
   NavigationServiceUris._();
 
-  static Uri singleRecipeUri = Uri.parse('/main/recipes');
+  static Uri homeSingleRecipeUri = Uri.parse('/main/home/recipes');
+  static Uri cartSingleRecipeUri = Uri.parse('/main/home/recipes');
   static String singleRecipeIdKey = 'single-recipe-id';
   static Uri homeRouteUri = Uri.parse('/main/home');
   static Uri accountRouteUri = Uri.parse('/main/account');
   static Uri cartRouteUri = Uri.parse('/main/cart');
   static Uri mainRouteUri = Uri.parse('/main');
-  static Uri ingredientsSortingRouteUri = Uri.parse('/main/preferences/ingredients-sorting');
+  static Uri ingredientsSortingRouteUri =
+      Uri.parse('/main/account/ingredients-sorting');
 }
 
 @freezed
@@ -127,4 +129,14 @@ class BeamerNavigationService implements NavigationServiceAggregator {
   void pop() {
     unawaited(_beamerDelegate.popRoute());
   }
+
+  @override
+  void addListener({required final void Function() listener}) {
+    _beamerDelegate.addListener(listener);
+  }
+
+  @override
+  Option<String> get currentRoute => optionOf(
+        _beamerDelegate.currentBeamLocation.state.routeInformation.location,
+      );
 }

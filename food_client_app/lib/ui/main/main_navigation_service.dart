@@ -2,6 +2,8 @@ import 'package:food_client/services/navigation_service/navigation_service.dart'
 import 'package:fpdart/fpdart.dart';
 
 abstract class MainNavigationService {
+  void addListener({required final void Function() listener});
+  Option<String> get currentRoute;
   void goBack({final Uri? fallbackUri});
   void goBackToNamed({required final Uri uri});
   void replaceWithNamed({required final Uri uri});

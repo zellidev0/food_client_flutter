@@ -17,16 +17,16 @@ const int recipesPerPage = 16;
 class HomeControllerImplementation extends HomeController {
   final HomeWebClientService _webClientService;
   final HomeWebImageSizerService _webImageSizerService;
-  final HomeNavigationService _navigationService;
+  final HomeNavigationService _globalNavigationService;
 
   HomeControllerImplementation(
     super.state, {
     required final HomeWebClientService webClientService,
     required final HomeWebImageSizerService webImageSizerService,
-    required final HomeNavigationService navigationService,
+    required final HomeNavigationService globalNavigationService,
   })  : _webClientService = webClientService,
         _webImageSizerService = webImageSizerService,
-        _navigationService = navigationService {
+        _globalNavigationService = globalNavigationService {
     _listenToPaginationController();
     unawaited(_init());
   }
@@ -124,8 +124,8 @@ class HomeControllerImplementation extends HomeController {
 
   @override
   void goToSingleRecipeView({required final String recipeId}) {
-    _navigationService.navigateToNamed(
-      uri: NavigationServiceUris.singleRecipeUri.replace(
+    _globalNavigationService.navigateToNamed(
+      uri: NavigationServiceUris.homeSingleRecipeUri.replace(
         queryParameters: <String, String>{
           NavigationServiceUris.singleRecipeIdKey: recipeId,
         },
@@ -137,7 +137,7 @@ class HomeControllerImplementation extends HomeController {
   Future<void> openDialog({
     required final Widget child,
   }) async {
-    await _navigationService.showModalBottomSheet(child: child);
+    await _globalNavigationService.showModalBottomSheet(child: child);
   }
 
   @override

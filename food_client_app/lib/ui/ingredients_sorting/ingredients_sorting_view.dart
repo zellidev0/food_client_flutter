@@ -17,14 +17,14 @@ class IngredientsSortingView extends ConsumerWidget {
     return Stack(
       children: <Widget>[
         Scaffold(
-          body: _buildContent(model: model, controller: controller),
-        ),
-        Align(
-          alignment: Alignment.topRight,
-          child: IconButton(
-            onPressed: controller.goBack,
-            icon: const Icon(Icons.close),
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: controller.goBack,
+            ),
           ),
+          body: _buildContent(model: model, controller: controller),
         ),
       ],
     );

@@ -1,4 +1,5 @@
 import 'package:beamer/beamer.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/services/app_settings_service/app_settings_service.dart';
@@ -49,8 +50,8 @@ class Providers {
         ),
         sortingUnits: <CartModelSortingUnit>[],
       ),
-      navigationService: ref.read(
-        providers.bottomNavigationBarNavigationServiceProvider,
+      globalNavigationService: ref.read(
+        providers.globalNavigationServiceProvider,
       ),
       persistenceService: ref.read(
         providers.persistenceServiceProvider.notifier,
@@ -128,8 +129,8 @@ class Providers {
         recipeLocales:
             ref.watch(providers.appSettingsServiceProvider).recipeLocales,
       ),
-      navigationService: ref.read(
-        providers.bottomNavigationBarNavigationServiceProvider,
+      globalNavigationService: ref.read(
+        providers.globalNavigationServiceProvider,
       ),
       webClientService: ref.read(providers.webClientServiceProvider),
       webImageSizerService: ref.read(providers.webImageSizerServiceProvider),
@@ -232,8 +233,46 @@ class Providers {
       initialPath: NavigationServiceUris.homeRouteUri.toString(),
       locationBuilder: RoutesLocationBuilder(
         routes: <Pattern, dynamic Function(BuildContext, BeamState, Object?)>{
-          '${NavigationServiceUris.mainRouteUri}/*':
-              (final _, final __, final ___) => const MainView(),
+          '${NavigationServiceUris.mainRouteUri}/*': (
+            final _,
+            final __,
+            final ___,
+          ) =>
+              BeamPage(
+                key: ValueKey<String>('${NavigationServiceUris.mainRouteUri}'),
+                child: const MainView(),
+                type: determinePageType(),
+              ),
+          NavigationServiceUris.homeSingleRecipeUri.toString(): (
+            final _,
+            final BeamState state,
+            final ___,
+          ) {
+            final String recipeId =
+                state.queryParameters[NavigationServiceUris.singleRecipeIdKey]!;
+            return BeamPage(
+              key: ValueKey<String>(state.uri.toString()),
+              child: SingleRecipeView(
+                recipeId: recipeId,
+              ),
+              type: determinePageType(),
+            );
+          },
+          NavigationServiceUris.cartSingleRecipeUri.toString(): (
+            final _,
+            final BeamState state,
+            final ___,
+          ) {
+            final String recipeId =
+                state.queryParameters[NavigationServiceUris.singleRecipeIdKey]!;
+            return BeamPage(
+              key: ValueKey<String>(state.uri.toString()),
+              child: SingleRecipeView(
+                recipeId: recipeId,
+              ),
+              type: determinePageType(),
+            );
+          },
         },
       ),
     ),
@@ -251,7 +290,7 @@ class Providers {
                       NavigationServiceUris.homeRouteUri.toString(),
                     ),
                     child: const HomeView(),
-                    type: BeamPageType.noTransition,
+                    type: determinePageType(),
                   ),
           NavigationServiceUris.accountRouteUri.toString(): (
             final _,
@@ -263,7 +302,7 @@ class Providers {
                   NavigationServiceUris.accountRouteUri.toString(),
                 ),
                 child: const AccountView(),
-                type: BeamPageType.noTransition,
+                type: determinePageType(),
               ),
           NavigationServiceUris.cartRouteUri.toString():
               (final _, final __, final ___) => BeamPage(
@@ -271,7 +310,7 @@ class Providers {
                       NavigationServiceUris.cartRouteUri.toString(),
                     ),
                     child: const CartView(),
-                    type: BeamPageType.noTransition,
+                    type: determinePageType(),
                   ),
           NavigationServiceUris.ingredientsSortingRouteUri.toString(): (
             final _,
@@ -283,23 +322,8 @@ class Providers {
                   NavigationServiceUris.ingredientsSortingRouteUri.toString(),
                 ),
                 child: const IngredientsSortingView(),
-                type: BeamPageType.noTransition,
+                type: determinePageType(),
               ),
-          NavigationServiceUris.singleRecipeUri.toString(): (
-            final _,
-            final BeamState state,
-            final ___,
-          ) {
-            final String recipeId =
-                state.queryParameters[NavigationServiceUris.singleRecipeIdKey]!;
-            return BeamPage(
-              key: ValueKey<String>('singleRecipe-$recipeId'),
-              child: SingleRecipeView(
-                recipeId: recipeId,
-              ),
-              type: BeamPageType.noTransition,
-            );
-          },
         },
       ),
     ),
@@ -307,3 +331,7 @@ class Providers {
 }
 
 late Providers providers;
+
+BeamPageType determinePageType() => defaultTargetPlatform == TargetPlatform.iOS
+    ? BeamPageType.cupertino
+    : BeamPageType.material;

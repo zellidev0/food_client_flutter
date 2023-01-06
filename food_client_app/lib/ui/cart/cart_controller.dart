@@ -14,16 +14,16 @@ import 'package:fpdart/fpdart.dart';
 const int _widthPixels = 200;
 
 class CartControllerImplementation extends CartController {
-  final CartNavigationService _navigationService;
+  final CartNavigationService _globalNavigationService;
   final CartPersistenceService _persistenceService;
   final CartWebImageSizerService _imageSizerService;
 
   CartControllerImplementation(
     super.state, {
-    required final CartNavigationService navigationService,
+    required final CartNavigationService globalNavigationService,
     required final CartPersistenceService persistenceService,
     required final CartWebImageSizerService imageSizerService,
-  })  : _navigationService = navigationService,
+  })  : _globalNavigationService = globalNavigationService,
         _persistenceService = persistenceService,
         _imageSizerService = imageSizerService {
     final CartModelSorting sorting = _getStoredSorting();
@@ -37,8 +37,8 @@ class CartControllerImplementation extends CartController {
 
   @override
   void openSingleRecipe({required final String recipeId}) {
-    _navigationService.navigateToNamed(
-      uri: NavigationServiceUris.singleRecipeUri.replace(
+    _globalNavigationService.navigateToNamed(
+      uri: NavigationServiceUris.cartSingleRecipeUri.replace(
         queryParameters: <String, String>{
           NavigationServiceUris.singleRecipeIdKey: recipeId,
         },
@@ -71,7 +71,7 @@ class CartControllerImplementation extends CartController {
   Future<void> openModalBottomSheet({
     required final Widget child,
   }) async {
-    await _navigationService.showModalBottomSheet(child: child);
+    await _globalNavigationService.showModalBottomSheet(child: child);
   }
 
   @override
@@ -79,7 +79,7 @@ class CartControllerImplementation extends CartController {
     required final String recipeId,
   }) {
     unawaited(
-      _navigationService.showDialog(
+      _globalNavigationService.showDialog(
         title: 'ui.cart_view.dialogs.remove_recipe.title'.tr(),
         content: 'ui.cart_view.dialogs.remove_recipe.content'.tr(),
         actions: some(

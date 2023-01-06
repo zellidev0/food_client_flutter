@@ -1,6 +1,7 @@
 import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/ui/main/main_navigation_service.dart';
 import 'package:food_client/ui/main/main_view.dart';
+import 'package:fpdart/fpdart.dart';
 
 class MainControllerImplementation extends MainController {
   final MainNavigationService _navigationService;
@@ -8,7 +9,9 @@ class MainControllerImplementation extends MainController {
   MainControllerImplementation(
     super.state, {
     required final NavigationServiceAggregator navigationService,
-  }) : _navigationService = navigationService;
+  }) : _navigationService = navigationService {
+    _navigationService.addListener(listener: _navigationListener);
+  }
 
   @override
   void goToCart() {
@@ -24,7 +27,8 @@ class MainControllerImplementation extends MainController {
 
   @override
   void goToAccount() {
-    _navigationService.navigateToNamed(uri: NavigationServiceUris.accountRouteUri);
+    _navigationService.navigateToNamed(
+        uri: NavigationServiceUris.accountRouteUri);
     state = state.copyWith(bottomNavigationBarIndex: 2);
   }
 
@@ -32,4 +36,27 @@ class MainControllerImplementation extends MainController {
   void goBack() {
     _navigationService.goBack();
   }
+
+  void _navigationListener() => state = state.copyWith(
+        bottomNavigationBarIndex: getBottomNavigationIndexForRouteUri(
+          routeUri: _navigationService.currentRoute.map(Uri.parse),
+        ),
+      );
+
+  static int getBottomNavigationIndexForRouteUri({
+    required final Option<Uri> routeUri,
+  }) =>
+      routeUri.fold(() => 0, (final Uri uri) {
+        int index;
+        if (uri == NavigationServiceUris.homeRouteUri) {
+          index = 0;
+        } else if (uri == NavigationServiceUris.cartRouteUri) {
+          index = 1;
+        } else if (uri == NavigationServiceUris.accountRouteUri) {
+          index = 2;
+        } else {
+          index = 0;
+        }
+        return index;
+      });
 }

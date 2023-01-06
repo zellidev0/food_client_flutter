@@ -60,11 +60,6 @@ class SingleRecipeControllerImplementation extends SingleRecipeController {
     state = state.copyWith(selectedYield: some(yield));
   }
 
-  @override
-  void goBack() {
-    _navigationService.goBack();
-  }
-
   TaskEither<Exception, SingleRecipeModelRecipe> fetchSingleRecipeTask({
     required final String recipeId,
   }) =>
