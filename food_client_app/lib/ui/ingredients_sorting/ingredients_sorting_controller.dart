@@ -234,7 +234,7 @@ class IngredientsSortingControllerImplementation
           .getUnits()
           .mapIndexed(
             (final int index,
-                    final IngredientsSortingPersistenceModelUnit unit) =>
+                    final IngredientsSortingPersistenceModelUnit unit,) =>
                 mapToIngredientsSortingModelUnit(
               unit: unit,
               imageSizerService: _webImageSizerService,

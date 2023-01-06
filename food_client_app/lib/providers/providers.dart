@@ -30,7 +30,6 @@ import 'package:food_client/ui/single_recipe/single_recipe_model.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_view.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:uuid/uuid.dart';
 
 class Providers {
   final AutoDisposeStateNotifierProvider<CartController, CartModel>
@@ -46,7 +45,7 @@ class Providers {
         combineIngredients:
             ref.watch(providers.appSettingsServiceProvider).combineIngredients,
         sorting: const CartModelSorting.custom(
-          customSortingIngredientIds: [],
+          customSortingIngredientIds: <String>[],
         ),
         sortingUnits: <CartModelSortingUnit>[],
       ),

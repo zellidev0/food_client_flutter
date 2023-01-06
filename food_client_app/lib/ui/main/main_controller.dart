@@ -28,7 +28,7 @@ class MainControllerImplementation extends MainController {
   @override
   void goToAccount() {
     _navigationService.navigateToNamed(
-        uri: NavigationServiceUris.accountRouteUri);
+        uri: NavigationServiceUris.accountRouteUri,);
     state = state.copyWith(bottomNavigationBarIndex: 2);
   }
 

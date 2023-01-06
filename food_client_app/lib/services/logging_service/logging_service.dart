@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_logging_service.dart';
-import 'package:fpdart/fpdart.dart';
 
 abstract class LoggingServiceAggregator
     implements IngredientsSortingLoggingService {

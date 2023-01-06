@@ -150,4 +150,3 @@ class PersistenceServiceModelActiveSorting
       ) =>
       _$PersistenceServiceModelActiveSortingFromJson(json);
 }
-

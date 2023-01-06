@@ -272,7 +272,7 @@ class CartControllerImplementation extends CartController {
           .toList();
 
   @override
-  void setActiveSorting({required final CartModelSorting sorting}) async {
+  Future<void> setActiveSorting({required final CartModelSorting sorting}) async {
     await state.sorting
         .map(
           unit: (final _) => sorting.map(
@@ -311,7 +311,7 @@ class CartControllerImplementation extends CartController {
     final CartModelSorting newSorting = _getStoredSorting();
     state = state.copyWith(
       sorting: newSorting,
-      ingredients: _getAllIngredientsSorted(sorting: newSorting)
+      ingredients: _getAllIngredientsSorted(sorting: newSorting),
     );
   }
 
