@@ -12,8 +12,10 @@ class MyScaffold extends ConsumerWidget {
 
   @override
   Widget build(final BuildContext context, final WidgetRef ref) => Material(
-        child: SelectionArea(
-          child: SafeArea(
+        child: SafeArea(
+          top: false,
+          bottom: false,
+          child: SelectionArea(
             child: Scaffold(
               bottomNavigationBar: bottomNavigationBar,
               body: body,

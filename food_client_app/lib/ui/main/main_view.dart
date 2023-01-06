@@ -17,6 +17,7 @@ class MainView extends ConsumerWidget {
     return MyScaffold(
       bottomNavigationBar: ClipRRect(
         child: NavigationBar(
+          // height: 80,
           onDestinationSelected: (final int selectedIndex) {
             if (selectedIndex == 0) {
               controller.goToHome();

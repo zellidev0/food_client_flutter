@@ -20,53 +20,76 @@ class HomeView extends ConsumerWidget {
     );
 
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
       body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            buildFilterChips(
-              controller: controller,
-              model: model,
-            ),
-            const SizedBox(height: 16),
-            _buildRecipesList(
-              controller: controller,
-              model: model,
-              tags: model.allTags,
+        padding: const EdgeInsets.all(16).copyWith(bottom: 0),
+        child: NestedScrollView(
+          headerSliverBuilder: (final _, final __) => <Widget>[
+            SliverAppBar(
+              floating: true,
+              pinned: true,
+              backgroundColor: Colors.transparent,
+              shadowColor: Colors.transparent,
+              surfaceTintColor: Colors.transparent,
+              foregroundColor: Colors.transparent,
+              elevation: 0,
+              scrolledUnderElevation:0,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Container(
+                  color: Colors.transparent,
+                ),
+                titlePadding: const EdgeInsets.all(0),
+                title: buildFilters(
+                  model: model,
+                  controller: controller,
+                ),
+              ),
             ),
           ],
+          body: _buildRecipesList(
+            controller: controller,
+            model: model,
+            tags: model.allTags,
+          ),
         ),
       ),
     );
   }
 
-  Widget buildFilterChips({
+  Widget buildFilters({
     required final HomeController controller,
     required final HomeModel model,
   }) =>
-      Row(
-        children: <Widget>[
-          buildSingleFilterChip(
-            text: 'ui.home_view.filters.tags'.tr(),
-            controller: controller,
-            selectedFilters: model.allTags
-                .filter((final HomeModelFilter filter) => filter.isSelected)
-                .toList(),
-            widgetToOpenOnClick: buildDialogTags(),
-          ),
-          const SizedBox(width: 8),
-          buildSingleFilterChip(
-            text: 'ui.home_view.filters.cuisines'.tr(),
-            controller: controller,
-            selectedFilters: model.allCuisines
-                .filter((final HomeModelFilter filter) => filter.isSelected)
-                .toList(),
-            widgetToOpenOnClick: buildDialogCuisines(),
-          ),
-        ],
-      );
+      Builder(
+          builder: (final BuildContext context) => Padding(
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    buildSingleFilterChip(
+                      text: 'ui.home_view.filters.tags'.tr(),
+                      controller: controller,
+                      selectedFilters: model.allTags
+                          .filter(
+                            (final HomeModelFilter filter) => filter.isSelected,
+                          )
+                          .toList(),
+                      widgetToOpenOnClick: buildDialogTags(),
+                    ),
+                    const SizedBox(width: 8),
+                    buildSingleFilterChip(
+                      text: 'ui.home_view.filters.cuisines'.tr(),
+                      controller: controller,
+                      selectedFilters: model.allCuisines
+                          .filter(
+                            (final HomeModelFilter filter) => filter.isSelected,
+                          )
+                          .toList(),
+                      widgetToOpenOnClick: buildDialogCuisines(),
+                    ),
+                  ],
+                ),
+              ));
 
   Widget buildSingleFilterChip({
     required final String text,
@@ -96,82 +119,80 @@ class HomeView extends ConsumerWidget {
     required final HomeModel model,
     required final List<HomeModelFilterTag> tags,
   }) =>
-      Expanded(
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: PageStorage(
-                bucket: pageStorageBucket,
-                child: PagedListView<int, HomeModelRecipe>(
-                  key: const PageStorageKey<String>('recipes'),
-                  pagingController: model.pagingController,
-                  builderDelegate: PagedChildBuilderDelegate<HomeModelRecipe>(
-                    itemBuilder: (
-                      final BuildContext context,
-                      final HomeModelRecipe recipe,
-                      final _,
-                    ) =>
-                        _buildRecipeCardItem(
-                      recipe: recipe,
-                      tags: tags,
-                      controller: controller,
-                    ),
-                    noItemsFoundIndicatorBuilder: (final _) =>
-                        buildNoItemsFoundIcon(
-                      message: 'ui.home_view.empty_states.no_recipes'.tr(),
-                    ),
-                    noMoreItemsIndicatorBuilder: (final _) => Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Text(
-                          'ui.home_view.empty_states.no_more_recipes'.tr(),
-                        ),
+      Column(
+        children: <Widget>[
+          Expanded(
+            child: PageStorage(
+              bucket: pageStorageBucket,
+              child: PagedListView<int, HomeModelRecipe>(
+                padding: EdgeInsets.zero,
+                key: const PageStorageKey<String>('recipes'),
+                pagingController: model.pagingController,
+                builderDelegate: PagedChildBuilderDelegate<HomeModelRecipe>(
+                  itemBuilder: (
+                    final BuildContext context,
+                    final HomeModelRecipe recipe,
+                    final _,
+                  ) =>
+                      _buildRecipeCardItem(
+                    recipe: recipe,
+                    tags: tags,
+                    controller: controller,
+                  ),
+                  noItemsFoundIndicatorBuilder: (final _) =>
+                      buildNoItemsFoundIcon(
+                    message: 'ui.home_view.empty_states.no_recipes'.tr(),
+                  ),
+                  noMoreItemsIndicatorBuilder: (final _) => Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Text(
+                        'ui.home_view.empty_states.no_more_recipes'.tr(),
                       ),
                     ),
-                    firstPageErrorIndicatorBuilder: (final _) => Column(
-                      children: <Widget>[
-                        const SizedBox(height: 64),
-                        buildNoItemsFoundIcon(
-                          message: 'ui.home_view.error_states.no_recipes'.tr(),
+                  ),
+                  firstPageErrorIndicatorBuilder: (final _) => Column(
+                    children: <Widget>[
+                      const SizedBox(height: 64),
+                      buildNoItemsFoundIcon(
+                        message: 'ui.home_view.error_states.no_recipes'.tr(),
+                      ),
+                      const SizedBox(height: 8),
+                      _buildTryFetchingRecipesAgainButton(
+                        controller: controller,
+                      ),
+                    ],
+                  ),
+                  newPageErrorIndicatorBuilder: (final _) => Column(
+                    children: <Widget>[
+                      const SizedBox(height: 8),
+                      Builder(
+                        builder: (final BuildContext context) => Text(
+                          'ui.home_view.error_states.no_more_recipes'.tr(),
+                          style: Theme.of(context).textTheme.caption,
                         ),
-                        const SizedBox(height: 8),
-                        _buildTryFetchingRecipesAgainButton(
-                          controller: controller,
-                        ),
-                      ],
-                    ),
-                    newPageErrorIndicatorBuilder: (final _) => Column(
-                      children: <Widget>[
-                        const SizedBox(height: 8),
-                        Builder(
-                          builder: (final BuildContext context) => Text(
-                            'ui.home_view.error_states.no_more_recipes'.tr(),
-                            style: Theme.of(context).textTheme.caption,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        _buildTryFetchingRecipesAgainButton(
-                          controller: controller,
-                        ),
-                      ],
-                    ),
-                    firstPageProgressIndicatorBuilder: (final _) =>
-                        const Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                    newPageProgressIndicatorBuilder: (final _) => Column(
-                      children: const <Widget>[
-                        SizedBox(height: 16),
-                        CircularProgressIndicator(),
-                        SizedBox(height: 8),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(height: 8),
+                      _buildTryFetchingRecipesAgainButton(
+                        controller: controller,
+                      ),
+                    ],
+                  ),
+                  firstPageProgressIndicatorBuilder: (final _) => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  newPageProgressIndicatorBuilder: (final _) => Column(
+                    children: const <Widget>[
+                      SizedBox(height: 16),
+                      CircularProgressIndicator(),
+                      SizedBox(height: 8),
+                    ],
                   ),
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       );
 
   ElevatedButton _buildTryFetchingRecipesAgainButton({
