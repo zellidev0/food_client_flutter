@@ -146,6 +146,7 @@ class SingleRecipeView extends ConsumerWidget {
     required final List<SingleRecipeModelStep> steps,
   }) =>
       ListView(
+        padding: EdgeInsets.zero,
         children: steps
             .mapIndexed(
               (final int index, final SingleRecipeModelStep step) =>
@@ -220,6 +221,7 @@ class SingleRecipeView extends ConsumerWidget {
       ).fold(
         () => throw Exception('No yield selected, not possible state reached'),
         (final SingleRecipeModelYield yield) => ListView(
+          padding: EdgeInsets.zero,
           children: yield.ingredients
               .map(
                 (final SingleRecipeModelIngredient ingredient) => Padding(
