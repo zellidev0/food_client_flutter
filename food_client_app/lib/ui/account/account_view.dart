@@ -12,21 +12,23 @@ class AccountView extends ConsumerWidget {
     final AccountModel model = ref.watch(providers.accountControllerProvider);
     final AccountController controller =
         ref.read(providers.accountControllerProvider.notifier);
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text('Preferences', style: Theme.of(context).textTheme.headline6),
-            const SizedBox(height: 16),
-            const Divider(),
-            ListTile(
-              title: const Text('Ingredients Sorting'),
-              onTap: controller.goToIngredientsSorting,
-            ),
-            const Divider(),
-          ],
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text('Preferences', style: Theme.of(context).textTheme.headline6),
+              const SizedBox(height: 16),
+              const Divider(),
+              ListTile(
+                title: const Text('Ingredients Sorting'),
+                onTap: controller.goToIngredientsSorting,
+              ),
+              const Divider(),
+            ],
+          ),
         ),
       ),
     );
