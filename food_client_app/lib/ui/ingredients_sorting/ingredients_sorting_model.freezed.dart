@@ -176,7 +176,7 @@ mixin _$IngredientsSortingModelUnit {
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   bool get selected => throw _privateConstructorUsedError;
-  List<IngredientsSortingModelIngredientFamily> get ingredientFamilies =>
+  List<IngredientsSortingModelSorting> get sorting =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -196,7 +196,7 @@ abstract class $IngredientsSortingModelUnitCopyWith<$Res> {
       {String id,
       String title,
       bool selected,
-      List<IngredientsSortingModelIngredientFamily> ingredientFamilies});
+      List<IngredientsSortingModelSorting> sorting});
 }
 
 /// @nodoc
@@ -216,7 +216,7 @@ class _$IngredientsSortingModelUnitCopyWithImpl<$Res,
     Object? id = null,
     Object? title = null,
     Object? selected = null,
-    Object? ingredientFamilies = null,
+    Object? sorting = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -231,10 +231,10 @@ class _$IngredientsSortingModelUnitCopyWithImpl<$Res,
           ? _value.selected
           : selected // ignore: cast_nullable_to_non_nullable
               as bool,
-      ingredientFamilies: null == ingredientFamilies
-          ? _value.ingredientFamilies
-          : ingredientFamilies // ignore: cast_nullable_to_non_nullable
-              as List<IngredientsSortingModelIngredientFamily>,
+      sorting: null == sorting
+          ? _value.sorting
+          : sorting // ignore: cast_nullable_to_non_nullable
+              as List<IngredientsSortingModelSorting>,
     ) as $Val);
   }
 }
@@ -252,7 +252,7 @@ abstract class _$$_IngredientsSortingModelUnitCopyWith<$Res>
       {String id,
       String title,
       bool selected,
-      List<IngredientsSortingModelIngredientFamily> ingredientFamilies});
+      List<IngredientsSortingModelSorting> sorting});
 }
 
 /// @nodoc
@@ -271,7 +271,7 @@ class __$$_IngredientsSortingModelUnitCopyWithImpl<$Res>
     Object? id = null,
     Object? title = null,
     Object? selected = null,
-    Object? ingredientFamilies = null,
+    Object? sorting = null,
   }) {
     return _then(_$_IngredientsSortingModelUnit(
       id: null == id
@@ -286,10 +286,10 @@ class __$$_IngredientsSortingModelUnitCopyWithImpl<$Res>
           ? _value.selected
           : selected // ignore: cast_nullable_to_non_nullable
               as bool,
-      ingredientFamilies: null == ingredientFamilies
-          ? _value._ingredientFamilies
-          : ingredientFamilies // ignore: cast_nullable_to_non_nullable
-              as List<IngredientsSortingModelIngredientFamily>,
+      sorting: null == sorting
+          ? _value._sorting
+          : sorting // ignore: cast_nullable_to_non_nullable
+              as List<IngredientsSortingModelSorting>,
     ));
   }
 }
@@ -301,9 +301,8 @@ class _$_IngredientsSortingModelUnit implements _IngredientsSortingModelUnit {
       {required this.id,
       required this.title,
       required this.selected,
-      required final List<IngredientsSortingModelIngredientFamily>
-          ingredientFamilies})
-      : _ingredientFamilies = ingredientFamilies;
+      required final List<IngredientsSortingModelSorting> sorting})
+      : _sorting = sorting;
 
   @override
   final String id;
@@ -311,16 +310,16 @@ class _$_IngredientsSortingModelUnit implements _IngredientsSortingModelUnit {
   final String title;
   @override
   final bool selected;
-  final List<IngredientsSortingModelIngredientFamily> _ingredientFamilies;
+  final List<IngredientsSortingModelSorting> _sorting;
   @override
-  List<IngredientsSortingModelIngredientFamily> get ingredientFamilies {
+  List<IngredientsSortingModelSorting> get sorting {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_ingredientFamilies);
+    return EqualUnmodifiableListView(_sorting);
   }
 
   @override
   String toString() {
-    return 'IngredientsSortingModelUnit(id: $id, title: $title, selected: $selected, ingredientFamilies: $ingredientFamilies)';
+    return 'IngredientsSortingModelUnit(id: $id, title: $title, selected: $selected, sorting: $sorting)';
   }
 
   @override
@@ -332,13 +331,12 @@ class _$_IngredientsSortingModelUnit implements _IngredientsSortingModelUnit {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.selected, selected) ||
                 other.selected == selected) &&
-            const DeepCollectionEquality()
-                .equals(other._ingredientFamilies, _ingredientFamilies));
+            const DeepCollectionEquality().equals(other._sorting, _sorting));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, id, title, selected,
-      const DeepCollectionEquality().hash(_ingredientFamilies));
+      const DeepCollectionEquality().hash(_sorting));
 
   @JsonKey(ignore: true)
   @override
@@ -351,11 +349,11 @@ class _$_IngredientsSortingModelUnit implements _IngredientsSortingModelUnit {
 abstract class _IngredientsSortingModelUnit
     implements IngredientsSortingModelUnit {
   const factory _IngredientsSortingModelUnit(
-      {required final String id,
-      required final String title,
-      required final bool selected,
-      required final List<IngredientsSortingModelIngredientFamily>
-          ingredientFamilies}) = _$_IngredientsSortingModelUnit;
+          {required final String id,
+          required final String title,
+          required final bool selected,
+          required final List<IngredientsSortingModelSorting> sorting}) =
+      _$_IngredientsSortingModelUnit;
 
   @override
   String get id;
@@ -364,7 +362,7 @@ abstract class _IngredientsSortingModelUnit
   @override
   bool get selected;
   @override
-  List<IngredientsSortingModelIngredientFamily> get ingredientFamilies;
+  List<IngredientsSortingModelSorting> get sorting;
   @override
   @JsonKey(ignore: true)
   _$$_IngredientsSortingModelUnitCopyWith<_$_IngredientsSortingModelUnit>
@@ -372,12 +370,264 @@ abstract class _IngredientsSortingModelUnit
 }
 
 /// @nodoc
-mixin _$IngredientsSortingModelIngredientFamily {
+mixin _$IngredientsSortingModelSorting {
+  String get id => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   Option<Uri> get iconUrl => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get slug => throw _privateConstructorUsedError;
-  List<String> get familyIds => throw _privateConstructorUsedError;
+  List<IngredientsSortingModelIngredientFamily> get ingredientFamilies =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $IngredientsSortingModelSortingCopyWith<IngredientsSortingModelSorting>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $IngredientsSortingModelSortingCopyWith<$Res> {
+  factory $IngredientsSortingModelSortingCopyWith(
+          IngredientsSortingModelSorting value,
+          $Res Function(IngredientsSortingModelSorting) then) =
+      _$IngredientsSortingModelSortingCopyWithImpl<$Res,
+          IngredientsSortingModelSorting>;
+  @useResult
+  $Res call(
+      {String id,
+      String type,
+      Option<Uri> iconUrl,
+      String name,
+      List<IngredientsSortingModelIngredientFamily> ingredientFamilies});
+}
+
+/// @nodoc
+class _$IngredientsSortingModelSortingCopyWithImpl<$Res,
+        $Val extends IngredientsSortingModelSorting>
+    implements $IngredientsSortingModelSortingCopyWith<$Res> {
+  _$IngredientsSortingModelSortingCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? type = null,
+    Object? iconUrl = null,
+    Object? name = null,
+    Object? ingredientFamilies = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      iconUrl: null == iconUrl
+          ? _value.iconUrl
+          : iconUrl // ignore: cast_nullable_to_non_nullable
+              as Option<Uri>,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      ingredientFamilies: null == ingredientFamilies
+          ? _value.ingredientFamilies
+          : ingredientFamilies // ignore: cast_nullable_to_non_nullable
+              as List<IngredientsSortingModelIngredientFamily>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_IngredientsSortingModelSortingCopyWith<$Res>
+    implements $IngredientsSortingModelSortingCopyWith<$Res> {
+  factory _$$_IngredientsSortingModelSortingCopyWith(
+          _$_IngredientsSortingModelSorting value,
+          $Res Function(_$_IngredientsSortingModelSorting) then) =
+      __$$_IngredientsSortingModelSortingCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      String type,
+      Option<Uri> iconUrl,
+      String name,
+      List<IngredientsSortingModelIngredientFamily> ingredientFamilies});
+}
+
+/// @nodoc
+class __$$_IngredientsSortingModelSortingCopyWithImpl<$Res>
+    extends _$IngredientsSortingModelSortingCopyWithImpl<$Res,
+        _$_IngredientsSortingModelSorting>
+    implements _$$_IngredientsSortingModelSortingCopyWith<$Res> {
+  __$$_IngredientsSortingModelSortingCopyWithImpl(
+      _$_IngredientsSortingModelSorting _value,
+      $Res Function(_$_IngredientsSortingModelSorting) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? type = null,
+    Object? iconUrl = null,
+    Object? name = null,
+    Object? ingredientFamilies = null,
+  }) {
+    return _then(_$_IngredientsSortingModelSorting(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      iconUrl: null == iconUrl
+          ? _value.iconUrl
+          : iconUrl // ignore: cast_nullable_to_non_nullable
+              as Option<Uri>,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      ingredientFamilies: null == ingredientFamilies
+          ? _value._ingredientFamilies
+          : ingredientFamilies // ignore: cast_nullable_to_non_nullable
+              as List<IngredientsSortingModelIngredientFamily>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_IngredientsSortingModelSorting
+    implements _IngredientsSortingModelSorting {
+  const _$_IngredientsSortingModelSorting(
+      {required this.id,
+      required this.type,
+      required this.iconUrl,
+      required this.name,
+      required final List<IngredientsSortingModelIngredientFamily>
+          ingredientFamilies})
+      : _ingredientFamilies = ingredientFamilies;
+
+  @override
+  final String id;
+  @override
+  final String type;
+  @override
+  final Option<Uri> iconUrl;
+  @override
+  final String name;
+  final List<IngredientsSortingModelIngredientFamily> _ingredientFamilies;
+  @override
+  List<IngredientsSortingModelIngredientFamily> get ingredientFamilies {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_ingredientFamilies);
+  }
+
+  @override
+  String toString() {
+    return 'IngredientsSortingModelSorting(id: $id, type: $type, iconUrl: $iconUrl, name: $name, ingredientFamilies: $ingredientFamilies)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_IngredientsSortingModelSorting &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.iconUrl, iconUrl) || other.iconUrl == iconUrl) &&
+            (identical(other.name, name) || other.name == name) &&
+            const DeepCollectionEquality()
+                .equals(other._ingredientFamilies, _ingredientFamilies));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, type, iconUrl, name,
+      const DeepCollectionEquality().hash(_ingredientFamilies));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_IngredientsSortingModelSortingCopyWith<_$_IngredientsSortingModelSorting>
+      get copyWith => __$$_IngredientsSortingModelSortingCopyWithImpl<
+          _$_IngredientsSortingModelSorting>(this, _$identity);
+}
+
+abstract class _IngredientsSortingModelSorting
+    implements IngredientsSortingModelSorting {
+  const factory _IngredientsSortingModelSorting(
+      {required final String id,
+      required final String type,
+      required final Option<Uri> iconUrl,
+      required final String name,
+      required final List<IngredientsSortingModelIngredientFamily>
+          ingredientFamilies}) = _$_IngredientsSortingModelSorting;
+
+  @override
+  String get id;
+  @override
+  String get type;
+  @override
+  Option<Uri> get iconUrl;
+  @override
+  String get name;
+  @override
+  List<IngredientsSortingModelIngredientFamily> get ingredientFamilies;
+  @override
+  @JsonKey(ignore: true)
+  _$$_IngredientsSortingModelSortingCopyWith<_$_IngredientsSortingModelSorting>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$IngredientsSortingModelIngredientFamily {
+  String get helloFreshFamilyId => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String helloFreshFamilyId) helloFresh,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String helloFreshFamilyId)? helloFresh,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String helloFreshFamilyId)? helloFresh,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(
+            IngredientsSortingModelIngredientFamilyHelloFresh value)
+        helloFresh,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(IngredientsSortingModelIngredientFamilyHelloFresh value)?
+        helloFresh,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(IngredientsSortingModelIngredientFamilyHelloFresh value)?
+        helloFresh,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $IngredientsSortingModelIngredientFamilyCopyWith<
@@ -393,12 +643,7 @@ abstract class $IngredientsSortingModelIngredientFamilyCopyWith<$Res> {
       _$IngredientsSortingModelIngredientFamilyCopyWithImpl<$Res,
           IngredientsSortingModelIngredientFamily>;
   @useResult
-  $Res call(
-      {String type,
-      Option<Uri> iconUrl,
-      String name,
-      String slug,
-      List<String> familyIds});
+  $Res call({String helloFreshFamilyId});
 }
 
 /// @nodoc
@@ -416,179 +661,164 @@ class _$IngredientsSortingModelIngredientFamilyCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = null,
-    Object? iconUrl = null,
-    Object? name = null,
-    Object? slug = null,
-    Object? familyIds = null,
+    Object? helloFreshFamilyId = null,
   }) {
     return _then(_value.copyWith(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
+      helloFreshFamilyId: null == helloFreshFamilyId
+          ? _value.helloFreshFamilyId
+          : helloFreshFamilyId // ignore: cast_nullable_to_non_nullable
               as String,
-      iconUrl: null == iconUrl
-          ? _value.iconUrl
-          : iconUrl // ignore: cast_nullable_to_non_nullable
-              as Option<Uri>,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      slug: null == slug
-          ? _value.slug
-          : slug // ignore: cast_nullable_to_non_nullable
-              as String,
-      familyIds: null == familyIds
-          ? _value.familyIds
-          : familyIds // ignore: cast_nullable_to_non_nullable
-              as List<String>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_IngredientsSortingModelIngredientFamilyCopyWith<$Res>
-    implements $IngredientsSortingModelIngredientFamilyCopyWith<$Res> {
-  factory _$$_IngredientsSortingModelIngredientFamilyCopyWith(
-          _$_IngredientsSortingModelIngredientFamily value,
-          $Res Function(_$_IngredientsSortingModelIngredientFamily) then) =
-      __$$_IngredientsSortingModelIngredientFamilyCopyWithImpl<$Res>;
+abstract class _$$IngredientsSortingModelIngredientFamilyHelloFreshCopyWith<
+    $Res> implements $IngredientsSortingModelIngredientFamilyCopyWith<$Res> {
+  factory _$$IngredientsSortingModelIngredientFamilyHelloFreshCopyWith(
+          _$IngredientsSortingModelIngredientFamilyHelloFresh value,
+          $Res Function(_$IngredientsSortingModelIngredientFamilyHelloFresh)
+              then) =
+      __$$IngredientsSortingModelIngredientFamilyHelloFreshCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String type,
-      Option<Uri> iconUrl,
-      String name,
-      String slug,
-      List<String> familyIds});
+  $Res call({String helloFreshFamilyId});
 }
 
 /// @nodoc
-class __$$_IngredientsSortingModelIngredientFamilyCopyWithImpl<$Res>
+class __$$IngredientsSortingModelIngredientFamilyHelloFreshCopyWithImpl<$Res>
     extends _$IngredientsSortingModelIngredientFamilyCopyWithImpl<$Res,
-        _$_IngredientsSortingModelIngredientFamily>
-    implements _$$_IngredientsSortingModelIngredientFamilyCopyWith<$Res> {
-  __$$_IngredientsSortingModelIngredientFamilyCopyWithImpl(
-      _$_IngredientsSortingModelIngredientFamily _value,
-      $Res Function(_$_IngredientsSortingModelIngredientFamily) _then)
+        _$IngredientsSortingModelIngredientFamilyHelloFresh>
+    implements
+        _$$IngredientsSortingModelIngredientFamilyHelloFreshCopyWith<$Res> {
+  __$$IngredientsSortingModelIngredientFamilyHelloFreshCopyWithImpl(
+      _$IngredientsSortingModelIngredientFamilyHelloFresh _value,
+      $Res Function(_$IngredientsSortingModelIngredientFamilyHelloFresh) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = null,
-    Object? iconUrl = null,
-    Object? name = null,
-    Object? slug = null,
-    Object? familyIds = null,
+    Object? helloFreshFamilyId = null,
   }) {
-    return _then(_$_IngredientsSortingModelIngredientFamily(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
+    return _then(_$IngredientsSortingModelIngredientFamilyHelloFresh(
+      helloFreshFamilyId: null == helloFreshFamilyId
+          ? _value.helloFreshFamilyId
+          : helloFreshFamilyId // ignore: cast_nullable_to_non_nullable
               as String,
-      iconUrl: null == iconUrl
-          ? _value.iconUrl
-          : iconUrl // ignore: cast_nullable_to_non_nullable
-              as Option<Uri>,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      slug: null == slug
-          ? _value.slug
-          : slug // ignore: cast_nullable_to_non_nullable
-              as String,
-      familyIds: null == familyIds
-          ? _value._familyIds
-          : familyIds // ignore: cast_nullable_to_non_nullable
-              as List<String>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_IngredientsSortingModelIngredientFamily
-    implements _IngredientsSortingModelIngredientFamily {
-  const _$_IngredientsSortingModelIngredientFamily(
-      {required this.type,
-      required this.iconUrl,
-      required this.name,
-      required this.slug,
-      required final List<String> familyIds})
-      : _familyIds = familyIds;
+class _$IngredientsSortingModelIngredientFamilyHelloFresh
+    implements IngredientsSortingModelIngredientFamilyHelloFresh {
+  const _$IngredientsSortingModelIngredientFamilyHelloFresh(
+      {required this.helloFreshFamilyId});
 
   @override
-  final String type;
-  @override
-  final Option<Uri> iconUrl;
-  @override
-  final String name;
-  @override
-  final String slug;
-  final List<String> _familyIds;
-  @override
-  List<String> get familyIds {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_familyIds);
-  }
+  final String helloFreshFamilyId;
 
   @override
   String toString() {
-    return 'IngredientsSortingModelIngredientFamily(type: $type, iconUrl: $iconUrl, name: $name, slug: $slug, familyIds: $familyIds)';
+    return 'IngredientsSortingModelIngredientFamily.helloFresh(helloFreshFamilyId: $helloFreshFamilyId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_IngredientsSortingModelIngredientFamily &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.iconUrl, iconUrl) || other.iconUrl == iconUrl) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.slug, slug) || other.slug == slug) &&
-            const DeepCollectionEquality()
-                .equals(other._familyIds, _familyIds));
+            other is _$IngredientsSortingModelIngredientFamilyHelloFresh &&
+            (identical(other.helloFreshFamilyId, helloFreshFamilyId) ||
+                other.helloFreshFamilyId == helloFreshFamilyId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, type, iconUrl, name, slug,
-      const DeepCollectionEquality().hash(_familyIds));
+  int get hashCode => Object.hash(runtimeType, helloFreshFamilyId);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_IngredientsSortingModelIngredientFamilyCopyWith<
-          _$_IngredientsSortingModelIngredientFamily>
-      get copyWith => __$$_IngredientsSortingModelIngredientFamilyCopyWithImpl<
-          _$_IngredientsSortingModelIngredientFamily>(this, _$identity);
+  _$$IngredientsSortingModelIngredientFamilyHelloFreshCopyWith<
+          _$IngredientsSortingModelIngredientFamilyHelloFresh>
+      get copyWith =>
+          __$$IngredientsSortingModelIngredientFamilyHelloFreshCopyWithImpl<
+                  _$IngredientsSortingModelIngredientFamilyHelloFresh>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String helloFreshFamilyId) helloFresh,
+  }) {
+    return helloFresh(helloFreshFamilyId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String helloFreshFamilyId)? helloFresh,
+  }) {
+    return helloFresh?.call(helloFreshFamilyId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String helloFreshFamilyId)? helloFresh,
+    required TResult orElse(),
+  }) {
+    if (helloFresh != null) {
+      return helloFresh(helloFreshFamilyId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(
+            IngredientsSortingModelIngredientFamilyHelloFresh value)
+        helloFresh,
+  }) {
+    return helloFresh(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(IngredientsSortingModelIngredientFamilyHelloFresh value)?
+        helloFresh,
+  }) {
+    return helloFresh?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(IngredientsSortingModelIngredientFamilyHelloFresh value)?
+        helloFresh,
+    required TResult orElse(),
+  }) {
+    if (helloFresh != null) {
+      return helloFresh(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _IngredientsSortingModelIngredientFamily
+abstract class IngredientsSortingModelIngredientFamilyHelloFresh
     implements IngredientsSortingModelIngredientFamily {
-  const factory _IngredientsSortingModelIngredientFamily(
-          {required final String type,
-          required final Option<Uri> iconUrl,
-          required final String name,
-          required final String slug,
-          required final List<String> familyIds}) =
-      _$_IngredientsSortingModelIngredientFamily;
+  const factory IngredientsSortingModelIngredientFamilyHelloFresh(
+          {required final String helloFreshFamilyId}) =
+      _$IngredientsSortingModelIngredientFamilyHelloFresh;
 
   @override
-  String get type;
-  @override
-  Option<Uri> get iconUrl;
-  @override
-  String get name;
-  @override
-  String get slug;
-  @override
-  List<String> get familyIds;
+  String get helloFreshFamilyId;
   @override
   @JsonKey(ignore: true)
-  _$$_IngredientsSortingModelIngredientFamilyCopyWith<
-          _$_IngredientsSortingModelIngredientFamily>
+  _$$IngredientsSortingModelIngredientFamilyHelloFreshCopyWith<
+          _$IngredientsSortingModelIngredientFamilyHelloFresh>
       get copyWith => throw _privateConstructorUsedError;
 }

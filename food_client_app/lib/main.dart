@@ -14,7 +14,8 @@ void main() async {
   Hive
     ..registerAdapter(OptionUriAdapter())
     ..registerAdapter(PersistenceServiceModelSortingUnitAdapter())
-    ..registerAdapter(PersistenceServiceModelSortingUnitIngredientFamilyAdapter())
+    ..registerAdapter(PersistenceServiceModelSortingAdapter())
+    ..registerAdapter(PersistenceServiceModelIngredientFamilyHelloFreshAdapter())
     ..registerAdapter(PersistenceServiceModelActiveSortingUnitAdapter())
     ..registerAdapter(PersistenceServiceModelActiveSortingCustomAdapter())
     ..registerAdapter(OptionDoubleAdapter())

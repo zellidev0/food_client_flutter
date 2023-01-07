@@ -1079,7 +1079,7 @@ mixin _$PersistenceServiceModelSortingUnit {
   @HiveField(1)
   String get name => throw _privateConstructorUsedError;
   @HiveField(2)
-  List<PersistenceServiceModelSortingUnitIngredientFamily> get families =>
+  List<PersistenceServiceModelSorting> get sorting =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1098,12 +1098,9 @@ abstract class $PersistenceServiceModelSortingUnitCopyWith<$Res> {
           PersistenceServiceModelSortingUnit>;
   @useResult
   $Res call(
-      {@HiveField(0)
-          String id,
-      @HiveField(1)
-          String name,
-      @HiveField(2)
-          List<PersistenceServiceModelSortingUnitIngredientFamily> families});
+      {@HiveField(0) String id,
+      @HiveField(1) String name,
+      @HiveField(2) List<PersistenceServiceModelSorting> sorting});
 }
 
 /// @nodoc
@@ -1122,7 +1119,7 @@ class _$PersistenceServiceModelSortingUnitCopyWithImpl<$Res,
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? families = null,
+    Object? sorting = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -1133,10 +1130,10 @@ class _$PersistenceServiceModelSortingUnitCopyWithImpl<$Res,
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      families: null == families
-          ? _value.families
-          : families // ignore: cast_nullable_to_non_nullable
-              as List<PersistenceServiceModelSortingUnitIngredientFamily>,
+      sorting: null == sorting
+          ? _value.sorting
+          : sorting // ignore: cast_nullable_to_non_nullable
+              as List<PersistenceServiceModelSorting>,
     ) as $Val);
   }
 }
@@ -1151,12 +1148,9 @@ abstract class _$$_PersistenceServiceModelSortingUnitCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@HiveField(0)
-          String id,
-      @HiveField(1)
-          String name,
-      @HiveField(2)
-          List<PersistenceServiceModelSortingUnitIngredientFamily> families});
+      {@HiveField(0) String id,
+      @HiveField(1) String name,
+      @HiveField(2) List<PersistenceServiceModelSorting> sorting});
 }
 
 /// @nodoc
@@ -1174,7 +1168,7 @@ class __$$_PersistenceServiceModelSortingUnitCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? families = null,
+    Object? sorting = null,
   }) {
     return _then(_$_PersistenceServiceModelSortingUnit(
       id: null == id
@@ -1185,10 +1179,10 @@ class __$$_PersistenceServiceModelSortingUnitCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      families: null == families
-          ? _value._families
-          : families // ignore: cast_nullable_to_non_nullable
-              as List<PersistenceServiceModelSortingUnitIngredientFamily>,
+      sorting: null == sorting
+          ? _value._sorting
+          : sorting // ignore: cast_nullable_to_non_nullable
+              as List<PersistenceServiceModelSorting>,
     ));
   }
 }
@@ -1204,10 +1198,8 @@ class _$_PersistenceServiceModelSortingUnit
       @HiveField(1)
           required this.name,
       @HiveField(2)
-          required final List<
-                  PersistenceServiceModelSortingUnitIngredientFamily>
-              families})
-      : _families = families;
+          required final List<PersistenceServiceModelSorting> sorting})
+      : _sorting = sorting;
 
   factory _$_PersistenceServiceModelSortingUnit.fromJson(
           Map<String, dynamic> json) =>
@@ -1219,17 +1211,17 @@ class _$_PersistenceServiceModelSortingUnit
   @override
   @HiveField(1)
   final String name;
-  final List<PersistenceServiceModelSortingUnitIngredientFamily> _families;
+  final List<PersistenceServiceModelSorting> _sorting;
   @override
   @HiveField(2)
-  List<PersistenceServiceModelSortingUnitIngredientFamily> get families {
+  List<PersistenceServiceModelSorting> get sorting {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_families);
+    return EqualUnmodifiableListView(_sorting);
   }
 
   @override
   String toString() {
-    return 'PersistenceServiceModelSortingUnit(id: $id, name: $name, families: $families)';
+    return 'PersistenceServiceModelSortingUnit(id: $id, name: $name, sorting: $sorting)';
   }
 
   @override
@@ -1239,13 +1231,13 @@ class _$_PersistenceServiceModelSortingUnit
             other is _$_PersistenceServiceModelSortingUnit &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            const DeepCollectionEquality().equals(other._families, _families));
+            const DeepCollectionEquality().equals(other._sorting, _sorting));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, name, const DeepCollectionEquality().hash(_families));
+      runtimeType, id, name, const DeepCollectionEquality().hash(_sorting));
 
   @JsonKey(ignore: true)
   @override
@@ -1266,14 +1258,13 @@ class _$_PersistenceServiceModelSortingUnit
 abstract class _PersistenceServiceModelSortingUnit
     implements PersistenceServiceModelSortingUnit {
   const factory _PersistenceServiceModelSortingUnit(
-      {@HiveField(0)
-          required final String id,
-      @HiveField(1)
-          required final String name,
-      @HiveField(2)
-          required final List<
-                  PersistenceServiceModelSortingUnitIngredientFamily>
-              families}) = _$_PersistenceServiceModelSortingUnit;
+          {@HiveField(0)
+              required final String id,
+          @HiveField(1)
+              required final String name,
+          @HiveField(2)
+              required final List<PersistenceServiceModelSorting> sorting}) =
+      _$_PersistenceServiceModelSortingUnit;
 
   factory _PersistenceServiceModelSortingUnit.fromJson(
           Map<String, dynamic> json) =
@@ -1287,7 +1278,7 @@ abstract class _PersistenceServiceModelSortingUnit
   String get name;
   @override
   @HiveField(2)
-  List<PersistenceServiceModelSortingUnitIngredientFamily> get families;
+  List<PersistenceServiceModelSorting> get sorting;
   @override
   @JsonKey(ignore: true)
   _$$_PersistenceServiceModelSortingUnitCopyWith<
@@ -1295,56 +1286,332 @@ abstract class _PersistenceServiceModelSortingUnit
       get copyWith => throw _privateConstructorUsedError;
 }
 
-PersistenceServiceModelSortingUnitIngredientFamily
-    _$PersistenceServiceModelSortingUnitIngredientFamilyFromJson(
-        Map<String, dynamic> json) {
-  return _PersistenceServiceModelSortingUnitIngredientFamily.fromJson(json);
+PersistenceServiceModelSorting _$PersistenceServiceModelSortingFromJson(
+    Map<String, dynamic> json) {
+  return _PersistenceServiceModelSorting.fromJson(json);
 }
 
 /// @nodoc
-mixin _$PersistenceServiceModelSortingUnitIngredientFamily {
+mixin _$PersistenceServiceModelSorting {
   @HiveField(0)
-  List<String> get familyIds => throw _privateConstructorUsedError;
+  List<PersistenceServiceModelIngredientFamily> get ingredientFamilies =>
+      throw _privateConstructorUsedError;
   @HiveField(1)
   String get type => throw _privateConstructorUsedError;
   @HiveField(2)
-  Option<String> get iconUrlAsString => throw _privateConstructorUsedError;
+  Option<String> get iconPathAsString => throw _privateConstructorUsedError;
   @HiveField(3)
   String get name => throw _privateConstructorUsedError;
-  @HiveField(4)
-  String get slug => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PersistenceServiceModelSortingUnitIngredientFamilyCopyWith<
-          PersistenceServiceModelSortingUnitIngredientFamily>
+  $PersistenceServiceModelSortingCopyWith<PersistenceServiceModelSorting>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PersistenceServiceModelSortingUnitIngredientFamilyCopyWith<
-    $Res> {
-  factory $PersistenceServiceModelSortingUnitIngredientFamilyCopyWith(
-          PersistenceServiceModelSortingUnitIngredientFamily value,
-          $Res Function(PersistenceServiceModelSortingUnitIngredientFamily)
-              then) =
-      _$PersistenceServiceModelSortingUnitIngredientFamilyCopyWithImpl<$Res,
-          PersistenceServiceModelSortingUnitIngredientFamily>;
+abstract class $PersistenceServiceModelSortingCopyWith<$Res> {
+  factory $PersistenceServiceModelSortingCopyWith(
+          PersistenceServiceModelSorting value,
+          $Res Function(PersistenceServiceModelSorting) then) =
+      _$PersistenceServiceModelSortingCopyWithImpl<$Res,
+          PersistenceServiceModelSorting>;
   @useResult
   $Res call(
-      {@HiveField(0) List<String> familyIds,
-      @HiveField(1) String type,
-      @HiveField(2) Option<String> iconUrlAsString,
-      @HiveField(3) String name,
-      @HiveField(4) String slug});
+      {@HiveField(0)
+          List<PersistenceServiceModelIngredientFamily> ingredientFamilies,
+      @HiveField(1)
+          String type,
+      @HiveField(2)
+          Option<String> iconPathAsString,
+      @HiveField(3)
+          String name});
 }
 
 /// @nodoc
-class _$PersistenceServiceModelSortingUnitIngredientFamilyCopyWithImpl<$Res,
-        $Val extends PersistenceServiceModelSortingUnitIngredientFamily>
-    implements
-        $PersistenceServiceModelSortingUnitIngredientFamilyCopyWith<$Res> {
-  _$PersistenceServiceModelSortingUnitIngredientFamilyCopyWithImpl(
+class _$PersistenceServiceModelSortingCopyWithImpl<$Res,
+        $Val extends PersistenceServiceModelSorting>
+    implements $PersistenceServiceModelSortingCopyWith<$Res> {
+  _$PersistenceServiceModelSortingCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? ingredientFamilies = null,
+    Object? type = null,
+    Object? iconPathAsString = null,
+    Object? name = null,
+  }) {
+    return _then(_value.copyWith(
+      ingredientFamilies: null == ingredientFamilies
+          ? _value.ingredientFamilies
+          : ingredientFamilies // ignore: cast_nullable_to_non_nullable
+              as List<PersistenceServiceModelIngredientFamily>,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      iconPathAsString: null == iconPathAsString
+          ? _value.iconPathAsString
+          : iconPathAsString // ignore: cast_nullable_to_non_nullable
+              as Option<String>,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_PersistenceServiceModelSortingCopyWith<$Res>
+    implements $PersistenceServiceModelSortingCopyWith<$Res> {
+  factory _$$_PersistenceServiceModelSortingCopyWith(
+          _$_PersistenceServiceModelSorting value,
+          $Res Function(_$_PersistenceServiceModelSorting) then) =
+      __$$_PersistenceServiceModelSortingCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@HiveField(0)
+          List<PersistenceServiceModelIngredientFamily> ingredientFamilies,
+      @HiveField(1)
+          String type,
+      @HiveField(2)
+          Option<String> iconPathAsString,
+      @HiveField(3)
+          String name});
+}
+
+/// @nodoc
+class __$$_PersistenceServiceModelSortingCopyWithImpl<$Res>
+    extends _$PersistenceServiceModelSortingCopyWithImpl<$Res,
+        _$_PersistenceServiceModelSorting>
+    implements _$$_PersistenceServiceModelSortingCopyWith<$Res> {
+  __$$_PersistenceServiceModelSortingCopyWithImpl(
+      _$_PersistenceServiceModelSorting _value,
+      $Res Function(_$_PersistenceServiceModelSorting) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? ingredientFamilies = null,
+    Object? type = null,
+    Object? iconPathAsString = null,
+    Object? name = null,
+  }) {
+    return _then(_$_PersistenceServiceModelSorting(
+      ingredientFamilies: null == ingredientFamilies
+          ? _value._ingredientFamilies
+          : ingredientFamilies // ignore: cast_nullable_to_non_nullable
+              as List<PersistenceServiceModelIngredientFamily>,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      iconPathAsString: null == iconPathAsString
+          ? _value.iconPathAsString
+          : iconPathAsString // ignore: cast_nullable_to_non_nullable
+              as Option<String>,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+@HiveType(typeId: 4, adapterName: 'PersistenceServiceModelSortingAdapter')
+class _$_PersistenceServiceModelSorting
+    implements _PersistenceServiceModelSorting {
+  const _$_PersistenceServiceModelSorting(
+      {@HiveField(0)
+          required final List<PersistenceServiceModelIngredientFamily>
+              ingredientFamilies,
+      @HiveField(1)
+          required this.type,
+      @HiveField(2)
+          required this.iconPathAsString,
+      @HiveField(3)
+          required this.name})
+      : _ingredientFamilies = ingredientFamilies;
+
+  factory _$_PersistenceServiceModelSorting.fromJson(
+          Map<String, dynamic> json) =>
+      _$$_PersistenceServiceModelSortingFromJson(json);
+
+  final List<PersistenceServiceModelIngredientFamily> _ingredientFamilies;
+  @override
+  @HiveField(0)
+  List<PersistenceServiceModelIngredientFamily> get ingredientFamilies {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_ingredientFamilies);
+  }
+
+  @override
+  @HiveField(1)
+  final String type;
+  @override
+  @HiveField(2)
+  final Option<String> iconPathAsString;
+  @override
+  @HiveField(3)
+  final String name;
+
+  @override
+  String toString() {
+    return 'PersistenceServiceModelSorting(ingredientFamilies: $ingredientFamilies, type: $type, iconPathAsString: $iconPathAsString, name: $name)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_PersistenceServiceModelSorting &&
+            const DeepCollectionEquality()
+                .equals(other._ingredientFamilies, _ingredientFamilies) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.iconPathAsString, iconPathAsString) ||
+                other.iconPathAsString == iconPathAsString) &&
+            (identical(other.name, name) || other.name == name));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_ingredientFamilies),
+      type,
+      iconPathAsString,
+      name);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_PersistenceServiceModelSortingCopyWith<_$_PersistenceServiceModelSorting>
+      get copyWith => __$$_PersistenceServiceModelSortingCopyWithImpl<
+          _$_PersistenceServiceModelSorting>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_PersistenceServiceModelSortingToJson(
+      this,
+    );
+  }
+}
+
+abstract class _PersistenceServiceModelSorting
+    implements PersistenceServiceModelSorting {
+  const factory _PersistenceServiceModelSorting(
+      {@HiveField(0)
+          required final List<PersistenceServiceModelIngredientFamily>
+              ingredientFamilies,
+      @HiveField(1)
+          required final String type,
+      @HiveField(2)
+          required final Option<String> iconPathAsString,
+      @HiveField(3)
+          required final String name}) = _$_PersistenceServiceModelSorting;
+
+  factory _PersistenceServiceModelSorting.fromJson(Map<String, dynamic> json) =
+      _$_PersistenceServiceModelSorting.fromJson;
+
+  @override
+  @HiveField(0)
+  List<PersistenceServiceModelIngredientFamily> get ingredientFamilies;
+  @override
+  @HiveField(1)
+  String get type;
+  @override
+  @HiveField(2)
+  Option<String> get iconPathAsString;
+  @override
+  @HiveField(3)
+  String get name;
+  @override
+  @JsonKey(ignore: true)
+  _$$_PersistenceServiceModelSortingCopyWith<_$_PersistenceServiceModelSorting>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+PersistenceServiceModelIngredientFamily
+    _$PersistenceServiceModelIngredientFamilyFromJson(
+        Map<String, dynamic> json) {
+  return PersistenceServiceModelIngredientFamilyHellofresh.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PersistenceServiceModelIngredientFamily {
+  @HiveField(0)
+  String get helloFreshFamilyId => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(@HiveField(0) String helloFreshFamilyId)
+        helloFresh,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(@HiveField(0) String helloFreshFamilyId)? helloFresh,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(@HiveField(0) String helloFreshFamilyId)? helloFresh,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(
+            PersistenceServiceModelIngredientFamilyHellofresh value)
+        helloFresh,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(PersistenceServiceModelIngredientFamilyHellofresh value)?
+        helloFresh,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(PersistenceServiceModelIngredientFamilyHellofresh value)?
+        helloFresh,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $PersistenceServiceModelIngredientFamilyCopyWith<
+          PersistenceServiceModelIngredientFamily>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PersistenceServiceModelIngredientFamilyCopyWith<$Res> {
+  factory $PersistenceServiceModelIngredientFamilyCopyWith(
+          PersistenceServiceModelIngredientFamily value,
+          $Res Function(PersistenceServiceModelIngredientFamily) then) =
+      _$PersistenceServiceModelIngredientFamilyCopyWithImpl<$Res,
+          PersistenceServiceModelIngredientFamily>;
+  @useResult
+  $Res call({@HiveField(0) String helloFreshFamilyId});
+}
+
+/// @nodoc
+class _$PersistenceServiceModelIngredientFamilyCopyWithImpl<$Res,
+        $Val extends PersistenceServiceModelIngredientFamily>
+    implements $PersistenceServiceModelIngredientFamilyCopyWith<$Res> {
+  _$PersistenceServiceModelIngredientFamilyCopyWithImpl(
       this._value, this._then);
 
   // ignore: unused_field
@@ -1355,98 +1622,50 @@ class _$PersistenceServiceModelSortingUnitIngredientFamilyCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? familyIds = null,
-    Object? type = null,
-    Object? iconUrlAsString = null,
-    Object? name = null,
-    Object? slug = null,
+    Object? helloFreshFamilyId = null,
   }) {
     return _then(_value.copyWith(
-      familyIds: null == familyIds
-          ? _value.familyIds
-          : familyIds // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      iconUrlAsString: null == iconUrlAsString
-          ? _value.iconUrlAsString
-          : iconUrlAsString // ignore: cast_nullable_to_non_nullable
-              as Option<String>,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      slug: null == slug
-          ? _value.slug
-          : slug // ignore: cast_nullable_to_non_nullable
+      helloFreshFamilyId: null == helloFreshFamilyId
+          ? _value.helloFreshFamilyId
+          : helloFreshFamilyId // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_PersistenceServiceModelSortingUnitIngredientFamilyCopyWith<
-        $Res>
-    implements
-        $PersistenceServiceModelSortingUnitIngredientFamilyCopyWith<$Res> {
-  factory _$$_PersistenceServiceModelSortingUnitIngredientFamilyCopyWith(
-          _$_PersistenceServiceModelSortingUnitIngredientFamily value,
-          $Res Function(_$_PersistenceServiceModelSortingUnitIngredientFamily)
+abstract class _$$PersistenceServiceModelIngredientFamilyHellofreshCopyWith<
+    $Res> implements $PersistenceServiceModelIngredientFamilyCopyWith<$Res> {
+  factory _$$PersistenceServiceModelIngredientFamilyHellofreshCopyWith(
+          _$PersistenceServiceModelIngredientFamilyHellofresh value,
+          $Res Function(_$PersistenceServiceModelIngredientFamilyHellofresh)
               then) =
-      __$$_PersistenceServiceModelSortingUnitIngredientFamilyCopyWithImpl<$Res>;
+      __$$PersistenceServiceModelIngredientFamilyHellofreshCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@HiveField(0) List<String> familyIds,
-      @HiveField(1) String type,
-      @HiveField(2) Option<String> iconUrlAsString,
-      @HiveField(3) String name,
-      @HiveField(4) String slug});
+  $Res call({@HiveField(0) String helloFreshFamilyId});
 }
 
 /// @nodoc
-class __$$_PersistenceServiceModelSortingUnitIngredientFamilyCopyWithImpl<$Res>
-    extends _$PersistenceServiceModelSortingUnitIngredientFamilyCopyWithImpl<
-        $Res, _$_PersistenceServiceModelSortingUnitIngredientFamily>
+class __$$PersistenceServiceModelIngredientFamilyHellofreshCopyWithImpl<$Res>
+    extends _$PersistenceServiceModelIngredientFamilyCopyWithImpl<$Res,
+        _$PersistenceServiceModelIngredientFamilyHellofresh>
     implements
-        _$$_PersistenceServiceModelSortingUnitIngredientFamilyCopyWith<$Res> {
-  __$$_PersistenceServiceModelSortingUnitIngredientFamilyCopyWithImpl(
-      _$_PersistenceServiceModelSortingUnitIngredientFamily _value,
-      $Res Function(_$_PersistenceServiceModelSortingUnitIngredientFamily)
-          _then)
+        _$$PersistenceServiceModelIngredientFamilyHellofreshCopyWith<$Res> {
+  __$$PersistenceServiceModelIngredientFamilyHellofreshCopyWithImpl(
+      _$PersistenceServiceModelIngredientFamilyHellofresh _value,
+      $Res Function(_$PersistenceServiceModelIngredientFamilyHellofresh) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? familyIds = null,
-    Object? type = null,
-    Object? iconUrlAsString = null,
-    Object? name = null,
-    Object? slug = null,
+    Object? helloFreshFamilyId = null,
   }) {
-    return _then(_$_PersistenceServiceModelSortingUnitIngredientFamily(
-      familyIds: null == familyIds
-          ? _value._familyIds
-          : familyIds // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      iconUrlAsString: null == iconUrlAsString
-          ? _value.iconUrlAsString
-          : iconUrlAsString // ignore: cast_nullable_to_non_nullable
-              as Option<String>,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      slug: null == slug
-          ? _value.slug
-          : slug // ignore: cast_nullable_to_non_nullable
+    return _then(_$PersistenceServiceModelIngredientFamilyHellofresh(
+      helloFreshFamilyId: null == helloFreshFamilyId
+          ? _value.helloFreshFamilyId
+          : helloFreshFamilyId // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -1455,123 +1674,135 @@ class __$$_PersistenceServiceModelSortingUnitIngredientFamilyCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 @HiveType(
-    typeId: 4,
-    adapterName: 'PersistenceServiceModelSortingUnitIngredientFamilyAdapter')
-class _$_PersistenceServiceModelSortingUnitIngredientFamily
-    implements _PersistenceServiceModelSortingUnitIngredientFamily {
-  const _$_PersistenceServiceModelSortingUnitIngredientFamily(
-      {@HiveField(0) required final List<String> familyIds,
-      @HiveField(1) required this.type,
-      @HiveField(2) required this.iconUrlAsString,
-      @HiveField(3) required this.name,
-      @HiveField(4) required this.slug})
-      : _familyIds = familyIds;
+    typeId: 7,
+    adapterName: 'PersistenceServiceModelIngredientFamilyHelloFreshAdapter')
+class _$PersistenceServiceModelIngredientFamilyHellofresh
+    implements PersistenceServiceModelIngredientFamilyHellofresh {
+  const _$PersistenceServiceModelIngredientFamilyHellofresh(
+      {@HiveField(0) required this.helloFreshFamilyId});
 
-  factory _$_PersistenceServiceModelSortingUnitIngredientFamily.fromJson(
+  factory _$PersistenceServiceModelIngredientFamilyHellofresh.fromJson(
           Map<String, dynamic> json) =>
-      _$$_PersistenceServiceModelSortingUnitIngredientFamilyFromJson(json);
+      _$$PersistenceServiceModelIngredientFamilyHellofreshFromJson(json);
 
-  final List<String> _familyIds;
   @override
   @HiveField(0)
-  List<String> get familyIds {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_familyIds);
-  }
-
-  @override
-  @HiveField(1)
-  final String type;
-  @override
-  @HiveField(2)
-  final Option<String> iconUrlAsString;
-  @override
-  @HiveField(3)
-  final String name;
-  @override
-  @HiveField(4)
-  final String slug;
+  final String helloFreshFamilyId;
 
   @override
   String toString() {
-    return 'PersistenceServiceModelSortingUnitIngredientFamily(familyIds: $familyIds, type: $type, iconUrlAsString: $iconUrlAsString, name: $name, slug: $slug)';
+    return 'PersistenceServiceModelIngredientFamily.helloFresh(helloFreshFamilyId: $helloFreshFamilyId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PersistenceServiceModelSortingUnitIngredientFamily &&
-            const DeepCollectionEquality()
-                .equals(other._familyIds, _familyIds) &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.iconUrlAsString, iconUrlAsString) ||
-                other.iconUrlAsString == iconUrlAsString) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.slug, slug) || other.slug == slug));
+            other is _$PersistenceServiceModelIngredientFamilyHellofresh &&
+            (identical(other.helloFreshFamilyId, helloFreshFamilyId) ||
+                other.helloFreshFamilyId == helloFreshFamilyId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_familyIds),
-      type,
-      iconUrlAsString,
-      name,
-      slug);
+  int get hashCode => Object.hash(runtimeType, helloFreshFamilyId);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PersistenceServiceModelSortingUnitIngredientFamilyCopyWith<
-          _$_PersistenceServiceModelSortingUnitIngredientFamily>
+  _$$PersistenceServiceModelIngredientFamilyHellofreshCopyWith<
+          _$PersistenceServiceModelIngredientFamilyHellofresh>
       get copyWith =>
-          __$$_PersistenceServiceModelSortingUnitIngredientFamilyCopyWithImpl<
-                  _$_PersistenceServiceModelSortingUnitIngredientFamily>(
+          __$$PersistenceServiceModelIngredientFamilyHellofreshCopyWithImpl<
+                  _$PersistenceServiceModelIngredientFamilyHellofresh>(
               this, _$identity);
 
   @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(@HiveField(0) String helloFreshFamilyId)
+        helloFresh,
+  }) {
+    return helloFresh(helloFreshFamilyId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(@HiveField(0) String helloFreshFamilyId)? helloFresh,
+  }) {
+    return helloFresh?.call(helloFreshFamilyId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(@HiveField(0) String helloFreshFamilyId)? helloFresh,
+    required TResult orElse(),
+  }) {
+    if (helloFresh != null) {
+      return helloFresh(helloFreshFamilyId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(
+            PersistenceServiceModelIngredientFamilyHellofresh value)
+        helloFresh,
+  }) {
+    return helloFresh(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(PersistenceServiceModelIngredientFamilyHellofresh value)?
+        helloFresh,
+  }) {
+    return helloFresh?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(PersistenceServiceModelIngredientFamilyHellofresh value)?
+        helloFresh,
+    required TResult orElse(),
+  }) {
+    if (helloFresh != null) {
+      return helloFresh(this);
+    }
+    return orElse();
+  }
+
+  @override
   Map<String, dynamic> toJson() {
-    return _$$_PersistenceServiceModelSortingUnitIngredientFamilyToJson(
+    return _$$PersistenceServiceModelIngredientFamilyHellofreshToJson(
       this,
     );
   }
 }
 
-abstract class _PersistenceServiceModelSortingUnitIngredientFamily
-    implements PersistenceServiceModelSortingUnitIngredientFamily {
-  const factory _PersistenceServiceModelSortingUnitIngredientFamily(
-          {@HiveField(0) required final List<String> familyIds,
-          @HiveField(1) required final String type,
-          @HiveField(2) required final Option<String> iconUrlAsString,
-          @HiveField(3) required final String name,
-          @HiveField(4) required final String slug}) =
-      _$_PersistenceServiceModelSortingUnitIngredientFamily;
+abstract class PersistenceServiceModelIngredientFamilyHellofresh
+    implements PersistenceServiceModelIngredientFamily {
+  const factory PersistenceServiceModelIngredientFamilyHellofresh(
+          {@HiveField(0) required final String helloFreshFamilyId}) =
+      _$PersistenceServiceModelIngredientFamilyHellofresh;
 
-  factory _PersistenceServiceModelSortingUnitIngredientFamily.fromJson(
+  factory PersistenceServiceModelIngredientFamilyHellofresh.fromJson(
           Map<String, dynamic> json) =
-      _$_PersistenceServiceModelSortingUnitIngredientFamily.fromJson;
+      _$PersistenceServiceModelIngredientFamilyHellofresh.fromJson;
 
   @override
   @HiveField(0)
-  List<String> get familyIds;
-  @override
-  @HiveField(1)
-  String get type;
-  @override
-  @HiveField(2)
-  Option<String> get iconUrlAsString;
-  @override
-  @HiveField(3)
-  String get name;
-  @override
-  @HiveField(4)
-  String get slug;
+  String get helloFreshFamilyId;
   @override
   @JsonKey(ignore: true)
-  _$$_PersistenceServiceModelSortingUnitIngredientFamilyCopyWith<
-          _$_PersistenceServiceModelSortingUnitIngredientFamily>
+  _$$PersistenceServiceModelIngredientFamilyHellofreshCopyWith<
+          _$PersistenceServiceModelIngredientFamilyHellofresh>
       get copyWith => throw _privateConstructorUsedError;
 }
 

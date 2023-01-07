@@ -93,7 +93,7 @@ class PersistenceServiceModelSortingUnit
   const factory PersistenceServiceModelSortingUnit({
     @HiveField(0) required final String id,
     @HiveField(1) required final String name,
-    @HiveField(2) required final List<PersistenceServiceModelSortingUnitIngredientFamily> families,
+    @HiveField(2) required final List<PersistenceServiceModelSorting> sorting,
   }) = _PersistenceServiceModelSortingUnit;
 
   factory PersistenceServiceModelSortingUnit.fromJson(
@@ -103,24 +103,40 @@ class PersistenceServiceModelSortingUnit
 }
 
 @freezed
-class PersistenceServiceModelSortingUnitIngredientFamily
-    with _$PersistenceServiceModelSortingUnitIngredientFamily {
+class PersistenceServiceModelSorting
+    with _$PersistenceServiceModelSorting {
   @HiveType(
     typeId: 4,
-    adapterName: 'PersistenceServiceModelSortingUnitIngredientFamilyAdapter',
+    adapterName: 'PersistenceServiceModelSortingAdapter',
   )
-  const factory PersistenceServiceModelSortingUnitIngredientFamily({
-    @HiveField(0) required final List<String> familyIds,
+  const factory PersistenceServiceModelSorting({
+    @HiveField(0) required final List<PersistenceServiceModelIngredientFamily> ingredientFamilies,
     @HiveField(1) required final String type,
-    @HiveField(2) required final Option<String> iconUrlAsString,
+    @HiveField(2) required final Option<String> iconPathAsString,
     @HiveField(3) required final String name,
-    @HiveField(4) required final String slug,
-  }) = _PersistenceServiceModelSortingUnitIngredientFamily;
+  }) = _PersistenceServiceModelSorting;
 
-  factory PersistenceServiceModelSortingUnitIngredientFamily.fromJson(
+  factory PersistenceServiceModelSorting.fromJson(
       final Map<String, dynamic> json,
       ) =>
-      _$PersistenceServiceModelSortingUnitIngredientFamilyFromJson(json);
+      _$PersistenceServiceModelSortingFromJson(json);
+}
+
+@freezed
+class PersistenceServiceModelIngredientFamily
+    with _$PersistenceServiceModelIngredientFamily {
+  @HiveType(
+    typeId: 7,
+    adapterName: 'PersistenceServiceModelIngredientFamilyHelloFreshAdapter',
+  )
+  const factory PersistenceServiceModelIngredientFamily.helloFresh({
+    @HiveField(0) required final String helloFreshFamilyId,
+  }) = PersistenceServiceModelIngredientFamilyHellofresh;
+
+  factory PersistenceServiceModelIngredientFamily.fromJson(
+      final Map<String, dynamic> json,
+      ) =>
+      _$PersistenceServiceModelIngredientFamilyFromJson(json);
 }
 
 

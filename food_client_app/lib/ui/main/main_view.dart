@@ -31,19 +31,16 @@ class MainView extends ConsumerWidget {
           destinations: <Widget>[
             NavigationDestination(
               icon: const Icon(Icons.explore),
-              label: 'ui.main_view.bottom_navigation_destination.explore'
-                  .tr(),
+              label: 'ui.main_view.bottom_navigation_destination.explore'.tr(),
             ),
             NavigationDestination(
               icon: const Icon(Icons.shopping_cart),
-              label:
-                  'ui.main_view.bottom_navigation_destination.shopping_cart'
-                      .tr(),
+              label: 'ui.main_view.bottom_navigation_destination.shopping_cart'
+                  .tr(),
             ),
             NavigationDestination(
               icon: const Icon(Icons.account_circle),
-              label: 'ui.main_view.bottom_navigation_destination.account'
-                  .tr(),
+              label: 'ui.main_view.bottom_navigation_destination.account'.tr(),
             ),
           ],
         ),
@@ -51,9 +48,9 @@ class MainView extends ConsumerWidget {
       body: Beamer(
         routerDelegate: ref.read(
           providers.bottomNavigationBarBeamerDelegate,
-          ),
         ),
-      );
+      ),
+    );
   }
 }
 

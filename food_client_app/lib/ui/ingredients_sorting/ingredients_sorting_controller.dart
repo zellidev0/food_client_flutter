@@ -50,37 +50,54 @@ class IngredientsSortingControllerImplementation
     await (await fetchIngredientFamiliesFromBackend().run()).fold(
       (final Exception exception) async => _handleError(
         exception: exception,
-        message: 'Could not add sorting unit',
+        message: 'Could not fetch all ingredient families',
         userDisplayedErrorMessage: 'An error occurred, try again later',
       ),
-      (final List<IngredientsSortingModelIngredientFamily> families) async {
-        await _persistenceService
-            .saveUnit(
-              unit: mapToIngredientsSortingPersistenceModelUnit(
-                name: name,
-                families: families,
-              ),
-            )
-            .run();
-        _fetchPersistenceServiceUnits();
-      },
+      (final List<IngredientsSortingModelIngredientFamily> families) async =>
+          (await _webClientService.fetchIngredientsSorting().run()).fold(
+        (final Exception error) => _handleError(
+          exception: error,
+          message: 'Could not fetch ingredients sorting unit',
+          userDisplayedErrorMessage: 'An error occurred, try again later',
+        ),
+        (
+          final List<IngredientsSortingWebClientModelIngredientSorting>
+              sortings,
+        ) async {
+          await _persistenceService
+              .saveUnit(
+                unit: IngredientsSortingPersistenceModelUnit(
+                  name: name,
+                  sortings: sortings
+                      .map(
+                        (final IngredientsSortingWebClientModelIngredientSorting
+                                sorting) =>
+                            IngredientsSortingPersistenceModelSorting(
+                          type: sorting.type,
+                          iconPath: sorting.iconPath,
+                          name: sorting.name,
+                          ingredientFamilies: sorting.ingredientFamilyIds
+                              .map(
+                                (final String helloFreshFamilyId) =>
+                                    IngredientsSortingPersistenceModelIngredientFamily
+                                        .helloFresh(
+                                  helloFreshFamilyId: helloFreshFamilyId,
+                                ),
+                              )
+                              .toList(),
+                        ),
+                      )
+                      .toList(),
+                  id: const Uuid().v4(),
+                ),
+              )
+              .run();
+          _fetchPersistenceServiceUnits();
+        },
+      ),
     );
     _navigationService.pop();
   }
-
-  IngredientsSortingPersistenceModelUnit
-      mapToIngredientsSortingPersistenceModelUnit({
-    required final String name,
-    required final List<IngredientsSortingModelIngredientFamily> families,
-  }) =>
-          IngredientsSortingPersistenceModelUnit(
-            name: name,
-            ingredientFamilies:
-                mapToIngredientsSortingPersistenceModelIngredientFamily(
-              families,
-            ),
-            id: const Uuid().v4(),
-          );
 
   TaskEither<Exception, List<IngredientsSortingModelIngredientFamily>>
       fetchIngredientFamiliesFromBackend() => combineFetchedResults(
@@ -101,25 +118,23 @@ class IngredientsSortingControllerImplementation
               ),
               buildException,
             ),
-          )
-              .map(
-                (
-                  final List<IngredientsSortingWebClientModelIngredientFamily>
-                      value,
-                ) =>
-                    value
-                        .map(mapToIngredientsSortingModelIngredientFamily)
-                        .toList(),
-              )
-              .map(
-                (
-                  final List<IngredientsSortingModelIngredientFamily> families,
-                ) =>
-                    removeDuplicates(
-                  families: families,
-                  imageSizerService: _webImageSizerService,
-                ),
-              );
+          ).map(
+            (
+              final List<IngredientsSortingWebClientModelIngredientFamily>
+                  value,
+            ) =>
+                value
+                    .map(
+                      (
+                        final IngredientsSortingWebClientModelIngredientFamily
+                            family,
+                      ) =>
+                          IngredientsSortingModelIngredientFamily.helloFresh(
+                        helloFreshFamilyId: family.helloFreshId,
+                      ),
+                    )
+                    .toList(),
+          );
 
   @override
   void showDeleteUnitDialog({required final IngredientsSortingModelUnit unit}) {
@@ -187,19 +202,15 @@ class IngredientsSortingControllerImplementation
     required final int oldIndex,
     required final int newIndex,
   }) async {
-    final List<IngredientsSortingModelIngredientFamily> families =
-        List<IngredientsSortingModelIngredientFamily>.from(
-      unit.ingredientFamilies,
-    );
-    final IngredientsSortingModelIngredientFamily family =
-        families.removeAt(oldIndex);
-    families.insert(newIndex, family);
+    final List<IngredientsSortingModelSorting> sortings =
+        List<IngredientsSortingModelSorting>.from(unit.sorting);
+    final IngredientsSortingModelSorting sorting = sortings.removeAt(oldIndex);
+    sortings.insert(newIndex, sorting);
     state = state.copyWith(
       units: state.units
           .map(
             (final IngredientsSortingModelUnit element) => element.copyWith(
-              ingredientFamilies:
-                  element.id == unit.id ? families : element.ingredientFamilies,
+              sorting: element.id == unit.id ? sortings : element.sorting,
             ),
           )
           .toList(),
@@ -209,10 +220,28 @@ class IngredientsSortingControllerImplementation
           unit: IngredientsSortingPersistenceModelUnit(
             id: unit.id,
             name: unit.title,
-            ingredientFamilies:
-                mapToIngredientsSortingPersistenceModelIngredientFamily(
-              families,
-            ),
+            sortings: sortings
+                .map(
+                  (final IngredientsSortingModelSorting currentSorting) =>
+                      IngredientsSortingPersistenceModelSorting(
+                    type: currentSorting.type,
+                    iconPath: none(), // TODO Julian
+                    name: currentSorting.name,
+                    ingredientFamilies: currentSorting.ingredientFamilies
+                        .map(
+                          (
+                            final IngredientsSortingModelIngredientFamily
+                                family,
+                          ) =>
+                              IngredientsSortingPersistenceModelIngredientFamily
+                                  .helloFresh(
+                            helloFreshFamilyId: family.helloFreshFamilyId,
+                          ),
+                        )
+                        .toList(),
+                  ),
+                )
+                .toList(),
           ),
         )
         .run();
@@ -222,7 +251,7 @@ class IngredientsSortingControllerImplementation
       _fetchIngredientsPaginated({
     required final int pageKey,
   }) =>
-          _webClientService.fetchAllIngredientFamilies(
+          _webClientService.fetchHelloFreshIngredientFamilies(
             country: 'de',
             take: some(takeSize),
             skip: some(pageKey * takeSize),
@@ -233,8 +262,10 @@ class IngredientsSortingControllerImplementation
       units: _persistenceService
           .getUnits()
           .mapIndexed(
-            (final int index,
-                    final IngredientsSortingPersistenceModelUnit unit,) =>
+            (
+              final int index,
+              final IngredientsSortingPersistenceModelUnit unit,
+            ) =>
                 mapToIngredientsSortingModelUnit(
               unit: unit,
               imageSizerService: _webImageSizerService,
@@ -254,44 +285,6 @@ class IngredientsSortingControllerImplementation
     _navigationService.showSnackBar(message: userDisplayedErrorMessage);
   }
 
-  List<IngredientsSortingModelIngredientFamily> removeDuplicates({
-    required final List<IngredientsSortingModelIngredientFamily> families,
-    required final IngredientsSortingWebImageSizerService imageSizerService,
-  }) =>
-      families
-          .groupListsBy(
-            (final IngredientsSortingModelIngredientFamily family) =>
-                family.slug,
-          )
-          .entries
-          .map(
-            (
-              final MapEntry<String,
-                      List<IngredientsSortingModelIngredientFamily>>
-                  family,
-            ) =>
-                family.value.reduce(
-              (
-                final IngredientsSortingModelIngredientFamily last,
-                final IngredientsSortingModelIngredientFamily next,
-              ) =>
-                  last.copyWith(
-                familyIds: <String>[...last.familyIds, ...next.familyIds],
-              ),
-            ),
-          )
-          .toList();
-
-  Option<Uri> getImageUrl({
-    required final Option<Uri> iconPath,
-    required final IngredientsSortingWebImageSizerService imageSizerService,
-  }) =>
-      iconPath.flatMap(
-        (final Uri uri) => imageSizerService
-            .getUrl(filePath: uri, widthPixels: _widthPixels)
-            .toOption(),
-      );
-
   IngredientsSortingModelUnit mapToIngredientsSortingModelUnit({
     required final IngredientsSortingPersistenceModelUnit unit,
     required final bool isSelected,
@@ -301,37 +294,32 @@ class IngredientsSortingControllerImplementation
         id: unit.id,
         title: unit.name,
         selected: isSelected,
-        ingredientFamilies: unit.ingredientFamilies
-            .map(mapToIngredientsSortingModelIngredientFamily2)
+        sorting: unit.sortings
+            .map(
+              (final IngredientsSortingPersistenceModelSorting sorting) =>
+                  IngredientsSortingModelSorting(
+                type: sorting.type,
+                iconUrl: getImageUrl(
+                  iconPath: sorting.iconPath,
+                  imageSizerService: imageSizerService,
+                ),
+                name: sorting.name,
+                ingredientFamilies: sorting.ingredientFamilies
+                    .map(
+                      (
+                        final IngredientsSortingPersistenceModelIngredientFamily
+                            family,
+                      ) =>
+                          IngredientsSortingModelIngredientFamily.helloFresh(
+                        helloFreshFamilyId: family.helloFreshFamilyId,
+                      ),
+                    )
+                    .toList(),
+                id: const Uuid().v4(),
+              ),
+            )
             .toList(),
       );
-
-  IngredientsSortingModelIngredientFamily
-      mapToIngredientsSortingModelIngredientFamily(
-    final IngredientsSortingWebClientModelIngredientFamily family,
-  ) =>
-          IngredientsSortingModelIngredientFamily(
-            type: family.type,
-            iconUrl: getImageUrl(
-              iconPath: family.iconPath,
-              imageSizerService: _webImageSizerService,
-            ),
-            name: family.name,
-            slug: family.slug,
-            familyIds: <String>[family.id],
-          );
-
-  IngredientsSortingModelIngredientFamily
-      mapToIngredientsSortingModelIngredientFamily2(
-    final IngredientsSortingPersistenceModelIngredientFamily family,
-  ) =>
-          IngredientsSortingModelIngredientFamily(
-            type: family.type,
-            iconUrl: family.iconUrl,
-            name: family.name,
-            slug: family.slug,
-            familyIds: family.familyIds,
-          );
 
   TaskEither<Exception, List<IngredientsSortingWebClientModelIngredientFamily>>
       combineFetchedResults({
@@ -369,12 +357,56 @@ List<IngredientsSortingPersistenceModelIngredientFamily>
         families
             .map(
               (final IngredientsSortingModelIngredientFamily ingredient) =>
-                  IngredientsSortingPersistenceModelIngredientFamily(
-                familyIds: ingredient.familyIds,
-                type: ingredient.type,
-                iconUrl: ingredient.iconUrl,
-                name: ingredient.name,
-                slug: ingredient.slug,
+                  IngredientsSortingPersistenceModelIngredientFamily.helloFresh(
+                helloFreshFamilyId: ingredient.helloFreshFamilyId,
               ),
             )
             .toList();
+
+List<IngredientsSortingPersistenceModelSorting> combineIngredientsWithSorting({
+  required final List<IngredientsSortingWebClientModelIngredientSorting>
+      sortings,
+  required final List<IngredientsSortingModelIngredientFamily> families,
+}) =>
+    sortings
+        .map(
+          (final IngredientsSortingWebClientModelIngredientSorting sorting) =>
+              IngredientsSortingPersistenceModelSorting(
+            type: sorting.type,
+            name: sorting.name,
+            // iconUrl: families.firstOption.flatMap(
+            //   (final IngredientsSortingModelIngredientFamily family) =>
+            //       getImageUrl(
+            //         iconPath: family,
+            //         imageSizerService: _webImageSizerService,
+            //       ),
+            // ),
+            iconPath: none(),
+            ingredientFamilies: families
+                .where(
+                  (final IngredientsSortingModelIngredientFamily family) =>
+                      sorting.ingredientFamilyIds
+                          .contains(family.helloFreshFamilyId),
+                )
+                .map(
+                  (final IngredientsSortingModelIngredientFamily ingredient) =>
+                      IngredientsSortingPersistenceModelIngredientFamily
+                          .helloFresh(
+                    helloFreshFamilyId: ingredient.helloFreshFamilyId,
+                  ),
+                )
+                .toSet()
+                .toList(),
+          ),
+        )
+        .toList();
+
+Option<Uri> getImageUrl({
+  required final Option<Uri> iconPath,
+  required final IngredientsSortingWebImageSizerService imageSizerService,
+}) =>
+    iconPath.flatMap(
+      (final Uri uri) => imageSizerService
+          .getUrl(filePath: uri, widthPixels: _widthPixels)
+          .toOption(),
+    );

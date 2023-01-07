@@ -17,17 +17,24 @@ class IngredientsSortingModelUnit with _$IngredientsSortingModelUnit {
     required final String id,
     required final String title,
     required final bool selected,
-    required final List<IngredientsSortingModelIngredientFamily> ingredientFamilies,
+    required final List<IngredientsSortingModelSorting> sorting,
   }) = _IngredientsSortingModelUnit;
 }
 
 @freezed
-class IngredientsSortingModelIngredientFamily with _$IngredientsSortingModelIngredientFamily {
-  const factory IngredientsSortingModelIngredientFamily({
+class IngredientsSortingModelSorting with _$IngredientsSortingModelSorting {
+  const factory IngredientsSortingModelSorting({
+    required final String id,
     required final String type,
     required final Option<Uri> iconUrl,
     required final String name,
-    required final String slug,
-    required final List<String> familyIds,
-  }) = _IngredientsSortingModelIngredientFamily;
+    required final List<IngredientsSortingModelIngredientFamily> ingredientFamilies,
+  }) = _IngredientsSortingModelSorting;
+}
+
+@freezed
+class IngredientsSortingModelIngredientFamily with _$IngredientsSortingModelIngredientFamily {
+  const factory IngredientsSortingModelIngredientFamily.helloFresh({
+    required final String helloFreshFamilyId,
+  }) = IngredientsSortingModelIngredientFamilyHelloFresh;
 }

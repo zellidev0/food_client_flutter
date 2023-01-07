@@ -80,7 +80,7 @@ class IngredientsSortingView extends ConsumerWidget {
         child: Padding(
           padding: const EdgeInsets.all(8),
           child: ReorderableListView.builder(
-            itemCount: unit.ingredientFamilies.length,
+            itemCount: unit.sorting.length,
             buildDefaultDragHandles: false,
             onReorder: (final int oldIndex, final int newIndex) {
               controller.reorderIngredientFamily(
@@ -91,9 +91,9 @@ class IngredientsSortingView extends ConsumerWidget {
             },
             itemBuilder: (final BuildContext context, final int index) =>
                 ListTile(
-              key: Key(unit.ingredientFamilies[index].slug),
-              title: Text(unit.ingredientFamilies[index].name),
-              leading: unit.ingredientFamilies[index].iconUrl.fold(
+              key: Key(unit.sorting[index].id),
+              title: Text(unit.sorting[index].name),
+              leading: unit.sorting[index].iconUrl.fold(
                 () => const SizedBox(
                   width: 64,
                   height: 64,

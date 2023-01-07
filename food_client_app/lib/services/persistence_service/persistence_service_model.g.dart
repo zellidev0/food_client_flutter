@@ -177,8 +177,7 @@ class PersistenceServiceModelSortingUnitAdapter
     return _$_PersistenceServiceModelSortingUnit(
       id: fields[0] as String,
       name: fields[1] as String,
-      families: (fields[2] as List)
-          .cast<PersistenceServiceModelSortingUnitIngredientFamily>(),
+      sorting: (fields[2] as List).cast<PersistenceServiceModelSorting>(),
     );
   }
 
@@ -191,7 +190,7 @@ class PersistenceServiceModelSortingUnitAdapter
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.families);
+      ..write(obj.sorting);
   }
 
   @override
@@ -205,42 +204,38 @@ class PersistenceServiceModelSortingUnitAdapter
           typeId == other.typeId;
 }
 
-class PersistenceServiceModelSortingUnitIngredientFamilyAdapter
-    extends TypeAdapter<_$_PersistenceServiceModelSortingUnitIngredientFamily> {
+class PersistenceServiceModelSortingAdapter
+    extends TypeAdapter<_$_PersistenceServiceModelSorting> {
   @override
   final int typeId = 4;
 
   @override
-  _$_PersistenceServiceModelSortingUnitIngredientFamily read(
-      BinaryReader reader) {
+  _$_PersistenceServiceModelSorting read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return _$_PersistenceServiceModelSortingUnitIngredientFamily(
-      familyIds: (fields[0] as List).cast<String>(),
+    return _$_PersistenceServiceModelSorting(
+      ingredientFamilies:
+          (fields[0] as List).cast<PersistenceServiceModelIngredientFamily>(),
       type: fields[1] as String,
-      iconUrlAsString: fields[2] as Option<String>,
+      iconPathAsString: fields[2] as Option<String>,
       name: fields[3] as String,
-      slug: fields[4] as String,
     );
   }
 
   @override
-  void write(BinaryWriter writer,
-      _$_PersistenceServiceModelSortingUnitIngredientFamily obj) {
+  void write(BinaryWriter writer, _$_PersistenceServiceModelSorting obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(4)
       ..writeByte(1)
       ..write(obj.type)
       ..writeByte(2)
-      ..write(obj.iconUrlAsString)
+      ..write(obj.iconPathAsString)
       ..writeByte(3)
       ..write(obj.name)
-      ..writeByte(4)
-      ..write(obj.slug)
       ..writeByte(0)
-      ..write(obj.familyIds);
+      ..write(obj.ingredientFamilies);
   }
 
   @override
@@ -249,7 +244,44 @@ class PersistenceServiceModelSortingUnitIngredientFamilyAdapter
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is PersistenceServiceModelSortingUnitIngredientFamilyAdapter &&
+      other is PersistenceServiceModelSortingAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class PersistenceServiceModelIngredientFamilyHelloFreshAdapter
+    extends TypeAdapter<_$PersistenceServiceModelIngredientFamilyHellofresh> {
+  @override
+  final int typeId = 7;
+
+  @override
+  _$PersistenceServiceModelIngredientFamilyHellofresh read(
+      BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return _$PersistenceServiceModelIngredientFamilyHellofresh(
+      helloFreshFamilyId: fields[0] as String,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer,
+      _$PersistenceServiceModelIngredientFamilyHellofresh obj) {
+    writer
+      ..writeByte(1)
+      ..writeByte(0)
+      ..write(obj.helloFreshFamilyId);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PersistenceServiceModelIngredientFamilyHelloFreshAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
@@ -426,10 +458,9 @@ _$_PersistenceServiceModelSortingUnit
         _$_PersistenceServiceModelSortingUnit(
           id: json['id'] as String,
           name: json['name'] as String,
-          families: (json['families'] as List<dynamic>)
-              .map((e) =>
-                  PersistenceServiceModelSortingUnitIngredientFamily.fromJson(
-                      e as Map<String, dynamic>))
+          sorting: (json['sorting'] as List<dynamic>)
+              .map((e) => PersistenceServiceModelSorting.fromJson(
+                  e as Map<String, dynamic>))
               .toList(),
         );
 
@@ -438,34 +469,44 @@ Map<String, dynamic> _$$_PersistenceServiceModelSortingUnitToJson(
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'families': instance.families,
+      'sorting': instance.sorting,
     };
 
-_$_PersistenceServiceModelSortingUnitIngredientFamily
-    _$$_PersistenceServiceModelSortingUnitIngredientFamilyFromJson(
+_$_PersistenceServiceModelSorting _$$_PersistenceServiceModelSortingFromJson(
+        Map<String, dynamic> json) =>
+    _$_PersistenceServiceModelSorting(
+      ingredientFamilies: (json['ingredientFamilies'] as List<dynamic>)
+          .map((e) => PersistenceServiceModelIngredientFamily.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      type: json['type'] as String,
+      iconPathAsString: Option<String>.fromJson(json['iconPathAsString']),
+      name: json['name'] as String,
+    );
+
+Map<String, dynamic> _$$_PersistenceServiceModelSortingToJson(
+        _$_PersistenceServiceModelSorting instance) =>
+    <String, dynamic>{
+      'ingredientFamilies': instance.ingredientFamilies,
+      'type': instance.type,
+      'iconPathAsString': instance.iconPathAsString.toJson(
+        (value) => value,
+      ),
+      'name': instance.name,
+    };
+
+_$PersistenceServiceModelIngredientFamilyHellofresh
+    _$$PersistenceServiceModelIngredientFamilyHellofreshFromJson(
             Map<String, dynamic> json) =>
-        _$_PersistenceServiceModelSortingUnitIngredientFamily(
-          familyIds: (json['familyIds'] as List<dynamic>)
-              .map((e) => e as String)
-              .toList(),
-          type: json['type'] as String,
-          iconUrlAsString: Option<String>.fromJson(json['iconUrlAsString']),
-          name: json['name'] as String,
-          slug: json['slug'] as String,
+        _$PersistenceServiceModelIngredientFamilyHellofresh(
+          helloFreshFamilyId: json['helloFreshFamilyId'] as String,
         );
 
-Map<String, dynamic>
-    _$$_PersistenceServiceModelSortingUnitIngredientFamilyToJson(
-            _$_PersistenceServiceModelSortingUnitIngredientFamily instance) =>
-        <String, dynamic>{
-          'familyIds': instance.familyIds,
-          'type': instance.type,
-          'iconUrlAsString': instance.iconUrlAsString.toJson(
-            (value) => value,
-          ),
-          'name': instance.name,
-          'slug': instance.slug,
-        };
+Map<String, dynamic> _$$PersistenceServiceModelIngredientFamilyHellofreshToJson(
+        _$PersistenceServiceModelIngredientFamilyHellofresh instance) =>
+    <String, dynamic>{
+      'helloFreshFamilyId': instance.helloFreshFamilyId,
+    };
 
 _$PersistenceServiceModelActiveSortingUnit
     _$$PersistenceServiceModelActiveSortingUnitFromJson(

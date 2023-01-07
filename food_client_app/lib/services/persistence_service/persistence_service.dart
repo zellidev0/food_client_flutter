@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/commons/utils.dart';
 import 'package:food_client/services/persistence_service/persistence_service_model.dart';
@@ -235,18 +238,24 @@ class PersistenceService extends PersistenceServiceAggregator {
             IngredientsSortingPersistenceModelUnit(
           id: unit.id,
           name: unit.name,
-          ingredientFamilies: unit.families
+          sortings: unit.sorting
               .map(
-                (
-                  final PersistenceServiceModelSortingUnitIngredientFamily
-                      family,
-                ) =>
-                    IngredientsSortingPersistenceModelIngredientFamily(
-                  familyIds: family.familyIds,
-                  name: family.name,
-                  iconUrl: family.iconUrlAsString.map(Uri.parse),
-                  type: family.type,
-                  slug: family.slug,
+                (final PersistenceServiceModelSorting sorting) =>
+                    IngredientsSortingPersistenceModelSorting(
+                  ingredientFamilies: sorting.ingredientFamilies
+                      .map(
+                        (
+                          final PersistenceServiceModelIngredientFamily family,
+                        ) =>
+                            IngredientsSortingPersistenceModelIngredientFamily
+                                .helloFresh(
+                          helloFreshFamilyId: family.helloFreshFamilyId,
+                        ),
+                      )
+                      .toList(),
+                  name: sorting.name,
+                  iconPath: sorting.iconPathAsString.map(Uri.parse),
+                  type: sorting.type,
                 ),
               )
               .toList(),
@@ -257,32 +266,45 @@ class PersistenceService extends PersistenceServiceAggregator {
   @override
   Task<void> saveUnit({
     required final IngredientsSortingPersistenceModelUnit unit,
-  }) =>
-      Task<void>(
-        () async => await sortingUnits.put(
-          unit.id,
-          PersistenceServiceModelSortingUnit(
-            id: unit.id,
-            name: unit.name,
-            families: unit.ingredientFamilies
-                .map(
-                  (
-                    final IngredientsSortingPersistenceModelIngredientFamily
-                        family,
-                  ) =>
-                      PersistenceServiceModelSortingUnitIngredientFamily(
-                    familyIds: family.familyIds,
-                    type: family.type,
-                    iconUrlAsString:
-                        family.iconUrl.map((final Uri uri) => uri.toString()),
-                    name: family.name,
-                    slug: family.slug,
-                  ),
-                )
-                .toList(),
-          ),
-        ),
-      );
+  }) {
+    PersistenceServiceModelSortingUnit xxxx =
+        PersistenceServiceModelSortingUnit(
+      id: unit.id,
+      name: unit.name,
+      sorting: unit.sortings
+          .map(
+            (
+              final IngredientsSortingPersistenceModelSorting sorting,
+            ) =>
+                PersistenceServiceModelSorting(
+              ingredientFamilies: sorting.ingredientFamilies
+                  .map(
+                    (
+                      final IngredientsSortingPersistenceModelIngredientFamily
+                          family,
+                    ) =>
+                        PersistenceServiceModelIngredientFamily.helloFresh(
+                      helloFreshFamilyId: family.helloFreshFamilyId,
+                    ),
+                  )
+                  .toList(),
+              type: sorting.type,
+              iconPathAsString:
+                  sorting.iconPath.map((final Uri uri) => uri.toString()),
+              name: sorting.name,
+            ),
+          )
+          .toList(),
+    );
+    String x = jsonEncode(xxxx);
+    debugPrint(x);
+    return Task<void>(
+      () async => await sortingUnits.put(
+        unit.id,
+        xxxx,
+      ),
+    );
+  }
 
   @override
   TaskEither<Exception, void> deleteUnit({required final String unitId}) =>
@@ -292,28 +314,34 @@ class PersistenceService extends PersistenceServiceAggregator {
       );
 
   @override
-  List<CartPersistenceServiceModelSortingUnit> getSortingUnits() =>
-      sortingUnits.values
-          .map(
-            (final PersistenceServiceModelSortingUnit unit) =>
-                CartPersistenceServiceModelSortingUnit(
-              id: unit.id,
-              name: unit.name,
-              ingredientFamilies: unit.families
-                  .map(
-                    (
-                      final PersistenceServiceModelSortingUnitIngredientFamily
-                          family,
-                    ) =>
-                        CartPersistenceServiceModelSortingUnitFamily(
-                      familyIds: family.familyIds,
-                      name: family.name,
-                    ),
-                  )
-                  .toList(),
-            ),
-          )
-          .toList();
+  List<CartPersistenceServiceModelSortingUnit> getSortingUnits() => sortingUnits
+      .values
+      .map(
+        (final PersistenceServiceModelSortingUnit unit) =>
+            CartPersistenceServiceModelSortingUnit(
+          id: unit.id,
+          name: unit.name,
+          ingredientFamilies: unit.sorting
+              .map(
+                (
+                  final PersistenceServiceModelSorting sorting,
+                ) =>
+                    CartPersistenceServiceModelSortingUnitFamily(
+                  familyIds: sorting.ingredientFamilies
+                      .map(
+                        (
+                          final PersistenceServiceModelIngredientFamily family,
+                        ) =>
+                            family.helloFreshFamilyId,
+                      )
+                      .toList(),
+                  name: sorting.name,
+                ),
+              )
+              .toList(),
+        ),
+      )
+      .toList();
 
   @override
   Task<void> saveSorting({
