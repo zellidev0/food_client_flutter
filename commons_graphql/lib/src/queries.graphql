@@ -124,11 +124,19 @@ query GetIngredientFamilies {
     ingredient_family {
         iconPath
         id
-        name
-        slug
-        type
     }
 }
+
+
+query GetIngredientSortings {
+    ingredients_sortings {
+        name
+        type
+        ingredientFamilyIds
+        iconPath
+    }
+}
+
 
 
 query GetCuisines {

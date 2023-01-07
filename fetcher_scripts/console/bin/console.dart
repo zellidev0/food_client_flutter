@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:collection/collection.dart';
 import 'package:commons_graphql/commons_graphql.dart';
 import 'package:console/hello_fresh_fetcher.dart';
+import 'package:console/hello_fresh_ingredients_combiner.dart';
 import 'package:console/hello_fresh_model.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:graphql/client.dart';
@@ -12,31 +13,43 @@ import 'package:graphql/client.dart';
 void main() async {
   // await fetchAllFromHasura();
 
-  final HelloFreshModelRecipeApiRecipeResponse response =
-      (await fetchAllFromHelloFresh(take: 0, skip: 0)).fold(
-    (final Exception exception) => throw exception,
-    (final HelloFreshModelRecipeApiRecipeResponse response) => response,
+  final QueryResult<Object?> result = await writeAllSortingsToHasura(
+    input: await HelloFreshIngredientsFamilyCombiner.createGraphQlInput(),
   );
+  print(result);
 
-  print('Total: ${response.total}');
-  for (int i = 0; i <= response.total + 300; i += 200) {
-    print('Fetching 200 and skipping $i');
-    final Either<Exception, HelloFreshModelRecipeApiRecipeResponse> result =
-        await fetchAllFromHelloFresh(take: 200, skip: i);
-    await result.fold(
-      (final Exception error) async => print('Error: $error'),
-      (final HelloFreshModelRecipeApiRecipeResponse response) async {
-        final QueryResult<Object?> hasuraResult =
-            await writeAllToHasura(response);
-        print('Success: $hasuraResult');
-      },
-    );
-    await Future<void>.delayed(const Duration(milliseconds: 1500));
-  }
+  // final HelloFreshModelRecipeApiRecipeResponse response =
+  //     (await fetchAllFromHelloFresh(take: 0, skip: 0)).fold(
+  //   (final Exception exception) => throw exception,
+  //   (final HelloFreshModelRecipeApiRecipeResponse response) => response,
+  // );
+  //
+  // print('Total: ${response.total}');
+  // for (int i = 0; i <= response.total + 300; i += 200) {
+  //   print('Fetching 200 and skipping $i');
+  //   final Either<Exception, HelloFreshModelRecipeApiRecipeResponse> result =
+  //       await fetchAllFromHelloFresh(take: 200, skip: i);
+  //   await result.fold(
+  //     (final Exception error) async => print('Error: $error'),
+  //     (final HelloFreshModelRecipeApiRecipeResponse response) async {
+  //       final QueryResult<Object?> hasuraResult =
+  //           await writeAllToHasura(response);
+  //       print('Success: $hasuraResult');
+  //     },
+  //   );
+  //   await Future<void>.delayed(const Duration(milliseconds: 1500));
+  // }
 
   // String input =
   //     await File('./assets/json/example_hf_recipe.json').readAsString();
 }
+
+Future<QueryResult<Object?>> writeAllSortingsToHasura({
+  required final List<Input$ingredients_sortings_insert_input> input,
+}) async =>
+    await GraphQlBackendService().createSortings(
+      sortings: input,
+    );
 
 Future<QueryResult<Object?>> writeAllToHasura(
   final HelloFreshModelRecipeApiRecipeResponse response,
@@ -236,6 +249,21 @@ class GraphQlBackendService {
 
     final MutationOptions options = MutationOptions(
       document: documentNodeMutationCreateRecipes,
+      variables: variables.toJson(),
+    );
+    return await _client.mutate(options);
+  }
+
+  Future<QueryResult<Object?>> createSortings({
+    required final List<Input$ingredients_sortings_insert_input> sortings,
+  }) async {
+    final Variables$Mutation$AddIngredientsSorting variables =
+        Variables$Mutation$AddIngredientsSorting(
+      input: sortings,
+    );
+
+    final MutationOptions options = MutationOptions(
+      document: documentNodeMutationAddIngredientsSorting,
       variables: variables.toJson(),
     );
     return await _client.mutate(options);

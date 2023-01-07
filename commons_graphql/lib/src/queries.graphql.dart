@@ -6766,27 +6766,6 @@ const documentNodeQueryGetIngredientFamilies = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'name'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'slug'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'type'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
             name: NameNode(value: '__typename'),
             alias: null,
             arguments: [],
@@ -6810,9 +6789,6 @@ class Query$GetIngredientFamilies$ingredient_family {
   Query$GetIngredientFamilies$ingredient_family({
     this.iconPath,
     required this.id,
-    required this.name,
-    required this.slug,
-    required this.type,
     required this.$__typename,
   });
 
@@ -6820,16 +6796,10 @@ class Query$GetIngredientFamilies$ingredient_family {
       Map<String, dynamic> json) {
     final l$iconPath = json['iconPath'];
     final l$id = json['id'];
-    final l$name = json['name'];
-    final l$slug = json['slug'];
-    final l$type = json['type'];
     final l$$__typename = json['__typename'];
     return Query$GetIngredientFamilies$ingredient_family(
       iconPath: (l$iconPath as String?),
       id: (l$id as String),
-      name: (l$name as String),
-      slug: (l$slug as String),
-      type: (l$type as String),
       $__typename: (l$$__typename as String),
     );
   }
@@ -6837,12 +6807,6 @@ class Query$GetIngredientFamilies$ingredient_family {
   final String? iconPath;
 
   final String id;
-
-  final String name;
-
-  final String slug;
-
-  final String type;
 
   final String $__typename;
 
@@ -6852,12 +6816,6 @@ class Query$GetIngredientFamilies$ingredient_family {
     _resultData['iconPath'] = l$iconPath;
     final l$id = id;
     _resultData['id'] = l$id;
-    final l$name = name;
-    _resultData['name'] = l$name;
-    final l$slug = slug;
-    _resultData['slug'] = l$slug;
-    final l$type = type;
-    _resultData['type'] = l$type;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -6867,16 +6825,10 @@ class Query$GetIngredientFamilies$ingredient_family {
   int get hashCode {
     final l$iconPath = iconPath;
     final l$id = id;
-    final l$name = name;
-    final l$slug = slug;
-    final l$type = type;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$iconPath,
       l$id,
-      l$name,
-      l$slug,
-      l$type,
       l$$__typename,
     ]);
   }
@@ -6898,21 +6850,6 @@ class Query$GetIngredientFamilies$ingredient_family {
     final l$id = id;
     final lOther$id = other.id;
     if (l$id != lOther$id) {
-      return false;
-    }
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) {
-      return false;
-    }
-    final l$slug = slug;
-    final lOther$slug = other.slug;
-    if (l$slug != lOther$slug) {
-      return false;
-    }
-    final l$type = type;
-    final lOther$type = other.type;
-    if (l$type != lOther$type) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -6947,9 +6884,6 @@ abstract class CopyWith$Query$GetIngredientFamilies$ingredient_family<TRes> {
   TRes call({
     String? iconPath,
     String? id,
-    String? name,
-    String? slug,
-    String? type,
     String? $__typename,
   });
 }
@@ -6970,24 +6904,12 @@ class _CopyWithImpl$Query$GetIngredientFamilies$ingredient_family<TRes>
   TRes call({
     Object? iconPath = _undefined,
     Object? id = _undefined,
-    Object? name = _undefined,
-    Object? slug = _undefined,
-    Object? type = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$GetIngredientFamilies$ingredient_family(
         iconPath:
             iconPath == _undefined ? _instance.iconPath : (iconPath as String?),
         id: id == _undefined || id == null ? _instance.id : (id as String),
-        name: name == _undefined || name == null
-            ? _instance.name
-            : (name as String),
-        slug: slug == _undefined || slug == null
-            ? _instance.slug
-            : (slug as String),
-        type: type == _undefined || type == null
-            ? _instance.type
-            : (type as String),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -7003,9 +6925,415 @@ class _CopyWithStubImpl$Query$GetIngredientFamilies$ingredient_family<TRes>
   call({
     String? iconPath,
     String? id,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$GetIngredientSortings {
+  Query$GetIngredientSortings({
+    required this.ingredients_sortings,
+    required this.$__typename,
+  });
+
+  factory Query$GetIngredientSortings.fromJson(Map<String, dynamic> json) {
+    final l$ingredients_sortings = json['ingredients_sortings'];
+    final l$$__typename = json['__typename'];
+    return Query$GetIngredientSortings(
+      ingredients_sortings: (l$ingredients_sortings as List<dynamic>)
+          .map((e) => Query$GetIngredientSortings$ingredients_sortings.fromJson(
+              (e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Query$GetIngredientSortings$ingredients_sortings>
+      ingredients_sortings;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$ingredients_sortings = ingredients_sortings;
+    _resultData['ingredients_sortings'] =
+        l$ingredients_sortings.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$ingredients_sortings = ingredients_sortings;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      Object.hashAll(l$ingredients_sortings.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$GetIngredientSortings) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$ingredients_sortings = ingredients_sortings;
+    final lOther$ingredients_sortings = other.ingredients_sortings;
+    if (l$ingredients_sortings.length != lOther$ingredients_sortings.length) {
+      return false;
+    }
+    for (int i = 0; i < l$ingredients_sortings.length; i++) {
+      final l$ingredients_sortings$entry = l$ingredients_sortings[i];
+      final lOther$ingredients_sortings$entry = lOther$ingredients_sortings[i];
+      if (l$ingredients_sortings$entry != lOther$ingredients_sortings$entry) {
+        return false;
+      }
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetIngredientSortings
+    on Query$GetIngredientSortings {
+  CopyWith$Query$GetIngredientSortings<Query$GetIngredientSortings>
+      get copyWith => CopyWith$Query$GetIngredientSortings(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetIngredientSortings<TRes> {
+  factory CopyWith$Query$GetIngredientSortings(
+    Query$GetIngredientSortings instance,
+    TRes Function(Query$GetIngredientSortings) then,
+  ) = _CopyWithImpl$Query$GetIngredientSortings;
+
+  factory CopyWith$Query$GetIngredientSortings.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetIngredientSortings;
+
+  TRes call({
+    List<Query$GetIngredientSortings$ingredients_sortings>?
+        ingredients_sortings,
+    String? $__typename,
+  });
+  TRes ingredients_sortings(
+      Iterable<Query$GetIngredientSortings$ingredients_sortings> Function(
+              Iterable<
+                  CopyWith$Query$GetIngredientSortings$ingredients_sortings<
+                      Query$GetIngredientSortings$ingredients_sortings>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$GetIngredientSortings<TRes>
+    implements CopyWith$Query$GetIngredientSortings<TRes> {
+  _CopyWithImpl$Query$GetIngredientSortings(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetIngredientSortings _instance;
+
+  final TRes Function(Query$GetIngredientSortings) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? ingredients_sortings = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$GetIngredientSortings(
+        ingredients_sortings:
+            ingredients_sortings == _undefined || ingredients_sortings == null
+                ? _instance.ingredients_sortings
+                : (ingredients_sortings
+                    as List<Query$GetIngredientSortings$ingredients_sortings>),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  TRes ingredients_sortings(
+          Iterable<Query$GetIngredientSortings$ingredients_sortings> Function(
+                  Iterable<
+                      CopyWith$Query$GetIngredientSortings$ingredients_sortings<
+                          Query$GetIngredientSortings$ingredients_sortings>>)
+              _fn) =>
+      call(
+          ingredients_sortings: _fn(_instance.ingredients_sortings.map(
+              (e) => CopyWith$Query$GetIngredientSortings$ingredients_sortings(
+                    e,
+                    (i) => i,
+                  ))).toList());
+}
+
+class _CopyWithStubImpl$Query$GetIngredientSortings<TRes>
+    implements CopyWith$Query$GetIngredientSortings<TRes> {
+  _CopyWithStubImpl$Query$GetIngredientSortings(this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$GetIngredientSortings$ingredients_sortings>?
+        ingredients_sortings,
+    String? $__typename,
+  }) =>
+      _res;
+  ingredients_sortings(_fn) => _res;
+}
+
+const documentNodeQueryGetIngredientSortings = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'GetIngredientSortings'),
+    variableDefinitions: [],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'ingredients_sortings'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'name'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'type'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'ingredientFamilyIds'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'iconPath'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+
+class Query$GetIngredientSortings$ingredients_sortings {
+  Query$GetIngredientSortings$ingredients_sortings({
+    required this.name,
+    required this.type,
+    required this.ingredientFamilyIds,
+    this.iconPath,
+    required this.$__typename,
+  });
+
+  factory Query$GetIngredientSortings$ingredients_sortings.fromJson(
+      Map<String, dynamic> json) {
+    final l$name = json['name'];
+    final l$type = json['type'];
+    final l$ingredientFamilyIds = json['ingredientFamilyIds'];
+    final l$iconPath = json['iconPath'];
+    final l$$__typename = json['__typename'];
+    return Query$GetIngredientSortings$ingredients_sortings(
+      name: (l$name as String),
+      type: (l$type as String),
+      ingredientFamilyIds: (l$ingredientFamilyIds as String),
+      iconPath: (l$iconPath as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String name;
+
+  final String type;
+
+  final String ingredientFamilyIds;
+
+  final String? iconPath;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$type = type;
+    _resultData['type'] = l$type;
+    final l$ingredientFamilyIds = ingredientFamilyIds;
+    _resultData['ingredientFamilyIds'] = l$ingredientFamilyIds;
+    final l$iconPath = iconPath;
+    _resultData['iconPath'] = l$iconPath;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$name = name;
+    final l$type = type;
+    final l$ingredientFamilyIds = ingredientFamilyIds;
+    final l$iconPath = iconPath;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$name,
+      l$type,
+      l$ingredientFamilyIds,
+      l$iconPath,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$GetIngredientSortings$ingredients_sortings) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$type = type;
+    final lOther$type = other.type;
+    if (l$type != lOther$type) {
+      return false;
+    }
+    final l$ingredientFamilyIds = ingredientFamilyIds;
+    final lOther$ingredientFamilyIds = other.ingredientFamilyIds;
+    if (l$ingredientFamilyIds != lOther$ingredientFamilyIds) {
+      return false;
+    }
+    final l$iconPath = iconPath;
+    final lOther$iconPath = other.iconPath;
+    if (l$iconPath != lOther$iconPath) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetIngredientSortings$ingredients_sortings
+    on Query$GetIngredientSortings$ingredients_sortings {
+  CopyWith$Query$GetIngredientSortings$ingredients_sortings<
+          Query$GetIngredientSortings$ingredients_sortings>
+      get copyWith => CopyWith$Query$GetIngredientSortings$ingredients_sortings(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetIngredientSortings$ingredients_sortings<TRes> {
+  factory CopyWith$Query$GetIngredientSortings$ingredients_sortings(
+    Query$GetIngredientSortings$ingredients_sortings instance,
+    TRes Function(Query$GetIngredientSortings$ingredients_sortings) then,
+  ) = _CopyWithImpl$Query$GetIngredientSortings$ingredients_sortings;
+
+  factory CopyWith$Query$GetIngredientSortings$ingredients_sortings.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetIngredientSortings$ingredients_sortings;
+
+  TRes call({
     String? name,
-    String? slug,
     String? type,
+    String? ingredientFamilyIds,
+    String? iconPath,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$GetIngredientSortings$ingredients_sortings<TRes>
+    implements CopyWith$Query$GetIngredientSortings$ingredients_sortings<TRes> {
+  _CopyWithImpl$Query$GetIngredientSortings$ingredients_sortings(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetIngredientSortings$ingredients_sortings _instance;
+
+  final TRes Function(Query$GetIngredientSortings$ingredients_sortings) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? name = _undefined,
+    Object? type = _undefined,
+    Object? ingredientFamilyIds = _undefined,
+    Object? iconPath = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$GetIngredientSortings$ingredients_sortings(
+        name: name == _undefined || name == null
+            ? _instance.name
+            : (name as String),
+        type: type == _undefined || type == null
+            ? _instance.type
+            : (type as String),
+        ingredientFamilyIds:
+            ingredientFamilyIds == _undefined || ingredientFamilyIds == null
+                ? _instance.ingredientFamilyIds
+                : (ingredientFamilyIds as String),
+        iconPath:
+            iconPath == _undefined ? _instance.iconPath : (iconPath as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$GetIngredientSortings$ingredients_sortings<TRes>
+    implements CopyWith$Query$GetIngredientSortings$ingredients_sortings<TRes> {
+  _CopyWithStubImpl$Query$GetIngredientSortings$ingredients_sortings(this._res);
+
+  TRes _res;
+
+  call({
+    String? name,
+    String? type,
+    String? ingredientFamilyIds,
+    String? iconPath,
     String? $__typename,
   }) =>
       _res;

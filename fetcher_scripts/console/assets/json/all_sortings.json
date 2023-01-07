@@ -1,0 +1,624 @@
+[
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fbfe",
+      "58877cf3ed71a76e9c03fc4f",
+      "58877cf3ed71a76e9c03fb5e"
+    ],
+    "type": "pastry",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fbfe-22c343f5.png",
+    "name": "Kuchen",
+    "slug": "Kuchen"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fba0",
+      "58877cf3ed71a76e9c03fc56",
+      "58877cf3ed71a76e9c03fb40",
+      "58877cf3ed71a76e9c03fc53"
+
+    ],
+    "type": "baking-stuff",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fba0-03891dce.png",
+    "name": "Backwaren",
+    "slug": "Backwaren"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fb5b",
+      "58877cf3ed71a76e9c03fb85",
+      "58877cf3ed71a76e9c03fbd9",
+      "58877cf3ed71a76e9c03fb3d",
+      "5901b0d4c6243b746b6221fb",
+      "58877cf3ed71a76e9c03fb68",
+      "58877cf3ed71a76e9c03fb86",
+      "58877cf3ed71a76e9c03fc57",
+      "58877cf3ed71a76e9c03fbb6"
+    ],
+    "type": "dairy-products",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fb5b-10d0b09a.png",
+    "name": "Molkereiprodukte",
+    "slug": "Molkereiprodukte"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fb35",
+      "58877cf3ed71a76e9c03fb33",
+      "58877cf3ed71a76e9c03fb3c",
+      "58877cf3ed71a76e9c03fba4",
+      "58877cf3ed71a76e9c03fbee",
+      "58877cf3ed71a76e9c03fc46",
+      "58877cf3ed71a76e9c03fbde",
+      "58877cf3ed71a76e9c03fc13",
+      "58877cf3ed71a76e9c03fb87",
+      "58877cf3ed71a76e9c03fc1a",
+      "58877cf3ed71a76e9c03fb3a",
+      "58877cf3ed71a76e9c03fbbd",
+      "58877cf3ed71a76e9c03fc34",
+      "58877cf3ed71a76e9c03fb62",
+      "58877cf3ed71a76e9c03fc22",
+      "58877cf3ed71a76e9c03fb3b",
+      "58877cf3ed71a76e9c03fb32",
+      "58877cf3ed71a76e9c03fbad",
+      "58877cf3ed71a76e9c03fb50",
+      "58877cf3ed71a76e9c03fb97",
+      "58877cf3ed71a76e9c03fb88",
+      "58877cf3ed71a76e9c03fc15",
+      "58877cf3ed71a76e9c03fba7",
+      "58877cf3ed71a76e9c03fbc6",
+      "58877cf3ed71a76e9c03fbcc",
+      "58877cf3ed71a76e9c03fc36",
+      "58877cf3ed71a76e9c03fc5a",
+      "58877cf3ed71a76e9c03fc04",
+      "58877cf3ed71a76e9c03fb95",
+      "58877cf3ed71a76e9c03fb37",
+      "58877cf3ed71a76e9c03fbfa",
+      "58877cf3ed71a76e9c03fbc1",
+      "58877cf3ed71a76e9c03fc23",
+      "58877cf3ed71a76e9c03fbe3",
+      "58877cf3ed71a76e9c03fc19",
+      "58877cf3ed71a76e9c03fbc4",
+      "58877cf3ed71a76e9c03fb64",
+      "58877cf3ed71a76e9c03fb5c",
+      "58877cf3ed71a76e9c03fc35",
+      "58877cf3ed71a76e9c03fb65",
+      "58877cf3ed71a76e9c03fc4c",
+      "58877cf3ed71a76e9c03fb56",
+      "58877cf3ed71a76e9c03fc58",
+      "58877cf3ed71a76e9c03fb6d",
+      "58877cf3ed71a76e9c03fb4c",
+      "58877cf3ed71a76e9c03fb38",
+      "58877cf3ed71a76e9c03fb58",
+      "58877cf3ed71a76e9c03fb39",
+      "58877cf3ed71a76e9c03fb81",
+      "58877cf3ed71a76e9c03fbff",
+      "58877cf3ed71a76e9c03fb69",
+      "58877cf3ed71a76e9c03fc37",
+      "58877cf3ed71a76e9c03fbac",
+      "58877cf3ed71a76e9c03fbce",
+      "58877cf3ed71a76e9c03fb9b",
+      "58877cf3ed71a76e9c03fbc8",
+      "58877cf3ed71a76e9c03fc11",
+      "58877cf3ed71a76e9c03fc3a",
+      "58877cf3ed71a76e9c03fbe2",
+      "58877cf3ed71a76e9c03fc0c",
+      "58877cf3ed71a76e9c03fc0f",
+      "58877cf3ed71a76e9c03fbef",
+      "58877cf3ed71a76e9c03fbfb",
+      "58877cf3ed71a76e9c03fc03",
+      "58877cf3ed71a76e9c03fbc0",
+      "58877cf3ed71a76e9c03fb43",
+      "58877cf3ed71a76e9c03fbc5"
+    ],
+    "type": "fruits-and-vegetables",
+    "iconPath": null,
+    "name": "Obst und Gemüse",
+    "slug": "Obst und Gemüse"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fb53",
+      "58877cf3ed71a76e9c03fb75",
+      "58877cf3ed71a76e9c03fc5b",
+      "58877cf3ed71a76e9c03fb90"
+    ],
+    "type": "sweets",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fb53-94769691.png",
+    "name": "Süßigkeiten",
+    "slug": "Suesigkeiten"
+  },
+  {
+    "ingredientFamilyIds": [
+      "5cb5d1b3c445fa142f279032"
+    ],
+    "type": "soup",
+    "iconPath": "/ingredient-families/5cb5d1b3c445fa142f279032-3f9f58b3.png",
+    "name": "Suppe",
+    "slug": "Suppe"
+  },
+  {
+    "ingredientFamilyIds": [
+      "5901b0d4c6243b746b6221f7",
+      "58877cf3ed71a76e9c03fb54",
+      "58877cf3ed71a76e9c03fc0d",
+      "58877cf3ed71a76e9c03fb93"
+    ],
+    "type": "dough",
+    "iconPath": "/ingredient-families/5901b0d4c6243b746b6221f7-784518af.png",
+    "name": "Teig",
+    "slug": "Teig"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fc12",
+      "58877cf3ed71a76e9c03fc59",
+      "58877cf3ed71a76e9c03fb92",
+      "58877cf3ed71a76e9c03fb4e",
+      "58877cf3ed71a76e9c03fbda",
+      "58877cf3ed71a76e9c03fc2e",
+      "58877cf3ed71a76e9c03fb3e",
+      "58877cf3ed71a76e9c03fc28",
+      "58877cf3ed71a76e9c03fb6b",
+      "58877cf3ed71a76e9c03fc47",
+      "58877cf3ed71a76e9c03fbb1",
+      "58877cf3ed71a76e9c03fbc3",
+      "58877cf3ed71a76e9c03fc44"
+    ],
+    "type": "meat",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fc12-bdd443ff.png",
+    "name": "Fleisch, Wurst & veg. Ersatz",
+    "slug": "fleisch"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fb6e",
+      "58877cf3ed71a76e9c03fb89",
+      "58877cf3ed71a76e9c03fb7a",
+      "58877cf3ed71a76e9c03fb79",
+      "58877cf3ed71a76e9c03fb91",
+      "58877cf3ed71a76e9c03fbf8",
+      "58877cf3ed71a76e9c03fb74",
+      "58877cf3ed71a76e9c03fc1f",
+      "58877cf3ed71a76e9c03fbf7",
+      "58877cf3ed71a76e9c03fbd7",
+      "58877cf3ed71a76e9c03fb98",
+      "58877cf3ed71a76e9c03fc05",
+      "58877cf3ed71a76e9c03fc06",
+      "58877cf3ed71a76e9c03fc32",
+      "58877cf3ed71a76e9c03fc0e",
+      "58877cf3ed71a76e9c03fb61",
+      "58877cf3ed71a76e9c03fc43",
+      "58cba71cc6243b4863443ce3",
+      "58877cf3ed71a76e9c03fc3c",
+      "58877cf3ed71a76e9c03fb4a",
+      "58877cf3ed71a76e9c03fbe1",
+      "58877cf3ed71a76e9c03fc48",
+      "58877cf3ed71a76e9c03fc07",
+      "58877cf3ed71a76e9c03fb46",
+      "58877cf3ed71a76e9c03fba5",
+      "58877cf3ed71a76e9c03fbd1",
+      "5901b0d4c6243b746b6221fa",
+      "58877cf3ed71a76e9c03fb67",
+      "58877cf3ed71a76e9c03fb5d",
+      "58877cf3ed71a76e9c03fc42",
+      "58877cf3ed71a76e9c03fc3b",
+      "58877cf3ed71a76e9c03fc25",
+      "58877cf3ed71a76e9c03fc4a",
+      "58877cf3ed71a76e9c03fb45",
+      "58877cf3ed71a76e9c03fb31",
+      "58877cf3ed71a76e9c03fbf9",
+      "58877cf3ed71a76e9c03fc2a",
+      "58877cf3ed71a76e9c03fbd8",
+      "58877cf3ed71a76e9c03fbb9",
+      "58877cf3ed71a76e9c03fbc9",
+      "58877cf3ed71a76e9c03fc20",
+      "58877cf3ed71a76e9c03fb4d",
+      "58877cf3ed71a76e9c03fbb4",
+      "58877cf3ed71a76e9c03fb8a",
+      "58877cf3ed71a76e9c03fbdb",
+      "58877cf3ed71a76e9c03fc21",
+      "58877cf3ed71a76e9c03fbf0",
+      "58877cf3ed71a76e9c03fbd3",
+      "58877cf3ed71a76e9c03fb8d",
+      "58877cf3ed71a76e9c03fbe5",
+      "58877cf3ed71a76e9c03fb8b",
+      "58877cf3ed71a76e9c03fb49",
+      "58877cf3ed71a76e9c03fc33"
+    ],
+    "type": "spices",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fb6e-57ddbd04.png",
+    "name": "Gewürze",
+    "slug": "Gewuerze"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fb57",
+      "58877cf3ed71a76e9c03fc39"
+    ],
+    "type": "broth",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fb57-6d9f9ef5.png",
+    "name": "Brühe",
+    "slug": "Brühe"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fc51",
+      "58877cf3ed71a76e9c03fba2",
+      "58877cf3ed71a76e9c03fb4f"
+    ],
+    "type": "drinks",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fc51-471f721a.png",
+    "name": "Getränke",
+    "slug": "Getränke"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fbe4",
+      "58877cf3ed71a76e9c03fbfd"
+    ],
+    "type": "noodles",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fbe4-6d4a9c00.png",
+    "name": "Nudeln",
+    "slug": "Nudeln"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fc4e",
+      "58877cf3ed71a76e9c03fc2b",
+      "58877cf3ed71a76e9c03fbe8",
+      "58877cf3ed71a76e9c03fbea",
+      "58877cf3ed71a76e9c03fbeb"
+    ],
+    "type": "vinegar",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fc4e-487a2c2e.png",
+    "name": "Essig",
+    "slug": "Essig"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fbe6"
+    ],
+    "type": "nuts",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fbe6-fd79cfee.png",
+    "name": "Nussmischung",
+    "slug": "Nussmischung"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fbba"
+    ],
+    "type": "jelly-jam",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fbba-ddb485f4.png",
+    "name": "Aufstrich",
+    "slug": "Aufstrich"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fbdf"
+    ],
+    "type": "mustard",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fbdf-bd28b3fe.png",
+    "name": "Senf",
+    "slug": "Senf"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fbb3"
+    ],
+    "type": "honey",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fbb3-efe0c124.png",
+    "name": "Honig",
+    "slug": "Honig"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fc1c"
+    ],
+    "type": "rice",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fc1c-0b4adebd.png",
+    "name": "Reis",
+    "slug": "Reis"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fb76"
+    ],
+    "type": "chutney",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fb76-4577e483.png",
+    "name": "Chutney",
+    "slug": "Chutney"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fb9c"
+    ],
+    "type": "fish",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fb9c-8b041158.png",
+    "name": "Fisch",
+    "slug": "fisch"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fc18"
+    ],
+    "type": "quinoa",
+    "iconPath": null,
+    "name": "Quinoa",
+    "slug": "Quinoa"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fb7e"
+    ],
+    "type": "coconut-milk",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fb7e-4c2b627f.png",
+    "name": "Kokosmilch",
+    "slug": "Kokosmilch"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fb6f",
+      "58877cf3ed71a76e9c03fc30",
+      "58877cf3ed71a76e9c03fb47",
+      "5901b0d4c6243b746b6221fc",
+      "58877cf3ed71a76e9c03fbb2",
+      "58877cf3ed71a76e9c03fc27",
+      "58877cf3ed71a76e9c03fc55",
+      "58877cf3ed71a76e9c03fc40",
+      "58877cf3ed71a76e9c03fbd2",
+      "58877cf3ed71a76e9c03fbbf",
+      "58877cf3ed71a76e9c03fbb8",
+      "58877cf3ed71a76e9c03fb8e"
+    ],
+    "type": "sauce",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fb6f-c927cff8.png",
+    "name": "Sauce",
+    "slug": "Sauce"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fb5a"
+    ],
+    "type": "bulgur",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fb5a-8a0169dc.png",
+    "name": "Bulgur",
+    "slug": "Bulgur"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fc4d"
+    ],
+    "type": "vegetarian-meat",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fc4d-10d0b09a.png",
+    "name": "anderer Fleischersatz",
+    "slug": "anderer-Fleischersatz"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fb8f"
+    ],
+    "type": "dressing",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fb8f-2e1bc6b6.png",
+    "name": "Dressing",
+    "slug": "Dressing"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fba8"
+    ],
+    "type": "gnocchi",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fba8-4a2e844b.png",
+    "name": "Gnochi",
+    "slug": "Gnochi"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fb66"
+    ],
+    "type": "cereal",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fb66-38cad40e.png",
+    "name": "Cerealien",
+    "slug": "Cerealien"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fc2c"
+    ],
+    "type": "sesame-seeds",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fc2c-936d8226.png",
+    "name": "Sesamsamen",
+    "slug": "Sesamsamen"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fb52"
+    ],
+    "type": "berries",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fb52-f1abe164.png",
+    "name": "Früchte-Mix",
+    "slug": "Früchte-Mix"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fb94"
+    ],
+    "type": "eggs",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fb94-b612d37c.png",
+    "name": "Ei",
+    "slug": "Ei"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fc00"
+    ],
+    "type": "peanut-butter",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fc00-0ad0cf66.png",
+    "name": "Erdnussbutter",
+    "slug": "Erdnussbutter"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fb84"
+    ],
+    "type": "couscous",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fb84-0e0812fe.png",
+    "name": "Couscous",
+    "slug": "Couscous"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fb7d"
+    ],
+    "type": "coconut",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fb7d-9605841c.png",
+    "name": "Kokosnuss",
+    "slug": "Kokosnuss"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fbcf",
+      "58877cf3ed71a76e9c03fc3e"
+    ],
+    "type": "maple-syrup",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fbcf-d9067777.png",
+    "name": "Sirup",
+    "slug": "Sirup"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fc1e"
+    ],
+    "type": "rice-waffle",
+    "iconPath": null,
+    "name": "Cracker",
+    "slug": "Cracker"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fb41"
+    ],
+    "type": "baking-soda",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fb41-30c27440.png",
+    "name": "Stärke",
+    "slug": "Stärke"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fb73"
+    ],
+    "type": "chips",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fb73-0d089bd2.png",
+    "name": "Pommes frites",
+    "slug": "Pommes-frites"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fbaa"
+    ],
+    "type": "granola",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fbaa-66ce86ce.png",
+    "name": "Nussmischung",
+    "slug": "Nussmischung"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fc10"
+    ],
+    "type": "polenta",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fc10-8fa68564.png",
+    "name": "Mais",
+    "slug": "Mais"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fc09"
+    ],
+    "type": "pesto",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fc09-7154509f.png",
+    "name": "Pesto",
+    "slug": "Pesto"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fc14"
+    ],
+    "type": "pretzels",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fc14-f679fc53.png",
+    "name": "Brezel",
+    "slug": "Brezel"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fb44"
+    ],
+    "type": "barley",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fb44-c9d02a67.png",
+    "name": "Gerste",
+    "slug": "Gerste"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fbe7"
+    ],
+    "type": "oatmeal",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fbe7-e708d06c.png",
+    "name": "Haferflocken",
+    "slug": "Haferflocken"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fc50",
+      "58877cf3ed71a76e9c03fc45",
+      "58877cf3ed71a76e9c03fbdd"
+
+    ],
+    "type": "paste",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fc50-39fdfdb4.png",
+    "name": "Paste",
+    "slug": "Paste"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fbc7",
+      "58877cf3ed71a76e9c03fbae",
+      "58877cf3ed71a76e9c03fb9e",
+      "58877cf3ed71a76e9c03fc3d",
+      "58877cf3ed71a76e9c03fb6c"
+    ],
+    "type": "in-cans",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fc3d-e2796aa6.png",
+    "name": "in Dosen",
+    "slug": "in-Dosen"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fba3"
+    ],
+    "type": "fruit-spread",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fba3-7a5d04b9.png",
+    "name": "Aufstrich",
+    "slug": "Aufstrich"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fbf4",
+      "58877cf3ed71a76e9c03fb55"
+    ],
+    "type": "panko",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fbf4-7b32397f.png",
+    "name": "Semmelbrösel",
+    "slug": "Semmelbrösel"
+  },
+  {
+    "ingredientFamilyIds": [
+      "58877cf3ed71a76e9c03fc0b",
+      "58877cf3ed71a76e9c03fbed",
+      "58877cf3ed71a76e9c03fb5f",
+      "58877cf3ed71a76e9c03fb34"
+    ],
+    "type": "eingelegtes",
+    "iconPath": "/ingredient-families/58877cf3ed71a76e9c03fc0b-cdcf75ad.png",
+    "name": "Eingelegtes",
+    "slug": "Eingelegtes"
+  }
+]

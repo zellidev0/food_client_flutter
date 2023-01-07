@@ -1,0 +1,2086 @@
+{
+  "id": "1b92e5f6-5c96-4c6f-8817-652ad2fef016",
+  "name": "unit",
+  "sorting": [
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbfe"
+      ],
+      "type": "pastry",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbfe-22c343f5.png",
+      "name": "Kuchen",
+      "slug": "Kuchen"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fba0"
+      ],
+      "type": "flour",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fba0-03891dce.png",
+      "name": "Mehl",
+      "slug": "Mehl"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb5b"
+      ],
+      "type": "butter",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb5b-10d0b09a.png",
+      "name": "Butter",
+      "slug": "Butter"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb35"
+      ],
+      "type": "apple",
+      "iconUrlAsString": null,
+      "name": "Apfel",
+      "slug": "Apfel"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb90"
+      ],
+      "type": "dried-fruit",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb90-8edcc2cc.png",
+      "name": "getrocknete Fruchtmischung",
+      "slug": "getrocknete-Fruchtmischung"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb85"
+      ],
+      "type": "cream",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb85-4c2b627f.png",
+      "name": "Sahne",
+      "slug": "Sahne"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc3b"
+      ],
+      "type": "sugar",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc3b-20b617ed.png",
+      "name": "Einzel Gewürz",
+      "slug": "Einzel-Gewürz"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc25"
+      ],
+      "type": "salt",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc25-abd39ad0.png",
+      "name": "Einzel Gewürz",
+      "slug": "Einzel-Gewürz"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbd9"
+      ],
+      "type": "milk",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbd9-a1323e62.png",
+      "name": "Milch",
+      "slug": "Milch"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbb6"
+      ],
+      "type": "ice-cream",
+      "iconUrlAsString": null,
+      "name": "Milchdessert",
+      "slug": "Milchdessert"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc5b"
+      ],
+      "type": "marzipan",
+      "iconUrlAsString": null,
+      "name": "Süßigkeiten",
+      "slug": "Süßigkeiten"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb75"
+      ],
+      "type": "chocolate",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb75-ac4105d1.png",
+      "name": "Konfekt nut",
+      "slug": "Konfekt-nut"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb53"
+      ],
+      "type": "biscuits",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb53-94769691.png",
+      "name": "Kekse",
+      "slug": "Kekse"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc4f"
+      ],
+      "type": "waffles",
+      "iconUrlAsString": null,
+      "name": "Kuchen",
+      "slug": "Kuchen"
+    },
+    {
+      "ingredientFamilies": [
+        "5cb5d1b3c445fa142f279032"
+      ],
+      "type": "soup",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/5cb5d1b3c445fa142f279032-3f9f58b3.png",
+      "name": "Suppe",
+      "slug": "Suppe"
+    },
+    {
+      "ingredientFamilies": [
+        "5901b0d4c6243b746b6221f7"
+      ],
+      "type": "dough",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/5901b0d4c6243b746b6221f7-784518af.png",
+      "name": "Teig",
+      "slug": "Teig"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc12"
+      ],
+      "type": "pork",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc12-bdd443ff.png",
+      "name": "Schweinefleisch",
+      "slug": "Schweinefleisch"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb3c"
+      ],
+      "type": "avocado",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb3c-5ad65fb5.png",
+      "name": "Avocado",
+      "slug": "Avocado"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb6e"
+      ],
+      "type": "chili-spice",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb6e-57ddbd04.png",
+      "name": "Gewürzmischung",
+      "slug": "Gewürzmischung"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb54"
+      ],
+      "type": "bread",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb54-1e82dfa9.png",
+      "name": "Brotteig",
+      "slug": "Brotteig"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fba4"
+      ],
+      "type": "garlic",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fba4-20b617ed.png",
+      "name": "Knoblauch",
+      "slug": "Knoblauch"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb91"
+      ],
+      "type": "dried-herbs",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb91-bbf9b1a5.png",
+      "name": "Kräutermischung",
+      "slug": "Kräutermischung"
+    },
+    {
+      "ingredientFamilies": [
+        "5901b0d4c6243b746b6221fb"
+      ],
+      "type": "cream-cheese",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/5901b0d4c6243b746b6221fb-af98e94f.png",
+      "name": "Weichgereiften Käses",
+      "slug": "Weichgereiften-Käses"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc05"
+      ],
+      "type": "pepper-spice",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc05-00a37cd9.png",
+      "name": "Pfeffer",
+      "slug": "Pfeffer"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbe8"
+      ],
+      "type": "oil",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbe8-34c502d3.png",
+      "name": "Öl",
+      "slug": "Öl"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbee"
+      ],
+      "type": "onion",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbee-34de32d5.png",
+      "name": "Zwiebel",
+      "slug": "Zwiebel"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb45"
+      ],
+      "type": "basil",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb45-a1061353.png",
+      "name": "Basilikum",
+      "slug": "Basilikum"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc46"
+      ],
+      "type": "tomatoes",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc46-7984cb37.png",
+      "name": "Tomate",
+      "slug": "Tomate"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb57"
+      ],
+      "type": "broth",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb57-6d9f9ef5.png",
+      "name": "Lager Konzentrat",
+      "slug": "Lager-Konzentrat"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc06"
+      ],
+      "type": "pepper-vegetable",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc06-d58f09de.png",
+      "name": "Pfeffer",
+      "slug": "Pfeffer"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc51"
+      ],
+      "type": "water",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc51-471f721a.png",
+      "name": "andere Getränke",
+      "slug": "andere-Getränke"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbe4"
+      ],
+      "type": "noodles",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbe4-6d4a9c00.png",
+      "name": "andere Nudel",
+      "slug": "andere-Nudel"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc34"
+      ],
+      "type": "spinach",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc34-2105763d.png",
+      "name": "Spinat",
+      "slug": "Spinat"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb68"
+      ],
+      "type": "cheese",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb68-b56fbaaf.png",
+      "name": "Hartkäse",
+      "slug": "Hartkäse"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc39"
+      ],
+      "type": "stock",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc39-b386bf8a.png",
+      "name": "Lager Konzentrat",
+      "slug": "Lager-Konzentrat"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc45"
+      ],
+      "type": "tomato-paste",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc45-d192dac7.png",
+      "name": "Zutat Paste",
+      "slug": "Zutat-Paste"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbde"
+      ],
+      "type": "mushrooms",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbde-4d22942c.png",
+      "name": "Ebene Pilze",
+      "slug": "Ebene-Pilze"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc13"
+      ],
+      "type": "potatoes",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc13-d5b74be4.png",
+      "name": "Kartoffel",
+      "slug": "Kartoffel"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc30"
+      ],
+      "type": "soy-sauce",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc30-32ed361d.png",
+      "name": "Soße",
+      "slug": "Soße"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc32"
+      ],
+      "type": "spice-mix",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc32-7154509f.png",
+      "name": "Gewürzmischung",
+      "slug": "Gewürzmischung"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb31"
+      ],
+      "type": "african-spices",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb31-b5830710.png",
+      "name": "Gewürzmischung",
+      "slug": "Gewürzmischung"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbf9"
+      ],
+      "type": "parsley",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbf9-f38cbfcd.png",
+      "name": "Petersilie",
+      "slug": "Petersilie"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbd2"
+      ],
+      "type": "mayonnaise",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbd2-9da5628e.png",
+      "name": "Mayonnaise",
+      "slug": "Mayonnaise"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb4e"
+      ],
+      "type": "beef",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb4e-125de8b7.png",
+      "name": "Rindfleisch",
+      "slug": "Rindfleisch"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb62"
+      ],
+      "type": "carrot",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb62-c4a1f62d.png",
+      "name": "Karotte",
+      "slug": "Karotte"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb86"
+      ],
+      "type": "creme-fraiche",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb86-533fc64c.png",
+      "name": "Sauerrahm",
+      "slug": "Sauerrahm"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc22"
+      ],
+      "type": "salad",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc22-d5b9cc88.png",
+      "name": "Salatmischung",
+      "slug": "Salatmischung"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc2a"
+      ],
+      "type": "seeds",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc2a-b47cd032.png",
+      "name": "Samenmischung",
+      "slug": "Samenmischung"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbda"
+      ],
+      "type": "minced-meat",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbda-bb3f0c9b.png",
+      "name": "Rindfleisch Kalbfleisch Schweinefleisch",
+      "slug": "Rindfleisch-Kalbfleisch-Schweinefleisch"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc57"
+      ],
+      "type": "yoghurt",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc57-825533d1.png",
+      "name": "Joghurt",
+      "slug": "Joghurt"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc53"
+      ],
+      "type": "wheat",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc53-895d60db.png",
+      "name": "Körner",
+      "slug": "Körner"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc44"
+      ],
+      "type": "tofu",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc44-7698781a.png",
+      "name": "Tofu",
+      "slug": "Tofu"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbce"
+      ],
+      "type": "mango",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbce-5d255655.png",
+      "name": "Mango",
+      "slug": "Mango"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbd8"
+      ],
+      "type": "middle-eastern-spices",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbd8-eb48c7b2.png",
+      "name": "Gewürzmischung",
+      "slug": "Gewürzmischung"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc4e"
+      ],
+      "type": "vinegar",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc4e-487a2c2e.png",
+      "name": "Essig",
+      "slug": "Essig"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbfd"
+      ],
+      "type": "pasta",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbfd-6aeaecc6.png",
+      "name": "andere Nudel",
+      "slug": "andere-Nudel"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb3b"
+      ],
+      "type": "aubergine-eggplant",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb3b-df248e73.png",
+      "name": "Aubergine",
+      "slug": "Aubergine"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc55"
+      ],
+      "type": "worcestershire-sauce",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc55-9c60bc47.png",
+      "name": "Soße",
+      "slug": "Soße"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbc5"
+      ],
+      "type": "lemon",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbc5-ae27442b.png",
+      "name": "Zitrone",
+      "slug": "Zitrone"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbe6"
+      ],
+      "type": "nuts",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbe6-fd79cfee.png",
+      "name": "Nussmischung",
+      "slug": "Nussmischung"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbad"
+      ],
+      "type": "green-beans",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbad-a709ebee.png",
+      "name": "Bohnen",
+      "slug": "Bohnen"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc0d"
+      ],
+      "type": "pizza-dough",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc0d-784518af.png",
+      "name": "Pizzateig",
+      "slug": "Pizzateig"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb50"
+      ],
+      "type": "beetroot",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb50-bd433463.png",
+      "name": "Rübe",
+      "slug": "Rübe"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbba"
+      ],
+      "type": "jelly-jam",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbba-ddb485f4.png",
+      "name": "Aufstrich",
+      "slug": "Aufstrich"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb97"
+      ],
+      "type": "fennel",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb97-746c7bc3.png",
+      "name": "Fenchel",
+      "slug": "Fenchel"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbdf"
+      ],
+      "type": "mustard",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbdf-bd28b3fe.png",
+      "name": "Senf",
+      "slug": "Senf"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbb3"
+      ],
+      "type": "honey",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbb3-efe0c124.png",
+      "name": "Honig",
+      "slug": "Honig"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb6b"
+      ],
+      "type": "chicken",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb6b-8f15f243.png",
+      "name": "Hähnchen",
+      "slug": "Hähnchen"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc1c"
+      ],
+      "type": "rice",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc1c-0b4adebd.png",
+      "name": "Reis",
+      "slug": "Reis"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb8a"
+      ],
+      "type": "curry",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb8a-43199cbe.png",
+      "name": "Gewürzmischung",
+      "slug": "Gewürzmischung"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb76"
+      ],
+      "type": "chutney",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb76-4577e483.png",
+      "name": "Chutney",
+      "slug": "Chutney"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbdb"
+      ],
+      "type": "mint",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbdb-560eacae.png",
+      "name": "Minze",
+      "slug": "Minze"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc21"
+      ],
+      "type": "sage",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc21-1ebb9dee.png",
+      "name": "Salbei",
+      "slug": "Salbei"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb9b"
+      ],
+      "type": "figs",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb9b-7a5d04b9.png",
+      "name": "Feige",
+      "slug": "Feige"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb9c"
+      ],
+      "type": "fish",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb9c-8b041158.png",
+      "name": "Fisch",
+      "slug": "fisch"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb88"
+      ],
+      "type": "cucumber",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb88-49b790ca.png",
+      "name": "Gurke",
+      "slug": "Gurke"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbc8"
+      ],
+      "type": "lime",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbc8-7cbce945.png",
+      "name": "Limette",
+      "slug": "Limette"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbbf"
+      ],
+      "type": "ketchup",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbbf-54fee48e.png",
+      "name": "Ketchup",
+      "slug": "Ketchup"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb81"
+      ],
+      "type": "corn",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb81-e2796aa6.png",
+      "name": "Mais",
+      "slug": "Mais"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc18"
+      ],
+      "type": "quinoa",
+      "iconUrlAsString": null,
+      "name": "Körner",
+      "slug": "Körner"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb56"
+      ],
+      "type": "broccoli",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb56-a0e5977e.png",
+      "name": "Brokkoli",
+      "slug": "Brokkoli"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb55"
+      ],
+      "type": "breadcrumbs",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb55-7b32397f.png",
+      "name": "Semmelbrösel",
+      "slug": "Semmelbrösel"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc58"
+      ],
+      "type": "zucchini",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc58-4066951c.png",
+      "name": "Zucchini",
+      "slug": "Zucchini"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb6d"
+      ],
+      "type": "chili",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb6d-270fd94b.png",
+      "name": "Chili",
+      "slug": "Chili"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb7e"
+      ],
+      "type": "coconut-milk",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb7e-4c2b627f.png",
+      "name": "Kokosmilch",
+      "slug": "Kokosmilch"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb79"
+      ],
+      "type": "cilantro-coriander",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb79-7a34459a.png",
+      "name": "Koriander",
+      "slug": "Koriander"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb4c"
+      ],
+      "type": "beans",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb4c-15ab1383.png",
+      "name": "Bohnen",
+      "slug": "Bohnen"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbf7"
+      ],
+      "type": "paprika",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbf7-e6b2d1a6.png",
+      "name": "Einzel Gewürz",
+      "slug": "Einzel-Gewürz"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc35"
+      ],
+      "type": "spring-onion",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc35-03c06826.png",
+      "name": "Frühlingszwiebel",
+      "slug": "Frühlingszwiebel"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbd7"
+      ],
+      "type": "mexican-spices",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbd7-cc0aafa2.png",
+      "name": "Gewürzmischung",
+      "slug": "Gewürzmischung"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb6f"
+      ],
+      "type": "chili-sauce",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb6f-c927cff8.png",
+      "name": "Chilisoße",
+      "slug": "chilisosze"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc2b"
+      ],
+      "type": "sesame-oil",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc2b-7b7c199a.png",
+      "name": "Öl",
+      "slug": "Öl"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb6c"
+      ],
+      "type": "chickpeas",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb6c-7142aee3.png",
+      "name": "in Dosen Kichererbsen",
+      "slug": "in-Dosen-Kichererbsen"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbf8"
+      ],
+      "type": "paprika-powder",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbf8-57ddbd04.png",
+      "name": "Einzel Gewürz",
+      "slug": "Einzel-Gewürz"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc40"
+      ],
+      "type": "tahini-sauce",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc40-bf2d96d6.png",
+      "name": "Soße",
+      "slug": "Soße"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc15"
+      ],
+      "type": "pumpkin",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc15-a697c3c3.png",
+      "name": "Kürbis",
+      "slug": "Kürbis"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb5a"
+      ],
+      "type": "bulgur",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb5a-8a0169dc.png",
+      "name": "Körner",
+      "slug": "Körner"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc11"
+      ],
+      "type": "pomegranate",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc11-574ccbe7.png",
+      "name": "Granatapfel",
+      "slug": "Granatapfel"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb74"
+      ],
+      "type": "chives",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb74-921bfcce.png",
+      "name": "Schnittlauch",
+      "slug": "Schnittlauch"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb38"
+      ],
+      "type": "asian-greens",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb38-12c78968.png",
+      "name": "Gemüsemischung",
+      "slug": "Gemüsemischung"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb3e"
+      ],
+      "type": "bacon",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb3e-6b66fe63.png",
+      "name": "Schweinefleisch",
+      "slug": "Schweinefleisch"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc4d"
+      ],
+      "type": "vegetarian-meat",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc4d-10d0b09a.png",
+      "name": "anderer Fleischersatz",
+      "slug": "anderer-Fleischersatz"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb47"
+      ],
+      "type": "bbq-sauce",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb47-c927cff8.png",
+      "name": "Soße",
+      "slug": "Soße"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc56"
+      ],
+      "type": "yeast",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc56-0abc87ed.png",
+      "name": "Stärke",
+      "slug": "Stärke"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb58"
+      ],
+      "type": "brussels-sprouts",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb58-115a743e.png",
+      "name": "Rosenkohl",
+      "slug": "Rosenkohl"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc1f"
+      ],
+      "type": "rosemary",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc1f-4ba602ae.png",
+      "name": "Rosmarin",
+      "slug": "Rosmarin"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb8f"
+      ],
+      "type": "dressing",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb8f-2e1bc6b6.png",
+      "name": "Dressing",
+      "slug": "Dressing"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb39"
+      ],
+      "type": "asian-spices",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb39-270fd94b.png",
+      "name": "Gewürzmischung",
+      "slug": "Gewürzmischung"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fba8"
+      ],
+      "type": "gnocchi",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fba8-4a2e844b.png",
+      "name": "Pasta",
+      "slug": "Pasta"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fba7"
+      ],
+      "type": "ginger",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fba7-565cc248.png",
+      "name": "Ingwer",
+      "slug": "Ingwer"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbc6"
+      ],
+      "type": "lemon-grass",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbc6-7903fabf.png",
+      "name": "Zitronengras",
+      "slug": "Zitronengras"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb8e"
+      ],
+      "type": "dip",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb8e-1d0051b8.png",
+      "name": "Dip",
+      "slug": "Dip"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbf0"
+      ],
+      "type": "oregano",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbf0-6e86fa56.png",
+      "name": "Oregano",
+      "slug": "Oregano"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb66"
+      ],
+      "type": "cereal",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb66-38cad40e.png",
+      "name": "Körner",
+      "slug": "Körner"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb98"
+      ],
+      "type": "fennel-seeds",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb98-895d60db.png",
+      "name": "Fenchelsamen",
+      "slug": "Fenchelsamen"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbed"
+      ],
+      "type": "olives",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbed-a88fb4d9.png",
+      "name": "eingelegt",
+      "slug": "eingelegt"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb5c"
+      ],
+      "type": "cabbage",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb5c-cdcdf3fe.png",
+      "name": "Kohl",
+      "slug": "Kohl"
+    },
+    {
+      "ingredientFamilies": [
+        "5901b0d4c6243b746b6221fc"
+      ],
+      "type": "teriyaki-sauce",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/5901b0d4c6243b746b6221fc-32ed361d.png",
+      "name": "Soße",
+      "slug": "Soße"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc2c"
+      ],
+      "type": "sesame-seeds",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc2c-936d8226.png",
+      "name": "Sesamsamen",
+      "slug": "Sesamsamen"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc28"
+      ],
+      "type": "sausage",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc28-0372e034.png",
+      "name": "Rindfleisch Kalbfleisch Schweinefleisch",
+      "slug": "Rindfleisch-Kalbfleisch-Schweinefleisch"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbc7"
+      ],
+      "type": "lentils",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbc7-e62e92da.png",
+      "name": "Dosen-Linsen",
+      "slug": "Dosen-Linsen"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb8d"
+      ],
+      "type": "dill",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb8d-ba6242c3.png",
+      "name": "Dill",
+      "slug": "Dill"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbc0"
+      ],
+      "type": "kiwi",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbc0-a392852f.png",
+      "name": "Kiwi",
+      "slug": "Kiwi"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc03"
+      ],
+      "type": "pear",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc03-b735e9d7.png",
+      "name": "Birne",
+      "slug": "Birne"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb7a"
+      ],
+      "type": "cinnamon",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb7a-a39ba132.png",
+      "name": "Einzel Gewürz",
+      "slug": "Einzel-Gewürz"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb52"
+      ],
+      "type": "berries",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb52-f1abe164.png",
+      "name": "Früchte-Mix",
+      "slug": "Früchte-Mix"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb64"
+      ],
+      "type": "cauliflower",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb64-8ac4b2cb.png",
+      "name": "Blumenkohl",
+      "slug": "Blumenkohl"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb89"
+      ],
+      "type": "cumin",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb89-bc3144f6.png",
+      "name": "Kümmelsamen",
+      "slug": "Kümmelsamen"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc2d"
+      ],
+      "type": "skewers",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc2d-f0aa9e09.png",
+      "name": "Andere",
+      "slug": "Andere"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc4c"
+      ],
+      "type": "vegetable-mix",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc4c-4693feec.png",
+      "name": "Gemüsemischung",
+      "slug": "Gemüsemischung"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbb2"
+      ],
+      "type": "hoisin-sauce",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbb2-c927cff8.png",
+      "name": "asiatische Paste",
+      "slug": "asiatische-Paste"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb94"
+      ],
+      "type": "eggs",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb94-b612d37c.png",
+      "name": "Ei",
+      "slug": "Ei"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc27"
+      ],
+      "type": "sauce",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc27-b8a1285e.png",
+      "name": "Soße",
+      "slug": "Soße"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbc4"
+      ],
+      "type": "leek",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbc4-1460799d.png",
+      "name": "Lauch",
+      "slug": "Lauch"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb65"
+      ],
+      "type": "celery",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb65-d7edf01c.png",
+      "name": "Sellerie",
+      "slug": "Sellerie"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc43"
+      ],
+      "type": "thyme",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc43-d0cc4199.png",
+      "name": "Thymian",
+      "slug": "Thymian"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc00"
+      ],
+      "type": "peanut-butter",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc00-0ad0cf66.png",
+      "name": "Erdnuss",
+      "slug": "Erdnuss"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc19"
+      ],
+      "type": "radish",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc19-7a28dd12.png",
+      "name": "Rettich",
+      "slug": "Rettich"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbb4"
+      ],
+      "type": "horseradish",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbb4-4c2b627f.png",
+      "name": "Einzel Gewürz",
+      "slug": "Einzel-Gewürz"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb84"
+      ],
+      "type": "couscous",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb84-0e0812fe.png",
+      "name": "Körner",
+      "slug": "Körner"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbdd"
+      ],
+      "type": "miso-paste",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbdd-b8a1285e.png",
+      "name": "asiatische Paste",
+      "slug": "asiatische-Paste"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbb9"
+      ],
+      "type": "indian-spices",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbb9-f423af47.png",
+      "name": "Gewürzmischung",
+      "slug": "Gewürzmischung"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb7d"
+      ],
+      "type": "coconut",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb7d-9605841c.png",
+      "name": "Kokosnuss",
+      "slug": "Kokosnuss"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbcf"
+      ],
+      "type": "maple-syrup",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbcf-d9067777.png",
+      "name": "Sirup",
+      "slug": "Sirup"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbe3"
+      ],
+      "type": "nettle",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbe3-326dbf64.png",
+      "name": "Gemüsemischung",
+      "slug": "Gemüsemischung"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc1e"
+      ],
+      "type": "rice-waffle",
+      "iconUrlAsString": null,
+      "name": "Cracker",
+      "slug": "Cracker"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbc3"
+      ],
+      "type": "lamb",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbc3-6e4ed7c7.png",
+      "name": "Lamm",
+      "slug": "Lamm"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb5f"
+      ],
+      "type": "capers",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb5f-55628563.png",
+      "name": "eingelegt",
+      "slug": "eingelegt"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb43"
+      ],
+      "type": "banana",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb43-5617b15f.png",
+      "name": "Banane",
+      "slug": "Banane"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb41"
+      ],
+      "type": "baking-soda",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb41-30c27440.png",
+      "name": "Stärke",
+      "slug": "Stärke"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbae"
+      ],
+      "type": "green-peas",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbae-9058d045.png",
+      "name": "Erbsen aus der Dose",
+      "slug": "Erbsen-aus-der-Dose"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc23"
+      ],
+      "type": "salad-mix",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc23-837a88dd.png",
+      "name": "Salatmischung",
+      "slug": "Salatmischung"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb73"
+      ],
+      "type": "chips",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb73-0d089bd2.png",
+      "name": "Pommes frites",
+      "slug": "Pommes-frites"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbfb"
+      ],
+      "type": "passion-fruit",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbfb-767cc0b7.png",
+      "name": "Passionsfrucht",
+      "slug": "Passionsfrucht"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbc1"
+      ],
+      "type": "kohlrabi",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbc1-1b5d22dd.png",
+      "name": "Kohlrabi",
+      "slug": "Kohlrabi"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb93"
+      ],
+      "type": "dumplings",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb93-5a0816bc.png",
+      "name": "Kloßteig",
+      "slug": "Kloßteig"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc33"
+      ],
+      "type": "spicy-pepper-vegetable",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc33-f05fb04f.png",
+      "name": "Pfeffer",
+      "slug": "Pfeffer"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbef"
+      ],
+      "type": "orange",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbef-561baa16.png",
+      "name": "Orange",
+      "slug": "Orange"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbdc"
+      ],
+      "type": "misc",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbdc-f0aa9e09.png",
+      "name": "Andere",
+      "slug": "Andere"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbaa"
+      ],
+      "type": "granola",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbaa-66ce86ce.png",
+      "name": "Nussmischung",
+      "slug": "Nussmischung"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc10"
+      ],
+      "type": "polenta",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc10-8fa68564.png",
+      "name": "Mais",
+      "slug": "Mais"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbfa"
+      ],
+      "type": "parsnip",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbfa-aadd34fb.png",
+      "name": "Pastinake",
+      "slug": "Pastinake"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc0f"
+      ],
+      "type": "plum",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc0f-14c2f58a.png",
+      "name": "Pflaume",
+      "slug": "Pflaume"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb40"
+      ],
+      "type": "baking-powder",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb40-9605841c.png",
+      "name": "Backpulver",
+      "slug": "Backpulver"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbea",
+        "58877cf3ed71a76e9c03fbeb"
+      ],
+      "type": "olive-oil",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbea-2e1bc6b6.png",
+      "name": "Olivenöl",
+      "slug": "olivenol"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc0c"
+      ],
+      "type": "pineapple",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc0c-eed47b5e.png",
+      "name": "Ananas",
+      "slug": "Ananas"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb9e"
+      ],
+      "type": "fish-canned",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb9e-3fdb4c98.png",
+      "name": "Dosenfisch",
+      "slug": "Dosenfisch"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb32"
+      ],
+      "type": "algae",
+      "iconUrlAsString": null,
+      "name": "Gemüsemischung",
+      "slug": "Gemüsemischung"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb34"
+      ],
+      "type": "antipasti",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb34-59943251.png",
+      "name": "mischen",
+      "slug": "mischen"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc09"
+      ],
+      "type": "pesto",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc09-7154509f.png",
+      "name": "Pesto",
+      "slug": "Pesto"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbb1"
+      ],
+      "type": "guineafowl",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbb1-5644cad1.png",
+      "name": "anderes Geflügel",
+      "slug": "anderes-Geflügel"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbe5"
+      ],
+      "type": "nutmeg",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbe5-5da7071b.png",
+      "name": "Einzel Gewürz",
+      "slug": "Einzel-Gewürz"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb8b"
+      ],
+      "type": "dandellion",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb8b-332480e0.png",
+      "name": "Blume",
+      "slug": "Blume"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc14"
+      ],
+      "type": "pretzels",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc14-f679fc53.png",
+      "name": "Brezel",
+      "slug": "Brezel"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbd3"
+      ],
+      "type": "mediteranean-spices",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbd3-bbdd98af.png",
+      "name": "Gewürzmischung",
+      "slug": "Gewürzmischung"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc47"
+      ],
+      "type": "turkey",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc47-151890c5.png",
+      "name": "Truthahn",
+      "slug": "Truthahn"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb44"
+      ],
+      "type": "barley",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb44-c9d02a67.png",
+      "name": "Körner",
+      "slug": "Körner"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb37"
+      ],
+      "type": "artichoke",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb37-57e0b10c.png",
+      "name": "Artischocke",
+      "slug": "Artischocke"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbe2"
+      ],
+      "type": "nectarine",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbe2-bbbbc685.png",
+      "name": "Nektarine",
+      "slug": "Nektarine"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb4f"
+      ],
+      "type": "beer",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb4f-4fe0b4e5.png",
+      "name": "Bier",
+      "slug": "Bier"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb49"
+      ],
+      "type": "bbq-spice",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb49-55e7b59e.png",
+      "name": "Gewürzmischung",
+      "slug": "Gewürzmischung"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb4a"
+      ],
+      "type": "bbq-spices",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb4a-dee852e6.png",
+      "name": "Gewürzmischung",
+      "slug": "Gewürzmischung"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb3a"
+      ],
+      "type": "asparagus",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb3a-8b27a211.png",
+      "name": "Spargel",
+      "slug": "Spargel"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc59"
+      ],
+      "type": "ham",
+      "iconUrlAsString": null,
+      "name": "Schweinefleisch",
+      "slug": "Schweinefleisch"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc3c"
+      ],
+      "type": "sumac",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc3c-2ac0a518.png",
+      "name": "Einzel Gewürz",
+      "slug": "Einzel-Gewürz"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb5e"
+      ],
+      "type": "cake-mix",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb5e-f5f539ed.png",
+      "name": "Kuchen Mischung",
+      "slug": "Kuchen-Mischung"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbe7"
+      ],
+      "type": "oatmeal",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbe7-e708d06c.png",
+      "name": "Körner",
+      "slug": "Körner"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb33"
+      ],
+      "type": "ananas",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb33-3ff3c7f4.png",
+      "name": "Ananas",
+      "slug": "Ananas"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb92"
+      ],
+      "type": "duck",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb92-c986832d.png",
+      "name": "Ente",
+      "slug": "Ente"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc1a"
+      ],
+      "type": "rhubarb",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc1a-456a9efd.png",
+      "name": "Rhabarber",
+      "slug": "Rhabarber"
+    },
+    {
+      "ingredientFamilies": [
+        "5f455992b72fe33730049e21"
+      ],
+      "type": "test-type",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/5f455992b72fe33730049e21-6265dbfa.png",
+      "name": "test-name",
+      "slug": "test-slug"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbe1"
+      ],
+      "type": "mustards-seeds",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbe1-50aabfbd.png",
+      "name": "Senfsamen",
+      "slug": "Senfsamen"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb95"
+      ],
+      "type": "endive",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb95-cf479274.png",
+      "name": "Chicoree",
+      "slug": "Chicoree"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc48"
+      ],
+      "type": "turmeric",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc48-46bdb73d.png",
+      "name": "Kurkuma",
+      "slug": "Kurkuma"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc07"
+      ],
+      "type": "pepper-and-salt",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc07-5eaccae0.png",
+      "name": "Gewürzmischung",
+      "slug": "Gewürzmischung"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbff"
+      ],
+      "type": "peach",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbff-06bbd0b5.png",
+      "name": "Pfirsich",
+      "slug": "Pfirsich"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc04"
+      ],
+      "type": "peas",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc04-05c80c53.png",
+      "name": "Erbsen",
+      "slug": "Erbsen"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc5a"
+      ],
+      "type": "fried-onion",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc5a-21235826.png",
+      "name": "Zwiebel",
+      "slug": "Zwiebel"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb46"
+      ],
+      "type": "bay-leaf",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb46-c982e2e4.png",
+      "name": "Lorbeerblatt",
+      "slug": "Lorbeerblatt"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fba5"
+      ],
+      "type": "garlic-powder",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fba5-f8a4a57a.png",
+      "name": "Einzel Gewürz",
+      "slug": "Einzel-Gewürz"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc3e"
+      ],
+      "type": "syrup",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc3e-34c502d3.png",
+      "name": "Sirup",
+      "slug": "Sirup"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb67"
+      ],
+      "type": "chard",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb67-837a88dd.png",
+      "name": "Mangold",
+      "slug": "Mangold"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb5d"
+      ],
+      "type": "cajun-spices",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb5d-d6bfeefd.png",
+      "name": "Gewürzmischung",
+      "slug": "Gewürzmischung"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbd1"
+      ],
+      "type": "marjoram",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbd1-a5480339.png",
+      "name": "Majoran",
+      "slug": "Majoran"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc42"
+      ],
+      "type": "tarragon",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc42-45d09a2f.png",
+      "name": "Estragon",
+      "slug": "Estragon"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbbd"
+      ],
+      "type": "kale",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbbd-44e5a9fc.png",
+      "name": "Grünkohl",
+      "slug": "Grünkohl"
+    },
+    {
+      "ingredientFamilies": [
+        "5901b0d4c6243b746b6221fa"
+      ],
+      "type": "brazilian-spices",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/5901b0d4c6243b746b6221fa-c8388c9d.png",
+      "name": "Gewürzmischung",
+      "slug": "Gewürzmischung"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc2e"
+      ],
+      "type": "smoked-meat",
+      "iconUrlAsString": null,
+      "name": "Rindfleisch Kalbfleisch Schweinefleisch",
+      "slug": "Rindfleisch-Kalbfleisch-Schweinefleisch"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc50"
+      ],
+      "type": "wasabi",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc50-39fdfdb4.png",
+      "name": "Wasabi",
+      "slug": "Wasabi"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fba2"
+      ],
+      "type": "fruit-juice",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fba2-720fc480.png",
+      "name": "Saft",
+      "slug": "Saft"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb69"
+      ],
+      "type": "cherries",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb69-64ae64f7.png",
+      "name": "Kirsche",
+      "slug": "Kirsche"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc3d"
+      ],
+      "type": "sweetcorn",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc3d-e2796aa6.png",
+      "name": "in Dosen Mais",
+      "slug": "in-Dosen-Mais"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc37"
+      ],
+      "type": "squash",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc37-b09231d2.png",
+      "name": "quetschen",
+      "slug": "quetschen"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fba3"
+      ],
+      "type": "fruit-spread",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fba3-7a5d04b9.png",
+      "name": "Aufstrich",
+      "slug": "Aufstrich"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbd5"
+      ],
+      "type": "meringues",
+      "iconUrlAsString": null,
+      "name": "Ei",
+      "slug": "Ei"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc3a"
+      ],
+      "type": "strawberries",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc3a-983e9611.png",
+      "name": "Erdbeere",
+      "slug": "Erdbeere"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb4d"
+      ],
+      "type": "beansprouts",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb4d-97617471.png",
+      "name": "Bohnensprosse",
+      "slug": "Bohnensprosse"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc20"
+      ],
+      "type": "saffron",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc20-8e630607.png",
+      "name": "Einzel Gewürz",
+      "slug": "Einzel-Gewürz"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbc9"
+      ],
+      "type": "lime-leaves",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbc9-5f276073.png",
+      "name": "getrocknet lime",
+      "slug": "getrocknet-lime"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc4a"
+      ],
+      "type": "vanilla",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc4a-45e5f8c3.png",
+      "name": "Einzel Gewürz",
+      "slug": "Einzel-Gewürz"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbac"
+      ],
+      "type": "grapes",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbac-a2ce56ff.png",
+      "name": "Traube",
+      "slug": "Traube"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbb8"
+      ],
+      "type": "indian-sauce",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbb8-6228c258.png",
+      "name": "Soße",
+      "slug": "Soße"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc36"
+      ],
+      "type": "sprout",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc36-27e839d9.png",
+      "name": "Bohnensprosse",
+      "slug": "Bohnensprosse"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbf4"
+      ],
+      "type": "panko",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbf4-7b32397f.png",
+      "name": "Semmelbrösel",
+      "slug": "Semmelbrösel"
+    },
+    {
+      "ingredientFamilies": [
+        "58cba71cc6243b4863443ce3"
+      ],
+      "type": "millet",
+      "iconUrlAsString": null,
+      "name": "Körner",
+      "slug": "Körner"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fbcc"
+      ],
+      "type": "lovage",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fbcc-2edd58dc.png",
+      "name": "lovage",
+      "slug": "lovage"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb61"
+      ],
+      "type": "cardamom",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb61-df928a2e.png",
+      "name": "Einzel Gewürz",
+      "slug": "Einzel-Gewürz"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc0e"
+      ],
+      "type": "plantain",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc0e-4f7fae7c.png",
+      "name": "Kräutermischung",
+      "slug": "Kräutermischung"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb3d"
+      ],
+      "type": "ayran",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb3d-a1323e62.png",
+      "name": "Joghurt",
+      "slug": "Joghurt"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fb87"
+      ],
+      "type": "cress",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fb87-a23d1aa7.png",
+      "name": "Kresse",
+      "slug": "Kresse"
+    },
+    {
+      "ingredientFamilies": [
+        "58877cf3ed71a76e9c03fc0b"
+      ],
+      "type": "pickles",
+      "iconUrlAsString": "https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_128,q_auto,w_256/hellofresh_s3/ingredient-families/58877cf3ed71a76e9c03fc0b-cdcf75ad.png",
+      "name": "eingelegt",
+      "slug": "eingelegt"
+    }
+  ]
+}

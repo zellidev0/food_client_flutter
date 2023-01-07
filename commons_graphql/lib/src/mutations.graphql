@@ -100,3 +100,9 @@ mutation delete_all {
         affected_rows
     }
 }
+
+mutation AddIngredientsSorting($input: [ingredients_sortings_insert_input!]!) {
+    insert_ingredients_sortings(objects: $input) {
+        affected_rows
+    }
+}

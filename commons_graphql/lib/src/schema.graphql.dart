@@ -2170,15 +2170,15 @@ class _CopyWithStubImpl$Input$bridge_recipes_cuisines_bool_exp<TRes>
 
 class Input$bridge_recipes_cuisines_insert_input {
   factory Input$bridge_recipes_cuisines_insert_input({
-    required String $_cuisine_id,
-    required String $_recipe_id,
+    String? $_cuisine_id,
+    String? $_recipe_id,
     Input$cuisines_obj_rel_insert_input? cuisines,
     String? id,
     Input$recipes_obj_rel_insert_input? recipes,
   }) =>
       Input$bridge_recipes_cuisines_insert_input._({
-        r'_cuisine_id': $_cuisine_id,
-        r'_recipe_id': $_recipe_id,
+        if ($_cuisine_id != null) r'_cuisine_id': $_cuisine_id,
+        if ($_recipe_id != null) r'_recipe_id': $_recipe_id,
         if (cuisines != null) r'cuisines': cuisines,
         if (id != null) r'id': id,
         if (recipes != null) r'recipes': recipes,
@@ -2189,10 +2189,14 @@ class Input$bridge_recipes_cuisines_insert_input {
   factory Input$bridge_recipes_cuisines_insert_input.fromJson(
       Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    final l$$_cuisine_id = data['_cuisine_id'];
-    result$data['_cuisine_id'] = (l$$_cuisine_id as String);
-    final l$$_recipe_id = data['_recipe_id'];
-    result$data['_recipe_id'] = (l$$_recipe_id as String);
+    if (data.containsKey('_cuisine_id')) {
+      final l$$_cuisine_id = data['_cuisine_id'];
+      result$data['_cuisine_id'] = (l$$_cuisine_id as String?);
+    }
+    if (data.containsKey('_recipe_id')) {
+      final l$$_recipe_id = data['_recipe_id'];
+      result$data['_recipe_id'] = (l$$_recipe_id as String?);
+    }
     if (data.containsKey('cuisines')) {
       final l$cuisines = data['cuisines'];
       result$data['cuisines'] = l$cuisines == null
@@ -2216,8 +2220,8 @@ class Input$bridge_recipes_cuisines_insert_input {
 
   Map<String, dynamic> _$data;
 
-  String get $_cuisine_id => (_$data['_cuisine_id'] as String);
-  String get $_recipe_id => (_$data['_recipe_id'] as String);
+  String? get $_cuisine_id => (_$data['_cuisine_id'] as String?);
+  String? get $_recipe_id => (_$data['_recipe_id'] as String?);
   Input$cuisines_obj_rel_insert_input? get cuisines =>
       (_$data['cuisines'] as Input$cuisines_obj_rel_insert_input?);
   String? get id => (_$data['id'] as String?);
@@ -2225,10 +2229,14 @@ class Input$bridge_recipes_cuisines_insert_input {
       (_$data['recipes'] as Input$recipes_obj_rel_insert_input?);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    final l$$_cuisine_id = $_cuisine_id;
-    result$data['_cuisine_id'] = l$$_cuisine_id;
-    final l$$_recipe_id = $_recipe_id;
-    result$data['_recipe_id'] = l$$_recipe_id;
+    if (_$data.containsKey('_cuisine_id')) {
+      final l$$_cuisine_id = $_cuisine_id;
+      result$data['_cuisine_id'] = l$$_cuisine_id;
+    }
+    if (_$data.containsKey('_recipe_id')) {
+      final l$$_recipe_id = $_recipe_id;
+      result$data['_recipe_id'] = l$$_recipe_id;
+    }
     if (_$data.containsKey('cuisines')) {
       final l$cuisines = cuisines;
       result$data['cuisines'] = l$cuisines?.toJson();
@@ -2261,11 +2269,19 @@ class Input$bridge_recipes_cuisines_insert_input {
     }
     final l$$_cuisine_id = $_cuisine_id;
     final lOther$$_cuisine_id = other.$_cuisine_id;
+    if (_$data.containsKey('_cuisine_id') !=
+        other._$data.containsKey('_cuisine_id')) {
+      return false;
+    }
     if (l$$_cuisine_id != lOther$$_cuisine_id) {
       return false;
     }
     final l$$_recipe_id = $_recipe_id;
     final lOther$$_recipe_id = other.$_recipe_id;
+    if (_$data.containsKey('_recipe_id') !=
+        other._$data.containsKey('_recipe_id')) {
+      return false;
+    }
     if (l$$_recipe_id != lOther$$_recipe_id) {
       return false;
     }
@@ -2305,8 +2321,8 @@ class Input$bridge_recipes_cuisines_insert_input {
     final l$id = id;
     final l$recipes = recipes;
     return Object.hashAll([
-      l$$_cuisine_id,
-      l$$_recipe_id,
+      _$data.containsKey('_cuisine_id') ? l$$_cuisine_id : const {},
+      _$data.containsKey('_recipe_id') ? l$$_recipe_id : const {},
       _$data.containsKey('cuisines') ? l$cuisines : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('recipes') ? l$recipes : const {},
@@ -2356,10 +2372,9 @@ class _CopyWithImpl$Input$bridge_recipes_cuisines_insert_input<TRes>
   }) =>
       _then(Input$bridge_recipes_cuisines_insert_input._({
         ..._instance._$data,
-        if ($_cuisine_id != _undefined && $_cuisine_id != null)
-          '_cuisine_id': ($_cuisine_id as String),
-        if ($_recipe_id != _undefined && $_recipe_id != null)
-          '_recipe_id': ($_recipe_id as String),
+        if ($_cuisine_id != _undefined)
+          '_cuisine_id': ($_cuisine_id as String?),
+        if ($_recipe_id != _undefined) '_recipe_id': ($_recipe_id as String?),
         if (cuisines != _undefined)
           'cuisines': (cuisines as Input$cuisines_obj_rel_insert_input?),
         if (id != _undefined) 'id': (id as String?),
@@ -5220,15 +5235,15 @@ class _CopyWithStubImpl$Input$bridge_recipes_ingredients_bool_exp<TRes>
 
 class Input$bridge_recipes_ingredients_insert_input {
   factory Input$bridge_recipes_ingredients_insert_input({
-    required String $_ingredient_id,
-    required String $_recipe_id,
+    String? $_ingredient_id,
+    String? $_recipe_id,
     String? id,
     Input$ingredients_obj_rel_insert_input? ingredients,
     Input$recipes_obj_rel_insert_input? recipes,
   }) =>
       Input$bridge_recipes_ingredients_insert_input._({
-        r'_ingredient_id': $_ingredient_id,
-        r'_recipe_id': $_recipe_id,
+        if ($_ingredient_id != null) r'_ingredient_id': $_ingredient_id,
+        if ($_recipe_id != null) r'_recipe_id': $_recipe_id,
         if (id != null) r'id': id,
         if (ingredients != null) r'ingredients': ingredients,
         if (recipes != null) r'recipes': recipes,
@@ -5239,10 +5254,14 @@ class Input$bridge_recipes_ingredients_insert_input {
   factory Input$bridge_recipes_ingredients_insert_input.fromJson(
       Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    final l$$_ingredient_id = data['_ingredient_id'];
-    result$data['_ingredient_id'] = (l$$_ingredient_id as String);
-    final l$$_recipe_id = data['_recipe_id'];
-    result$data['_recipe_id'] = (l$$_recipe_id as String);
+    if (data.containsKey('_ingredient_id')) {
+      final l$$_ingredient_id = data['_ingredient_id'];
+      result$data['_ingredient_id'] = (l$$_ingredient_id as String?);
+    }
+    if (data.containsKey('_recipe_id')) {
+      final l$$_recipe_id = data['_recipe_id'];
+      result$data['_recipe_id'] = (l$$_recipe_id as String?);
+    }
     if (data.containsKey('id')) {
       final l$id = data['id'];
       result$data['id'] = (l$id as String?);
@@ -5266,8 +5285,8 @@ class Input$bridge_recipes_ingredients_insert_input {
 
   Map<String, dynamic> _$data;
 
-  String get $_ingredient_id => (_$data['_ingredient_id'] as String);
-  String get $_recipe_id => (_$data['_recipe_id'] as String);
+  String? get $_ingredient_id => (_$data['_ingredient_id'] as String?);
+  String? get $_recipe_id => (_$data['_recipe_id'] as String?);
   String? get id => (_$data['id'] as String?);
   Input$ingredients_obj_rel_insert_input? get ingredients =>
       (_$data['ingredients'] as Input$ingredients_obj_rel_insert_input?);
@@ -5275,10 +5294,14 @@ class Input$bridge_recipes_ingredients_insert_input {
       (_$data['recipes'] as Input$recipes_obj_rel_insert_input?);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    final l$$_ingredient_id = $_ingredient_id;
-    result$data['_ingredient_id'] = l$$_ingredient_id;
-    final l$$_recipe_id = $_recipe_id;
-    result$data['_recipe_id'] = l$$_recipe_id;
+    if (_$data.containsKey('_ingredient_id')) {
+      final l$$_ingredient_id = $_ingredient_id;
+      result$data['_ingredient_id'] = l$$_ingredient_id;
+    }
+    if (_$data.containsKey('_recipe_id')) {
+      final l$$_recipe_id = $_recipe_id;
+      result$data['_recipe_id'] = l$$_recipe_id;
+    }
     if (_$data.containsKey('id')) {
       final l$id = id;
       result$data['id'] = l$id;
@@ -5311,11 +5334,19 @@ class Input$bridge_recipes_ingredients_insert_input {
     }
     final l$$_ingredient_id = $_ingredient_id;
     final lOther$$_ingredient_id = other.$_ingredient_id;
+    if (_$data.containsKey('_ingredient_id') !=
+        other._$data.containsKey('_ingredient_id')) {
+      return false;
+    }
     if (l$$_ingredient_id != lOther$$_ingredient_id) {
       return false;
     }
     final l$$_recipe_id = $_recipe_id;
     final lOther$$_recipe_id = other.$_recipe_id;
+    if (_$data.containsKey('_recipe_id') !=
+        other._$data.containsKey('_recipe_id')) {
+      return false;
+    }
     if (l$$_recipe_id != lOther$$_recipe_id) {
       return false;
     }
@@ -5355,8 +5386,8 @@ class Input$bridge_recipes_ingredients_insert_input {
     final l$ingredients = ingredients;
     final l$recipes = recipes;
     return Object.hashAll([
-      l$$_ingredient_id,
-      l$$_recipe_id,
+      _$data.containsKey('_ingredient_id') ? l$$_ingredient_id : const {},
+      _$data.containsKey('_recipe_id') ? l$$_recipe_id : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('ingredients') ? l$ingredients : const {},
       _$data.containsKey('recipes') ? l$recipes : const {},
@@ -5407,10 +5438,9 @@ class _CopyWithImpl$Input$bridge_recipes_ingredients_insert_input<TRes>
   }) =>
       _then(Input$bridge_recipes_ingredients_insert_input._({
         ..._instance._$data,
-        if ($_ingredient_id != _undefined && $_ingredient_id != null)
-          '_ingredient_id': ($_ingredient_id as String),
-        if ($_recipe_id != _undefined && $_recipe_id != null)
-          '_recipe_id': ($_recipe_id as String),
+        if ($_ingredient_id != _undefined)
+          '_ingredient_id': ($_ingredient_id as String?),
+        if ($_recipe_id != _undefined) '_recipe_id': ($_recipe_id as String?),
         if (id != _undefined) 'id': (id as String?),
         if (ingredients != _undefined)
           'ingredients':
@@ -8245,15 +8275,15 @@ class _CopyWithStubImpl$Input$bridge_recipes_tags_bool_exp<TRes>
 
 class Input$bridge_recipes_tags_insert_input {
   factory Input$bridge_recipes_tags_insert_input({
-    required String $_recipe_id,
-    required String $_tag_id,
+    String? $_recipe_id,
+    String? $_tag_id,
     String? id,
     Input$recipes_obj_rel_insert_input? recipes,
     Input$tags_obj_rel_insert_input? tags,
   }) =>
       Input$bridge_recipes_tags_insert_input._({
-        r'_recipe_id': $_recipe_id,
-        r'_tag_id': $_tag_id,
+        if ($_recipe_id != null) r'_recipe_id': $_recipe_id,
+        if ($_tag_id != null) r'_tag_id': $_tag_id,
         if (id != null) r'id': id,
         if (recipes != null) r'recipes': recipes,
         if (tags != null) r'tags': tags,
@@ -8264,10 +8294,14 @@ class Input$bridge_recipes_tags_insert_input {
   factory Input$bridge_recipes_tags_insert_input.fromJson(
       Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    final l$$_recipe_id = data['_recipe_id'];
-    result$data['_recipe_id'] = (l$$_recipe_id as String);
-    final l$$_tag_id = data['_tag_id'];
-    result$data['_tag_id'] = (l$$_tag_id as String);
+    if (data.containsKey('_recipe_id')) {
+      final l$$_recipe_id = data['_recipe_id'];
+      result$data['_recipe_id'] = (l$$_recipe_id as String?);
+    }
+    if (data.containsKey('_tag_id')) {
+      final l$$_tag_id = data['_tag_id'];
+      result$data['_tag_id'] = (l$$_tag_id as String?);
+    }
     if (data.containsKey('id')) {
       final l$id = data['id'];
       result$data['id'] = (l$id as String?);
@@ -8291,8 +8325,8 @@ class Input$bridge_recipes_tags_insert_input {
 
   Map<String, dynamic> _$data;
 
-  String get $_recipe_id => (_$data['_recipe_id'] as String);
-  String get $_tag_id => (_$data['_tag_id'] as String);
+  String? get $_recipe_id => (_$data['_recipe_id'] as String?);
+  String? get $_tag_id => (_$data['_tag_id'] as String?);
   String? get id => (_$data['id'] as String?);
   Input$recipes_obj_rel_insert_input? get recipes =>
       (_$data['recipes'] as Input$recipes_obj_rel_insert_input?);
@@ -8300,10 +8334,14 @@ class Input$bridge_recipes_tags_insert_input {
       (_$data['tags'] as Input$tags_obj_rel_insert_input?);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    final l$$_recipe_id = $_recipe_id;
-    result$data['_recipe_id'] = l$$_recipe_id;
-    final l$$_tag_id = $_tag_id;
-    result$data['_tag_id'] = l$$_tag_id;
+    if (_$data.containsKey('_recipe_id')) {
+      final l$$_recipe_id = $_recipe_id;
+      result$data['_recipe_id'] = l$$_recipe_id;
+    }
+    if (_$data.containsKey('_tag_id')) {
+      final l$$_tag_id = $_tag_id;
+      result$data['_tag_id'] = l$$_tag_id;
+    }
     if (_$data.containsKey('id')) {
       final l$id = id;
       result$data['id'] = l$id;
@@ -8336,11 +8374,18 @@ class Input$bridge_recipes_tags_insert_input {
     }
     final l$$_recipe_id = $_recipe_id;
     final lOther$$_recipe_id = other.$_recipe_id;
+    if (_$data.containsKey('_recipe_id') !=
+        other._$data.containsKey('_recipe_id')) {
+      return false;
+    }
     if (l$$_recipe_id != lOther$$_recipe_id) {
       return false;
     }
     final l$$_tag_id = $_tag_id;
     final lOther$$_tag_id = other.$_tag_id;
+    if (_$data.containsKey('_tag_id') != other._$data.containsKey('_tag_id')) {
+      return false;
+    }
     if (l$$_tag_id != lOther$$_tag_id) {
       return false;
     }
@@ -8379,8 +8424,8 @@ class Input$bridge_recipes_tags_insert_input {
     final l$recipes = recipes;
     final l$tags = tags;
     return Object.hashAll([
-      l$$_recipe_id,
-      l$$_tag_id,
+      _$data.containsKey('_recipe_id') ? l$$_recipe_id : const {},
+      _$data.containsKey('_tag_id') ? l$$_tag_id : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('recipes') ? l$recipes : const {},
       _$data.containsKey('tags') ? l$tags : const {},
@@ -8430,10 +8475,8 @@ class _CopyWithImpl$Input$bridge_recipes_tags_insert_input<TRes>
   }) =>
       _then(Input$bridge_recipes_tags_insert_input._({
         ..._instance._$data,
-        if ($_recipe_id != _undefined && $_recipe_id != null)
-          '_recipe_id': ($_recipe_id as String),
-        if ($_tag_id != _undefined && $_tag_id != null)
-          '_tag_id': ($_tag_id as String),
+        if ($_recipe_id != _undefined) '_recipe_id': ($_recipe_id as String?),
+        if ($_tag_id != _undefined) '_tag_id': ($_tag_id as String?),
         if (id != _undefined) 'id': (id as String?),
         if (recipes != _undefined)
           'recipes': (recipes as Input$recipes_obj_rel_insert_input?),
@@ -10590,19 +10633,19 @@ class Input$cuisines_insert_input {
   factory Input$cuisines_insert_input({
     Input$bridge_recipes_cuisines_arr_rel_insert_input? bridge_recipes_cuisines,
     String? iconPath,
-    required String id,
-    required String name,
-    required String slug,
-    required String type,
+    String? id,
+    String? name,
+    String? slug,
+    String? type,
   }) =>
       Input$cuisines_insert_input._({
         if (bridge_recipes_cuisines != null)
           r'bridge_recipes_cuisines': bridge_recipes_cuisines,
         if (iconPath != null) r'iconPath': iconPath,
-        r'id': id,
-        r'name': name,
-        r'slug': slug,
-        r'type': type,
+        if (id != null) r'id': id,
+        if (name != null) r'name': name,
+        if (slug != null) r'slug': slug,
+        if (type != null) r'type': type,
       });
 
   Input$cuisines_insert_input._(this._$data);
@@ -10620,14 +10663,22 @@ class Input$cuisines_insert_input {
       final l$iconPath = data['iconPath'];
       result$data['iconPath'] = (l$iconPath as String?);
     }
-    final l$id = data['id'];
-    result$data['id'] = (l$id as String);
-    final l$name = data['name'];
-    result$data['name'] = (l$name as String);
-    final l$slug = data['slug'];
-    result$data['slug'] = (l$slug as String);
-    final l$type = data['type'];
-    result$data['type'] = (l$type as String);
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = (l$id as String?);
+    }
+    if (data.containsKey('name')) {
+      final l$name = data['name'];
+      result$data['name'] = (l$name as String?);
+    }
+    if (data.containsKey('slug')) {
+      final l$slug = data['slug'];
+      result$data['slug'] = (l$slug as String?);
+    }
+    if (data.containsKey('type')) {
+      final l$type = data['type'];
+      result$data['type'] = (l$type as String?);
+    }
     return Input$cuisines_insert_input._(result$data);
   }
 
@@ -10637,10 +10688,10 @@ class Input$cuisines_insert_input {
       get bridge_recipes_cuisines => (_$data['bridge_recipes_cuisines']
           as Input$bridge_recipes_cuisines_arr_rel_insert_input?);
   String? get iconPath => (_$data['iconPath'] as String?);
-  String get id => (_$data['id'] as String);
-  String get name => (_$data['name'] as String);
-  String get slug => (_$data['slug'] as String);
-  String get type => (_$data['type'] as String);
+  String? get id => (_$data['id'] as String?);
+  String? get name => (_$data['name'] as String?);
+  String? get slug => (_$data['slug'] as String?);
+  String? get type => (_$data['type'] as String?);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('bridge_recipes_cuisines')) {
@@ -10652,14 +10703,22 @@ class Input$cuisines_insert_input {
       final l$iconPath = iconPath;
       result$data['iconPath'] = l$iconPath;
     }
-    final l$id = id;
-    result$data['id'] = l$id;
-    final l$name = name;
-    result$data['name'] = l$name;
-    final l$slug = slug;
-    result$data['slug'] = l$slug;
-    final l$type = type;
-    result$data['type'] = l$type;
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id;
+    }
+    if (_$data.containsKey('name')) {
+      final l$name = name;
+      result$data['name'] = l$name;
+    }
+    if (_$data.containsKey('slug')) {
+      final l$slug = slug;
+      result$data['slug'] = l$slug;
+    }
+    if (_$data.containsKey('type')) {
+      final l$type = type;
+      result$data['type'] = l$type;
+    }
     return result$data;
   }
 
@@ -10697,21 +10756,33 @@ class Input$cuisines_insert_input {
     }
     final l$id = id;
     final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
     if (l$id != lOther$id) {
       return false;
     }
     final l$name = name;
     final lOther$name = other.name;
+    if (_$data.containsKey('name') != other._$data.containsKey('name')) {
+      return false;
+    }
     if (l$name != lOther$name) {
       return false;
     }
     final l$slug = slug;
     final lOther$slug = other.slug;
+    if (_$data.containsKey('slug') != other._$data.containsKey('slug')) {
+      return false;
+    }
     if (l$slug != lOther$slug) {
       return false;
     }
     final l$type = type;
     final lOther$type = other.type;
+    if (_$data.containsKey('type') != other._$data.containsKey('type')) {
+      return false;
+    }
     if (l$type != lOther$type) {
       return false;
     }
@@ -10731,10 +10802,10 @@ class Input$cuisines_insert_input {
           ? l$bridge_recipes_cuisines
           : const {},
       _$data.containsKey('iconPath') ? l$iconPath : const {},
-      l$id,
-      l$name,
-      l$slug,
-      l$type,
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('name') ? l$name : const {},
+      _$data.containsKey('slug') ? l$slug : const {},
+      _$data.containsKey('type') ? l$type : const {},
     ]);
   }
 }
@@ -10787,10 +10858,10 @@ class _CopyWithImpl$Input$cuisines_insert_input<TRes>
           'bridge_recipes_cuisines': (bridge_recipes_cuisines
               as Input$bridge_recipes_cuisines_arr_rel_insert_input?),
         if (iconPath != _undefined) 'iconPath': (iconPath as String?),
-        if (id != _undefined && id != null) 'id': (id as String),
-        if (name != _undefined && name != null) 'name': (name as String),
-        if (slug != _undefined && slug != null) 'slug': (slug as String),
-        if (type != _undefined && type != null) 'type': (type as String),
+        if (id != _undefined) 'id': (id as String?),
+        if (name != _undefined) 'name': (name as String?),
+        if (slug != _undefined) 'slug': (slug as String?),
+        if (type != _undefined) 'type': (type as String?),
       }));
   CopyWith$Input$bridge_recipes_cuisines_arr_rel_insert_input<TRes>
       get bridge_recipes_cuisines {
@@ -12747,17 +12818,17 @@ class _CopyWithStubImpl$Input$ingredient_family_bool_exp<TRes>
 class Input$ingredient_family_insert_input {
   factory Input$ingredient_family_insert_input({
     String? iconPath,
-    required String id,
-    required String name,
-    required String slug,
-    required String type,
+    String? id,
+    String? name,
+    String? slug,
+    String? type,
   }) =>
       Input$ingredient_family_insert_input._({
         if (iconPath != null) r'iconPath': iconPath,
-        r'id': id,
-        r'name': name,
-        r'slug': slug,
-        r'type': type,
+        if (id != null) r'id': id,
+        if (name != null) r'name': name,
+        if (slug != null) r'slug': slug,
+        if (type != null) r'type': type,
       });
 
   Input$ingredient_family_insert_input._(this._$data);
@@ -12769,38 +12840,54 @@ class Input$ingredient_family_insert_input {
       final l$iconPath = data['iconPath'];
       result$data['iconPath'] = (l$iconPath as String?);
     }
-    final l$id = data['id'];
-    result$data['id'] = (l$id as String);
-    final l$name = data['name'];
-    result$data['name'] = (l$name as String);
-    final l$slug = data['slug'];
-    result$data['slug'] = (l$slug as String);
-    final l$type = data['type'];
-    result$data['type'] = (l$type as String);
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = (l$id as String?);
+    }
+    if (data.containsKey('name')) {
+      final l$name = data['name'];
+      result$data['name'] = (l$name as String?);
+    }
+    if (data.containsKey('slug')) {
+      final l$slug = data['slug'];
+      result$data['slug'] = (l$slug as String?);
+    }
+    if (data.containsKey('type')) {
+      final l$type = data['type'];
+      result$data['type'] = (l$type as String?);
+    }
     return Input$ingredient_family_insert_input._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
   String? get iconPath => (_$data['iconPath'] as String?);
-  String get id => (_$data['id'] as String);
-  String get name => (_$data['name'] as String);
-  String get slug => (_$data['slug'] as String);
-  String get type => (_$data['type'] as String);
+  String? get id => (_$data['id'] as String?);
+  String? get name => (_$data['name'] as String?);
+  String? get slug => (_$data['slug'] as String?);
+  String? get type => (_$data['type'] as String?);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('iconPath')) {
       final l$iconPath = iconPath;
       result$data['iconPath'] = l$iconPath;
     }
-    final l$id = id;
-    result$data['id'] = l$id;
-    final l$name = name;
-    result$data['name'] = l$name;
-    final l$slug = slug;
-    result$data['slug'] = l$slug;
-    final l$type = type;
-    result$data['type'] = l$type;
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id;
+    }
+    if (_$data.containsKey('name')) {
+      final l$name = name;
+      result$data['name'] = l$name;
+    }
+    if (_$data.containsKey('slug')) {
+      final l$slug = slug;
+      result$data['slug'] = l$slug;
+    }
+    if (_$data.containsKey('type')) {
+      final l$type = type;
+      result$data['type'] = l$type;
+    }
     return result$data;
   }
 
@@ -12830,21 +12917,33 @@ class Input$ingredient_family_insert_input {
     }
     final l$id = id;
     final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
     if (l$id != lOther$id) {
       return false;
     }
     final l$name = name;
     final lOther$name = other.name;
+    if (_$data.containsKey('name') != other._$data.containsKey('name')) {
+      return false;
+    }
     if (l$name != lOther$name) {
       return false;
     }
     final l$slug = slug;
     final lOther$slug = other.slug;
+    if (_$data.containsKey('slug') != other._$data.containsKey('slug')) {
+      return false;
+    }
     if (l$slug != lOther$slug) {
       return false;
     }
     final l$type = type;
     final lOther$type = other.type;
+    if (_$data.containsKey('type') != other._$data.containsKey('type')) {
+      return false;
+    }
     if (l$type != lOther$type) {
       return false;
     }
@@ -12860,10 +12959,10 @@ class Input$ingredient_family_insert_input {
     final l$type = type;
     return Object.hashAll([
       _$data.containsKey('iconPath') ? l$iconPath : const {},
-      l$id,
-      l$name,
-      l$slug,
-      l$type,
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('name') ? l$name : const {},
+      _$data.containsKey('slug') ? l$slug : const {},
+      _$data.containsKey('type') ? l$type : const {},
     ]);
   }
 }
@@ -12909,10 +13008,10 @@ class _CopyWithImpl$Input$ingredient_family_insert_input<TRes>
       _then(Input$ingredient_family_insert_input._({
         ..._instance._$data,
         if (iconPath != _undefined) 'iconPath': (iconPath as String?),
-        if (id != _undefined && id != null) 'id': (id as String),
-        if (name != _undefined && name != null) 'name': (name as String),
-        if (slug != _undefined && slug != null) 'slug': (slug as String),
-        if (type != _undefined && type != null) 'type': (type as String),
+        if (id != _undefined) 'id': (id as String?),
+        if (name != _undefined) 'name': (name as String?),
+        if (slug != _undefined) 'slug': (slug as String?),
+        if (type != _undefined) 'type': (type as String?),
       }));
 }
 
@@ -15058,25 +15157,25 @@ class Input$ingredients_insert_input {
     String? $_family,
     Input$bridge_recipes_ingredients_arr_rel_insert_input?
         bridge_recipes_ingredients,
-    required String country,
+    String? country,
     Input$ingredient_family_obj_rel_insert_input? family,
-    required String id,
+    String? id,
     String? imagePath,
-    required String name,
-    required String slug,
-    required String type,
+    String? name,
+    String? slug,
+    String? type,
   }) =>
       Input$ingredients_insert_input._({
         if ($_family != null) r'_family': $_family,
         if (bridge_recipes_ingredients != null)
           r'bridge_recipes_ingredients': bridge_recipes_ingredients,
-        r'country': country,
+        if (country != null) r'country': country,
         if (family != null) r'family': family,
-        r'id': id,
+        if (id != null) r'id': id,
         if (imagePath != null) r'imagePath': imagePath,
-        r'name': name,
-        r'slug': slug,
-        r'type': type,
+        if (name != null) r'name': name,
+        if (slug != null) r'slug': slug,
+        if (type != null) r'type': type,
       });
 
   Input$ingredients_insert_input._(this._$data);
@@ -15095,8 +15194,10 @@ class Input$ingredients_insert_input {
               : Input$bridge_recipes_ingredients_arr_rel_insert_input.fromJson(
                   (l$bridge_recipes_ingredients as Map<String, dynamic>));
     }
-    final l$country = data['country'];
-    result$data['country'] = (l$country as String);
+    if (data.containsKey('country')) {
+      final l$country = data['country'];
+      result$data['country'] = (l$country as String?);
+    }
     if (data.containsKey('family')) {
       final l$family = data['family'];
       result$data['family'] = l$family == null
@@ -15104,18 +15205,26 @@ class Input$ingredients_insert_input {
           : Input$ingredient_family_obj_rel_insert_input.fromJson(
               (l$family as Map<String, dynamic>));
     }
-    final l$id = data['id'];
-    result$data['id'] = (l$id as String);
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = (l$id as String?);
+    }
     if (data.containsKey('imagePath')) {
       final l$imagePath = data['imagePath'];
       result$data['imagePath'] = (l$imagePath as String?);
     }
-    final l$name = data['name'];
-    result$data['name'] = (l$name as String);
-    final l$slug = data['slug'];
-    result$data['slug'] = (l$slug as String);
-    final l$type = data['type'];
-    result$data['type'] = (l$type as String);
+    if (data.containsKey('name')) {
+      final l$name = data['name'];
+      result$data['name'] = (l$name as String?);
+    }
+    if (data.containsKey('slug')) {
+      final l$slug = data['slug'];
+      result$data['slug'] = (l$slug as String?);
+    }
+    if (data.containsKey('type')) {
+      final l$type = data['type'];
+      result$data['type'] = (l$type as String?);
+    }
     return Input$ingredients_insert_input._(result$data);
   }
 
@@ -15125,14 +15234,14 @@ class Input$ingredients_insert_input {
   Input$bridge_recipes_ingredients_arr_rel_insert_input?
       get bridge_recipes_ingredients => (_$data['bridge_recipes_ingredients']
           as Input$bridge_recipes_ingredients_arr_rel_insert_input?);
-  String get country => (_$data['country'] as String);
+  String? get country => (_$data['country'] as String?);
   Input$ingredient_family_obj_rel_insert_input? get family =>
       (_$data['family'] as Input$ingredient_family_obj_rel_insert_input?);
-  String get id => (_$data['id'] as String);
+  String? get id => (_$data['id'] as String?);
   String? get imagePath => (_$data['imagePath'] as String?);
-  String get name => (_$data['name'] as String);
-  String get slug => (_$data['slug'] as String);
-  String get type => (_$data['type'] as String);
+  String? get name => (_$data['name'] as String?);
+  String? get slug => (_$data['slug'] as String?);
+  String? get type => (_$data['type'] as String?);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('_family')) {
@@ -15144,24 +15253,34 @@ class Input$ingredients_insert_input {
       result$data['bridge_recipes_ingredients'] =
           l$bridge_recipes_ingredients?.toJson();
     }
-    final l$country = country;
-    result$data['country'] = l$country;
+    if (_$data.containsKey('country')) {
+      final l$country = country;
+      result$data['country'] = l$country;
+    }
     if (_$data.containsKey('family')) {
       final l$family = family;
       result$data['family'] = l$family?.toJson();
     }
-    final l$id = id;
-    result$data['id'] = l$id;
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id;
+    }
     if (_$data.containsKey('imagePath')) {
       final l$imagePath = imagePath;
       result$data['imagePath'] = l$imagePath;
     }
-    final l$name = name;
-    result$data['name'] = l$name;
-    final l$slug = slug;
-    result$data['slug'] = l$slug;
-    final l$type = type;
-    result$data['type'] = l$type;
+    if (_$data.containsKey('name')) {
+      final l$name = name;
+      result$data['name'] = l$name;
+    }
+    if (_$data.containsKey('slug')) {
+      final l$slug = slug;
+      result$data['slug'] = l$slug;
+    }
+    if (_$data.containsKey('type')) {
+      final l$type = type;
+      result$data['type'] = l$type;
+    }
     return result$data;
   }
 
@@ -15198,6 +15317,9 @@ class Input$ingredients_insert_input {
     }
     final l$country = country;
     final lOther$country = other.country;
+    if (_$data.containsKey('country') != other._$data.containsKey('country')) {
+      return false;
+    }
     if (l$country != lOther$country) {
       return false;
     }
@@ -15211,6 +15333,9 @@ class Input$ingredients_insert_input {
     }
     final l$id = id;
     final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
     if (l$id != lOther$id) {
       return false;
     }
@@ -15225,16 +15350,25 @@ class Input$ingredients_insert_input {
     }
     final l$name = name;
     final lOther$name = other.name;
+    if (_$data.containsKey('name') != other._$data.containsKey('name')) {
+      return false;
+    }
     if (l$name != lOther$name) {
       return false;
     }
     final l$slug = slug;
     final lOther$slug = other.slug;
+    if (_$data.containsKey('slug') != other._$data.containsKey('slug')) {
+      return false;
+    }
     if (l$slug != lOther$slug) {
       return false;
     }
     final l$type = type;
     final lOther$type = other.type;
+    if (_$data.containsKey('type') != other._$data.containsKey('type')) {
+      return false;
+    }
     if (l$type != lOther$type) {
       return false;
     }
@@ -15257,13 +15391,13 @@ class Input$ingredients_insert_input {
       _$data.containsKey('bridge_recipes_ingredients')
           ? l$bridge_recipes_ingredients
           : const {},
-      l$country,
+      _$data.containsKey('country') ? l$country : const {},
       _$data.containsKey('family') ? l$family : const {},
-      l$id,
+      _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('imagePath') ? l$imagePath : const {},
-      l$name,
-      l$slug,
-      l$type,
+      _$data.containsKey('name') ? l$name : const {},
+      _$data.containsKey('slug') ? l$slug : const {},
+      _$data.containsKey('type') ? l$type : const {},
     ]);
   }
 }
@@ -15324,15 +15458,14 @@ class _CopyWithImpl$Input$ingredients_insert_input<TRes>
         if (bridge_recipes_ingredients != _undefined)
           'bridge_recipes_ingredients': (bridge_recipes_ingredients
               as Input$bridge_recipes_ingredients_arr_rel_insert_input?),
-        if (country != _undefined && country != null)
-          'country': (country as String),
+        if (country != _undefined) 'country': (country as String?),
         if (family != _undefined)
           'family': (family as Input$ingredient_family_obj_rel_insert_input?),
-        if (id != _undefined && id != null) 'id': (id as String),
+        if (id != _undefined) 'id': (id as String?),
         if (imagePath != _undefined) 'imagePath': (imagePath as String?),
-        if (name != _undefined && name != null) 'name': (name as String),
-        if (slug != _undefined && slug != null) 'slug': (slug as String),
-        if (type != _undefined && type != null) 'type': (type as String),
+        if (name != _undefined) 'name': (name as String?),
+        if (slug != _undefined) 'slug': (slug as String?),
+        if (type != _undefined) 'type': (type as String?),
       }));
   CopyWith$Input$bridge_recipes_ingredients_arr_rel_insert_input<TRes>
       get bridge_recipes_ingredients {
@@ -16474,6 +16607,2778 @@ class _CopyWithStubImpl$Input$ingredients_set_input<TRes>
     String? type,
   }) =>
       _res;
+}
+
+class Input$ingredients_sortings_append_input {
+  factory Input$ingredients_sortings_append_input(
+          {String? ingredientFamilyIds}) =>
+      Input$ingredients_sortings_append_input._({
+        if (ingredientFamilyIds != null)
+          r'ingredientFamilyIds': ingredientFamilyIds,
+      });
+
+  Input$ingredients_sortings_append_input._(this._$data);
+
+  factory Input$ingredients_sortings_append_input.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('ingredientFamilyIds')) {
+      final l$ingredientFamilyIds = data['ingredientFamilyIds'];
+      result$data['ingredientFamilyIds'] = (l$ingredientFamilyIds as String?);
+    }
+    return Input$ingredients_sortings_append_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get ingredientFamilyIds => (_$data['ingredientFamilyIds'] as String?);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('ingredientFamilyIds')) {
+      final l$ingredientFamilyIds = ingredientFamilyIds;
+      result$data['ingredientFamilyIds'] = l$ingredientFamilyIds;
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$ingredients_sortings_append_input<
+          Input$ingredients_sortings_append_input>
+      get copyWith => CopyWith$Input$ingredients_sortings_append_input(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Input$ingredients_sortings_append_input) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$ingredientFamilyIds = ingredientFamilyIds;
+    final lOther$ingredientFamilyIds = other.ingredientFamilyIds;
+    if (_$data.containsKey('ingredientFamilyIds') !=
+        other._$data.containsKey('ingredientFamilyIds')) {
+      return false;
+    }
+    if (l$ingredientFamilyIds != lOther$ingredientFamilyIds) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$ingredientFamilyIds = ingredientFamilyIds;
+    return Object.hashAll([
+      _$data.containsKey('ingredientFamilyIds')
+          ? l$ingredientFamilyIds
+          : const {}
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$ingredients_sortings_append_input<TRes> {
+  factory CopyWith$Input$ingredients_sortings_append_input(
+    Input$ingredients_sortings_append_input instance,
+    TRes Function(Input$ingredients_sortings_append_input) then,
+  ) = _CopyWithImpl$Input$ingredients_sortings_append_input;
+
+  factory CopyWith$Input$ingredients_sortings_append_input.stub(TRes res) =
+      _CopyWithStubImpl$Input$ingredients_sortings_append_input;
+
+  TRes call({String? ingredientFamilyIds});
+}
+
+class _CopyWithImpl$Input$ingredients_sortings_append_input<TRes>
+    implements CopyWith$Input$ingredients_sortings_append_input<TRes> {
+  _CopyWithImpl$Input$ingredients_sortings_append_input(
+    this._instance,
+    this._then,
+  );
+
+  final Input$ingredients_sortings_append_input _instance;
+
+  final TRes Function(Input$ingredients_sortings_append_input) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? ingredientFamilyIds = _undefined}) =>
+      _then(Input$ingredients_sortings_append_input._({
+        ..._instance._$data,
+        if (ingredientFamilyIds != _undefined)
+          'ingredientFamilyIds': (ingredientFamilyIds as String?),
+      }));
+}
+
+class _CopyWithStubImpl$Input$ingredients_sortings_append_input<TRes>
+    implements CopyWith$Input$ingredients_sortings_append_input<TRes> {
+  _CopyWithStubImpl$Input$ingredients_sortings_append_input(this._res);
+
+  TRes _res;
+
+  call({String? ingredientFamilyIds}) => _res;
+}
+
+class Input$ingredients_sortings_bool_exp {
+  factory Input$ingredients_sortings_bool_exp({
+    List<Input$ingredients_sortings_bool_exp>? $_and,
+    Input$ingredients_sortings_bool_exp? $_not,
+    List<Input$ingredients_sortings_bool_exp>? $_or,
+    Input$String_comparison_exp? iconPath,
+    Input$uuid_comparison_exp? id,
+    Input$jsonb_comparison_exp? ingredientFamilyIds,
+    Input$String_comparison_exp? name,
+    Input$String_comparison_exp? type,
+  }) =>
+      Input$ingredients_sortings_bool_exp._({
+        if ($_and != null) r'_and': $_and,
+        if ($_not != null) r'_not': $_not,
+        if ($_or != null) r'_or': $_or,
+        if (iconPath != null) r'iconPath': iconPath,
+        if (id != null) r'id': id,
+        if (ingredientFamilyIds != null)
+          r'ingredientFamilyIds': ingredientFamilyIds,
+        if (name != null) r'name': name,
+        if (type != null) r'type': type,
+      });
+
+  Input$ingredients_sortings_bool_exp._(this._$data);
+
+  factory Input$ingredients_sortings_bool_exp.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_and')) {
+      final l$$_and = data['_and'];
+      result$data['_and'] = (l$$_and as List<dynamic>?)
+          ?.map((e) => Input$ingredients_sortings_bool_exp.fromJson(
+              (e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('_not')) {
+      final l$$_not = data['_not'];
+      result$data['_not'] = l$$_not == null
+          ? null
+          : Input$ingredients_sortings_bool_exp.fromJson(
+              (l$$_not as Map<String, dynamic>));
+    }
+    if (data.containsKey('_or')) {
+      final l$$_or = data['_or'];
+      result$data['_or'] = (l$$_or as List<dynamic>?)
+          ?.map((e) => Input$ingredients_sortings_bool_exp.fromJson(
+              (e as Map<String, dynamic>)))
+          .toList();
+    }
+    if (data.containsKey('iconPath')) {
+      final l$iconPath = data['iconPath'];
+      result$data['iconPath'] = l$iconPath == null
+          ? null
+          : Input$String_comparison_exp.fromJson(
+              (l$iconPath as Map<String, dynamic>));
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = l$id == null
+          ? null
+          : Input$uuid_comparison_exp.fromJson((l$id as Map<String, dynamic>));
+    }
+    if (data.containsKey('ingredientFamilyIds')) {
+      final l$ingredientFamilyIds = data['ingredientFamilyIds'];
+      result$data['ingredientFamilyIds'] = l$ingredientFamilyIds == null
+          ? null
+          : Input$jsonb_comparison_exp.fromJson(
+              (l$ingredientFamilyIds as Map<String, dynamic>));
+    }
+    if (data.containsKey('name')) {
+      final l$name = data['name'];
+      result$data['name'] = l$name == null
+          ? null
+          : Input$String_comparison_exp.fromJson(
+              (l$name as Map<String, dynamic>));
+    }
+    if (data.containsKey('type')) {
+      final l$type = data['type'];
+      result$data['type'] = l$type == null
+          ? null
+          : Input$String_comparison_exp.fromJson(
+              (l$type as Map<String, dynamic>));
+    }
+    return Input$ingredients_sortings_bool_exp._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<Input$ingredients_sortings_bool_exp>? get $_and =>
+      (_$data['_and'] as List<Input$ingredients_sortings_bool_exp>?);
+  Input$ingredients_sortings_bool_exp? get $_not =>
+      (_$data['_not'] as Input$ingredients_sortings_bool_exp?);
+  List<Input$ingredients_sortings_bool_exp>? get $_or =>
+      (_$data['_or'] as List<Input$ingredients_sortings_bool_exp>?);
+  Input$String_comparison_exp? get iconPath =>
+      (_$data['iconPath'] as Input$String_comparison_exp?);
+  Input$uuid_comparison_exp? get id =>
+      (_$data['id'] as Input$uuid_comparison_exp?);
+  Input$jsonb_comparison_exp? get ingredientFamilyIds =>
+      (_$data['ingredientFamilyIds'] as Input$jsonb_comparison_exp?);
+  Input$String_comparison_exp? get name =>
+      (_$data['name'] as Input$String_comparison_exp?);
+  Input$String_comparison_exp? get type =>
+      (_$data['type'] as Input$String_comparison_exp?);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_and')) {
+      final l$$_and = $_and;
+      result$data['_and'] = l$$_and?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('_not')) {
+      final l$$_not = $_not;
+      result$data['_not'] = l$$_not?.toJson();
+    }
+    if (_$data.containsKey('_or')) {
+      final l$$_or = $_or;
+      result$data['_or'] = l$$_or?.map((e) => e.toJson()).toList();
+    }
+    if (_$data.containsKey('iconPath')) {
+      final l$iconPath = iconPath;
+      result$data['iconPath'] = l$iconPath?.toJson();
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id?.toJson();
+    }
+    if (_$data.containsKey('ingredientFamilyIds')) {
+      final l$ingredientFamilyIds = ingredientFamilyIds;
+      result$data['ingredientFamilyIds'] = l$ingredientFamilyIds?.toJson();
+    }
+    if (_$data.containsKey('name')) {
+      final l$name = name;
+      result$data['name'] = l$name?.toJson();
+    }
+    if (_$data.containsKey('type')) {
+      final l$type = type;
+      result$data['type'] = l$type?.toJson();
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$ingredients_sortings_bool_exp<
+          Input$ingredients_sortings_bool_exp>
+      get copyWith => CopyWith$Input$ingredients_sortings_bool_exp(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Input$ingredients_sortings_bool_exp) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_and = $_and;
+    final lOther$$_and = other.$_and;
+    if (_$data.containsKey('_and') != other._$data.containsKey('_and')) {
+      return false;
+    }
+    if (l$$_and != null && lOther$$_and != null) {
+      if (l$$_and.length != lOther$$_and.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_and.length; i++) {
+        final l$$_and$entry = l$$_and[i];
+        final lOther$$_and$entry = lOther$$_and[i];
+        if (l$$_and$entry != lOther$$_and$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_and != lOther$$_and) {
+      return false;
+    }
+    final l$$_not = $_not;
+    final lOther$$_not = other.$_not;
+    if (_$data.containsKey('_not') != other._$data.containsKey('_not')) {
+      return false;
+    }
+    if (l$$_not != lOther$$_not) {
+      return false;
+    }
+    final l$$_or = $_or;
+    final lOther$$_or = other.$_or;
+    if (_$data.containsKey('_or') != other._$data.containsKey('_or')) {
+      return false;
+    }
+    if (l$$_or != null && lOther$$_or != null) {
+      if (l$$_or.length != lOther$$_or.length) {
+        return false;
+      }
+      for (int i = 0; i < l$$_or.length; i++) {
+        final l$$_or$entry = l$$_or[i];
+        final lOther$$_or$entry = lOther$$_or[i];
+        if (l$$_or$entry != lOther$$_or$entry) {
+          return false;
+        }
+      }
+    } else if (l$$_or != lOther$$_or) {
+      return false;
+    }
+    final l$iconPath = iconPath;
+    final lOther$iconPath = other.iconPath;
+    if (_$data.containsKey('iconPath') !=
+        other._$data.containsKey('iconPath')) {
+      return false;
+    }
+    if (l$iconPath != lOther$iconPath) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$ingredientFamilyIds = ingredientFamilyIds;
+    final lOther$ingredientFamilyIds = other.ingredientFamilyIds;
+    if (_$data.containsKey('ingredientFamilyIds') !=
+        other._$data.containsKey('ingredientFamilyIds')) {
+      return false;
+    }
+    if (l$ingredientFamilyIds != lOther$ingredientFamilyIds) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (_$data.containsKey('name') != other._$data.containsKey('name')) {
+      return false;
+    }
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$type = type;
+    final lOther$type = other.type;
+    if (_$data.containsKey('type') != other._$data.containsKey('type')) {
+      return false;
+    }
+    if (l$type != lOther$type) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_and = $_and;
+    final l$$_not = $_not;
+    final l$$_or = $_or;
+    final l$iconPath = iconPath;
+    final l$id = id;
+    final l$ingredientFamilyIds = ingredientFamilyIds;
+    final l$name = name;
+    final l$type = type;
+    return Object.hashAll([
+      _$data.containsKey('_and')
+          ? l$$_and == null
+              ? null
+              : Object.hashAll(l$$_and.map((v) => v))
+          : const {},
+      _$data.containsKey('_not') ? l$$_not : const {},
+      _$data.containsKey('_or')
+          ? l$$_or == null
+              ? null
+              : Object.hashAll(l$$_or.map((v) => v))
+          : const {},
+      _$data.containsKey('iconPath') ? l$iconPath : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('ingredientFamilyIds')
+          ? l$ingredientFamilyIds
+          : const {},
+      _$data.containsKey('name') ? l$name : const {},
+      _$data.containsKey('type') ? l$type : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$ingredients_sortings_bool_exp<TRes> {
+  factory CopyWith$Input$ingredients_sortings_bool_exp(
+    Input$ingredients_sortings_bool_exp instance,
+    TRes Function(Input$ingredients_sortings_bool_exp) then,
+  ) = _CopyWithImpl$Input$ingredients_sortings_bool_exp;
+
+  factory CopyWith$Input$ingredients_sortings_bool_exp.stub(TRes res) =
+      _CopyWithStubImpl$Input$ingredients_sortings_bool_exp;
+
+  TRes call({
+    List<Input$ingredients_sortings_bool_exp>? $_and,
+    Input$ingredients_sortings_bool_exp? $_not,
+    List<Input$ingredients_sortings_bool_exp>? $_or,
+    Input$String_comparison_exp? iconPath,
+    Input$uuid_comparison_exp? id,
+    Input$jsonb_comparison_exp? ingredientFamilyIds,
+    Input$String_comparison_exp? name,
+    Input$String_comparison_exp? type,
+  });
+  TRes $_and(
+      Iterable<Input$ingredients_sortings_bool_exp>? Function(
+              Iterable<
+                  CopyWith$Input$ingredients_sortings_bool_exp<
+                      Input$ingredients_sortings_bool_exp>>?)
+          _fn);
+  CopyWith$Input$ingredients_sortings_bool_exp<TRes> get $_not;
+  TRes $_or(
+      Iterable<Input$ingredients_sortings_bool_exp>? Function(
+              Iterable<
+                  CopyWith$Input$ingredients_sortings_bool_exp<
+                      Input$ingredients_sortings_bool_exp>>?)
+          _fn);
+  CopyWith$Input$String_comparison_exp<TRes> get iconPath;
+  CopyWith$Input$uuid_comparison_exp<TRes> get id;
+  CopyWith$Input$jsonb_comparison_exp<TRes> get ingredientFamilyIds;
+  CopyWith$Input$String_comparison_exp<TRes> get name;
+  CopyWith$Input$String_comparison_exp<TRes> get type;
+}
+
+class _CopyWithImpl$Input$ingredients_sortings_bool_exp<TRes>
+    implements CopyWith$Input$ingredients_sortings_bool_exp<TRes> {
+  _CopyWithImpl$Input$ingredients_sortings_bool_exp(
+    this._instance,
+    this._then,
+  );
+
+  final Input$ingredients_sortings_bool_exp _instance;
+
+  final TRes Function(Input$ingredients_sortings_bool_exp) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? $_and = _undefined,
+    Object? $_not = _undefined,
+    Object? $_or = _undefined,
+    Object? iconPath = _undefined,
+    Object? id = _undefined,
+    Object? ingredientFamilyIds = _undefined,
+    Object? name = _undefined,
+    Object? type = _undefined,
+  }) =>
+      _then(Input$ingredients_sortings_bool_exp._({
+        ..._instance._$data,
+        if ($_and != _undefined)
+          '_and': ($_and as List<Input$ingredients_sortings_bool_exp>?),
+        if ($_not != _undefined)
+          '_not': ($_not as Input$ingredients_sortings_bool_exp?),
+        if ($_or != _undefined)
+          '_or': ($_or as List<Input$ingredients_sortings_bool_exp>?),
+        if (iconPath != _undefined)
+          'iconPath': (iconPath as Input$String_comparison_exp?),
+        if (id != _undefined) 'id': (id as Input$uuid_comparison_exp?),
+        if (ingredientFamilyIds != _undefined)
+          'ingredientFamilyIds':
+              (ingredientFamilyIds as Input$jsonb_comparison_exp?),
+        if (name != _undefined) 'name': (name as Input$String_comparison_exp?),
+        if (type != _undefined) 'type': (type as Input$String_comparison_exp?),
+      }));
+  TRes $_and(
+          Iterable<Input$ingredients_sortings_bool_exp>? Function(
+                  Iterable<
+                      CopyWith$Input$ingredients_sortings_bool_exp<
+                          Input$ingredients_sortings_bool_exp>>?)
+              _fn) =>
+      call(
+          $_and: _fn(_instance.$_and
+              ?.map((e) => CopyWith$Input$ingredients_sortings_bool_exp(
+                    e,
+                    (i) => i,
+                  )))?.toList());
+  CopyWith$Input$ingredients_sortings_bool_exp<TRes> get $_not {
+    final local$$_not = _instance.$_not;
+    return local$$_not == null
+        ? CopyWith$Input$ingredients_sortings_bool_exp.stub(_then(_instance))
+        : CopyWith$Input$ingredients_sortings_bool_exp(
+            local$$_not, (e) => call($_not: e));
+  }
+
+  TRes $_or(
+          Iterable<Input$ingredients_sortings_bool_exp>? Function(
+                  Iterable<
+                      CopyWith$Input$ingredients_sortings_bool_exp<
+                          Input$ingredients_sortings_bool_exp>>?)
+              _fn) =>
+      call(
+          $_or: _fn(_instance.$_or
+              ?.map((e) => CopyWith$Input$ingredients_sortings_bool_exp(
+                    e,
+                    (i) => i,
+                  )))?.toList());
+  CopyWith$Input$String_comparison_exp<TRes> get iconPath {
+    final local$iconPath = _instance.iconPath;
+    return local$iconPath == null
+        ? CopyWith$Input$String_comparison_exp.stub(_then(_instance))
+        : CopyWith$Input$String_comparison_exp(
+            local$iconPath, (e) => call(iconPath: e));
+  }
+
+  CopyWith$Input$uuid_comparison_exp<TRes> get id {
+    final local$id = _instance.id;
+    return local$id == null
+        ? CopyWith$Input$uuid_comparison_exp.stub(_then(_instance))
+        : CopyWith$Input$uuid_comparison_exp(local$id, (e) => call(id: e));
+  }
+
+  CopyWith$Input$jsonb_comparison_exp<TRes> get ingredientFamilyIds {
+    final local$ingredientFamilyIds = _instance.ingredientFamilyIds;
+    return local$ingredientFamilyIds == null
+        ? CopyWith$Input$jsonb_comparison_exp.stub(_then(_instance))
+        : CopyWith$Input$jsonb_comparison_exp(
+            local$ingredientFamilyIds, (e) => call(ingredientFamilyIds: e));
+  }
+
+  CopyWith$Input$String_comparison_exp<TRes> get name {
+    final local$name = _instance.name;
+    return local$name == null
+        ? CopyWith$Input$String_comparison_exp.stub(_then(_instance))
+        : CopyWith$Input$String_comparison_exp(
+            local$name, (e) => call(name: e));
+  }
+
+  CopyWith$Input$String_comparison_exp<TRes> get type {
+    final local$type = _instance.type;
+    return local$type == null
+        ? CopyWith$Input$String_comparison_exp.stub(_then(_instance))
+        : CopyWith$Input$String_comparison_exp(
+            local$type, (e) => call(type: e));
+  }
+}
+
+class _CopyWithStubImpl$Input$ingredients_sortings_bool_exp<TRes>
+    implements CopyWith$Input$ingredients_sortings_bool_exp<TRes> {
+  _CopyWithStubImpl$Input$ingredients_sortings_bool_exp(this._res);
+
+  TRes _res;
+
+  call({
+    List<Input$ingredients_sortings_bool_exp>? $_and,
+    Input$ingredients_sortings_bool_exp? $_not,
+    List<Input$ingredients_sortings_bool_exp>? $_or,
+    Input$String_comparison_exp? iconPath,
+    Input$uuid_comparison_exp? id,
+    Input$jsonb_comparison_exp? ingredientFamilyIds,
+    Input$String_comparison_exp? name,
+    Input$String_comparison_exp? type,
+  }) =>
+      _res;
+  $_and(_fn) => _res;
+  CopyWith$Input$ingredients_sortings_bool_exp<TRes> get $_not =>
+      CopyWith$Input$ingredients_sortings_bool_exp.stub(_res);
+  $_or(_fn) => _res;
+  CopyWith$Input$String_comparison_exp<TRes> get iconPath =>
+      CopyWith$Input$String_comparison_exp.stub(_res);
+  CopyWith$Input$uuid_comparison_exp<TRes> get id =>
+      CopyWith$Input$uuid_comparison_exp.stub(_res);
+  CopyWith$Input$jsonb_comparison_exp<TRes> get ingredientFamilyIds =>
+      CopyWith$Input$jsonb_comparison_exp.stub(_res);
+  CopyWith$Input$String_comparison_exp<TRes> get name =>
+      CopyWith$Input$String_comparison_exp.stub(_res);
+  CopyWith$Input$String_comparison_exp<TRes> get type =>
+      CopyWith$Input$String_comparison_exp.stub(_res);
+}
+
+class Input$ingredients_sortings_delete_at_path_input {
+  factory Input$ingredients_sortings_delete_at_path_input(
+          {List<String>? ingredientFamilyIds}) =>
+      Input$ingredients_sortings_delete_at_path_input._({
+        if (ingredientFamilyIds != null)
+          r'ingredientFamilyIds': ingredientFamilyIds,
+      });
+
+  Input$ingredients_sortings_delete_at_path_input._(this._$data);
+
+  factory Input$ingredients_sortings_delete_at_path_input.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('ingredientFamilyIds')) {
+      final l$ingredientFamilyIds = data['ingredientFamilyIds'];
+      result$data['ingredientFamilyIds'] =
+          (l$ingredientFamilyIds as List<dynamic>?)
+              ?.map((e) => (e as String))
+              .toList();
+    }
+    return Input$ingredients_sortings_delete_at_path_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<String>? get ingredientFamilyIds =>
+      (_$data['ingredientFamilyIds'] as List<String>?);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('ingredientFamilyIds')) {
+      final l$ingredientFamilyIds = ingredientFamilyIds;
+      result$data['ingredientFamilyIds'] =
+          l$ingredientFamilyIds?.map((e) => e).toList();
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$ingredients_sortings_delete_at_path_input<
+          Input$ingredients_sortings_delete_at_path_input>
+      get copyWith => CopyWith$Input$ingredients_sortings_delete_at_path_input(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Input$ingredients_sortings_delete_at_path_input) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$ingredientFamilyIds = ingredientFamilyIds;
+    final lOther$ingredientFamilyIds = other.ingredientFamilyIds;
+    if (_$data.containsKey('ingredientFamilyIds') !=
+        other._$data.containsKey('ingredientFamilyIds')) {
+      return false;
+    }
+    if (l$ingredientFamilyIds != null && lOther$ingredientFamilyIds != null) {
+      if (l$ingredientFamilyIds.length != lOther$ingredientFamilyIds.length) {
+        return false;
+      }
+      for (int i = 0; i < l$ingredientFamilyIds.length; i++) {
+        final l$ingredientFamilyIds$entry = l$ingredientFamilyIds[i];
+        final lOther$ingredientFamilyIds$entry = lOther$ingredientFamilyIds[i];
+        if (l$ingredientFamilyIds$entry != lOther$ingredientFamilyIds$entry) {
+          return false;
+        }
+      }
+    } else if (l$ingredientFamilyIds != lOther$ingredientFamilyIds) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$ingredientFamilyIds = ingredientFamilyIds;
+    return Object.hashAll([
+      _$data.containsKey('ingredientFamilyIds')
+          ? l$ingredientFamilyIds == null
+              ? null
+              : Object.hashAll(l$ingredientFamilyIds.map((v) => v))
+          : const {}
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$ingredients_sortings_delete_at_path_input<TRes> {
+  factory CopyWith$Input$ingredients_sortings_delete_at_path_input(
+    Input$ingredients_sortings_delete_at_path_input instance,
+    TRes Function(Input$ingredients_sortings_delete_at_path_input) then,
+  ) = _CopyWithImpl$Input$ingredients_sortings_delete_at_path_input;
+
+  factory CopyWith$Input$ingredients_sortings_delete_at_path_input.stub(
+          TRes res) =
+      _CopyWithStubImpl$Input$ingredients_sortings_delete_at_path_input;
+
+  TRes call({List<String>? ingredientFamilyIds});
+}
+
+class _CopyWithImpl$Input$ingredients_sortings_delete_at_path_input<TRes>
+    implements CopyWith$Input$ingredients_sortings_delete_at_path_input<TRes> {
+  _CopyWithImpl$Input$ingredients_sortings_delete_at_path_input(
+    this._instance,
+    this._then,
+  );
+
+  final Input$ingredients_sortings_delete_at_path_input _instance;
+
+  final TRes Function(Input$ingredients_sortings_delete_at_path_input) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? ingredientFamilyIds = _undefined}) =>
+      _then(Input$ingredients_sortings_delete_at_path_input._({
+        ..._instance._$data,
+        if (ingredientFamilyIds != _undefined)
+          'ingredientFamilyIds': (ingredientFamilyIds as List<String>?),
+      }));
+}
+
+class _CopyWithStubImpl$Input$ingredients_sortings_delete_at_path_input<TRes>
+    implements CopyWith$Input$ingredients_sortings_delete_at_path_input<TRes> {
+  _CopyWithStubImpl$Input$ingredients_sortings_delete_at_path_input(this._res);
+
+  TRes _res;
+
+  call({List<String>? ingredientFamilyIds}) => _res;
+}
+
+class Input$ingredients_sortings_delete_elem_input {
+  factory Input$ingredients_sortings_delete_elem_input(
+          {int? ingredientFamilyIds}) =>
+      Input$ingredients_sortings_delete_elem_input._({
+        if (ingredientFamilyIds != null)
+          r'ingredientFamilyIds': ingredientFamilyIds,
+      });
+
+  Input$ingredients_sortings_delete_elem_input._(this._$data);
+
+  factory Input$ingredients_sortings_delete_elem_input.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('ingredientFamilyIds')) {
+      final l$ingredientFamilyIds = data['ingredientFamilyIds'];
+      result$data['ingredientFamilyIds'] = (l$ingredientFamilyIds as int?);
+    }
+    return Input$ingredients_sortings_delete_elem_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int? get ingredientFamilyIds => (_$data['ingredientFamilyIds'] as int?);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('ingredientFamilyIds')) {
+      final l$ingredientFamilyIds = ingredientFamilyIds;
+      result$data['ingredientFamilyIds'] = l$ingredientFamilyIds;
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$ingredients_sortings_delete_elem_input<
+          Input$ingredients_sortings_delete_elem_input>
+      get copyWith => CopyWith$Input$ingredients_sortings_delete_elem_input(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Input$ingredients_sortings_delete_elem_input) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$ingredientFamilyIds = ingredientFamilyIds;
+    final lOther$ingredientFamilyIds = other.ingredientFamilyIds;
+    if (_$data.containsKey('ingredientFamilyIds') !=
+        other._$data.containsKey('ingredientFamilyIds')) {
+      return false;
+    }
+    if (l$ingredientFamilyIds != lOther$ingredientFamilyIds) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$ingredientFamilyIds = ingredientFamilyIds;
+    return Object.hashAll([
+      _$data.containsKey('ingredientFamilyIds')
+          ? l$ingredientFamilyIds
+          : const {}
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$ingredients_sortings_delete_elem_input<TRes> {
+  factory CopyWith$Input$ingredients_sortings_delete_elem_input(
+    Input$ingredients_sortings_delete_elem_input instance,
+    TRes Function(Input$ingredients_sortings_delete_elem_input) then,
+  ) = _CopyWithImpl$Input$ingredients_sortings_delete_elem_input;
+
+  factory CopyWith$Input$ingredients_sortings_delete_elem_input.stub(TRes res) =
+      _CopyWithStubImpl$Input$ingredients_sortings_delete_elem_input;
+
+  TRes call({int? ingredientFamilyIds});
+}
+
+class _CopyWithImpl$Input$ingredients_sortings_delete_elem_input<TRes>
+    implements CopyWith$Input$ingredients_sortings_delete_elem_input<TRes> {
+  _CopyWithImpl$Input$ingredients_sortings_delete_elem_input(
+    this._instance,
+    this._then,
+  );
+
+  final Input$ingredients_sortings_delete_elem_input _instance;
+
+  final TRes Function(Input$ingredients_sortings_delete_elem_input) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? ingredientFamilyIds = _undefined}) =>
+      _then(Input$ingredients_sortings_delete_elem_input._({
+        ..._instance._$data,
+        if (ingredientFamilyIds != _undefined)
+          'ingredientFamilyIds': (ingredientFamilyIds as int?),
+      }));
+}
+
+class _CopyWithStubImpl$Input$ingredients_sortings_delete_elem_input<TRes>
+    implements CopyWith$Input$ingredients_sortings_delete_elem_input<TRes> {
+  _CopyWithStubImpl$Input$ingredients_sortings_delete_elem_input(this._res);
+
+  TRes _res;
+
+  call({int? ingredientFamilyIds}) => _res;
+}
+
+class Input$ingredients_sortings_delete_key_input {
+  factory Input$ingredients_sortings_delete_key_input(
+          {String? ingredientFamilyIds}) =>
+      Input$ingredients_sortings_delete_key_input._({
+        if (ingredientFamilyIds != null)
+          r'ingredientFamilyIds': ingredientFamilyIds,
+      });
+
+  Input$ingredients_sortings_delete_key_input._(this._$data);
+
+  factory Input$ingredients_sortings_delete_key_input.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('ingredientFamilyIds')) {
+      final l$ingredientFamilyIds = data['ingredientFamilyIds'];
+      result$data['ingredientFamilyIds'] = (l$ingredientFamilyIds as String?);
+    }
+    return Input$ingredients_sortings_delete_key_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get ingredientFamilyIds => (_$data['ingredientFamilyIds'] as String?);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('ingredientFamilyIds')) {
+      final l$ingredientFamilyIds = ingredientFamilyIds;
+      result$data['ingredientFamilyIds'] = l$ingredientFamilyIds;
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$ingredients_sortings_delete_key_input<
+          Input$ingredients_sortings_delete_key_input>
+      get copyWith => CopyWith$Input$ingredients_sortings_delete_key_input(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Input$ingredients_sortings_delete_key_input) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$ingredientFamilyIds = ingredientFamilyIds;
+    final lOther$ingredientFamilyIds = other.ingredientFamilyIds;
+    if (_$data.containsKey('ingredientFamilyIds') !=
+        other._$data.containsKey('ingredientFamilyIds')) {
+      return false;
+    }
+    if (l$ingredientFamilyIds != lOther$ingredientFamilyIds) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$ingredientFamilyIds = ingredientFamilyIds;
+    return Object.hashAll([
+      _$data.containsKey('ingredientFamilyIds')
+          ? l$ingredientFamilyIds
+          : const {}
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$ingredients_sortings_delete_key_input<TRes> {
+  factory CopyWith$Input$ingredients_sortings_delete_key_input(
+    Input$ingredients_sortings_delete_key_input instance,
+    TRes Function(Input$ingredients_sortings_delete_key_input) then,
+  ) = _CopyWithImpl$Input$ingredients_sortings_delete_key_input;
+
+  factory CopyWith$Input$ingredients_sortings_delete_key_input.stub(TRes res) =
+      _CopyWithStubImpl$Input$ingredients_sortings_delete_key_input;
+
+  TRes call({String? ingredientFamilyIds});
+}
+
+class _CopyWithImpl$Input$ingredients_sortings_delete_key_input<TRes>
+    implements CopyWith$Input$ingredients_sortings_delete_key_input<TRes> {
+  _CopyWithImpl$Input$ingredients_sortings_delete_key_input(
+    this._instance,
+    this._then,
+  );
+
+  final Input$ingredients_sortings_delete_key_input _instance;
+
+  final TRes Function(Input$ingredients_sortings_delete_key_input) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? ingredientFamilyIds = _undefined}) =>
+      _then(Input$ingredients_sortings_delete_key_input._({
+        ..._instance._$data,
+        if (ingredientFamilyIds != _undefined)
+          'ingredientFamilyIds': (ingredientFamilyIds as String?),
+      }));
+}
+
+class _CopyWithStubImpl$Input$ingredients_sortings_delete_key_input<TRes>
+    implements CopyWith$Input$ingredients_sortings_delete_key_input<TRes> {
+  _CopyWithStubImpl$Input$ingredients_sortings_delete_key_input(this._res);
+
+  TRes _res;
+
+  call({String? ingredientFamilyIds}) => _res;
+}
+
+class Input$ingredients_sortings_insert_input {
+  factory Input$ingredients_sortings_insert_input({
+    String? iconPath,
+    String? id,
+    String? ingredientFamilyIds,
+    String? name,
+    String? type,
+  }) =>
+      Input$ingredients_sortings_insert_input._({
+        if (iconPath != null) r'iconPath': iconPath,
+        if (id != null) r'id': id,
+        if (ingredientFamilyIds != null)
+          r'ingredientFamilyIds': ingredientFamilyIds,
+        if (name != null) r'name': name,
+        if (type != null) r'type': type,
+      });
+
+  Input$ingredients_sortings_insert_input._(this._$data);
+
+  factory Input$ingredients_sortings_insert_input.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('iconPath')) {
+      final l$iconPath = data['iconPath'];
+      result$data['iconPath'] = (l$iconPath as String?);
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = (l$id as String?);
+    }
+    if (data.containsKey('ingredientFamilyIds')) {
+      final l$ingredientFamilyIds = data['ingredientFamilyIds'];
+      result$data['ingredientFamilyIds'] = (l$ingredientFamilyIds as String?);
+    }
+    if (data.containsKey('name')) {
+      final l$name = data['name'];
+      result$data['name'] = (l$name as String?);
+    }
+    if (data.containsKey('type')) {
+      final l$type = data['type'];
+      result$data['type'] = (l$type as String?);
+    }
+    return Input$ingredients_sortings_insert_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get iconPath => (_$data['iconPath'] as String?);
+  String? get id => (_$data['id'] as String?);
+  String? get ingredientFamilyIds => (_$data['ingredientFamilyIds'] as String?);
+  String? get name => (_$data['name'] as String?);
+  String? get type => (_$data['type'] as String?);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('iconPath')) {
+      final l$iconPath = iconPath;
+      result$data['iconPath'] = l$iconPath;
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id;
+    }
+    if (_$data.containsKey('ingredientFamilyIds')) {
+      final l$ingredientFamilyIds = ingredientFamilyIds;
+      result$data['ingredientFamilyIds'] = l$ingredientFamilyIds;
+    }
+    if (_$data.containsKey('name')) {
+      final l$name = name;
+      result$data['name'] = l$name;
+    }
+    if (_$data.containsKey('type')) {
+      final l$type = type;
+      result$data['type'] = l$type;
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$ingredients_sortings_insert_input<
+          Input$ingredients_sortings_insert_input>
+      get copyWith => CopyWith$Input$ingredients_sortings_insert_input(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Input$ingredients_sortings_insert_input) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$iconPath = iconPath;
+    final lOther$iconPath = other.iconPath;
+    if (_$data.containsKey('iconPath') !=
+        other._$data.containsKey('iconPath')) {
+      return false;
+    }
+    if (l$iconPath != lOther$iconPath) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$ingredientFamilyIds = ingredientFamilyIds;
+    final lOther$ingredientFamilyIds = other.ingredientFamilyIds;
+    if (_$data.containsKey('ingredientFamilyIds') !=
+        other._$data.containsKey('ingredientFamilyIds')) {
+      return false;
+    }
+    if (l$ingredientFamilyIds != lOther$ingredientFamilyIds) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (_$data.containsKey('name') != other._$data.containsKey('name')) {
+      return false;
+    }
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$type = type;
+    final lOther$type = other.type;
+    if (_$data.containsKey('type') != other._$data.containsKey('type')) {
+      return false;
+    }
+    if (l$type != lOther$type) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$iconPath = iconPath;
+    final l$id = id;
+    final l$ingredientFamilyIds = ingredientFamilyIds;
+    final l$name = name;
+    final l$type = type;
+    return Object.hashAll([
+      _$data.containsKey('iconPath') ? l$iconPath : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('ingredientFamilyIds')
+          ? l$ingredientFamilyIds
+          : const {},
+      _$data.containsKey('name') ? l$name : const {},
+      _$data.containsKey('type') ? l$type : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$ingredients_sortings_insert_input<TRes> {
+  factory CopyWith$Input$ingredients_sortings_insert_input(
+    Input$ingredients_sortings_insert_input instance,
+    TRes Function(Input$ingredients_sortings_insert_input) then,
+  ) = _CopyWithImpl$Input$ingredients_sortings_insert_input;
+
+  factory CopyWith$Input$ingredients_sortings_insert_input.stub(TRes res) =
+      _CopyWithStubImpl$Input$ingredients_sortings_insert_input;
+
+  TRes call({
+    String? iconPath,
+    String? id,
+    String? ingredientFamilyIds,
+    String? name,
+    String? type,
+  });
+}
+
+class _CopyWithImpl$Input$ingredients_sortings_insert_input<TRes>
+    implements CopyWith$Input$ingredients_sortings_insert_input<TRes> {
+  _CopyWithImpl$Input$ingredients_sortings_insert_input(
+    this._instance,
+    this._then,
+  );
+
+  final Input$ingredients_sortings_insert_input _instance;
+
+  final TRes Function(Input$ingredients_sortings_insert_input) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? iconPath = _undefined,
+    Object? id = _undefined,
+    Object? ingredientFamilyIds = _undefined,
+    Object? name = _undefined,
+    Object? type = _undefined,
+  }) =>
+      _then(Input$ingredients_sortings_insert_input._({
+        ..._instance._$data,
+        if (iconPath != _undefined) 'iconPath': (iconPath as String?),
+        if (id != _undefined) 'id': (id as String?),
+        if (ingredientFamilyIds != _undefined)
+          'ingredientFamilyIds': (ingredientFamilyIds as String?),
+        if (name != _undefined) 'name': (name as String?),
+        if (type != _undefined) 'type': (type as String?),
+      }));
+}
+
+class _CopyWithStubImpl$Input$ingredients_sortings_insert_input<TRes>
+    implements CopyWith$Input$ingredients_sortings_insert_input<TRes> {
+  _CopyWithStubImpl$Input$ingredients_sortings_insert_input(this._res);
+
+  TRes _res;
+
+  call({
+    String? iconPath,
+    String? id,
+    String? ingredientFamilyIds,
+    String? name,
+    String? type,
+  }) =>
+      _res;
+}
+
+class Input$ingredients_sortings_on_conflict {
+  factory Input$ingredients_sortings_on_conflict({
+    required Enum$ingredients_sortings_constraint constraint,
+    required List<Enum$ingredients_sortings_update_column> update_columns,
+    Input$ingredients_sortings_bool_exp? where,
+  }) =>
+      Input$ingredients_sortings_on_conflict._({
+        r'constraint': constraint,
+        r'update_columns': update_columns,
+        if (where != null) r'where': where,
+      });
+
+  Input$ingredients_sortings_on_conflict._(this._$data);
+
+  factory Input$ingredients_sortings_on_conflict.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$constraint = data['constraint'];
+    result$data['constraint'] =
+        fromJson$Enum$ingredients_sortings_constraint((l$constraint as String));
+    final l$update_columns = data['update_columns'];
+    result$data['update_columns'] = (l$update_columns as List<dynamic>)
+        .map((e) =>
+            fromJson$Enum$ingredients_sortings_update_column((e as String)))
+        .toList();
+    if (data.containsKey('where')) {
+      final l$where = data['where'];
+      result$data['where'] = l$where == null
+          ? null
+          : Input$ingredients_sortings_bool_exp.fromJson(
+              (l$where as Map<String, dynamic>));
+    }
+    return Input$ingredients_sortings_on_conflict._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enum$ingredients_sortings_constraint get constraint =>
+      (_$data['constraint'] as Enum$ingredients_sortings_constraint);
+  List<Enum$ingredients_sortings_update_column> get update_columns =>
+      (_$data['update_columns']
+          as List<Enum$ingredients_sortings_update_column>);
+  Input$ingredients_sortings_bool_exp? get where =>
+      (_$data['where'] as Input$ingredients_sortings_bool_exp?);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$constraint = constraint;
+    result$data['constraint'] =
+        toJson$Enum$ingredients_sortings_constraint(l$constraint);
+    final l$update_columns = update_columns;
+    result$data['update_columns'] = l$update_columns
+        .map((e) => toJson$Enum$ingredients_sortings_update_column(e))
+        .toList();
+    if (_$data.containsKey('where')) {
+      final l$where = where;
+      result$data['where'] = l$where?.toJson();
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$ingredients_sortings_on_conflict<
+          Input$ingredients_sortings_on_conflict>
+      get copyWith => CopyWith$Input$ingredients_sortings_on_conflict(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Input$ingredients_sortings_on_conflict) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$constraint = constraint;
+    final lOther$constraint = other.constraint;
+    if (l$constraint != lOther$constraint) {
+      return false;
+    }
+    final l$update_columns = update_columns;
+    final lOther$update_columns = other.update_columns;
+    if (l$update_columns.length != lOther$update_columns.length) {
+      return false;
+    }
+    for (int i = 0; i < l$update_columns.length; i++) {
+      final l$update_columns$entry = l$update_columns[i];
+      final lOther$update_columns$entry = lOther$update_columns[i];
+      if (l$update_columns$entry != lOther$update_columns$entry) {
+        return false;
+      }
+    }
+    final l$where = where;
+    final lOther$where = other.where;
+    if (_$data.containsKey('where') != other._$data.containsKey('where')) {
+      return false;
+    }
+    if (l$where != lOther$where) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$constraint = constraint;
+    final l$update_columns = update_columns;
+    final l$where = where;
+    return Object.hashAll([
+      l$constraint,
+      Object.hashAll(l$update_columns.map((v) => v)),
+      _$data.containsKey('where') ? l$where : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$ingredients_sortings_on_conflict<TRes> {
+  factory CopyWith$Input$ingredients_sortings_on_conflict(
+    Input$ingredients_sortings_on_conflict instance,
+    TRes Function(Input$ingredients_sortings_on_conflict) then,
+  ) = _CopyWithImpl$Input$ingredients_sortings_on_conflict;
+
+  factory CopyWith$Input$ingredients_sortings_on_conflict.stub(TRes res) =
+      _CopyWithStubImpl$Input$ingredients_sortings_on_conflict;
+
+  TRes call({
+    Enum$ingredients_sortings_constraint? constraint,
+    List<Enum$ingredients_sortings_update_column>? update_columns,
+    Input$ingredients_sortings_bool_exp? where,
+  });
+  CopyWith$Input$ingredients_sortings_bool_exp<TRes> get where;
+}
+
+class _CopyWithImpl$Input$ingredients_sortings_on_conflict<TRes>
+    implements CopyWith$Input$ingredients_sortings_on_conflict<TRes> {
+  _CopyWithImpl$Input$ingredients_sortings_on_conflict(
+    this._instance,
+    this._then,
+  );
+
+  final Input$ingredients_sortings_on_conflict _instance;
+
+  final TRes Function(Input$ingredients_sortings_on_conflict) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? constraint = _undefined,
+    Object? update_columns = _undefined,
+    Object? where = _undefined,
+  }) =>
+      _then(Input$ingredients_sortings_on_conflict._({
+        ..._instance._$data,
+        if (constraint != _undefined && constraint != null)
+          'constraint': (constraint as Enum$ingredients_sortings_constraint),
+        if (update_columns != _undefined && update_columns != null)
+          'update_columns':
+              (update_columns as List<Enum$ingredients_sortings_update_column>),
+        if (where != _undefined)
+          'where': (where as Input$ingredients_sortings_bool_exp?),
+      }));
+  CopyWith$Input$ingredients_sortings_bool_exp<TRes> get where {
+    final local$where = _instance.where;
+    return local$where == null
+        ? CopyWith$Input$ingredients_sortings_bool_exp.stub(_then(_instance))
+        : CopyWith$Input$ingredients_sortings_bool_exp(
+            local$where, (e) => call(where: e));
+  }
+}
+
+class _CopyWithStubImpl$Input$ingredients_sortings_on_conflict<TRes>
+    implements CopyWith$Input$ingredients_sortings_on_conflict<TRes> {
+  _CopyWithStubImpl$Input$ingredients_sortings_on_conflict(this._res);
+
+  TRes _res;
+
+  call({
+    Enum$ingredients_sortings_constraint? constraint,
+    List<Enum$ingredients_sortings_update_column>? update_columns,
+    Input$ingredients_sortings_bool_exp? where,
+  }) =>
+      _res;
+  CopyWith$Input$ingredients_sortings_bool_exp<TRes> get where =>
+      CopyWith$Input$ingredients_sortings_bool_exp.stub(_res);
+}
+
+class Input$ingredients_sortings_order_by {
+  factory Input$ingredients_sortings_order_by({
+    Enum$order_by? iconPath,
+    Enum$order_by? id,
+    Enum$order_by? ingredientFamilyIds,
+    Enum$order_by? name,
+    Enum$order_by? type,
+  }) =>
+      Input$ingredients_sortings_order_by._({
+        if (iconPath != null) r'iconPath': iconPath,
+        if (id != null) r'id': id,
+        if (ingredientFamilyIds != null)
+          r'ingredientFamilyIds': ingredientFamilyIds,
+        if (name != null) r'name': name,
+        if (type != null) r'type': type,
+      });
+
+  Input$ingredients_sortings_order_by._(this._$data);
+
+  factory Input$ingredients_sortings_order_by.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('iconPath')) {
+      final l$iconPath = data['iconPath'];
+      result$data['iconPath'] = l$iconPath == null
+          ? null
+          : fromJson$Enum$order_by((l$iconPath as String));
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] =
+          l$id == null ? null : fromJson$Enum$order_by((l$id as String));
+    }
+    if (data.containsKey('ingredientFamilyIds')) {
+      final l$ingredientFamilyIds = data['ingredientFamilyIds'];
+      result$data['ingredientFamilyIds'] = l$ingredientFamilyIds == null
+          ? null
+          : fromJson$Enum$order_by((l$ingredientFamilyIds as String));
+    }
+    if (data.containsKey('name')) {
+      final l$name = data['name'];
+      result$data['name'] =
+          l$name == null ? null : fromJson$Enum$order_by((l$name as String));
+    }
+    if (data.containsKey('type')) {
+      final l$type = data['type'];
+      result$data['type'] =
+          l$type == null ? null : fromJson$Enum$order_by((l$type as String));
+    }
+    return Input$ingredients_sortings_order_by._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enum$order_by? get iconPath => (_$data['iconPath'] as Enum$order_by?);
+  Enum$order_by? get id => (_$data['id'] as Enum$order_by?);
+  Enum$order_by? get ingredientFamilyIds =>
+      (_$data['ingredientFamilyIds'] as Enum$order_by?);
+  Enum$order_by? get name => (_$data['name'] as Enum$order_by?);
+  Enum$order_by? get type => (_$data['type'] as Enum$order_by?);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('iconPath')) {
+      final l$iconPath = iconPath;
+      result$data['iconPath'] =
+          l$iconPath == null ? null : toJson$Enum$order_by(l$iconPath);
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id == null ? null : toJson$Enum$order_by(l$id);
+    }
+    if (_$data.containsKey('ingredientFamilyIds')) {
+      final l$ingredientFamilyIds = ingredientFamilyIds;
+      result$data['ingredientFamilyIds'] = l$ingredientFamilyIds == null
+          ? null
+          : toJson$Enum$order_by(l$ingredientFamilyIds);
+    }
+    if (_$data.containsKey('name')) {
+      final l$name = name;
+      result$data['name'] =
+          l$name == null ? null : toJson$Enum$order_by(l$name);
+    }
+    if (_$data.containsKey('type')) {
+      final l$type = type;
+      result$data['type'] =
+          l$type == null ? null : toJson$Enum$order_by(l$type);
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$ingredients_sortings_order_by<
+          Input$ingredients_sortings_order_by>
+      get copyWith => CopyWith$Input$ingredients_sortings_order_by(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Input$ingredients_sortings_order_by) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$iconPath = iconPath;
+    final lOther$iconPath = other.iconPath;
+    if (_$data.containsKey('iconPath') !=
+        other._$data.containsKey('iconPath')) {
+      return false;
+    }
+    if (l$iconPath != lOther$iconPath) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$ingredientFamilyIds = ingredientFamilyIds;
+    final lOther$ingredientFamilyIds = other.ingredientFamilyIds;
+    if (_$data.containsKey('ingredientFamilyIds') !=
+        other._$data.containsKey('ingredientFamilyIds')) {
+      return false;
+    }
+    if (l$ingredientFamilyIds != lOther$ingredientFamilyIds) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (_$data.containsKey('name') != other._$data.containsKey('name')) {
+      return false;
+    }
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$type = type;
+    final lOther$type = other.type;
+    if (_$data.containsKey('type') != other._$data.containsKey('type')) {
+      return false;
+    }
+    if (l$type != lOther$type) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$iconPath = iconPath;
+    final l$id = id;
+    final l$ingredientFamilyIds = ingredientFamilyIds;
+    final l$name = name;
+    final l$type = type;
+    return Object.hashAll([
+      _$data.containsKey('iconPath') ? l$iconPath : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('ingredientFamilyIds')
+          ? l$ingredientFamilyIds
+          : const {},
+      _$data.containsKey('name') ? l$name : const {},
+      _$data.containsKey('type') ? l$type : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$ingredients_sortings_order_by<TRes> {
+  factory CopyWith$Input$ingredients_sortings_order_by(
+    Input$ingredients_sortings_order_by instance,
+    TRes Function(Input$ingredients_sortings_order_by) then,
+  ) = _CopyWithImpl$Input$ingredients_sortings_order_by;
+
+  factory CopyWith$Input$ingredients_sortings_order_by.stub(TRes res) =
+      _CopyWithStubImpl$Input$ingredients_sortings_order_by;
+
+  TRes call({
+    Enum$order_by? iconPath,
+    Enum$order_by? id,
+    Enum$order_by? ingredientFamilyIds,
+    Enum$order_by? name,
+    Enum$order_by? type,
+  });
+}
+
+class _CopyWithImpl$Input$ingredients_sortings_order_by<TRes>
+    implements CopyWith$Input$ingredients_sortings_order_by<TRes> {
+  _CopyWithImpl$Input$ingredients_sortings_order_by(
+    this._instance,
+    this._then,
+  );
+
+  final Input$ingredients_sortings_order_by _instance;
+
+  final TRes Function(Input$ingredients_sortings_order_by) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? iconPath = _undefined,
+    Object? id = _undefined,
+    Object? ingredientFamilyIds = _undefined,
+    Object? name = _undefined,
+    Object? type = _undefined,
+  }) =>
+      _then(Input$ingredients_sortings_order_by._({
+        ..._instance._$data,
+        if (iconPath != _undefined) 'iconPath': (iconPath as Enum$order_by?),
+        if (id != _undefined) 'id': (id as Enum$order_by?),
+        if (ingredientFamilyIds != _undefined)
+          'ingredientFamilyIds': (ingredientFamilyIds as Enum$order_by?),
+        if (name != _undefined) 'name': (name as Enum$order_by?),
+        if (type != _undefined) 'type': (type as Enum$order_by?),
+      }));
+}
+
+class _CopyWithStubImpl$Input$ingredients_sortings_order_by<TRes>
+    implements CopyWith$Input$ingredients_sortings_order_by<TRes> {
+  _CopyWithStubImpl$Input$ingredients_sortings_order_by(this._res);
+
+  TRes _res;
+
+  call({
+    Enum$order_by? iconPath,
+    Enum$order_by? id,
+    Enum$order_by? ingredientFamilyIds,
+    Enum$order_by? name,
+    Enum$order_by? type,
+  }) =>
+      _res;
+}
+
+class Input$ingredients_sortings_pk_columns_input {
+  factory Input$ingredients_sortings_pk_columns_input({required String id}) =>
+      Input$ingredients_sortings_pk_columns_input._({
+        r'id': id,
+      });
+
+  Input$ingredients_sortings_pk_columns_input._(this._$data);
+
+  factory Input$ingredients_sortings_pk_columns_input.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$id = data['id'];
+    result$data['id'] = (l$id as String);
+    return Input$ingredients_sortings_pk_columns_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get id => (_$data['id'] as String);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$id = id;
+    result$data['id'] = l$id;
+    return result$data;
+  }
+
+  CopyWith$Input$ingredients_sortings_pk_columns_input<
+          Input$ingredients_sortings_pk_columns_input>
+      get copyWith => CopyWith$Input$ingredients_sortings_pk_columns_input(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Input$ingredients_sortings_pk_columns_input) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    return Object.hashAll([l$id]);
+  }
+}
+
+abstract class CopyWith$Input$ingredients_sortings_pk_columns_input<TRes> {
+  factory CopyWith$Input$ingredients_sortings_pk_columns_input(
+    Input$ingredients_sortings_pk_columns_input instance,
+    TRes Function(Input$ingredients_sortings_pk_columns_input) then,
+  ) = _CopyWithImpl$Input$ingredients_sortings_pk_columns_input;
+
+  factory CopyWith$Input$ingredients_sortings_pk_columns_input.stub(TRes res) =
+      _CopyWithStubImpl$Input$ingredients_sortings_pk_columns_input;
+
+  TRes call({String? id});
+}
+
+class _CopyWithImpl$Input$ingredients_sortings_pk_columns_input<TRes>
+    implements CopyWith$Input$ingredients_sortings_pk_columns_input<TRes> {
+  _CopyWithImpl$Input$ingredients_sortings_pk_columns_input(
+    this._instance,
+    this._then,
+  );
+
+  final Input$ingredients_sortings_pk_columns_input _instance;
+
+  final TRes Function(Input$ingredients_sortings_pk_columns_input) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? id = _undefined}) =>
+      _then(Input$ingredients_sortings_pk_columns_input._({
+        ..._instance._$data,
+        if (id != _undefined && id != null) 'id': (id as String),
+      }));
+}
+
+class _CopyWithStubImpl$Input$ingredients_sortings_pk_columns_input<TRes>
+    implements CopyWith$Input$ingredients_sortings_pk_columns_input<TRes> {
+  _CopyWithStubImpl$Input$ingredients_sortings_pk_columns_input(this._res);
+
+  TRes _res;
+
+  call({String? id}) => _res;
+}
+
+class Input$ingredients_sortings_prepend_input {
+  factory Input$ingredients_sortings_prepend_input(
+          {String? ingredientFamilyIds}) =>
+      Input$ingredients_sortings_prepend_input._({
+        if (ingredientFamilyIds != null)
+          r'ingredientFamilyIds': ingredientFamilyIds,
+      });
+
+  Input$ingredients_sortings_prepend_input._(this._$data);
+
+  factory Input$ingredients_sortings_prepend_input.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('ingredientFamilyIds')) {
+      final l$ingredientFamilyIds = data['ingredientFamilyIds'];
+      result$data['ingredientFamilyIds'] = (l$ingredientFamilyIds as String?);
+    }
+    return Input$ingredients_sortings_prepend_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get ingredientFamilyIds => (_$data['ingredientFamilyIds'] as String?);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('ingredientFamilyIds')) {
+      final l$ingredientFamilyIds = ingredientFamilyIds;
+      result$data['ingredientFamilyIds'] = l$ingredientFamilyIds;
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$ingredients_sortings_prepend_input<
+          Input$ingredients_sortings_prepend_input>
+      get copyWith => CopyWith$Input$ingredients_sortings_prepend_input(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Input$ingredients_sortings_prepend_input) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$ingredientFamilyIds = ingredientFamilyIds;
+    final lOther$ingredientFamilyIds = other.ingredientFamilyIds;
+    if (_$data.containsKey('ingredientFamilyIds') !=
+        other._$data.containsKey('ingredientFamilyIds')) {
+      return false;
+    }
+    if (l$ingredientFamilyIds != lOther$ingredientFamilyIds) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$ingredientFamilyIds = ingredientFamilyIds;
+    return Object.hashAll([
+      _$data.containsKey('ingredientFamilyIds')
+          ? l$ingredientFamilyIds
+          : const {}
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$ingredients_sortings_prepend_input<TRes> {
+  factory CopyWith$Input$ingredients_sortings_prepend_input(
+    Input$ingredients_sortings_prepend_input instance,
+    TRes Function(Input$ingredients_sortings_prepend_input) then,
+  ) = _CopyWithImpl$Input$ingredients_sortings_prepend_input;
+
+  factory CopyWith$Input$ingredients_sortings_prepend_input.stub(TRes res) =
+      _CopyWithStubImpl$Input$ingredients_sortings_prepend_input;
+
+  TRes call({String? ingredientFamilyIds});
+}
+
+class _CopyWithImpl$Input$ingredients_sortings_prepend_input<TRes>
+    implements CopyWith$Input$ingredients_sortings_prepend_input<TRes> {
+  _CopyWithImpl$Input$ingredients_sortings_prepend_input(
+    this._instance,
+    this._then,
+  );
+
+  final Input$ingredients_sortings_prepend_input _instance;
+
+  final TRes Function(Input$ingredients_sortings_prepend_input) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? ingredientFamilyIds = _undefined}) =>
+      _then(Input$ingredients_sortings_prepend_input._({
+        ..._instance._$data,
+        if (ingredientFamilyIds != _undefined)
+          'ingredientFamilyIds': (ingredientFamilyIds as String?),
+      }));
+}
+
+class _CopyWithStubImpl$Input$ingredients_sortings_prepend_input<TRes>
+    implements CopyWith$Input$ingredients_sortings_prepend_input<TRes> {
+  _CopyWithStubImpl$Input$ingredients_sortings_prepend_input(this._res);
+
+  TRes _res;
+
+  call({String? ingredientFamilyIds}) => _res;
+}
+
+class Input$ingredients_sortings_set_input {
+  factory Input$ingredients_sortings_set_input({
+    String? iconPath,
+    String? id,
+    String? ingredientFamilyIds,
+    String? name,
+    String? type,
+  }) =>
+      Input$ingredients_sortings_set_input._({
+        if (iconPath != null) r'iconPath': iconPath,
+        if (id != null) r'id': id,
+        if (ingredientFamilyIds != null)
+          r'ingredientFamilyIds': ingredientFamilyIds,
+        if (name != null) r'name': name,
+        if (type != null) r'type': type,
+      });
+
+  Input$ingredients_sortings_set_input._(this._$data);
+
+  factory Input$ingredients_sortings_set_input.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('iconPath')) {
+      final l$iconPath = data['iconPath'];
+      result$data['iconPath'] = (l$iconPath as String?);
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = (l$id as String?);
+    }
+    if (data.containsKey('ingredientFamilyIds')) {
+      final l$ingredientFamilyIds = data['ingredientFamilyIds'];
+      result$data['ingredientFamilyIds'] = (l$ingredientFamilyIds as String?);
+    }
+    if (data.containsKey('name')) {
+      final l$name = data['name'];
+      result$data['name'] = (l$name as String?);
+    }
+    if (data.containsKey('type')) {
+      final l$type = data['type'];
+      result$data['type'] = (l$type as String?);
+    }
+    return Input$ingredients_sortings_set_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get iconPath => (_$data['iconPath'] as String?);
+  String? get id => (_$data['id'] as String?);
+  String? get ingredientFamilyIds => (_$data['ingredientFamilyIds'] as String?);
+  String? get name => (_$data['name'] as String?);
+  String? get type => (_$data['type'] as String?);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('iconPath')) {
+      final l$iconPath = iconPath;
+      result$data['iconPath'] = l$iconPath;
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id;
+    }
+    if (_$data.containsKey('ingredientFamilyIds')) {
+      final l$ingredientFamilyIds = ingredientFamilyIds;
+      result$data['ingredientFamilyIds'] = l$ingredientFamilyIds;
+    }
+    if (_$data.containsKey('name')) {
+      final l$name = name;
+      result$data['name'] = l$name;
+    }
+    if (_$data.containsKey('type')) {
+      final l$type = type;
+      result$data['type'] = l$type;
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$ingredients_sortings_set_input<
+          Input$ingredients_sortings_set_input>
+      get copyWith => CopyWith$Input$ingredients_sortings_set_input(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Input$ingredients_sortings_set_input) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$iconPath = iconPath;
+    final lOther$iconPath = other.iconPath;
+    if (_$data.containsKey('iconPath') !=
+        other._$data.containsKey('iconPath')) {
+      return false;
+    }
+    if (l$iconPath != lOther$iconPath) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$ingredientFamilyIds = ingredientFamilyIds;
+    final lOther$ingredientFamilyIds = other.ingredientFamilyIds;
+    if (_$data.containsKey('ingredientFamilyIds') !=
+        other._$data.containsKey('ingredientFamilyIds')) {
+      return false;
+    }
+    if (l$ingredientFamilyIds != lOther$ingredientFamilyIds) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (_$data.containsKey('name') != other._$data.containsKey('name')) {
+      return false;
+    }
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$type = type;
+    final lOther$type = other.type;
+    if (_$data.containsKey('type') != other._$data.containsKey('type')) {
+      return false;
+    }
+    if (l$type != lOther$type) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$iconPath = iconPath;
+    final l$id = id;
+    final l$ingredientFamilyIds = ingredientFamilyIds;
+    final l$name = name;
+    final l$type = type;
+    return Object.hashAll([
+      _$data.containsKey('iconPath') ? l$iconPath : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('ingredientFamilyIds')
+          ? l$ingredientFamilyIds
+          : const {},
+      _$data.containsKey('name') ? l$name : const {},
+      _$data.containsKey('type') ? l$type : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$ingredients_sortings_set_input<TRes> {
+  factory CopyWith$Input$ingredients_sortings_set_input(
+    Input$ingredients_sortings_set_input instance,
+    TRes Function(Input$ingredients_sortings_set_input) then,
+  ) = _CopyWithImpl$Input$ingredients_sortings_set_input;
+
+  factory CopyWith$Input$ingredients_sortings_set_input.stub(TRes res) =
+      _CopyWithStubImpl$Input$ingredients_sortings_set_input;
+
+  TRes call({
+    String? iconPath,
+    String? id,
+    String? ingredientFamilyIds,
+    String? name,
+    String? type,
+  });
+}
+
+class _CopyWithImpl$Input$ingredients_sortings_set_input<TRes>
+    implements CopyWith$Input$ingredients_sortings_set_input<TRes> {
+  _CopyWithImpl$Input$ingredients_sortings_set_input(
+    this._instance,
+    this._then,
+  );
+
+  final Input$ingredients_sortings_set_input _instance;
+
+  final TRes Function(Input$ingredients_sortings_set_input) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? iconPath = _undefined,
+    Object? id = _undefined,
+    Object? ingredientFamilyIds = _undefined,
+    Object? name = _undefined,
+    Object? type = _undefined,
+  }) =>
+      _then(Input$ingredients_sortings_set_input._({
+        ..._instance._$data,
+        if (iconPath != _undefined) 'iconPath': (iconPath as String?),
+        if (id != _undefined) 'id': (id as String?),
+        if (ingredientFamilyIds != _undefined)
+          'ingredientFamilyIds': (ingredientFamilyIds as String?),
+        if (name != _undefined) 'name': (name as String?),
+        if (type != _undefined) 'type': (type as String?),
+      }));
+}
+
+class _CopyWithStubImpl$Input$ingredients_sortings_set_input<TRes>
+    implements CopyWith$Input$ingredients_sortings_set_input<TRes> {
+  _CopyWithStubImpl$Input$ingredients_sortings_set_input(this._res);
+
+  TRes _res;
+
+  call({
+    String? iconPath,
+    String? id,
+    String? ingredientFamilyIds,
+    String? name,
+    String? type,
+  }) =>
+      _res;
+}
+
+class Input$ingredients_sortings_stream_cursor_input {
+  factory Input$ingredients_sortings_stream_cursor_input({
+    required Input$ingredients_sortings_stream_cursor_value_input initial_value,
+    Enum$cursor_ordering? ordering,
+  }) =>
+      Input$ingredients_sortings_stream_cursor_input._({
+        r'initial_value': initial_value,
+        if (ordering != null) r'ordering': ordering,
+      });
+
+  Input$ingredients_sortings_stream_cursor_input._(this._$data);
+
+  factory Input$ingredients_sortings_stream_cursor_input.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = data['initial_value'];
+    result$data['initial_value'] =
+        Input$ingredients_sortings_stream_cursor_value_input.fromJson(
+            (l$initial_value as Map<String, dynamic>));
+    if (data.containsKey('ordering')) {
+      final l$ordering = data['ordering'];
+      result$data['ordering'] = l$ordering == null
+          ? null
+          : fromJson$Enum$cursor_ordering((l$ordering as String));
+    }
+    return Input$ingredients_sortings_stream_cursor_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Input$ingredients_sortings_stream_cursor_value_input get initial_value =>
+      (_$data['initial_value']
+          as Input$ingredients_sortings_stream_cursor_value_input);
+  Enum$cursor_ordering? get ordering =>
+      (_$data['ordering'] as Enum$cursor_ordering?);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$initial_value = initial_value;
+    result$data['initial_value'] = l$initial_value.toJson();
+    if (_$data.containsKey('ordering')) {
+      final l$ordering = ordering;
+      result$data['ordering'] =
+          l$ordering == null ? null : toJson$Enum$cursor_ordering(l$ordering);
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$ingredients_sortings_stream_cursor_input<
+          Input$ingredients_sortings_stream_cursor_input>
+      get copyWith => CopyWith$Input$ingredients_sortings_stream_cursor_input(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Input$ingredients_sortings_stream_cursor_input) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$initial_value = initial_value;
+    final lOther$initial_value = other.initial_value;
+    if (l$initial_value != lOther$initial_value) {
+      return false;
+    }
+    final l$ordering = ordering;
+    final lOther$ordering = other.ordering;
+    if (_$data.containsKey('ordering') !=
+        other._$data.containsKey('ordering')) {
+      return false;
+    }
+    if (l$ordering != lOther$ordering) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$initial_value = initial_value;
+    final l$ordering = ordering;
+    return Object.hashAll([
+      l$initial_value,
+      _$data.containsKey('ordering') ? l$ordering : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$ingredients_sortings_stream_cursor_input<TRes> {
+  factory CopyWith$Input$ingredients_sortings_stream_cursor_input(
+    Input$ingredients_sortings_stream_cursor_input instance,
+    TRes Function(Input$ingredients_sortings_stream_cursor_input) then,
+  ) = _CopyWithImpl$Input$ingredients_sortings_stream_cursor_input;
+
+  factory CopyWith$Input$ingredients_sortings_stream_cursor_input.stub(
+          TRes res) =
+      _CopyWithStubImpl$Input$ingredients_sortings_stream_cursor_input;
+
+  TRes call({
+    Input$ingredients_sortings_stream_cursor_value_input? initial_value,
+    Enum$cursor_ordering? ordering,
+  });
+  CopyWith$Input$ingredients_sortings_stream_cursor_value_input<TRes>
+      get initial_value;
+}
+
+class _CopyWithImpl$Input$ingredients_sortings_stream_cursor_input<TRes>
+    implements CopyWith$Input$ingredients_sortings_stream_cursor_input<TRes> {
+  _CopyWithImpl$Input$ingredients_sortings_stream_cursor_input(
+    this._instance,
+    this._then,
+  );
+
+  final Input$ingredients_sortings_stream_cursor_input _instance;
+
+  final TRes Function(Input$ingredients_sortings_stream_cursor_input) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? initial_value = _undefined,
+    Object? ordering = _undefined,
+  }) =>
+      _then(Input$ingredients_sortings_stream_cursor_input._({
+        ..._instance._$data,
+        if (initial_value != _undefined && initial_value != null)
+          'initial_value': (initial_value
+              as Input$ingredients_sortings_stream_cursor_value_input),
+        if (ordering != _undefined)
+          'ordering': (ordering as Enum$cursor_ordering?),
+      }));
+  CopyWith$Input$ingredients_sortings_stream_cursor_value_input<TRes>
+      get initial_value {
+    final local$initial_value = _instance.initial_value;
+    return CopyWith$Input$ingredients_sortings_stream_cursor_value_input(
+        local$initial_value, (e) => call(initial_value: e));
+  }
+}
+
+class _CopyWithStubImpl$Input$ingredients_sortings_stream_cursor_input<TRes>
+    implements CopyWith$Input$ingredients_sortings_stream_cursor_input<TRes> {
+  _CopyWithStubImpl$Input$ingredients_sortings_stream_cursor_input(this._res);
+
+  TRes _res;
+
+  call({
+    Input$ingredients_sortings_stream_cursor_value_input? initial_value,
+    Enum$cursor_ordering? ordering,
+  }) =>
+      _res;
+  CopyWith$Input$ingredients_sortings_stream_cursor_value_input<TRes>
+      get initial_value =>
+          CopyWith$Input$ingredients_sortings_stream_cursor_value_input.stub(
+              _res);
+}
+
+class Input$ingredients_sortings_stream_cursor_value_input {
+  factory Input$ingredients_sortings_stream_cursor_value_input({
+    String? iconPath,
+    String? id,
+    String? ingredientFamilyIds,
+    String? name,
+    String? type,
+  }) =>
+      Input$ingredients_sortings_stream_cursor_value_input._({
+        if (iconPath != null) r'iconPath': iconPath,
+        if (id != null) r'id': id,
+        if (ingredientFamilyIds != null)
+          r'ingredientFamilyIds': ingredientFamilyIds,
+        if (name != null) r'name': name,
+        if (type != null) r'type': type,
+      });
+
+  Input$ingredients_sortings_stream_cursor_value_input._(this._$data);
+
+  factory Input$ingredients_sortings_stream_cursor_value_input.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('iconPath')) {
+      final l$iconPath = data['iconPath'];
+      result$data['iconPath'] = (l$iconPath as String?);
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = (l$id as String?);
+    }
+    if (data.containsKey('ingredientFamilyIds')) {
+      final l$ingredientFamilyIds = data['ingredientFamilyIds'];
+      result$data['ingredientFamilyIds'] = (l$ingredientFamilyIds as String?);
+    }
+    if (data.containsKey('name')) {
+      final l$name = data['name'];
+      result$data['name'] = (l$name as String?);
+    }
+    if (data.containsKey('type')) {
+      final l$type = data['type'];
+      result$data['type'] = (l$type as String?);
+    }
+    return Input$ingredients_sortings_stream_cursor_value_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get iconPath => (_$data['iconPath'] as String?);
+  String? get id => (_$data['id'] as String?);
+  String? get ingredientFamilyIds => (_$data['ingredientFamilyIds'] as String?);
+  String? get name => (_$data['name'] as String?);
+  String? get type => (_$data['type'] as String?);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('iconPath')) {
+      final l$iconPath = iconPath;
+      result$data['iconPath'] = l$iconPath;
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id;
+    }
+    if (_$data.containsKey('ingredientFamilyIds')) {
+      final l$ingredientFamilyIds = ingredientFamilyIds;
+      result$data['ingredientFamilyIds'] = l$ingredientFamilyIds;
+    }
+    if (_$data.containsKey('name')) {
+      final l$name = name;
+      result$data['name'] = l$name;
+    }
+    if (_$data.containsKey('type')) {
+      final l$type = type;
+      result$data['type'] = l$type;
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$ingredients_sortings_stream_cursor_value_input<
+          Input$ingredients_sortings_stream_cursor_value_input>
+      get copyWith =>
+          CopyWith$Input$ingredients_sortings_stream_cursor_value_input(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Input$ingredients_sortings_stream_cursor_value_input) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$iconPath = iconPath;
+    final lOther$iconPath = other.iconPath;
+    if (_$data.containsKey('iconPath') !=
+        other._$data.containsKey('iconPath')) {
+      return false;
+    }
+    if (l$iconPath != lOther$iconPath) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$ingredientFamilyIds = ingredientFamilyIds;
+    final lOther$ingredientFamilyIds = other.ingredientFamilyIds;
+    if (_$data.containsKey('ingredientFamilyIds') !=
+        other._$data.containsKey('ingredientFamilyIds')) {
+      return false;
+    }
+    if (l$ingredientFamilyIds != lOther$ingredientFamilyIds) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (_$data.containsKey('name') != other._$data.containsKey('name')) {
+      return false;
+    }
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$type = type;
+    final lOther$type = other.type;
+    if (_$data.containsKey('type') != other._$data.containsKey('type')) {
+      return false;
+    }
+    if (l$type != lOther$type) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$iconPath = iconPath;
+    final l$id = id;
+    final l$ingredientFamilyIds = ingredientFamilyIds;
+    final l$name = name;
+    final l$type = type;
+    return Object.hashAll([
+      _$data.containsKey('iconPath') ? l$iconPath : const {},
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('ingredientFamilyIds')
+          ? l$ingredientFamilyIds
+          : const {},
+      _$data.containsKey('name') ? l$name : const {},
+      _$data.containsKey('type') ? l$type : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$ingredients_sortings_stream_cursor_value_input<
+    TRes> {
+  factory CopyWith$Input$ingredients_sortings_stream_cursor_value_input(
+    Input$ingredients_sortings_stream_cursor_value_input instance,
+    TRes Function(Input$ingredients_sortings_stream_cursor_value_input) then,
+  ) = _CopyWithImpl$Input$ingredients_sortings_stream_cursor_value_input;
+
+  factory CopyWith$Input$ingredients_sortings_stream_cursor_value_input.stub(
+          TRes res) =
+      _CopyWithStubImpl$Input$ingredients_sortings_stream_cursor_value_input;
+
+  TRes call({
+    String? iconPath,
+    String? id,
+    String? ingredientFamilyIds,
+    String? name,
+    String? type,
+  });
+}
+
+class _CopyWithImpl$Input$ingredients_sortings_stream_cursor_value_input<TRes>
+    implements
+        CopyWith$Input$ingredients_sortings_stream_cursor_value_input<TRes> {
+  _CopyWithImpl$Input$ingredients_sortings_stream_cursor_value_input(
+    this._instance,
+    this._then,
+  );
+
+  final Input$ingredients_sortings_stream_cursor_value_input _instance;
+
+  final TRes Function(Input$ingredients_sortings_stream_cursor_value_input)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? iconPath = _undefined,
+    Object? id = _undefined,
+    Object? ingredientFamilyIds = _undefined,
+    Object? name = _undefined,
+    Object? type = _undefined,
+  }) =>
+      _then(Input$ingredients_sortings_stream_cursor_value_input._({
+        ..._instance._$data,
+        if (iconPath != _undefined) 'iconPath': (iconPath as String?),
+        if (id != _undefined) 'id': (id as String?),
+        if (ingredientFamilyIds != _undefined)
+          'ingredientFamilyIds': (ingredientFamilyIds as String?),
+        if (name != _undefined) 'name': (name as String?),
+        if (type != _undefined) 'type': (type as String?),
+      }));
+}
+
+class _CopyWithStubImpl$Input$ingredients_sortings_stream_cursor_value_input<
+        TRes>
+    implements
+        CopyWith$Input$ingredients_sortings_stream_cursor_value_input<TRes> {
+  _CopyWithStubImpl$Input$ingredients_sortings_stream_cursor_value_input(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? iconPath,
+    String? id,
+    String? ingredientFamilyIds,
+    String? name,
+    String? type,
+  }) =>
+      _res;
+}
+
+class Input$ingredients_sortings_updates {
+  factory Input$ingredients_sortings_updates({
+    Input$ingredients_sortings_append_input? $_append,
+    Input$ingredients_sortings_delete_at_path_input? $_delete_at_path,
+    Input$ingredients_sortings_delete_elem_input? $_delete_elem,
+    Input$ingredients_sortings_delete_key_input? $_delete_key,
+    Input$ingredients_sortings_prepend_input? $_prepend,
+    Input$ingredients_sortings_set_input? $_set,
+    required Input$ingredients_sortings_bool_exp where,
+  }) =>
+      Input$ingredients_sortings_updates._({
+        if ($_append != null) r'_append': $_append,
+        if ($_delete_at_path != null) r'_delete_at_path': $_delete_at_path,
+        if ($_delete_elem != null) r'_delete_elem': $_delete_elem,
+        if ($_delete_key != null) r'_delete_key': $_delete_key,
+        if ($_prepend != null) r'_prepend': $_prepend,
+        if ($_set != null) r'_set': $_set,
+        r'where': where,
+      });
+
+  Input$ingredients_sortings_updates._(this._$data);
+
+  factory Input$ingredients_sortings_updates.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('_append')) {
+      final l$$_append = data['_append'];
+      result$data['_append'] = l$$_append == null
+          ? null
+          : Input$ingredients_sortings_append_input.fromJson(
+              (l$$_append as Map<String, dynamic>));
+    }
+    if (data.containsKey('_delete_at_path')) {
+      final l$$_delete_at_path = data['_delete_at_path'];
+      result$data['_delete_at_path'] = l$$_delete_at_path == null
+          ? null
+          : Input$ingredients_sortings_delete_at_path_input.fromJson(
+              (l$$_delete_at_path as Map<String, dynamic>));
+    }
+    if (data.containsKey('_delete_elem')) {
+      final l$$_delete_elem = data['_delete_elem'];
+      result$data['_delete_elem'] = l$$_delete_elem == null
+          ? null
+          : Input$ingredients_sortings_delete_elem_input.fromJson(
+              (l$$_delete_elem as Map<String, dynamic>));
+    }
+    if (data.containsKey('_delete_key')) {
+      final l$$_delete_key = data['_delete_key'];
+      result$data['_delete_key'] = l$$_delete_key == null
+          ? null
+          : Input$ingredients_sortings_delete_key_input.fromJson(
+              (l$$_delete_key as Map<String, dynamic>));
+    }
+    if (data.containsKey('_prepend')) {
+      final l$$_prepend = data['_prepend'];
+      result$data['_prepend'] = l$$_prepend == null
+          ? null
+          : Input$ingredients_sortings_prepend_input.fromJson(
+              (l$$_prepend as Map<String, dynamic>));
+    }
+    if (data.containsKey('_set')) {
+      final l$$_set = data['_set'];
+      result$data['_set'] = l$$_set == null
+          ? null
+          : Input$ingredients_sortings_set_input.fromJson(
+              (l$$_set as Map<String, dynamic>));
+    }
+    final l$where = data['where'];
+    result$data['where'] = Input$ingredients_sortings_bool_exp.fromJson(
+        (l$where as Map<String, dynamic>));
+    return Input$ingredients_sortings_updates._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Input$ingredients_sortings_append_input? get $_append =>
+      (_$data['_append'] as Input$ingredients_sortings_append_input?);
+  Input$ingredients_sortings_delete_at_path_input? get $_delete_at_path =>
+      (_$data['_delete_at_path']
+          as Input$ingredients_sortings_delete_at_path_input?);
+  Input$ingredients_sortings_delete_elem_input? get $_delete_elem =>
+      (_$data['_delete_elem'] as Input$ingredients_sortings_delete_elem_input?);
+  Input$ingredients_sortings_delete_key_input? get $_delete_key =>
+      (_$data['_delete_key'] as Input$ingredients_sortings_delete_key_input?);
+  Input$ingredients_sortings_prepend_input? get $_prepend =>
+      (_$data['_prepend'] as Input$ingredients_sortings_prepend_input?);
+  Input$ingredients_sortings_set_input? get $_set =>
+      (_$data['_set'] as Input$ingredients_sortings_set_input?);
+  Input$ingredients_sortings_bool_exp get where =>
+      (_$data['where'] as Input$ingredients_sortings_bool_exp);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('_append')) {
+      final l$$_append = $_append;
+      result$data['_append'] = l$$_append?.toJson();
+    }
+    if (_$data.containsKey('_delete_at_path')) {
+      final l$$_delete_at_path = $_delete_at_path;
+      result$data['_delete_at_path'] = l$$_delete_at_path?.toJson();
+    }
+    if (_$data.containsKey('_delete_elem')) {
+      final l$$_delete_elem = $_delete_elem;
+      result$data['_delete_elem'] = l$$_delete_elem?.toJson();
+    }
+    if (_$data.containsKey('_delete_key')) {
+      final l$$_delete_key = $_delete_key;
+      result$data['_delete_key'] = l$$_delete_key?.toJson();
+    }
+    if (_$data.containsKey('_prepend')) {
+      final l$$_prepend = $_prepend;
+      result$data['_prepend'] = l$$_prepend?.toJson();
+    }
+    if (_$data.containsKey('_set')) {
+      final l$$_set = $_set;
+      result$data['_set'] = l$$_set?.toJson();
+    }
+    final l$where = where;
+    result$data['where'] = l$where.toJson();
+    return result$data;
+  }
+
+  CopyWith$Input$ingredients_sortings_updates<
+          Input$ingredients_sortings_updates>
+      get copyWith => CopyWith$Input$ingredients_sortings_updates(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Input$ingredients_sortings_updates) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$$_append = $_append;
+    final lOther$$_append = other.$_append;
+    if (_$data.containsKey('_append') != other._$data.containsKey('_append')) {
+      return false;
+    }
+    if (l$$_append != lOther$$_append) {
+      return false;
+    }
+    final l$$_delete_at_path = $_delete_at_path;
+    final lOther$$_delete_at_path = other.$_delete_at_path;
+    if (_$data.containsKey('_delete_at_path') !=
+        other._$data.containsKey('_delete_at_path')) {
+      return false;
+    }
+    if (l$$_delete_at_path != lOther$$_delete_at_path) {
+      return false;
+    }
+    final l$$_delete_elem = $_delete_elem;
+    final lOther$$_delete_elem = other.$_delete_elem;
+    if (_$data.containsKey('_delete_elem') !=
+        other._$data.containsKey('_delete_elem')) {
+      return false;
+    }
+    if (l$$_delete_elem != lOther$$_delete_elem) {
+      return false;
+    }
+    final l$$_delete_key = $_delete_key;
+    final lOther$$_delete_key = other.$_delete_key;
+    if (_$data.containsKey('_delete_key') !=
+        other._$data.containsKey('_delete_key')) {
+      return false;
+    }
+    if (l$$_delete_key != lOther$$_delete_key) {
+      return false;
+    }
+    final l$$_prepend = $_prepend;
+    final lOther$$_prepend = other.$_prepend;
+    if (_$data.containsKey('_prepend') !=
+        other._$data.containsKey('_prepend')) {
+      return false;
+    }
+    if (l$$_prepend != lOther$$_prepend) {
+      return false;
+    }
+    final l$$_set = $_set;
+    final lOther$$_set = other.$_set;
+    if (_$data.containsKey('_set') != other._$data.containsKey('_set')) {
+      return false;
+    }
+    if (l$$_set != lOther$$_set) {
+      return false;
+    }
+    final l$where = where;
+    final lOther$where = other.where;
+    if (l$where != lOther$where) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$$_append = $_append;
+    final l$$_delete_at_path = $_delete_at_path;
+    final l$$_delete_elem = $_delete_elem;
+    final l$$_delete_key = $_delete_key;
+    final l$$_prepend = $_prepend;
+    final l$$_set = $_set;
+    final l$where = where;
+    return Object.hashAll([
+      _$data.containsKey('_append') ? l$$_append : const {},
+      _$data.containsKey('_delete_at_path') ? l$$_delete_at_path : const {},
+      _$data.containsKey('_delete_elem') ? l$$_delete_elem : const {},
+      _$data.containsKey('_delete_key') ? l$$_delete_key : const {},
+      _$data.containsKey('_prepend') ? l$$_prepend : const {},
+      _$data.containsKey('_set') ? l$$_set : const {},
+      l$where,
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$ingredients_sortings_updates<TRes> {
+  factory CopyWith$Input$ingredients_sortings_updates(
+    Input$ingredients_sortings_updates instance,
+    TRes Function(Input$ingredients_sortings_updates) then,
+  ) = _CopyWithImpl$Input$ingredients_sortings_updates;
+
+  factory CopyWith$Input$ingredients_sortings_updates.stub(TRes res) =
+      _CopyWithStubImpl$Input$ingredients_sortings_updates;
+
+  TRes call({
+    Input$ingredients_sortings_append_input? $_append,
+    Input$ingredients_sortings_delete_at_path_input? $_delete_at_path,
+    Input$ingredients_sortings_delete_elem_input? $_delete_elem,
+    Input$ingredients_sortings_delete_key_input? $_delete_key,
+    Input$ingredients_sortings_prepend_input? $_prepend,
+    Input$ingredients_sortings_set_input? $_set,
+    Input$ingredients_sortings_bool_exp? where,
+  });
+  CopyWith$Input$ingredients_sortings_append_input<TRes> get $_append;
+  CopyWith$Input$ingredients_sortings_delete_at_path_input<TRes>
+      get $_delete_at_path;
+  CopyWith$Input$ingredients_sortings_delete_elem_input<TRes> get $_delete_elem;
+  CopyWith$Input$ingredients_sortings_delete_key_input<TRes> get $_delete_key;
+  CopyWith$Input$ingredients_sortings_prepend_input<TRes> get $_prepend;
+  CopyWith$Input$ingredients_sortings_set_input<TRes> get $_set;
+  CopyWith$Input$ingredients_sortings_bool_exp<TRes> get where;
+}
+
+class _CopyWithImpl$Input$ingredients_sortings_updates<TRes>
+    implements CopyWith$Input$ingredients_sortings_updates<TRes> {
+  _CopyWithImpl$Input$ingredients_sortings_updates(
+    this._instance,
+    this._then,
+  );
+
+  final Input$ingredients_sortings_updates _instance;
+
+  final TRes Function(Input$ingredients_sortings_updates) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? $_append = _undefined,
+    Object? $_delete_at_path = _undefined,
+    Object? $_delete_elem = _undefined,
+    Object? $_delete_key = _undefined,
+    Object? $_prepend = _undefined,
+    Object? $_set = _undefined,
+    Object? where = _undefined,
+  }) =>
+      _then(Input$ingredients_sortings_updates._({
+        ..._instance._$data,
+        if ($_append != _undefined)
+          '_append': ($_append as Input$ingredients_sortings_append_input?),
+        if ($_delete_at_path != _undefined)
+          '_delete_at_path': ($_delete_at_path
+              as Input$ingredients_sortings_delete_at_path_input?),
+        if ($_delete_elem != _undefined)
+          '_delete_elem':
+              ($_delete_elem as Input$ingredients_sortings_delete_elem_input?),
+        if ($_delete_key != _undefined)
+          '_delete_key':
+              ($_delete_key as Input$ingredients_sortings_delete_key_input?),
+        if ($_prepend != _undefined)
+          '_prepend': ($_prepend as Input$ingredients_sortings_prepend_input?),
+        if ($_set != _undefined)
+          '_set': ($_set as Input$ingredients_sortings_set_input?),
+        if (where != _undefined && where != null)
+          'where': (where as Input$ingredients_sortings_bool_exp),
+      }));
+  CopyWith$Input$ingredients_sortings_append_input<TRes> get $_append {
+    final local$$_append = _instance.$_append;
+    return local$$_append == null
+        ? CopyWith$Input$ingredients_sortings_append_input.stub(
+            _then(_instance))
+        : CopyWith$Input$ingredients_sortings_append_input(
+            local$$_append, (e) => call($_append: e));
+  }
+
+  CopyWith$Input$ingredients_sortings_delete_at_path_input<TRes>
+      get $_delete_at_path {
+    final local$$_delete_at_path = _instance.$_delete_at_path;
+    return local$$_delete_at_path == null
+        ? CopyWith$Input$ingredients_sortings_delete_at_path_input.stub(
+            _then(_instance))
+        : CopyWith$Input$ingredients_sortings_delete_at_path_input(
+            local$$_delete_at_path, (e) => call($_delete_at_path: e));
+  }
+
+  CopyWith$Input$ingredients_sortings_delete_elem_input<TRes>
+      get $_delete_elem {
+    final local$$_delete_elem = _instance.$_delete_elem;
+    return local$$_delete_elem == null
+        ? CopyWith$Input$ingredients_sortings_delete_elem_input.stub(
+            _then(_instance))
+        : CopyWith$Input$ingredients_sortings_delete_elem_input(
+            local$$_delete_elem, (e) => call($_delete_elem: e));
+  }
+
+  CopyWith$Input$ingredients_sortings_delete_key_input<TRes> get $_delete_key {
+    final local$$_delete_key = _instance.$_delete_key;
+    return local$$_delete_key == null
+        ? CopyWith$Input$ingredients_sortings_delete_key_input.stub(
+            _then(_instance))
+        : CopyWith$Input$ingredients_sortings_delete_key_input(
+            local$$_delete_key, (e) => call($_delete_key: e));
+  }
+
+  CopyWith$Input$ingredients_sortings_prepend_input<TRes> get $_prepend {
+    final local$$_prepend = _instance.$_prepend;
+    return local$$_prepend == null
+        ? CopyWith$Input$ingredients_sortings_prepend_input.stub(
+            _then(_instance))
+        : CopyWith$Input$ingredients_sortings_prepend_input(
+            local$$_prepend, (e) => call($_prepend: e));
+  }
+
+  CopyWith$Input$ingredients_sortings_set_input<TRes> get $_set {
+    final local$$_set = _instance.$_set;
+    return local$$_set == null
+        ? CopyWith$Input$ingredients_sortings_set_input.stub(_then(_instance))
+        : CopyWith$Input$ingredients_sortings_set_input(
+            local$$_set, (e) => call($_set: e));
+  }
+
+  CopyWith$Input$ingredients_sortings_bool_exp<TRes> get where {
+    final local$where = _instance.where;
+    return CopyWith$Input$ingredients_sortings_bool_exp(
+        local$where, (e) => call(where: e));
+  }
+}
+
+class _CopyWithStubImpl$Input$ingredients_sortings_updates<TRes>
+    implements CopyWith$Input$ingredients_sortings_updates<TRes> {
+  _CopyWithStubImpl$Input$ingredients_sortings_updates(this._res);
+
+  TRes _res;
+
+  call({
+    Input$ingredients_sortings_append_input? $_append,
+    Input$ingredients_sortings_delete_at_path_input? $_delete_at_path,
+    Input$ingredients_sortings_delete_elem_input? $_delete_elem,
+    Input$ingredients_sortings_delete_key_input? $_delete_key,
+    Input$ingredients_sortings_prepend_input? $_prepend,
+    Input$ingredients_sortings_set_input? $_set,
+    Input$ingredients_sortings_bool_exp? where,
+  }) =>
+      _res;
+  CopyWith$Input$ingredients_sortings_append_input<TRes> get $_append =>
+      CopyWith$Input$ingredients_sortings_append_input.stub(_res);
+  CopyWith$Input$ingredients_sortings_delete_at_path_input<TRes>
+      get $_delete_at_path =>
+          CopyWith$Input$ingredients_sortings_delete_at_path_input.stub(_res);
+  CopyWith$Input$ingredients_sortings_delete_elem_input<TRes>
+      get $_delete_elem =>
+          CopyWith$Input$ingredients_sortings_delete_elem_input.stub(_res);
+  CopyWith$Input$ingredients_sortings_delete_key_input<TRes> get $_delete_key =>
+      CopyWith$Input$ingredients_sortings_delete_key_input.stub(_res);
+  CopyWith$Input$ingredients_sortings_prepend_input<TRes> get $_prepend =>
+      CopyWith$Input$ingredients_sortings_prepend_input.stub(_res);
+  CopyWith$Input$ingredients_sortings_set_input<TRes> get $_set =>
+      CopyWith$Input$ingredients_sortings_set_input.stub(_res);
+  CopyWith$Input$ingredients_sortings_bool_exp<TRes> get where =>
+      CopyWith$Input$ingredients_sortings_bool_exp.stub(_res);
 }
 
 class Input$ingredients_stream_cursor_input {
@@ -19559,19 +22464,19 @@ class Input$recipes_insert_input {
     Input$bridge_recipes_ingredients_arr_rel_insert_input?
         bridge_recipes_ingredients,
     Input$bridge_recipes_tags_arr_rel_insert_input? bridge_recipes_tags,
-    required String country,
-    required String description,
+    String? country,
+    String? description,
     String? descriptionMarkdown,
-    required int difficulty,
-    required String headline,
-    required String id,
+    int? difficulty,
+    String? headline,
+    String? id,
     String? imagePath,
-    required String name,
+    String? name,
     String? prepTime,
-    required String slug,
-    required String steps,
+    String? slug,
+    String? steps,
     String? totalTime,
-    required String yields_json,
+    String? yields_json,
   }) =>
       Input$recipes_insert_input._({
         if (bridge_recipes_cuisines != null)
@@ -19580,20 +22485,20 @@ class Input$recipes_insert_input {
           r'bridge_recipes_ingredients': bridge_recipes_ingredients,
         if (bridge_recipes_tags != null)
           r'bridge_recipes_tags': bridge_recipes_tags,
-        r'country': country,
-        r'description': description,
+        if (country != null) r'country': country,
+        if (description != null) r'description': description,
         if (descriptionMarkdown != null)
           r'descriptionMarkdown': descriptionMarkdown,
-        r'difficulty': difficulty,
-        r'headline': headline,
-        r'id': id,
+        if (difficulty != null) r'difficulty': difficulty,
+        if (headline != null) r'headline': headline,
+        if (id != null) r'id': id,
         if (imagePath != null) r'imagePath': imagePath,
-        r'name': name,
+        if (name != null) r'name': name,
         if (prepTime != null) r'prepTime': prepTime,
-        r'slug': slug,
-        r'steps': steps,
+        if (slug != null) r'slug': slug,
+        if (steps != null) r'steps': steps,
         if (totalTime != null) r'totalTime': totalTime,
-        r'yields_json': yields_json,
+        if (yields_json != null) r'yields_json': yields_json,
       });
 
   Input$recipes_insert_input._(this._$data);
@@ -19622,40 +22527,58 @@ class Input$recipes_insert_input {
           : Input$bridge_recipes_tags_arr_rel_insert_input.fromJson(
               (l$bridge_recipes_tags as Map<String, dynamic>));
     }
-    final l$country = data['country'];
-    result$data['country'] = (l$country as String);
-    final l$description = data['description'];
-    result$data['description'] = (l$description as String);
+    if (data.containsKey('country')) {
+      final l$country = data['country'];
+      result$data['country'] = (l$country as String?);
+    }
+    if (data.containsKey('description')) {
+      final l$description = data['description'];
+      result$data['description'] = (l$description as String?);
+    }
     if (data.containsKey('descriptionMarkdown')) {
       final l$descriptionMarkdown = data['descriptionMarkdown'];
       result$data['descriptionMarkdown'] = (l$descriptionMarkdown as String?);
     }
-    final l$difficulty = data['difficulty'];
-    result$data['difficulty'] = (l$difficulty as int);
-    final l$headline = data['headline'];
-    result$data['headline'] = (l$headline as String);
-    final l$id = data['id'];
-    result$data['id'] = (l$id as String);
+    if (data.containsKey('difficulty')) {
+      final l$difficulty = data['difficulty'];
+      result$data['difficulty'] = (l$difficulty as int?);
+    }
+    if (data.containsKey('headline')) {
+      final l$headline = data['headline'];
+      result$data['headline'] = (l$headline as String?);
+    }
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = (l$id as String?);
+    }
     if (data.containsKey('imagePath')) {
       final l$imagePath = data['imagePath'];
       result$data['imagePath'] = (l$imagePath as String?);
     }
-    final l$name = data['name'];
-    result$data['name'] = (l$name as String);
+    if (data.containsKey('name')) {
+      final l$name = data['name'];
+      result$data['name'] = (l$name as String?);
+    }
     if (data.containsKey('prepTime')) {
       final l$prepTime = data['prepTime'];
       result$data['prepTime'] = (l$prepTime as String?);
     }
-    final l$slug = data['slug'];
-    result$data['slug'] = (l$slug as String);
-    final l$steps = data['steps'];
-    result$data['steps'] = (l$steps as String);
+    if (data.containsKey('slug')) {
+      final l$slug = data['slug'];
+      result$data['slug'] = (l$slug as String?);
+    }
+    if (data.containsKey('steps')) {
+      final l$steps = data['steps'];
+      result$data['steps'] = (l$steps as String?);
+    }
     if (data.containsKey('totalTime')) {
       final l$totalTime = data['totalTime'];
       result$data['totalTime'] = (l$totalTime as String?);
     }
-    final l$yields_json = data['yields_json'];
-    result$data['yields_json'] = (l$yields_json as String);
+    if (data.containsKey('yields_json')) {
+      final l$yields_json = data['yields_json'];
+      result$data['yields_json'] = (l$yields_json as String?);
+    }
     return Input$recipes_insert_input._(result$data);
   }
 
@@ -19670,19 +22593,19 @@ class Input$recipes_insert_input {
   Input$bridge_recipes_tags_arr_rel_insert_input? get bridge_recipes_tags =>
       (_$data['bridge_recipes_tags']
           as Input$bridge_recipes_tags_arr_rel_insert_input?);
-  String get country => (_$data['country'] as String);
-  String get description => (_$data['description'] as String);
+  String? get country => (_$data['country'] as String?);
+  String? get description => (_$data['description'] as String?);
   String? get descriptionMarkdown => (_$data['descriptionMarkdown'] as String?);
-  int get difficulty => (_$data['difficulty'] as int);
-  String get headline => (_$data['headline'] as String);
-  String get id => (_$data['id'] as String);
+  int? get difficulty => (_$data['difficulty'] as int?);
+  String? get headline => (_$data['headline'] as String?);
+  String? get id => (_$data['id'] as String?);
   String? get imagePath => (_$data['imagePath'] as String?);
-  String get name => (_$data['name'] as String);
+  String? get name => (_$data['name'] as String?);
   String? get prepTime => (_$data['prepTime'] as String?);
-  String get slug => (_$data['slug'] as String);
-  String get steps => (_$data['steps'] as String);
+  String? get slug => (_$data['slug'] as String?);
+  String? get steps => (_$data['steps'] as String?);
   String? get totalTime => (_$data['totalTime'] as String?);
-  String get yields_json => (_$data['yields_json'] as String);
+  String? get yields_json => (_$data['yields_json'] as String?);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('bridge_recipes_cuisines')) {
@@ -19699,40 +22622,58 @@ class Input$recipes_insert_input {
       final l$bridge_recipes_tags = bridge_recipes_tags;
       result$data['bridge_recipes_tags'] = l$bridge_recipes_tags?.toJson();
     }
-    final l$country = country;
-    result$data['country'] = l$country;
-    final l$description = description;
-    result$data['description'] = l$description;
+    if (_$data.containsKey('country')) {
+      final l$country = country;
+      result$data['country'] = l$country;
+    }
+    if (_$data.containsKey('description')) {
+      final l$description = description;
+      result$data['description'] = l$description;
+    }
     if (_$data.containsKey('descriptionMarkdown')) {
       final l$descriptionMarkdown = descriptionMarkdown;
       result$data['descriptionMarkdown'] = l$descriptionMarkdown;
     }
-    final l$difficulty = difficulty;
-    result$data['difficulty'] = l$difficulty;
-    final l$headline = headline;
-    result$data['headline'] = l$headline;
-    final l$id = id;
-    result$data['id'] = l$id;
+    if (_$data.containsKey('difficulty')) {
+      final l$difficulty = difficulty;
+      result$data['difficulty'] = l$difficulty;
+    }
+    if (_$data.containsKey('headline')) {
+      final l$headline = headline;
+      result$data['headline'] = l$headline;
+    }
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id;
+    }
     if (_$data.containsKey('imagePath')) {
       final l$imagePath = imagePath;
       result$data['imagePath'] = l$imagePath;
     }
-    final l$name = name;
-    result$data['name'] = l$name;
+    if (_$data.containsKey('name')) {
+      final l$name = name;
+      result$data['name'] = l$name;
+    }
     if (_$data.containsKey('prepTime')) {
       final l$prepTime = prepTime;
       result$data['prepTime'] = l$prepTime;
     }
-    final l$slug = slug;
-    result$data['slug'] = l$slug;
-    final l$steps = steps;
-    result$data['steps'] = l$steps;
+    if (_$data.containsKey('slug')) {
+      final l$slug = slug;
+      result$data['slug'] = l$slug;
+    }
+    if (_$data.containsKey('steps')) {
+      final l$steps = steps;
+      result$data['steps'] = l$steps;
+    }
     if (_$data.containsKey('totalTime')) {
       final l$totalTime = totalTime;
       result$data['totalTime'] = l$totalTime;
     }
-    final l$yields_json = yields_json;
-    result$data['yields_json'] = l$yields_json;
+    if (_$data.containsKey('yields_json')) {
+      final l$yields_json = yields_json;
+      result$data['yields_json'] = l$yields_json;
+    }
     return result$data;
   }
 
@@ -19779,11 +22720,18 @@ class Input$recipes_insert_input {
     }
     final l$country = country;
     final lOther$country = other.country;
+    if (_$data.containsKey('country') != other._$data.containsKey('country')) {
+      return false;
+    }
     if (l$country != lOther$country) {
       return false;
     }
     final l$description = description;
     final lOther$description = other.description;
+    if (_$data.containsKey('description') !=
+        other._$data.containsKey('description')) {
+      return false;
+    }
     if (l$description != lOther$description) {
       return false;
     }
@@ -19798,16 +22746,27 @@ class Input$recipes_insert_input {
     }
     final l$difficulty = difficulty;
     final lOther$difficulty = other.difficulty;
+    if (_$data.containsKey('difficulty') !=
+        other._$data.containsKey('difficulty')) {
+      return false;
+    }
     if (l$difficulty != lOther$difficulty) {
       return false;
     }
     final l$headline = headline;
     final lOther$headline = other.headline;
+    if (_$data.containsKey('headline') !=
+        other._$data.containsKey('headline')) {
+      return false;
+    }
     if (l$headline != lOther$headline) {
       return false;
     }
     final l$id = id;
     final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
     if (l$id != lOther$id) {
       return false;
     }
@@ -19822,6 +22781,9 @@ class Input$recipes_insert_input {
     }
     final l$name = name;
     final lOther$name = other.name;
+    if (_$data.containsKey('name') != other._$data.containsKey('name')) {
+      return false;
+    }
     if (l$name != lOther$name) {
       return false;
     }
@@ -19836,11 +22798,17 @@ class Input$recipes_insert_input {
     }
     final l$slug = slug;
     final lOther$slug = other.slug;
+    if (_$data.containsKey('slug') != other._$data.containsKey('slug')) {
+      return false;
+    }
     if (l$slug != lOther$slug) {
       return false;
     }
     final l$steps = steps;
     final lOther$steps = other.steps;
+    if (_$data.containsKey('steps') != other._$data.containsKey('steps')) {
+      return false;
+    }
     if (l$steps != lOther$steps) {
       return false;
     }
@@ -19855,6 +22823,10 @@ class Input$recipes_insert_input {
     }
     final l$yields_json = yields_json;
     final lOther$yields_json = other.yields_json;
+    if (_$data.containsKey('yields_json') !=
+        other._$data.containsKey('yields_json')) {
+      return false;
+    }
     if (l$yields_json != lOther$yields_json) {
       return false;
     }
@@ -19889,21 +22861,21 @@ class Input$recipes_insert_input {
       _$data.containsKey('bridge_recipes_tags')
           ? l$bridge_recipes_tags
           : const {},
-      l$country,
-      l$description,
+      _$data.containsKey('country') ? l$country : const {},
+      _$data.containsKey('description') ? l$description : const {},
       _$data.containsKey('descriptionMarkdown')
           ? l$descriptionMarkdown
           : const {},
-      l$difficulty,
-      l$headline,
-      l$id,
+      _$data.containsKey('difficulty') ? l$difficulty : const {},
+      _$data.containsKey('headline') ? l$headline : const {},
+      _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('imagePath') ? l$imagePath : const {},
-      l$name,
+      _$data.containsKey('name') ? l$name : const {},
       _$data.containsKey('prepTime') ? l$prepTime : const {},
-      l$slug,
-      l$steps,
+      _$data.containsKey('slug') ? l$slug : const {},
+      _$data.containsKey('steps') ? l$steps : const {},
       _$data.containsKey('totalTime') ? l$totalTime : const {},
-      l$yields_json,
+      _$data.containsKey('yields_json') ? l$yields_json : const {},
     ]);
   }
 }
@@ -19986,25 +22958,20 @@ class _CopyWithImpl$Input$recipes_insert_input<TRes>
         if (bridge_recipes_tags != _undefined)
           'bridge_recipes_tags': (bridge_recipes_tags
               as Input$bridge_recipes_tags_arr_rel_insert_input?),
-        if (country != _undefined && country != null)
-          'country': (country as String),
-        if (description != _undefined && description != null)
-          'description': (description as String),
+        if (country != _undefined) 'country': (country as String?),
+        if (description != _undefined) 'description': (description as String?),
         if (descriptionMarkdown != _undefined)
           'descriptionMarkdown': (descriptionMarkdown as String?),
-        if (difficulty != _undefined && difficulty != null)
-          'difficulty': (difficulty as int),
-        if (headline != _undefined && headline != null)
-          'headline': (headline as String),
-        if (id != _undefined && id != null) 'id': (id as String),
+        if (difficulty != _undefined) 'difficulty': (difficulty as int?),
+        if (headline != _undefined) 'headline': (headline as String?),
+        if (id != _undefined) 'id': (id as String?),
         if (imagePath != _undefined) 'imagePath': (imagePath as String?),
-        if (name != _undefined && name != null) 'name': (name as String),
+        if (name != _undefined) 'name': (name as String?),
         if (prepTime != _undefined) 'prepTime': (prepTime as String?),
-        if (slug != _undefined && slug != null) 'slug': (slug as String),
-        if (steps != _undefined && steps != null) 'steps': (steps as String),
+        if (slug != _undefined) 'slug': (slug as String?),
+        if (steps != _undefined) 'steps': (steps as String?),
         if (totalTime != _undefined) 'totalTime': (totalTime as String?),
-        if (yields_json != _undefined && yields_json != null)
-          'yields_json': (yields_json as String),
+        if (yields_json != _undefined) 'yields_json': (yields_json as String?),
       }));
   CopyWith$Input$bridge_recipes_cuisines_arr_rel_insert_input<TRes>
       get bridge_recipes_cuisines {
@@ -23735,20 +26702,21 @@ class _CopyWithStubImpl$Input$tags_delete_key_input<TRes>
 class Input$tags_insert_input {
   factory Input$tags_insert_input({
     Input$bridge_recipes_tags_arr_rel_insert_input? bridge_recipes_tags,
-    required String id,
-    required String name,
-    required String numberOfRecipesByCountry,
-    required String slug,
-    required String type,
+    String? id,
+    String? name,
+    String? numberOfRecipesByCountry,
+    String? slug,
+    String? type,
   }) =>
       Input$tags_insert_input._({
         if (bridge_recipes_tags != null)
           r'bridge_recipes_tags': bridge_recipes_tags,
-        r'id': id,
-        r'name': name,
-        r'numberOfRecipesByCountry': numberOfRecipesByCountry,
-        r'slug': slug,
-        r'type': type,
+        if (id != null) r'id': id,
+        if (name != null) r'name': name,
+        if (numberOfRecipesByCountry != null)
+          r'numberOfRecipesByCountry': numberOfRecipesByCountry,
+        if (slug != null) r'slug': slug,
+        if (type != null) r'type': type,
       });
 
   Input$tags_insert_input._(this._$data);
@@ -23762,17 +26730,27 @@ class Input$tags_insert_input {
           : Input$bridge_recipes_tags_arr_rel_insert_input.fromJson(
               (l$bridge_recipes_tags as Map<String, dynamic>));
     }
-    final l$id = data['id'];
-    result$data['id'] = (l$id as String);
-    final l$name = data['name'];
-    result$data['name'] = (l$name as String);
-    final l$numberOfRecipesByCountry = data['numberOfRecipesByCountry'];
-    result$data['numberOfRecipesByCountry'] =
-        (l$numberOfRecipesByCountry as String);
-    final l$slug = data['slug'];
-    result$data['slug'] = (l$slug as String);
-    final l$type = data['type'];
-    result$data['type'] = (l$type as String);
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = (l$id as String?);
+    }
+    if (data.containsKey('name')) {
+      final l$name = data['name'];
+      result$data['name'] = (l$name as String?);
+    }
+    if (data.containsKey('numberOfRecipesByCountry')) {
+      final l$numberOfRecipesByCountry = data['numberOfRecipesByCountry'];
+      result$data['numberOfRecipesByCountry'] =
+          (l$numberOfRecipesByCountry as String?);
+    }
+    if (data.containsKey('slug')) {
+      final l$slug = data['slug'];
+      result$data['slug'] = (l$slug as String?);
+    }
+    if (data.containsKey('type')) {
+      final l$type = data['type'];
+      result$data['type'] = (l$type as String?);
+    }
     return Input$tags_insert_input._(result$data);
   }
 
@@ -23781,28 +26759,38 @@ class Input$tags_insert_input {
   Input$bridge_recipes_tags_arr_rel_insert_input? get bridge_recipes_tags =>
       (_$data['bridge_recipes_tags']
           as Input$bridge_recipes_tags_arr_rel_insert_input?);
-  String get id => (_$data['id'] as String);
-  String get name => (_$data['name'] as String);
-  String get numberOfRecipesByCountry =>
-      (_$data['numberOfRecipesByCountry'] as String);
-  String get slug => (_$data['slug'] as String);
-  String get type => (_$data['type'] as String);
+  String? get id => (_$data['id'] as String?);
+  String? get name => (_$data['name'] as String?);
+  String? get numberOfRecipesByCountry =>
+      (_$data['numberOfRecipesByCountry'] as String?);
+  String? get slug => (_$data['slug'] as String?);
+  String? get type => (_$data['type'] as String?);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('bridge_recipes_tags')) {
       final l$bridge_recipes_tags = bridge_recipes_tags;
       result$data['bridge_recipes_tags'] = l$bridge_recipes_tags?.toJson();
     }
-    final l$id = id;
-    result$data['id'] = l$id;
-    final l$name = name;
-    result$data['name'] = l$name;
-    final l$numberOfRecipesByCountry = numberOfRecipesByCountry;
-    result$data['numberOfRecipesByCountry'] = l$numberOfRecipesByCountry;
-    final l$slug = slug;
-    result$data['slug'] = l$slug;
-    final l$type = type;
-    result$data['type'] = l$type;
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id;
+    }
+    if (_$data.containsKey('name')) {
+      final l$name = name;
+      result$data['name'] = l$name;
+    }
+    if (_$data.containsKey('numberOfRecipesByCountry')) {
+      final l$numberOfRecipesByCountry = numberOfRecipesByCountry;
+      result$data['numberOfRecipesByCountry'] = l$numberOfRecipesByCountry;
+    }
+    if (_$data.containsKey('slug')) {
+      final l$slug = slug;
+      result$data['slug'] = l$slug;
+    }
+    if (_$data.containsKey('type')) {
+      final l$type = type;
+      result$data['type'] = l$type;
+    }
     return result$data;
   }
 
@@ -23831,26 +26819,42 @@ class Input$tags_insert_input {
     }
     final l$id = id;
     final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
     if (l$id != lOther$id) {
       return false;
     }
     final l$name = name;
     final lOther$name = other.name;
+    if (_$data.containsKey('name') != other._$data.containsKey('name')) {
+      return false;
+    }
     if (l$name != lOther$name) {
       return false;
     }
     final l$numberOfRecipesByCountry = numberOfRecipesByCountry;
     final lOther$numberOfRecipesByCountry = other.numberOfRecipesByCountry;
+    if (_$data.containsKey('numberOfRecipesByCountry') !=
+        other._$data.containsKey('numberOfRecipesByCountry')) {
+      return false;
+    }
     if (l$numberOfRecipesByCountry != lOther$numberOfRecipesByCountry) {
       return false;
     }
     final l$slug = slug;
     final lOther$slug = other.slug;
+    if (_$data.containsKey('slug') != other._$data.containsKey('slug')) {
+      return false;
+    }
     if (l$slug != lOther$slug) {
       return false;
     }
     final l$type = type;
     final lOther$type = other.type;
+    if (_$data.containsKey('type') != other._$data.containsKey('type')) {
+      return false;
+    }
     if (l$type != lOther$type) {
       return false;
     }
@@ -23869,11 +26873,13 @@ class Input$tags_insert_input {
       _$data.containsKey('bridge_recipes_tags')
           ? l$bridge_recipes_tags
           : const {},
-      l$id,
-      l$name,
-      l$numberOfRecipesByCountry,
-      l$slug,
-      l$type,
+      _$data.containsKey('id') ? l$id : const {},
+      _$data.containsKey('name') ? l$name : const {},
+      _$data.containsKey('numberOfRecipesByCountry')
+          ? l$numberOfRecipesByCountry
+          : const {},
+      _$data.containsKey('slug') ? l$slug : const {},
+      _$data.containsKey('type') ? l$type : const {},
     ]);
   }
 }
@@ -23925,13 +26931,12 @@ class _CopyWithImpl$Input$tags_insert_input<TRes>
         if (bridge_recipes_tags != _undefined)
           'bridge_recipes_tags': (bridge_recipes_tags
               as Input$bridge_recipes_tags_arr_rel_insert_input?),
-        if (id != _undefined && id != null) 'id': (id as String),
-        if (name != _undefined && name != null) 'name': (name as String),
-        if (numberOfRecipesByCountry != _undefined &&
-            numberOfRecipesByCountry != null)
-          'numberOfRecipesByCountry': (numberOfRecipesByCountry as String),
-        if (slug != _undefined && slug != null) 'slug': (slug as String),
-        if (type != _undefined && type != null) 'type': (type as String),
+        if (id != _undefined) 'id': (id as String?),
+        if (name != _undefined) 'name': (name as String?),
+        if (numberOfRecipesByCountry != _undefined)
+          'numberOfRecipesByCountry': (numberOfRecipesByCountry as String?),
+        if (slug != _undefined) 'slug': (slug as String?),
+        if (type != _undefined) 'type': (type as String?),
       }));
   CopyWith$Input$bridge_recipes_tags_arr_rel_insert_input<TRes>
       get bridge_recipes_tags {
@@ -26674,6 +29679,121 @@ Enum$ingredients_select_column fromJson$Enum$ingredients_select_column(
       return Enum$ingredients_select_column.type;
     default:
       return Enum$ingredients_select_column.$unknown;
+  }
+}
+
+enum Enum$ingredients_sortings_constraint {
+  ingredients_sortings_pkey,
+  $unknown
+}
+
+String toJson$Enum$ingredients_sortings_constraint(
+    Enum$ingredients_sortings_constraint e) {
+  switch (e) {
+    case Enum$ingredients_sortings_constraint.ingredients_sortings_pkey:
+      return r'ingredients_sortings_pkey';
+    case Enum$ingredients_sortings_constraint.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ingredients_sortings_constraint
+    fromJson$Enum$ingredients_sortings_constraint(String value) {
+  switch (value) {
+    case r'ingredients_sortings_pkey':
+      return Enum$ingredients_sortings_constraint.ingredients_sortings_pkey;
+    default:
+      return Enum$ingredients_sortings_constraint.$unknown;
+  }
+}
+
+enum Enum$ingredients_sortings_select_column {
+  iconPath,
+  id,
+  ingredientFamilyIds,
+  name,
+  type,
+  $unknown
+}
+
+String toJson$Enum$ingredients_sortings_select_column(
+    Enum$ingredients_sortings_select_column e) {
+  switch (e) {
+    case Enum$ingredients_sortings_select_column.iconPath:
+      return r'iconPath';
+    case Enum$ingredients_sortings_select_column.id:
+      return r'id';
+    case Enum$ingredients_sortings_select_column.ingredientFamilyIds:
+      return r'ingredientFamilyIds';
+    case Enum$ingredients_sortings_select_column.name:
+      return r'name';
+    case Enum$ingredients_sortings_select_column.type:
+      return r'type';
+    case Enum$ingredients_sortings_select_column.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ingredients_sortings_select_column
+    fromJson$Enum$ingredients_sortings_select_column(String value) {
+  switch (value) {
+    case r'iconPath':
+      return Enum$ingredients_sortings_select_column.iconPath;
+    case r'id':
+      return Enum$ingredients_sortings_select_column.id;
+    case r'ingredientFamilyIds':
+      return Enum$ingredients_sortings_select_column.ingredientFamilyIds;
+    case r'name':
+      return Enum$ingredients_sortings_select_column.name;
+    case r'type':
+      return Enum$ingredients_sortings_select_column.type;
+    default:
+      return Enum$ingredients_sortings_select_column.$unknown;
+  }
+}
+
+enum Enum$ingredients_sortings_update_column {
+  iconPath,
+  id,
+  ingredientFamilyIds,
+  name,
+  type,
+  $unknown
+}
+
+String toJson$Enum$ingredients_sortings_update_column(
+    Enum$ingredients_sortings_update_column e) {
+  switch (e) {
+    case Enum$ingredients_sortings_update_column.iconPath:
+      return r'iconPath';
+    case Enum$ingredients_sortings_update_column.id:
+      return r'id';
+    case Enum$ingredients_sortings_update_column.ingredientFamilyIds:
+      return r'ingredientFamilyIds';
+    case Enum$ingredients_sortings_update_column.name:
+      return r'name';
+    case Enum$ingredients_sortings_update_column.type:
+      return r'type';
+    case Enum$ingredients_sortings_update_column.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ingredients_sortings_update_column
+    fromJson$Enum$ingredients_sortings_update_column(String value) {
+  switch (value) {
+    case r'iconPath':
+      return Enum$ingredients_sortings_update_column.iconPath;
+    case r'id':
+      return Enum$ingredients_sortings_update_column.id;
+    case r'ingredientFamilyIds':
+      return Enum$ingredients_sortings_update_column.ingredientFamilyIds;
+    case r'name':
+      return Enum$ingredients_sortings_update_column.name;
+    case r'type':
+      return Enum$ingredients_sortings_update_column.type;
+    default:
+      return Enum$ingredients_sortings_update_column.$unknown;
   }
 }
 

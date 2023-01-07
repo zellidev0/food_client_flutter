@@ -171,8 +171,8 @@ enum bridge_recipes_cuisines_constraint {
 input type for inserting data into table "bridge_recipes_cuisines"
 """
 input bridge_recipes_cuisines_insert_input {
-  _cuisine_id: String!
-  _recipe_id: String!
+  _cuisine_id: String
+  _recipe_id: String
   cuisines: cuisines_obj_rel_insert_input
   id: uuid
   recipes: recipes_obj_rel_insert_input
@@ -395,8 +395,8 @@ enum bridge_recipes_ingredients_constraint {
 input type for inserting data into table "bridge_recipes_ingredients"
 """
 input bridge_recipes_ingredients_insert_input {
-  _ingredient_id: String!
-  _recipe_id: String!
+  _ingredient_id: String
+  _recipe_id: String
   id: uuid
   ingredients: ingredients_obj_rel_insert_input
   recipes: recipes_obj_rel_insert_input
@@ -621,8 +621,8 @@ enum bridge_recipes_tags_constraint {
 input type for inserting data into table "bridge_recipes_tags"
 """
 input bridge_recipes_tags_insert_input {
-  _recipe_id: String!
-  _tag_id: String!
+  _recipe_id: String
+  _tag_id: String
   id: uuid
   recipes: recipes_obj_rel_insert_input
   tags: tags_obj_rel_insert_input
@@ -850,10 +850,10 @@ input type for inserting data into table "cuisines"
 input cuisines_insert_input {
   bridge_recipes_cuisines: bridge_recipes_cuisines_arr_rel_insert_input
   iconPath: String
-  id: String!
-  name: String!
-  slug: String!
-  type: String!
+  id: String
+  name: String
+  slug: String
+  type: String
 }
 
 """aggregate max on columns"""
@@ -1062,10 +1062,10 @@ input type for inserting data into table "ingredient_family"
 """
 input ingredient_family_insert_input {
   iconPath: String
-  id: String!
-  name: String!
-  slug: String!
-  type: String!
+  id: String
+  name: String
+  slug: String
+  type: String
 }
 
 """aggregate max on columns"""
@@ -1211,7 +1211,7 @@ input ingredient_family_updates {
 columns and relationships of "ingredients"
 """
 type ingredients {
-  _family: String!
+  _family: String
 
   """An array relationship"""
   bridge_recipes_ingredients(
@@ -1311,13 +1311,13 @@ input type for inserting data into table "ingredients"
 input ingredients_insert_input {
   _family: String
   bridge_recipes_ingredients: bridge_recipes_ingredients_arr_rel_insert_input
-  country: String!
+  country: String
   family: ingredient_family_obj_rel_insert_input
-  id: String!
+  id: String
   imagePath: String
-  name: String!
-  slug: String!
-  type: String!
+  name: String
+  slug: String
+  type: String
 }
 
 """aggregate max on columns"""
@@ -1427,6 +1427,251 @@ input ingredients_set_input {
   name: String
   slug: String
   type: String
+}
+
+"""
+columns and relationships of "ingredients_sortings"
+"""
+type ingredients_sortings {
+  iconPath: String
+  id: uuid!
+  ingredientFamilyIds(
+    """JSON select path"""
+    path: String
+  ): jsonb!
+  name: String!
+  type: String!
+}
+
+"""
+aggregated selection of "ingredients_sortings"
+"""
+type ingredients_sortings_aggregate {
+  aggregate: ingredients_sortings_aggregate_fields
+  nodes: [ingredients_sortings!]!
+}
+
+"""
+aggregate fields of "ingredients_sortings"
+"""
+type ingredients_sortings_aggregate_fields {
+  count(columns: [ingredients_sortings_select_column!], distinct: Boolean): Int!
+  max: ingredients_sortings_max_fields
+  min: ingredients_sortings_min_fields
+}
+
+"""append existing jsonb value of filtered columns with new jsonb value"""
+input ingredients_sortings_append_input {
+  ingredientFamilyIds: jsonb
+}
+
+"""
+Boolean expression to filter rows from the table "ingredients_sortings". All fields are combined with a logical 'AND'.
+"""
+input ingredients_sortings_bool_exp {
+  _and: [ingredients_sortings_bool_exp!]
+  _not: ingredients_sortings_bool_exp
+  _or: [ingredients_sortings_bool_exp!]
+  iconPath: String_comparison_exp
+  id: uuid_comparison_exp
+  ingredientFamilyIds: jsonb_comparison_exp
+  name: String_comparison_exp
+  type: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "ingredients_sortings"
+"""
+enum ingredients_sortings_constraint {
+  """
+  unique or primary key constraint on columns "id"
+  """
+  ingredients_sortings_pkey
+}
+
+"""
+delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+"""
+input ingredients_sortings_delete_at_path_input {
+  ingredientFamilyIds: [String!]
+}
+
+"""
+delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array
+"""
+input ingredients_sortings_delete_elem_input {
+  ingredientFamilyIds: Int
+}
+
+"""
+delete key/value pair or string element. key/value pairs are matched based on their key value
+"""
+input ingredients_sortings_delete_key_input {
+  ingredientFamilyIds: String
+}
+
+"""
+input type for inserting data into table "ingredients_sortings"
+"""
+input ingredients_sortings_insert_input {
+  iconPath: String
+  id: uuid
+  ingredientFamilyIds: jsonb
+  name: String
+  type: String
+}
+
+"""aggregate max on columns"""
+type ingredients_sortings_max_fields {
+  iconPath: String
+  id: uuid
+  name: String
+  type: String
+}
+
+"""aggregate min on columns"""
+type ingredients_sortings_min_fields {
+  iconPath: String
+  id: uuid
+  name: String
+  type: String
+}
+
+"""
+response of any mutation on the table "ingredients_sortings"
+"""
+type ingredients_sortings_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+
+  """data from the rows affected by the mutation"""
+  returning: [ingredients_sortings!]!
+}
+
+"""
+on_conflict condition type for table "ingredients_sortings"
+"""
+input ingredients_sortings_on_conflict {
+  constraint: ingredients_sortings_constraint!
+  update_columns: [ingredients_sortings_update_column!]! = []
+  where: ingredients_sortings_bool_exp
+}
+
+"""Ordering options when selecting data from "ingredients_sortings"."""
+input ingredients_sortings_order_by {
+  iconPath: order_by
+  id: order_by
+  ingredientFamilyIds: order_by
+  name: order_by
+  type: order_by
+}
+
+"""primary key columns input for table: ingredients_sortings"""
+input ingredients_sortings_pk_columns_input {
+  id: uuid!
+}
+
+"""prepend existing jsonb value of filtered columns with new jsonb value"""
+input ingredients_sortings_prepend_input {
+  ingredientFamilyIds: jsonb
+}
+
+"""
+select columns of table "ingredients_sortings"
+"""
+enum ingredients_sortings_select_column {
+  """column name"""
+  iconPath
+
+  """column name"""
+  id
+
+  """column name"""
+  ingredientFamilyIds
+
+  """column name"""
+  name
+
+  """column name"""
+  type
+}
+
+"""
+input type for updating data in table "ingredients_sortings"
+"""
+input ingredients_sortings_set_input {
+  iconPath: String
+  id: uuid
+  ingredientFamilyIds: jsonb
+  name: String
+  type: String
+}
+
+"""
+Streaming cursor of the table "ingredients_sortings"
+"""
+input ingredients_sortings_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: ingredients_sortings_stream_cursor_value_input!
+
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input ingredients_sortings_stream_cursor_value_input {
+  iconPath: String
+  id: uuid
+  ingredientFamilyIds: jsonb
+  name: String
+  type: String
+}
+
+"""
+update columns of table "ingredients_sortings"
+"""
+enum ingredients_sortings_update_column {
+  """column name"""
+  iconPath
+
+  """column name"""
+  id
+
+  """column name"""
+  ingredientFamilyIds
+
+  """column name"""
+  name
+
+  """column name"""
+  type
+}
+
+input ingredients_sortings_updates {
+  """append existing jsonb value of filtered columns with new jsonb value"""
+  _append: ingredients_sortings_append_input
+
+  """
+  delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+  """
+  _delete_at_path: ingredients_sortings_delete_at_path_input
+
+  """
+  delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array
+  """
+  _delete_elem: ingredients_sortings_delete_elem_input
+
+  """
+  delete key/value pair or string element. key/value pairs are matched based on their key value
+  """
+  _delete_key: ingredients_sortings_delete_key_input
+
+  """prepend existing jsonb value of filtered columns with new jsonb value"""
+  _prepend: ingredients_sortings_prepend_input
+
+  """sets the columns of the filtered rows to the given values"""
+  _set: ingredients_sortings_set_input
+  where: ingredients_sortings_bool_exp!
 }
 
 """
@@ -1601,6 +1846,19 @@ type mutation_root {
   delete_ingredients_by_pk(id: String!): ingredients
 
   """
+  delete data from the table: "ingredients_sortings"
+  """
+  delete_ingredients_sortings(
+    """filter the rows which have to be deleted"""
+    where: ingredients_sortings_bool_exp!
+  ): ingredients_sortings_mutation_response
+
+  """
+  delete single row from the table: "ingredients_sortings"
+  """
+  delete_ingredients_sortings_by_pk(id: uuid!): ingredients_sortings
+
+  """
   delete data from the table: "recipes"
   """
   delete_recipes(
@@ -1757,6 +2015,28 @@ type mutation_root {
     """upsert condition"""
     on_conflict: ingredients_on_conflict
   ): ingredients
+
+  """
+  insert data into the table: "ingredients_sortings"
+  """
+  insert_ingredients_sortings(
+    """the rows to be inserted"""
+    objects: [ingredients_sortings_insert_input!]!
+
+    """upsert condition"""
+    on_conflict: ingredients_sortings_on_conflict
+  ): ingredients_sortings_mutation_response
+
+  """
+  insert a single row into the table: "ingredients_sortings"
+  """
+  insert_ingredients_sortings_one(
+    """the row to be inserted"""
+    object: ingredients_sortings_insert_input!
+
+    """upsert condition"""
+    on_conflict: ingredients_sortings_on_conflict
+  ): ingredients_sortings
 
   """
   insert data into the table: "recipes"
@@ -1969,6 +2249,76 @@ type mutation_root {
     """updates to execute, in order"""
     updates: [ingredients_updates!]!
   ): [ingredients_mutation_response]
+
+  """
+  update data of the table: "ingredients_sortings"
+  """
+  update_ingredients_sortings(
+    """append existing jsonb value of filtered columns with new jsonb value"""
+    _append: ingredients_sortings_append_input
+
+    """
+    delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+    """
+    _delete_at_path: ingredients_sortings_delete_at_path_input
+
+    """
+    delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array
+    """
+    _delete_elem: ingredients_sortings_delete_elem_input
+
+    """
+    delete key/value pair or string element. key/value pairs are matched based on their key value
+    """
+    _delete_key: ingredients_sortings_delete_key_input
+
+    """prepend existing jsonb value of filtered columns with new jsonb value"""
+    _prepend: ingredients_sortings_prepend_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: ingredients_sortings_set_input
+
+    """filter the rows which have to be updated"""
+    where: ingredients_sortings_bool_exp!
+  ): ingredients_sortings_mutation_response
+
+  """
+  update single row of the table: "ingredients_sortings"
+  """
+  update_ingredients_sortings_by_pk(
+    """append existing jsonb value of filtered columns with new jsonb value"""
+    _append: ingredients_sortings_append_input
+
+    """
+    delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+    """
+    _delete_at_path: ingredients_sortings_delete_at_path_input
+
+    """
+    delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array
+    """
+    _delete_elem: ingredients_sortings_delete_elem_input
+
+    """
+    delete key/value pair or string element. key/value pairs are matched based on their key value
+    """
+    _delete_key: ingredients_sortings_delete_key_input
+
+    """prepend existing jsonb value of filtered columns with new jsonb value"""
+    _prepend: ingredients_sortings_prepend_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: ingredients_sortings_set_input
+    pk_columns: ingredients_sortings_pk_columns_input!
+  ): ingredients_sortings
+
+  """
+  update multiples rows of table: "ingredients_sortings"
+  """
+  update_ingredients_sortings_many(
+    """updates to execute, in order"""
+    updates: [ingredients_sortings_updates!]!
+  ): [ingredients_sortings_mutation_response]
 
   """
   update data of the table: "recipes"
@@ -2394,6 +2744,51 @@ type query_root {
   ingredients_by_pk(id: String!): ingredients
 
   """
+  fetch data from the table: "ingredients_sortings"
+  """
+  ingredients_sortings(
+    """distinct select on columns"""
+    distinct_on: [ingredients_sortings_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [ingredients_sortings_order_by!]
+
+    """filter the rows returned"""
+    where: ingredients_sortings_bool_exp
+  ): [ingredients_sortings!]!
+
+  """
+  fetch aggregated fields from the table: "ingredients_sortings"
+  """
+  ingredients_sortings_aggregate(
+    """distinct select on columns"""
+    distinct_on: [ingredients_sortings_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [ingredients_sortings_order_by!]
+
+    """filter the rows returned"""
+    where: ingredients_sortings_bool_exp
+  ): ingredients_sortings_aggregate!
+
+  """
+  fetch data from the table: "ingredients_sortings" using primary key columns
+  """
+  ingredients_sortings_by_pk(id: uuid!): ingredients_sortings
+
+  """
   fetch data from the table: "recipes"
   """
   recipes(
@@ -2724,19 +3119,19 @@ input recipes_insert_input {
   bridge_recipes_cuisines: bridge_recipes_cuisines_arr_rel_insert_input
   bridge_recipes_ingredients: bridge_recipes_ingredients_arr_rel_insert_input
   bridge_recipes_tags: bridge_recipes_tags_arr_rel_insert_input
-  country: String!
-  description: String!
+  country: String
+  description: String
   descriptionMarkdown: String
-  difficulty: Int!
-  headline: String!
-  id: String!
+  difficulty: Int
+  headline: String
+  id: String
   imagePath: String
-  name: String!
+  name: String
   prepTime: String
-  slug: String!
-  steps: jsonb!
+  slug: String
+  steps: jsonb
   totalTime: String
-  yields_json: jsonb!
+  yields_json: jsonb
 }
 
 """aggregate max on columns"""
@@ -3356,6 +3751,65 @@ type subscription_root {
   ingredients_by_pk(id: String!): ingredients
 
   """
+  fetch data from the table: "ingredients_sortings"
+  """
+  ingredients_sortings(
+    """distinct select on columns"""
+    distinct_on: [ingredients_sortings_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [ingredients_sortings_order_by!]
+
+    """filter the rows returned"""
+    where: ingredients_sortings_bool_exp
+  ): [ingredients_sortings!]!
+
+  """
+  fetch aggregated fields from the table: "ingredients_sortings"
+  """
+  ingredients_sortings_aggregate(
+    """distinct select on columns"""
+    distinct_on: [ingredients_sortings_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [ingredients_sortings_order_by!]
+
+    """filter the rows returned"""
+    where: ingredients_sortings_bool_exp
+  ): ingredients_sortings_aggregate!
+
+  """
+  fetch data from the table: "ingredients_sortings" using primary key columns
+  """
+  ingredients_sortings_by_pk(id: uuid!): ingredients_sortings
+
+  """
+  fetch data from the table in a streaming manner: "ingredients_sortings"
+  """
+  ingredients_sortings_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+
+    """cursor to stream the results returned by the query"""
+    cursor: [ingredients_sortings_stream_cursor_input]!
+
+    """filter the rows returned"""
+    where: ingredients_sortings_bool_exp
+  ): [ingredients_sortings!]!
+
+  """
   fetch data from the table in a streaming manner: "ingredients"
   """
   ingredients_stream(
@@ -3607,11 +4061,11 @@ input type for inserting data into table "tags"
 """
 input tags_insert_input {
   bridge_recipes_tags: bridge_recipes_tags_arr_rel_insert_input
-  id: String!
-  name: String!
-  numberOfRecipesByCountry: jsonb!
-  slug: String!
-  type: String!
+  id: String
+  name: String
+  numberOfRecipesByCountry: jsonb
+  slug: String
+  type: String
 }
 
 """aggregate max on columns"""

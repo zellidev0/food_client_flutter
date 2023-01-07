@@ -3945,3 +3945,462 @@ class _CopyWithStubImpl$Mutation$delete_all$delete_tags<TRes>
   }) =>
       _res;
 }
+
+class Variables$Mutation$AddIngredientsSorting {
+  factory Variables$Mutation$AddIngredientsSorting(
+          {required List<Input$ingredients_sortings_insert_input> input}) =>
+      Variables$Mutation$AddIngredientsSorting._({
+        r'input': input,
+      });
+
+  Variables$Mutation$AddIngredientsSorting._(this._$data);
+
+  factory Variables$Mutation$AddIngredientsSorting.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$input = data['input'];
+    result$data['input'] = (l$input as List<dynamic>)
+        .map((e) => Input$ingredients_sortings_insert_input.fromJson(
+            (e as Map<String, dynamic>)))
+        .toList();
+    return Variables$Mutation$AddIngredientsSorting._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<Input$ingredients_sortings_insert_input> get input =>
+      (_$data['input'] as List<Input$ingredients_sortings_insert_input>);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$input = input;
+    result$data['input'] = l$input.map((e) => e.toJson()).toList();
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$AddIngredientsSorting<
+          Variables$Mutation$AddIngredientsSorting>
+      get copyWith => CopyWith$Variables$Mutation$AddIngredientsSorting(
+            this,
+            (i) => i,
+          );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Variables$Mutation$AddIngredientsSorting) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$input = input;
+    final lOther$input = other.input;
+    if (l$input.length != lOther$input.length) {
+      return false;
+    }
+    for (int i = 0; i < l$input.length; i++) {
+      final l$input$entry = l$input[i];
+      final lOther$input$entry = lOther$input[i];
+      if (l$input$entry != lOther$input$entry) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$input = input;
+    return Object.hashAll([Object.hashAll(l$input.map((v) => v))]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$AddIngredientsSorting<TRes> {
+  factory CopyWith$Variables$Mutation$AddIngredientsSorting(
+    Variables$Mutation$AddIngredientsSorting instance,
+    TRes Function(Variables$Mutation$AddIngredientsSorting) then,
+  ) = _CopyWithImpl$Variables$Mutation$AddIngredientsSorting;
+
+  factory CopyWith$Variables$Mutation$AddIngredientsSorting.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$AddIngredientsSorting;
+
+  TRes call({List<Input$ingredients_sortings_insert_input>? input});
+}
+
+class _CopyWithImpl$Variables$Mutation$AddIngredientsSorting<TRes>
+    implements CopyWith$Variables$Mutation$AddIngredientsSorting<TRes> {
+  _CopyWithImpl$Variables$Mutation$AddIngredientsSorting(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$AddIngredientsSorting _instance;
+
+  final TRes Function(Variables$Mutation$AddIngredientsSorting) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? input = _undefined}) =>
+      _then(Variables$Mutation$AddIngredientsSorting._({
+        ..._instance._$data,
+        if (input != _undefined && input != null)
+          'input': (input as List<Input$ingredients_sortings_insert_input>),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$AddIngredientsSorting<TRes>
+    implements CopyWith$Variables$Mutation$AddIngredientsSorting<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$AddIngredientsSorting(this._res);
+
+  TRes _res;
+
+  call({List<Input$ingredients_sortings_insert_input>? input}) => _res;
+}
+
+class Mutation$AddIngredientsSorting {
+  Mutation$AddIngredientsSorting({
+    this.insert_ingredients_sortings,
+    required this.$__typename,
+  });
+
+  factory Mutation$AddIngredientsSorting.fromJson(Map<String, dynamic> json) {
+    final l$insert_ingredients_sortings = json['insert_ingredients_sortings'];
+    final l$$__typename = json['__typename'];
+    return Mutation$AddIngredientsSorting(
+      insert_ingredients_sortings: l$insert_ingredients_sortings == null
+          ? null
+          : Mutation$AddIngredientsSorting$insert_ingredients_sortings.fromJson(
+              (l$insert_ingredients_sortings as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$AddIngredientsSorting$insert_ingredients_sortings?
+      insert_ingredients_sortings;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$insert_ingredients_sortings = insert_ingredients_sortings;
+    _resultData['insert_ingredients_sortings'] =
+        l$insert_ingredients_sortings?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$insert_ingredients_sortings = insert_ingredients_sortings;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$insert_ingredients_sortings,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Mutation$AddIngredientsSorting) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$insert_ingredients_sortings = insert_ingredients_sortings;
+    final lOther$insert_ingredients_sortings =
+        other.insert_ingredients_sortings;
+    if (l$insert_ingredients_sortings != lOther$insert_ingredients_sortings) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$AddIngredientsSorting
+    on Mutation$AddIngredientsSorting {
+  CopyWith$Mutation$AddIngredientsSorting<Mutation$AddIngredientsSorting>
+      get copyWith => CopyWith$Mutation$AddIngredientsSorting(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$AddIngredientsSorting<TRes> {
+  factory CopyWith$Mutation$AddIngredientsSorting(
+    Mutation$AddIngredientsSorting instance,
+    TRes Function(Mutation$AddIngredientsSorting) then,
+  ) = _CopyWithImpl$Mutation$AddIngredientsSorting;
+
+  factory CopyWith$Mutation$AddIngredientsSorting.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$AddIngredientsSorting;
+
+  TRes call({
+    Mutation$AddIngredientsSorting$insert_ingredients_sortings?
+        insert_ingredients_sortings,
+    String? $__typename,
+  });
+  CopyWith$Mutation$AddIngredientsSorting$insert_ingredients_sortings<TRes>
+      get insert_ingredients_sortings;
+}
+
+class _CopyWithImpl$Mutation$AddIngredientsSorting<TRes>
+    implements CopyWith$Mutation$AddIngredientsSorting<TRes> {
+  _CopyWithImpl$Mutation$AddIngredientsSorting(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$AddIngredientsSorting _instance;
+
+  final TRes Function(Mutation$AddIngredientsSorting) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? insert_ingredients_sortings = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$AddIngredientsSorting(
+        insert_ingredients_sortings: insert_ingredients_sortings == _undefined
+            ? _instance.insert_ingredients_sortings
+            : (insert_ingredients_sortings
+                as Mutation$AddIngredientsSorting$insert_ingredients_sortings?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Mutation$AddIngredientsSorting$insert_ingredients_sortings<TRes>
+      get insert_ingredients_sortings {
+    final local$insert_ingredients_sortings =
+        _instance.insert_ingredients_sortings;
+    return local$insert_ingredients_sortings == null
+        ? CopyWith$Mutation$AddIngredientsSorting$insert_ingredients_sortings
+            .stub(_then(_instance))
+        : CopyWith$Mutation$AddIngredientsSorting$insert_ingredients_sortings(
+            local$insert_ingredients_sortings,
+            (e) => call(insert_ingredients_sortings: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$AddIngredientsSorting<TRes>
+    implements CopyWith$Mutation$AddIngredientsSorting<TRes> {
+  _CopyWithStubImpl$Mutation$AddIngredientsSorting(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$AddIngredientsSorting$insert_ingredients_sortings?
+        insert_ingredients_sortings,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Mutation$AddIngredientsSorting$insert_ingredients_sortings<TRes>
+      get insert_ingredients_sortings =>
+          CopyWith$Mutation$AddIngredientsSorting$insert_ingredients_sortings
+              .stub(_res);
+}
+
+const documentNodeMutationAddIngredientsSorting = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'AddIngredientsSorting'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'input')),
+        type: ListTypeNode(
+          type: NamedTypeNode(
+            name: NameNode(value: 'ingredients_sortings_insert_input'),
+            isNonNull: true,
+          ),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'insert_ingredients_sortings'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'objects'),
+            value: VariableNode(name: NameNode(value: 'input')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'affected_rows'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+
+class Mutation$AddIngredientsSorting$insert_ingredients_sortings {
+  Mutation$AddIngredientsSorting$insert_ingredients_sortings({
+    required this.affected_rows,
+    required this.$__typename,
+  });
+
+  factory Mutation$AddIngredientsSorting$insert_ingredients_sortings.fromJson(
+      Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
+    final l$$__typename = json['__typename'];
+    return Mutation$AddIngredientsSorting$insert_ingredients_sortings(
+      affected_rows: (l$affected_rows as int),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int affected_rows;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$affected_rows = affected_rows;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$affected_rows,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other
+            is Mutation$AddIngredientsSorting$insert_ingredients_sortings) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$AddIngredientsSorting$insert_ingredients_sortings
+    on Mutation$AddIngredientsSorting$insert_ingredients_sortings {
+  CopyWith$Mutation$AddIngredientsSorting$insert_ingredients_sortings<
+          Mutation$AddIngredientsSorting$insert_ingredients_sortings>
+      get copyWith =>
+          CopyWith$Mutation$AddIngredientsSorting$insert_ingredients_sortings(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$AddIngredientsSorting$insert_ingredients_sortings<
+    TRes> {
+  factory CopyWith$Mutation$AddIngredientsSorting$insert_ingredients_sortings(
+    Mutation$AddIngredientsSorting$insert_ingredients_sortings instance,
+    TRes Function(Mutation$AddIngredientsSorting$insert_ingredients_sortings)
+        then,
+  ) = _CopyWithImpl$Mutation$AddIngredientsSorting$insert_ingredients_sortings;
+
+  factory CopyWith$Mutation$AddIngredientsSorting$insert_ingredients_sortings.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$AddIngredientsSorting$insert_ingredients_sortings;
+
+  TRes call({
+    int? affected_rows,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$AddIngredientsSorting$insert_ingredients_sortings<
+        TRes>
+    implements
+        CopyWith$Mutation$AddIngredientsSorting$insert_ingredients_sortings<
+            TRes> {
+  _CopyWithImpl$Mutation$AddIngredientsSorting$insert_ingredients_sortings(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$AddIngredientsSorting$insert_ingredients_sortings _instance;
+
+  final TRes Function(
+      Mutation$AddIngredientsSorting$insert_ingredients_sortings) _then;
+
+  static const _undefined = {};
+
+  TRes call({
+    Object? affected_rows = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$AddIngredientsSorting$insert_ingredients_sortings(
+        affected_rows: affected_rows == _undefined || affected_rows == null
+            ? _instance.affected_rows
+            : (affected_rows as int),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$AddIngredientsSorting$insert_ingredients_sortings<
+        TRes>
+    implements
+        CopyWith$Mutation$AddIngredientsSorting$insert_ingredients_sortings<
+            TRes> {
+  _CopyWithStubImpl$Mutation$AddIngredientsSorting$insert_ingredients_sortings(
+      this._res);
+
+  TRes _res;
+
+  call({
+    int? affected_rows,
+    String? $__typename,
+  }) =>
+      _res;
+}
