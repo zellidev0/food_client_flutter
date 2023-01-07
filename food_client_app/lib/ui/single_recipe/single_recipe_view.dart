@@ -73,6 +73,20 @@ class SingleRecipeView extends ConsumerWidget {
           headerSliverBuilder: (final _, final __) => <Widget>[
             SliverAppBar(
               floating: true,
+              // leading: IconButton(
+              //   icon: Icon(
+              //     defaultTargetPlatform == TargetPlatform.iOS
+              //         ? Icons.arrow_back_ios_new
+              //         : Icons.arrow_back,
+              //   ),
+              //   onPressed: controller.goBack,
+              // ),
+              actions: <Widget>[
+                IconButton(
+                  icon: const Icon(Icons.share),
+                  onPressed: () => controller.shareRecipe(recipe: recipe),
+                ),
+              ],
               shadowColor: Colors.transparent,
               stretch: true,
               flexibleSpace: FlexibleSpaceBar(
@@ -318,6 +332,7 @@ abstract class SingleRecipeController extends StateNotifier<SingleRecipeModel> {
     required final SingleRecipeModelRecipe recipe,
     required final String recipeId,
   });
+  void shareRecipe({required final SingleRecipeModelRecipe recipe});
 }
 
 class TabBarSliverDelegate extends SliverPersistentHeaderDelegate {

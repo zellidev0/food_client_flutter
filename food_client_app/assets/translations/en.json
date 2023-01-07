@@ -14,7 +14,8 @@
         }
       },
       "snack_bars": {
-        "add_to_cart_success": "Recipe added to shopping cart."
+        "add_to_cart_success": "Recipe added to shopping cart.",
+        "share_recipe_error": "Could not share recipe."
       },
       "difficulty": {
         "easy": "easy",

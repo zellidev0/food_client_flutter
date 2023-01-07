@@ -15,6 +15,7 @@ class SingleRecipeModel with _$SingleRecipeModel {
 class SingleRecipeModelRecipe with _$SingleRecipeModelRecipe {
   const factory SingleRecipeModelRecipe({
     required final String id,
+    required final String slug,
     required final SingleRecipeModelDisplayedAttributes displayedAttributes,
     required final int difficulty,
     required final Option<Duration> totalCookingTime,

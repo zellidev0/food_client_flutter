@@ -14,7 +14,8 @@
         }
       },
       "snack_bars": {
-        "add_to_cart_success": "Rezept wurden der Einkaufsliste hinzugefügt."
+        "add_to_cart_success": "Rezept wurden der Einkaufsliste hinzugefügt.",
+        "share_recipe_error": "Rezept konnte nicht geteilt werden."
       },
       "difficulty": {
         "easy": "Einfach",

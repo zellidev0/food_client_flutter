@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SingleRecipeWebClientModelRecipe {
   String get id => throw _privateConstructorUsedError;
+  String get slug => throw _privateConstructorUsedError;
   SingleRecipeWebClientModelDisplayedAttributes get displayedAttributes =>
       throw _privateConstructorUsedError;
   int get difficulty => throw _privateConstructorUsedError;
@@ -44,6 +45,7 @@ abstract class $SingleRecipeWebClientModelRecipeCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
+      String slug,
       SingleRecipeWebClientModelDisplayedAttributes displayedAttributes,
       int difficulty,
       Option<Duration> totalCookingTime,
@@ -71,6 +73,7 @@ class _$SingleRecipeWebClientModelRecipeCopyWithImpl<$Res,
   @override
   $Res call({
     Object? id = null,
+    Object? slug = null,
     Object? displayedAttributes = null,
     Object? difficulty = null,
     Object? totalCookingTime = null,
@@ -83,6 +86,10 @@ class _$SingleRecipeWebClientModelRecipeCopyWithImpl<$Res,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      slug: null == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
               as String,
       displayedAttributes: null == displayedAttributes
           ? _value.displayedAttributes
@@ -137,6 +144,7 @@ abstract class _$$_SingleRecipeWebClientModelRecipeCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
+      String slug,
       SingleRecipeWebClientModelDisplayedAttributes displayedAttributes,
       int difficulty,
       Option<Duration> totalCookingTime,
@@ -164,6 +172,7 @@ class __$$_SingleRecipeWebClientModelRecipeCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? slug = null,
     Object? displayedAttributes = null,
     Object? difficulty = null,
     Object? totalCookingTime = null,
@@ -176,6 +185,10 @@ class __$$_SingleRecipeWebClientModelRecipeCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      slug: null == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
               as String,
       displayedAttributes: null == displayedAttributes
           ? _value.displayedAttributes
@@ -215,6 +228,7 @@ class _$_SingleRecipeWebClientModelRecipe
     implements _SingleRecipeWebClientModelRecipe {
   const _$_SingleRecipeWebClientModelRecipe(
       {required this.id,
+      required this.slug,
       required this.displayedAttributes,
       required this.difficulty,
       required this.totalCookingTime,
@@ -228,6 +242,8 @@ class _$_SingleRecipeWebClientModelRecipe
 
   @override
   final String id;
+  @override
+  final String slug;
   @override
   final SingleRecipeWebClientModelDisplayedAttributes displayedAttributes;
   @override
@@ -260,7 +276,7 @@ class _$_SingleRecipeWebClientModelRecipe
 
   @override
   String toString() {
-    return 'SingleRecipeWebClientModelRecipe(id: $id, displayedAttributes: $displayedAttributes, difficulty: $difficulty, totalCookingTime: $totalCookingTime, yields: $yields, tags: $tags, steps: $steps, imagePath: $imagePath)';
+    return 'SingleRecipeWebClientModelRecipe(id: $id, slug: $slug, displayedAttributes: $displayedAttributes, difficulty: $difficulty, totalCookingTime: $totalCookingTime, yields: $yields, tags: $tags, steps: $steps, imagePath: $imagePath)';
   }
 
   @override
@@ -269,6 +285,7 @@ class _$_SingleRecipeWebClientModelRecipe
         (other.runtimeType == runtimeType &&
             other is _$_SingleRecipeWebClientModelRecipe &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.slug, slug) || other.slug == slug) &&
             (identical(other.displayedAttributes, displayedAttributes) ||
                 other.displayedAttributes == displayedAttributes) &&
             (identical(other.difficulty, difficulty) ||
@@ -286,6 +303,7 @@ class _$_SingleRecipeWebClientModelRecipe
   int get hashCode => Object.hash(
       runtimeType,
       id,
+      slug,
       displayedAttributes,
       difficulty,
       totalCookingTime,
@@ -307,6 +325,7 @@ abstract class _SingleRecipeWebClientModelRecipe
     implements SingleRecipeWebClientModelRecipe {
   const factory _SingleRecipeWebClientModelRecipe(
           {required final String id,
+          required final String slug,
           required final SingleRecipeWebClientModelDisplayedAttributes
               displayedAttributes,
           required final int difficulty,
@@ -319,6 +338,8 @@ abstract class _SingleRecipeWebClientModelRecipe
 
   @override
   String get id;
+  @override
+  String get slug;
   @override
   SingleRecipeWebClientModelDisplayedAttributes get displayedAttributes;
   @override

@@ -179,6 +179,20 @@ class WebClientService implements WebClientServiceAggregator {
             (final Object error, final StackTrace stackTrace) =>
                 Exception('Failed to fetch ingredients'),
           ).flatMap(mapIngredientsSortingResponse);
+
+  @override
+  TaskEither<Exception, Uri> buildShareUrl({
+    required final String recipeSlug,
+    required final String recipeId,
+  }) =>
+      TaskEither<Exception, Uri>.tryCatch(
+        () async => Uri.parse(
+          'https://www.hellofresh.de/recipes/$recipeSlug-$recipeId',
+        ),
+        (final Object error, final StackTrace stackTrace) => Exception(
+          'Failed to build share url, error:$error, stackTrace: $stackTrace',
+        ),
+      );
 }
 
 SingleRecipeWebClientModelRecipe _mapToSingleRecipeWebClientModelRecipe({
@@ -234,6 +248,7 @@ SingleRecipeWebClientModelRecipe _mapToSingleRecipeWebClientModelRecipe({
           ),
         ),
       ).flatMap((final Option<Duration> optional) => optional),
+      slug: recipe.slug,
     );
 
 TaskEither<Exception, List<IngredientsSortingWebClientModelIngredientSorting>>

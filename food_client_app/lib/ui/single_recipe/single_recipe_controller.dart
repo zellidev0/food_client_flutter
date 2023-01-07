@@ -9,6 +9,7 @@ import 'package:food_client/ui/single_recipe/single_recipe_view.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_web_client_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:share_plus/share_plus.dart';
 
 const int widthPixelsDescriptionSteps = 512;
 const int widthPixelsIngredientThumbNail = 256;
@@ -119,7 +120,9 @@ class SingleRecipeControllerImplementation extends SingleRecipeController {
                           .run(),
                     );
                     _navigationService.showSnackBar(
-                      message: 'ui.single_recipe_view.snack_bars.add_to_cart_success'.tr(),
+                      message:
+                          'ui.single_recipe_view.snack_bars.add_to_cart_success'
+                              .tr(),
                     );
                   },
                 ),
@@ -127,6 +130,25 @@ class SingleRecipeControllerImplementation extends SingleRecipeController {
               .toList(),
         ),
       ),
+    );
+  }
+
+  @override
+  void shareRecipe({required final SingleRecipeModelRecipe recipe}) {
+    unawaited(_shareRecipe(recipe: recipe));
+  }
+
+  Future<void> _shareRecipe({
+    required final SingleRecipeModelRecipe recipe,
+  }) async {
+    (await _webClientService
+            .buildShareUrl(recipeId: recipe.id, recipeSlug: recipe.slug)
+            .run())
+        .fold(
+      (final Exception exception) => _navigationService.showSnackBar(
+        message: 'ui.single_recipe_view.snack_bars.share_recipe_error'.tr(),
+      ),
+      (final Uri url) => Share.share(url.toString()),
     );
   }
 }
@@ -187,6 +209,7 @@ SingleRecipeModelRecipe mapToSingleRecipeModelRecipe({
       ),
       imagePath: recipe.imagePath,
       totalCookingTime: recipe.totalCookingTime,
+      slug: recipe.slug,
     );
 
 SingleRecipeModelDisplayedAttributes _mapDisplayedAttributes({

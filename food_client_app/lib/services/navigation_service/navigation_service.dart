@@ -27,7 +27,7 @@ class NavigationServiceUris {
   NavigationServiceUris._();
 
   static Uri homeSingleRecipeUri = Uri.parse('/main/home/recipes');
-  static Uri cartSingleRecipeUri = Uri.parse('/main/home/recipes');
+  static Uri cartSingleRecipeUri = Uri.parse('/main/cart/recipes');
   static String singleRecipeIdKey = 'single-recipe-id';
   static Uri homeRouteUri = Uri.parse('/main/home');
   static Uri accountRouteUri = Uri.parse('/main/account');
@@ -54,6 +54,7 @@ class BeamerNavigationService implements NavigationServiceAggregator {
 
   @override
   void goBack({final Uri? fallbackUri}) {
+
     if (_beamerDelegate.canBeamBack) {
       _beamerDelegate.beamBack();
     } else {

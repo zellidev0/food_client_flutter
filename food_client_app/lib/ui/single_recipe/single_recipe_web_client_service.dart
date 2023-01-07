@@ -7,12 +7,17 @@ abstract class SingleRecipeWebClientService {
   TaskEither<Exception, SingleRecipeWebClientModelRecipe> fetchSingleRecipe({
     required final String recipeId,
   });
+  TaskEither<Exception, Uri> buildShareUrl({
+    required final String recipeSlug,
+    required final String recipeId,
+  });
 }
 
 @freezed
 class SingleRecipeWebClientModelRecipe with _$SingleRecipeWebClientModelRecipe {
   const factory SingleRecipeWebClientModelRecipe({
     required final String id,
+    required final String slug,
     required final SingleRecipeWebClientModelDisplayedAttributes
         displayedAttributes,
     required final int difficulty,
