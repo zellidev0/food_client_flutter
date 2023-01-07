@@ -239,6 +239,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
+  custom_nested_scroll_view:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: "flutter-3.0"
+      resolved-ref: be572c876e5daf0488b61768fa1f43f80ffe896f
+      url: "https://github.com/idootop/custom_nested_scroll_view.git"
+    source: git
+    version: "0.0.2"
   dart_style:
     dependency: transitive
     description:

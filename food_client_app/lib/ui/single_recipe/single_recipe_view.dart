@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:collection/collection.dart';
+import 'package:custom_nested_scroll_view/custom_nested_scroll_view.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -70,14 +71,20 @@ class SingleRecipeView extends ConsumerWidget {
     required final Option<int> selectedYield,
   }) =>
       Builder(
-        builder: (final BuildContext context) => NestedScrollView(
-          physics: const BouncingScrollPhysics(),
+        builder: (final BuildContext context) => CustomNestedScrollView(
+          physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics(),
+          ),
           headerSliverBuilder: (
             final BuildContext contextWithScrollView,
             final __,
           ) =>
               <Widget>[
-             SliverAppBar(
+            CustomSliverOverlapAbsorber(
+              handle: CustomNestedScrollView.sliverOverlapAbsorberHandleFor(
+                contextWithScrollView,
+              ),
+              sliver: SliverAppBar(
                 floating: true,
                 leading: IconButton(
                   icon: Icon(
@@ -100,7 +107,6 @@ class SingleRecipeView extends ConsumerWidget {
                 flexibleSpace: FlexibleSpaceBar(
                   stretchModes: const <StretchMode>[
                     StretchMode.zoomBackground,
-                    StretchMode.blurBackground,
                   ],
                   background: Stack(
                     children: <Widget>[
@@ -131,6 +137,7 @@ class SingleRecipeView extends ConsumerWidget {
                 ),
                 pinned: true,
                 expandedHeight: MediaQuery.of(context).size.height * 0.3,
+              ),
             ),
             SliverPersistentHeader(
               floating: false,
@@ -147,20 +154,19 @@ class SingleRecipeView extends ConsumerWidget {
               ),
             ),
           ],
-          body: Column(
-            children: <Widget>[
-              _buildCookingDetails(
-                difficulty: recipe.difficulty,
-                totalCookingTime: recipe.totalCookingTime,
-              ),
-              Expanded(
-                child: buildTabsContent(
-                  recipe: recipe,
-                  selectedYield: selectedYield,
-                  controller: controller,
+          body: Padding(
+            padding: const EdgeInsets.only(top: 75),
+            child: Column(
+              children: <Widget>[
+                Expanded(
+                  child: buildTabsContent(
+                    recipe: recipe,
+                    selectedYield: selectedYield,
+                    controller: controller,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       );
