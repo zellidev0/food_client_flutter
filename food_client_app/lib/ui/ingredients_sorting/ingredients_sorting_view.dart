@@ -19,6 +19,7 @@ class IngredientsSortingView extends ConsumerWidget {
         Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.transparent,
+            scrolledUnderElevation:0,
             leading: IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: controller.goBack,

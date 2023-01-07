@@ -20,79 +20,81 @@ class CartView extends ConsumerWidget {
     );
 
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
-      body: DefaultTabController(
-        length: 3,
-        child: Builder(
-          builder: (final BuildContext context) => NestedScrollView(
-            headerSliverBuilder: (final _, final __) => <Widget>[
-              if (model.recipes.isEmpty)
-                const SliverToBoxAdapter()
-              else
-                _buildRecipeListSliver(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      body: SafeArea(
+        child: DefaultTabController(
+          length: 3,
+          child: Builder(
+            builder: (final BuildContext context) => NestedScrollView(
+              headerSliverBuilder: (final _, final __) => <Widget>[
+                if (model.recipes.isEmpty)
+                  const SliverToBoxAdapter()
+                else
+                  _buildRecipeListSliver(
+                    model: model,
+                    controller: controller,
+                  ),
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        TextButton.icon(
+                          onPressed: () => controller.openModalBottomSheet(
+                            child: buildSortingModalBottomSheetWidget(),
+                          ),
+                          icon: const Icon(Icons.sort),
+                          label: const Text(
+                            'ui.cart_view.modals.sorting_modal.button_text',
+                          ).tr(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                _buildTabBarSliver(
                   model: model,
                   controller: controller,
                 ),
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      TextButton.icon(
-                        onPressed: () => controller.openModalBottomSheet(
-                          child: buildSortingModalBottomSheetWidget(),
-                        ),
-                        icon: const Icon(Icons.sort),
-                        label: const Text(
-                          'ui.cart_view.modals.sorting_modal.button_text',
-                        ).tr(),
-                      ),
-                    ],
+              ],
+              body: model.recipes.isEmpty
+                  ? buildNoItemsFoundIcon(
+                message: 'ui.cart_view.empty_states.empty_cart'.tr(),
+              )
+                  : TabBarView(
+                children: <Widget>[
+                  buildIngredientsListView(
+                    ingredients: model.ingredients,
+                    keyId: 'total',
+                    controller: controller,
+                    sorting: model.sorting,
                   ),
-                ),
-              ),
-              _buildTabBarSliver(
-                model: model,
-                controller: controller,
-              ),
-            ],
-            body: model.recipes.isEmpty
-                ? buildNoItemsFoundIcon(
-                    message: 'ui.cart_view.empty_states.empty_cart'.tr(),
-                  )
-                : TabBarView(
-                    children: <Widget>[
-                      buildIngredientsListView(
-                        ingredients: model.ingredients,
-                        keyId: 'total',
-                        controller: controller,
-                        sorting: model.sorting,
-                      ),
-                      buildIngredientsListView(
-                        ingredients: model.ingredients
-                            .where(
-                              (final CartModelIngredient element) =>
-                                  !element.isTickedOff,
-                            )
-                            .toList(),
-                        keyId: 'missing',
-                        controller: controller,
-                        sorting: model.sorting,
-                      ),
-                      buildIngredientsListView(
-                        ingredients: model.ingredients
-                            .where(
-                              (final CartModelIngredient element) =>
-                                  element.isTickedOff,
-                            )
-                            .toList(),
-                        keyId: 'ticked-off',
-                        controller: controller,
-                        sorting: model.sorting,
-                      ),
-                    ],
+                  buildIngredientsListView(
+                    ingredients: model.ingredients
+                        .where(
+                          (final CartModelIngredient element) =>
+                      !element.isTickedOff,
+                    )
+                        .toList(),
+                    keyId: 'missing',
+                    controller: controller,
+                    sorting: model.sorting,
                   ),
+                  buildIngredientsListView(
+                    ingredients: model.ingredients
+                        .where(
+                          (final CartModelIngredient element) =>
+                      element.isTickedOff,
+                    )
+                        .toList(),
+                    keyId: 'ticked-off',
+                    controller: controller,
+                    sorting: model.sorting,
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       ),

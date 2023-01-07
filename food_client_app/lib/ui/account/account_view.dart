@@ -12,9 +12,10 @@ class AccountView extends ConsumerWidget {
     final AccountModel model = ref.watch(providers.accountControllerProvider);
     final AccountController controller =
         ref.read(providers.accountControllerProvider.notifier);
-    return SafeArea(
-      child: Scaffold(
-        body: Padding(
+    return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      body: SafeArea(
+        child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

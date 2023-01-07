@@ -28,10 +28,6 @@ class HomeView extends ConsumerWidget {
               floating: true,
               pinned: true,
               backgroundColor: Colors.transparent,
-              shadowColor: Colors.transparent,
-              surfaceTintColor: Colors.transparent,
-              foregroundColor: Colors.transparent,
-              elevation: 0,
               scrolledUnderElevation:0,
               flexibleSpace: FlexibleSpaceBar(
                 titlePadding: EdgeInsets.zero,
