@@ -272,7 +272,8 @@ class CartControllerImplementation extends CartController {
           .toList();
 
   @override
-  Future<void> setActiveSorting({required final CartModelSorting sorting}) async {
+  Future<void> setActiveSorting(
+      {required final CartModelSorting sorting}) async {
     await state.sorting
         .map(
           unit: (final _) => sorting.map(

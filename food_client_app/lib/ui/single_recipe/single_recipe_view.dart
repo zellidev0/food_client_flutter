@@ -92,7 +92,7 @@ class SingleRecipeView extends ConsumerWidget {
                         ? Icons.arrow_back_ios_new
                         : Icons.arrow_back,
                   ),
-                  onPressed: () {},
+                  onPressed: controller.goBack,
                 ),
                 actions: <Widget>[
                   IconButton(
@@ -367,6 +367,7 @@ abstract class SingleRecipeController extends StateNotifier<SingleRecipeModel> {
     required final String recipeId,
   });
   void shareRecipe({required final SingleRecipeModelRecipe recipe});
+  void goBack();
 }
 
 class TabBarSliverDelegate extends SliverPersistentHeaderDelegate {

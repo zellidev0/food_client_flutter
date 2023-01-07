@@ -151,6 +151,11 @@ class SingleRecipeControllerImplementation extends SingleRecipeController {
       (final Uri url) => Share.share(url.toString()),
     );
   }
+
+  @override
+  void goBack() {
+    _navigationService.goBack();
+  }
 }
 
 SingleRecipePersistenceServiceIngredient

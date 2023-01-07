@@ -37,7 +37,7 @@ class HomeControllerImplementation extends HomeController {
         (final Exception exception) {
           debugPrint(exception.toString());
           return state.pagingController.error =
-            'ui.home_view.error_states.no_recipes'.tr();
+              'ui.home_view.error_states.no_recipes'.tr();
         },
         (final List<HomeModelRecipe> recipes) {
           setRecipesInPageController(
@@ -273,7 +273,6 @@ List<HomeModelFilter> selectedFilters({
     filters
         .filter((final HomeModelFilter filter) => filter.isSelected)
         .toList();
-
 
 List<HomeModelRecipe> mapToHomeModelRecipes({
   required final List<HomeWebClientModelRecipe> recipes,

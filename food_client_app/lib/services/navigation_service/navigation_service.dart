@@ -26,8 +26,8 @@ abstract class NavigationServiceAggregator
 class NavigationServiceUris {
   NavigationServiceUris._();
 
-  static Uri homeSingleRecipeUri = Uri.parse('/main/home/recipes');
-  static Uri cartSingleRecipeUri = Uri.parse('/main/cart/recipes');
+  static Uri homeSingleRecipeUri = Uri.parse('/main/home/single-recipe');
+  static Uri cartSingleRecipeUri = Uri.parse('/main/cart/single-recipe');
   static String singleRecipeIdKey = 'single-recipe-id';
   static Uri homeRouteUri = Uri.parse('/main/home');
   static Uri accountRouteUri = Uri.parse('/main/account');
@@ -54,7 +54,6 @@ class BeamerNavigationService implements NavigationServiceAggregator {
 
   @override
   void goBack({final Uri? fallbackUri}) {
-
     if (_beamerDelegate.canBeamBack) {
       _beamerDelegate.beamBack();
     } else {
@@ -68,7 +67,7 @@ class BeamerNavigationService implements NavigationServiceAggregator {
 
   @override
   void navigateToNamed({required final Uri uri}) =>
-      _beamerDelegate.beamToNamed(uri.toString(), beamBackOnPop: true);
+      _beamerDelegate.beamToNamed(uri.toString(), beamBackOnPop: false);
 
   @override
   void replaceWithNamed({required final Uri uri}) =>

@@ -154,7 +154,7 @@ class Providers {
         selectedYield: none(),
       ),
       navigationService: ref.read(
-        providers.bottomNavigationBarNavigationServiceProvider,
+        providers.globalNavigationServiceProvider,
       ),
       webClientService: ref.read(providers.webClientServiceProvider),
       webImageSizerService: ref.read(providers.webImageSizerServiceProvider),
