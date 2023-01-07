@@ -31,6 +31,7 @@ class HomeView extends ConsumerWidget {
               scrolledUnderElevation:0,
               flexibleSpace: FlexibleSpaceBar(
                 titlePadding: EdgeInsets.zero,
+                centerTitle: true,
                 title: buildFilters(
                   model: model,
                   controller: controller,
