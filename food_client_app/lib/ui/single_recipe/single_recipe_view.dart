@@ -155,7 +155,9 @@ class SingleRecipeView extends ConsumerWidget {
             ),
           ],
           body: Padding(
-            padding: const EdgeInsets.only(top: 75),
+            padding: EdgeInsets.only(
+              top: const TabBar(tabs: <Widget>[]).preferredSize.height + 52,
+            ),
             child: Column(
               children: <Widget>[
                 Expanded(
