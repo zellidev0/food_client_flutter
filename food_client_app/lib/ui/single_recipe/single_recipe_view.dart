@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -70,41 +71,66 @@ class SingleRecipeView extends ConsumerWidget {
   }) =>
       Builder(
         builder: (final BuildContext context) => NestedScrollView(
-          headerSliverBuilder: (final _, final __) => <Widget>[
-            SliverAppBar(
-              floating: true,
-              // leading: IconButton(
-              //   icon: Icon(
-              //     defaultTargetPlatform == TargetPlatform.iOS
-              //         ? Icons.arrow_back_ios_new
-              //         : Icons.arrow_back,
-              //   ),
-              //   onPressed: controller.goBack,
-              // ),
-              actions: <Widget>[
-                IconButton(
-                  icon: const Icon(Icons.share),
-                  onPressed: () => controller.shareRecipe(recipe: recipe),
+          physics: const BouncingScrollPhysics(),
+          headerSliverBuilder: (
+            final BuildContext contextWithScrollView,
+            final __,
+          ) =>
+              <Widget>[
+             SliverAppBar(
+                floating: true,
+                leading: IconButton(
+                  icon: Icon(
+                    defaultTargetPlatform == TargetPlatform.iOS
+                        ? Icons.arrow_back_ios_new
+                        : Icons.arrow_back,
+                  ),
+                  onPressed: () {},
                 ),
-              ],
-              shadowColor: Colors.transparent,
-              stretch: true,
-              flexibleSpace: FlexibleSpaceBar(
-                titlePadding: const EdgeInsets.all(16),
-                title: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                    child: Text(
-                      recipe.displayedAttributes.name,
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
+                actions: <Widget>[
+                  IconButton(
+                    icon: const Icon(Icons.share),
+                    onPressed: () => controller.shareRecipe(recipe: recipe),
+                  ),
+                ],
+                backgroundColor: Colors.transparent,
+                scrolledUnderElevation: 0,
+                shadowColor: Colors.transparent,
+                stretch: true,
+                flexibleSpace: FlexibleSpaceBar(
+                  stretchModes: const <StretchMode>[
+                    StretchMode.zoomBackground,
+                    StretchMode.blurBackground,
+                  ],
+                  background: Stack(
+                    children: <Widget>[
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        height: double.infinity,
+                        child: buildTopImage(recipe: recipe),
+                      ),
+                      Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: BackdropFilter(
+                              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                              child: Text(
+                                'This is a very very long title of one of the best recipes that the whole wide world has ever seen ever in the world forever and ever and ever',
+                                style: Theme.of(context).textTheme.titleMedium,
+                                textScaleFactor: 1.3,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                background: buildTopImage(recipe: recipe),
-              ),
-              pinned: true,
-              expandedHeight: MediaQuery.of(context).size.height * 0.3,
+                pinned: true,
+                expandedHeight: MediaQuery.of(context).size.height * 0.3,
             ),
             SliverPersistentHeader(
               floating: false,

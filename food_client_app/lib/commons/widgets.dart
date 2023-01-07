@@ -6,7 +6,7 @@ CachedNetworkImage buildCachedNetworkImage({
 }) =>
     CachedNetworkImage(
       imageUrl: imageUrl.toString(),
-      fit: BoxFit.fill,
+      fit: BoxFit.cover,
       fadeInDuration: const Duration(milliseconds: 200),
       fadeOutDuration: const Duration(milliseconds: 200),
       placeholder: (final _, final __) => Column(
