@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/commons/utils.dart';
 import 'package:food_client/services/persistence_service/persistence_service_model.dart';
@@ -266,45 +263,41 @@ class PersistenceService extends PersistenceServiceAggregator {
   @override
   Task<void> saveUnit({
     required final IngredientsSortingPersistenceModelUnit unit,
-  }) {
-    PersistenceServiceModelSortingUnit xxxx =
-        PersistenceServiceModelSortingUnit(
-      id: unit.id,
-      name: unit.name,
-      sorting: unit.sortings
-          .map(
-            (
-              final IngredientsSortingPersistenceModelSorting sorting,
-            ) =>
-                PersistenceServiceModelSorting(
-              ingredientFamilies: sorting.ingredientFamilies
-                  .map(
-                    (
-                      final IngredientsSortingPersistenceModelIngredientFamily
-                          family,
-                    ) =>
-                        PersistenceServiceModelIngredientFamily.helloFresh(
-                      helloFreshFamilyId: family.helloFreshFamilyId,
-                    ),
-                  )
-                  .toList(),
-              type: sorting.type,
-              iconPathAsString:
-                  sorting.iconPath.map((final Uri uri) => uri.toString()),
-              name: sorting.name,
-            ),
-          )
-          .toList(),
-    );
-    String x = jsonEncode(xxxx);
-    debugPrint(x);
-    return Task<void>(
-      () async => await sortingUnits.put(
-        unit.id,
-        xxxx,
-      ),
-    );
-  }
+  }) =>
+      Task<void>(
+        () async => await sortingUnits.put(
+          unit.id,
+          PersistenceServiceModelSortingUnit(
+            id: unit.id,
+            name: unit.name,
+            sorting: unit.sortings
+                .map(
+                  (
+                    final IngredientsSortingPersistenceModelSorting sorting,
+                  ) =>
+                      PersistenceServiceModelSorting(
+                    ingredientFamilies: sorting.ingredientFamilies
+                        .map(
+                          (
+                            final IngredientsSortingPersistenceModelIngredientFamily
+                                family,
+                          ) =>
+                              PersistenceServiceModelIngredientFamily
+                                  .helloFresh(
+                            helloFreshFamilyId: family.helloFreshFamilyId,
+                          ),
+                        )
+                        .toList(),
+                    type: sorting.type,
+                    iconPathAsString:
+                        sorting.iconPath.map((final Uri uri) => uri.toString()),
+                    name: sorting.name,
+                  ),
+                )
+                .toList(),
+          ),
+        ),
+      );
 
   @override
   TaskEither<Exception, void> deleteUnit({required final String unitId}) =>

@@ -71,7 +71,7 @@ class IngredientsSortingControllerImplementation
                   sortings: sortings
                       .map(
                         (final IngredientsSortingWebClientModelIngredientSorting
-                                sorting) =>
+                                sorting,) =>
                             IngredientsSortingPersistenceModelSorting(
                           type: sorting.type,
                           iconPath: sorting.iconPath,
@@ -225,7 +225,7 @@ class IngredientsSortingControllerImplementation
                   (final IngredientsSortingModelSorting currentSorting) =>
                       IngredientsSortingPersistenceModelSorting(
                     type: currentSorting.type,
-                    iconPath: none(), // TODO Julian
+                    iconPath: currentSorting.iconPath,
                     name: currentSorting.name,
                     ingredientFamilies: currentSorting.ingredientFamilies
                         .map(
@@ -315,7 +315,7 @@ class IngredientsSortingControllerImplementation
                       ),
                     )
                     .toList(),
-                id: const Uuid().v4(),
+                id: const Uuid().v4(), iconPath: sorting.iconPath,
               ),
             )
             .toList(),

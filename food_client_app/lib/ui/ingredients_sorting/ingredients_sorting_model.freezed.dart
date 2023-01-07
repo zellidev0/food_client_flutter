@@ -374,6 +374,7 @@ mixin _$IngredientsSortingModelSorting {
   String get id => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   Option<Uri> get iconUrl => throw _privateConstructorUsedError;
+  Option<Uri> get iconPath => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   List<IngredientsSortingModelIngredientFamily> get ingredientFamilies =>
       throw _privateConstructorUsedError;
@@ -395,6 +396,7 @@ abstract class $IngredientsSortingModelSortingCopyWith<$Res> {
       {String id,
       String type,
       Option<Uri> iconUrl,
+      Option<Uri> iconPath,
       String name,
       List<IngredientsSortingModelIngredientFamily> ingredientFamilies});
 }
@@ -416,6 +418,7 @@ class _$IngredientsSortingModelSortingCopyWithImpl<$Res,
     Object? id = null,
     Object? type = null,
     Object? iconUrl = null,
+    Object? iconPath = null,
     Object? name = null,
     Object? ingredientFamilies = null,
   }) {
@@ -431,6 +434,10 @@ class _$IngredientsSortingModelSortingCopyWithImpl<$Res,
       iconUrl: null == iconUrl
           ? _value.iconUrl
           : iconUrl // ignore: cast_nullable_to_non_nullable
+              as Option<Uri>,
+      iconPath: null == iconPath
+          ? _value.iconPath
+          : iconPath // ignore: cast_nullable_to_non_nullable
               as Option<Uri>,
       name: null == name
           ? _value.name
@@ -457,6 +464,7 @@ abstract class _$$_IngredientsSortingModelSortingCopyWith<$Res>
       {String id,
       String type,
       Option<Uri> iconUrl,
+      Option<Uri> iconPath,
       String name,
       List<IngredientsSortingModelIngredientFamily> ingredientFamilies});
 }
@@ -477,6 +485,7 @@ class __$$_IngredientsSortingModelSortingCopyWithImpl<$Res>
     Object? id = null,
     Object? type = null,
     Object? iconUrl = null,
+    Object? iconPath = null,
     Object? name = null,
     Object? ingredientFamilies = null,
   }) {
@@ -492,6 +501,10 @@ class __$$_IngredientsSortingModelSortingCopyWithImpl<$Res>
       iconUrl: null == iconUrl
           ? _value.iconUrl
           : iconUrl // ignore: cast_nullable_to_non_nullable
+              as Option<Uri>,
+      iconPath: null == iconPath
+          ? _value.iconPath
+          : iconPath // ignore: cast_nullable_to_non_nullable
               as Option<Uri>,
       name: null == name
           ? _value.name
@@ -513,6 +526,7 @@ class _$_IngredientsSortingModelSorting
       {required this.id,
       required this.type,
       required this.iconUrl,
+      required this.iconPath,
       required this.name,
       required final List<IngredientsSortingModelIngredientFamily>
           ingredientFamilies})
@@ -525,6 +539,8 @@ class _$_IngredientsSortingModelSorting
   @override
   final Option<Uri> iconUrl;
   @override
+  final Option<Uri> iconPath;
+  @override
   final String name;
   final List<IngredientsSortingModelIngredientFamily> _ingredientFamilies;
   @override
@@ -535,7 +551,7 @@ class _$_IngredientsSortingModelSorting
 
   @override
   String toString() {
-    return 'IngredientsSortingModelSorting(id: $id, type: $type, iconUrl: $iconUrl, name: $name, ingredientFamilies: $ingredientFamilies)';
+    return 'IngredientsSortingModelSorting(id: $id, type: $type, iconUrl: $iconUrl, iconPath: $iconPath, name: $name, ingredientFamilies: $ingredientFamilies)';
   }
 
   @override
@@ -546,14 +562,16 @@ class _$_IngredientsSortingModelSorting
             (identical(other.id, id) || other.id == id) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.iconUrl, iconUrl) || other.iconUrl == iconUrl) &&
+            (identical(other.iconPath, iconPath) ||
+                other.iconPath == iconPath) &&
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality()
                 .equals(other._ingredientFamilies, _ingredientFamilies));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, type, iconUrl, name,
-      const DeepCollectionEquality().hash(_ingredientFamilies));
+  int get hashCode => Object.hash(runtimeType, id, type, iconUrl, iconPath,
+      name, const DeepCollectionEquality().hash(_ingredientFamilies));
 
   @JsonKey(ignore: true)
   @override
@@ -569,6 +587,7 @@ abstract class _IngredientsSortingModelSorting
       {required final String id,
       required final String type,
       required final Option<Uri> iconUrl,
+      required final Option<Uri> iconPath,
       required final String name,
       required final List<IngredientsSortingModelIngredientFamily>
           ingredientFamilies}) = _$_IngredientsSortingModelSorting;
@@ -579,6 +598,8 @@ abstract class _IngredientsSortingModelSorting
   String get type;
   @override
   Option<Uri> get iconUrl;
+  @override
+  Option<Uri> get iconPath;
   @override
   String get name;
   @override

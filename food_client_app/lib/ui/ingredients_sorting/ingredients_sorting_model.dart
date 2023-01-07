@@ -27,6 +27,7 @@ class IngredientsSortingModelSorting with _$IngredientsSortingModelSorting {
     required final String id,
     required final String type,
     required final Option<Uri> iconUrl,
+    required final Option<Uri> iconPath,
     required final String name,
     required final List<IngredientsSortingModelIngredientFamily> ingredientFamilies,
   }) = _IngredientsSortingModelSorting;
