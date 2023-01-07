@@ -362,32 +362,34 @@ SizedBox buildCard({
       ),
     );
 
-Align buildStarIcon({
+Widget buildStarIcon({
   required final CartModelSorting sorting,
 }) =>
-    Align(
-      alignment: Alignment.bottomRight,
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Consumer(
-          builder:
-              (final BuildContext context, final WidgetRef ref, final __) =>
-                  Icon(
-            Icons.star,
-            color: ref.watch(providers.cartControllerProvider).sorting.map(
-                      unit: (final CartModelSortingSelectedUnit selectedUnit) =>
-                          sorting.map(
-                        unit: (final CartModelSortingSelectedUnit unit) =>
-                            unit.activeUnit.id == selectedUnit.activeUnit.id,
-                        custom: (final CartModelSortingCustom custom) => false,
-                      ),
-                      custom: (final _) => sorting.map(
-                        unit: (final _) => false,
-                        custom: (final _) => true,
-                      ),
-                    )
-                ? Theme.of(context).colorScheme.primary
-                : Theme.of(context).colorScheme.onPrimary,
+    IgnorePointer(
+      child: Align(
+        alignment: Alignment.bottomRight,
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Consumer(
+            builder:
+                (final BuildContext context, final WidgetRef ref, final __) =>
+                    Icon(
+              Icons.star,
+              color: ref.watch(providers.cartControllerProvider).sorting.map(
+                        unit: (final CartModelSortingSelectedUnit selectedUnit) =>
+                            sorting.map(
+                          unit: (final CartModelSortingSelectedUnit unit) =>
+                              unit.activeUnit.id == selectedUnit.activeUnit.id,
+                          custom: (final CartModelSortingCustom custom) => false,
+                        ),
+                        custom: (final _) => sorting.map(
+                          unit: (final _) => false,
+                          custom: (final _) => true,
+                        ),
+                      )
+                  ? Theme.of(context).colorScheme.primary
+                  : Theme.of(context).colorScheme.onPrimary,
+            ),
           ),
         ),
       ),
