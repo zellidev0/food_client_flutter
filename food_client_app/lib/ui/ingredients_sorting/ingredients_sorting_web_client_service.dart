@@ -2,24 +2,42 @@ import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'ingredients_sorting_web_client_service.freezed.dart';
+part 'ingredients_sorting_web_client_service.g.dart';
 
 abstract class IngredientsSortingWebClientService {
-  TaskEither<Exception, List<IngredientsSortingWebClientModelIngredientFamily>>
-      fetchAllIngredientFamilies({
+  TaskEither<Exception,
+          List<IngredientsSortingWebClientModelIngredientFamilyHelloFresh>>
+      fetchHelloFreshIngredientFamilies({
     required final String country,
     final Option<int> take = const None<int>(),
     final Option<int> skip = const None<int>(),
   });
+
+  TaskEither<Exception, List<IngredientsSortingWebClientModelIngredientSorting>>
+      fetchIngredientsSorting();
 }
 
 @freezed
 class IngredientsSortingWebClientModelIngredientFamily
     with _$IngredientsSortingWebClientModelIngredientFamily {
-  const factory IngredientsSortingWebClientModelIngredientFamily({
-    required final String id,
-    required final String type,
+  const factory IngredientsSortingWebClientModelIngredientFamily.helloFresh({
+    required final String helloFreshId,
     required final Option<Uri> iconPath,
+  }) = IngredientsSortingWebClientModelIngredientFamilyHelloFresh;
+}
+
+@freezed
+class IngredientsSortingWebClientModelIngredientSorting
+    with _$IngredientsSortingWebClientModelIngredientSorting {
+  const factory IngredientsSortingWebClientModelIngredientSorting({
+    required final String type,
     required final String name,
-    required final String slug,
-  }) = _IngredientsSortingWebClientModelIngredientFamily;
+    required final Option<Uri> iconPath,
+    required final List<String> ingredientFamilyIds,
+  }) = _IngredientsSortingWebClientModelIngredientSorting;
+
+  factory IngredientsSortingWebClientModelIngredientSorting.fromJson(
+    final Map<String, dynamic> json,
+  ) =>
+      _$IngredientsSortingWebClientModelIngredientSortingFromJson(json);
 }

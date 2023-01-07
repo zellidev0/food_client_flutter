@@ -167,8 +167,9 @@ class WebClientService implements WebClientServiceAggregator {
       );
 
   @override
-  TaskEither<Exception, List<IngredientsSortingWebClientModelIngredientFamily>>
-      fetchAllIngredientFamilies({
+  TaskEither<Exception,
+          List<IngredientsSortingWebClientModelIngredientFamilyHelloFresh>>
+      fetchHelloFreshIngredientFamilies({
     required final String country,
     final Option<int> take = const None<int>(),
     final Option<int> skip = const None<int>(),
@@ -185,6 +186,20 @@ class WebClientService implements WebClientServiceAggregator {
               'Failed to fetch ingredients: $error, $stacktrace',
             ),
           ).flatMap(mapIngredientsFamiliesResponse);
+
+  @override
+  TaskEither<Exception, List<IngredientsSortingWebClientModelIngredientSorting>>
+      fetchIngredientsSorting() => TaskEither<Exception,
+              QueryResult<Query$GetIngredientSortings>>.tryCatch(
+            () async => await _client.query(
+              QueryOptions<Query$GetIngredientSortings>(
+                parserFn: Query$GetIngredientSortings.fromJson,
+                document: documentNodeQueryGetIngredientSortings,
+              ),
+            ),
+            (final Object error, final StackTrace stackTrace) =>
+                Exception('Failed to fetch ingredients'),
+          ).flatMap(mapIngredientsSortingResponse);
 }
 
 SingleRecipeWebClientModelRecipe _mapToSingleRecipeWebClientModelRecipe({
@@ -242,7 +257,8 @@ SingleRecipeWebClientModelRecipe _mapToSingleRecipeWebClientModelRecipe({
       ).flatMap((final Option<Duration> optional) => optional),
     );
 
-TaskEither<Exception, List<IngredientsSortingWebClientModelIngredientFamily>>
+TaskEither<Exception,
+        List<IngredientsSortingWebClientModelIngredientFamilyHelloFresh>>
     mapIngredientsFamiliesResponse(
   final QueryResult<Query$GetIngredientFamilies> response,
 ) =>
@@ -257,7 +273,7 @@ TaskEither<Exception, List<IngredientsSortingWebClientModelIngredientFamily>>
                         ) =>
                             optionOf(ingredient)
                                 .map(
-                                  mapToIngredientsSortingWebClientModelIngredientFamily,
+                                  mapToIngredientsSortingWebClientModelIngredientFamilyHelloFresh,
                                 )
                                 .toNullable(),
                       )
@@ -268,6 +284,43 @@ TaskEither<Exception, List<IngredientsSortingWebClientModelIngredientFamily>>
               () => Exception('No parsed data for ingredients: $response'),
             )
             .toTaskEither();
+
+TaskEither<Exception, List<IngredientsSortingWebClientModelIngredientSorting>>
+    mapIngredientsSortingResponse(
+  final QueryResult<Query$GetIngredientSortings> response,
+) =>
+        TaskEither<Exception,
+            List<IngredientsSortingWebClientModelIngredientSorting>>.tryCatch(
+          () async => optionOf(response.parsedData)
+              .map(
+                (final Query$GetIngredientSortings sortings) =>
+                    sortings.ingredients_sortings
+                        .map(
+                          (
+                            final Query$GetIngredientSortings$ingredients_sortings
+                                sorting,
+                          ) =>
+                              IngredientsSortingWebClientModelIngredientSorting(
+                            type: sorting.type,
+                            name: sorting.name,
+                            ingredientFamilyIds: (jsonDecode(
+                              sorting.ingredientFamilyIds,
+                            ) as List<dynamic>)
+                                // ignore: cast_nullable_to_non_nullable
+                                .map((final Object? id) => id as String)
+                                .toList(),
+                            iconPath: optionOf(sorting.iconPath).map(Uri.parse),
+                          ),
+                        )
+                        .toList(),
+              )
+              .getOrElse(
+                () => throw Exception(),
+              ),
+          (final Object error, final StackTrace stackTrace) => Exception(
+            'Error parsing ingredients sorting response: $response, $error, $stackTrace',
+          ),
+        );
 
 List<SingleRecipeWebClientModelTag> mapBridgeRecipeTags({
   required final List<Query$SingleRecipe$recipes_by_pk$bridge_recipes_tags>
@@ -599,14 +652,11 @@ HomeWebClientModelTag mapToHomeWebClientModelTag(
       ),
     );
 
-IngredientsSortingWebClientModelIngredientFamily
-    mapToIngredientsSortingWebClientModelIngredientFamily(
+IngredientsSortingWebClientModelIngredientFamilyHelloFresh
+    mapToIngredientsSortingWebClientModelIngredientFamilyHelloFresh(
   final Query$GetIngredientFamilies$ingredient_family family,
 ) =>
-        IngredientsSortingWebClientModelIngredientFamily(
-          id: family.id,
-          type: family.type,
+        IngredientsSortingWebClientModelIngredientFamilyHelloFresh(
+          helloFreshId: family.id,
           iconPath: optionOf(family.iconPath).map(Uri.parse),
-          name: family.name,
-          slug: family.slug,
         );
