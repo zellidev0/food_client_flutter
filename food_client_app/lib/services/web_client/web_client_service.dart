@@ -167,27 +167,6 @@ class WebClientService implements WebClientServiceAggregator {
       );
 
   @override
-  TaskEither<Exception,
-          List<IngredientsSortingWebClientModelIngredientFamilyHelloFresh>>
-      fetchHelloFreshIngredientFamilies({
-    required final String country,
-    final Option<int> take = const None<int>(),
-    final Option<int> skip = const None<int>(),
-  }) =>
-          TaskEither<Exception,
-              QueryResult<Query$GetIngredientFamilies>>.tryCatch(
-            () async => await _client.query(
-              QueryOptions<Query$GetIngredientFamilies>(
-                parserFn: Query$GetIngredientFamilies.fromJson,
-                document: documentNodeQueryGetIngredientFamilies,
-              ),
-            ),
-            (final Object error, final StackTrace stacktrace) => Exception(
-              'Failed to fetch ingredients: $error, $stacktrace',
-            ),
-          ).flatMap(mapIngredientsFamiliesResponse);
-
-  @override
   TaskEither<Exception, List<IngredientsSortingWebClientModelIngredientSorting>>
       fetchIngredientsSorting() => TaskEither<Exception,
               QueryResult<Query$GetIngredientSortings>>.tryCatch(
@@ -256,34 +235,6 @@ SingleRecipeWebClientModelRecipe _mapToSingleRecipeWebClientModelRecipe({
         ),
       ).flatMap((final Option<Duration> optional) => optional),
     );
-
-TaskEither<Exception,
-        List<IngredientsSortingWebClientModelIngredientFamilyHelloFresh>>
-    mapIngredientsFamiliesResponse(
-  final QueryResult<Query$GetIngredientFamilies> response,
-) =>
-        optionOf(response.parsedData)
-            .map(
-              (final Query$GetIngredientFamilies families) =>
-                  families.ingredient_family
-                      .map(
-                        (
-                          final Query$GetIngredientFamilies$ingredient_family
-                              ingredient,
-                        ) =>
-                            optionOf(ingredient)
-                                .map(
-                                  mapToIngredientsSortingWebClientModelIngredientFamilyHelloFresh,
-                                )
-                                .toNullable(),
-                      )
-                      .whereNotNull()
-                      .toList(),
-            )
-            .toEither(
-              () => Exception('No parsed data for ingredients: $response'),
-            )
-            .toTaskEither();
 
 TaskEither<Exception, List<IngredientsSortingWebClientModelIngredientSorting>>
     mapIngredientsSortingResponse(
@@ -651,12 +602,3 @@ HomeWebClientModelTag mapToHomeWebClientModelTag(
         tag.bridge_recipes_tags_aggregate.aggregate?.count,
       ),
     );
-
-IngredientsSortingWebClientModelIngredientFamilyHelloFresh
-    mapToIngredientsSortingWebClientModelIngredientFamilyHelloFresh(
-  final Query$GetIngredientFamilies$ingredient_family family,
-) =>
-        IngredientsSortingWebClientModelIngredientFamilyHelloFresh(
-          helloFreshId: family.id,
-          iconPath: optionOf(family.iconPath).map(Uri.parse),
-        );

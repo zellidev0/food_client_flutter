@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:food_client/commons/utils.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_logging_service.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_model.dart';
@@ -47,94 +46,50 @@ class IngredientsSortingControllerImplementation
 
   @override
   Future<void> createSortingUnit({required final String name}) async {
-    await (await fetchIngredientFamiliesFromBackend().run()).fold(
-      (final Exception exception) async => _handleError(
-        exception: exception,
-        message: 'Could not fetch all ingredient families',
+    (await _webClientService.fetchIngredientsSorting().run()).fold(
+      (final Exception error) => _handleError(
+        exception: error,
+        message: 'Could not fetch ingredients sorting unit',
         userDisplayedErrorMessage: 'An error occurred, try again later',
       ),
-      (final List<IngredientsSortingModelIngredientFamily> families) async =>
-          (await _webClientService.fetchIngredientsSorting().run()).fold(
-        (final Exception error) => _handleError(
-          exception: error,
-          message: 'Could not fetch ingredients sorting unit',
-          userDisplayedErrorMessage: 'An error occurred, try again later',
-        ),
-        (
-          final List<IngredientsSortingWebClientModelIngredientSorting>
-              sortings,
-        ) async {
-          await _persistenceService
-              .saveUnit(
-                unit: IngredientsSortingPersistenceModelUnit(
-                  name: name,
-                  sortings: sortings
-                      .map(
-                        (final IngredientsSortingWebClientModelIngredientSorting
-                                sorting,) =>
-                            IngredientsSortingPersistenceModelSorting(
-                          type: sorting.type,
-                          iconPath: sorting.iconPath,
-                          name: sorting.name,
-                          ingredientFamilies: sorting.ingredientFamilyIds
-                              .map(
-                                (final String helloFreshFamilyId) =>
-                                    IngredientsSortingPersistenceModelIngredientFamily
-                                        .helloFresh(
-                                  helloFreshFamilyId: helloFreshFamilyId,
-                                ),
-                              )
-                              .toList(),
-                        ),
-                      )
-                      .toList(),
-                  id: const Uuid().v4(),
-                ),
-              )
-              .run();
-          _fetchPersistenceServiceUnits();
-        },
-      ),
-    );
-    _navigationService.pop();
-  }
-
-  TaskEither<Exception, List<IngredientsSortingModelIngredientFamily>>
-      fetchIngredientFamiliesFromBackend() => combineFetchedResults(
-            // ignore: always_specify_types
-            response: TaskEither.tryCatch(
-              () async => await Future.wait(
-                // ignore: always_specify_types
-                [
-                  _fetchIngredientsPaginated(pageKey: 0).run(),
-                  _fetchIngredientsPaginated(pageKey: 1).run(),
-                  _fetchIngredientsPaginated(pageKey: 2).run(),
-                  _fetchIngredientsPaginated(pageKey: 3).run(),
-                  _fetchIngredientsPaginated(pageKey: 4).run(),
-                  _fetchIngredientsPaginated(pageKey: 5).run(),
-                  _fetchIngredientsPaginated(pageKey: 6).run(),
-                  _fetchIngredientsPaginated(pageKey: 7).run(),
-                ],
-              ),
-              buildException,
-            ),
-          ).map(
-            (
-              final List<IngredientsSortingWebClientModelIngredientFamily>
-                  value,
-            ) =>
-                value
+      (
+        final List<IngredientsSortingWebClientModelIngredientSorting> sortings,
+      ) async {
+        await _persistenceService
+            .saveUnit(
+              unit: IngredientsSortingPersistenceModelUnit(
+                name: name,
+                sortings: sortings
                     .map(
                       (
-                        final IngredientsSortingWebClientModelIngredientFamily
-                            family,
+                        final IngredientsSortingWebClientModelIngredientSorting
+                            sorting,
                       ) =>
-                          IngredientsSortingModelIngredientFamily.helloFresh(
-                        helloFreshFamilyId: family.helloFreshId,
+                          IngredientsSortingPersistenceModelSorting(
+                        type: sorting.type,
+                        iconPath: sorting.iconPath,
+                        name: sorting.name,
+                        ingredientFamilies: sorting.ingredientFamilyIds
+                            .map(
+                              (final String helloFreshFamilyId) =>
+                                  IngredientsSortingPersistenceModelIngredientFamily
+                                      .helloFresh(
+                                helloFreshFamilyId: helloFreshFamilyId,
+                              ),
+                            )
+                            .toList(),
                       ),
                     )
                     .toList(),
-          );
+                id: const Uuid().v4(),
+              ),
+            )
+            .run();
+        _fetchPersistenceServiceUnits();
+      },
+    );
+    _navigationService.pop();
+  }
 
   @override
   void showDeleteUnitDialog({required final IngredientsSortingModelUnit unit}) {
@@ -247,16 +202,6 @@ class IngredientsSortingControllerImplementation
         .run();
   }
 
-  TaskEither<Exception, List<IngredientsSortingWebClientModelIngredientFamily>>
-      _fetchIngredientsPaginated({
-    required final int pageKey,
-  }) =>
-          _webClientService.fetchHelloFreshIngredientFamilies(
-            country: 'de',
-            take: some(takeSize),
-            skip: some(pageKey * takeSize),
-          );
-
   void _fetchPersistenceServiceUnits() {
     state = state.copyWith(
       units: _persistenceService
@@ -315,39 +260,12 @@ class IngredientsSortingControllerImplementation
                       ),
                     )
                     .toList(),
-                id: const Uuid().v4(), iconPath: sorting.iconPath,
+                id: const Uuid().v4(),
+                iconPath: sorting.iconPath,
               ),
             )
             .toList(),
       );
-
-  TaskEither<Exception, List<IngredientsSortingWebClientModelIngredientFamily>>
-      combineFetchedResults({
-    required final TaskEither<
-            Exception,
-            List<
-                Either<Exception,
-                    List<IngredientsSortingWebClientModelIngredientFamily>>>>
-        response,
-  }) =>
-          response
-              .map(
-                // ignore: always_specify_types
-                (final responseResult) => responseResult.reduce(
-                  // ignore: always_specify_types
-                  (final current, final next) => current.flatMap(
-                    // ignore: always_specify_types
-                    (final firstFamilies) => next.map(
-                      // ignore: always_specify_types
-                      (final secondFamilies) =>
-                          // ignore: always_specify_types
-                          [...firstFamilies, ...secondFamilies],
-                    ),
-                  ),
-                ),
-              )
-              // ignore: always_specify_types
-              .flatMap((final result) => result.toTaskEither());
 }
 
 List<IngredientsSortingPersistenceModelIngredientFamily>

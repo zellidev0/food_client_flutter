@@ -5,14 +5,6 @@ part 'ingredients_sorting_web_client_service.freezed.dart';
 part 'ingredients_sorting_web_client_service.g.dart';
 
 abstract class IngredientsSortingWebClientService {
-  TaskEither<Exception,
-          List<IngredientsSortingWebClientModelIngredientFamilyHelloFresh>>
-      fetchHelloFreshIngredientFamilies({
-    required final String country,
-    final Option<int> take = const None<int>(),
-    final Option<int> skip = const None<int>(),
-  });
-
   TaskEither<Exception, List<IngredientsSortingWebClientModelIngredientSorting>>
       fetchIngredientsSorting();
 }
