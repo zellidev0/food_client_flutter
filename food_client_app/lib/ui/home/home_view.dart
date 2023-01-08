@@ -251,11 +251,13 @@ class HomeView extends ConsumerWidget {
                         recipe.tagIds.contains(element.id),
                   )
                   .map(
-                    (final HomeModelFilterTag tag) => FractionallySizedBox(
-                      widthFactor: 0.8,
-                      child: Chip(
-                        label: Text(tag.displayedName),
-                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    (final HomeModelFilterTag tag) => SizedBox(
+                      height: 24,
+                      child: FittedBox(
+                        child: Chip(
+                          label: Text(tag.displayedName),
+                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        ),
                       ),
                     ),
                   )
