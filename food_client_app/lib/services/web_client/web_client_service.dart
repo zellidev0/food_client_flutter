@@ -54,20 +54,41 @@ class WebClientService implements WebClientServiceAggregator {
             variables: <String, Object>{
               'offset': skip,
               'limit': take,
-              // {country: {_eq: $country}, bridge_recipes_cuisines: {_cuisine_id: {_eq: $cuisine}}}
-              'recipes_bool_expr': Input$recipes_bool_exp(
-                country: Input$String_comparison_exp(
-                  $_eq: country,
+              'recipes_bool_expr': Input$recipes_bool_exp($_and: [
+                Input$recipes_bool_exp(
+                  country: Input$String_comparison_exp(
+                    $_eq: country,
+                  ),
                 ),
-                bridge_recipes_cuisines: cuisineId.fold(
-                  () => null,
-                  (final String realCuisineId) => Input$bridge_recipes_cuisines_bool_exp(
-                    $_cuisine_id: Input$String_comparison_exp(
-                      $_eq: realCuisineId,
+                Input$recipes_bool_exp(
+                  bridge_recipes_cuisines: cuisineId.fold(
+                    () => null,
+                    (final String realCuisineId) =>
+                        Input$bridge_recipes_cuisines_bool_exp(
+                      $_cuisine_id: Input$String_comparison_exp(
+                        $_eq: realCuisineId,
+                      ),
                     ),
                   ),
                 ),
-              )
+                Input$recipes_bool_exp(
+                  $_and: tagIds.fold(
+                    () => null,
+                    (final List<String> realTagIds) => realTagIds
+                        .map(
+                          (final String realTagId) =>
+                              Input$recipes_bool_exp(
+                            bridge_recipes_tags: Input$bridge_recipes_tags_bool_exp(
+                              $_tag_id: Input$String_comparison_exp(
+                                $_eq: realTagId,
+                              ),
+                            ),
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ),
+              ])
             },
           ),
         ),

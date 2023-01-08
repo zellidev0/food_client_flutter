@@ -190,7 +190,7 @@ class HomeControllerImplementation extends HomeController {
             country: state.recipeLocales.first.languageCode,
             skip: paginationSkip,
             take: recipesPerPage,
-            tagIds: some(selectedTagTypes(tags: state.allTags)),
+            tagIds: some(selectedTagIds(tags: state.allTags)),
             cuisineId:
                 selectedCuisineIds(cuisines: state.allCuisines).firstOption,
           )
@@ -251,12 +251,12 @@ List<String> selectedFilterIds({
         .map((final HomeModelFilter filter) => filter.id)
         .toList();
 
-List<String> selectedTagTypes({
+List<String> selectedTagIds({
   required final List<HomeModelFilterTag> tags,
 }) =>
     selectedFilters(filters: tags)
         .whereType<HomeModelFilterTag>()
-        .map((final HomeModelFilterTag tag) => tag.type)
+        .map((final HomeModelFilterTag tag) => tag.id)
         .toList();
 
 List<String> selectedCuisineIds({

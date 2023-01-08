@@ -28,7 +28,7 @@ class HomeView extends ConsumerWidget {
               floating: true,
               pinned: true,
               backgroundColor: Colors.transparent,
-              scrolledUnderElevation:0,
+              scrolledUnderElevation: 0,
               flexibleSpace: FlexibleSpaceBar(
                 titlePadding: EdgeInsets.zero,
                 centerTitle: true,
@@ -42,7 +42,6 @@ class HomeView extends ConsumerWidget {
           body: _buildRecipesList(
             controller: controller,
             model: model,
-            tags: model.allTags,
           ),
         ),
       ),
@@ -54,36 +53,37 @@ class HomeView extends ConsumerWidget {
     required final HomeModel model,
   }) =>
       Builder(
-          builder: (final BuildContext context) => Padding(
-                padding: const EdgeInsets.all(16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    buildSingleFilterChip(
-                      text: 'ui.home_view.filters.tags'.tr(),
-                      controller: controller,
-                      selectedFilters: model.allTags
-                          .filter(
-                            (final HomeModelFilter filter) => filter.isSelected,
-                          )
-                          .toList(),
-                      widgetToOpenOnClick: buildDialogTags(),
-                    ),
-                    const SizedBox(width: 8),
-                    buildSingleFilterChip(
-                      text: 'ui.home_view.filters.cuisines'.tr(),
-                      controller: controller,
-                      selectedFilters: model.allCuisines
-                          .filter(
-                            (final HomeModelFilter filter) => filter.isSelected,
-                          )
-                          .toList(),
-                      widgetToOpenOnClick: buildDialogCuisines(),
-                    ),
-                  ],
-                ),
-              ),);
+        builder: (final BuildContext context) => Padding(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              buildSingleFilterChip(
+                text: 'ui.home_view.filters.tags'.tr(),
+                controller: controller,
+                selectedFilters: model.allTags
+                    .filter(
+                      (final HomeModelFilter filter) => filter.isSelected,
+                    )
+                    .toList(),
+                widgetToOpenOnClick: buildDialogTags(),
+              ),
+              const SizedBox(width: 8),
+              buildSingleFilterChip(
+                text: 'ui.home_view.filters.cuisines'.tr(),
+                controller: controller,
+                selectedFilters: model.allCuisines
+                    .filter(
+                      (final HomeModelFilter filter) => filter.isSelected,
+                    )
+                    .toList(),
+                widgetToOpenOnClick: buildDialogCuisines(),
+              ),
+            ],
+          ),
+        ),
+      );
 
   Widget buildSingleFilterChip({
     required final String text,
@@ -111,7 +111,6 @@ class HomeView extends ConsumerWidget {
   Widget _buildRecipesList({
     required final HomeController controller,
     required final HomeModel model,
-    required final List<HomeModelFilterTag> tags,
   }) =>
       Column(
         children: <Widget>[
@@ -130,7 +129,7 @@ class HomeView extends ConsumerWidget {
                   ) =>
                       _buildRecipeCardItem(
                     recipe: recipe,
-                    tags: tags,
+                    model: model,
                     controller: controller,
                   ),
                   noItemsFoundIndicatorBuilder: (final _) =>
@@ -201,7 +200,7 @@ class HomeView extends ConsumerWidget {
   Widget _buildRecipeCardItem({
     required final HomeModelRecipe recipe,
     required final HomeController controller,
-    required final List<HomeModelFilterTag> tags,
+    required final HomeModel model,
   }) =>
       Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
@@ -220,7 +219,8 @@ class HomeView extends ConsumerWidget {
                 ),
                 buildRecipeCardItemDescription(
                   recipe: recipe,
-                  tags: tags,
+                  tags: model.allTags,
+                  cuisines: model.allCuisines,
                 ),
               ],
             ),
@@ -231,6 +231,7 @@ class HomeView extends ConsumerWidget {
   Widget buildRecipeCardItemDescription({
     required final HomeModelRecipe recipe,
     required final List<HomeModelFilterTag> tags,
+    required final List<HomeModelFilterCuisine> cuisines,
   }) =>
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -250,11 +251,37 @@ class HomeView extends ConsumerWidget {
                         recipe.tagIds.contains(element.id),
                   )
                   .map(
-                    (final HomeModelFilterTag tag) => Chip(
-                      label: Text(tag.displayedName),
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    (final HomeModelFilterTag tag) => FractionallySizedBox(
+                      widthFactor: 0.8,
+                      child: Chip(
+                        label: Text(tag.displayedName),
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
                     ),
                   )
+                  .toList(),
+            ),
+          ),
+          Divider(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+            child: Wrap(
+              spacing: 4,
+              runSpacing: 4,
+              children: cuisines
+                  .filter(
+                    (final HomeModelFilterCuisine element) =>
+                    recipe.cuisineIds.contains(element.id),
+              )
+                  .map(
+                    (final HomeModelFilterCuisine tag) => FractionallySizedBox(
+                  widthFactor: 0.8,
+                  child: Chip(
+                    label: Text(tag.displayedName),
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  ),
+                ),
+              )
                   .toList(),
             ),
           ),
