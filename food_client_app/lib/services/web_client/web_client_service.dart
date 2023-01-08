@@ -42,7 +42,7 @@ class WebClientService implements WebClientServiceAggregator {
     required final int take,
     required final int skip,
     final Option<List<String>> tagIds = const None<List<String>>(),
-    final Option<String> cuisine = const None<String>(),
+    final Option<String> cuisineId = const None<String>(),
     final Option<List<String>> ingredients = const None<List<String>>(),
     final Option<String> searchTerm = const None<String>(),
   }) =>
@@ -52,9 +52,22 @@ class WebClientService implements WebClientServiceAggregator {
             parserFn: Query$Recipes.fromJson,
             document: documentNodeQueryRecipes,
             variables: <String, Object>{
-              'country': country,
               'offset': skip,
               'limit': take,
+              // {country: {_eq: $country}, bridge_recipes_cuisines: {_cuisine_id: {_eq: $cuisine}}}
+              'recipes_bool_expr': Input$recipes_bool_exp(
+                country: Input$String_comparison_exp(
+                  $_eq: country,
+                ),
+                bridge_recipes_cuisines: cuisineId.fold(
+                  () => null,
+                  (final String realCuisineId) => Input$bridge_recipes_cuisines_bool_exp(
+                    $_cuisine_id: Input$String_comparison_exp(
+                      $_eq: realCuisineId,
+                    ),
+                  ),
+                ),
+              )
             },
           ),
         ),

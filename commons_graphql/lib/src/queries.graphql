@@ -1,5 +1,5 @@
-query Recipes($country: String, $limit: Int, $offset: Int) {
-    recipes(limit: $limit, offset: $offset, where: {country: {_eq: $country}}) {
+query Recipes($limit: Int, $offset: Int, $recipes_bool_expr: recipes_bool_exp) {
+    recipes(limit: $limit, offset: $offset, where: $recipes_bool_expr) {
         yields_json
         totalTime
         steps

@@ -1,25 +1,22 @@
 import 'package:gql/ast.dart';
+import 'schema.graphql.dart';
 
 class Variables$Query$Recipes {
   factory Variables$Query$Recipes({
-    String? country,
     int? limit,
     int? offset,
+    Input$recipes_bool_exp? recipes_bool_expr,
   }) =>
       Variables$Query$Recipes._({
-        if (country != null) r'country': country,
         if (limit != null) r'limit': limit,
         if (offset != null) r'offset': offset,
+        if (recipes_bool_expr != null) r'recipes_bool_expr': recipes_bool_expr,
       });
 
   Variables$Query$Recipes._(this._$data);
 
   factory Variables$Query$Recipes.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    if (data.containsKey('country')) {
-      final l$country = data['country'];
-      result$data['country'] = (l$country as String?);
-    }
     if (data.containsKey('limit')) {
       final l$limit = data['limit'];
       result$data['limit'] = (l$limit as int?);
@@ -28,20 +25,24 @@ class Variables$Query$Recipes {
       final l$offset = data['offset'];
       result$data['offset'] = (l$offset as int?);
     }
+    if (data.containsKey('recipes_bool_expr')) {
+      final l$recipes_bool_expr = data['recipes_bool_expr'];
+      result$data['recipes_bool_expr'] = l$recipes_bool_expr == null
+          ? null
+          : Input$recipes_bool_exp.fromJson(
+              (l$recipes_bool_expr as Map<String, dynamic>));
+    }
     return Variables$Query$Recipes._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  String? get country => (_$data['country'] as String?);
   int? get limit => (_$data['limit'] as int?);
   int? get offset => (_$data['offset'] as int?);
+  Input$recipes_bool_exp? get recipes_bool_expr =>
+      (_$data['recipes_bool_expr'] as Input$recipes_bool_exp?);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    if (_$data.containsKey('country')) {
-      final l$country = country;
-      result$data['country'] = l$country;
-    }
     if (_$data.containsKey('limit')) {
       final l$limit = limit;
       result$data['limit'] = l$limit;
@@ -49,6 +50,10 @@ class Variables$Query$Recipes {
     if (_$data.containsKey('offset')) {
       final l$offset = offset;
       result$data['offset'] = l$offset;
+    }
+    if (_$data.containsKey('recipes_bool_expr')) {
+      final l$recipes_bool_expr = recipes_bool_expr;
+      result$data['recipes_bool_expr'] = l$recipes_bool_expr?.toJson();
     }
     return result$data;
   }
@@ -67,14 +72,6 @@ class Variables$Query$Recipes {
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$country = country;
-    final lOther$country = other.country;
-    if (_$data.containsKey('country') != other._$data.containsKey('country')) {
-      return false;
-    }
-    if (l$country != lOther$country) {
-      return false;
-    }
     final l$limit = limit;
     final lOther$limit = other.limit;
     if (_$data.containsKey('limit') != other._$data.containsKey('limit')) {
@@ -91,18 +88,27 @@ class Variables$Query$Recipes {
     if (l$offset != lOther$offset) {
       return false;
     }
+    final l$recipes_bool_expr = recipes_bool_expr;
+    final lOther$recipes_bool_expr = other.recipes_bool_expr;
+    if (_$data.containsKey('recipes_bool_expr') !=
+        other._$data.containsKey('recipes_bool_expr')) {
+      return false;
+    }
+    if (l$recipes_bool_expr != lOther$recipes_bool_expr) {
+      return false;
+    }
     return true;
   }
 
   @override
   int get hashCode {
-    final l$country = country;
     final l$limit = limit;
     final l$offset = offset;
+    final l$recipes_bool_expr = recipes_bool_expr;
     return Object.hashAll([
-      _$data.containsKey('country') ? l$country : const {},
       _$data.containsKey('limit') ? l$limit : const {},
       _$data.containsKey('offset') ? l$offset : const {},
+      _$data.containsKey('recipes_bool_expr') ? l$recipes_bool_expr : const {},
     ]);
   }
 }
@@ -117,9 +123,9 @@ abstract class CopyWith$Variables$Query$Recipes<TRes> {
       _CopyWithStubImpl$Variables$Query$Recipes;
 
   TRes call({
-    String? country,
     int? limit,
     int? offset,
+    Input$recipes_bool_exp? recipes_bool_expr,
   });
 }
 
@@ -137,15 +143,16 @@ class _CopyWithImpl$Variables$Query$Recipes<TRes>
   static const _undefined = {};
 
   TRes call({
-    Object? country = _undefined,
     Object? limit = _undefined,
     Object? offset = _undefined,
+    Object? recipes_bool_expr = _undefined,
   }) =>
       _then(Variables$Query$Recipes._({
         ..._instance._$data,
-        if (country != _undefined) 'country': (country as String?),
         if (limit != _undefined) 'limit': (limit as int?),
         if (offset != _undefined) 'offset': (offset as int?),
+        if (recipes_bool_expr != _undefined)
+          'recipes_bool_expr': (recipes_bool_expr as Input$recipes_bool_exp?),
       }));
 }
 
@@ -156,9 +163,9 @@ class _CopyWithStubImpl$Variables$Query$Recipes<TRes>
   TRes _res;
 
   call({
-    String? country,
     int? limit,
     int? offset,
+    Input$recipes_bool_exp? recipes_bool_expr,
   }) =>
       _res;
 }
@@ -347,15 +354,6 @@ const documentNodeQueryRecipes = DocumentNode(definitions: [
     name: NameNode(value: 'Recipes'),
     variableDefinitions: [
       VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'country')),
-        type: NamedTypeNode(
-          name: NameNode(value: 'String'),
-          isNonNull: false,
-        ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      ),
-      VariableDefinitionNode(
         variable: VariableNode(name: NameNode(value: 'limit')),
         type: NamedTypeNode(
           name: NameNode(value: 'Int'),
@@ -368,6 +366,15 @@ const documentNodeQueryRecipes = DocumentNode(definitions: [
         variable: VariableNode(name: NameNode(value: 'offset')),
         type: NamedTypeNode(
           name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'recipes_bool_expr')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'recipes_bool_exp'),
           isNonNull: false,
         ),
         defaultValue: DefaultValueNode(value: null),
@@ -390,17 +397,7 @@ const documentNodeQueryRecipes = DocumentNode(definitions: [
           ),
           ArgumentNode(
             name: NameNode(value: 'where'),
-            value: ObjectValueNode(fields: [
-              ObjectFieldNode(
-                name: NameNode(value: 'country'),
-                value: ObjectValueNode(fields: [
-                  ObjectFieldNode(
-                    name: NameNode(value: '_eq'),
-                    value: VariableNode(name: NameNode(value: 'country')),
-                  )
-                ]),
-              )
-            ]),
+            value: VariableNode(name: NameNode(value: 'recipes_bool_expr')),
           ),
         ],
         directives: [],
