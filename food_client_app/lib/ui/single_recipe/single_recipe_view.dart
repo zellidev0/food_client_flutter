@@ -124,7 +124,7 @@ class SingleRecipeView extends ConsumerWidget {
                             child: BackdropFilter(
                               filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                               child: Text(
-                                'This is a very very long title of one of the best recipes that the whole wide world has ever seen ever in the world forever and ever and ever',
+                                recipe.displayedAttributes.name,
                                 style: Theme.of(context).textTheme.titleMedium,
                                 textScaleFactor: 1.3,
                               ),
@@ -160,6 +160,10 @@ class SingleRecipeView extends ConsumerWidget {
             ),
             child: Column(
               children: <Widget>[
+                _buildCookingDetails(
+                  difficulty: recipe.difficulty,
+                  totalCookingTime: recipe.totalCookingTime,
+                ),
                 Expanded(
                   child: buildTabsContent(
                     recipe: recipe,
