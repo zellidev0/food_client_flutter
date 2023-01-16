@@ -204,55 +204,70 @@ class HomeView extends ConsumerWidget {
     required final HomeController controller,
     required final HomeModel model,
   }) =>
-      Stack(
-        children: <Widget>[
-          Card(
-            margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-            child: InkWell(
-              borderRadius: BorderRadius.circular(24),
-              onTap: () => controller.goToSingleRecipeView(recipeId: recipe.id),
-              child: ClipRRect(
+      Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: Stack(
+          children: <Widget>[
+            Card(
+              margin:  EdgeInsets.zero,
+              shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(24),
-                child: Column(
-                  children: <Widget>[
-                    AspectRatio(
-                      aspectRatio: 1.5 / 1,
-                      child: buildCachedNetworkImage(
-                        imageUrl: recipe.imageUri,
+              ),
+              child: Material(
+                type: MaterialType.transparency,
+                color: Colors.transparent,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(24),
+                  child: Column(
+                    children: <Widget>[
+                      AspectRatio(
+                        aspectRatio: 1.5 / 1,
+                        child: buildCachedNetworkImage(
+                          imageUrl: recipe.imageUri,
+                        ),
                       ),
-                    ),
-                    buildRecipeCardItemDescription(
-                      recipe: recipe,
-                      tags: model.allTags,
-                      cuisines: model.allCuisines,
-                    ),
-                  ],
+                      buildRecipeCardItemDescription(
+                        recipe: recipe,
+                        tags: model.allTags,
+                        cuisines: model.allCuisines,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding: const EdgeInsets.all(22),
-              child: cuisines
-                  .filter(
-                    (final HomeModelFilterCuisine element) =>
-                        recipe.cuisineIds.contains(element.id),
-                  )
-                  .map<Widget>(
-                    (final HomeModelFilterCuisine tag) => Chip(
-                      label: Text(tag.displayedName),
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    ),
-                  )
-                  .firstOption
-                  .getOrElse(() => const SizedBox.shrink()),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: const EdgeInsets.all(22),
+                child: cuisines
+                    .filter(
+                      (final HomeModelFilterCuisine element) =>
+                          recipe.cuisineIds.contains(element.id),
+                    )
+                    .map<Widget>(
+                      (final HomeModelFilterCuisine tag) => Chip(
+                        label: Text(tag.displayedName),
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                    )
+                    .firstOption
+                    .getOrElse(() => const SizedBox.shrink()),
+              ),
             ),
-          ),
-        ],
+            Positioned.fill(
+              child: Material(
+                type: MaterialType.transparency,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(24),
+                  onTap: () =>
+                      controller.goToSingleRecipeView(recipeId: recipe.id),
+                  child: Container(),
+                ),
+              ),
+            ),
+          ],
+        ),
       );
 
   Widget buildRecipeCardItemDescription({
