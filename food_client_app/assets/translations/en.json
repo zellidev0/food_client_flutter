@@ -33,7 +33,7 @@
     "home_view": {
       "filters": {
         "tags": "Tags",
-        "cuisines": "Cuisines",
+        "cuisines": "Cuisine",
         "name_with_amount": "{name} #{amount}"
       },
       "empty_states": {
