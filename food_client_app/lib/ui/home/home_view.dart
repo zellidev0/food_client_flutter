@@ -220,6 +220,7 @@ class HomeView extends ConsumerWidget {
                 buildRecipeCardItemDescription(
                   recipe: recipe,
                   tags: model.allTags,
+                  cuisines: model.allCuisines,
                 ),
               ],
             ),
@@ -230,6 +231,7 @@ class HomeView extends ConsumerWidget {
   Widget buildRecipeCardItemDescription({
     required final HomeModelRecipe recipe,
     required final List<HomeModelFilterTag> tags,
+    required final List<HomeModelFilterCuisine> cuisines,
   }) =>
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -254,7 +256,8 @@ class HomeView extends ConsumerWidget {
                       child: FittedBox(
                         child: Chip(
                           label: Text(tag.displayedName),
-                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
                         ),
                       ),
                     ),
@@ -271,17 +274,17 @@ class HomeView extends ConsumerWidget {
               children: cuisines
                   .filter(
                     (final HomeModelFilterCuisine element) =>
-                    recipe.cuisineIds.contains(element.id),
-              )
+                        recipe.cuisineIds.contains(element.id),
+                  )
                   .map(
                     (final HomeModelFilterCuisine tag) => FractionallySizedBox(
-                  widthFactor: 0.8,
-                  child: Chip(
-                    label: Text(tag.displayedName),
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  ),
-                ),
-              )
+                      widthFactor: 0.8,
+                      child: Chip(
+                        label: Text(tag.displayedName),
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                    ),
+                  )
                   .toList(),
             ),
           ),
