@@ -207,7 +207,7 @@ class HomeView extends ConsumerWidget {
       Stack(
         children: <Widget>[
           Card(
-            margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+            margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
             child: InkWell(
