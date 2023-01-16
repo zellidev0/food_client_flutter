@@ -203,6 +203,7 @@ class HomeView extends ConsumerWidget {
     required final HomeModel model,
   }) =>
       Card(
+        margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         child: InkWell(
           borderRadius: BorderRadius.circular(24),
