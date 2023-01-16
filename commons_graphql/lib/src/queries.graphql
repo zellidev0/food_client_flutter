@@ -145,6 +145,7 @@ query GetCuisines {
         name
         slug
         type
+        country_code
         bridge_recipes_cuisines_aggregate {
             aggregate {
                 count

@@ -71,6 +71,7 @@ class HomeModelFilter with _$HomeModelFilter {
     required final String id,
     required final String displayedName,
     required final String slug,
+    required final Option<String> countryCode,
     required final bool isSelected,
     required final Option<int> numberOfRecipes,
   }) = HomeModelFilterCuisine;

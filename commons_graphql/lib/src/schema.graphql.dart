@@ -10067,6 +10067,7 @@ class Input$cuisines_bool_exp {
     Input$bridge_recipes_cuisines_bool_exp? bridge_recipes_cuisines,
     Input$bridge_recipes_cuisines_aggregate_bool_exp?
         bridge_recipes_cuisines_aggregate,
+    Input$String_comparison_exp? country_code,
     Input$String_comparison_exp? iconPath,
     Input$String_comparison_exp? id,
     Input$String_comparison_exp? name,
@@ -10082,6 +10083,7 @@ class Input$cuisines_bool_exp {
         if (bridge_recipes_cuisines_aggregate != null)
           r'bridge_recipes_cuisines_aggregate':
               bridge_recipes_cuisines_aggregate,
+        if (country_code != null) r'country_code': country_code,
         if (iconPath != null) r'iconPath': iconPath,
         if (id != null) r'id': id,
         if (name != null) r'name': name,
@@ -10129,6 +10131,13 @@ class Input$cuisines_bool_exp {
               : Input$bridge_recipes_cuisines_aggregate_bool_exp.fromJson(
                   (l$bridge_recipes_cuisines_aggregate
                       as Map<String, dynamic>));
+    }
+    if (data.containsKey('country_code')) {
+      final l$country_code = data['country_code'];
+      result$data['country_code'] = l$country_code == null
+          ? null
+          : Input$String_comparison_exp.fromJson(
+              (l$country_code as Map<String, dynamic>));
     }
     if (data.containsKey('iconPath')) {
       final l$iconPath = data['iconPath'];
@@ -10183,6 +10192,8 @@ class Input$cuisines_bool_exp {
       get bridge_recipes_cuisines_aggregate =>
           (_$data['bridge_recipes_cuisines_aggregate']
               as Input$bridge_recipes_cuisines_aggregate_bool_exp?);
+  Input$String_comparison_exp? get country_code =>
+      (_$data['country_code'] as Input$String_comparison_exp?);
   Input$String_comparison_exp? get iconPath =>
       (_$data['iconPath'] as Input$String_comparison_exp?);
   Input$String_comparison_exp? get id =>
@@ -10217,6 +10228,10 @@ class Input$cuisines_bool_exp {
           bridge_recipes_cuisines_aggregate;
       result$data['bridge_recipes_cuisines_aggregate'] =
           l$bridge_recipes_cuisines_aggregate?.toJson();
+    }
+    if (_$data.containsKey('country_code')) {
+      final l$country_code = country_code;
+      result$data['country_code'] = l$country_code?.toJson();
     }
     if (_$data.containsKey('iconPath')) {
       final l$iconPath = iconPath;
@@ -10322,6 +10337,15 @@ class Input$cuisines_bool_exp {
         lOther$bridge_recipes_cuisines_aggregate) {
       return false;
     }
+    final l$country_code = country_code;
+    final lOther$country_code = other.country_code;
+    if (_$data.containsKey('country_code') !=
+        other._$data.containsKey('country_code')) {
+      return false;
+    }
+    if (l$country_code != lOther$country_code) {
+      return false;
+    }
     final l$iconPath = iconPath;
     final lOther$iconPath = other.iconPath;
     if (_$data.containsKey('iconPath') !=
@@ -10374,6 +10398,7 @@ class Input$cuisines_bool_exp {
     final l$bridge_recipes_cuisines = bridge_recipes_cuisines;
     final l$bridge_recipes_cuisines_aggregate =
         bridge_recipes_cuisines_aggregate;
+    final l$country_code = country_code;
     final l$iconPath = iconPath;
     final l$id = id;
     final l$name = name;
@@ -10397,6 +10422,7 @@ class Input$cuisines_bool_exp {
       _$data.containsKey('bridge_recipes_cuisines_aggregate')
           ? l$bridge_recipes_cuisines_aggregate
           : const {},
+      _$data.containsKey('country_code') ? l$country_code : const {},
       _$data.containsKey('iconPath') ? l$iconPath : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('name') ? l$name : const {},
@@ -10422,6 +10448,7 @@ abstract class CopyWith$Input$cuisines_bool_exp<TRes> {
     Input$bridge_recipes_cuisines_bool_exp? bridge_recipes_cuisines,
     Input$bridge_recipes_cuisines_aggregate_bool_exp?
         bridge_recipes_cuisines_aggregate,
+    Input$String_comparison_exp? country_code,
     Input$String_comparison_exp? iconPath,
     Input$String_comparison_exp? id,
     Input$String_comparison_exp? name,
@@ -10443,6 +10470,7 @@ abstract class CopyWith$Input$cuisines_bool_exp<TRes> {
       get bridge_recipes_cuisines;
   CopyWith$Input$bridge_recipes_cuisines_aggregate_bool_exp<TRes>
       get bridge_recipes_cuisines_aggregate;
+  CopyWith$Input$String_comparison_exp<TRes> get country_code;
   CopyWith$Input$String_comparison_exp<TRes> get iconPath;
   CopyWith$Input$String_comparison_exp<TRes> get id;
   CopyWith$Input$String_comparison_exp<TRes> get name;
@@ -10469,6 +10497,7 @@ class _CopyWithImpl$Input$cuisines_bool_exp<TRes>
     Object? $_or = _undefined,
     Object? bridge_recipes_cuisines = _undefined,
     Object? bridge_recipes_cuisines_aggregate = _undefined,
+    Object? country_code = _undefined,
     Object? iconPath = _undefined,
     Object? id = _undefined,
     Object? name = _undefined,
@@ -10488,6 +10517,8 @@ class _CopyWithImpl$Input$cuisines_bool_exp<TRes>
           'bridge_recipes_cuisines_aggregate':
               (bridge_recipes_cuisines_aggregate
                   as Input$bridge_recipes_cuisines_aggregate_bool_exp?),
+        if (country_code != _undefined)
+          'country_code': (country_code as Input$String_comparison_exp?),
         if (iconPath != _undefined)
           'iconPath': (iconPath as Input$String_comparison_exp?),
         if (id != _undefined) 'id': (id as Input$String_comparison_exp?),
@@ -10547,6 +10578,14 @@ class _CopyWithImpl$Input$cuisines_bool_exp<TRes>
             (e) => call(bridge_recipes_cuisines_aggregate: e));
   }
 
+  CopyWith$Input$String_comparison_exp<TRes> get country_code {
+    final local$country_code = _instance.country_code;
+    return local$country_code == null
+        ? CopyWith$Input$String_comparison_exp.stub(_then(_instance))
+        : CopyWith$Input$String_comparison_exp(
+            local$country_code, (e) => call(country_code: e));
+  }
+
   CopyWith$Input$String_comparison_exp<TRes> get iconPath {
     final local$iconPath = _instance.iconPath;
     return local$iconPath == null
@@ -10600,6 +10639,7 @@ class _CopyWithStubImpl$Input$cuisines_bool_exp<TRes>
     Input$bridge_recipes_cuisines_bool_exp? bridge_recipes_cuisines,
     Input$bridge_recipes_cuisines_aggregate_bool_exp?
         bridge_recipes_cuisines_aggregate,
+    Input$String_comparison_exp? country_code,
     Input$String_comparison_exp? iconPath,
     Input$String_comparison_exp? id,
     Input$String_comparison_exp? name,
@@ -10617,6 +10657,8 @@ class _CopyWithStubImpl$Input$cuisines_bool_exp<TRes>
   CopyWith$Input$bridge_recipes_cuisines_aggregate_bool_exp<TRes>
       get bridge_recipes_cuisines_aggregate =>
           CopyWith$Input$bridge_recipes_cuisines_aggregate_bool_exp.stub(_res);
+  CopyWith$Input$String_comparison_exp<TRes> get country_code =>
+      CopyWith$Input$String_comparison_exp.stub(_res);
   CopyWith$Input$String_comparison_exp<TRes> get iconPath =>
       CopyWith$Input$String_comparison_exp.stub(_res);
   CopyWith$Input$String_comparison_exp<TRes> get id =>
@@ -10632,6 +10674,7 @@ class _CopyWithStubImpl$Input$cuisines_bool_exp<TRes>
 class Input$cuisines_insert_input {
   factory Input$cuisines_insert_input({
     Input$bridge_recipes_cuisines_arr_rel_insert_input? bridge_recipes_cuisines,
+    String? country_code,
     String? iconPath,
     String? id,
     String? name,
@@ -10641,6 +10684,7 @@ class Input$cuisines_insert_input {
       Input$cuisines_insert_input._({
         if (bridge_recipes_cuisines != null)
           r'bridge_recipes_cuisines': bridge_recipes_cuisines,
+        if (country_code != null) r'country_code': country_code,
         if (iconPath != null) r'iconPath': iconPath,
         if (id != null) r'id': id,
         if (name != null) r'name': name,
@@ -10658,6 +10702,10 @@ class Input$cuisines_insert_input {
           ? null
           : Input$bridge_recipes_cuisines_arr_rel_insert_input.fromJson(
               (l$bridge_recipes_cuisines as Map<String, dynamic>));
+    }
+    if (data.containsKey('country_code')) {
+      final l$country_code = data['country_code'];
+      result$data['country_code'] = (l$country_code as String?);
     }
     if (data.containsKey('iconPath')) {
       final l$iconPath = data['iconPath'];
@@ -10687,6 +10735,7 @@ class Input$cuisines_insert_input {
   Input$bridge_recipes_cuisines_arr_rel_insert_input?
       get bridge_recipes_cuisines => (_$data['bridge_recipes_cuisines']
           as Input$bridge_recipes_cuisines_arr_rel_insert_input?);
+  String? get country_code => (_$data['country_code'] as String?);
   String? get iconPath => (_$data['iconPath'] as String?);
   String? get id => (_$data['id'] as String?);
   String? get name => (_$data['name'] as String?);
@@ -10698,6 +10747,10 @@ class Input$cuisines_insert_input {
       final l$bridge_recipes_cuisines = bridge_recipes_cuisines;
       result$data['bridge_recipes_cuisines'] =
           l$bridge_recipes_cuisines?.toJson();
+    }
+    if (_$data.containsKey('country_code')) {
+      final l$country_code = country_code;
+      result$data['country_code'] = l$country_code;
     }
     if (_$data.containsKey('iconPath')) {
       final l$iconPath = iconPath;
@@ -10743,6 +10796,15 @@ class Input$cuisines_insert_input {
       return false;
     }
     if (l$bridge_recipes_cuisines != lOther$bridge_recipes_cuisines) {
+      return false;
+    }
+    final l$country_code = country_code;
+    final lOther$country_code = other.country_code;
+    if (_$data.containsKey('country_code') !=
+        other._$data.containsKey('country_code')) {
+      return false;
+    }
+    if (l$country_code != lOther$country_code) {
       return false;
     }
     final l$iconPath = iconPath;
@@ -10792,6 +10854,7 @@ class Input$cuisines_insert_input {
   @override
   int get hashCode {
     final l$bridge_recipes_cuisines = bridge_recipes_cuisines;
+    final l$country_code = country_code;
     final l$iconPath = iconPath;
     final l$id = id;
     final l$name = name;
@@ -10801,6 +10864,7 @@ class Input$cuisines_insert_input {
       _$data.containsKey('bridge_recipes_cuisines')
           ? l$bridge_recipes_cuisines
           : const {},
+      _$data.containsKey('country_code') ? l$country_code : const {},
       _$data.containsKey('iconPath') ? l$iconPath : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('name') ? l$name : const {},
@@ -10821,6 +10885,7 @@ abstract class CopyWith$Input$cuisines_insert_input<TRes> {
 
   TRes call({
     Input$bridge_recipes_cuisines_arr_rel_insert_input? bridge_recipes_cuisines,
+    String? country_code,
     String? iconPath,
     String? id,
     String? name,
@@ -10846,6 +10911,7 @@ class _CopyWithImpl$Input$cuisines_insert_input<TRes>
 
   TRes call({
     Object? bridge_recipes_cuisines = _undefined,
+    Object? country_code = _undefined,
     Object? iconPath = _undefined,
     Object? id = _undefined,
     Object? name = _undefined,
@@ -10857,6 +10923,8 @@ class _CopyWithImpl$Input$cuisines_insert_input<TRes>
         if (bridge_recipes_cuisines != _undefined)
           'bridge_recipes_cuisines': (bridge_recipes_cuisines
               as Input$bridge_recipes_cuisines_arr_rel_insert_input?),
+        if (country_code != _undefined)
+          'country_code': (country_code as String?),
         if (iconPath != _undefined) 'iconPath': (iconPath as String?),
         if (id != _undefined) 'id': (id as String?),
         if (name != _undefined) 'name': (name as String?),
@@ -10883,6 +10951,7 @@ class _CopyWithStubImpl$Input$cuisines_insert_input<TRes>
 
   call({
     Input$bridge_recipes_cuisines_arr_rel_insert_input? bridge_recipes_cuisines,
+    String? country_code,
     String? iconPath,
     String? id,
     String? name,
@@ -11239,6 +11308,7 @@ class Input$cuisines_order_by {
   factory Input$cuisines_order_by({
     Input$bridge_recipes_cuisines_aggregate_order_by?
         bridge_recipes_cuisines_aggregate,
+    Enum$order_by? country_code,
     Enum$order_by? iconPath,
     Enum$order_by? id,
     Enum$order_by? name,
@@ -11249,6 +11319,7 @@ class Input$cuisines_order_by {
         if (bridge_recipes_cuisines_aggregate != null)
           r'bridge_recipes_cuisines_aggregate':
               bridge_recipes_cuisines_aggregate,
+        if (country_code != null) r'country_code': country_code,
         if (iconPath != null) r'iconPath': iconPath,
         if (id != null) r'id': id,
         if (name != null) r'name': name,
@@ -11269,6 +11340,12 @@ class Input$cuisines_order_by {
               : Input$bridge_recipes_cuisines_aggregate_order_by.fromJson(
                   (l$bridge_recipes_cuisines_aggregate
                       as Map<String, dynamic>));
+    }
+    if (data.containsKey('country_code')) {
+      final l$country_code = data['country_code'];
+      result$data['country_code'] = l$country_code == null
+          ? null
+          : fromJson$Enum$order_by((l$country_code as String));
     }
     if (data.containsKey('iconPath')) {
       final l$iconPath = data['iconPath'];
@@ -11305,6 +11382,7 @@ class Input$cuisines_order_by {
       get bridge_recipes_cuisines_aggregate =>
           (_$data['bridge_recipes_cuisines_aggregate']
               as Input$bridge_recipes_cuisines_aggregate_order_by?);
+  Enum$order_by? get country_code => (_$data['country_code'] as Enum$order_by?);
   Enum$order_by? get iconPath => (_$data['iconPath'] as Enum$order_by?);
   Enum$order_by? get id => (_$data['id'] as Enum$order_by?);
   Enum$order_by? get name => (_$data['name'] as Enum$order_by?);
@@ -11317,6 +11395,11 @@ class Input$cuisines_order_by {
           bridge_recipes_cuisines_aggregate;
       result$data['bridge_recipes_cuisines_aggregate'] =
           l$bridge_recipes_cuisines_aggregate?.toJson();
+    }
+    if (_$data.containsKey('country_code')) {
+      final l$country_code = country_code;
+      result$data['country_code'] =
+          l$country_code == null ? null : toJson$Enum$order_by(l$country_code);
     }
     if (_$data.containsKey('iconPath')) {
       final l$iconPath = iconPath;
@@ -11371,6 +11454,15 @@ class Input$cuisines_order_by {
         lOther$bridge_recipes_cuisines_aggregate) {
       return false;
     }
+    final l$country_code = country_code;
+    final lOther$country_code = other.country_code;
+    if (_$data.containsKey('country_code') !=
+        other._$data.containsKey('country_code')) {
+      return false;
+    }
+    if (l$country_code != lOther$country_code) {
+      return false;
+    }
     final l$iconPath = iconPath;
     final lOther$iconPath = other.iconPath;
     if (_$data.containsKey('iconPath') !=
@@ -11419,6 +11511,7 @@ class Input$cuisines_order_by {
   int get hashCode {
     final l$bridge_recipes_cuisines_aggregate =
         bridge_recipes_cuisines_aggregate;
+    final l$country_code = country_code;
     final l$iconPath = iconPath;
     final l$id = id;
     final l$name = name;
@@ -11428,6 +11521,7 @@ class Input$cuisines_order_by {
       _$data.containsKey('bridge_recipes_cuisines_aggregate')
           ? l$bridge_recipes_cuisines_aggregate
           : const {},
+      _$data.containsKey('country_code') ? l$country_code : const {},
       _$data.containsKey('iconPath') ? l$iconPath : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('name') ? l$name : const {},
@@ -11449,6 +11543,7 @@ abstract class CopyWith$Input$cuisines_order_by<TRes> {
   TRes call({
     Input$bridge_recipes_cuisines_aggregate_order_by?
         bridge_recipes_cuisines_aggregate,
+    Enum$order_by? country_code,
     Enum$order_by? iconPath,
     Enum$order_by? id,
     Enum$order_by? name,
@@ -11474,6 +11569,7 @@ class _CopyWithImpl$Input$cuisines_order_by<TRes>
 
   TRes call({
     Object? bridge_recipes_cuisines_aggregate = _undefined,
+    Object? country_code = _undefined,
     Object? iconPath = _undefined,
     Object? id = _undefined,
     Object? name = _undefined,
@@ -11486,6 +11582,8 @@ class _CopyWithImpl$Input$cuisines_order_by<TRes>
           'bridge_recipes_cuisines_aggregate':
               (bridge_recipes_cuisines_aggregate
                   as Input$bridge_recipes_cuisines_aggregate_order_by?),
+        if (country_code != _undefined)
+          'country_code': (country_code as Enum$order_by?),
         if (iconPath != _undefined) 'iconPath': (iconPath as Enum$order_by?),
         if (id != _undefined) 'id': (id as Enum$order_by?),
         if (name != _undefined) 'name': (name as Enum$order_by?),
@@ -11514,6 +11612,7 @@ class _CopyWithStubImpl$Input$cuisines_order_by<TRes>
   call({
     Input$bridge_recipes_cuisines_aggregate_order_by?
         bridge_recipes_cuisines_aggregate,
+    Enum$order_by? country_code,
     Enum$order_by? iconPath,
     Enum$order_by? id,
     Enum$order_by? name,
@@ -11623,6 +11722,7 @@ class _CopyWithStubImpl$Input$cuisines_pk_columns_input<TRes>
 
 class Input$cuisines_set_input {
   factory Input$cuisines_set_input({
+    String? country_code,
     String? iconPath,
     String? id,
     String? name,
@@ -11630,6 +11730,7 @@ class Input$cuisines_set_input {
     String? type,
   }) =>
       Input$cuisines_set_input._({
+        if (country_code != null) r'country_code': country_code,
         if (iconPath != null) r'iconPath': iconPath,
         if (id != null) r'id': id,
         if (name != null) r'name': name,
@@ -11641,6 +11742,10 @@ class Input$cuisines_set_input {
 
   factory Input$cuisines_set_input.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
+    if (data.containsKey('country_code')) {
+      final l$country_code = data['country_code'];
+      result$data['country_code'] = (l$country_code as String?);
+    }
     if (data.containsKey('iconPath')) {
       final l$iconPath = data['iconPath'];
       result$data['iconPath'] = (l$iconPath as String?);
@@ -11666,6 +11771,7 @@ class Input$cuisines_set_input {
 
   Map<String, dynamic> _$data;
 
+  String? get country_code => (_$data['country_code'] as String?);
   String? get iconPath => (_$data['iconPath'] as String?);
   String? get id => (_$data['id'] as String?);
   String? get name => (_$data['name'] as String?);
@@ -11673,6 +11779,10 @@ class Input$cuisines_set_input {
   String? get type => (_$data['type'] as String?);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
+    if (_$data.containsKey('country_code')) {
+      final l$country_code = country_code;
+      result$data['country_code'] = l$country_code;
+    }
     if (_$data.containsKey('iconPath')) {
       final l$iconPath = iconPath;
       result$data['iconPath'] = l$iconPath;
@@ -11708,6 +11818,15 @@ class Input$cuisines_set_input {
     }
     if (!(other is Input$cuisines_set_input) ||
         runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$country_code = country_code;
+    final lOther$country_code = other.country_code;
+    if (_$data.containsKey('country_code') !=
+        other._$data.containsKey('country_code')) {
+      return false;
+    }
+    if (l$country_code != lOther$country_code) {
       return false;
     }
     final l$iconPath = iconPath;
@@ -11756,12 +11875,14 @@ class Input$cuisines_set_input {
 
   @override
   int get hashCode {
+    final l$country_code = country_code;
     final l$iconPath = iconPath;
     final l$id = id;
     final l$name = name;
     final l$slug = slug;
     final l$type = type;
     return Object.hashAll([
+      _$data.containsKey('country_code') ? l$country_code : const {},
       _$data.containsKey('iconPath') ? l$iconPath : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('name') ? l$name : const {},
@@ -11781,6 +11902,7 @@ abstract class CopyWith$Input$cuisines_set_input<TRes> {
       _CopyWithStubImpl$Input$cuisines_set_input;
 
   TRes call({
+    String? country_code,
     String? iconPath,
     String? id,
     String? name,
@@ -11803,6 +11925,7 @@ class _CopyWithImpl$Input$cuisines_set_input<TRes>
   static const _undefined = {};
 
   TRes call({
+    Object? country_code = _undefined,
     Object? iconPath = _undefined,
     Object? id = _undefined,
     Object? name = _undefined,
@@ -11811,6 +11934,8 @@ class _CopyWithImpl$Input$cuisines_set_input<TRes>
   }) =>
       _then(Input$cuisines_set_input._({
         ..._instance._$data,
+        if (country_code != _undefined)
+          'country_code': (country_code as String?),
         if (iconPath != _undefined) 'iconPath': (iconPath as String?),
         if (id != _undefined) 'id': (id as String?),
         if (name != _undefined) 'name': (name as String?),
@@ -11826,6 +11951,7 @@ class _CopyWithStubImpl$Input$cuisines_set_input<TRes>
   TRes _res;
 
   call({
+    String? country_code,
     String? iconPath,
     String? id,
     String? name,
@@ -11989,6 +12115,7 @@ class _CopyWithStubImpl$Input$cuisines_stream_cursor_input<TRes>
 
 class Input$cuisines_stream_cursor_value_input {
   factory Input$cuisines_stream_cursor_value_input({
+    String? country_code,
     String? iconPath,
     String? id,
     String? name,
@@ -11996,6 +12123,7 @@ class Input$cuisines_stream_cursor_value_input {
     String? type,
   }) =>
       Input$cuisines_stream_cursor_value_input._({
+        if (country_code != null) r'country_code': country_code,
         if (iconPath != null) r'iconPath': iconPath,
         if (id != null) r'id': id,
         if (name != null) r'name': name,
@@ -12008,6 +12136,10 @@ class Input$cuisines_stream_cursor_value_input {
   factory Input$cuisines_stream_cursor_value_input.fromJson(
       Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
+    if (data.containsKey('country_code')) {
+      final l$country_code = data['country_code'];
+      result$data['country_code'] = (l$country_code as String?);
+    }
     if (data.containsKey('iconPath')) {
       final l$iconPath = data['iconPath'];
       result$data['iconPath'] = (l$iconPath as String?);
@@ -12033,6 +12165,7 @@ class Input$cuisines_stream_cursor_value_input {
 
   Map<String, dynamic> _$data;
 
+  String? get country_code => (_$data['country_code'] as String?);
   String? get iconPath => (_$data['iconPath'] as String?);
   String? get id => (_$data['id'] as String?);
   String? get name => (_$data['name'] as String?);
@@ -12040,6 +12173,10 @@ class Input$cuisines_stream_cursor_value_input {
   String? get type => (_$data['type'] as String?);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
+    if (_$data.containsKey('country_code')) {
+      final l$country_code = country_code;
+      result$data['country_code'] = l$country_code;
+    }
     if (_$data.containsKey('iconPath')) {
       final l$iconPath = iconPath;
       result$data['iconPath'] = l$iconPath;
@@ -12076,6 +12213,15 @@ class Input$cuisines_stream_cursor_value_input {
     }
     if (!(other is Input$cuisines_stream_cursor_value_input) ||
         runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$country_code = country_code;
+    final lOther$country_code = other.country_code;
+    if (_$data.containsKey('country_code') !=
+        other._$data.containsKey('country_code')) {
+      return false;
+    }
+    if (l$country_code != lOther$country_code) {
       return false;
     }
     final l$iconPath = iconPath;
@@ -12124,12 +12270,14 @@ class Input$cuisines_stream_cursor_value_input {
 
   @override
   int get hashCode {
+    final l$country_code = country_code;
     final l$iconPath = iconPath;
     final l$id = id;
     final l$name = name;
     final l$slug = slug;
     final l$type = type;
     return Object.hashAll([
+      _$data.containsKey('country_code') ? l$country_code : const {},
       _$data.containsKey('iconPath') ? l$iconPath : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('name') ? l$name : const {},
@@ -12149,6 +12297,7 @@ abstract class CopyWith$Input$cuisines_stream_cursor_value_input<TRes> {
       _CopyWithStubImpl$Input$cuisines_stream_cursor_value_input;
 
   TRes call({
+    String? country_code,
     String? iconPath,
     String? id,
     String? name,
@@ -12171,6 +12320,7 @@ class _CopyWithImpl$Input$cuisines_stream_cursor_value_input<TRes>
   static const _undefined = {};
 
   TRes call({
+    Object? country_code = _undefined,
     Object? iconPath = _undefined,
     Object? id = _undefined,
     Object? name = _undefined,
@@ -12179,6 +12329,8 @@ class _CopyWithImpl$Input$cuisines_stream_cursor_value_input<TRes>
   }) =>
       _then(Input$cuisines_stream_cursor_value_input._({
         ..._instance._$data,
+        if (country_code != _undefined)
+          'country_code': (country_code as String?),
         if (iconPath != _undefined) 'iconPath': (iconPath as String?),
         if (id != _undefined) 'id': (id as String?),
         if (name != _undefined) 'name': (name as String?),
@@ -12194,6 +12346,7 @@ class _CopyWithStubImpl$Input$cuisines_stream_cursor_value_input<TRes>
   TRes _res;
 
   call({
+    String? country_code,
     String? iconPath,
     String? id,
     String? name,
@@ -29400,10 +29553,20 @@ Enum$cuisines_constraint fromJson$Enum$cuisines_constraint(String value) {
   }
 }
 
-enum Enum$cuisines_select_column { iconPath, id, name, slug, type, $unknown }
+enum Enum$cuisines_select_column {
+  country_code,
+  iconPath,
+  id,
+  name,
+  slug,
+  type,
+  $unknown
+}
 
 String toJson$Enum$cuisines_select_column(Enum$cuisines_select_column e) {
   switch (e) {
+    case Enum$cuisines_select_column.country_code:
+      return r'country_code';
     case Enum$cuisines_select_column.iconPath:
       return r'iconPath';
     case Enum$cuisines_select_column.id:
@@ -29421,6 +29584,8 @@ String toJson$Enum$cuisines_select_column(Enum$cuisines_select_column e) {
 
 Enum$cuisines_select_column fromJson$Enum$cuisines_select_column(String value) {
   switch (value) {
+    case r'country_code':
+      return Enum$cuisines_select_column.country_code;
     case r'iconPath':
       return Enum$cuisines_select_column.iconPath;
     case r'id':
@@ -29436,10 +29601,20 @@ Enum$cuisines_select_column fromJson$Enum$cuisines_select_column(String value) {
   }
 }
 
-enum Enum$cuisines_update_column { iconPath, id, name, slug, type, $unknown }
+enum Enum$cuisines_update_column {
+  country_code,
+  iconPath,
+  id,
+  name,
+  slug,
+  type,
+  $unknown
+}
 
 String toJson$Enum$cuisines_update_column(Enum$cuisines_update_column e) {
   switch (e) {
+    case Enum$cuisines_update_column.country_code:
+      return r'country_code';
     case Enum$cuisines_update_column.iconPath:
       return r'iconPath';
     case Enum$cuisines_update_column.id:
@@ -29457,6 +29632,8 @@ String toJson$Enum$cuisines_update_column(Enum$cuisines_update_column e) {
 
 Enum$cuisines_update_column fromJson$Enum$cuisines_update_column(String value) {
   switch (value) {
+    case r'country_code':
+      return Enum$cuisines_update_column.country_code;
     case r'iconPath':
       return Enum$cuisines_update_column.iconPath;
     case r'id':

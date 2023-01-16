@@ -7560,6 +7560,13 @@ const documentNodeQueryGetCuisines = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'country_code'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'bridge_recipes_cuisines_aggregate'),
             alias: null,
             arguments: [],
@@ -7666,6 +7673,7 @@ class Query$GetCuisines$cuisines {
     required this.name,
     required this.slug,
     required this.type,
+    this.country_code,
     required this.bridge_recipes_cuisines_aggregate,
     this.iconPath,
     required this.$__typename,
@@ -7676,6 +7684,7 @@ class Query$GetCuisines$cuisines {
     final l$name = json['name'];
     final l$slug = json['slug'];
     final l$type = json['type'];
+    final l$country_code = json['country_code'];
     final l$bridge_recipes_cuisines_aggregate =
         json['bridge_recipes_cuisines_aggregate'];
     final l$iconPath = json['iconPath'];
@@ -7685,6 +7694,7 @@ class Query$GetCuisines$cuisines {
       name: (l$name as String),
       slug: (l$slug as String),
       type: (l$type as String),
+      country_code: (l$country_code as String?),
       bridge_recipes_cuisines_aggregate:
           Query$GetCuisines$cuisines$bridge_recipes_cuisines_aggregate.fromJson(
               (l$bridge_recipes_cuisines_aggregate as Map<String, dynamic>)),
@@ -7700,6 +7710,8 @@ class Query$GetCuisines$cuisines {
   final String slug;
 
   final String type;
+
+  final String? country_code;
 
   final Query$GetCuisines$cuisines$bridge_recipes_cuisines_aggregate
       bridge_recipes_cuisines_aggregate;
@@ -7718,6 +7730,8 @@ class Query$GetCuisines$cuisines {
     _resultData['slug'] = l$slug;
     final l$type = type;
     _resultData['type'] = l$type;
+    final l$country_code = country_code;
+    _resultData['country_code'] = l$country_code;
     final l$bridge_recipes_cuisines_aggregate =
         bridge_recipes_cuisines_aggregate;
     _resultData['bridge_recipes_cuisines_aggregate'] =
@@ -7735,6 +7749,7 @@ class Query$GetCuisines$cuisines {
     final l$name = name;
     final l$slug = slug;
     final l$type = type;
+    final l$country_code = country_code;
     final l$bridge_recipes_cuisines_aggregate =
         bridge_recipes_cuisines_aggregate;
     final l$iconPath = iconPath;
@@ -7744,6 +7759,7 @@ class Query$GetCuisines$cuisines {
       l$name,
       l$slug,
       l$type,
+      l$country_code,
       l$bridge_recipes_cuisines_aggregate,
       l$iconPath,
       l$$__typename,
@@ -7777,6 +7793,11 @@ class Query$GetCuisines$cuisines {
     final l$type = type;
     final lOther$type = other.type;
     if (l$type != lOther$type) {
+      return false;
+    }
+    final l$country_code = country_code;
+    final lOther$country_code = other.country_code;
+    if (l$country_code != lOther$country_code) {
       return false;
     }
     final l$bridge_recipes_cuisines_aggregate =
@@ -7824,6 +7845,7 @@ abstract class CopyWith$Query$GetCuisines$cuisines<TRes> {
     String? name,
     String? slug,
     String? type,
+    String? country_code,
     Query$GetCuisines$cuisines$bridge_recipes_cuisines_aggregate?
         bridge_recipes_cuisines_aggregate,
     String? iconPath,
@@ -7851,6 +7873,7 @@ class _CopyWithImpl$Query$GetCuisines$cuisines<TRes>
     Object? name = _undefined,
     Object? slug = _undefined,
     Object? type = _undefined,
+    Object? country_code = _undefined,
     Object? bridge_recipes_cuisines_aggregate = _undefined,
     Object? iconPath = _undefined,
     Object? $__typename = _undefined,
@@ -7866,6 +7889,9 @@ class _CopyWithImpl$Query$GetCuisines$cuisines<TRes>
         type: type == _undefined || type == null
             ? _instance.type
             : (type as String),
+        country_code: country_code == _undefined
+            ? _instance.country_code
+            : (country_code as String?),
         bridge_recipes_cuisines_aggregate: bridge_recipes_cuisines_aggregate ==
                     _undefined ||
                 bridge_recipes_cuisines_aggregate == null
@@ -7899,6 +7925,7 @@ class _CopyWithStubImpl$Query$GetCuisines$cuisines<TRes>
     String? name,
     String? slug,
     String? type,
+    String? country_code,
     Query$GetCuisines$cuisines$bridge_recipes_cuisines_aggregate?
         bridge_recipes_cuisines_aggregate,
     String? iconPath,

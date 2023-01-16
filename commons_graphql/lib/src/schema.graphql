@@ -794,6 +794,7 @@ type cuisines {
     """filter the rows returned"""
     where: bridge_recipes_cuisines_bool_exp
   ): bridge_recipes_cuisines_aggregate!
+  country_code: String
   iconPath: String
   id: String!
   name: String!
@@ -827,6 +828,7 @@ input cuisines_bool_exp {
   _or: [cuisines_bool_exp!]
   bridge_recipes_cuisines: bridge_recipes_cuisines_bool_exp
   bridge_recipes_cuisines_aggregate: bridge_recipes_cuisines_aggregate_bool_exp
+  country_code: String_comparison_exp
   iconPath: String_comparison_exp
   id: String_comparison_exp
   name: String_comparison_exp
@@ -849,6 +851,7 @@ input type for inserting data into table "cuisines"
 """
 input cuisines_insert_input {
   bridge_recipes_cuisines: bridge_recipes_cuisines_arr_rel_insert_input
+  country_code: String
   iconPath: String
   id: String
   name: String
@@ -858,6 +861,7 @@ input cuisines_insert_input {
 
 """aggregate max on columns"""
 type cuisines_max_fields {
+  country_code: String
   iconPath: String
   id: String
   name: String
@@ -867,6 +871,7 @@ type cuisines_max_fields {
 
 """aggregate min on columns"""
 type cuisines_min_fields {
+  country_code: String
   iconPath: String
   id: String
   name: String
@@ -907,6 +912,7 @@ input cuisines_on_conflict {
 """Ordering options when selecting data from "cuisines"."""
 input cuisines_order_by {
   bridge_recipes_cuisines_aggregate: bridge_recipes_cuisines_aggregate_order_by
+  country_code: order_by
   iconPath: order_by
   id: order_by
   name: order_by
@@ -923,6 +929,9 @@ input cuisines_pk_columns_input {
 select columns of table "cuisines"
 """
 enum cuisines_select_column {
+  """column name"""
+  country_code
+
   """column name"""
   iconPath
 
@@ -943,6 +952,7 @@ enum cuisines_select_column {
 input type for updating data in table "cuisines"
 """
 input cuisines_set_input {
+  country_code: String
   iconPath: String
   id: String
   name: String
@@ -963,6 +973,7 @@ input cuisines_stream_cursor_input {
 
 """Initial value of the column from where the streaming should start"""
 input cuisines_stream_cursor_value_input {
+  country_code: String
   iconPath: String
   id: String
   name: String
@@ -974,6 +985,9 @@ input cuisines_stream_cursor_value_input {
 update columns of table "cuisines"
 """
 enum cuisines_update_column {
+  """column name"""
+  country_code
+
   """column name"""
   iconPath
 

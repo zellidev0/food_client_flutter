@@ -1353,6 +1353,7 @@ mixin _$HomeWebClientModelCuisine {
   String get id => throw _privateConstructorUsedError;
   Option<Uri> get iconPath => throw _privateConstructorUsedError;
   String get displayedName => throw _privateConstructorUsedError;
+  Option<String> get countryCode => throw _privateConstructorUsedError;
   String get slug => throw _privateConstructorUsedError;
   Option<int> get numberOfRecipes => throw _privateConstructorUsedError;
 
@@ -1371,6 +1372,7 @@ abstract class $HomeWebClientModelCuisineCopyWith<$Res> {
       {String id,
       Option<Uri> iconPath,
       String displayedName,
+      Option<String> countryCode,
       String slug,
       Option<int> numberOfRecipes});
 }
@@ -1392,6 +1394,7 @@ class _$HomeWebClientModelCuisineCopyWithImpl<$Res,
     Object? id = null,
     Object? iconPath = null,
     Object? displayedName = null,
+    Object? countryCode = null,
     Object? slug = null,
     Object? numberOfRecipes = null,
   }) {
@@ -1408,6 +1411,10 @@ class _$HomeWebClientModelCuisineCopyWithImpl<$Res,
           ? _value.displayedName
           : displayedName // ignore: cast_nullable_to_non_nullable
               as String,
+      countryCode: null == countryCode
+          ? _value.countryCode
+          : countryCode // ignore: cast_nullable_to_non_nullable
+              as Option<String>,
       slug: null == slug
           ? _value.slug
           : slug // ignore: cast_nullable_to_non_nullable
@@ -1433,6 +1440,7 @@ abstract class _$$_HomeWebClientModelCuisineCopyWith<$Res>
       {String id,
       Option<Uri> iconPath,
       String displayedName,
+      Option<String> countryCode,
       String slug,
       Option<int> numberOfRecipes});
 }
@@ -1453,6 +1461,7 @@ class __$$_HomeWebClientModelCuisineCopyWithImpl<$Res>
     Object? id = null,
     Object? iconPath = null,
     Object? displayedName = null,
+    Object? countryCode = null,
     Object? slug = null,
     Object? numberOfRecipes = null,
   }) {
@@ -1469,6 +1478,10 @@ class __$$_HomeWebClientModelCuisineCopyWithImpl<$Res>
           ? _value.displayedName
           : displayedName // ignore: cast_nullable_to_non_nullable
               as String,
+      countryCode: null == countryCode
+          ? _value.countryCode
+          : countryCode // ignore: cast_nullable_to_non_nullable
+              as Option<String>,
       slug: null == slug
           ? _value.slug
           : slug // ignore: cast_nullable_to_non_nullable
@@ -1488,6 +1501,7 @@ class _$_HomeWebClientModelCuisine implements _HomeWebClientModelCuisine {
       {required this.id,
       required this.iconPath,
       required this.displayedName,
+      required this.countryCode,
       required this.slug,
       required this.numberOfRecipes});
 
@@ -1498,13 +1512,15 @@ class _$_HomeWebClientModelCuisine implements _HomeWebClientModelCuisine {
   @override
   final String displayedName;
   @override
+  final Option<String> countryCode;
+  @override
   final String slug;
   @override
   final Option<int> numberOfRecipes;
 
   @override
   String toString() {
-    return 'HomeWebClientModelCuisine(id: $id, iconPath: $iconPath, displayedName: $displayedName, slug: $slug, numberOfRecipes: $numberOfRecipes)';
+    return 'HomeWebClientModelCuisine(id: $id, iconPath: $iconPath, displayedName: $displayedName, countryCode: $countryCode, slug: $slug, numberOfRecipes: $numberOfRecipes)';
   }
 
   @override
@@ -1517,14 +1533,16 @@ class _$_HomeWebClientModelCuisine implements _HomeWebClientModelCuisine {
                 other.iconPath == iconPath) &&
             (identical(other.displayedName, displayedName) ||
                 other.displayedName == displayedName) &&
+            (identical(other.countryCode, countryCode) ||
+                other.countryCode == countryCode) &&
             (identical(other.slug, slug) || other.slug == slug) &&
             (identical(other.numberOfRecipes, numberOfRecipes) ||
                 other.numberOfRecipes == numberOfRecipes));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, iconPath, displayedName, slug, numberOfRecipes);
+  int get hashCode => Object.hash(runtimeType, id, iconPath, displayedName,
+      countryCode, slug, numberOfRecipes);
 
   @JsonKey(ignore: true)
   @override
@@ -1539,6 +1557,7 @@ abstract class _HomeWebClientModelCuisine implements HomeWebClientModelCuisine {
           {required final String id,
           required final Option<Uri> iconPath,
           required final String displayedName,
+          required final Option<String> countryCode,
           required final String slug,
           required final Option<int> numberOfRecipes}) =
       _$_HomeWebClientModelCuisine;
@@ -1549,6 +1568,8 @@ abstract class _HomeWebClientModelCuisine implements HomeWebClientModelCuisine {
   Option<Uri> get iconPath;
   @override
   String get displayedName;
+  @override
+  Option<String> get countryCode;
   @override
   String get slug;
   @override

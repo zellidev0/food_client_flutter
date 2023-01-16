@@ -238,6 +238,7 @@ class HomeControllerImplementation extends HomeController {
                     slug: cuisine.slug,
                     isSelected: false,
                     numberOfRecipes: cuisine.numberOfRecipes,
+                    countryCode: cuisine.countryCode,
                   ),
                 )
                 .toList(),

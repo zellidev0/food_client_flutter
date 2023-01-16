@@ -156,6 +156,7 @@ class WebClientModelCuisine with _$WebClientModelCuisine {
     required final String slug,
     required final String type,
     required final String name,
+    required final String countryCode,
     required final int usage,
     required final Option<String> iconPath,
   }) = _WebClientModelCuisine;

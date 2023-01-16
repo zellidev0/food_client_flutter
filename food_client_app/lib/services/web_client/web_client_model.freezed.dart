@@ -2238,6 +2238,7 @@ mixin _$WebClientModelCuisine {
   String get slug => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String get countryCode => throw _privateConstructorUsedError;
   int get usage => throw _privateConstructorUsedError;
   Option<String> get iconPath => throw _privateConstructorUsedError;
 
@@ -2258,6 +2259,7 @@ abstract class $WebClientModelCuisineCopyWith<$Res> {
       String slug,
       String type,
       String name,
+      String countryCode,
       int usage,
       Option<String> iconPath});
 }
@@ -2280,6 +2282,7 @@ class _$WebClientModelCuisineCopyWithImpl<$Res,
     Object? slug = null,
     Object? type = null,
     Object? name = null,
+    Object? countryCode = null,
     Object? usage = null,
     Object? iconPath = null,
   }) {
@@ -2299,6 +2302,10 @@ class _$WebClientModelCuisineCopyWithImpl<$Res,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      countryCode: null == countryCode
+          ? _value.countryCode
+          : countryCode // ignore: cast_nullable_to_non_nullable
               as String,
       usage: null == usage
           ? _value.usage
@@ -2325,6 +2332,7 @@ abstract class _$$_WebClientModelCuisineCopyWith<$Res>
       String slug,
       String type,
       String name,
+      String countryCode,
       int usage,
       Option<String> iconPath});
 }
@@ -2344,6 +2352,7 @@ class __$$_WebClientModelCuisineCopyWithImpl<$Res>
     Object? slug = null,
     Object? type = null,
     Object? name = null,
+    Object? countryCode = null,
     Object? usage = null,
     Object? iconPath = null,
   }) {
@@ -2363,6 +2372,10 @@ class __$$_WebClientModelCuisineCopyWithImpl<$Res>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      countryCode: null == countryCode
+          ? _value.countryCode
+          : countryCode // ignore: cast_nullable_to_non_nullable
               as String,
       usage: null == usage
           ? _value.usage
@@ -2384,6 +2397,7 @@ class _$_WebClientModelCuisine implements _WebClientModelCuisine {
       required this.slug,
       required this.type,
       required this.name,
+      required this.countryCode,
       required this.usage,
       required this.iconPath});
 
@@ -2399,13 +2413,15 @@ class _$_WebClientModelCuisine implements _WebClientModelCuisine {
   @override
   final String name;
   @override
+  final String countryCode;
+  @override
   final int usage;
   @override
   final Option<String> iconPath;
 
   @override
   String toString() {
-    return 'WebClientModelCuisine(id: $id, slug: $slug, type: $type, name: $name, usage: $usage, iconPath: $iconPath)';
+    return 'WebClientModelCuisine(id: $id, slug: $slug, type: $type, name: $name, countryCode: $countryCode, usage: $usage, iconPath: $iconPath)';
   }
 
   @override
@@ -2417,6 +2433,8 @@ class _$_WebClientModelCuisine implements _WebClientModelCuisine {
             (identical(other.slug, slug) || other.slug == slug) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.countryCode, countryCode) ||
+                other.countryCode == countryCode) &&
             (identical(other.usage, usage) || other.usage == usage) &&
             (identical(other.iconPath, iconPath) ||
                 other.iconPath == iconPath));
@@ -2424,8 +2442,8 @@ class _$_WebClientModelCuisine implements _WebClientModelCuisine {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, slug, type, name, usage, iconPath);
+  int get hashCode => Object.hash(
+      runtimeType, id, slug, type, name, countryCode, usage, iconPath);
 
   @JsonKey(ignore: true)
   @override
@@ -2448,6 +2466,7 @@ abstract class _WebClientModelCuisine implements WebClientModelCuisine {
       required final String slug,
       required final String type,
       required final String name,
+      required final String countryCode,
       required final int usage,
       required final Option<String> iconPath}) = _$_WebClientModelCuisine;
 
@@ -2462,6 +2481,8 @@ abstract class _WebClientModelCuisine implements WebClientModelCuisine {
   String get type;
   @override
   String get name;
+  @override
+  String get countryCode;
   @override
   int get usage;
   @override

@@ -98,6 +98,7 @@ class HomeWebClientModelCuisine with _$HomeWebClientModelCuisine {
     required final String id,
     required final Option<Uri> iconPath,
     required final String displayedName,
+    required final Option<String> countryCode,
     required final String slug,
     required final Option<int> numberOfRecipes,
   }) = _HomeWebClientModelCuisine;

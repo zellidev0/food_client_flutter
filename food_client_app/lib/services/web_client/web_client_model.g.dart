@@ -240,6 +240,7 @@ _$_WebClientModelCuisine _$$_WebClientModelCuisineFromJson(
       slug: json['slug'] as String,
       type: json['type'] as String,
       name: json['name'] as String,
+      countryCode: json['countryCode'] as String,
       usage: json['usage'] as int,
       iconPath: Option<String>.fromJson(json['iconPath']),
     );
@@ -251,6 +252,7 @@ Map<String, dynamic> _$$_WebClientModelCuisineToJson(
       'slug': instance.slug,
       'type': instance.type,
       'name': instance.name,
+      'countryCode': instance.countryCode,
       'usage': instance.usage,
       'iconPath': instance.iconPath.toJson(
         (value) => value,

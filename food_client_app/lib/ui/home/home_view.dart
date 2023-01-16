@@ -220,7 +220,6 @@ class HomeView extends ConsumerWidget {
                 buildRecipeCardItemDescription(
                   recipe: recipe,
                   tags: model.allTags,
-                  cuisines: model.allCuisines,
                 ),
               ],
             ),
@@ -231,7 +230,6 @@ class HomeView extends ConsumerWidget {
   Widget buildRecipeCardItemDescription({
     required final HomeModelRecipe recipe,
     required final List<HomeModelFilterTag> tags,
-    required final List<HomeModelFilterCuisine> cuisines,
   }) =>
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
