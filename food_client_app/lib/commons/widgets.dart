@@ -9,15 +9,15 @@ CachedNetworkImage buildCachedNetworkImage({
       fit: BoxFit.cover,
       fadeInDuration: const Duration(milliseconds: 200),
       fadeOutDuration: const Duration(milliseconds: 200),
-      placeholder: (final _, final __) => Column(
+      placeholder: (final _, final __) => const Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const <Widget>[
+        children: <Widget>[
           CircularProgressIndicator(),
         ],
       ),
-      errorWidget: (final _, final __, final ___) => Column(
+      errorWidget: (final _, final __, final ___) => const Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const <Widget>[
+        children: <Widget>[
           Icon(Icons.image_not_supported),
         ],
       ),

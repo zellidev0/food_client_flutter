@@ -22,7 +22,7 @@ class LoggingService extends LoggingServiceAggregator {
     required final Exception exception,
   }) {
     if (kDebugMode) {
-      print('Error: $message\n${exception.toString()}');
+      print('Error: $message\n$exception');
     }
   }
 }

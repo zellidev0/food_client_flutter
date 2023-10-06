@@ -182,15 +182,11 @@ abstract class $PersistenceServiceModelShoppingListRecipeCopyWith<$Res> {
   @useResult
   $Res call(
       {@HiveField(0)
-          List<PersistenceServiceModelShoppingListIngredient> ingredients,
-      @HiveField(1)
-          String title,
-      @HiveField(2)
-          Option<Uri> imagePath,
-      @HiveField(3)
-          int servings,
-      @HiveField(4)
-          String recipeId});
+      List<PersistenceServiceModelShoppingListIngredient> ingredients,
+      @HiveField(1) String title,
+      @HiveField(2) Option<Uri> imagePath,
+      @HiveField(3) int servings,
+      @HiveField(4) String recipeId});
 }
 
 /// @nodoc
@@ -250,15 +246,11 @@ abstract class _$$_PersistenceServiceModelShoppingListRecipeCopyWith<$Res>
   @useResult
   $Res call(
       {@HiveField(0)
-          List<PersistenceServiceModelShoppingListIngredient> ingredients,
-      @HiveField(1)
-          String title,
-      @HiveField(2)
-          Option<Uri> imagePath,
-      @HiveField(3)
-          int servings,
-      @HiveField(4)
-          String recipeId});
+      List<PersistenceServiceModelShoppingListIngredient> ingredients,
+      @HiveField(1) String title,
+      @HiveField(2) Option<Uri> imagePath,
+      @HiveField(3) int servings,
+      @HiveField(4) String recipeId});
 }
 
 /// @nodoc
@@ -313,16 +305,12 @@ class _$_PersistenceServiceModelShoppingListRecipe
     implements _PersistenceServiceModelShoppingListRecipe {
   const _$_PersistenceServiceModelShoppingListRecipe(
       {@HiveField(0)
-          required final List<PersistenceServiceModelShoppingListIngredient>
-              ingredients,
-      @HiveField(1)
-          required this.title,
-      @HiveField(2)
-          required this.imagePath,
-      @HiveField(3)
-          required this.servings,
-      @HiveField(4)
-          required this.recipeId})
+      required final List<PersistenceServiceModelShoppingListIngredient>
+          ingredients,
+      @HiveField(1) required this.title,
+      @HiveField(2) required this.imagePath,
+      @HiveField(3) required this.servings,
+      @HiveField(4) required this.recipeId})
       : _ingredients = ingredients;
 
   factory _$_PersistenceServiceModelShoppingListRecipe.fromJson(
@@ -402,16 +390,12 @@ abstract class _PersistenceServiceModelShoppingListRecipe
     implements PersistenceServiceModelShoppingListRecipe {
   const factory _PersistenceServiceModelShoppingListRecipe(
           {@HiveField(0)
-              required final List<PersistenceServiceModelShoppingListIngredient>
-                  ingredients,
-          @HiveField(1)
-              required final String title,
-          @HiveField(2)
-              required final Option<Uri> imagePath,
-          @HiveField(3)
-              required final int servings,
-          @HiveField(4)
-              required final String recipeId}) =
+          required final List<PersistenceServiceModelShoppingListIngredient>
+              ingredients,
+          @HiveField(1) required final String title,
+          @HiveField(2) required final Option<Uri> imagePath,
+          @HiveField(3) required final int servings,
+          @HiveField(4) required final String recipeId}) =
       _$_PersistenceServiceModelShoppingListRecipe;
 
   factory _PersistenceServiceModelShoppingListRecipe.fromJson(
@@ -482,22 +466,15 @@ abstract class $PersistenceServiceModelShoppingListIngredientCopyWith<$Res> {
           PersistenceServiceModelShoppingListIngredient>;
   @useResult
   $Res call(
-      {@HiveField(0)
-          String ingredientId,
-      @HiveField(1)
-          bool isTickedOff,
-      @HiveField(3)
-          Option<Uri> imageUrl,
-      @HiveField(4)
-          String slug,
-      @HiveField(5)
-          String displayedName,
-      @HiveField(6)
-          Option<double> amount,
-      @HiveField(7)
-          Option<String> unit,
+      {@HiveField(0) String ingredientId,
+      @HiveField(1) bool isTickedOff,
+      @HiveField(3) Option<Uri> imageUrl,
+      @HiveField(4) String slug,
+      @HiveField(5) String displayedName,
+      @HiveField(6) Option<double> amount,
+      @HiveField(7) Option<String> unit,
       @HiveField(8)
-          Option<PersistenceServiceModelShoppingListIngredientFamily> family});
+      Option<PersistenceServiceModelShoppingListIngredientFamily> family});
 }
 
 /// @nodoc
@@ -572,22 +549,15 @@ abstract class _$$_PersistenceServiceModelShoppingListIngredientCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@HiveField(0)
-          String ingredientId,
-      @HiveField(1)
-          bool isTickedOff,
-      @HiveField(3)
-          Option<Uri> imageUrl,
-      @HiveField(4)
-          String slug,
-      @HiveField(5)
-          String displayedName,
-      @HiveField(6)
-          Option<double> amount,
-      @HiveField(7)
-          Option<String> unit,
+      {@HiveField(0) String ingredientId,
+      @HiveField(1) bool isTickedOff,
+      @HiveField(3) Option<Uri> imageUrl,
+      @HiveField(4) String slug,
+      @HiveField(5) String displayedName,
+      @HiveField(6) Option<double> amount,
+      @HiveField(7) Option<String> unit,
       @HiveField(8)
-          Option<PersistenceServiceModelShoppingListIngredientFamily> family});
+      Option<PersistenceServiceModelShoppingListIngredientFamily> family});
 }
 
 /// @nodoc
@@ -745,24 +715,16 @@ class _$_PersistenceServiceModelShoppingListIngredient
 abstract class _PersistenceServiceModelShoppingListIngredient
     implements PersistenceServiceModelShoppingListIngredient {
   const factory _PersistenceServiceModelShoppingListIngredient(
-      {@HiveField(0)
-          required final String ingredientId,
-      @HiveField(1)
-          required final bool isTickedOff,
-      @HiveField(3)
-          required final Option<Uri> imageUrl,
-      @HiveField(4)
-          required final String slug,
-      @HiveField(5)
-          required final String displayedName,
-      @HiveField(6)
-          required final Option<double> amount,
-      @HiveField(7)
-          required final Option<String> unit,
+      {@HiveField(0) required final String ingredientId,
+      @HiveField(1) required final bool isTickedOff,
+      @HiveField(3) required final Option<Uri> imageUrl,
+      @HiveField(4) required final String slug,
+      @HiveField(5) required final String displayedName,
+      @HiveField(6) required final Option<double> amount,
+      @HiveField(7) required final Option<String> unit,
       @HiveField(8)
-          required final Option<
-                  PersistenceServiceModelShoppingListIngredientFamily>
-              family}) = _$_PersistenceServiceModelShoppingListIngredient;
+      required final Option<PersistenceServiceModelShoppingListIngredientFamily>
+          family}) = _$_PersistenceServiceModelShoppingListIngredient;
 
   factory _PersistenceServiceModelShoppingListIngredient.fromJson(
           Map<String, dynamic> json) =
@@ -1193,12 +1155,10 @@ class __$$_PersistenceServiceModelSortingUnitCopyWithImpl<$Res>
 class _$_PersistenceServiceModelSortingUnit
     implements _PersistenceServiceModelSortingUnit {
   const _$_PersistenceServiceModelSortingUnit(
-      {@HiveField(0)
-          required this.id,
-      @HiveField(1)
-          required this.name,
+      {@HiveField(0) required this.id,
+      @HiveField(1) required this.name,
       @HiveField(2)
-          required final List<PersistenceServiceModelSorting> sorting})
+      required final List<PersistenceServiceModelSorting> sorting})
       : _sorting = sorting;
 
   factory _$_PersistenceServiceModelSortingUnit.fromJson(
@@ -1258,12 +1218,10 @@ class _$_PersistenceServiceModelSortingUnit
 abstract class _PersistenceServiceModelSortingUnit
     implements PersistenceServiceModelSortingUnit {
   const factory _PersistenceServiceModelSortingUnit(
-          {@HiveField(0)
-              required final String id,
-          @HiveField(1)
-              required final String name,
+          {@HiveField(0) required final String id,
+          @HiveField(1) required final String name,
           @HiveField(2)
-              required final List<PersistenceServiceModelSorting> sorting}) =
+          required final List<PersistenceServiceModelSorting> sorting}) =
       _$_PersistenceServiceModelSortingUnit;
 
   factory _PersistenceServiceModelSortingUnit.fromJson(
@@ -1319,13 +1277,10 @@ abstract class $PersistenceServiceModelSortingCopyWith<$Res> {
   @useResult
   $Res call(
       {@HiveField(0)
-          List<PersistenceServiceModelIngredientFamily> ingredientFamilies,
-      @HiveField(1)
-          String type,
-      @HiveField(2)
-          Option<String> iconPathAsString,
-      @HiveField(3)
-          String name});
+      List<PersistenceServiceModelIngredientFamily> ingredientFamilies,
+      @HiveField(1) String type,
+      @HiveField(2) Option<String> iconPathAsString,
+      @HiveField(3) String name});
 }
 
 /// @nodoc
@@ -1379,13 +1334,10 @@ abstract class _$$_PersistenceServiceModelSortingCopyWith<$Res>
   @useResult
   $Res call(
       {@HiveField(0)
-          List<PersistenceServiceModelIngredientFamily> ingredientFamilies,
-      @HiveField(1)
-          String type,
-      @HiveField(2)
-          Option<String> iconPathAsString,
-      @HiveField(3)
-          String name});
+      List<PersistenceServiceModelIngredientFamily> ingredientFamilies,
+      @HiveField(1) String type,
+      @HiveField(2) Option<String> iconPathAsString,
+      @HiveField(3) String name});
 }
 
 /// @nodoc
@@ -1434,14 +1386,11 @@ class _$_PersistenceServiceModelSorting
     implements _PersistenceServiceModelSorting {
   const _$_PersistenceServiceModelSorting(
       {@HiveField(0)
-          required final List<PersistenceServiceModelIngredientFamily>
-              ingredientFamilies,
-      @HiveField(1)
-          required this.type,
-      @HiveField(2)
-          required this.iconPathAsString,
-      @HiveField(3)
-          required this.name})
+      required final List<PersistenceServiceModelIngredientFamily>
+          ingredientFamilies,
+      @HiveField(1) required this.type,
+      @HiveField(2) required this.iconPathAsString,
+      @HiveField(3) required this.name})
       : _ingredientFamilies = ingredientFamilies;
 
   factory _$_PersistenceServiceModelSorting.fromJson(
@@ -1511,15 +1460,13 @@ class _$_PersistenceServiceModelSorting
 abstract class _PersistenceServiceModelSorting
     implements PersistenceServiceModelSorting {
   const factory _PersistenceServiceModelSorting(
-      {@HiveField(0)
+          {@HiveField(0)
           required final List<PersistenceServiceModelIngredientFamily>
               ingredientFamilies,
-      @HiveField(1)
-          required final String type,
-      @HiveField(2)
-          required final Option<String> iconPathAsString,
-      @HiveField(3)
-          required final String name}) = _$_PersistenceServiceModelSorting;
+          @HiveField(1) required final String type,
+          @HiveField(2) required final Option<String> iconPathAsString,
+          @HiveField(3) required final String name}) =
+      _$_PersistenceServiceModelSorting;
 
   factory _PersistenceServiceModelSorting.fromJson(Map<String, dynamic> json) =
       _$_PersistenceServiceModelSorting.fromJson;
@@ -2110,10 +2057,9 @@ class _$PersistenceServiceModelActiveSortingUnit
 abstract class PersistenceServiceModelActiveSortingUnit
     implements PersistenceServiceModelActiveSorting {
   const factory PersistenceServiceModelActiveSortingUnit(
-          {@HiveField(0)
-              required final String activeSortingUnitId,
+          {@HiveField(0) required final String activeSortingUnitId,
           @HiveField(1)
-              required final List<String> customSortingIngredientIds}) =
+          required final List<String> customSortingIngredientIds}) =
       _$PersistenceServiceModelActiveSortingUnit;
 
   factory PersistenceServiceModelActiveSortingUnit.fromJson(
@@ -2310,7 +2256,7 @@ abstract class PersistenceServiceModelActiveSortingCustom
     implements PersistenceServiceModelActiveSorting {
   const factory PersistenceServiceModelActiveSortingCustom(
           {@HiveField(0)
-              required final List<String> customSortingIngredientIds}) =
+          required final List<String> customSortingIngredientIds}) =
       _$PersistenceServiceModelActiveSortingCustom;
 
   factory PersistenceServiceModelActiveSortingCustom.fromJson(

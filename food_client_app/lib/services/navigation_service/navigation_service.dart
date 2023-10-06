@@ -145,6 +145,7 @@ class BeamerNavigationService implements NavigationServiceAggregator {
 
   @override
   Option<String> get currentRoute => optionOf(
+        // ignore: deprecated_member_use
         _beamerDelegate.currentBeamLocation.state.routeInformation.location,
       );
 }

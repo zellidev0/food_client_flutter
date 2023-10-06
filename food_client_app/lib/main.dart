@@ -15,15 +15,21 @@ void main() async {
     ..registerAdapter(OptionUriAdapter())
     ..registerAdapter(PersistenceServiceModelSortingUnitAdapter())
     ..registerAdapter(PersistenceServiceModelSortingAdapter())
-    ..registerAdapter(PersistenceServiceModelIngredientFamilyHelloFreshAdapter())
+    ..registerAdapter(
+      PersistenceServiceModelIngredientFamilyHelloFreshAdapter(),
+    )
     ..registerAdapter(PersistenceServiceModelActiveSortingUnitAdapter())
     ..registerAdapter(PersistenceServiceModelActiveSortingCustomAdapter())
     ..registerAdapter(OptionDoubleAdapter())
     ..registerAdapter(OptionStringAdapter())
-    ..registerAdapter(OptionPersistenceServiceModelShoppingListIngredientFamilyAdapter())
+    ..registerAdapter(
+      OptionPersistenceServiceModelShoppingListIngredientFamilyAdapter(),
+    )
     ..registerAdapter(UriAdapter())
     ..registerAdapter(PersistenceServiceModelShoppingListIngredientAdapter())
-    ..registerAdapter(PersistenceServiceModelShoppingListIngredientFamilyAdapter())
+    ..registerAdapter(
+      PersistenceServiceModelShoppingListIngredientFamilyAdapter(),
+    )
     ..registerAdapter(PersistenceServiceModelShoppingListRecipeAdapter());
   await Hive.initFlutter();
   await Hive.openBox<PersistenceServiceModelShoppingListRecipe>(

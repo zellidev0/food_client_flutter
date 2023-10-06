@@ -32,14 +32,14 @@ class HomeWebClientModelRecipeResponse with _$HomeWebClientModelRecipeResponse {
 }
 
 @freezed
-class HomeWebClientModelRecipePagination with _$HomeWebClientModelRecipePagination {
+class HomeWebClientModelRecipePagination
+    with _$HomeWebClientModelRecipePagination {
   const factory HomeWebClientModelRecipePagination({
     required final int skip,
     required final int take,
     required final Option<int> total,
   }) = _HomeWebClientModelRecipePagination;
 }
-
 
 @freezed
 class HomeWebClientModelRecipe with _$HomeWebClientModelRecipe {

@@ -29,12 +29,14 @@ class IngredientsSortingModelSorting with _$IngredientsSortingModelSorting {
     required final Option<Uri> iconUrl,
     required final Option<Uri> iconPath,
     required final String name,
-    required final List<IngredientsSortingModelIngredientFamily> ingredientFamilies,
+    required final List<IngredientsSortingModelIngredientFamily>
+        ingredientFamilies,
   }) = _IngredientsSortingModelSorting;
 }
 
 @freezed
-class IngredientsSortingModelIngredientFamily with _$IngredientsSortingModelIngredientFamily {
+class IngredientsSortingModelIngredientFamily
+    with _$IngredientsSortingModelIngredientFamily {
   const factory IngredientsSortingModelIngredientFamily.helloFresh({
     required final String helloFreshFamilyId,
   }) = IngredientsSortingModelIngredientFamilyHelloFresh;

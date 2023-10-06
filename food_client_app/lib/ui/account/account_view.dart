@@ -20,7 +20,10 @@ class AccountView extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text('Preferences', style: Theme.of(context).textTheme.headline6),
+              Text(
+                'Preferences',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
               const SizedBox(height: 16),
               const Divider(),
               ListTile(

@@ -21,8 +21,8 @@ class PersistenceServiceModelShoppingListRecipe
   )
   const factory PersistenceServiceModelShoppingListRecipe({
     @HiveField(0)
-        required final List<PersistenceServiceModelShoppingListIngredient>
-            ingredients,
+    required final List<PersistenceServiceModelShoppingListIngredient>
+        ingredients,
     @HiveField(1) required final String title,
     @HiveField(2) required final Option<Uri> imagePath,
     @HiveField(3) required final int servings,
@@ -51,9 +51,8 @@ class PersistenceServiceModelShoppingListIngredient
     @HiveField(6) required final Option<double> amount,
     @HiveField(7) required final Option<String> unit,
     @HiveField(8)
-        required final Option<
-                PersistenceServiceModelShoppingListIngredientFamily>
-            family,
+    required final Option<PersistenceServiceModelShoppingListIngredientFamily>
+        family,
   }) = _PersistenceServiceModelShoppingListIngredient;
 
   factory PersistenceServiceModelShoppingListIngredient.fromJson(
@@ -97,28 +96,29 @@ class PersistenceServiceModelSortingUnit
   }) = _PersistenceServiceModelSortingUnit;
 
   factory PersistenceServiceModelSortingUnit.fromJson(
-      final Map<String, dynamic> json,
-      ) =>
+    final Map<String, dynamic> json,
+  ) =>
       _$PersistenceServiceModelSortingUnitFromJson(json);
 }
 
 @freezed
-class PersistenceServiceModelSorting
-    with _$PersistenceServiceModelSorting {
+class PersistenceServiceModelSorting with _$PersistenceServiceModelSorting {
   @HiveType(
     typeId: 4,
     adapterName: 'PersistenceServiceModelSortingAdapter',
   )
   const factory PersistenceServiceModelSorting({
-    @HiveField(0) required final List<PersistenceServiceModelIngredientFamily> ingredientFamilies,
+    @HiveField(0)
+    required final List<PersistenceServiceModelIngredientFamily>
+        ingredientFamilies,
     @HiveField(1) required final String type,
     @HiveField(2) required final Option<String> iconPathAsString,
     @HiveField(3) required final String name,
   }) = _PersistenceServiceModelSorting;
 
   factory PersistenceServiceModelSorting.fromJson(
-      final Map<String, dynamic> json,
-      ) =>
+    final Map<String, dynamic> json,
+  ) =>
       _$PersistenceServiceModelSortingFromJson(json);
 }
 
@@ -134,11 +134,10 @@ class PersistenceServiceModelIngredientFamily
   }) = PersistenceServiceModelIngredientFamilyHellofresh;
 
   factory PersistenceServiceModelIngredientFamily.fromJson(
-      final Map<String, dynamic> json,
-      ) =>
+    final Map<String, dynamic> json,
+  ) =>
       _$PersistenceServiceModelIngredientFamilyFromJson(json);
 }
-
 
 @freezed
 class PersistenceServiceModelActiveSorting
@@ -160,9 +159,8 @@ class PersistenceServiceModelActiveSorting
     @HiveField(0) required final List<String> customSortingIngredientIds,
   }) = PersistenceServiceModelActiveSortingCustom;
 
-
   factory PersistenceServiceModelActiveSorting.fromJson(
-      final Map<String, dynamic> json,
-      ) =>
+    final Map<String, dynamic> json,
+  ) =>
       _$PersistenceServiceModelActiveSortingFromJson(json);
 }

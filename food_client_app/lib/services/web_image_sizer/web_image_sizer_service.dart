@@ -4,7 +4,6 @@ import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_web_image
 import 'package:food_client/ui/single_recipe/single_recipe_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
 
-
 abstract class WebImageSizerServiceAggregator
     implements
         HomeWebImageSizerService,

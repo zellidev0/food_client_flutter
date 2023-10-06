@@ -67,8 +67,8 @@ class WebClientModelRecipeApiIngredientsResponse
   }) = _WebClientModelRecipeApiIngredientsResponse;
 
   factory WebClientModelRecipeApiIngredientsResponse.fromJson(
-      final Map<String, dynamic> json,
-      ) =>
+    final Map<String, dynamic> json,
+  ) =>
       _$WebClientModelRecipeApiIngredientsResponseFromJson(json);
 }
 

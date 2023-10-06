@@ -163,7 +163,7 @@ class HomeView extends ConsumerWidget {
                       Builder(
                         builder: (final BuildContext context) => Text(
                           'ui.home_view.error_states.no_more_recipes'.tr(),
-                          style: Theme.of(context).textTheme.caption,
+                          style: Theme.of(context).textTheme.bodySmall,
                         ),
                       ),
                       const SizedBox(height: 8),
@@ -175,8 +175,8 @@ class HomeView extends ConsumerWidget {
                   firstPageProgressIndicatorBuilder: (final _) => const Center(
                     child: CircularProgressIndicator(),
                   ),
-                  newPageProgressIndicatorBuilder: (final _) => Column(
-                    children: const <Widget>[
+                  newPageProgressIndicatorBuilder: (final _) => const Column(
+                    children: <Widget>[
                       SizedBox(height: 16),
                       CircularProgressIndicator(),
                       SizedBox(height: 8),
@@ -209,7 +209,7 @@ class HomeView extends ConsumerWidget {
         child: Stack(
           children: <Widget>[
             Card(
-              margin:  EdgeInsets.zero,
+              margin: EdgeInsets.zero,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(24),
               ),

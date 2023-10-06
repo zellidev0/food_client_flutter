@@ -238,7 +238,7 @@ class SingleRecipeView extends ConsumerWidget {
                     ),
                   ),
                 ),
-                _buildDescriptionTextStepIndicator(stepNumber: index)
+                _buildDescriptionTextStepIndicator(stepNumber: index),
               ],
             ),
             Padding(
@@ -316,7 +316,7 @@ class SingleRecipeView extends ConsumerWidget {
         yields.length;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [
+      children: <Widget>[
         ElevatedButton.icon(
           onPressed: () {
             controller.setSelectedYield(

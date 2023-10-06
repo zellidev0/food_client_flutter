@@ -62,12 +62,15 @@ class OptionPersistenceServiceModelShoppingListIngredientFamilyAdapter
 
   @override
   Option<PersistenceServiceModelShoppingListIngredientFamily> read(
-          final BinaryReader reader,) =>
+    final BinaryReader reader,
+  ) =>
       optionOf(reader.read());
 
   @override
-  void write(final BinaryWriter writer,
-      final Option<PersistenceServiceModelShoppingListIngredientFamily> obj,) {
+  void write(
+    final BinaryWriter writer,
+    final Option<PersistenceServiceModelShoppingListIngredientFamily> obj,
+  ) {
     writer.write(obj.toNullable());
   }
 }

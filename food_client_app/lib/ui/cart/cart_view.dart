@@ -60,40 +60,40 @@ class CartView extends ConsumerWidget {
               ],
               body: model.recipes.isEmpty
                   ? buildNoItemsFoundIcon(
-                message: 'ui.cart_view.empty_states.empty_cart'.tr(),
-              )
+                      message: 'ui.cart_view.empty_states.empty_cart'.tr(),
+                    )
                   : TabBarView(
-                children: <Widget>[
-                  buildIngredientsListView(
-                    ingredients: model.ingredients,
-                    keyId: 'total',
-                    controller: controller,
-                    sorting: model.sorting,
-                  ),
-                  buildIngredientsListView(
-                    ingredients: model.ingredients
-                        .where(
-                          (final CartModelIngredient element) =>
-                      !element.isTickedOff,
-                    )
-                        .toList(),
-                    keyId: 'missing',
-                    controller: controller,
-                    sorting: model.sorting,
-                  ),
-                  buildIngredientsListView(
-                    ingredients: model.ingredients
-                        .where(
-                          (final CartModelIngredient element) =>
-                      element.isTickedOff,
-                    )
-                        .toList(),
-                    keyId: 'ticked-off',
-                    controller: controller,
-                    sorting: model.sorting,
-                  ),
-                ],
-              ),
+                      children: <Widget>[
+                        buildIngredientsListView(
+                          ingredients: model.ingredients,
+                          keyId: 'total',
+                          controller: controller,
+                          sorting: model.sorting,
+                        ),
+                        buildIngredientsListView(
+                          ingredients: model.ingredients
+                              .where(
+                                (final CartModelIngredient element) =>
+                                    !element.isTickedOff,
+                              )
+                              .toList(),
+                          keyId: 'missing',
+                          controller: controller,
+                          sorting: model.sorting,
+                        ),
+                        buildIngredientsListView(
+                          ingredients: model.ingredients
+                              .where(
+                                (final CartModelIngredient element) =>
+                                    element.isTickedOff,
+                              )
+                              .toList(),
+                          keyId: 'ticked-off',
+                          controller: controller,
+                          sorting: model.sorting,
+                        ),
+                      ],
+                    ),
             ),
           ),
         ),
@@ -376,11 +376,13 @@ Widget buildStarIcon({
                     Icon(
               Icons.star,
               color: ref.watch(providers.cartControllerProvider).sorting.map(
-                        unit: (final CartModelSortingSelectedUnit selectedUnit) =>
-                            sorting.map(
+                        unit:
+                            (final CartModelSortingSelectedUnit selectedUnit) =>
+                                sorting.map(
                           unit: (final CartModelSortingSelectedUnit unit) =>
                               unit.activeUnit.id == selectedUnit.activeUnit.id,
-                          custom: (final CartModelSortingCustom custom) => false,
+                          custom: (final CartModelSortingCustom custom) =>
+                              false,
                         ),
                         custom: (final _) => sorting.map(
                           unit: (final _) => false,

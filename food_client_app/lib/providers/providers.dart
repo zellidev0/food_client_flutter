@@ -273,7 +273,7 @@ class Providers {
             );
           },
         },
-      ),
+      ).call,
     ),
   );
 
@@ -324,7 +324,7 @@ class Providers {
                 type: determinePageType(),
               ),
         },
-      ),
+      ).call,
     ),
   );
 }
