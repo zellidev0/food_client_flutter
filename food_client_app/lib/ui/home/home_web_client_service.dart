@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -5,9 +7,9 @@ part 'home_web_client_service.freezed.dart';
 
 abstract class HomeWebClientService {
   TaskEither<Exception, HomeWebClientModelRecipeResponse> fetchRecipes({
-    required final String country,
     required final int take,
     required final int skip,
+    required final List<Locale> recipeLocales,
     final Option<List<String>> tagIds = const None<List<String>>(),
     final Option<String> cuisineId = const None<String>(),
     final Option<List<String>> ingredients = const None<List<String>>(),
@@ -18,7 +20,7 @@ abstract class HomeWebClientService {
     final Option<int> take = const None<int>(),
   });
   TaskEither<Exception, List<HomeWebClientModelTag>> fetchAllTags({
-    required final String country,
+    required final List<Locale> recipeLocales,
     final Option<int> take = const None<int>(),
   });
 }

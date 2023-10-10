@@ -28,7 +28,6 @@ class HomeControllerImplementation extends HomeController {
         _webImageSizerService = webImageSizerService,
         _globalNavigationService = globalNavigationService {
     _listenToPaginationController();
-    unawaited(_init());
   }
 
   void _listenToPaginationController() {
@@ -56,24 +55,24 @@ class HomeControllerImplementation extends HomeController {
     state.pagingController.dispose();
   }
 
-  Future<void> _init() async {
-    (await _fetchTags()
-            .map2(
-              _fetchCuisines(),
-              (
-                final List<HomeModelFilterTag> tags,
-                final List<HomeModelFilterCuisine> cuisines,
-              ) =>
-                  state.copyWith(allTags: tags, allCuisines: cuisines),
-            )
-            .run())
-        .fold(
-      (final Exception l) => debugPrint(l.toString()),
-      (final HomeModel model) {
-        state = model;
-      },
-    );
-  }
+  Task<void> init() => Task<void>(
+        () async => (await _fetchTags()
+                .map2(
+                  _fetchCuisines(),
+                  (
+                    final List<HomeModelFilterTag> tags,
+                    final List<HomeModelFilterCuisine> cuisines,
+                  ) =>
+                      state.copyWith(allTags: tags, allCuisines: cuisines),
+                )
+                .run())
+            .fold(
+          (final Exception error) => debugPrint(error.toString()),
+          (final HomeModel model) {
+            state = model;
+          },
+        ),
+      );
 
   @override
   Future<void> setTagSelected({
@@ -187,7 +186,7 @@ class HomeControllerImplementation extends HomeController {
   }) =>
       _webClientService
           .fetchRecipes(
-            country: state.recipeLocales.first.languageCode,
+            recipeLocales: state.recipeLocales,
             skip: paginationSkip,
             take: recipesPerPage,
             tagIds: some(selectedTagIds(tags: state.allTags)),
@@ -205,8 +204,8 @@ class HomeControllerImplementation extends HomeController {
   TaskEither<Exception, List<HomeModelFilterTag>> _fetchTags() =>
       _webClientService
           .fetchAllTags(
-            country: state.recipeLocales.first.languageCode,
             take: some(100),
+            recipeLocales: state.recipeLocales,
           )
           .map(
             (final List<HomeWebClientModelTag> tags) => tags

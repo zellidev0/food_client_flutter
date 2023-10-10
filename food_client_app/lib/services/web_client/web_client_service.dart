@@ -3,6 +3,7 @@ import 'dart:core';
 
 import 'package:collection/collection.dart';
 import 'package:commons_graphql/commons_graphql.dart';
+import 'package:flutter/material.dart';
 import 'package:food_client/services/web_client/web_client_model.dart';
 import 'package:food_client/ui/home/home_web_client_service.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_web_client_service.dart';
@@ -321,7 +322,7 @@ WebClientModelIngredientFamily mapToWebClientModelIngredientFamily(
 
 List<HomeWebClientModelRecipe> _mapToHomeWebClientModelRecipe({
   required final List<Query$Recipes$recipes> recipesResponse,
-  required final String country,
+  required final List<Locale> recipeLocales,
 }) =>
     recipesResponse
         .map(
@@ -498,8 +499,8 @@ class WebClientService implements WebClientServiceAggregator {
 
   @override
   TaskEither<Exception, List<HomeWebClientModelTag>> fetchAllTags({
-    required final String country,
     final Option<int> take = const None<int>(),
+    required final List<Locale> recipeLocales,
   }) =>
       TaskEither<Exception, QueryResult<Query$GetTags>>.tryCatch(
         () async => await _client.query(
@@ -538,9 +539,9 @@ class WebClientService implements WebClientServiceAggregator {
 
   @override
   TaskEither<Exception, HomeWebClientModelRecipeResponse> fetchRecipes({
-    required final String country,
     required final int take,
     required final int skip,
+    required final List<Locale> recipeLocales,
     final Option<List<String>> tagIds = const None<List<String>>(),
     final Option<String> cuisineId = const None<String>(),
     final Option<List<String>> ingredients = const None<List<String>>(),
@@ -558,7 +559,12 @@ class WebClientService implements WebClientServiceAggregator {
                 $_and: <Input$recipes_bool_exp>[
                   Input$recipes_bool_exp(
                     country: Input$String_comparison_exp(
-                      $_eq: country,
+                      $_eq: recipeLocales.firstOption
+                          .map((final _) => _.languageCode)
+                          .getOrElse(() {
+                        debugPrint('No recipe locale defined');
+                        return 'de';
+                      }),
                     ),
                   ),
                   Input$recipes_bool_exp(
@@ -610,7 +616,7 @@ class WebClientService implements WebClientServiceAggregator {
                     ),
                     recipes: _mapToHomeWebClientModelRecipe(
                       recipesResponse: parsedData.recipes,
-                      country: country,
+                      recipeLocales: recipeLocales,
                     ),
                   ),
                 )

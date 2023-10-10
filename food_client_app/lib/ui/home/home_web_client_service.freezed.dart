@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'home_web_client_service.dart';
 
@@ -140,6 +140,7 @@ class _$_HomeWebClientModelRecipeResponse
   final List<HomeWebClientModelRecipe> _recipes;
   @override
   List<HomeWebClientModelRecipe> get recipes {
+    if (_recipes is EqualUnmodifiableListView) return _recipes;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_recipes);
   }
@@ -570,6 +571,7 @@ class _$_HomeWebClientModelRecipe implements _HomeWebClientModelRecipe {
   final List<HomeWebClientModelIngredient> _ingredients;
   @override
   List<HomeWebClientModelIngredient> get ingredients {
+    if (_ingredients is EqualUnmodifiableListView) return _ingredients;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_ingredients);
   }
@@ -577,6 +579,7 @@ class _$_HomeWebClientModelRecipe implements _HomeWebClientModelRecipe {
   final List<HomeWebClientModelYield> _yields;
   @override
   List<HomeWebClientModelYield> get yields {
+    if (_yields is EqualUnmodifiableListView) return _yields;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_yields);
   }
@@ -584,6 +587,7 @@ class _$_HomeWebClientModelRecipe implements _HomeWebClientModelRecipe {
   final List<String> _tagIds;
   @override
   List<String> get tagIds {
+    if (_tagIds is EqualUnmodifiableListView) return _tagIds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_tagIds);
   }
@@ -591,6 +595,7 @@ class _$_HomeWebClientModelRecipe implements _HomeWebClientModelRecipe {
   final List<String> _cuisineIds;
   @override
   List<String> get cuisineIds {
+    if (_cuisineIds is EqualUnmodifiableListView) return _cuisineIds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_cuisineIds);
   }
@@ -1684,6 +1689,7 @@ class _$_HomeWebClientModelYield implements _HomeWebClientModelYield {
   final List<HomeWebClientModelYieldIngredient> _yieldIngredient;
   @override
   List<HomeWebClientModelYieldIngredient> get yieldIngredient {
+    if (_yieldIngredient is EqualUnmodifiableListView) return _yieldIngredient;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_yieldIngredient);
   }
