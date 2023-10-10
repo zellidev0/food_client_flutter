@@ -224,7 +224,7 @@ class HomeControllerImplementation extends HomeController {
   TaskEither<Exception, List<HomeModelFilterCuisine>> _fetchCuisines() =>
       _webClientService
           .fetchAllCuisines(
-            country: state.recipeLocales.first.languageCode,
+            recipeLocales: state.recipeLocales,
             take: some(1000),
           )
           .map(

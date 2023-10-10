@@ -102,7 +102,7 @@ class MockHomeWebClientService extends _i1.Mock
   @override
   _i2.TaskEither<Exception, List<_i3.HomeWebClientModelCuisine>>
       fetchAllCuisines({
-    required String? country,
+    required List<_i4.Locale>? recipeLocales,
     _i2.Option<int>? take = const _i2.None(),
   }) =>
           (super.noSuchMethod(
@@ -110,7 +110,7 @@ class MockHomeWebClientService extends _i1.Mock
               #fetchAllCuisines,
               [],
               {
-                #country: country,
+                #recipeLocales: recipeLocales,
                 #take: take,
               },
             ),
@@ -121,7 +121,7 @@ class MockHomeWebClientService extends _i1.Mock
                 #fetchAllCuisines,
                 [],
                 {
-                  #country: country,
+                  #recipeLocales: recipeLocales,
                   #take: take,
                 },
               ),

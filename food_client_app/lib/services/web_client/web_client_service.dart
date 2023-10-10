@@ -471,7 +471,7 @@ class WebClientService implements WebClientServiceAggregator {
 
   @override
   TaskEither<Exception, List<HomeWebClientModelCuisine>> fetchAllCuisines({
-    required final String country,
+    required final List<Locale> recipeLocales,
     final Option<int> take = const None<int>(),
   }) =>
       TaskEither<Exception, QueryResult<Query$GetCuisines>>.tryCatch(

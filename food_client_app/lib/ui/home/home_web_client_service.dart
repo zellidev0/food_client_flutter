@@ -16,7 +16,7 @@ abstract class HomeWebClientService {
     final Option<String> searchTerm = const None<String>(),
   });
   TaskEither<Exception, List<HomeWebClientModelCuisine>> fetchAllCuisines({
-    required final String country,
+    required final List<Locale> recipeLocales,
     final Option<int> take = const None<int>(),
   });
   TaskEither<Exception, List<HomeWebClientModelTag>> fetchAllTags({

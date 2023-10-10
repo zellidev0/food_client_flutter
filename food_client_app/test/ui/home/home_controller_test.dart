@@ -59,7 +59,7 @@ void main() {
     );
     when(
       webClientService.fetchAllCuisines(
-        country: anyNamed('country'),
+        recipeLocales: anyNamed('country'),
         take: anyNamed('take'),
       ),
     ).thenAnswer(
