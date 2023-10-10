@@ -59,7 +59,7 @@ void main() {
     );
     when(
       webClientService.fetchAllCuisines(
-        recipeLocales: anyNamed('country'),
+        recipeLocales: anyNamed('recipeLocales'),
         take: anyNamed('take'),
       ),
     ).thenAnswer(
@@ -85,8 +85,17 @@ void main() {
 
     await controller.init().run();
 
-    expect(controller.debugState.allTags, isNotEmpty);
-    expect(controller.debugState.allCuisines, isNotEmpty);
+    if (initialFetchVariant.currentValue!.tags.isEmpty) {
+      expect(controller.debugState.allTags, isEmpty);
+    } else {
+      expect(controller.debugState.allTags, isNotEmpty);
+    }
+
+    if (initialFetchVariant.currentValue!.cuisines.isEmpty) {
+      expect(controller.debugState.allCuisines, isEmpty);
+    } else {
+      expect(controller.debugState.allCuisines, isNotEmpty);
+    }
   });
 }
 
