@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'web_client_model.dart';
 
@@ -183,6 +183,7 @@ class _$_WebClientModelRecipeApiRecipeResponse
   final List<WebClientModelRecipe> _items;
   @override
   List<WebClientModelRecipe> get items {
+    if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
   }
@@ -425,6 +426,7 @@ class _$_WebClientModelRecipeApiTagResponse
   final List<WebClientModelTag> _items;
   @override
   List<WebClientModelTag> get items {
+    if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
   }
@@ -668,6 +670,7 @@ class _$_WebClientModelRecipeApiCuisineResponse
   final List<WebClientModelCuisine> _items;
   @override
   List<WebClientModelCuisine> get items {
+    if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
   }
@@ -913,6 +916,7 @@ class _$_WebClientModelRecipeApiIngredientsResponse
   final List<WebClientModelIngredient> _items;
   @override
   List<WebClientModelIngredient> get items {
+    if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
   }
@@ -1155,6 +1159,7 @@ class _$_WebClientModelTagsApiResponse
   final List<WebClientModelTag> _items;
   @override
   List<WebClientModelTag> get items {
+    if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
   }
@@ -1559,6 +1564,7 @@ class _$_WebClientModelRecipe implements _WebClientModelRecipe {
   final List<WebClientModelIngredient> _ingredients;
   @override
   List<WebClientModelIngredient> get ingredients {
+    if (_ingredients is EqualUnmodifiableListView) return _ingredients;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_ingredients);
   }
@@ -1566,6 +1572,7 @@ class _$_WebClientModelRecipe implements _WebClientModelRecipe {
   final List<WebClientModelYield> _yields;
   @override
   List<WebClientModelYield> get yields {
+    if (_yields is EqualUnmodifiableListView) return _yields;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_yields);
   }
@@ -1573,6 +1580,7 @@ class _$_WebClientModelRecipe implements _WebClientModelRecipe {
   final List<WebClientModelRecipeTag> _tags;
   @override
   List<WebClientModelRecipeTag> get tags {
+    if (_tags is EqualUnmodifiableListView) return _tags;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_tags);
   }
@@ -1580,6 +1588,7 @@ class _$_WebClientModelRecipe implements _WebClientModelRecipe {
   final List<WebClientModelStep> _steps;
   @override
   List<WebClientModelStep> get steps {
+    if (_steps is EqualUnmodifiableListView) return _steps;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_steps);
   }
@@ -1587,6 +1596,7 @@ class _$_WebClientModelRecipe implements _WebClientModelRecipe {
   final List<WebClientModelCuisine> _cuisines;
   @override
   List<WebClientModelCuisine> get cuisines {
+    if (_cuisines is EqualUnmodifiableListView) return _cuisines;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_cuisines);
   }
@@ -2156,6 +2166,8 @@ class _$_WebClientModelRecipeTag implements _WebClientModelRecipeTag {
   final Map<String, int> _numberOfRecipesByCountry;
   @override
   Map<String, int> get numberOfRecipesByCountry {
+    if (_numberOfRecipesByCountry is EqualUnmodifiableMapView)
+      return _numberOfRecipesByCountry;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_numberOfRecipesByCountry);
   }
@@ -2603,6 +2615,7 @@ class _$_WebClientModelYield implements _WebClientModelYield {
   final List<WebClientModelYieldIngredient> _ingredients;
   @override
   List<WebClientModelYieldIngredient> get ingredients {
+    if (_ingredients is EqualUnmodifiableListView) return _ingredients;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_ingredients);
   }
@@ -2804,6 +2817,7 @@ class _$_WebClientModelStep implements _WebClientModelStep {
   final List<String> _ingredients;
   @override
   List<String> get ingredients {
+    if (_ingredients is EqualUnmodifiableListView) return _ingredients;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_ingredients);
   }
@@ -2811,6 +2825,7 @@ class _$_WebClientModelStep implements _WebClientModelStep {
   final List<WebClientModelStepImage> _images;
   @override
   List<WebClientModelStepImage> get images {
+    if (_images is EqualUnmodifiableListView) return _images;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_images);
   }
@@ -3368,6 +3383,8 @@ class _$_WebClientModelTag implements _WebClientModelTag {
   final Map<String, int> _numberOfRecipesByCountry;
   @override
   Map<String, int> get numberOfRecipesByCountry {
+    if (_numberOfRecipesByCountry is EqualUnmodifiableMapView)
+      return _numberOfRecipesByCountry;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_numberOfRecipesByCountry);
   }

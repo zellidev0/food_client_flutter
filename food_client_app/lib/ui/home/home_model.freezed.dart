@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'home_model.dart';
 
@@ -147,6 +147,7 @@ class _$_HomeModel implements _HomeModel {
   final List<HomeModelFilterTag> _allTags;
   @override
   List<HomeModelFilterTag> get allTags {
+    if (_allTags is EqualUnmodifiableListView) return _allTags;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_allTags);
   }
@@ -154,6 +155,7 @@ class _$_HomeModel implements _HomeModel {
   final List<HomeModelFilterCuisine> _allCuisines;
   @override
   List<HomeModelFilterCuisine> get allCuisines {
+    if (_allCuisines is EqualUnmodifiableListView) return _allCuisines;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_allCuisines);
   }
@@ -161,6 +163,7 @@ class _$_HomeModel implements _HomeModel {
   final List<Locale> _recipeLocales;
   @override
   List<Locale> get recipeLocales {
+    if (_recipeLocales is EqualUnmodifiableListView) return _recipeLocales;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_recipeLocales);
   }
@@ -589,6 +592,7 @@ class _$_HomeModelRecipe implements _HomeModelRecipe {
   final List<HomeModelIngredient> _ingredients;
   @override
   List<HomeModelIngredient> get ingredients {
+    if (_ingredients is EqualUnmodifiableListView) return _ingredients;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_ingredients);
   }
@@ -596,6 +600,7 @@ class _$_HomeModelRecipe implements _HomeModelRecipe {
   final List<HomeModelYield> _yields;
   @override
   List<HomeModelYield> get yields {
+    if (_yields is EqualUnmodifiableListView) return _yields;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_yields);
   }
@@ -603,6 +608,7 @@ class _$_HomeModelRecipe implements _HomeModelRecipe {
   final List<String> _tagIds;
   @override
   List<String> get tagIds {
+    if (_tagIds is EqualUnmodifiableListView) return _tagIds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_tagIds);
   }
@@ -610,6 +616,7 @@ class _$_HomeModelRecipe implements _HomeModelRecipe {
   final List<String> _cuisineIds;
   @override
   List<String> get cuisineIds {
+    if (_cuisineIds is EqualUnmodifiableListView) return _cuisineIds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_cuisineIds);
   }
@@ -1734,6 +1741,7 @@ class _$_HomeModelYield implements _HomeModelYield {
   final List<HomeModelYieldIngredient> _yieldIngredient;
   @override
   List<HomeModelYieldIngredient> get yieldIngredient {
+    if (_yieldIngredient is EqualUnmodifiableListView) return _yieldIngredient;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_yieldIngredient);
   }

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'ingredients_sorting_model.dart';
 
@@ -119,6 +119,7 @@ class _$_IngredientsSortingModel implements _IngredientsSortingModel {
   final List<IngredientsSortingModelUnit> _units;
   @override
   List<IngredientsSortingModelUnit> get units {
+    if (_units is EqualUnmodifiableListView) return _units;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_units);
   }
@@ -313,6 +314,7 @@ class _$_IngredientsSortingModelUnit implements _IngredientsSortingModelUnit {
   final List<IngredientsSortingModelSorting> _sorting;
   @override
   List<IngredientsSortingModelSorting> get sorting {
+    if (_sorting is EqualUnmodifiableListView) return _sorting;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_sorting);
   }
@@ -545,6 +547,8 @@ class _$_IngredientsSortingModelSorting
   final List<IngredientsSortingModelIngredientFamily> _ingredientFamilies;
   @override
   List<IngredientsSortingModelIngredientFamily> get ingredientFamilies {
+    if (_ingredientFamilies is EqualUnmodifiableListView)
+      return _ingredientFamilies;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_ingredientFamilies);
   }

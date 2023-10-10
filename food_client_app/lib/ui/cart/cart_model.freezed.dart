@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'cart_model.dart';
 
@@ -172,6 +172,7 @@ class _$_CartModel implements _CartModel {
   final List<CartModelRecipe> _recipes;
   @override
   List<CartModelRecipe> get recipes {
+    if (_recipes is EqualUnmodifiableListView) return _recipes;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_recipes);
   }
@@ -179,6 +180,7 @@ class _$_CartModel implements _CartModel {
   final List<CartModelIngredient> _ingredients;
   @override
   List<CartModelIngredient> get ingredients {
+    if (_ingredients is EqualUnmodifiableListView) return _ingredients;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_ingredients);
   }
@@ -190,6 +192,7 @@ class _$_CartModel implements _CartModel {
   final List<CartModelSortingUnit> _sortingUnits;
   @override
   List<CartModelSortingUnit> get sortingUnits {
+    if (_sortingUnits is EqualUnmodifiableListView) return _sortingUnits;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_sortingUnits);
   }
@@ -406,6 +409,8 @@ class _$CartModelSortingSelectedUnit implements CartModelSortingSelectedUnit {
   final List<String> _customSortingIngredientIds;
   @override
   List<String> get customSortingIngredientIds {
+    if (_customSortingIngredientIds is EqualUnmodifiableListView)
+      return _customSortingIngredientIds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_customSortingIngredientIds);
   }
@@ -565,6 +570,8 @@ class _$CartModelSortingCustom implements CartModelSortingCustom {
   final List<String> _customSortingIngredientIds;
   @override
   List<String> get customSortingIngredientIds {
+    if (_customSortingIngredientIds is EqualUnmodifiableListView)
+      return _customSortingIngredientIds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_customSortingIngredientIds);
   }
@@ -798,6 +805,8 @@ class _$_CartModelSortingUnit implements _CartModelSortingUnit {
   final List<CartModelSortingIngredientFamily> _ingredientFamilies;
   @override
   List<CartModelSortingIngredientFamily> get ingredientFamilies {
+    if (_ingredientFamilies is EqualUnmodifiableListView)
+      return _ingredientFamilies;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_ingredientFamilies);
   }
@@ -954,6 +963,7 @@ class _$_CartModelSortingIngredientFamily
   final List<String> _familyIds;
   @override
   List<String> get familyIds {
+    if (_familyIds is EqualUnmodifiableListView) return _familyIds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_familyIds);
   }
@@ -1531,6 +1541,7 @@ class _$_CartModelIngredientInfo implements _CartModelIngredientInfo {
   final List<String> _recipeIds;
   @override
   List<String> get recipeIds {
+    if (_recipeIds is EqualUnmodifiableListView) return _recipeIds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_recipeIds);
   }
