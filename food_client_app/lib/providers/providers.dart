@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:beamer/beamer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -117,23 +119,27 @@ class Providers {
       homeControllerProvider = StateNotifierProvider<HomeController, HomeModel>(
     (
       final StateNotifierProviderRef<HomeController, HomeModel> ref,
-    ) =>
-        HomeControllerImplementation(
-      HomeModel(
-        allTags: <HomeModelFilterTag>[],
-        allCuisines: <HomeModelFilterCuisine>[],
-        pagingController: PagingController<int, HomeModelRecipe>(
-          firstPageKey: 0,
+    ) {
+      final HomeControllerImplementation controller =
+          HomeControllerImplementation(
+        HomeModel(
+          allTags: <HomeModelFilterTag>[],
+          allCuisines: <HomeModelFilterCuisine>[],
+          pagingController: PagingController<int, HomeModelRecipe>(
+            firstPageKey: 0,
+          ),
+          recipeLocales:
+              ref.watch(providers.appSettingsServiceProvider).recipeLocales,
         ),
-        recipeLocales:
-            ref.watch(providers.appSettingsServiceProvider).recipeLocales,
-      ),
-      globalNavigationService: ref.read(
-        providers.globalNavigationServiceProvider,
-      ),
-      webClientService: ref.read(providers.webClientServiceProvider),
-      webImageSizerService: ref.read(providers.webImageSizerServiceProvider),
-    ),
+        globalNavigationService: ref.read(
+          providers.globalNavigationServiceProvider,
+        ),
+        webClientService: ref.read(providers.webClientServiceProvider),
+        webImageSizerService: ref.read(providers.webImageSizerServiceProvider),
+      );
+      unawaited(controller.init().run());
+      return controller;
+    },
   );
 
   final AutoDisposeStateNotifierProviderFamily<SingleRecipeController,
