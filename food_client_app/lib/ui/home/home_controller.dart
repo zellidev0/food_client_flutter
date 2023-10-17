@@ -10,24 +10,32 @@ import 'package:food_client/ui/home/home_web_client_service.dart';
 import 'package:food_client/ui/home/home_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'home_controller.g.dart';
 
 const int widthPixels = 600;
 const int recipesPerPage = 16;
 
-class HomeControllerImplementation extends HomeController {
-  final HomeWebClientService _webClientService;
-  final HomeWebImageSizerService _webImageSizerService;
-  final HomeNavigationService _globalNavigationService;
-
-  HomeControllerImplementation(
-    super.state, {
+@riverpod
+class HomeControllerImplementation extends _$HomeControllerImplementation
+    implements HomeController {
+  @override
+  HomeModel build({
     required final HomeWebClientService webClientService,
     required final HomeWebImageSizerService webImageSizerService,
     required final HomeNavigationService globalNavigationService,
-  })  : _webClientService = webClientService,
-        _webImageSizerService = webImageSizerService,
-        _globalNavigationService = globalNavigationService {
+    required final List<Locale> recipeLocales,
+  }) {
     _listenToPaginationController();
+    return HomeModel(
+      allTags: <HomeModelFilterTag>[],
+      allCuisines: <HomeModelFilterCuisine>[],
+      pagingController: PagingController<int, HomeModelRecipe>(
+        firstPageKey: 0,
+      ),
+      recipeLocales: recipeLocales,
+    );
   }
 
   void _listenToPaginationController() {
@@ -47,12 +55,6 @@ class HomeControllerImplementation extends HomeController {
         },
       );
     });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    state.pagingController.dispose();
   }
 
   Task<void> init() => Task<void>(
@@ -123,7 +125,7 @@ class HomeControllerImplementation extends HomeController {
 
   @override
   void goToSingleRecipeView({required final String recipeId}) {
-    _globalNavigationService.navigateToNamed(
+    globalNavigationService.navigateToNamed(
       uri: NavigationServiceUris.singleRecipe.replace(
         queryParameters: <String, String>{
           NavigationServiceUris.singleRecipeIdKey: recipeId,
@@ -136,7 +138,7 @@ class HomeControllerImplementation extends HomeController {
   Future<void> openDialog({
     required final Widget child,
   }) async {
-    await _globalNavigationService.showModalBottomSheet(child: child);
+    await globalNavigationService.showModalBottomSheet(child: child);
   }
 
   @override
@@ -184,7 +186,7 @@ class HomeControllerImplementation extends HomeController {
   TaskEither<Exception, List<HomeModelRecipe>> _fetchRecipes({
     required final int paginationSkip,
   }) =>
-      _webClientService
+      webClientService
           .fetchRecipes(
             recipeLocales: state.recipeLocales,
             skip: paginationSkip,
@@ -197,12 +199,12 @@ class HomeControllerImplementation extends HomeController {
             (final HomeWebClientModelRecipeResponse recipeResponse) =>
                 mapToHomeModelRecipes(
               recipes: recipeResponse.recipes,
-              imageResizerService: _webImageSizerService,
+              imageResizerService: webImageSizerService,
             ),
           );
 
   TaskEither<Exception, List<HomeModelFilterTag>> _fetchTags() =>
-      _webClientService
+      webClientService
           .fetchAllTags(
             take: some(100),
             recipeLocales: state.recipeLocales,
@@ -222,7 +224,7 @@ class HomeControllerImplementation extends HomeController {
           );
 
   TaskEither<Exception, List<HomeModelFilterCuisine>> _fetchCuisines() =>
-      _webClientService
+      webClientService
           .fetchAllCuisines(
             recipeLocales: state.recipeLocales,
             take: some(1000),

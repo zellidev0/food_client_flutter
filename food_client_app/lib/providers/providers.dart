@@ -52,30 +52,6 @@ class Providers {
     ),
   );
 
-  StateNotifierProvider<HomeController, HomeModel> homeControllerProvider =
-      StateNotifierProvider<HomeController, HomeModel>(
-    (
-      StateNotifierProviderRef<HomeController, HomeModel> ref,
-    ) {
-      HomeControllerImplementation controller = HomeControllerImplementation(
-        HomeModel(
-          allTags: <HomeModelFilterTag>[],
-          allCuisines: <HomeModelFilterCuisine>[],
-          pagingController: PagingController<int, HomeModelRecipe>(
-            firstPageKey: 0,
-          ),
-          recipeLocales:
-              ref.watch(providers.appSettingsServiceProvider).recipeLocales,
-        ),
-        globalNavigationService: ref.read(navigationServiceProvider),
-        webClientService: ref.read(providers.webClientServiceProvider),
-        webImageSizerService: ref.read(providers.webImageSizerServiceProvider),
-      );
-      unawaited(controller.init().run());
-      return controller;
-    },
-  );
-
   AutoDisposeStateNotifierProviderFamily<SingleRecipeController,
           SingleRecipeModel, String> singleRecipeControllerProvider =
       AutoDisposeStateNotifierProviderFamily<SingleRecipeController,

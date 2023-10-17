@@ -7,6 +7,7 @@ import 'package:food_client/ui/account/account_controller.dart';
 import 'package:food_client/ui/account/account_view.dart';
 import 'package:food_client/ui/cart/cart_controller.dart';
 import 'package:food_client/ui/cart/cart_view.dart';
+import 'package:food_client/ui/home/home_controller.dart';
 import 'package:food_client/ui/home/home_view.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_view.dart';
 import 'package:food_client/ui/main/main_controller.dart';
@@ -87,9 +88,26 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
               path: NavigationServiceUris.cartRouteUri.toString(),
             ),
             GoRoute(
-              builder: (_, GoRouterState state) => Consumer(
-                builder: (_, WidgetRef ref, ___) => const HomeView(),
-              ),
+              builder: (_, GoRouterState state) {
+                final HomeControllerImplementationProvider provider =
+                    homeControllerImplementationProvider(
+                  recipeLocales: ref
+                      .watch(providers.appSettingsServiceProvider)
+                      .recipeLocales,
+                  globalNavigationService: ref.read(navigationServiceProvider),
+                  webClientService:
+                      ref.read(providers.webClientServiceProvider),
+                  webImageSizerService:
+                      ref.read(providers.webImageSizerServiceProvider),
+                );
+
+                return Consumer(
+                  builder: (_, WidgetRef ref, ___) => HomeView(
+                    model: ref.watch(provider),
+                    controller: ref.watch(provider.notifier),
+                  ),
+                );
+              },
               path: NavigationServiceUris.homeRouteUri.toString(),
             ),
           ],

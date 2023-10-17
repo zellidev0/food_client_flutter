@@ -1,52 +1,48 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/commons/widgets.dart';
-import 'package:food_client/providers/providers.dart';
+import 'package:food_client/mvc.dart';
 import 'package:food_client/ui/home/home_model.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 final PageStorageBucket pageStorageBucket = PageStorageBucket();
 
-class HomeView extends ConsumerWidget {
-  const HomeView({super.key});
+class HomeView extends MvcView<HomeController, HomeModel> {
+  const HomeView({
+    required super.controller,
+    required super.model,
+    super.key,
+  });
 
   @override
-  Widget build(final BuildContext context, final WidgetRef ref) {
-    final HomeModel model = ref.watch(providers.homeControllerProvider);
-    final HomeController controller = ref.read(
-      providers.homeControllerProvider.notifier,
-    );
-
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16).copyWith(bottom: 0),
-        child: NestedScrollView(
-          headerSliverBuilder: (final _, final __) => <Widget>[
-            SliverAppBar(
-              floating: true,
-              pinned: true,
-              backgroundColor: Colors.transparent,
-              scrolledUnderElevation: 0,
-              flexibleSpace: FlexibleSpaceBar(
-                titlePadding: EdgeInsets.zero,
-                centerTitle: true,
-                title: buildFilters(
-                  model: model,
-                  controller: controller,
+  Widget build(final BuildContext context) => Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.all(16).copyWith(bottom: 0),
+          child: NestedScrollView(
+            headerSliverBuilder: (final _, final __) => <Widget>[
+              SliverAppBar(
+                floating: true,
+                pinned: true,
+                backgroundColor: Colors.transparent,
+                scrolledUnderElevation: 0,
+                flexibleSpace: FlexibleSpaceBar(
+                  titlePadding: EdgeInsets.zero,
+                  centerTitle: true,
+                  title: buildFilters(
+                    model: model,
+                    controller: controller,
+                  ),
                 ),
               ),
+            ],
+            body: _buildRecipesList(
+              controller: controller,
+              model: model,
             ),
-          ],
-          body: _buildRecipesList(
-            controller: controller,
-            model: model,
           ),
         ),
-      ),
-    );
-  }
+      );
 
   Widget buildFilters({
     required final HomeController controller,
@@ -60,15 +56,15 @@ class HomeView extends ConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               buildSingleFilterChip(
-                text: 'ui.home_view.filters.tags'.tr(),
-                controller: controller,
-                selectedFilters: model.allTags
-                    .filter(
-                      (final HomeModelFilter filter) => filter.isSelected,
-                    )
-                    .toList(),
-                widgetToOpenOnClick: buildDialogTags(),
-              ),
+                  text: 'ui.home_view.filters.tags'.tr(),
+                  controller: controller,
+                  selectedFilters: model.allTags
+                      .filter(
+                        (final HomeModelFilter filter) => filter.isSelected,
+                      )
+                      .toList(),
+                  widgetToOpenOnClick: Container() //TODO: buildDialogTags(),
+                  ),
               const SizedBox(width: 8),
               buildSingleFilterChip(
                 text: 'ui.home_view.filters.cuisines'.tr(),
@@ -78,7 +74,7 @@ class HomeView extends ConsumerWidget {
                       (final HomeModelFilter filter) => filter.isSelected,
                     )
                     .toList(),
-                widgetToOpenOnClick: buildDialogCuisines(),
+                widgetToOpenOnClick: Container(), //TODO: buildDialogCuisines(),
               ),
             ],
           ),
@@ -311,76 +307,76 @@ class HomeView extends ConsumerWidget {
       );
 }
 
-Widget buildDialogTags() => Consumer(
-      builder: (final _, final WidgetRef ref, final __) => buildDialog(
-        children: ref
-            .watch(providers.homeControllerProvider)
-            .allTags
-            .filter(
-              (final HomeModelFilterTag tag) =>
-                  tag.numberOfRecipes.getOrElse(() => 0) > 0,
-            )
-            .map(
-              (final HomeModelFilterTag tag) => ChoiceChip(
-                label: Text(
-                  '${tag.displayedName} (${tag.numberOfRecipes.fold(
-                    () => '',
-                    (final int number) => number < 1 ? '' : '$number',
-                  )})',
-                ),
-                selected: tag.isSelected,
-                onSelected: (final bool selected) => ref
-                    .watch(providers.homeControllerProvider.notifier)
-                    .setTagSelected(
-                      tagId: tag.id,
-                      selected: selected,
-                    ),
-              ),
-            )
-            .toList(),
-      ),
-    );
+// Widget buildDialogTags() => Consumer(
+//       builder: (final _, final WidgetRef ref, final __) => buildDialog(
+//         children: ref
+//             .watch(providers.homeControllerProvider)
+//             .allTags
+//             .filter(
+//               (final HomeModelFilterTag tag) =>
+//                   tag.numberOfRecipes.getOrElse(() => 0) > 0,
+//             )
+//             .map(
+//               (final HomeModelFilterTag tag) => ChoiceChip(
+//                 label: Text(
+//                   '${tag.displayedName} (${tag.numberOfRecipes.fold(
+//                     () => '',
+//                     (final int number) => number < 1 ? '' : '$number',
+//                   )})',
+//                 ),
+//                 selected: tag.isSelected,
+//                 onSelected: (final bool selected) => ref
+//                     .watch(providers.homeControllerProvider.notifier)
+//                     .setTagSelected(
+//                       tagId: tag.id,
+//                       selected: selected,
+//                     ),
+//               ),
+//             )
+//             .toList(),
+//       ),
+//     );
 
-Widget buildDialogCuisines() => Consumer(
-      builder: (final _, final WidgetRef ref, final __) => buildDialog(
-        children: ref
-            .watch(providers.homeControllerProvider)
-            .allCuisines
-            .filter(
-              (final HomeModelFilterCuisine cuisine) =>
-                  cuisine.numberOfRecipes.getOrElse(() => 0) > 0,
-            )
-            .map(
-              (final HomeModelFilterCuisine cuisine) => Tooltip(
-                message: cuisine.toString(),
-                child: ChoiceChip(
-                  label: Text(
-                    '${cuisine.displayedName} (${cuisine.numberOfRecipes.fold(
-                      () => '',
-                      (final int number) => number < 1 ? '' : '$number',
-                    )})',
-                  ),
-                  selected: cuisine.isSelected,
-                  onSelected: ref
-                          .watch(providers.homeControllerProvider)
-                          .allCuisines
-                          .any(
-                            (final HomeModelFilterCuisine element) =>
-                                element.isSelected && element.id != cuisine.id,
-                          )
-                      ? null
-                      : (final bool selected) => ref
-                          .watch(providers.homeControllerProvider.notifier)
-                          .setCuisineSelected(
-                            cuisineId: cuisine.id,
-                            selected: selected,
-                          ),
-                ),
-              ),
-            )
-            .toList(),
-      ),
-    );
+// Widget buildDialogCuisines() => Consumer(
+//       builder: (final _, final WidgetRef ref, final __) => buildDialog(
+//         children: ref
+//             .watch(providers.homeControllerProvider)
+//             .allCuisines
+//             .filter(
+//               (final HomeModelFilterCuisine cuisine) =>
+//                   cuisine.numberOfRecipes.getOrElse(() => 0) > 0,
+//             )
+//             .map(
+//               (final HomeModelFilterCuisine cuisine) => Tooltip(
+//                 message: cuisine.toString(),
+//                 child: ChoiceChip(
+//                   label: Text(
+//                     '${cuisine.displayedName} (${cuisine.numberOfRecipes.fold(
+//                       () => '',
+//                       (final int number) => number < 1 ? '' : '$number',
+//                     )})',
+//                   ),
+//                   selected: cuisine.isSelected,
+//                   onSelected: ref
+//                           .watch(providers.homeControllerProvider)
+//                           .allCuisines
+//                           .any(
+//                             (final HomeModelFilterCuisine element) =>
+//                                 element.isSelected && element.id != cuisine.id,
+//                           )
+//                       ? null
+//                       : (final bool selected) => ref
+//                           .watch(providers.homeControllerProvider.notifier)
+//                           .setCuisineSelected(
+//                             cuisineId: cuisine.id,
+//                             selected: selected,
+//                           ),
+//                 ),
+//               ),
+//             )
+//             .toList(),
+//       ),
+//     );
 
 Widget buildDialog({
   required final List<Widget> children,
@@ -396,9 +392,7 @@ Widget buildDialog({
       ),
     );
 
-abstract class HomeController extends StateNotifier<HomeModel> {
-  HomeController(super.state);
-
+abstract class HomeController implements MvcController {
   void fetchRecipes();
   void setTagSelected({
     required final String tagId,
