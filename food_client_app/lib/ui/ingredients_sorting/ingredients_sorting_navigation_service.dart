@@ -4,11 +4,11 @@ import 'package:fpdart/fpdart.dart';
 
 abstract class IngredientsSortingNavigationService {
   void goBack({final Uri? fallbackUri});
-  void goBackToNamed({required final Uri uri});
+
   void replaceWithNamed({required final Uri uri});
   void navigateToNamed({required final Uri uri});
   void showSnackBar({required final String message});
-  void pop();
+  void pop<T>({final T? data});
   Future<void> showModalBottomSheet({required final Widget child});
   Future<void> showDialog({
     final Option<List<NavigationServiceDialogAction>> actions =

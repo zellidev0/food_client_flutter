@@ -24,9 +24,6 @@ import 'package:food_client/ui/home/home_view.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_controller.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_model.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_view.dart';
-import 'package:food_client/ui/main/main_controller.dart';
-import 'package:food_client/ui/main/main_model.dart';
-import 'package:food_client/ui/main/main_view.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_controller.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_model.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_view.dart';
@@ -34,11 +31,11 @@ import 'package:fpdart/fpdart.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class Providers {
-  final AutoDisposeStateNotifierProvider<CartController, CartModel>
+  AutoDisposeStateNotifierProvider<CartController, CartModel>
       cartControllerProvider =
       StateNotifierProvider.autoDispose<CartController, CartModel>(
     (
-      final AutoDisposeStateNotifierProviderRef<CartController, CartModel> ref,
+      AutoDisposeStateNotifierProviderRef<CartController, CartModel> ref,
     ) =>
         CartControllerImplementation(
       CartModel(
@@ -52,7 +49,7 @@ class Providers {
         sortingUnits: <CartModelSortingUnit>[],
       ),
       globalNavigationService: ref.read(
-        providers.globalNavigationServiceProvider,
+        navigationServiceProvider,
       ),
       persistenceService: ref.read(
         providers.persistenceServiceProvider.notifier,
@@ -61,27 +58,24 @@ class Providers {
     ),
   );
 
-  final AutoDisposeStateNotifierProvider<AccountController, AccountModel>
+  AutoDisposeStateNotifierProvider<AccountController, AccountModel>
       accountControllerProvider =
       StateNotifierProvider.autoDispose<AccountController, AccountModel>(
     (
-      final AutoDisposeStateNotifierProviderRef<AccountController, AccountModel>
-          ref,
+      AutoDisposeStateNotifierProviderRef<AccountController, AccountModel> ref,
     ) =>
         AccountControllerImplementation(
       const AccountModel(),
-      navigationService: ref.read(
-        providers.bottomNavigationBarNavigationServiceProvider,
-      ),
+      navigationService: ref.read(navigationServiceProvider),
     ),
   );
 
-  final AutoDisposeStateNotifierProvider<IngredientsSortingController,
+  AutoDisposeStateNotifierProvider<IngredientsSortingController,
           IngredientsSortingModel> ingredientsSortingControllerProvider =
       StateNotifierProvider.autoDispose<IngredientsSortingController,
           IngredientsSortingModel>(
     (
-      final AutoDisposeStateNotifierProviderRef<IngredientsSortingController,
+      AutoDisposeStateNotifierProviderRef<IngredientsSortingController,
               IngredientsSortingModel>
           ref,
     ) =>
@@ -93,35 +87,19 @@ class Providers {
       webClientService: ref.read(providers.webClientServiceProvider),
       webImageSizerService: ref.read(providers.webImageSizerServiceProvider),
       loggingService: ref.read(providers.loggingServiceProvider),
-      navigationService: ref.read(
-        providers.bottomNavigationBarNavigationServiceProvider,
-      ),
+      navigationService: ref.read(navigationServiceProvider),
       persistenceService: ref.read(
         providers.persistenceServiceProvider.notifier,
       ),
     ),
   );
 
-  final StateNotifierProvider<MainController, MainModel>
-      mainControllerProvider = StateNotifierProvider<MainController, MainModel>(
+  StateNotifierProvider<HomeController, HomeModel> homeControllerProvider =
+      StateNotifierProvider<HomeController, HomeModel>(
     (
-      final StateNotifierProviderRef<MainController, MainModel> ref,
-    ) =>
-        MainControllerImplementation(
-      const MainModel(bottomNavigationBarIndex: 0),
-      navigationService: ref.read(
-        providers.bottomNavigationBarNavigationServiceProvider,
-      ),
-    ),
-  );
-
-  final StateNotifierProvider<HomeController, HomeModel>
-      homeControllerProvider = StateNotifierProvider<HomeController, HomeModel>(
-    (
-      final StateNotifierProviderRef<HomeController, HomeModel> ref,
+      StateNotifierProviderRef<HomeController, HomeModel> ref,
     ) {
-      final HomeControllerImplementation controller =
-          HomeControllerImplementation(
+      HomeControllerImplementation controller = HomeControllerImplementation(
         HomeModel(
           allTags: <HomeModelFilterTag>[],
           allCuisines: <HomeModelFilterCuisine>[],
@@ -131,9 +109,7 @@ class Providers {
           recipeLocales:
               ref.watch(providers.appSettingsServiceProvider).recipeLocales,
         ),
-        globalNavigationService: ref.read(
-          providers.globalNavigationServiceProvider,
-        ),
+        globalNavigationService: ref.read(navigationServiceProvider),
         webClientService: ref.read(providers.webClientServiceProvider),
         webImageSizerService: ref.read(providers.webImageSizerServiceProvider),
       );
@@ -142,15 +118,15 @@ class Providers {
     },
   );
 
-  final AutoDisposeStateNotifierProviderFamily<SingleRecipeController,
+  AutoDisposeStateNotifierProviderFamily<SingleRecipeController,
           SingleRecipeModel, String> singleRecipeControllerProvider =
       AutoDisposeStateNotifierProviderFamily<SingleRecipeController,
           SingleRecipeModel, String>(
     (
-      final AutoDisposeStateNotifierProviderRef<SingleRecipeController,
+      AutoDisposeStateNotifierProviderRef<SingleRecipeController,
               SingleRecipeModel>
           ref,
-      final String recipeId,
+      String recipeId,
     ) =>
         SingleRecipeControllerImplementation(
       SingleRecipeModel(
@@ -159,9 +135,7 @@ class Providers {
         ),
         selectedYield: none(),
       ),
-      navigationService: ref.read(
-        providers.globalNavigationServiceProvider,
-      ),
+      navigationService: ref.read(navigationServiceProvider),
       webClientService: ref.read(providers.webClientServiceProvider),
       webImageSizerService: ref.read(providers.webImageSizerServiceProvider),
       persistenceService:
@@ -170,24 +144,22 @@ class Providers {
     ),
   );
 
-  final StateNotifierProvider<PersistenceServiceAggregator,
-          PersistenceServiceModel> persistenceServiceProvider =
-      StateNotifierProvider<PersistenceServiceAggregator,
-          PersistenceServiceModel>(
+  StateNotifierProvider<PersistenceServiceAggregator, PersistenceServiceModel>
+      persistenceServiceProvider = StateNotifierProvider<
+          PersistenceServiceAggregator, PersistenceServiceModel>(
     (
-      final StateNotifierProviderRef<PersistenceServiceAggregator,
+      StateNotifierProviderRef<PersistenceServiceAggregator,
               PersistenceServiceModel>
           ref,
     ) =>
         PersistenceService(),
   );
 
-  final StateNotifierProvider<AppSettingsServiceAggregator,
-          AppSettingsServiceModel> appSettingsServiceProvider =
-      StateNotifierProvider<AppSettingsServiceAggregator,
-          AppSettingsServiceModel>(
+  StateNotifierProvider<AppSettingsServiceAggregator, AppSettingsServiceModel>
+      appSettingsServiceProvider = StateNotifierProvider<
+          AppSettingsServiceAggregator, AppSettingsServiceModel>(
     (
-      final StateNotifierProviderRef<AppSettingsServiceAggregator,
+      StateNotifierProviderRef<AppSettingsServiceAggregator,
               AppSettingsServiceModel>
           ref,
     ) =>
@@ -199,140 +171,103 @@ class Providers {
     ),
   );
 
-  final Provider<WebClientServiceAggregator> webClientServiceProvider =
+  Provider<WebClientServiceAggregator> webClientServiceProvider =
       Provider<WebClientServiceAggregator>(
-    (final ProviderRef<WebClientServiceAggregator> ref) => WebClientService(),
+    (ProviderRef<WebClientServiceAggregator> ref) => WebClientService(),
   );
 
-  final Provider<WebImageSizerServiceAggregator> webImageSizerServiceProvider =
+  Provider<WebImageSizerServiceAggregator> webImageSizerServiceProvider =
       Provider<WebImageSizerServiceAggregator>(
-    (final ProviderRef<WebImageSizerServiceAggregator> ref) =>
-        WebImageSizerService(),
+    (ProviderRef<WebImageSizerServiceAggregator> ref) => WebImageSizerService(),
   );
 
-  final Provider<LoggingServiceAggregator> loggingServiceProvider =
+  Provider<LoggingServiceAggregator> loggingServiceProvider =
       Provider<LoggingServiceAggregator>(
-    (final ProviderRef<LoggingServiceAggregator> ref) => LoggingService(),
+    (ProviderRef<LoggingServiceAggregator> ref) => LoggingService(),
   );
 
-  final Provider<NavigationServiceAggregator> globalNavigationServiceProvider =
-      Provider<NavigationServiceAggregator>(
-    (final ProviderRef<NavigationServiceAggregator> ref) =>
-        BeamerNavigationService(
-      beamerDelegate: ref.read(providers.globalBeamerDelegate),
-    ),
-  );
+  // Provider<BeamerDelegate> globalBeamerDelegate = Provider<BeamerDelegate>(
+  //   (ProviderRef<BeamerDelegate> ref) => BeamerDelegate(
+  //     initialPath: NavigationServiceUris.homeRouteUri.toString(),
+  //     locationBuilder: RoutesLocationBuilder(
+  //       routes: <Pattern, dynamic Function(BuildContext, BeamState, Object?)>{
+  //         '${NavigationServiceUris.mainRouteUri}/*': (_, __, ___) => BeamPage(
+  //               key: ValueKey<String>('${NavigationServiceUris.mainRouteUri}'),
+  //               child: const MainView(),
+  //               type: determinePageType(),
+  //             ),
+  //         NavigationServiceUris.homeSingleRecipeUri.toString():
+  //             (_, BeamState state, ___) {
+  //           String recipeId =
+  //               state.queryParameters[NavigationServiceUris.singleRecipeIdKey]!;
+  //           return BeamPage(
+  //             key: ValueKey<String>(state.uri.toString()),
+  //             child: SingleRecipeView(
+  //               recipeId: recipeId,
+  //             ),
+  //             type: determinePageType(),
+  //           );
+  //         },
+  //         NavigationServiceUris.singleRecipe.toString():
+  //             (_, BeamState state, ___) {
+  //           String recipeId =
+  //               state.queryParameters[NavigationServiceUris.singleRecipeIdKey]!;
+  //           return BeamPage(
+  //             key: ValueKey<String>(state.uri.toString()),
+  //             child: SingleRecipeView(
+  //               recipeId: recipeId,
+  //             ),
+  //             type: determinePageType(),
+  //           );
+  //         },
+  //       },
+  //     ).call,
+  //   ),
+  // );
 
-  final Provider<NavigationServiceAggregator>
-      bottomNavigationBarNavigationServiceProvider =
-      Provider<NavigationServiceAggregator>(
-    (final ProviderRef<NavigationServiceAggregator> ref) =>
-        BeamerNavigationService(
-      beamerDelegate: ref.read(providers.bottomNavigationBarBeamerDelegate),
-    ),
-  );
-
-  final Provider<BeamerDelegate> globalBeamerDelegate =
-      Provider<BeamerDelegate>(
-    (final ProviderRef<BeamerDelegate> ref) => BeamerDelegate(
-      initialPath: NavigationServiceUris.homeRouteUri.toString(),
-      locationBuilder: RoutesLocationBuilder(
-        routes: <Pattern, dynamic Function(BuildContext, BeamState, Object?)>{
-          '${NavigationServiceUris.mainRouteUri}/*': (
-            final _,
-            final __,
-            final ___,
-          ) =>
-              BeamPage(
-                key: ValueKey<String>('${NavigationServiceUris.mainRouteUri}'),
-                child: const MainView(),
-                type: determinePageType(),
-              ),
-          NavigationServiceUris.homeSingleRecipeUri.toString(): (
-            final _,
-            final BeamState state,
-            final ___,
-          ) {
-            final String recipeId =
-                state.queryParameters[NavigationServiceUris.singleRecipeIdKey]!;
-            return BeamPage(
-              key: ValueKey<String>(state.uri.toString()),
-              child: SingleRecipeView(
-                recipeId: recipeId,
-              ),
-              type: determinePageType(),
-            );
-          },
-          NavigationServiceUris.cartSingleRecipeUri.toString(): (
-            final _,
-            final BeamState state,
-            final ___,
-          ) {
-            final String recipeId =
-                state.queryParameters[NavigationServiceUris.singleRecipeIdKey]!;
-            return BeamPage(
-              key: ValueKey<String>(state.uri.toString()),
-              child: SingleRecipeView(
-                recipeId: recipeId,
-              ),
-              type: determinePageType(),
-            );
-          },
-        },
-      ).call,
-    ),
-  );
-
-  final Provider<BeamerDelegate> bottomNavigationBarBeamerDelegate =
-      Provider<BeamerDelegate>(
-    (final ProviderRef<BeamerDelegate> ref) => BeamerDelegate(
-      initialPath: NavigationServiceUris.homeRouteUri.toString(),
-      locationBuilder: RoutesLocationBuilder(
-        routes: <Pattern, dynamic Function(BuildContext, BeamState, Object?)>{
-          NavigationServiceUris.homeRouteUri.toString():
-              (final _, final __, final ___) => BeamPage(
-                    key: ValueKey<String>(
-                      NavigationServiceUris.homeRouteUri.toString(),
-                    ),
-                    child: const HomeView(),
-                    type: determinePageType(),
-                  ),
-          NavigationServiceUris.accountRouteUri.toString(): (
-            final _,
-            final __,
-            final ___,
-          ) =>
-              BeamPage(
-                key: ValueKey<String>(
-                  NavigationServiceUris.accountRouteUri.toString(),
-                ),
-                child: const AccountView(),
-                type: determinePageType(),
-              ),
-          NavigationServiceUris.cartRouteUri.toString():
-              (final _, final __, final ___) => BeamPage(
-                    key: ValueKey<String>(
-                      NavigationServiceUris.cartRouteUri.toString(),
-                    ),
-                    child: const CartView(),
-                    type: determinePageType(),
-                  ),
-          NavigationServiceUris.ingredientsSortingRouteUri.toString(): (
-            final _,
-            final __,
-            final ___,
-          ) =>
-              BeamPage(
-                key: ValueKey<String>(
-                  NavigationServiceUris.ingredientsSortingRouteUri.toString(),
-                ),
-                child: const IngredientsSortingView(),
-                type: determinePageType(),
-              ),
-        },
-      ).call,
-    ),
-  );
+  // Provider<BeamerDelegate> bottomNavigationBarBeamerDelegate =
+  //     Provider<BeamerDelegate>(
+  //   (ProviderRef<BeamerDelegate> ref) => BeamerDelegate(
+  //     initialPath: NavigationServiceUris.homeRouteUri.toString(),
+  //     locationBuilder: RoutesLocationBuilder(
+  //       routes: <Pattern, dynamic Function(BuildContext, BeamState, Object?)>{
+  //         NavigationServiceUris.homeRouteUri.toString(): (_, __, ___) =>
+  //             BeamPage(
+  //               key: ValueKey<String>(
+  //                 NavigationServiceUris.homeRouteUri.toString(),
+  //               ),
+  //               child: const HomeView(),
+  //               type: determinePageType(),
+  //             ),
+  //         NavigationServiceUris.accountRouteUri.toString(): (_, __, ___) =>
+  //             BeamPage(
+  //               key: ValueKey<String>(
+  //                 NavigationServiceUris.accountRouteUri.toString(),
+  //               ),
+  //               child: const AccountView(),
+  //               type: determinePageType(),
+  //             ),
+  //         NavigationServiceUris.cartRouteUri.toString(): (_, __, ___) =>
+  //             BeamPage(
+  //               key: ValueKey<String>(
+  //                 NavigationServiceUris.cartRouteUri.toString(),
+  //               ),
+  //               child: const CartView(),
+  //               type: determinePageType(),
+  //             ),
+  //         NavigationServiceUris.ingredientsSortingRouteUri.toString(): (_, __,
+  //                 ___) =>
+  //             BeamPage(
+  //               key: ValueKey<String>(
+  //                 NavigationServiceUris.ingredientsSortingRouteUri.toString(),
+  //               ),
+  //               child: const IngredientsSortingView(),
+  //               type: determinePageType(),
+  //             ),
+  //       },
+  //     ).call,
+  //   ),
+  // );
 }
 
 late Providers providers;

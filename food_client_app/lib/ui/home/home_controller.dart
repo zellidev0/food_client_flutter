@@ -124,7 +124,7 @@ class HomeControllerImplementation extends HomeController {
   @override
   void goToSingleRecipeView({required final String recipeId}) {
     _globalNavigationService.navigateToNamed(
-      uri: NavigationServiceUris.homeSingleRecipeUri.replace(
+      uri: NavigationServiceUris.singleRecipe.replace(
         queryParameters: <String, String>{
           NavigationServiceUris.singleRecipeIdKey: recipeId,
         },

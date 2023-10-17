@@ -4,7 +4,7 @@ import 'package:fpdart/fpdart.dart';
 
 abstract class CartNavigationService {
   void goBack({final Uri? fallbackUri});
-  void goBackToNamed({required final Uri uri});
+
   void replaceWithNamed({required final Uri uri});
   void navigateToNamed({required final Uri uri});
   void showSnackBar({required final String message});

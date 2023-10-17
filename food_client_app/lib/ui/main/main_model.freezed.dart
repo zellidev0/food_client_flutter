@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MainModel {
+  List<MainBottomTab> get bottomTabs => throw _privateConstructorUsedError;
   int get bottomNavigationBarIndex => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -28,7 +29,7 @@ abstract class $MainModelCopyWith<$Res> {
   factory $MainModelCopyWith(MainModel value, $Res Function(MainModel) then) =
       _$MainModelCopyWithImpl<$Res, MainModel>;
   @useResult
-  $Res call({int bottomNavigationBarIndex});
+  $Res call({List<MainBottomTab> bottomTabs, int bottomNavigationBarIndex});
 }
 
 /// @nodoc
@@ -44,9 +45,14 @@ class _$MainModelCopyWithImpl<$Res, $Val extends MainModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? bottomTabs = null,
     Object? bottomNavigationBarIndex = null,
   }) {
     return _then(_value.copyWith(
+      bottomTabs: null == bottomTabs
+          ? _value.bottomTabs
+          : bottomTabs // ignore: cast_nullable_to_non_nullable
+              as List<MainBottomTab>,
       bottomNavigationBarIndex: null == bottomNavigationBarIndex
           ? _value.bottomNavigationBarIndex
           : bottomNavigationBarIndex // ignore: cast_nullable_to_non_nullable
@@ -62,7 +68,7 @@ abstract class _$$_MainModelCopyWith<$Res> implements $MainModelCopyWith<$Res> {
       __$$_MainModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int bottomNavigationBarIndex});
+  $Res call({List<MainBottomTab> bottomTabs, int bottomNavigationBarIndex});
 }
 
 /// @nodoc
@@ -76,9 +82,14 @@ class __$$_MainModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? bottomTabs = null,
     Object? bottomNavigationBarIndex = null,
   }) {
     return _then(_$_MainModel(
+      bottomTabs: null == bottomTabs
+          ? _value._bottomTabs
+          : bottomTabs // ignore: cast_nullable_to_non_nullable
+              as List<MainBottomTab>,
       bottomNavigationBarIndex: null == bottomNavigationBarIndex
           ? _value.bottomNavigationBarIndex
           : bottomNavigationBarIndex // ignore: cast_nullable_to_non_nullable
@@ -90,14 +101,25 @@ class __$$_MainModelCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_MainModel implements _MainModel {
-  const _$_MainModel({required this.bottomNavigationBarIndex});
+  const _$_MainModel(
+      {required final List<MainBottomTab> bottomTabs,
+      required this.bottomNavigationBarIndex})
+      : _bottomTabs = bottomTabs;
+
+  final List<MainBottomTab> _bottomTabs;
+  @override
+  List<MainBottomTab> get bottomTabs {
+    if (_bottomTabs is EqualUnmodifiableListView) return _bottomTabs;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_bottomTabs);
+  }
 
   @override
   final int bottomNavigationBarIndex;
 
   @override
   String toString() {
-    return 'MainModel(bottomNavigationBarIndex: $bottomNavigationBarIndex)';
+    return 'MainModel(bottomTabs: $bottomTabs, bottomNavigationBarIndex: $bottomNavigationBarIndex)';
   }
 
   @override
@@ -105,13 +127,18 @@ class _$_MainModel implements _MainModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MainModel &&
+            const DeepCollectionEquality()
+                .equals(other._bottomTabs, _bottomTabs) &&
             (identical(
                     other.bottomNavigationBarIndex, bottomNavigationBarIndex) ||
                 other.bottomNavigationBarIndex == bottomNavigationBarIndex));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, bottomNavigationBarIndex);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_bottomTabs),
+      bottomNavigationBarIndex);
 
   @JsonKey(ignore: true)
   @override
@@ -121,13 +148,194 @@ class _$_MainModel implements _MainModel {
 }
 
 abstract class _MainModel implements MainModel {
-  const factory _MainModel({required final int bottomNavigationBarIndex}) =
-      _$_MainModel;
+  const factory _MainModel(
+      {required final List<MainBottomTab> bottomTabs,
+      required final int bottomNavigationBarIndex}) = _$_MainModel;
 
+  @override
+  List<MainBottomTab> get bottomTabs;
   @override
   int get bottomNavigationBarIndex;
   @override
   @JsonKey(ignore: true)
   _$$_MainModelCopyWith<_$_MainModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$MainBottomTab {
+  String get label => throw _privateConstructorUsedError;
+  Uri get route => throw _privateConstructorUsedError;
+  Widget get selectedIcon => throw _privateConstructorUsedError;
+  Widget get unselectedIcon => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $MainBottomTabCopyWith<MainBottomTab> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $MainBottomTabCopyWith<$Res> {
+  factory $MainBottomTabCopyWith(
+          MainBottomTab value, $Res Function(MainBottomTab) then) =
+      _$MainBottomTabCopyWithImpl<$Res, MainBottomTab>;
+  @useResult
+  $Res call(
+      {String label, Uri route, Widget selectedIcon, Widget unselectedIcon});
+}
+
+/// @nodoc
+class _$MainBottomTabCopyWithImpl<$Res, $Val extends MainBottomTab>
+    implements $MainBottomTabCopyWith<$Res> {
+  _$MainBottomTabCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? label = null,
+    Object? route = null,
+    Object? selectedIcon = null,
+    Object? unselectedIcon = null,
+  }) {
+    return _then(_value.copyWith(
+      label: null == label
+          ? _value.label
+          : label // ignore: cast_nullable_to_non_nullable
+              as String,
+      route: null == route
+          ? _value.route
+          : route // ignore: cast_nullable_to_non_nullable
+              as Uri,
+      selectedIcon: null == selectedIcon
+          ? _value.selectedIcon
+          : selectedIcon // ignore: cast_nullable_to_non_nullable
+              as Widget,
+      unselectedIcon: null == unselectedIcon
+          ? _value.unselectedIcon
+          : unselectedIcon // ignore: cast_nullable_to_non_nullable
+              as Widget,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_MainBottomTabCopyWith<$Res>
+    implements $MainBottomTabCopyWith<$Res> {
+  factory _$$_MainBottomTabCopyWith(
+          _$_MainBottomTab value, $Res Function(_$_MainBottomTab) then) =
+      __$$_MainBottomTabCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String label, Uri route, Widget selectedIcon, Widget unselectedIcon});
+}
+
+/// @nodoc
+class __$$_MainBottomTabCopyWithImpl<$Res>
+    extends _$MainBottomTabCopyWithImpl<$Res, _$_MainBottomTab>
+    implements _$$_MainBottomTabCopyWith<$Res> {
+  __$$_MainBottomTabCopyWithImpl(
+      _$_MainBottomTab _value, $Res Function(_$_MainBottomTab) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? label = null,
+    Object? route = null,
+    Object? selectedIcon = null,
+    Object? unselectedIcon = null,
+  }) {
+    return _then(_$_MainBottomTab(
+      label: null == label
+          ? _value.label
+          : label // ignore: cast_nullable_to_non_nullable
+              as String,
+      route: null == route
+          ? _value.route
+          : route // ignore: cast_nullable_to_non_nullable
+              as Uri,
+      selectedIcon: null == selectedIcon
+          ? _value.selectedIcon
+          : selectedIcon // ignore: cast_nullable_to_non_nullable
+              as Widget,
+      unselectedIcon: null == unselectedIcon
+          ? _value.unselectedIcon
+          : unselectedIcon // ignore: cast_nullable_to_non_nullable
+              as Widget,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_MainBottomTab implements _MainBottomTab {
+  const _$_MainBottomTab(
+      {required this.label,
+      required this.route,
+      required this.selectedIcon,
+      required this.unselectedIcon});
+
+  @override
+  final String label;
+  @override
+  final Uri route;
+  @override
+  final Widget selectedIcon;
+  @override
+  final Widget unselectedIcon;
+
+  @override
+  String toString() {
+    return 'MainBottomTab(label: $label, route: $route, selectedIcon: $selectedIcon, unselectedIcon: $unselectedIcon)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_MainBottomTab &&
+            (identical(other.label, label) || other.label == label) &&
+            (identical(other.route, route) || other.route == route) &&
+            (identical(other.selectedIcon, selectedIcon) ||
+                other.selectedIcon == selectedIcon) &&
+            (identical(other.unselectedIcon, unselectedIcon) ||
+                other.unselectedIcon == unselectedIcon));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, label, route, selectedIcon, unselectedIcon);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_MainBottomTabCopyWith<_$_MainBottomTab> get copyWith =>
+      __$$_MainBottomTabCopyWithImpl<_$_MainBottomTab>(this, _$identity);
+}
+
+abstract class _MainBottomTab implements MainBottomTab {
+  const factory _MainBottomTab(
+      {required final String label,
+      required final Uri route,
+      required final Widget selectedIcon,
+      required final Widget unselectedIcon}) = _$_MainBottomTab;
+
+  @override
+  String get label;
+  @override
+  Uri get route;
+  @override
+  Widget get selectedIcon;
+  @override
+  Widget get unselectedIcon;
+  @override
+  @JsonKey(ignore: true)
+  _$$_MainBottomTabCopyWith<_$_MainBottomTab> get copyWith =>
       throw _privateConstructorUsedError;
 }

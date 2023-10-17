@@ -214,16 +214,6 @@ class MockHomeNavigationService extends _i1.Mock
       );
 
   @override
-  void goBackToNamed({required Uri? uri}) => super.noSuchMethod(
-        Invocation.method(
-          #goBackToNamed,
-          [],
-          {#uri: uri},
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
   void replaceWithNamed({required Uri? uri}) => super.noSuchMethod(
         Invocation.method(
           #replaceWithNamed,
@@ -285,4 +275,14 @@ class MockHomeNavigationService extends _i1.Mock
         returnValue: _i7.Future<void>.value(),
         returnValueForMissingStub: _i7.Future<void>.value(),
       ) as _i7.Future<void>);
+
+  @override
+  void closeDialog<T>({T? data}) => super.noSuchMethod(
+        Invocation.method(
+          #closeDialog,
+          [],
+          {#data: data},
+        ),
+        returnValueForMissingStub: null,
+      );
 }

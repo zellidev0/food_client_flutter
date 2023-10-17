@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/commons/type_adapters.dart';
 import 'package:food_client/providers/providers.dart';
+import 'package:food_client/services/navigation_service/go_router.dart';
 import 'package:food_client/services/persistence_service/persistence_service.dart';
 import 'package:food_client/services/persistence_service/persistence_service_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -78,11 +79,7 @@ class MyApp extends ConsumerWidget {
           ),
           useMaterial3: true,
         ),
-        routeInformationParser: BeamerParser(),
-        backButtonDispatcher: BeamerBackButtonDispatcher(
-          delegate: ref.read(providers.globalBeamerDelegate),
-        ),
-        routerDelegate: ref.read(providers.globalBeamerDelegate),
+        routerConfig: ref.watch(goRouterProvider),
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,

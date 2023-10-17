@@ -4,7 +4,6 @@ import 'package:fpdart/fpdart.dart';
 
 abstract class HomeNavigationService {
   void goBack({final Uri? fallbackUri});
-  void goBackToNamed({required final Uri uri});
   void replaceWithNamed({required final Uri uri});
   void navigateToNamed({required final Uri uri});
   void showSnackBar({required final String message});
@@ -15,4 +14,5 @@ abstract class HomeNavigationService {
     required final String content,
     required final String title,
   });
+  void closeDialog<T>({final T? data});
 }

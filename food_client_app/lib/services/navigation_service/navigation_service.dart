@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/material.dart';
+import 'package:food_client/services/navigation_service/go_router.dart';
 import 'package:food_client/ui/account/account_navigation_service.dart';
 import 'package:food_client/ui/cart/cart_navigation_service.dart';
 import 'package:food_client/ui/home/home_navigation_service.dart';
@@ -11,8 +12,11 @@ import 'package:food_client/ui/main/main_navigation_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_navigation_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:go_router/go_router.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'navigation_service.freezed.dart';
+part 'navigation_service.g.dart';
 
 abstract class NavigationServiceAggregator
     implements
@@ -26,15 +30,13 @@ abstract class NavigationServiceAggregator
 class NavigationServiceUris {
   NavigationServiceUris._();
 
-  static Uri homeSingleRecipeUri = Uri.parse('/main/home/single-recipe');
-  static Uri cartSingleRecipeUri = Uri.parse('/main/cart/single-recipe');
+  static Uri singleRecipe = Uri.parse('/recipe');
   static String singleRecipeIdKey = 'single-recipe-id';
-  static Uri homeRouteUri = Uri.parse('/main/home');
-  static Uri accountRouteUri = Uri.parse('/main/account');
-  static Uri cartRouteUri = Uri.parse('/main/cart');
+  static Uri homeRouteUri = Uri.parse('/home');
+  static Uri accountRouteUri = Uri.parse('/account');
+  static Uri cartRouteUri = Uri.parse('/cart');
   static Uri mainRouteUri = Uri.parse('/main');
-  static Uri ingredientsSortingRouteUri =
-      Uri.parse('/main/account/ingredients-sorting');
+  static Uri ingredientsSortingRouteUri = Uri.parse('/ingredients-sorting');
 }
 
 @freezed
@@ -45,35 +47,54 @@ class NavigationServiceDialogAction with _$NavigationServiceDialogAction {
   }) = _NavigationServiceDialogAction;
 }
 
-class BeamerNavigationService implements NavigationServiceAggregator {
-  final BeamerDelegate _beamerDelegate;
+@riverpod
+NavigationServiceAggregator navigationService(final NavigationServiceRef ref) =>
+    GoRouterNavigationService(goRouter: ref.watch(goRouterProvider));
 
-  BeamerNavigationService({
-    required final BeamerDelegate beamerDelegate,
-  }) : _beamerDelegate = beamerDelegate;
+class GoRouterNavigationService implements NavigationServiceAggregator {
+  final GoRouter _goRouter;
+
+  GoRouterNavigationService({
+    required final GoRouter goRouter,
+  }) : _goRouter = goRouter;
+
+  @override
+  void closeDialog<T>({final T? data}) => _goRouter.pop(data);
 
   @override
   void goBack({final Uri? fallbackUri}) {
-    if (_beamerDelegate.canBeamBack) {
-      _beamerDelegate.beamBack();
+    if (_goRouter.canPop()) {
+      _goRouter.pop();
     } else {
-      replaceWithNamed(uri: fallbackUri ?? NavigationServiceUris.homeRouteUri);
+      if (fallbackUri != null) {
+        reset(uri: fallbackUri);
+      }
     }
   }
 
   @override
-  void goBackToNamed({required final Uri uri}) =>
-      _beamerDelegate.popToNamed(uri.toString());
+  void navigateToNamed({required final Uri uri}) => push(uri: uri);
 
   @override
-  void navigateToNamed({required final Uri uri}) =>
-      _beamerDelegate.beamToNamed(uri.toString(), beamBackOnPop: false);
+  void pop<T>({final T? data}) => _goRouter.pop(data);
 
   @override
-  void replaceWithNamed({required final Uri uri}) =>
-      _beamerDelegate.beamToReplacementNamed(uri.toString());
+  void push({required final Uri uri}) =>
+      unawaited(_goRouter.push(uri.toString()));
 
   @override
+  void replaceWith({required final Uri uri}) => unawaited(
+        _goRouter.pushReplacement(uri.toString()),
+      );
+
+  @override
+  void replaceWithNamed({required final Uri uri}) => unawaited(
+        _goRouter.replace(uri.toString()),
+      );
+
+  @override
+  void reset({required final Uri uri}) => _goRouter.go(uri.toString());
+
   Future<void> showDialog({
     final Option<List<NavigationServiceDialogAction>> actions =
         const None<List<NavigationServiceDialogAction>>(),
@@ -81,7 +102,8 @@ class BeamerNavigationService implements NavigationServiceAggregator {
     required final String content,
   }) async {
     await material.showDialog(
-      context: _beamerDelegate.navigator.context,
+      context: _goRouter
+          .routerDelegate.navigatorKey.currentContext!, //TODOO: fix this
       builder: (final material.BuildContext context) => material.AlertDialog(
         title: material.Text(title),
         content: material.Text(content),
@@ -105,6 +127,16 @@ class BeamerNavigationService implements NavigationServiceAggregator {
   }
 
   @override
+  void showSnackBar({required final String message}) =>
+      optionOf(_goRouter.routerDelegate.navigatorKey.currentContext).fold(
+        () {},
+        (final BuildContext context) =>
+            ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(message)),
+        ),
+      );
+
+  @override
   Future<void> showModalBottomSheet({
     required final Widget child,
   }) async {
@@ -115,37 +147,9 @@ class BeamerNavigationService implements NavigationServiceAggregator {
           topRight: Radius.circular(28),
         ),
       ),
-      context: _beamerDelegate.navigator.context,
+      context: _goRouter
+          .routerDelegate.navigatorKey.currentContext!, //TODOO: fix this
       builder: (final _) => child,
     );
   }
-
-  @override
-  void showSnackBar({required final String message}) =>
-      material.ScaffoldMessenger.of(_beamerDelegate.navigator.context)
-          .showSnackBar(
-        material.SnackBar(
-          behavior: SnackBarBehavior.floating,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(12)),
-          ),
-          content: material.Text(message),
-        ),
-      );
-
-  @override
-  void pop() {
-    unawaited(_beamerDelegate.popRoute());
-  }
-
-  @override
-  void addListener({required final void Function() listener}) {
-    _beamerDelegate.addListener(listener);
-  }
-
-  @override
-  Option<String> get currentRoute => optionOf(
-        // ignore: deprecated_member_use
-        _beamerDelegate.currentBeamLocation.state.routeInformation.location,
-      );
 }
