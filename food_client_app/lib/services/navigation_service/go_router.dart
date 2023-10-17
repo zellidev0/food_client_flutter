@@ -1,9 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' hide AsyncData;
+import 'package:food_client/providers/providers.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/ui/account/account_controller.dart';
 import 'package:food_client/ui/account/account_view.dart';
+import 'package:food_client/ui/cart/cart_controller.dart';
 import 'package:food_client/ui/cart/cart_view.dart';
 import 'package:food_client/ui/home/home_view.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_view.dart';
@@ -63,9 +65,25 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
               path: NavigationServiceUris.accountRouteUri.toString(),
             ),
             GoRoute(
-              builder: (_, GoRouterState state) => Consumer(
-                builder: (_, WidgetRef ref, ___) => const CartView(),
-              ),
+              builder: (_, GoRouterState state) {
+                final CartControllerImplementationProvider provider =
+                    cartControllerImplementationProvider(
+                  navigationService: ref.watch(navigationServiceProvider),
+                  combinedIngredients: ref
+                      .watch(providers.appSettingsServiceProvider)
+                      .combineIngredients,
+                  imageSizerService:
+                      ref.watch(providers.webImageSizerServiceProvider),
+                  persistenceService:
+                      ref.watch(providers.persistenceServiceProvider.notifier),
+                );
+                return Consumer(
+                  builder: (_, WidgetRef ref, ___) => CartView(
+                    model: ref.watch(provider),
+                    controller: ref.watch(provider.notifier),
+                  ),
+                );
+              },
               path: NavigationServiceUris.cartRouteUri.toString(),
             ),
             GoRoute(

@@ -4,102 +4,99 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/commons/utils.dart';
 import 'package:food_client/commons/widgets.dart';
+import 'package:food_client/mvc.dart';
 import 'package:food_client/providers/providers.dart';
 import 'package:food_client/ui/cart/cart_model.dart';
 
-class CartView extends ConsumerWidget {
-  const CartView({super.key});
+class CartView extends MvcView<CartController, CartModel> {
+  const CartView({
+    required super.controller,
+    required super.model,
+    super.key,
+  });
 
   @override
-  Widget build(final BuildContext context, final WidgetRef ref) {
-    final CartModel model = ref.watch(
-      providers.cartControllerProvider,
-    );
-    final CartController controller = ref.watch(
-      providers.cartControllerProvider.notifier,
-    );
-
-    return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: SafeArea(
-        child: DefaultTabController(
-          length: 3,
-          child: Builder(
-            builder: (final BuildContext context) => NestedScrollView(
-              headerSliverBuilder: (final _, final __) => <Widget>[
-                if (model.recipes.isEmpty)
-                  const SliverToBoxAdapter()
-                else
-                  _buildRecipeListSliver(
+  Widget build(final BuildContext context) => Scaffold(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        body: SafeArea(
+          child: DefaultTabController(
+            length: 3,
+            child: Builder(
+              builder: (final BuildContext context) => NestedScrollView(
+                headerSliverBuilder: (final _, final __) => <Widget>[
+                  if (model.recipes.isEmpty)
+                    const SliverToBoxAdapter()
+                  else
+                    _buildRecipeListSliver(
+                      model: model,
+                      controller: controller,
+                    ),
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          TextButton.icon(
+                            onPressed: () => controller.openModalBottomSheet(
+                              child: Container(),
+                              // buildSortingModalBottomSheetWidget(),
+                            ),
+                            icon: const Icon(Icons.sort),
+                            label: const Text(
+                              'ui.cart_view.modals.sorting_modal.button_text',
+                            ).tr(),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  _buildTabBarSliver(
                     model: model,
                     controller: controller,
                   ),
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        TextButton.icon(
-                          onPressed: () => controller.openModalBottomSheet(
-                            child: buildSortingModalBottomSheetWidget(),
+                ],
+                body: model.recipes.isEmpty
+                    ? buildNoItemsFoundIcon(
+                        message: 'ui.cart_view.empty_states.empty_cart'.tr(),
+                      )
+                    : TabBarView(
+                        children: <Widget>[
+                          buildIngredientsListView(
+                            ingredients: model.ingredients,
+                            keyId: 'total',
+                            controller: controller,
+                            sorting: model.sorting,
                           ),
-                          icon: const Icon(Icons.sort),
-                          label: const Text(
-                            'ui.cart_view.modals.sorting_modal.button_text',
-                          ).tr(),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                _buildTabBarSliver(
-                  model: model,
-                  controller: controller,
-                ),
-              ],
-              body: model.recipes.isEmpty
-                  ? buildNoItemsFoundIcon(
-                      message: 'ui.cart_view.empty_states.empty_cart'.tr(),
-                    )
-                  : TabBarView(
-                      children: <Widget>[
-                        buildIngredientsListView(
-                          ingredients: model.ingredients,
-                          keyId: 'total',
-                          controller: controller,
-                          sorting: model.sorting,
-                        ),
-                        buildIngredientsListView(
-                          ingredients: model.ingredients
-                              .where(
-                                (final CartModelIngredient element) =>
-                                    !element.isTickedOff,
-                              )
-                              .toList(),
-                          keyId: 'missing',
-                          controller: controller,
-                          sorting: model.sorting,
-                        ),
-                        buildIngredientsListView(
-                          ingredients: model.ingredients
-                              .where(
-                                (final CartModelIngredient element) =>
-                                    element.isTickedOff,
-                              )
-                              .toList(),
-                          keyId: 'ticked-off',
-                          controller: controller,
-                          sorting: model.sorting,
-                        ),
-                      ],
-                    ),
+                          buildIngredientsListView(
+                            ingredients: model.ingredients
+                                .where(
+                                  (final CartModelIngredient element) =>
+                                      !element.isTickedOff,
+                                )
+                                .toList(),
+                            keyId: 'missing',
+                            controller: controller,
+                            sorting: model.sorting,
+                          ),
+                          buildIngredientsListView(
+                            ingredients: model.ingredients
+                                .where(
+                                  (final CartModelIngredient element) =>
+                                      element.isTickedOff,
+                                )
+                                .toList(),
+                            keyId: 'ticked-off',
+                            controller: controller,
+                            sorting: model.sorting,
+                          ),
+                        ],
+                      ),
+              ),
             ),
           ),
         ),
-      ),
-    );
-  }
+      );
 
   Widget buildIngredientsListView({
     required final List<CartModelIngredient> ingredients,
@@ -249,85 +246,85 @@ class CartView extends ConsumerWidget {
       );
 }
 
-Widget buildSortingModalBottomSheetWidget() => Padding(
-      padding: const EdgeInsets.all(16),
-      child: Consumer(
-        builder: (final _, final WidgetRef ref, final __) => GridView.count(
-          crossAxisCount: 3,
-          children: <Widget>[
-            ...ref.watch(providers.cartControllerProvider).sortingUnits.map(
-                  (final CartModelSortingUnit ingredientUnit) => Stack(
-                    children: <Widget>[
-                      buildCard(
-                        sorting: CartModelSorting.unit(
-                          activeUnit: ingredientUnit,
-                          customSortingIngredientIds: ref
-                              .watch(providers.cartControllerProvider)
-                              .sorting
-                              .customSortingIngredientIds,
-                        ),
-                        onTap: () {
-                          ref
-                              .read(providers.cartControllerProvider.notifier)
-                              .setActiveSorting(
-                                sorting: CartModelSorting.unit(
-                                  customSortingIngredientIds: ref
-                                      .watch(providers.cartControllerProvider)
-                                      .sorting
-                                      .customSortingIngredientIds,
-                                  activeUnit: ingredientUnit,
-                                ),
-                              );
-                        },
-                      ),
-                      buildStarIcon(
-                        sorting: CartModelSorting.unit(
-                          activeUnit: ingredientUnit,
-                          customSortingIngredientIds: ref
-                              .watch(providers.cartControllerProvider)
-                              .sorting
-                              .customSortingIngredientIds,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-            Stack(
-              children: <Widget>[
-                buildCard(
-                  sorting: CartModelSorting.custom(
-                    customSortingIngredientIds: ref
-                        .watch(providers.cartControllerProvider)
-                        .sorting
-                        .customSortingIngredientIds,
-                  ),
-                  onTap: () {
-                    ref
-                        .read(providers.cartControllerProvider.notifier)
-                        .setActiveSorting(
-                          sorting: CartModelSorting.custom(
-                            customSortingIngredientIds: ref
-                                .watch(providers.cartControllerProvider)
-                                .sorting
-                                .customSortingIngredientIds,
-                          ),
-                        );
-                  },
-                ),
-                buildStarIcon(
-                  sorting: CartModelSorting.custom(
-                    customSortingIngredientIds: ref
-                        .watch(providers.cartControllerProvider)
-                        .sorting
-                        .customSortingIngredientIds,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
+// Widget buildSortingModalBottomSheetWidget() => Padding(
+//       padding: const EdgeInsets.all(16),
+//       child: Consumer(
+//         builder: (final _, final WidgetRef ref, final __) => GridView.count(
+//           crossAxisCount: 3,
+//           children: <Widget>[
+//             ...ref.watch(providers.cartControllerProvider).sortingUnits.map(
+//                   (final CartModelSortingUnit ingredientUnit) => Stack(
+//                     children: <Widget>[
+//                       buildCard(
+//                         sorting: CartModelSorting.unit(
+//                           activeUnit: ingredientUnit,
+//                           customSortingIngredientIds: ref
+//                               .watch(providers.cartControllerProvider)
+//                               .sorting
+//                               .customSortingIngredientIds,
+//                         ),
+//                         onTap: () {
+//                           ref
+//                               .read(providers.cartControllerProvider.notifier)
+//                               .setActiveSorting(
+//                                 sorting: CartModelSorting.unit(
+//                                   customSortingIngredientIds: ref
+//                                       .watch(providers.cartControllerProvider)
+//                                       .sorting
+//                                       .customSortingIngredientIds,
+//                                   activeUnit: ingredientUnit,
+//                                 ),
+//                               );
+//                         },
+//                       ),
+//                       buildStarIcon(
+//                         sorting: CartModelSorting.unit(
+//                           activeUnit: ingredientUnit,
+//                           customSortingIngredientIds: ref
+//                               .watch(providers.cartControllerProvider)
+//                               .sorting
+//                               .customSortingIngredientIds,
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                 ),
+//             Stack(
+//               children: <Widget>[
+//                 buildCard(
+//                   sorting: CartModelSorting.custom(
+//                     customSortingIngredientIds: ref
+//                         .watch(providers.cartControllerProvider)
+//                         .sorting
+//                         .customSortingIngredientIds,
+//                   ),
+//                   onTap: () {
+//                     ref
+//                         .read(providers.cartControllerProvider.notifier)
+//                         .setActiveSorting(
+//                           sorting: CartModelSorting.custom(
+//                             customSortingIngredientIds: ref
+//                                 .watch(providers.cartControllerProvider)
+//                                 .sorting
+//                                 .customSortingIngredientIds,
+//                           ),
+//                         );
+//                   },
+//                 ),
+//                 buildStarIcon(
+//                   sorting: CartModelSorting.custom(
+//                     customSortingIngredientIds: ref
+//                         .watch(providers.cartControllerProvider)
+//                         .sorting
+//                         .customSortingIngredientIds,
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
 
 SizedBox buildCard({
   required final CartModelSorting sorting,
@@ -375,20 +372,18 @@ Widget buildStarIcon({
                 (final BuildContext context, final WidgetRef ref, final __) =>
                     Icon(
               Icons.star,
-              color: ref.watch(providers.cartControllerProvider).sorting.map(
-                        unit:
-                            (final CartModelSortingSelectedUnit selectedUnit) =>
-                                sorting.map(
-                          unit: (final CartModelSortingSelectedUnit unit) =>
-                              unit.activeUnit.id == selectedUnit.activeUnit.id,
-                          custom: (final CartModelSortingCustom custom) =>
-                              false,
-                        ),
-                        custom: (final _) => sorting.map(
-                          unit: (final _) => false,
-                          custom: (final _) => true,
-                        ),
-                      )
+              color: sorting.map(
+                unit: (final CartModelSortingSelectedUnit selectedUnit) =>
+                    sorting.map(
+                  unit: (final CartModelSortingSelectedUnit unit) =>
+                      unit.activeUnit.id == selectedUnit.activeUnit.id,
+                  custom: (final CartModelSortingCustom custom) => false,
+                ),
+                custom: (final _) => sorting.map(
+                  unit: (final _) => false,
+                  custom: (final _) => true,
+                ),
+              )
                   ? Theme.of(context).colorScheme.primary
                   : Theme.of(context).colorScheme.onPrimary,
             ),
@@ -576,9 +571,7 @@ class TabBarSliverDelegate extends SliverPersistentHeaderDelegate {
   bool shouldRebuild(final SliverPersistentHeaderDelegate oldDelegate) => true;
 }
 
-abstract class CartController extends StateNotifier<CartModel> {
-  CartController(super.state);
-
+abstract class CartController extends MvcController {
   Future<void> tickOff({
     required final String ingredientId,
     required final List<String> recipeIds,

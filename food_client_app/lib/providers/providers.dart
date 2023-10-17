@@ -28,33 +28,6 @@ import 'package:fpdart/fpdart.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class Providers {
-  AutoDisposeStateNotifierProvider<CartController, CartModel>
-      cartControllerProvider =
-      StateNotifierProvider.autoDispose<CartController, CartModel>(
-    (
-      AutoDisposeStateNotifierProviderRef<CartController, CartModel> ref,
-    ) =>
-        CartControllerImplementation(
-      CartModel(
-        recipes: <CartModelRecipe>[],
-        ingredients: <CartModelIngredient>[],
-        combineIngredients:
-            ref.watch(providers.appSettingsServiceProvider).combineIngredients,
-        sorting: const CartModelSorting.custom(
-          customSortingIngredientIds: <String>[],
-        ),
-        sortingUnits: <CartModelSortingUnit>[],
-      ),
-      globalNavigationService: ref.read(
-        navigationServiceProvider,
-      ),
-      persistenceService: ref.read(
-        providers.persistenceServiceProvider.notifier,
-      ),
-      imageSizerService: ref.read(providers.webImageSizerServiceProvider),
-    ),
-  );
-
   AutoDisposeStateNotifierProvider<IngredientsSortingController,
           IngredientsSortingModel> ingredientsSortingControllerProvider =
       StateNotifierProvider.autoDispose<IngredientsSortingController,
