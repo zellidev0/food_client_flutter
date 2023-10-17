@@ -12,9 +12,6 @@ import 'package:food_client/services/persistence_service/persistence_service.dar
 import 'package:food_client/services/persistence_service/persistence_service_model.dart';
 import 'package:food_client/services/web_client/web_client_service.dart';
 import 'package:food_client/services/web_image_sizer/web_image_sizer_service.dart';
-import 'package:food_client/ui/account/account_controller.dart';
-import 'package:food_client/ui/account/account_model.dart';
-import 'package:food_client/ui/account/account_view.dart';
 import 'package:food_client/ui/cart/cart_controller.dart';
 import 'package:food_client/ui/cart/cart_model.dart';
 import 'package:food_client/ui/cart/cart_view.dart';
@@ -55,18 +52,6 @@ class Providers {
         providers.persistenceServiceProvider.notifier,
       ),
       imageSizerService: ref.read(providers.webImageSizerServiceProvider),
-    ),
-  );
-
-  AutoDisposeStateNotifierProvider<AccountController, AccountModel>
-      accountControllerProvider =
-      StateNotifierProvider.autoDispose<AccountController, AccountModel>(
-    (
-      AutoDisposeStateNotifierProviderRef<AccountController, AccountModel> ref,
-    ) =>
-        AccountControllerImplementation(
-      const AccountModel(),
-      navigationService: ref.read(navigationServiceProvider),
     ),
   );
 
@@ -185,89 +170,6 @@ class Providers {
       Provider<LoggingServiceAggregator>(
     (ProviderRef<LoggingServiceAggregator> ref) => LoggingService(),
   );
-
-  // Provider<BeamerDelegate> globalBeamerDelegate = Provider<BeamerDelegate>(
-  //   (ProviderRef<BeamerDelegate> ref) => BeamerDelegate(
-  //     initialPath: NavigationServiceUris.homeRouteUri.toString(),
-  //     locationBuilder: RoutesLocationBuilder(
-  //       routes: <Pattern, dynamic Function(BuildContext, BeamState, Object?)>{
-  //         '${NavigationServiceUris.mainRouteUri}/*': (_, __, ___) => BeamPage(
-  //               key: ValueKey<String>('${NavigationServiceUris.mainRouteUri}'),
-  //               child: const MainView(),
-  //               type: determinePageType(),
-  //             ),
-  //         NavigationServiceUris.homeSingleRecipeUri.toString():
-  //             (_, BeamState state, ___) {
-  //           String recipeId =
-  //               state.queryParameters[NavigationServiceUris.singleRecipeIdKey]!;
-  //           return BeamPage(
-  //             key: ValueKey<String>(state.uri.toString()),
-  //             child: SingleRecipeView(
-  //               recipeId: recipeId,
-  //             ),
-  //             type: determinePageType(),
-  //           );
-  //         },
-  //         NavigationServiceUris.singleRecipe.toString():
-  //             (_, BeamState state, ___) {
-  //           String recipeId =
-  //               state.queryParameters[NavigationServiceUris.singleRecipeIdKey]!;
-  //           return BeamPage(
-  //             key: ValueKey<String>(state.uri.toString()),
-  //             child: SingleRecipeView(
-  //               recipeId: recipeId,
-  //             ),
-  //             type: determinePageType(),
-  //           );
-  //         },
-  //       },
-  //     ).call,
-  //   ),
-  // );
-
-  // Provider<BeamerDelegate> bottomNavigationBarBeamerDelegate =
-  //     Provider<BeamerDelegate>(
-  //   (ProviderRef<BeamerDelegate> ref) => BeamerDelegate(
-  //     initialPath: NavigationServiceUris.homeRouteUri.toString(),
-  //     locationBuilder: RoutesLocationBuilder(
-  //       routes: <Pattern, dynamic Function(BuildContext, BeamState, Object?)>{
-  //         NavigationServiceUris.homeRouteUri.toString(): (_, __, ___) =>
-  //             BeamPage(
-  //               key: ValueKey<String>(
-  //                 NavigationServiceUris.homeRouteUri.toString(),
-  //               ),
-  //               child: const HomeView(),
-  //               type: determinePageType(),
-  //             ),
-  //         NavigationServiceUris.accountRouteUri.toString(): (_, __, ___) =>
-  //             BeamPage(
-  //               key: ValueKey<String>(
-  //                 NavigationServiceUris.accountRouteUri.toString(),
-  //               ),
-  //               child: const AccountView(),
-  //               type: determinePageType(),
-  //             ),
-  //         NavigationServiceUris.cartRouteUri.toString(): (_, __, ___) =>
-  //             BeamPage(
-  //               key: ValueKey<String>(
-  //                 NavigationServiceUris.cartRouteUri.toString(),
-  //               ),
-  //               child: const CartView(),
-  //               type: determinePageType(),
-  //             ),
-  //         NavigationServiceUris.ingredientsSortingRouteUri.toString(): (_, __,
-  //                 ___) =>
-  //             BeamPage(
-  //               key: ValueKey<String>(
-  //                 NavigationServiceUris.ingredientsSortingRouteUri.toString(),
-  //               ),
-  //               child: const IngredientsSortingView(),
-  //               type: determinePageType(),
-  //             ),
-  //       },
-  //     ).call,
-  //   ),
-  // );
 }
 
 late Providers providers;

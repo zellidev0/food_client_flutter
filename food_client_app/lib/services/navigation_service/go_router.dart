@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' hide AsyncData;
 import 'package:food_client/services/navigation_service/navigation_service.dart';
+import 'package:food_client/ui/account/account_controller.dart';
 import 'package:food_client/ui/account/account_view.dart';
 import 'package:food_client/ui/cart/cart_view.dart';
 import 'package:food_client/ui/home/home_view.dart';
@@ -47,9 +48,18 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
           navigatorKey: shellNavigatorKey,
           routes: <GoRoute>[
             GoRoute(
-              builder: (_, GoRouterState state) => Consumer(
-                builder: (_, WidgetRef ref, ___) => const AccountView(),
-              ),
+              builder: (_, GoRouterState state) {
+                final AccountControllerImplementationProvider provider =
+                    accountControllerImplementationProvider(
+                  navigationService: ref.watch(navigationServiceProvider),
+                );
+                return Consumer(
+                  builder: (_, WidgetRef ref, ___) => AccountView(
+                    model: ref.watch(provider),
+                    controller: ref.watch(provider.notifier),
+                  ),
+                );
+              },
               path: NavigationServiceUris.accountRouteUri.toString(),
             ),
             GoRoute(

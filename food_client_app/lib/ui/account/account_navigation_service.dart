@@ -3,7 +3,6 @@ import 'package:fpdart/fpdart.dart';
 
 abstract class AccountNavigationService {
   void goBack({final Uri? fallbackUri});
-
   void replaceWithNamed({required final Uri uri});
   void navigateToNamed({required final Uri uri});
   void showSnackBar({required final String message});
