@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:food_client/services/navigation_service/navigation_service.dart';
+import 'package:food_client/services/navigation_service/navigation_service.dart'
+    hide navigationService;
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_logging_service.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_model.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_navigation_service.dart';
@@ -11,42 +12,41 @@ import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_view.dart
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_web_client_service.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
+
+part 'ingredients_sorting_controller.g.dart';
 
 const int takeSize = 250;
 const int _widthPixels = 256;
 
+@riverpod
 class IngredientsSortingControllerImplementation
-    extends IngredientsSortingController {
-  final IngredientsSortingLoggingService _loggingService;
-  final IngredientsSortingNavigationService _navigationService;
-  final IngredientsSortingWebClientService _webClientService;
-  final IngredientsSortingPersistenceService _persistenceService;
-  final IngredientsSortingWebImageSizerService _webImageSizerService;
-
-  IngredientsSortingControllerImplementation(
-    super.state, {
+    extends _$IngredientsSortingControllerImplementation
+    implements IngredientsSortingController {
+  @override
+  IngredientsSortingModel build({
     required final IngredientsSortingNavigationService navigationService,
     required final IngredientsSortingWebClientService webClientService,
     required final IngredientsSortingWebImageSizerService webImageSizerService,
     required final IngredientsSortingPersistenceService persistenceService,
     required final IngredientsSortingLoggingService loggingService,
-  })  : _navigationService = navigationService,
-        _webClientService = webClientService,
-        _webImageSizerService = webImageSizerService,
-        _loggingService = loggingService,
-        _persistenceService = persistenceService {
+  }) {
     _fetchPersistenceServiceUnits();
+    return IngredientsSortingModel(
+      units: <IngredientsSortingModelUnit>[],
+      currentlyEditingUnitName: none(),
+    );
   }
 
   @override
   void goBack() {
-    _navigationService.goBack();
+    navigationService.goBack();
   }
 
   @override
   Future<void> createSortingUnit({required final String name}) async {
-    (await _webClientService.fetchIngredientsSorting().run()).fold(
+    (await webClientService.fetchIngredientsSorting().run()).fold(
       (final Exception error) => _handleError(
         exception: error,
         message: 'Could not fetch ingredients sorting unit',
@@ -55,7 +55,7 @@ class IngredientsSortingControllerImplementation
       (
         final List<IngredientsSortingWebClientModelIngredientSorting> sortings,
       ) async {
-        await _persistenceService
+        await persistenceService
             .saveUnit(
               unit: IngredientsSortingPersistenceModelUnit(
                 name: name,
@@ -88,13 +88,13 @@ class IngredientsSortingControllerImplementation
         _fetchPersistenceServiceUnits();
       },
     );
-    _navigationService.pop();
+    navigationService.pop();
   }
 
   @override
   void showDeleteUnitDialog({required final IngredientsSortingModelUnit unit}) {
     unawaited(
-      _navigationService.showDialog(
+      navigationService.showDialog(
         title: 'Delete Supermarket?',
         content: ' Do you really want to delete the unit ${unit.title}?',
         actions: some(
@@ -103,7 +103,7 @@ class IngredientsSortingControllerImplementation
             NavigationServiceDialogAction(
               text: 'yes',
               onPressed: () async {
-                (await _persistenceService.deleteUnit(unitId: unit.id).run())
+                (await persistenceService.deleteUnit(unitId: unit.id).run())
                     .fold(
                   (final Exception exception) {
                     _handleError(
@@ -127,7 +127,7 @@ class IngredientsSortingControllerImplementation
     required final Widget child,
   }) {
     unawaited(
-      _navigationService.showModalBottomSheet(
+      navigationService.showModalBottomSheet(
         child: child,
       ),
     );
@@ -170,7 +170,7 @@ class IngredientsSortingControllerImplementation
           )
           .toList(),
     );
-    await _persistenceService
+    await persistenceService
         .saveUnit(
           unit: IngredientsSortingPersistenceModelUnit(
             id: unit.id,
@@ -204,7 +204,7 @@ class IngredientsSortingControllerImplementation
 
   void _fetchPersistenceServiceUnits() {
     state = state.copyWith(
-      units: _persistenceService
+      units: persistenceService
           .getUnits()
           .mapIndexed(
             (
@@ -213,7 +213,7 @@ class IngredientsSortingControllerImplementation
             ) =>
                 mapToIngredientsSortingModelUnit(
               unit: unit,
-              imageSizerService: _webImageSizerService,
+              imageSizerService: webImageSizerService,
               isSelected: index == 0,
             ),
           )
@@ -226,8 +226,8 @@ class IngredientsSortingControllerImplementation
     required final String message,
     required final String userDisplayedErrorMessage,
   }) {
-    _loggingService.logError(message: message, exception: exception);
-    _navigationService.showSnackBar(message: userDisplayedErrorMessage);
+    loggingService.logError(message: message, exception: exception);
+    navigationService.showSnackBar(message: userDisplayedErrorMessage);
   }
 
   IngredientsSortingModelUnit mapToIngredientsSortingModelUnit({
@@ -296,7 +296,7 @@ List<IngredientsSortingPersistenceModelSorting> combineIngredientsWithSorting({
             //   (final IngredientsSortingModelIngredientFamily family) =>
             //       getImageUrl(
             //         iconPath: family,
-            //         imageSizerService: _webImageSizerService,
+            //         imageSizerService: webImageSizerService,
             //       ),
             // ),
             iconPath: none(),

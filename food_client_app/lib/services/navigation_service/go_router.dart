@@ -9,6 +9,7 @@ import 'package:food_client/ui/cart/cart_controller.dart';
 import 'package:food_client/ui/cart/cart_view.dart';
 import 'package:food_client/ui/home/home_controller.dart';
 import 'package:food_client/ui/home/home_view.dart';
+import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_controller.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_view.dart';
 import 'package:food_client/ui/main/main_controller.dart';
 import 'package:food_client/ui/main/main_view.dart';
@@ -113,9 +114,26 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
           ],
         ),
         GoRoute(
-          builder: (_, GoRouterState state) => Consumer(
-            builder: (_, WidgetRef ref, ___) => const IngredientsSortingView(),
-          ),
+          builder: (_, GoRouterState state) {
+            final IngredientsSortingControllerImplementationProvider provider =
+                IngredientsSortingControllerImplementationProvider(
+              webClientService: ref.read(providers.webClientServiceProvider),
+              webImageSizerService:
+                  ref.read(providers.webImageSizerServiceProvider),
+              loggingService: ref.read(providers.loggingServiceProvider),
+              navigationService: ref.read(navigationServiceProvider),
+              persistenceService: ref.read(
+                providers.persistenceServiceProvider.notifier,
+              ),
+            );
+
+            return Consumer(
+              builder: (_, WidgetRef ref, ___) => IngredientsSortingView(
+                model: ref.watch(provider),
+                controller: ref.watch(provider.notifier),
+              ),
+            );
+          },
           path: NavigationServiceUris.ingredientsSortingRouteUri.toString(),
         ),
         GoRoute(

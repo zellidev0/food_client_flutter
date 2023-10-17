@@ -1,35 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/commons/widgets.dart';
-import 'package:food_client/providers/providers.dart';
+import 'package:food_client/mvc.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_model.dart';
 import 'package:fpdart/fpdart.dart';
 
-class IngredientsSortingView extends ConsumerWidget {
-  const IngredientsSortingView({super.key});
+class IngredientsSortingView
+    extends MvcView<IngredientsSortingController, IngredientsSortingModel> {
+  const IngredientsSortingView({
+    required super.controller,
+    required super.model,
+    super.key,
+  });
 
   @override
-  Widget build(final BuildContext context, final WidgetRef ref) {
-    final IngredientsSortingModel model =
-        ref.watch(providers.ingredientsSortingControllerProvider);
-    final IngredientsSortingController controller =
-        ref.read(providers.ingredientsSortingControllerProvider.notifier);
-    return Stack(
-      children: <Widget>[
-        Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            scrolledUnderElevation: 0,
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: controller.goBack,
+  Widget build(final BuildContext context) => Stack(
+        children: <Widget>[
+          Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              scrolledUnderElevation: 0,
+              leading: IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: controller.goBack,
+              ),
             ),
+            body: _buildContent(model: model, controller: controller),
           ),
-          body: _buildContent(model: model, controller: controller),
-        ),
-      ],
-    );
-  }
+        ],
+      );
 
   Widget _buildContent({
     required final IngredientsSortingModel model,
@@ -138,7 +136,7 @@ class IngredientsSortingView extends ConsumerWidget {
               borderRadius: BorderRadius.circular(24),
               onTap: unit.fold(
                 () => () => controller.openAddUnitModal(
-                      child: buildAddUnitModalContent(),
+                      child: Container(), //buildAddUnitModalContent(),
                     ),
                 (final IngredientsSortingModelUnit card) =>
                     () => controller.setUnitSelected(unit: card),
@@ -166,69 +164,66 @@ class IngredientsSortingView extends ConsumerWidget {
         ),
       );
 
-  Widget buildAddUnitModalContent() => Consumer(
-        builder: (final BuildContext context, final WidgetRef ref, final _) =>
-            Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                'Sorting unit',
-                style: Theme.of(context).textTheme.headlineSmall,
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                'A sorting unit is used to sort all ingredients in the shopping cart according to your needs.',
-              ),
-              const SizedBox(height: 8),
-              TextField(
-                decoration: const InputDecoration(
-                  labelText: 'Suparmarket name',
-                ),
-                onChanged: (final String value) {
-                  ref
-                      .read(
-                        providers.ingredientsSortingControllerProvider.notifier,
-                      )
-                      .updateCurrentEditingUnitTitle(
-                        title: value.trim().isNotEmpty ? some(value) : none(),
-                      );
-                },
-              ),
-              const SizedBox(height: 16),
-              Center(
-                child: ElevatedButton(
-                  onPressed: ref
-                      .watch(
-                        providers.ingredientsSortingControllerProvider,
-                      )
-                      .currentlyEditingUnitName
-                      .fold(
-                        () => null,
-                        (final String name) => () => ref
-                            .read(
-                              providers.ingredientsSortingControllerProvider
-                                  .notifier,
-                            )
-                            .createSortingUnit(name: name),
-                      ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(8),
-                    child: Text('Create'),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
+  // Widget buildAddUnitModalContent() => Consumer(
+  //       builder: (final BuildContext context, final WidgetRef ref, final _) =>
+  //           Padding(
+  //         padding: const EdgeInsets.all(16),
+  //         child: Column(
+  //           crossAxisAlignment: CrossAxisAlignment.start,
+  //           children: <Widget>[
+  //             Text(
+  //               'Sorting unit',
+  //               style: Theme.of(context).textTheme.headlineSmall,
+  //             ),
+  //             const SizedBox(height: 8),
+  //             const Text(
+  //               'A sorting unit is used to sort all ingredients in the shopping cart according to your needs.',
+  //             ),
+  //             const SizedBox(height: 8),
+  //             TextField(
+  //               decoration: const InputDecoration(
+  //                 labelText: 'Suparmarket name',
+  //               ),
+  //               onChanged: (final String value) {
+  //                 ref
+  //                     .read(
+  //                       providers.ingredientsSortingControllerProvider.notifier,
+  //                     )
+  //                     .updateCurrentEditingUnitTitle(
+  //                       title: value.trim().isNotEmpty ? some(value) : none(),
+  //                     );
+  //               },
+  //             ),
+  //             const SizedBox(height: 16),
+  //             Center(
+  //               child: ElevatedButton(
+  //                 onPressed: ref
+  //                     .watch(
+  //                       providers.ingredientsSortingControllerProvider,
+  //                     )
+  //                     .currentlyEditingUnitName
+  //                     .fold(
+  //                       () => null,
+  //                       (final String name) => () => ref
+  //                           .read(
+  //                             providers.ingredientsSortingControllerProvider
+  //                                 .notifier,
+  //                           )
+  //                           .createSortingUnit(name: name),
+  //                     ),
+  //                 child: const Padding(
+  //                   padding: EdgeInsets.all(8),
+  //                   child: Text('Create'),
+  //                 ),
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //       ),
+  //     );
 }
 
-abstract class IngredientsSortingController
-    extends StateNotifier<IngredientsSortingModel> {
-  IngredientsSortingController(super.state);
-
+abstract class IngredientsSortingController implements MvcController {
   void goBack();
   void createSortingUnit({required final String name});
   void showDeleteUnitDialog({required final IngredientsSortingModelUnit unit});

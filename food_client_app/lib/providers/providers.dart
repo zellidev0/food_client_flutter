@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:beamer/beamer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -12,46 +10,12 @@ import 'package:food_client/services/persistence_service/persistence_service.dar
 import 'package:food_client/services/persistence_service/persistence_service_model.dart';
 import 'package:food_client/services/web_client/web_client_service.dart';
 import 'package:food_client/services/web_image_sizer/web_image_sizer_service.dart';
-import 'package:food_client/ui/cart/cart_controller.dart';
-import 'package:food_client/ui/cart/cart_model.dart';
-import 'package:food_client/ui/cart/cart_view.dart';
-import 'package:food_client/ui/home/home_controller.dart';
-import 'package:food_client/ui/home/home_model.dart';
-import 'package:food_client/ui/home/home_view.dart';
-import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_controller.dart';
-import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_model.dart';
-import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_view.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_controller.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_model.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_view.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class Providers {
-  AutoDisposeStateNotifierProvider<IngredientsSortingController,
-          IngredientsSortingModel> ingredientsSortingControllerProvider =
-      StateNotifierProvider.autoDispose<IngredientsSortingController,
-          IngredientsSortingModel>(
-    (
-      AutoDisposeStateNotifierProviderRef<IngredientsSortingController,
-              IngredientsSortingModel>
-          ref,
-    ) =>
-        IngredientsSortingControllerImplementation(
-      IngredientsSortingModel(
-        units: <IngredientsSortingModelUnit>[],
-        currentlyEditingUnitName: none(),
-      ),
-      webClientService: ref.read(providers.webClientServiceProvider),
-      webImageSizerService: ref.read(providers.webImageSizerServiceProvider),
-      loggingService: ref.read(providers.loggingServiceProvider),
-      navigationService: ref.read(navigationServiceProvider),
-      persistenceService: ref.read(
-        providers.persistenceServiceProvider.notifier,
-      ),
-    ),
-  );
-
   AutoDisposeStateNotifierProviderFamily<SingleRecipeController,
           SingleRecipeModel, String> singleRecipeControllerProvider =
       AutoDisposeStateNotifierProviderFamily<SingleRecipeController,
