@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' hide AsyncData;
-import 'package:food_client/providers/providers.dart';
+import 'package:food_client/services/app_settings_service/app_settings_service.dart';
 import 'package:food_client/services/logging_service/logging_service.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/services/persistence_service/persistence_service.dart';
@@ -76,9 +76,8 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
                 final CartControllerImplementationProvider provider =
                     cartControllerImplementationProvider(
                   navigationService: ref.watch(navigationServiceProvider),
-                  combinedIngredients: ref
-                      .watch(providers.appSettingsServiceProvider)
-                      .combineIngredients,
+                  combinedIngredients:
+                      ref.watch(appSettingsServiceProvider).combineIngredients,
                   imageSizerService: ref.read(webImageSizerServiceProvider),
                   persistenceService:
                       ref.watch(persistenceServiceProvider.notifier),
@@ -96,9 +95,8 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
               builder: (_, GoRouterState state) {
                 final HomeControllerImplementationProvider provider =
                     homeControllerImplementationProvider(
-                  recipeLocales: ref
-                      .watch(providers.appSettingsServiceProvider)
-                      .recipeLocales,
+                  recipeLocales:
+                      ref.watch(appSettingsServiceProvider).recipeLocales,
                   globalNavigationService: ref.read(navigationServiceProvider),
                   webClientService: ref.read(webClientServiceProvider),
                   webImageSizerService: ref.read(webImageSizerServiceProvider),
