@@ -10,6 +10,9 @@ import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_web_clien
 import 'package:food_client/ui/single_recipe/single_recipe_web_client_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'web_client_service.g.dart';
 
 const String hasuraSecretHeader =
     '479mMb5g4g5zESHV2Xp2xGEixaD0X7YdeOFMFdRcz0ADeRrRrW0nc1mQbb1haeE5';
@@ -437,6 +440,10 @@ SingleRecipeWebClientModelRecipe _mapToSingleRecipeWebClientModelRecipe({
       ).flatMap((final Option<Duration> optional) => optional),
       slug: recipe.slug,
     );
+
+@riverpod
+WebClientServiceAggregator webClientService(final WebClientServiceRef ref) =>
+    WebClientService();
 
 class WebClientService implements WebClientServiceAggregator {
   final GraphQLClient _client;

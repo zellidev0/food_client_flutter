@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart' hide AsyncData;
 import 'package:food_client/providers/providers.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/services/persistence_service/persistence_service.dart';
+import 'package:food_client/services/web_client/web_client_service.dart';
 import 'package:food_client/services/web_image_sizer/web_image_sizer_service.dart';
 import 'package:food_client/ui/account/account_controller.dart';
 import 'package:food_client/ui/account/account_view.dart';
@@ -118,7 +119,7 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
           builder: (_, GoRouterState state) {
             final IngredientsSortingControllerImplementationProvider provider =
                 IngredientsSortingControllerImplementationProvider(
-              webClientService: ref.read(providers.webClientServiceProvider),
+              webClientService: ref.read(webClientServiceProvider),
               webImageSizerService: ref.read(webImageSizerServiceProvider),
               loggingService: ref.read(providers.loggingServiceProvider),
               navigationService: ref.read(navigationServiceProvider),
@@ -144,7 +145,7 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
             final SingleRecipeControllerImplementationProvider provider =
                 singleRecipeControllerImplementationProvider(
               navigationService: ref.read(navigationServiceProvider),
-              webClientService: ref.read(providers.webClientServiceProvider),
+              webClientService: ref.read(webClientServiceProvider),
               webImageSizerService: ref.read(webImageSizerServiceProvider),
               persistenceService:
                   ref.watch(persistenceServiceProvider.notifier),
