@@ -56,15 +56,15 @@ class HomeView extends MvcView<HomeController, HomeModel> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               buildSingleFilterChip(
-                  text: 'ui.home_view.filters.tags'.tr(),
-                  controller: controller,
-                  selectedFilters: model.allTags
-                      .filter(
-                        (final HomeModelFilter filter) => filter.isSelected,
-                      )
-                      .toList(),
-                  widgetToOpenOnClick: Container() //TODO: buildDialogTags(),
-                  ),
+                text: 'ui.home_view.filters.tags'.tr(),
+                controller: controller,
+                selectedFilters: model.allTags
+                    .filter(
+                      (final HomeModelFilter filter) => filter.isSelected,
+                    )
+                    .toList(),
+                widgetToOpenOnClick: Container(), //TODO: buildDialogTags(),
+              ),
               const SizedBox(width: 8),
               buildSingleFilterChip(
                 text: 'ui.home_view.filters.cuisines'.tr(),

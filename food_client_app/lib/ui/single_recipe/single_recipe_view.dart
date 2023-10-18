@@ -6,10 +6,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/commons/widgets.dart';
 import 'package:food_client/mvc.dart';
-import 'package:food_client/providers/providers.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_model.dart';
 import 'package:fpdart/fpdart.dart';
 

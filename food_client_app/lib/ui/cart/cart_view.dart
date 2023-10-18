@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/commons/utils.dart';
 import 'package:food_client/commons/widgets.dart';
 import 'package:food_client/mvc.dart';
-import 'package:food_client/providers/providers.dart';
 import 'package:food_client/ui/cart/cart_model.dart';
 
 class CartView extends MvcView<CartController, CartModel> {

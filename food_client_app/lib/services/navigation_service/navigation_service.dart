@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/material.dart';
 import 'package:food_client/services/navigation_service/go_router.dart';
@@ -95,6 +94,7 @@ class GoRouterNavigationService implements NavigationServiceAggregator {
   @override
   void reset({required final Uri uri}) => _goRouter.go(uri.toString());
 
+  @override
   Future<void> showDialog({
     final Option<List<NavigationServiceDialogAction>> actions =
         const None<List<NavigationServiceDialogAction>>(),
