@@ -13,6 +13,7 @@ import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_controlle
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_view.dart';
 import 'package:food_client/ui/main/main_controller.dart';
 import 'package:food_client/ui/main/main_view.dart';
+import 'package:food_client/ui/single_recipe/single_recipe_controller.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_view.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart' hide AsyncData;
@@ -137,13 +138,29 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
           path: NavigationServiceUris.ingredientsSortingRouteUri.toString(),
         ),
         GoRoute(
-          builder: (_, GoRouterState state) => Consumer(
-            builder: (_, WidgetRef ref, ___) => SingleRecipeView(
-              recipeId: state.pathParameters[
-                      NavigationServiceUris.singleRecipeIdKey] ??
-                  '', // TODO: handle error
-            ),
-          ),
+          builder: (_, GoRouterState state) {
+            final String recipeId =
+                state.pathParameters[NavigationServiceUris.singleRecipeIdKey] ??
+                    ''; // TODO: handle error
+            final SingleRecipeControllerImplementationProvider provider =
+                singleRecipeControllerImplementationProvider(
+              navigationService: ref.read(navigationServiceProvider),
+              webClientService: ref.read(providers.webClientServiceProvider),
+              webImageSizerService:
+                  ref.read(providers.webImageSizerServiceProvider),
+              persistenceService:
+                  ref.watch(providers.persistenceServiceProvider.notifier),
+              recipeId: recipeId,
+            );
+
+            return Consumer(
+              builder: (_, WidgetRef ref, ___) => SingleRecipeView(
+                model: ref.watch(provider),
+                controller: ref.watch(provider.notifier),
+                recipeId: recipeId,
+              ),
+            );
+          },
           path: NavigationServiceUris.singleRecipe.toString(),
         ),
       ],

@@ -9,30 +9,39 @@ import 'package:food_client/ui/single_recipe/single_recipe_view.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_web_client_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:share_plus/share_plus.dart';
+
+part 'single_recipe_controller.g.dart';
 
 const int widthPixelsDescriptionSteps = 512;
 const int widthPixelsIngredientThumbNail = 256;
 
-class SingleRecipeControllerImplementation extends SingleRecipeController {
+@riverpod
+class SingleRecipeControllerImplementation
+    extends _$SingleRecipeControllerImplementation
+    implements SingleRecipeController {
   late final SingleRecipeWebClientService _webClientService;
   late final SingleRecipeWebImageSizerService _webImageSizerService;
   late final SingleRecipeNavigationService _navigationService;
   late final SingleRecipePersistenceService _persistenceService;
 
-  SingleRecipeControllerImplementation(
-    super.state, {
+  @override
+  SingleRecipeModel build({
     required final String recipeId,
     required final SingleRecipeWebClientService webClientService,
     required final SingleRecipeWebImageSizerService webImageSizerService,
     required final SingleRecipeNavigationService navigationService,
     required final SingleRecipePersistenceService persistenceService,
-  })  : _webClientService = webClientService,
-        _webImageSizerService = webImageSizerService,
-        _navigationService = navigationService,
-        _persistenceService = persistenceService {
+  }) {
     unawaited(
       setRecipe(initialRecipeTask: fetchSingleRecipeTask(recipeId: recipeId)),
+    );
+    return SingleRecipeModel(
+      recipe: Either<Exception, Option<SingleRecipeModelRecipe>>.right(
+        none(),
+      ),
+      selectedYield: none(),
     );
   }
 

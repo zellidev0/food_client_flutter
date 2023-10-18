@@ -16,32 +16,6 @@ import 'package:food_client/ui/single_recipe/single_recipe_view.dart';
 import 'package:fpdart/fpdart.dart';
 
 class Providers {
-  AutoDisposeStateNotifierProviderFamily<SingleRecipeController,
-          SingleRecipeModel, String> singleRecipeControllerProvider =
-      AutoDisposeStateNotifierProviderFamily<SingleRecipeController,
-          SingleRecipeModel, String>(
-    (
-      AutoDisposeStateNotifierProviderRef<SingleRecipeController,
-              SingleRecipeModel>
-          ref,
-      String recipeId,
-    ) =>
-        SingleRecipeControllerImplementation(
-      SingleRecipeModel(
-        recipe: Either<Exception, Option<SingleRecipeModelRecipe>>.right(
-          none(),
-        ),
-        selectedYield: none(),
-      ),
-      navigationService: ref.read(navigationServiceProvider),
-      webClientService: ref.read(providers.webClientServiceProvider),
-      webImageSizerService: ref.read(providers.webImageSizerServiceProvider),
-      persistenceService:
-          ref.watch(providers.persistenceServiceProvider.notifier),
-      recipeId: recipeId,
-    ),
-  );
-
   StateNotifierProvider<PersistenceServiceAggregator, PersistenceServiceModel>
       persistenceServiceProvider = StateNotifierProvider<
           PersistenceServiceAggregator, PersistenceServiceModel>(

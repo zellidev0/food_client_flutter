@@ -8,62 +8,57 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/commons/widgets.dart';
+import 'package:food_client/mvc.dart';
 import 'package:food_client/providers/providers.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_model.dart';
 import 'package:fpdart/fpdart.dart';
 
-class SingleRecipeView extends ConsumerWidget {
+class SingleRecipeView
+    extends MvcView<SingleRecipeController, SingleRecipeModel> {
   final String _recipeId;
 
   const SingleRecipeView({
-    super.key,
     required final String recipeId,
+    required super.controller,
+    required super.model,
+    super.key,
   }) : _recipeId = recipeId;
 
   @override
-  Widget build(final BuildContext context, final WidgetRef ref) {
-    final SingleRecipeModel model = ref.watch(
-      providers.singleRecipeControllerProvider(_recipeId),
-    );
-    final SingleRecipeController controller = ref.read(
-      providers.singleRecipeControllerProvider(_recipeId).notifier,
-    );
-
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      body: model.recipe.fold(
-        (final Exception exception) => Text(exception.toString()),
-        (final Option<SingleRecipeModelRecipe> content) => content.fold(
-          () => const Center(child: CircularProgressIndicator()),
-          (final SingleRecipeModelRecipe recipe) => Stack(
-            children: <Widget>[
-              DefaultTabController(
-                length: 2,
-                child: _buildContent(
-                  recipe: recipe,
-                  selectedYield: model.selectedYield,
-                  controller: controller,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: Align(
-                  alignment: Alignment.bottomRight,
-                  child: FloatingActionButton(
-                    onPressed: () => controller.openAddToShoppingCartDialog(
-                      recipe: recipe,
-                      recipeId: _recipeId,
-                    ),
-                    child: const Icon(Icons.add_shopping_cart),
+  Widget build(final BuildContext context) => Scaffold(
+        extendBodyBehindAppBar: true,
+        body: model.recipe.fold(
+          (final Exception exception) => Text(exception.toString()),
+          (final Option<SingleRecipeModelRecipe> content) => content.fold(
+            () => const Center(child: CircularProgressIndicator()),
+            (final SingleRecipeModelRecipe recipe) => Stack(
+              children: <Widget>[
+                DefaultTabController(
+                  length: 2,
+                  child: _buildContent(
+                    recipe: recipe,
+                    selectedYield: model.selectedYield,
+                    controller: controller,
                   ),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: FloatingActionButton(
+                      onPressed: () => controller.openAddToShoppingCartDialog(
+                        recipe: recipe,
+                        recipeId: _recipeId,
+                      ),
+                      child: const Icon(Icons.add_shopping_cart),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-    );
-  }
+      );
 
   Widget _buildContent({
     required final SingleRecipeController controller,
@@ -395,9 +390,7 @@ class SingleRecipeView extends ConsumerWidget {
       );
 }
 
-abstract class SingleRecipeController extends StateNotifier<SingleRecipeModel> {
-  SingleRecipeController(super.state);
-
+abstract class SingleRecipeController extends MvcController {
   void setSelectedYield({
     required final int yield,
     required final String recipeId,
