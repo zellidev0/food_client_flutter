@@ -3,6 +3,9 @@ import 'package:food_client/ui/home/home_web_image_sizer_service.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_web_image_sizer_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'web_image_sizer_service.g.dart';
 
 abstract class WebImageSizerServiceAggregator
     implements
@@ -10,6 +13,12 @@ abstract class WebImageSizerServiceAggregator
         SingleRecipeWebImageSizerService,
         CartWebImageSizerService,
         IngredientsSortingWebImageSizerService {}
+
+@riverpod
+WebImageSizerServiceAggregator webImageSizerService(
+  final WebImageSizerServiceRef ref,
+) =>
+    WebImageSizerService();
 
 class WebImageSizerService implements WebImageSizerServiceAggregator {
   @override

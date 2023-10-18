@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' hide AsyncData;
 import 'package:food_client/providers/providers.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
+import 'package:food_client/services/persistence_service/persistence_service.dart';
+import 'package:food_client/services/web_image_sizer/web_image_sizer_service.dart';
 import 'package:food_client/ui/account/account_controller.dart';
 import 'package:food_client/ui/account/account_view.dart';
 import 'package:food_client/ui/cart/cart_controller.dart';
@@ -75,10 +77,9 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
                   combinedIngredients: ref
                       .watch(providers.appSettingsServiceProvider)
                       .combineIngredients,
-                  imageSizerService:
-                      ref.watch(providers.webImageSizerServiceProvider),
+                  imageSizerService: ref.read(webImageSizerServiceProvider),
                   persistenceService:
-                      ref.watch(providers.persistenceServiceProvider.notifier),
+                      ref.watch(persistenceServiceProvider.notifier),
                 );
                 return Consumer(
                   builder: (_, WidgetRef ref, ___) => CartView(
@@ -99,8 +100,7 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
                   globalNavigationService: ref.read(navigationServiceProvider),
                   webClientService:
                       ref.read(providers.webClientServiceProvider),
-                  webImageSizerService:
-                      ref.read(providers.webImageSizerServiceProvider),
+                  webImageSizerService: ref.read(webImageSizerServiceProvider),
                 );
 
                 return Consumer(
@@ -119,13 +119,11 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
             final IngredientsSortingControllerImplementationProvider provider =
                 IngredientsSortingControllerImplementationProvider(
               webClientService: ref.read(providers.webClientServiceProvider),
-              webImageSizerService:
-                  ref.read(providers.webImageSizerServiceProvider),
+              webImageSizerService: ref.read(webImageSizerServiceProvider),
               loggingService: ref.read(providers.loggingServiceProvider),
               navigationService: ref.read(navigationServiceProvider),
-              persistenceService: ref.read(
-                providers.persistenceServiceProvider.notifier,
-              ),
+              persistenceService:
+                  ref.watch(persistenceServiceProvider.notifier),
             );
 
             return Consumer(
@@ -135,6 +133,7 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
               ),
             );
           },
+          parentNavigatorKey: rootNavigatorKey,
           path: NavigationServiceUris.ingredientsSortingRouteUri.toString(),
         ),
         GoRoute(
@@ -146,10 +145,9 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
                 singleRecipeControllerImplementationProvider(
               navigationService: ref.read(navigationServiceProvider),
               webClientService: ref.read(providers.webClientServiceProvider),
-              webImageSizerService:
-                  ref.read(providers.webImageSizerServiceProvider),
+              webImageSizerService: ref.read(webImageSizerServiceProvider),
               persistenceService:
-                  ref.watch(providers.persistenceServiceProvider.notifier),
+                  ref.watch(persistenceServiceProvider.notifier),
               recipeId: recipeId,
             );
 
@@ -161,6 +159,7 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
               ),
             );
           },
+          parentNavigatorKey: rootNavigatorKey,
           path: NavigationServiceUris.singleRecipe.toString(),
         ),
       ],

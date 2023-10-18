@@ -1,11 +1,15 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/commons/utils.dart';
+import 'package:food_client/mvc.dart';
 import 'package:food_client/services/persistence_service/persistence_service_model.dart';
 import 'package:food_client/ui/cart/cart_persistence_service.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_persistence_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_persistence_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'persistence_service.g.dart';
 
 const String ingredientsBoxName = 'ingredientsBox';
 const String sortingUnitsBoxName = 'sortingUnitsBox';
@@ -13,66 +17,35 @@ const String activeShoppingListSortingBoxName = 'activeShoppingListSortingBox';
 const String activeShoppingListSortingKey = 'activeShoppingListSortingBoxKey';
 
 abstract class PersistenceServiceAggregator
-    extends StateNotifier<PersistenceServiceModel>
     implements
         CartPersistenceService,
         SingleRecipePersistenceService,
-        IngredientsSortingPersistenceService {
-  PersistenceServiceAggregator(super.state);
-}
+        IngredientsSortingPersistenceService {}
 
-class PersistenceService extends PersistenceServiceAggregator {
+@riverpod
+class PersistenceService extends _$PersistenceService
+    implements PersistenceServiceAggregator {
   late Box<PersistenceServiceModelShoppingListRecipe> shoppingListBox;
   late Box<PersistenceServiceModelSortingUnit> sortingUnits;
   late Box<PersistenceServiceModelActiveSorting> activeShoppingListSortingBox;
 
-  PersistenceService()
-      : super(
-          const PersistenceServiceModel(
-            recipes: <PersistenceServiceModelShoppingListRecipe>[],
-          ),
-        ) {
+  @override
+  PersistenceServiceModel build() {
     shoppingListBox = Hive.box<PersistenceServiceModelShoppingListRecipe>(
       ingredientsBoxName,
     );
     shoppingListBox.listenable().addListener(() {
       state = state.copyWith(recipes: shoppingListBox.values.toList());
     });
-    // shoppingListBox.put(
-    //   '1',
-    //   PersistenceServiceModelShoppingListRecipe(
-    //     ingredients: [
-    //       PersistenceServiceModelShoppingListIngredient(
-    //         ingredientId: '111',
-    //         isTickedOff: false,
-    //         imageUrl: none(),
-    //         slug: 'slug',
-    //         displayedName: 'displayedName',
-    //         amount: some(1),
-    //         unit: none(),
-    //         family: some(
-    //           PersistenceServiceModelShoppingListIngredientFamily(
-    //             id: 'Family111',
-    //             type: 'Family111',
-    //             iconPath: none(),
-    //             name: 'Family111',
-    //             slug: 'Family111',
-    //           ),
-    //         ),
-    //       )
-    //     ],
-    //     title: 'First',
-    //     imagePath: none(),
-    //     servings: 1,
-    //     recipeId: '1',
-    //   ),
-    // );
     sortingUnits = Hive.box<PersistenceServiceModelSortingUnit>(
       sortingUnitsBoxName,
     );
     activeShoppingListSortingBox =
         Hive.box<PersistenceServiceModelActiveSorting>(
       activeShoppingListSortingBoxName,
+    );
+    return const PersistenceServiceModel(
+      recipes: <PersistenceServiceModelShoppingListRecipe>[],
     );
   }
 

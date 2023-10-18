@@ -42,25 +42,25 @@ class MainControllerImplementation extends _$MainControllerImplementation
         bottomNavigationBarIndex: 0,
       );
 
-  @override
-  void goToCart() {
-    navigationService.navigateToNamed(uri: NavigationServiceUris.cartRouteUri);
-    state = state.copyWith(bottomNavigationBarIndex: 1);
-  }
+  // @override
+  // void goToCart() {
+  //   navigationService.navigateToNamed(uri: NavigationServiceUris.cartRouteUri);
+  //   state = state.copyWith(bottomNavigationBarIndex: 1);
+  // }
 
-  @override
-  void goToHome() {
-    navigationService.navigateToNamed(uri: NavigationServiceUris.homeRouteUri);
-    state = state.copyWith(bottomNavigationBarIndex: 0);
-  }
+  // @override
+  // void goToHome() {
+  //   navigationService.navigateToNamed(uri: NavigationServiceUris.homeRouteUri);
+  //   state = state.copyWith(bottomNavigationBarIndex: 0);
+  // }
 
-  @override
-  void goToAccount() {
-    navigationService.navigateToNamed(
-      uri: NavigationServiceUris.accountRouteUri,
-    );
-    state = state.copyWith(bottomNavigationBarIndex: 2);
-  }
+  // @override
+  // void goToAccount() {
+  //   navigationService.navigateToNamed(
+  //     uri: NavigationServiceUris.accountRouteUri,
+  //   );
+  //   state = state.copyWith(bottomNavigationBarIndex: 2);
+  // }
 
   @override
   bool goBack() {
