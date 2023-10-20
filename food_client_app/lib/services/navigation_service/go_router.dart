@@ -57,107 +57,107 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
           navigatorKey: shellNavigatorKey,
           routes: <GoRoute>[
             GoRoute(
-              builder: (_, GoRouterState state) {
-                final AccountControllerImplementationProvider provider =
-                    accountControllerImplementationProvider(
-                  navigationService: ref.watch(navigationServiceProvider),
-                );
-                return Consumer(
-                  builder: (_, WidgetRef ref, ___) => AccountView(
+              builder: (_, GoRouterState state) => Consumer(
+                builder: (_, WidgetRef ref, ___) {
+                  final AccountControllerImplementationProvider provider =
+                      accountControllerImplementationProvider(
+                    navigationService: ref.watch(navigationServiceProvider),
+                  );
+                  return AccountView(
                     model: ref.watch(provider),
                     controller: ref.watch(provider.notifier),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
               path: NavigationServiceUris.accountRouteUri.toString(),
             ),
             GoRoute(
-              builder: (_, GoRouterState state) {
-                final CartControllerImplementationProvider provider =
-                    cartControllerImplementationProvider(
-                  navigationService: ref.watch(navigationServiceProvider),
-                  combinedIngredients:
-                      ref.watch(appSettingsServiceProvider).combineIngredients,
-                  imageSizerService: ref.read(webImageSizerServiceProvider),
-                  persistenceService:
-                      ref.watch(persistenceServiceProvider.notifier),
-                );
-                return Consumer(
-                  builder: (_, WidgetRef ref, ___) => CartView(
+              builder: (_, GoRouterState state) => Consumer(
+                builder: (_, WidgetRef ref, ___) {
+                  final CartControllerImplementationProvider provider =
+                      cartControllerImplementationProvider(
+                    navigationService: ref.watch(navigationServiceProvider),
+                    combinedIngredients: ref
+                        .watch(appSettingsServiceProvider)
+                        .combineIngredients,
+                    imageSizerService: ref.read(webImageSizerServiceProvider),
+                    persistenceService:
+                        ref.watch(persistenceServiceProvider.notifier),
+                  );
+                  return CartView(
                     model: ref.watch(provider),
                     controller: ref.watch(provider.notifier),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
               path: NavigationServiceUris.cartRouteUri.toString(),
             ),
             GoRoute(
-              builder: (_, GoRouterState state) {
-                final HomeControllerImplementationProvider provider =
-                    homeControllerImplementationProvider(
-                  recipeLocales:
-                      ref.watch(appSettingsServiceProvider).recipeLocales,
-                  globalNavigationService: ref.read(navigationServiceProvider),
-                  webClientService: ref.read(webClientServiceProvider),
-                  webImageSizerService: ref.read(webImageSizerServiceProvider),
-                );
-
-                return Consumer(
-                  builder: (_, WidgetRef ref, ___) => HomeView(
+              builder: (_, GoRouterState state) => Consumer(
+                builder: (_, WidgetRef ref, ___) {
+                  final HomeControllerImplementationProvider provider =
+                      homeControllerImplementationProvider(
+                    recipeLocales:
+                        ref.watch(appSettingsServiceProvider).recipeLocales,
+                    globalNavigationService:
+                        ref.read(navigationServiceProvider),
+                    webClientService: ref.read(webClientServiceProvider),
+                    webImageSizerService:
+                        ref.read(webImageSizerServiceProvider),
+                  );
+                  return HomeView(
                     model: ref.watch(provider),
                     controller: ref.watch(provider.notifier),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
               path: NavigationServiceUris.homeRouteUri.toString(),
             ),
           ],
         ),
         GoRoute(
-          builder: (_, GoRouterState state) {
-            final IngredientsSortingControllerImplementationProvider provider =
-                IngredientsSortingControllerImplementationProvider(
-              webClientService: ref.read(webClientServiceProvider),
-              webImageSizerService: ref.read(webImageSizerServiceProvider),
-              loggingService: ref.read(loggingServiceProvider),
-              navigationService: ref.read(navigationServiceProvider),
-              persistenceService:
-                  ref.watch(persistenceServiceProvider.notifier),
-            );
-
-            return Consumer(
-              builder: (_, WidgetRef ref, ___) => IngredientsSortingView(
+          builder: (_, GoRouterState state) => Consumer(
+            builder: (_, WidgetRef ref, ___) {
+              final IngredientsSortingControllerImplementationProvider
+                  provider = IngredientsSortingControllerImplementationProvider(
+                webClientService: ref.read(webClientServiceProvider),
+                webImageSizerService: ref.read(webImageSizerServiceProvider),
+                loggingService: ref.read(loggingServiceProvider),
+                navigationService: ref.read(navigationServiceProvider),
+                persistenceService:
+                    ref.watch(persistenceServiceProvider.notifier),
+              );
+              return IngredientsSortingView(
                 model: ref.watch(provider),
                 controller: ref.watch(provider.notifier),
-              ),
-            );
-          },
+              );
+            },
+          ),
           parentNavigatorKey: rootNavigatorKey,
           path: NavigationServiceUris.ingredientsSortingRouteUri.toString(),
         ),
         GoRoute(
-          builder: (_, GoRouterState state) {
-            final String recipeId =
-                state.pathParameters[NavigationServiceUris.singleRecipeIdKey] ??
-                    ''; // TODO: handle error
-            final SingleRecipeControllerImplementationProvider provider =
-                singleRecipeControllerImplementationProvider(
-              navigationService: ref.read(navigationServiceProvider),
-              webClientService: ref.read(webClientServiceProvider),
-              webImageSizerService: ref.read(webImageSizerServiceProvider),
-              persistenceService:
-                  ref.watch(persistenceServiceProvider.notifier),
-              recipeId: recipeId,
-            );
-
-            return Consumer(
-              builder: (_, WidgetRef ref, ___) => SingleRecipeView(
+          builder: (_, GoRouterState state) => Consumer(
+            builder: (_, WidgetRef ref, ___) {
+              final String recipeId = state.pathParameters[
+                      NavigationServiceUris.singleRecipeIdKey] ??
+                  ''; // TODO: handle error
+              final SingleRecipeControllerImplementationProvider provider =
+                  singleRecipeControllerImplementationProvider(
+                navigationService: ref.read(navigationServiceProvider),
+                webClientService: ref.read(webClientServiceProvider),
+                webImageSizerService: ref.read(webImageSizerServiceProvider),
+                persistenceService:
+                    ref.watch(persistenceServiceProvider.notifier),
+                recipeId: recipeId,
+              );
+              return SingleRecipeView(
                 model: ref.watch(provider),
                 controller: ref.watch(provider.notifier),
                 recipeId: recipeId,
-              ),
-            );
-          },
+              );
+            },
+          ),
           parentNavigatorKey: rootNavigatorKey,
           path: NavigationServiceUris.singleRecipe.toString(),
         ),
