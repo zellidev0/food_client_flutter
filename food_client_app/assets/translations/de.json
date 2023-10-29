@@ -37,12 +37,15 @@
         "name_with_amount": "{name} #{amount}"
       },
       "empty_states": {
+        "no_recipes_for_filter": "Keine Rezepte für diesen Filter gefunden!",
         "no_recipes": "Keine Rezepte gefunden!",
         "no_more_recipes": "Keine weiteren Rezepte gefunden!"
       },
       "error_states": {
-        "no_recipes": "Fehler beim suchen nach Rezepten!",
-        "no_more_recipes": "Fehler beim suchen nach weiteren Rezepten!"
+        "fetching_filters": "Fehler beim Suchen nach verfügbaren Filtern!",
+        "fetching_recipes_for_filter": "Fehler beim Suchen nach Rezepten für diesen Filter!",
+        "fetching_recipes": "Fehler beim suchen nach Rezepten!",
+        "fetchin_more_recipes": "Fehler beim suchen nach weiteren Rezepten!"
       },
       "buttons": {
         "try_again": "Nochmal versuchen"

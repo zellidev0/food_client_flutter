@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:food_client/commons/view_state.dart';
 import 'package:food_client/commons/widgets.dart';
 import 'package:food_client/mvc.dart';
 import 'package:food_client/ui/home/home_model.dart';
@@ -58,11 +59,14 @@ class HomeView extends MvcView<HomeController, HomeModel> {
               buildSingleFilterChip(
                 text: 'ui.home_view.filters.tags'.tr(),
                 controller: controller,
-                selectedFilters: model.allTags
-                    .filter(
-                      (final HomeModelFilter filter) => filter.isSelected,
-                    )
-                    .toList(),
+                selectedFilters: model.availableFilters.mapData(
+                  (List<HomeModelFilter> data) => data
+                      .filter(
+                        (final HomeModelFilter filter) =>
+                            filter is HomeModelFilterTag && filter.isSelected,
+                      )
+                      .toList(),
+                ),
                 widgetToOpenOnClick:
                     Container(), // TODO(julian): buildDialogTags,
               ),
@@ -70,11 +74,15 @@ class HomeView extends MvcView<HomeController, HomeModel> {
               buildSingleFilterChip(
                 text: 'ui.home_view.filters.cuisines'.tr(),
                 controller: controller,
-                selectedFilters: model.allCuisines
-                    .filter(
-                      (final HomeModelFilter filter) => filter.isSelected,
-                    )
-                    .toList(),
+                selectedFilters: model.availableFilters.mapData(
+                  (List<HomeModelFilter> data) => data
+                      .filter(
+                        (final HomeModelFilter filter) =>
+                            filter is HomeModelFilterCuisine &&
+                            filter.isSelected,
+                      )
+                      .toList(),
+                ),
                 widgetToOpenOnClick:
                     Container(), // TODO(julian): buildDialogCuisines(),
               ),
@@ -85,22 +93,31 @@ class HomeView extends MvcView<HomeController, HomeModel> {
 
   Widget buildSingleFilterChip({
     required final String text,
-    required final List<HomeModelFilter> selectedFilters,
+    required final ViewState<List<HomeModelFilter>> selectedFilters,
     required final HomeController controller,
     required final Widget widgetToOpenOnClick,
   }) =>
       FilterChip(
-        label: Text(
-          selectedFilters.isEmpty
-              ? text
-              : 'ui.home_view.filters.name_with_amount'.tr(
-                  namedArgs: <String, String>{
-                    'name': text,
-                    'amount': selectedFilters.length.toString(),
-                  },
-                ),
+        label: selectedFilters.map(
+          data: (ViewStateData<List<HomeModelFilter>> data) => Text(
+            data.data.isEmpty
+                ? text
+                : 'ui.home_view.filters.name_with_amount'.tr(
+                    namedArgs: <String, String>{
+                      'name': text,
+                      'amount': data.data.length.toString(),
+                    },
+                  ),
+          ),
+          error: (_) => const CircularProgressIndicator(),
+          loading: (_) => const CircularProgressIndicator(),
         ),
-        selected: selectedFilters.isNotEmpty,
+        selected: selectedFilters.map(
+          data: (ViewStateData<List<HomeModelFilter>> data) =>
+              data.data.isNotEmpty,
+          error: (_) => false,
+          loading: (_) => false,
+        ),
         onSelected: (final _) {
           controller.openDialog(child: widgetToOpenOnClick);
         },
@@ -129,7 +146,14 @@ class HomeView extends MvcView<HomeController, HomeModel> {
                     recipe: recipe,
                     model: model,
                     controller: controller,
-                    cuisines: model.allCuisines,
+                    cuisines: model.availableFilters.map(
+                      data: (ViewStateData<List<HomeModelFilter>> data) => data
+                          .data
+                          .whereType<HomeModelFilterCuisine>()
+                          .toList(),
+                      error: (_) => <HomeModelFilterCuisine>[],
+                      loading: (_) => <HomeModelFilterCuisine>[],
+                    ),
                   ),
                   noItemsFoundIndicatorBuilder: (final _) =>
                       buildNoItemsFoundIcon(
@@ -191,7 +215,7 @@ class HomeView extends MvcView<HomeController, HomeModel> {
     required final HomeController controller,
   }) =>
       ElevatedButton.icon(
-        onPressed: controller.fetchRecipes,
+        onPressed: controller.retryLastRecipeFetching,
         icon: const Icon(Icons.refresh),
         label: Text('ui.home_view.buttons.try_again'.tr()),
       );
@@ -226,8 +250,22 @@ class HomeView extends MvcView<HomeController, HomeModel> {
                       ),
                       buildRecipeCardItemDescription(
                         recipe: recipe,
-                        tags: model.allTags,
-                        cuisines: model.allCuisines,
+                        tags: model.availableFilters.map(
+                          data: (ViewStateData<List<HomeModelFilter>> data) =>
+                              data.data
+                                  .whereType<HomeModelFilterTag>()
+                                  .toList(),
+                          error: (_) => <HomeModelFilterTag>[],
+                          loading: (_) => <HomeModelFilterTag>[],
+                        ),
+                        cuisines: model.availableFilters.map(
+                          data: (ViewStateData<List<HomeModelFilter>> data) =>
+                              data.data
+                                  .whereType<HomeModelFilterCuisine>()
+                                  .toList(),
+                          error: (_) => <HomeModelFilterCuisine>[],
+                          loading: (_) => <HomeModelFilterCuisine>[],
+                        ),
                       ),
                     ],
                   ),
@@ -313,7 +351,7 @@ class HomeView extends MvcView<HomeController, HomeModel> {
 //       builder: (final _, final WidgetRef ref, final __) => buildDialog(
 //         children: ref
 //             .watch(providers.homeControllerProvider)
-//             .allTags
+//             .availableTags
 //             .filter(
 //               (final HomeModelFilterTag tag) =>
 //                   tag.numberOfRecipes.getOrElse(() => 0) > 0,
@@ -395,14 +433,10 @@ Widget buildDialog({
     );
 
 abstract class HomeController implements MvcController {
-  void fetchRecipes();
-  void setTagSelected({
-    required final String tagId,
-    required final bool selected,
-  });
-  void setCuisineSelected({
-    required final String cuisineId,
-    required final bool selected,
+  void retryLastRecipeFetching();
+  void setFiltersSelected({
+    required final String filterId,
+    required final bool isSelected,
   });
   void goToSingleRecipeView({
     required final String recipeId,

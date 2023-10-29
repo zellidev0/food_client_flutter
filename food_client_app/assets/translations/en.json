@@ -37,12 +37,15 @@
         "name_with_amount": "{name} #{amount}"
       },
       "empty_states": {
+        "no_recipes_for_filter": "No recipes for this filter combination found!",
         "no_recipes": "No recipes found",
         "no_more_recipes": "No more recipes found"
       },
       "error_states": {
-        "no_recipes": "Error fetching recipes from the server",
-        "no_more_recipes": "Error fetching more recipes from the server"
+        "fetching_filters": "Error searchinf for available filters!",
+        "fetching_recipes_for_filter": "Error fetchin recipes for this filter combination!",
+        "fetching_recipes": "Error fetching recipes from the server",
+        "fetchin_more_recipes": "Error fetching more recipes from the server"
       },
       "buttons": {
         "try_again": "Try again"

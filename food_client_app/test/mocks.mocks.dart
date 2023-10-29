@@ -9,9 +9,12 @@ import 'dart:ui' as _i4;
 import 'package:flutter/material.dart' as _i8;
 import 'package:food_client/services/navigation_service/navigation_service.dart'
     as _i9;
-import 'package:food_client/ui/home/home_navigation_service.dart' as _i6;
-import 'package:food_client/ui/home/home_web_client_service.dart' as _i3;
-import 'package:food_client/ui/home/home_web_image_sizer_service.dart' as _i5;
+import 'package:food_client/ui/home/services/home_navigation_service.dart'
+    as _i6;
+import 'package:food_client/ui/home/services/home_web_client_service.dart'
+    as _i3;
+import 'package:food_client/ui/home/services/home_web_image_sizer_service.dart'
+    as _i5;
 import 'package:fpdart/fpdart.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -100,42 +103,41 @@ class MockHomeWebClientService extends _i1.Mock
       ) as _i2.TaskEither<Exception, _i3.HomeWebClientModelRecipeResponse>);
 
   @override
-  _i2.TaskEither<Exception, List<_i3.HomeWebClientModelCuisine>>
-      fetchAllCuisines({
-    required List<_i4.Locale>? recipeLocales,
-    _i2.Option<int>? take = const _i2.None(),
-  }) =>
-          (super.noSuchMethod(
-            Invocation.method(
-              #fetchAllCuisines,
-              [],
-              {
-                #recipeLocales: recipeLocales,
-                #take: take,
-              },
-            ),
-            returnValue: _FakeTaskEither_0<Exception,
-                List<_i3.HomeWebClientModelCuisine>>(
-              this,
-              Invocation.method(
-                #fetchAllCuisines,
-                [],
-                {
-                  #recipeLocales: recipeLocales,
-                  #take: take,
-                },
-              ),
-            ),
-          ) as _i2.TaskEither<Exception, List<_i3.HomeWebClientModelCuisine>>);
-
-  @override
-  _i2.TaskEither<Exception, List<_i3.HomeWebClientModelTag>> fetchAllTags({
+  _i2.TaskEither<Exception, List<_i3.HomeWebClientModelCuisine>> fetchCuisines({
     required List<_i4.Locale>? recipeLocales,
     _i2.Option<int>? take = const _i2.None(),
   }) =>
       (super.noSuchMethod(
         Invocation.method(
-          #fetchAllTags,
+          #fetchCuisines,
+          [],
+          {
+            #recipeLocales: recipeLocales,
+            #take: take,
+          },
+        ),
+        returnValue:
+            _FakeTaskEither_0<Exception, List<_i3.HomeWebClientModelCuisine>>(
+          this,
+          Invocation.method(
+            #fetchCuisines,
+            [],
+            {
+              #recipeLocales: recipeLocales,
+              #take: take,
+            },
+          ),
+        ),
+      ) as _i2.TaskEither<Exception, List<_i3.HomeWebClientModelCuisine>>);
+
+  @override
+  _i2.TaskEither<Exception, List<_i3.HomeWebClientModelTag>> fetchTags({
+    required List<_i4.Locale>? recipeLocales,
+    _i2.Option<int>? take = const _i2.None(),
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #fetchTags,
           [],
           {
             #recipeLocales: recipeLocales,
@@ -146,7 +148,7 @@ class MockHomeWebClientService extends _i1.Mock
             _FakeTaskEither_0<Exception, List<_i3.HomeWebClientModelTag>>(
           this,
           Invocation.method(
-            #fetchAllTags,
+            #fetchTags,
             [],
             {
               #recipeLocales: recipeLocales,

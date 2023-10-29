@@ -1,4 +1,6 @@
-import 'package:food_client/ui/home/home_logging_service.dart';
+import 'dart:developer';
+
+import 'package:food_client/ui/home/services/home_logging_service.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_logging_service.dart';
 import 'package:logging/logging.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -20,7 +22,12 @@ class LoggingServiceImplementation implements LoggingServiceAggregator {
 
   LoggingServiceImplementation({
     required final String loggerName,
-  }) : _logger = Logger(loggerName);
+  }) : _logger = Logger(loggerName) {
+    Logger.root.level = Level.ALL;
+    Logger.root.onRecord.listen((LogRecord record) {
+      log('${record.level.name}: ${record.time}: ${record.message}');
+    });
+  }
 
   @override
   void error({

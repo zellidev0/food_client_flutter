@@ -1,15 +1,15 @@
 import 'dart:async';
-import 'dart:developer';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:food_client/commons/view_state.dart';
+import 'package:food_client/generated/locale_keys.g.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
-import 'package:food_client/ui/home/home_logging_service.dart';
 import 'package:food_client/ui/home/home_model.dart';
-import 'package:food_client/ui/home/home_navigation_service.dart';
 import 'package:food_client/ui/home/home_view.dart';
-import 'package:food_client/ui/home/home_web_client_service.dart';
-import 'package:food_client/ui/home/home_web_image_sizer_service.dart';
+import 'package:food_client/ui/home/services/home_logging_service.dart';
+import 'package:food_client/ui/home/services/home_navigation_service.dart';
+import 'package:food_client/ui/home/services/home_web_client_service.dart';
+import 'package:food_client/ui/home/services/home_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -34,10 +34,16 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
         PagingController<int, HomeModelRecipe>(
       firstPageKey: 0,
     );
+    scheduleMicrotask(
+      () => unawaited(
+        Task.sequenceList(<Task<void>>[
+          _fetchFiltersAndSetState(),
+        ]).run(),
+      ),
+    );
     _listenToPaginationController(paginationController: paginationController);
     return HomeModel(
-      allTags: <HomeModelFilterTag>[],
-      allCuisines: <HomeModelFilterCuisine>[],
+      availableFilters: <HomeModelFilter>[].toViewStateData(),
       pagingController: paginationController,
       recipeLocales: recipeLocales,
     );
@@ -45,115 +51,143 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
 
   void _listenToPaginationController({
     required PagingController<int, HomeModelRecipe> paginationController,
-  }) {
-    paginationController.addPageRequestListener((final int pageKey) async {
-      (await _fetchRecipes(paginationSkip: pageKey).run()).fold(
-        (final Exception exception) {
-          log(exception.toString());
-          return state.pagingController.error =
-              'ui.home_view.error_states.no_recipes'.tr();
-        },
-        (final List<HomeModelRecipe> recipes) {
-          setRecipesInPageController(
-            newRecipes: recipes,
-            pageKey: pageKey,
-            replaceRecipes: false,
+  }) =>
+      paginationController.addPageRequestListener(
+        (final int pageKey) {
+          state.availableFilters.maybeMap(
+            data: (ViewStateData<List<HomeModelFilter>> data) => unawaited(
+              _fetchRecipes(
+                paginationSkip: 0,
+                tagIds: selectedFilterIds(
+                  type: data.data.whereType<HomeModelFilterTag>().toList(),
+                ),
+                cuisineIds: selectedFilterIds(
+                  type: data.data.whereType<HomeModelFilterCuisine>().toList(),
+                ),
+              ).match(
+                (final Exception error) {
+                  loggingService.error(
+                    message: 'Error fetching more recipes for filter',
+                    error: error,
+                  );
+                  globalNavigationService.showSnackBar(
+                    message: LocaleKeys
+                        .ui_home_view_error_states_fetching_recipes
+                        .tr(),
+                  );
+                },
+                (final List<HomeModelRecipe> recipes) {
+                  _setRecipesInPageController(
+                    pageKey: pageKey,
+                    newRecipes: recipes,
+                    replaceRecipes: false,
+                  );
+                },
+              ).run(),
+            ),
+            orElse: () {
+              loggingService.error(message: 'Error fetching with filters');
+              globalNavigationService.showSnackBar(
+                message: LocaleKeys
+                    .ui_home_view_error_states_fetching_recipes_for_filter
+                    .tr(),
+              );
+              return null;
+            },
           );
         },
       );
-    });
-  }
 
-  Task<void> init() => Task<void>(
-        () async => (await _fetchTags()
-                .map2(
-                  _fetchCuisines(),
-                  (
-                    final List<HomeModelFilterTag> tags,
-                    final List<HomeModelFilterCuisine> cuisines,
-                  ) =>
-                      state.copyWith(allTags: tags, allCuisines: cuisines),
-                )
-                .run())
-            .fold(
-          (final Exception error) => debugPrint(error.toString()),
-          (final HomeModel model) {
-            state = model;
+  @override
+  void setFiltersSelected({
+    required final String filterId,
+    required final bool isSelected,
+  }) =>
+      state.availableFilters.maybeMap(
+        data: (ViewStateData<List<HomeModelFilter>> data) => unawaited(
+          _fetchRecipes(
+            paginationSkip: 0,
+            tagIds: selectedFilterIds(
+              type: data.data.whereType<HomeModelFilterTag>().toList(),
+            ),
+            cuisineIds: selectedFilterIds(
+              type: data.data.whereType<HomeModelFilterCuisine>().toList(),
+            ),
+          ).match(
+            (final Exception error) {
+              loggingService.error(
+                message: 'Error fetching recipes for filter',
+                error: error,
+              );
+              globalNavigationService.showSnackBar(
+                message: LocaleKeys
+                    .ui_home_view_error_states_fetching_recipes_for_filter
+                    .tr(),
+              );
+            },
+            (final List<HomeModelRecipe> recipes) {
+              state = state.copyWith(
+                availableFilters: state.availableFilters.mapData(
+                  (List<HomeModelFilter> filters) => replaceWIthId(
+                    data: filters,
+                    filterId: filterId,
+                    isSelected: isSelected,
+                  ).toList(),
+                ),
+              );
+              _setRecipesInPageController(
+                pageKey: 0,
+                newRecipes: recipes,
+                replaceRecipes: true,
+              );
+            },
+          ).run(),
+        ),
+        orElse: () {
+          loggingService.error(message: 'Error setting filters');
+          globalNavigationService.showSnackBar(
+            message: LocaleKeys
+                .ui_home_view_error_states_fetching_recipes_for_filter
+                .tr(),
+          );
+          return null;
+        },
+      );
+
+  @override
+  void goToSingleRecipeView({required final String recipeId}) =>
+      globalNavigationService.navigateToNamed(
+        uri: NavigationServiceUris.singleRecipe.replace(
+          queryParameters: <String, String>{
+            NavigationServiceUris.singleRecipeIdKey: recipeId,
           },
         ),
       );
 
-  @override
-  Future<void> setTagSelected({
-    required final String tagId,
-    required final bool selected,
-  }) async {
-    state = state.copyWith(
-      allTags: state.allTags
+  List<HomeModelFilter> replaceWIthId({
+    required List<HomeModelFilter> data,
+    required String filterId,
+    required bool isSelected,
+  }) =>
+      data
           .map(
-            (final HomeModelFilterTag tag) =>
-                tag.id == tagId ? tag.copyWith(isSelected: selected) : tag,
+            (final HomeModelFilter filter) => filter.id == filterId
+                ? filter.copyWith(isSelected: isSelected)
+                : filter,
           )
-          .toList(),
-    );
-    (await _fetchRecipes(paginationSkip: 0).run()).fold(
-      (final Exception exception) => debugPrint(exception.toString()),
-      (final List<HomeModelRecipe> recipes) => setRecipesInPageController(
-        pageKey: 0,
-        newRecipes: recipes,
-        replaceRecipes: true,
-      ),
-    );
-  }
-
-  @override
-  Future<void> setCuisineSelected({
-    required final String cuisineId,
-    required final bool selected,
-  }) async {
-    state = state.copyWith(
-      allCuisines: state.allCuisines
-          .map(
-            (final HomeModelFilterCuisine cuisine) => cuisineId == cuisine.id
-                ? cuisine.copyWith(isSelected: selected)
-                : cuisine,
-          )
-          .toList(),
-    );
-    (await _fetchRecipes(paginationSkip: 0).run()).fold(
-      (final Exception exception) => debugPrint(exception.toString()),
-      (final List<HomeModelRecipe> recipes) => setRecipesInPageController(
-        pageKey: 0,
-        newRecipes: recipes,
-        replaceRecipes: true,
-      ),
-    );
-  }
-
-  @override
-  void goToSingleRecipeView({required final String recipeId}) {
-    globalNavigationService.navigateToNamed(
-      uri: NavigationServiceUris.singleRecipe.replace(
-        queryParameters: <String, String>{
-          NavigationServiceUris.singleRecipeIdKey: recipeId,
-        },
-      ),
-    );
-  }
-
+          .toList();
   @override
   Future<void> openDialog({
     required final Widget child,
-  }) async {
-    await globalNavigationService.showModalBottomSheet(child: child);
-  }
+  }) async =>
+      await globalNavigationService.showModalBottomSheet(child: child);
 
   @override
-  void fetchRecipes() {
+  Future<void> retryLastRecipeFetching() async {
     state.pagingController.retryLastFailedRequest();
   }
 
-  void setRecipesInPageController({
+  void _setRecipesInPageController({
     required final int pageKey,
     required final List<HomeModelRecipe> newRecipes,
     required final bool replaceRecipes,
@@ -176,31 +210,32 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
     }
   }
 
-  List<HomeModelRecipe> createFilteredRecipes({
-    required final List<HomeModelRecipe> recipes,
-    required final List<String> tagIds,
-    required final List<String> cuisineIds,
-  }) =>
-      recipes
-          .filter(
-            (final HomeModelRecipe recipe) =>
-                (recipe.tagIds.any(tagIds.contains) || tagIds.isEmpty) &&
-                (recipe.cuisineIds.any(cuisineIds.contains) ||
-                    cuisineIds.isEmpty),
-          )
-          .toList();
+  // List<HomeModelRecipe> createFilteredRecipes({
+  //   required final List<HomeModelRecipe> recipes,
+  //   required final List<String> tagIds,
+  //   required final List<String> cuisineIds,
+  // }) =>
+  //     recipes
+  //         .filter(
+  //           (final HomeModelRecipe recipe) =>
+  //               (recipe.tagIds.any(tagIds.contains) || tagIds.isEmpty) &&
+  //               (recipe.cuisineIds.any(cuisineIds.contains) ||
+  //                   cuisineIds.isEmpty),
+  //         )
+  //         .toList();
 
   TaskEither<Exception, List<HomeModelRecipe>> _fetchRecipes({
     required final int paginationSkip,
+    required final List<String> tagIds,
+    required final List<String> cuisineIds,
   }) =>
       webClientService
           .fetchRecipes(
             recipeLocales: state.recipeLocales,
             skip: paginationSkip,
             take: recipesPerPage,
-            tagIds: some(selectedTagIds(tags: state.allTags)),
-            cuisineId:
-                selectedCuisineIds(cuisines: state.allCuisines).firstOption,
+            tagIds: some(tagIds),
+            cuisineId: cuisineIds.firstOption, // TODO(julian): this looks wrong
           )
           .map(
             (final HomeWebClientModelRecipeResponse recipeResponse) =>
@@ -210,70 +245,90 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
             ),
           );
 
-  TaskEither<Exception, List<HomeModelFilterTag>> _fetchTags() =>
-      webClientService
-          .fetchAllTags(
+  Task<void> _fetchFiltersAndSetState() => webClientService
+          .fetchTags(
             take: some(100),
             recipeLocales: state.recipeLocales,
           )
-          .map(
-            (final List<HomeWebClientModelTag> tags) => tags
-                .map(
-                  (final HomeWebClientModelTag tag) => HomeModelFilterTag(
-                    id: tag.id,
-                    displayedName: tag.displayedName,
-                    type: tag.type,
-                    isSelected: false,
-                    numberOfRecipes: tag.numberOfRecipes,
-                  ),
-                )
-                .toList(),
-          );
-
-  TaskEither<Exception, List<HomeModelFilterCuisine>> _fetchCuisines() =>
-      webClientService
-          .fetchAllCuisines(
-            recipeLocales: state.recipeLocales,
-            take: some(1000),
+          .map2(
+            webClientService.fetchCuisines(
+              take: some(1000),
+              recipeLocales: state.recipeLocales,
+            ),
+            (
+              List<HomeWebClientModelTag> tags,
+              List<HomeWebClientModelCuisine> cuisines,
+            ) =>
+                state.copyWith(
+              availableFilters: <HomeModelFilter>[
+                ...tags.map(_mapToTag),
+                ...cuisines.map(_mapToCuisine),
+              ].toViewStateData(),
+            ),
           )
+          .match(
+        (final Exception error) {
+          loggingService.error(
+            message: 'Failed to fetch filters',
+            error: error,
+          );
+          globalNavigationService.showSnackBar(
+            message: LocaleKeys.ui_home_view_error_states_fetching_filters.tr(),
+          );
+          state = state.copyWith(availableFilters: error.toViewStateError());
+        },
+        (final HomeModel newState) {
+          loggingService.info(
+            message: 'Fetched filters: ${newState.availableFilters}',
+          );
+          state = newState;
+        },
+      );
+
+  Option<Uri> _getImageUrlFromImagePath({
+    required final HomeWebImageSizerService imageResizerService,
+    required final Uri imagePath,
+  }) =>
+      imageResizerService
+          .getUrl(filePath: imagePath, widthPixels: widthPixels)
+          .fold(
+        (final Exception error) {
+          loggingService.error(
+            message: 'Failed to get image url from image path',
+            error: error,
+          );
+          return none<Uri>();
+        },
+        some<Uri>,
+      );
+
+  List<HomeModelRecipe> mapToHomeModelRecipes({
+    required final List<HomeWebClientModelRecipe> recipes,
+    required final HomeWebImageSizerService imageResizerService,
+  }) =>
+      recipes
           .map(
-            (final List<HomeWebClientModelCuisine> cuisines) => cuisines
-                .map(
-                  (final HomeWebClientModelCuisine cuisine) =>
-                      HomeModelFilterCuisine(
-                    id: cuisine.id,
-                    displayedName: cuisine.displayedName,
-                    slug: cuisine.slug,
-                    isSelected: false,
-                    numberOfRecipes: cuisine.numberOfRecipes,
-                    countryCode: cuisine.countryCode,
+            (final HomeWebClientModelRecipe recipe) => recipe.imagePath
+                .flatMap(
+                  (final Uri imagePath) => _getImageUrlFromImagePath(
+                    imageResizerService: imageResizerService,
+                    imagePath: imagePath,
                   ),
                 )
-                .toList(),
-          );
+                .map(
+                  (final Uri imageUri) => _mapHomeModelRecipe(recipe, imageUri),
+                ),
+          )
+          .whereType<Some<HomeModelRecipe>>()
+          .map((final Some<HomeModelRecipe> recipe) => recipe.value)
+          .toList();
 }
 
 List<String> selectedFilterIds({
-  required final List<HomeModelFilter> filters,
+  required final List<HomeModelFilter> type,
 }) =>
-    selectedFilters(filters: filters)
+    selectedFilters(filters: type)
         .map((final HomeModelFilter filter) => filter.id)
-        .toList();
-
-List<String> selectedTagIds({
-  required final List<HomeModelFilterTag> tags,
-}) =>
-    selectedFilters(filters: tags)
-        .whereType<HomeModelFilterTag>()
-        .map((final HomeModelFilterTag tag) => tag.id)
-        .toList();
-
-List<String> selectedCuisineIds({
-  required final List<HomeModelFilterCuisine> cuisines,
-}) =>
-    selectedFilters(filters: cuisines)
-        .whereType<HomeModelFilterCuisine>()
-        .map((final HomeModelFilterCuisine cuisine) => cuisine.id)
         .toList();
 
 List<HomeModelFilter> selectedFilters({
@@ -283,57 +338,26 @@ List<HomeModelFilter> selectedFilters({
         .filter((final HomeModelFilter filter) => filter.isSelected)
         .toList();
 
-List<HomeModelRecipe> mapToHomeModelRecipes({
-  required final List<HomeWebClientModelRecipe> recipes,
-  required final HomeWebImageSizerService imageResizerService,
-}) =>
-    recipes
-        .map(
-          (final HomeWebClientModelRecipe recipe) => recipe.imagePath
-              .flatMap(
-                (final Uri imagePath) => getImageUrlFromImagePath(
-                  imageResizerService: imageResizerService,
-                  imagePath: imagePath,
-                ),
-              )
-              .map(
-                (final Uri imageUri) => HomeModelRecipe(
-                  id: recipe.id,
-                  displayedAttributes: _mapDisplayedAttributes(
-                    displayedAttributes: recipe.displayedAttributes,
-                  ),
-                  difficulty: recipe.difficulty,
-                  ingredients: _mapIngredients(ingredients: recipe.ingredients),
-                  yields: _mapYields(yields: recipe.yields),
-                  tagIds: recipe.tagIds,
-                  imageUri: imageUri,
-                  cuisineIds: recipe.cuisineIds,
-                ),
-              ),
-        )
-        .whereType<Some<HomeModelRecipe>>()
-        .map(
-          (final Some<HomeModelRecipe> recipe) => recipe.value,
-        )
-        .toList();
-
-Option<Uri> getImageUrlFromImagePath({
-  required final HomeWebImageSizerService imageResizerService,
-  required final Uri imagePath,
-}) =>
-    imageResizerService
-        .getUrl(filePath: imagePath, widthPixels: widthPixels)
-        .fold(
-      (final Exception l) {
-        debugPrint('Exception l');
-        return none<Uri>();
-      },
-      some<Uri>,
+HomeModelRecipe _mapHomeModelRecipe(
+  HomeWebClientModelRecipe recipe,
+  Uri imageUri,
+) =>
+    HomeModelRecipe(
+      id: recipe.id,
+      displayedAttributes: _mapDisplayedAttributes(
+        recipe.displayedAttributes,
+      ),
+      difficulty: recipe.difficulty,
+      ingredients: _mapIngredients(recipe.ingredients),
+      yields: _mapYields(recipe.yields),
+      tagIds: recipe.tagIds,
+      imageUri: imageUri,
+      cuisineIds: recipe.cuisineIds,
     );
 
-HomeModelDisplayedAttributes _mapDisplayedAttributes({
-  required final HomeWebClientModelDisplayedAttributes displayedAttributes,
-}) =>
+HomeModelDisplayedAttributes _mapDisplayedAttributes(
+  final HomeWebClientModelDisplayedAttributes displayedAttributes,
+) =>
     HomeModelDisplayedAttributes(
       name: displayedAttributes.name,
       headline: displayedAttributes.headline,
@@ -341,9 +365,9 @@ HomeModelDisplayedAttributes _mapDisplayedAttributes({
       descriptionMarkdown: displayedAttributes.descriptionMarkdown,
     );
 
-List<HomeModelIngredient> _mapIngredients({
-  required final List<HomeWebClientModelIngredient> ingredients,
-}) =>
+List<HomeModelIngredient> _mapIngredients(
+  final List<HomeWebClientModelIngredient> ingredients,
+) =>
     ingredients
         .map(
           (final HomeWebClientModelIngredient ingredient) =>
@@ -355,26 +379,40 @@ List<HomeModelIngredient> _mapIngredients({
         )
         .toList();
 
-List<HomeModelYield> _mapYields({
-  required final List<HomeWebClientModelYield> yields,
-}) =>
+HomeModelFilterTag _mapToTag(HomeWebClientModelTag tag) => HomeModelFilterTag(
+      id: tag.id,
+      displayedName: tag.displayedName,
+      type: tag.type,
+      isSelected: false,
+      numberOfRecipes: tag.numberOfRecipes,
+    );
+
+HomeModelFilterCuisine _mapToCuisine(HomeWebClientModelCuisine cuisine) =>
+    HomeModelFilterCuisine(
+      id: cuisine.id,
+      displayedName: cuisine.displayedName,
+      slug: cuisine.slug,
+      isSelected: false,
+      numberOfRecipes: cuisine.numberOfRecipes,
+      countryCode: cuisine.countryCode,
+    );
+
+List<HomeModelYield> _mapYields(
+  final List<HomeWebClientModelYield> yields,
+) =>
     yields
         .map(
           (final HomeWebClientModelYield yield) => HomeModelYield(
             yield: yield.yield,
-            yieldIngredient: yield.yieldIngredient
-                .map(
-                  (final HomeWebClientModelYieldIngredient ingredient) =>
-                      _mapToYieldIngredient(ingredient: ingredient),
-                )
-                .toList(),
+            yieldIngredient:
+                yield.yieldIngredient.map(_mapToYieldIngredient).toList(),
           ),
         )
         .toList();
 
-HomeModelYieldIngredient _mapToYieldIngredient({
-  required final HomeWebClientModelYieldIngredient ingredient,
-}) =>
+HomeModelYieldIngredient _mapToYieldIngredient(
+  final HomeWebClientModelYieldIngredient ingredient,
+) =>
     HomeModelYieldIngredient(
       id: ingredient.id,
       amount: ingredient.amount,

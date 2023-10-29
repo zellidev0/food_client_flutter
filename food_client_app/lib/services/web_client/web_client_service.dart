@@ -5,7 +5,7 @@ import 'package:collection/collection.dart';
 import 'package:commons_graphql/commons_graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:food_client/services/web_client/web_client_model.dart';
-import 'package:food_client/ui/home/home_web_client_service.dart';
+import 'package:food_client/ui/home/services/home_web_client_service.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_web_client_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_web_client_service.dart';
 import 'package:fpdart/fpdart.dart';
@@ -477,7 +477,7 @@ class WebClientService implements WebClientServiceAggregator {
       );
 
   @override
-  TaskEither<Exception, List<HomeWebClientModelCuisine>> fetchAllCuisines({
+  TaskEither<Exception, List<HomeWebClientModelCuisine>> fetchCuisines({
     required final List<Locale> recipeLocales,
     final Option<int> take = const None<int>(),
   }) =>
@@ -505,7 +505,7 @@ class WebClientService implements WebClientServiceAggregator {
       );
 
   @override
-  TaskEither<Exception, List<HomeWebClientModelTag>> fetchAllTags({
+  TaskEither<Exception, List<HomeWebClientModelTag>> fetchTags({
     final Option<int> take = const None<int>(),
     required final List<Locale> recipeLocales,
   }) =>

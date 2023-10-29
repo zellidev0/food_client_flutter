@@ -6,32 +6,32 @@ typedef BinaryFunction<T, U, R> = R Function(T, U);
 typedef TernaryFunction<T, U, V, R> = R Function(T, U, V);
 
 @freezed
-class AsyncData<T> with _$AsyncData<T> {
-  const factory AsyncData.data(
+class ViewState<T> with _$ViewState<T> {
+  const factory ViewState.data(
     final T data,
-  ) = AsyncDataData<T>;
-  const factory AsyncData.error(
+  ) = ViewStateData<T>;
+  const factory ViewState.error(
     final Object error,
-  ) = AsyncDataError<T>;
-  const factory AsyncData.loading() = AsyncDataLoading<T>;
+  ) = ViewStateError<T>;
+  const factory ViewState.loading() = ViewStateLoading<T>;
 
-  const AsyncData._();
+  const ViewState._();
 
-  AsyncData<R> mapData<R>(final R Function(T data) transform) => when(
-        data: (final T data) => AsyncData<R>.data(transform(data)),
-        error: AsyncData<R>.error,
-        loading: AsyncData<R>.loading,
+  ViewState<R> mapData<R>(final R Function(T data) transform) => when(
+        data: (final T data) => ViewState<R>.data(transform(data)),
+        error: ViewState<R>.error,
+        loading: ViewState<R>.loading,
       );
 
-  AsyncData<R> flatMapData<R>(final AsyncData<R> Function(T data) transform) =>
+  ViewState<R> flatMapData<R>(final ViewState<R> Function(T data) transform) =>
       when(
         data: transform,
-        error: AsyncData<R>.error,
-        loading: AsyncData<R>.loading,
+        error: ViewState<R>.error,
+        loading: ViewState<R>.loading,
       );
 
-  AsyncData<R> mapData2<U, R>(
-    final AsyncData<U> otherData,
+  ViewState<R> mapData2<U, R>(
+    final ViewState<U> otherData,
     final R Function(T data, U otherData) transform,
   ) =>
       flatMapData(
@@ -40,9 +40,9 @@ class AsyncData<T> with _$AsyncData<T> {
         ),
       );
 
-  AsyncData<R> mapData3<U, V, R>(
-    final AsyncData<U> secondData,
-    final AsyncData<V> thirdData,
+  ViewState<R> mapData3<U, V, R>(
+    final ViewState<U> secondData,
+    final ViewState<V> thirdData,
     final R Function(T data, U secondData, V thirdData) transform,
   ) =>
       flatMapData(
@@ -54,7 +54,7 @@ class AsyncData<T> with _$AsyncData<T> {
       );
 }
 
-extension AsyncDataExtension<T extends Object> on T {
-  AsyncData<T> toAsyncDataData() => AsyncData<T>.data(this);
-  AsyncData<R> toAsyncDataError<R>() => AsyncData<R>.error(this);
+extension ViewStateExtension<T extends Object> on T {
+  ViewState<T> toViewStateData() => ViewState<T>.data(this);
+  ViewState<R> toViewStateError<R>() => ViewState<R>.error(this);
 }

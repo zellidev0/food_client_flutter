@@ -15,11 +15,11 @@ abstract class HomeWebClientService {
     final Option<List<String>> ingredients = const None<List<String>>(),
     final Option<String> searchTerm = const None<String>(),
   });
-  TaskEither<Exception, List<HomeWebClientModelCuisine>> fetchAllCuisines({
+  TaskEither<Exception, List<HomeWebClientModelCuisine>> fetchCuisines({
     required final List<Locale> recipeLocales,
     final Option<int> take = const None<int>(),
   });
-  TaskEither<Exception, List<HomeWebClientModelTag>> fetchAllTags({
+  TaskEither<Exception, List<HomeWebClientModelTag>> fetchTags({
     required final List<Locale> recipeLocales,
     final Option<int> take = const None<int>(),
   });
