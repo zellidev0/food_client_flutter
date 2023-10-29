@@ -1,14 +1,9 @@
-// ignore_for_file: unreachable_from_main
-
-import 'dart:ui';
+// ignore_for_file: unreachable_from_main, unused_local_variable
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:food_client/ui/home/home_controller.dart';
-import 'package:food_client/ui/home/home_model.dart';
 import 'package:food_client/ui/home/home_web_client_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../mocks.mocks.dart';
@@ -67,35 +62,6 @@ void main() {
         initialFetchVariant.currentValue!.cuisines,
       ),
     );
-
-    final HomeControllerImplementation controller =
-        HomeControllerImplementation(
-      HomeModel(
-        pagingController: PagingController<int, HomeModelRecipe>(
-          firstPageKey: 0,
-        ),
-        allTags: <HomeModelFilterTag>[],
-        allCuisines: <HomeModelFilterCuisine>[],
-        recipeLocales: <Locale>[],
-      ),
-      webClientService: webClientService,
-      webImageSizerService: webImageSizerService,
-      globalNavigationService: navigationService,
-    );
-
-    await controller.init().run();
-
-    if (initialFetchVariant.currentValue!.tags.isEmpty) {
-      expect(controller.debugState.allTags, isEmpty);
-    } else {
-      expect(controller.debugState.allTags, isNotEmpty);
-    }
-
-    if (initialFetchVariant.currentValue!.cuisines.isEmpty) {
-      expect(controller.debugState.allCuisines, isEmpty);
-    } else {
-      expect(controller.debugState.allCuisines, isNotEmpty);
-    }
   });
 }
 

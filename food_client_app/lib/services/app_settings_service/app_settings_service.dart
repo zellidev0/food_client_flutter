@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/services/app_settings_service/app_settings_service_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
