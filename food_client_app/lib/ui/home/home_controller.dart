@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:food_client/commons/view_state.dart';
 import 'package:food_client/generated/locale_keys.g.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
@@ -45,7 +44,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
         ]).run(),
       ),
     );
-    ;
+
     return HomeModel(
       availableFilters: const ViewState<List<HomeModelFilter>>.loading(),
       pagingController: paginationController,
@@ -219,20 +218,6 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
     }
   }
 
-  // List<HomeModelRecipe> createFilteredRecipes({
-  //   required final List<HomeModelRecipe> recipes,
-  //   required final List<String> tagIds,
-  //   required final List<String> cuisineIds,
-  // }) =>
-  //     recipes
-  //         .filter(
-  //           (final HomeModelRecipe recipe) =>
-  //               (recipe.tagIds.any(tagIds.contains) || tagIds.isEmpty) &&
-  //               (recipe.cuisineIds.any(cuisineIds.contains) ||
-  //                   cuisineIds.isEmpty),
-  //         )
-  //         .toList();
-
   TaskEither<Exception, List<HomeModelRecipe>> _fetchRecipes({
     required final int paginationSkip,
     required final List<String> tagIds,
@@ -244,7 +229,8 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
             skip: paginationSkip,
             take: recipesPerPage,
             tagIds: some(tagIds),
-            cuisineId: cuisineIds.firstOption, // TODO(julian): this looks wrong
+            cuisineId: cuisineIds
+                .firstOption, // TODO(julian): handle this when the backend suports more than one cusine
           )
           .map(
             (final HomeWebClientModelRecipeResponse recipeResponse) =>
