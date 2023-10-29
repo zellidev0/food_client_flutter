@@ -226,7 +226,7 @@ class IngredientsSortingControllerImplementation
     required final String message,
     required final String userDisplayedErrorMessage,
   }) {
-    loggingService.logError(message: message, exception: exception);
+    loggingService.error(message: message, error: exception);
     navigationService.showSnackBar(message: userDisplayedErrorMessage);
   }
 

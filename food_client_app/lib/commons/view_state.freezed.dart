@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$ViewState<T> {
+mixin _$AsyncData<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T data) data,
@@ -40,39 +40,39 @@ mixin _$ViewState<T> {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ViewStateData<T> value) data,
-    required TResult Function(ViewStateError<T> value) error,
-    required TResult Function(ViewStateLoading<T> value) loading,
+    required TResult Function(AsyncDataData<T> value) data,
+    required TResult Function(AsyncDataError<T> value) error,
+    required TResult Function(AsyncDataLoading<T> value) loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ViewStateData<T> value)? data,
-    TResult? Function(ViewStateError<T> value)? error,
-    TResult? Function(ViewStateLoading<T> value)? loading,
+    TResult? Function(AsyncDataData<T> value)? data,
+    TResult? Function(AsyncDataError<T> value)? error,
+    TResult? Function(AsyncDataLoading<T> value)? loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ViewStateData<T> value)? data,
-    TResult Function(ViewStateError<T> value)? error,
-    TResult Function(ViewStateLoading<T> value)? loading,
+    TResult Function(AsyncDataData<T> value)? data,
+    TResult Function(AsyncDataError<T> value)? error,
+    TResult Function(AsyncDataLoading<T> value)? loading,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ViewStateCopyWith<T, $Res> {
-  factory $ViewStateCopyWith(
-          ViewState<T> value, $Res Function(ViewState<T>) then) =
-      _$ViewStateCopyWithImpl<T, $Res, ViewState<T>>;
+abstract class $AsyncDataCopyWith<T, $Res> {
+  factory $AsyncDataCopyWith(
+          AsyncData<T> value, $Res Function(AsyncData<T>) then) =
+      _$AsyncDataCopyWithImpl<T, $Res, AsyncData<T>>;
 }
 
 /// @nodoc
-class _$ViewStateCopyWithImpl<T, $Res, $Val extends ViewState<T>>
-    implements $ViewStateCopyWith<T, $Res> {
-  _$ViewStateCopyWithImpl(this._value, this._then);
+class _$AsyncDataCopyWithImpl<T, $Res, $Val extends AsyncData<T>>
+    implements $AsyncDataCopyWith<T, $Res> {
+  _$AsyncDataCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -81,20 +81,20 @@ class _$ViewStateCopyWithImpl<T, $Res, $Val extends ViewState<T>>
 }
 
 /// @nodoc
-abstract class _$$ViewStateDataCopyWith<T, $Res> {
-  factory _$$ViewStateDataCopyWith(
-          _$ViewStateData<T> value, $Res Function(_$ViewStateData<T>) then) =
-      __$$ViewStateDataCopyWithImpl<T, $Res>;
+abstract class _$$AsyncDataDataCopyWith<T, $Res> {
+  factory _$$AsyncDataDataCopyWith(
+          _$AsyncDataData<T> value, $Res Function(_$AsyncDataData<T>) then) =
+      __$$AsyncDataDataCopyWithImpl<T, $Res>;
   @useResult
   $Res call({T data});
 }
 
 /// @nodoc
-class __$$ViewStateDataCopyWithImpl<T, $Res>
-    extends _$ViewStateCopyWithImpl<T, $Res, _$ViewStateData<T>>
-    implements _$$ViewStateDataCopyWith<T, $Res> {
-  __$$ViewStateDataCopyWithImpl(
-      _$ViewStateData<T> _value, $Res Function(_$ViewStateData<T>) _then)
+class __$$AsyncDataDataCopyWithImpl<T, $Res>
+    extends _$AsyncDataCopyWithImpl<T, $Res, _$AsyncDataData<T>>
+    implements _$$AsyncDataDataCopyWith<T, $Res> {
+  __$$AsyncDataDataCopyWithImpl(
+      _$AsyncDataData<T> _value, $Res Function(_$AsyncDataData<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -102,8 +102,8 @@ class __$$ViewStateDataCopyWithImpl<T, $Res>
   $Res call({
     Object? data = freezed,
   }) {
-    return _then(_$ViewStateData<T>(
-      data: freezed == data
+    return _then(_$AsyncDataData<T>(
+      freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as T,
@@ -113,22 +113,22 @@ class __$$ViewStateDataCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$ViewStateData<T> implements ViewStateData<T> {
-  const _$ViewStateData({required this.data});
+class _$AsyncDataData<T> extends AsyncDataData<T> {
+  const _$AsyncDataData(this.data) : super._();
 
   @override
   final T data;
 
   @override
   String toString() {
-    return 'ViewState<$T>.data(data: $data)';
+    return 'AsyncData<$T>.data(data: $data)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ViewStateData<T> &&
+            other is _$AsyncDataData<T> &&
             const DeepCollectionEquality().equals(other.data, data));
   }
 
@@ -139,8 +139,8 @@ class _$ViewStateData<T> implements ViewStateData<T> {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ViewStateDataCopyWith<T, _$ViewStateData<T>> get copyWith =>
-      __$$ViewStateDataCopyWithImpl<T, _$ViewStateData<T>>(this, _$identity);
+  _$$AsyncDataDataCopyWith<T, _$AsyncDataData<T>> get copyWith =>
+      __$$AsyncDataDataCopyWithImpl<T, _$AsyncDataData<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -179,9 +179,9 @@ class _$ViewStateData<T> implements ViewStateData<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ViewStateData<T> value) data,
-    required TResult Function(ViewStateError<T> value) error,
-    required TResult Function(ViewStateLoading<T> value) loading,
+    required TResult Function(AsyncDataData<T> value) data,
+    required TResult Function(AsyncDataError<T> value) error,
+    required TResult Function(AsyncDataLoading<T> value) loading,
   }) {
     return data(this);
   }
@@ -189,9 +189,9 @@ class _$ViewStateData<T> implements ViewStateData<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ViewStateData<T> value)? data,
-    TResult? Function(ViewStateError<T> value)? error,
-    TResult? Function(ViewStateLoading<T> value)? loading,
+    TResult? Function(AsyncDataData<T> value)? data,
+    TResult? Function(AsyncDataError<T> value)? error,
+    TResult? Function(AsyncDataLoading<T> value)? loading,
   }) {
     return data?.call(this);
   }
@@ -199,9 +199,9 @@ class _$ViewStateData<T> implements ViewStateData<T> {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ViewStateData<T> value)? data,
-    TResult Function(ViewStateError<T> value)? error,
-    TResult Function(ViewStateLoading<T> value)? loading,
+    TResult Function(AsyncDataData<T> value)? data,
+    TResult Function(AsyncDataError<T> value)? error,
+    TResult Function(AsyncDataLoading<T> value)? loading,
     required TResult orElse(),
   }) {
     if (data != null) {
@@ -211,30 +211,31 @@ class _$ViewStateData<T> implements ViewStateData<T> {
   }
 }
 
-abstract class ViewStateData<T> implements ViewState<T> {
-  const factory ViewStateData({required final T data}) = _$ViewStateData<T>;
+abstract class AsyncDataData<T> extends AsyncData<T> {
+  const factory AsyncDataData(final T data) = _$AsyncDataData<T>;
+  const AsyncDataData._() : super._();
 
   T get data;
   @JsonKey(ignore: true)
-  _$$ViewStateDataCopyWith<T, _$ViewStateData<T>> get copyWith =>
+  _$$AsyncDataDataCopyWith<T, _$AsyncDataData<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ViewStateErrorCopyWith<T, $Res> {
-  factory _$$ViewStateErrorCopyWith(
-          _$ViewStateError<T> value, $Res Function(_$ViewStateError<T>) then) =
-      __$$ViewStateErrorCopyWithImpl<T, $Res>;
+abstract class _$$AsyncDataErrorCopyWith<T, $Res> {
+  factory _$$AsyncDataErrorCopyWith(
+          _$AsyncDataError<T> value, $Res Function(_$AsyncDataError<T>) then) =
+      __$$AsyncDataErrorCopyWithImpl<T, $Res>;
   @useResult
   $Res call({Object error});
 }
 
 /// @nodoc
-class __$$ViewStateErrorCopyWithImpl<T, $Res>
-    extends _$ViewStateCopyWithImpl<T, $Res, _$ViewStateError<T>>
-    implements _$$ViewStateErrorCopyWith<T, $Res> {
-  __$$ViewStateErrorCopyWithImpl(
-      _$ViewStateError<T> _value, $Res Function(_$ViewStateError<T>) _then)
+class __$$AsyncDataErrorCopyWithImpl<T, $Res>
+    extends _$AsyncDataCopyWithImpl<T, $Res, _$AsyncDataError<T>>
+    implements _$$AsyncDataErrorCopyWith<T, $Res> {
+  __$$AsyncDataErrorCopyWithImpl(
+      _$AsyncDataError<T> _value, $Res Function(_$AsyncDataError<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -242,30 +243,30 @@ class __$$ViewStateErrorCopyWithImpl<T, $Res>
   $Res call({
     Object? error = null,
   }) {
-    return _then(_$ViewStateError<T>(
-      error: null == error ? _value.error : error,
+    return _then(_$AsyncDataError<T>(
+      null == error ? _value.error : error,
     ));
   }
 }
 
 /// @nodoc
 
-class _$ViewStateError<T> implements ViewStateError<T> {
-  const _$ViewStateError({required this.error});
+class _$AsyncDataError<T> extends AsyncDataError<T> {
+  const _$AsyncDataError(this.error) : super._();
 
   @override
   final Object error;
 
   @override
   String toString() {
-    return 'ViewState<$T>.error(error: $error)';
+    return 'AsyncData<$T>.error(error: $error)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ViewStateError<T> &&
+            other is _$AsyncDataError<T> &&
             const DeepCollectionEquality().equals(other.error, error));
   }
 
@@ -276,8 +277,8 @@ class _$ViewStateError<T> implements ViewStateError<T> {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ViewStateErrorCopyWith<T, _$ViewStateError<T>> get copyWith =>
-      __$$ViewStateErrorCopyWithImpl<T, _$ViewStateError<T>>(this, _$identity);
+  _$$AsyncDataErrorCopyWith<T, _$AsyncDataError<T>> get copyWith =>
+      __$$AsyncDataErrorCopyWithImpl<T, _$AsyncDataError<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -316,9 +317,9 @@ class _$ViewStateError<T> implements ViewStateError<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ViewStateData<T> value) data,
-    required TResult Function(ViewStateError<T> value) error,
-    required TResult Function(ViewStateLoading<T> value) loading,
+    required TResult Function(AsyncDataData<T> value) data,
+    required TResult Function(AsyncDataError<T> value) error,
+    required TResult Function(AsyncDataLoading<T> value) loading,
   }) {
     return error(this);
   }
@@ -326,9 +327,9 @@ class _$ViewStateError<T> implements ViewStateError<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ViewStateData<T> value)? data,
-    TResult? Function(ViewStateError<T> value)? error,
-    TResult? Function(ViewStateLoading<T> value)? loading,
+    TResult? Function(AsyncDataData<T> value)? data,
+    TResult? Function(AsyncDataError<T> value)? error,
+    TResult? Function(AsyncDataLoading<T> value)? loading,
   }) {
     return error?.call(this);
   }
@@ -336,9 +337,9 @@ class _$ViewStateError<T> implements ViewStateError<T> {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ViewStateData<T> value)? data,
-    TResult Function(ViewStateError<T> value)? error,
-    TResult Function(ViewStateLoading<T> value)? loading,
+    TResult Function(AsyncDataData<T> value)? data,
+    TResult Function(AsyncDataError<T> value)? error,
+    TResult Function(AsyncDataLoading<T> value)? loading,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -348,46 +349,46 @@ class _$ViewStateError<T> implements ViewStateError<T> {
   }
 }
 
-abstract class ViewStateError<T> implements ViewState<T> {
-  const factory ViewStateError({required final Object error}) =
-      _$ViewStateError<T>;
+abstract class AsyncDataError<T> extends AsyncData<T> {
+  const factory AsyncDataError(final Object error) = _$AsyncDataError<T>;
+  const AsyncDataError._() : super._();
 
   Object get error;
   @JsonKey(ignore: true)
-  _$$ViewStateErrorCopyWith<T, _$ViewStateError<T>> get copyWith =>
+  _$$AsyncDataErrorCopyWith<T, _$AsyncDataError<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ViewStateLoadingCopyWith<T, $Res> {
-  factory _$$ViewStateLoadingCopyWith(_$ViewStateLoading<T> value,
-          $Res Function(_$ViewStateLoading<T>) then) =
-      __$$ViewStateLoadingCopyWithImpl<T, $Res>;
+abstract class _$$AsyncDataLoadingCopyWith<T, $Res> {
+  factory _$$AsyncDataLoadingCopyWith(_$AsyncDataLoading<T> value,
+          $Res Function(_$AsyncDataLoading<T>) then) =
+      __$$AsyncDataLoadingCopyWithImpl<T, $Res>;
 }
 
 /// @nodoc
-class __$$ViewStateLoadingCopyWithImpl<T, $Res>
-    extends _$ViewStateCopyWithImpl<T, $Res, _$ViewStateLoading<T>>
-    implements _$$ViewStateLoadingCopyWith<T, $Res> {
-  __$$ViewStateLoadingCopyWithImpl(
-      _$ViewStateLoading<T> _value, $Res Function(_$ViewStateLoading<T>) _then)
+class __$$AsyncDataLoadingCopyWithImpl<T, $Res>
+    extends _$AsyncDataCopyWithImpl<T, $Res, _$AsyncDataLoading<T>>
+    implements _$$AsyncDataLoadingCopyWith<T, $Res> {
+  __$$AsyncDataLoadingCopyWithImpl(
+      _$AsyncDataLoading<T> _value, $Res Function(_$AsyncDataLoading<T>) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ViewStateLoading<T> implements ViewStateLoading<T> {
-  const _$ViewStateLoading();
+class _$AsyncDataLoading<T> extends AsyncDataLoading<T> {
+  const _$AsyncDataLoading() : super._();
 
   @override
   String toString() {
-    return 'ViewState<$T>.loading()';
+    return 'AsyncData<$T>.loading()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ViewStateLoading<T>);
+        (other.runtimeType == runtimeType && other is _$AsyncDataLoading<T>);
   }
 
   @override
@@ -430,9 +431,9 @@ class _$ViewStateLoading<T> implements ViewStateLoading<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ViewStateData<T> value) data,
-    required TResult Function(ViewStateError<T> value) error,
-    required TResult Function(ViewStateLoading<T> value) loading,
+    required TResult Function(AsyncDataData<T> value) data,
+    required TResult Function(AsyncDataError<T> value) error,
+    required TResult Function(AsyncDataLoading<T> value) loading,
   }) {
     return loading(this);
   }
@@ -440,9 +441,9 @@ class _$ViewStateLoading<T> implements ViewStateLoading<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ViewStateData<T> value)? data,
-    TResult? Function(ViewStateError<T> value)? error,
-    TResult? Function(ViewStateLoading<T> value)? loading,
+    TResult? Function(AsyncDataData<T> value)? data,
+    TResult? Function(AsyncDataError<T> value)? error,
+    TResult? Function(AsyncDataLoading<T> value)? loading,
   }) {
     return loading?.call(this);
   }
@@ -450,9 +451,9 @@ class _$ViewStateLoading<T> implements ViewStateLoading<T> {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ViewStateData<T> value)? data,
-    TResult Function(ViewStateError<T> value)? error,
-    TResult Function(ViewStateLoading<T> value)? loading,
+    TResult Function(AsyncDataData<T> value)? data,
+    TResult Function(AsyncDataError<T> value)? error,
+    TResult Function(AsyncDataLoading<T> value)? loading,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -462,6 +463,7 @@ class _$ViewStateLoading<T> implements ViewStateLoading<T> {
   }
 }
 
-abstract class ViewStateLoading<T> implements ViewState<T> {
-  const factory ViewStateLoading() = _$ViewStateLoading<T>;
+abstract class AsyncDataLoading<T> extends AsyncData<T> {
+  const factory AsyncDataLoading() = _$AsyncDataLoading<T>;
+  const AsyncDataLoading._() : super._();
 }

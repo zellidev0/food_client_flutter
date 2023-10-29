@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
+import 'package:food_client/ui/home/home_logging_service.dart';
 import 'package:food_client/ui/home/home_model.dart';
 import 'package:food_client/ui/home/home_navigation_service.dart';
 import 'package:food_client/ui/home/home_view.dart';
@@ -25,24 +27,29 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
     required final HomeWebClientService webClientService,
     required final HomeWebImageSizerService webImageSizerService,
     required final HomeNavigationService globalNavigationService,
+    required final HomeLoggingService loggingService,
     required final List<Locale> recipeLocales,
   }) {
-    _listenToPaginationController();
+    final PagingController<int, HomeModelRecipe> paginationController =
+        PagingController<int, HomeModelRecipe>(
+      firstPageKey: 0,
+    );
+    _listenToPaginationController(paginationController: paginationController);
     return HomeModel(
       allTags: <HomeModelFilterTag>[],
       allCuisines: <HomeModelFilterCuisine>[],
-      pagingController: PagingController<int, HomeModelRecipe>(
-        firstPageKey: 0,
-      ),
+      pagingController: paginationController,
       recipeLocales: recipeLocales,
     );
   }
 
-  void _listenToPaginationController() {
-    state.pagingController.addPageRequestListener((final int pageKey) async {
+  void _listenToPaginationController({
+    required PagingController<int, HomeModelRecipe> paginationController,
+  }) {
+    paginationController.addPageRequestListener((final int pageKey) async {
       (await _fetchRecipes(paginationSkip: pageKey).run()).fold(
         (final Exception exception) {
-          debugPrint(exception.toString());
+          log(exception.toString());
           return state.pagingController.error =
               'ui.home_view.error_states.no_recipes'.tr();
         },

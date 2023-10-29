@@ -1,4 +1,4 @@
-abstract class IngredientsSortingLoggingService {
+abstract class HomeLoggingService {
   void info({required final String message});
   void warning({required final String message});
   void error({

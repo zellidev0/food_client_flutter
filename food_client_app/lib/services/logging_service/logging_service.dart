@@ -1,35 +1,38 @@
-import 'package:flutter/foundation.dart';
+import 'package:food_client/ui/home/home_logging_service.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_logging_service.dart';
+import 'package:logging/logging.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'logging_service.g.dart';
 
 abstract class LoggingServiceAggregator
-    implements IngredientsSortingLoggingService {
-  LoggingServiceAggregator();
-}
+    implements HomeLoggingService, IngredientsSortingLoggingService {}
 
 @riverpod
-LoggingServiceAggregator loggingService(final LoggingServiceRef ref) =>
-    LoggingService();
+LoggingServiceAggregator loggingService(
+  final LoggingServiceRef ref, {
+  required final String loggerName,
+}) =>
+    LoggingServiceImplementation(loggerName: loggerName);
 
-class LoggingService extends LoggingServiceAggregator {
-  LoggingService();
+class LoggingServiceImplementation implements LoggingServiceAggregator {
+  final Logger _logger;
+
+  LoggingServiceImplementation({
+    required final String loggerName,
+  }) : _logger = Logger(loggerName);
 
   @override
-  void logDebug({required final String message}) {
-    if (kDebugMode) {
-      print('Info: $message');
-    }
-  }
+  void error({
+    required String message,
+    Object? error,
+    StackTrace? stacktrace,
+  }) =>
+      _logger.severe(message, error, stacktrace);
 
   @override
-  void logError({
-    required final String message,
-    required final Exception exception,
-  }) {
-    if (kDebugMode) {
-      print('Error: $message\n$exception');
-    }
-  }
+  void info({required String message}) => _logger.info(message);
+
+  @override
+  void warning({required String message}) => _logger.warning(message);
 }

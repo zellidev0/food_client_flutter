@@ -101,9 +101,12 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
                         ref.watch(appSettingsServiceProvider).recipeLocales,
                     globalNavigationService:
                         ref.read(navigationServiceProvider),
-                    webClientService: ref.read(webClientServiceProvider),
+                    webClientService: ref.watch(webClientServiceProvider),
                     webImageSizerService:
-                        ref.read(webImageSizerServiceProvider),
+                        ref.watch(webImageSizerServiceProvider),
+                    loggingService: ref.watch(
+                      loggingServiceProvider(loggerName: 'HomeController'),
+                    ),
                   );
                   return HomeView(
                     model: ref.watch(provider),
@@ -122,7 +125,11 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
                   provider = IngredientsSortingControllerImplementationProvider(
                 webClientService: ref.read(webClientServiceProvider),
                 webImageSizerService: ref.read(webImageSizerServiceProvider),
-                loggingService: ref.read(loggingServiceProvider),
+                loggingService: ref.read(
+                  loggingServiceProvider(
+                    loggerName: 'IngredientsSortingController',
+                  ),
+                ),
                 navigationService: ref.read(navigationServiceProvider),
                 persistenceService:
                     ref.watch(persistenceServiceProvider.notifier),
@@ -141,7 +148,7 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
             builder: (_, WidgetRef ref, ___) {
               final String recipeId = state.pathParameters[
                       NavigationServiceUris.singleRecipeIdKey] ??
-                  ''; // TODO: handle error
+                  ''; // TODO(julian): handle error
               final SingleRecipeControllerImplementationProvider provider =
                   singleRecipeControllerImplementationProvider(
                 navigationService: ref.read(navigationServiceProvider),

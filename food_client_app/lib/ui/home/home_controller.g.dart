@@ -7,7 +7,7 @@ part of 'home_controller.dart';
 // **************************************************************************
 
 String _$homeControllerImplementationHash() =>
-    r'cfb0e09c4279bfbda7f680cd320c94919f2761ab';
+    r'70761136cd55ee1275464af87dc84380511296a0';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -35,12 +35,14 @@ abstract class _$HomeControllerImplementation
   late final HomeWebClientService webClientService;
   late final HomeWebImageSizerService webImageSizerService;
   late final HomeNavigationService globalNavigationService;
+  late final HomeLoggingService loggingService;
   late final List<Locale> recipeLocales;
 
   HomeModel build({
     required HomeWebClientService webClientService,
     required HomeWebImageSizerService webImageSizerService,
     required HomeNavigationService globalNavigationService,
+    required HomeLoggingService loggingService,
     required List<Locale> recipeLocales,
   });
 }
@@ -60,12 +62,14 @@ class HomeControllerImplementationFamily extends Family<HomeModel> {
     required HomeWebClientService webClientService,
     required HomeWebImageSizerService webImageSizerService,
     required HomeNavigationService globalNavigationService,
+    required HomeLoggingService loggingService,
     required List<Locale> recipeLocales,
   }) {
     return HomeControllerImplementationProvider(
       webClientService: webClientService,
       webImageSizerService: webImageSizerService,
       globalNavigationService: globalNavigationService,
+      loggingService: loggingService,
       recipeLocales: recipeLocales,
     );
   }
@@ -78,6 +82,7 @@ class HomeControllerImplementationFamily extends Family<HomeModel> {
       webClientService: provider.webClientService,
       webImageSizerService: provider.webImageSizerService,
       globalNavigationService: provider.globalNavigationService,
+      loggingService: provider.loggingService,
       recipeLocales: provider.recipeLocales,
     );
   }
@@ -106,12 +111,14 @@ class HomeControllerImplementationProvider
     required HomeWebClientService webClientService,
     required HomeWebImageSizerService webImageSizerService,
     required HomeNavigationService globalNavigationService,
+    required HomeLoggingService loggingService,
     required List<Locale> recipeLocales,
   }) : this._internal(
           () => HomeControllerImplementation()
             ..webClientService = webClientService
             ..webImageSizerService = webImageSizerService
             ..globalNavigationService = globalNavigationService
+            ..loggingService = loggingService
             ..recipeLocales = recipeLocales,
           from: homeControllerImplementationProvider,
           name: r'homeControllerImplementationProvider',
@@ -125,6 +132,7 @@ class HomeControllerImplementationProvider
           webClientService: webClientService,
           webImageSizerService: webImageSizerService,
           globalNavigationService: globalNavigationService,
+          loggingService: loggingService,
           recipeLocales: recipeLocales,
         );
 
@@ -138,12 +146,14 @@ class HomeControllerImplementationProvider
     required this.webClientService,
     required this.webImageSizerService,
     required this.globalNavigationService,
+    required this.loggingService,
     required this.recipeLocales,
   }) : super.internal();
 
   final HomeWebClientService webClientService;
   final HomeWebImageSizerService webImageSizerService;
   final HomeNavigationService globalNavigationService;
+  final HomeLoggingService loggingService;
   final List<Locale> recipeLocales;
 
   @override
@@ -154,6 +164,7 @@ class HomeControllerImplementationProvider
       webClientService: webClientService,
       webImageSizerService: webImageSizerService,
       globalNavigationService: globalNavigationService,
+      loggingService: loggingService,
       recipeLocales: recipeLocales,
     );
   }
@@ -167,6 +178,7 @@ class HomeControllerImplementationProvider
           ..webClientService = webClientService
           ..webImageSizerService = webImageSizerService
           ..globalNavigationService = globalNavigationService
+          ..loggingService = loggingService
           ..recipeLocales = recipeLocales,
         from: from,
         name: null,
@@ -176,6 +188,7 @@ class HomeControllerImplementationProvider
         webClientService: webClientService,
         webImageSizerService: webImageSizerService,
         globalNavigationService: globalNavigationService,
+        loggingService: loggingService,
         recipeLocales: recipeLocales,
       ),
     );
@@ -193,6 +206,7 @@ class HomeControllerImplementationProvider
         other.webClientService == webClientService &&
         other.webImageSizerService == webImageSizerService &&
         other.globalNavigationService == globalNavigationService &&
+        other.loggingService == loggingService &&
         other.recipeLocales == recipeLocales;
   }
 
@@ -202,6 +216,7 @@ class HomeControllerImplementationProvider
     hash = _SystemHash.combine(hash, webClientService.hashCode);
     hash = _SystemHash.combine(hash, webImageSizerService.hashCode);
     hash = _SystemHash.combine(hash, globalNavigationService.hashCode);
+    hash = _SystemHash.combine(hash, loggingService.hashCode);
     hash = _SystemHash.combine(hash, recipeLocales.hashCode);
 
     return _SystemHash.finish(hash);
@@ -218,6 +233,9 @@ mixin HomeControllerImplementationRef
 
   /// The parameter `globalNavigationService` of this provider.
   HomeNavigationService get globalNavigationService;
+
+  /// The parameter `loggingService` of this provider.
+  HomeLoggingService get loggingService;
 
   /// The parameter `recipeLocales` of this provider.
   List<Locale> get recipeLocales;
@@ -237,6 +255,9 @@ class _HomeControllerImplementationProviderElement
   @override
   HomeNavigationService get globalNavigationService =>
       (origin as HomeControllerImplementationProvider).globalNavigationService;
+  @override
+  HomeLoggingService get loggingService =>
+      (origin as HomeControllerImplementationProvider).loggingService;
   @override
   List<Locale> get recipeLocales =>
       (origin as HomeControllerImplementationProvider).recipeLocales;

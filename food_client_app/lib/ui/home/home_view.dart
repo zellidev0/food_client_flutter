@@ -63,7 +63,8 @@ class HomeView extends MvcView<HomeController, HomeModel> {
                       (final HomeModelFilter filter) => filter.isSelected,
                     )
                     .toList(),
-                widgetToOpenOnClick: Container(), //TODO: buildDialogTags(),
+                widgetToOpenOnClick:
+                    Container(), // TODO(julian): buildDialogTags,
               ),
               const SizedBox(width: 8),
               buildSingleFilterChip(
@@ -74,7 +75,8 @@ class HomeView extends MvcView<HomeController, HomeModel> {
                       (final HomeModelFilter filter) => filter.isSelected,
                     )
                     .toList(),
-                widgetToOpenOnClick: Container(), //TODO: buildDialogCuisines(),
+                widgetToOpenOnClick:
+                    Container(), // TODO(julian): buildDialogCuisines(),
               ),
             ],
           ),
