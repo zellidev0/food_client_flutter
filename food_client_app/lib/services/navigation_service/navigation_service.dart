@@ -30,8 +30,9 @@ abstract class NavigationServiceAggregator
 class NavigationServiceUris {
   NavigationServiceUris._();
 
-  static Uri singleRecipe = Uri.parse('/recipe');
-  static String singleRecipeIdKey = 'single-recipe-id';
+  static Uri singleRecipe({required final String recipeId}) =>
+      Uri.parse('/recipe/$recipeId');
+  static String singleRecipeIdKey = 'recipeId';
   static Uri homeRouteUri = Uri.parse('/home');
   static Uri accountRouteUri = Uri.parse('/account');
   static Uri cartRouteUri = Uri.parse('/cart');

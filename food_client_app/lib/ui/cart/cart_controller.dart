@@ -40,11 +40,7 @@ class CartControllerImplementation extends _$CartControllerImplementation
   @override
   void openSingleRecipe({required final String recipeId}) {
     navigationService.navigateToNamed(
-      uri: NavigationServiceUris.singleRecipe.replace(
-        queryParameters: <String, String>{
-          NavigationServiceUris.singleRecipeIdKey: recipeId,
-        },
-      ),
+      uri: NavigationServiceUris.singleRecipe(recipeId: recipeId),
     );
   }
 

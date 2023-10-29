@@ -154,11 +154,12 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
                 navigationService: ref.read(navigationServiceProvider),
                 webClientService: ref.read(webClientServiceProvider),
                 webImageSizerService: ref.read(webImageSizerServiceProvider),
-                persistenceService:
-                    ref.watch(persistenceServiceProvider.notifier),
+                persistenceService: ref.watch(
+                  persistenceServiceProvider.notifier,
+                ),
                 recipeId: recipeId,
                 loggingService: ref.watch(
-                  loggingServiceProvider(loggerName: 'SingleRecipeController'),
+                  loggingServiceProvider(loggerName: 'SingleRecipe'),
                 ),
               );
               return SingleRecipeView(
@@ -169,7 +170,9 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
             },
           ),
           parentNavigatorKey: rootNavigatorKey,
-          path: NavigationServiceUris.singleRecipe.toString(),
+          path: NavigationServiceUris.singleRecipe(
+            recipeId: ':${NavigationServiceUris.singleRecipeIdKey}',
+          ).toString(),
         ),
       ],
     );
