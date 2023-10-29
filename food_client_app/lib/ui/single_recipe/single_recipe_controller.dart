@@ -41,6 +41,7 @@ class SingleRecipeControllerImplementation
       ),
     );
     return SingleRecipeModel(
+      recipeId: recipeId,
       recipe: const ViewState<SingleRecipeModelRecipe>.loading(),
       selectedYield: none(),
     );
@@ -72,7 +73,7 @@ class SingleRecipeControllerImplementation
           state = state.copyWith(recipe: error.toViewStateError());
         },
         (SingleRecipeModelRecipe recipe) {
-          state = SingleRecipeModel(
+          state = state.copyWith(
             recipe: recipe.toViewStateData(),
             selectedYield: recipe.yields.firstOption.map(
               (final SingleRecipeModelYield yield) => yield.servings,

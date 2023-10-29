@@ -13,14 +13,11 @@ import 'package:fpdart/fpdart.dart';
 
 class SingleRecipeView
     extends MvcView<SingleRecipeController, SingleRecipeModel> {
-  final String _recipeId;
-
   const SingleRecipeView({
-    required final String recipeId,
     required super.controller,
     required super.model,
     super.key,
-  }) : _recipeId = recipeId;
+  });
 
   @override
   Widget build(final BuildContext context) => Scaffold(
@@ -43,7 +40,7 @@ class SingleRecipeView
                   child: FloatingActionButton(
                     onPressed: () => controller.openAddToShoppingCartDialog(
                       recipe: recipe,
-                      recipeId: _recipeId,
+                      recipeId: model.recipeId,
                     ),
                     child: const Icon(Icons.add_shopping_cart),
                   ),
@@ -136,7 +133,7 @@ class SingleRecipeView
                 controller: controller,
                 yields: recipe.yields,
                 selectedYield: selectedYield,
-                recipeId: _recipeId,
+                recipeId: model.recipeId,
               ),
             ),
           ],

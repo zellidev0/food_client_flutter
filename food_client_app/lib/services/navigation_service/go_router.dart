@@ -151,13 +151,13 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
                   ''; // TODO(julian): handle error
               final SingleRecipeControllerImplementationProvider provider =
                   singleRecipeControllerImplementationProvider(
+                recipeId: recipeId,
                 navigationService: ref.read(navigationServiceProvider),
                 webClientService: ref.read(webClientServiceProvider),
                 webImageSizerService: ref.read(webImageSizerServiceProvider),
                 persistenceService: ref.watch(
                   persistenceServiceProvider.notifier,
                 ),
-                recipeId: recipeId,
                 loggingService: ref.watch(
                   loggingServiceProvider(loggerName: 'SingleRecipe'),
                 ),
@@ -165,7 +165,6 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
               return SingleRecipeView(
                 model: ref.watch(provider),
                 controller: ref.watch(provider.notifier),
-                recipeId: recipeId,
               );
             },
           ),

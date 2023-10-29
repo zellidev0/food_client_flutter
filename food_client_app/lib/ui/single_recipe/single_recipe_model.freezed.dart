@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SingleRecipeModel {
+  String get recipeId => throw _privateConstructorUsedError;
   ViewState<SingleRecipeModelRecipe> get recipe =>
       throw _privateConstructorUsedError;
   Option<int> get selectedYield => throw _privateConstructorUsedError;
@@ -32,7 +33,9 @@ abstract class $SingleRecipeModelCopyWith<$Res> {
       _$SingleRecipeModelCopyWithImpl<$Res, SingleRecipeModel>;
   @useResult
   $Res call(
-      {ViewState<SingleRecipeModelRecipe> recipe, Option<int> selectedYield});
+      {String recipeId,
+      ViewState<SingleRecipeModelRecipe> recipe,
+      Option<int> selectedYield});
 
   $ViewStateCopyWith<SingleRecipeModelRecipe, $Res> get recipe;
 }
@@ -50,10 +53,15 @@ class _$SingleRecipeModelCopyWithImpl<$Res, $Val extends SingleRecipeModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? recipeId = null,
     Object? recipe = null,
     Object? selectedYield = null,
   }) {
     return _then(_value.copyWith(
+      recipeId: null == recipeId
+          ? _value.recipeId
+          : recipeId // ignore: cast_nullable_to_non_nullable
+              as String,
       recipe: null == recipe
           ? _value.recipe
           : recipe // ignore: cast_nullable_to_non_nullable
@@ -84,7 +92,9 @@ abstract class _$$_SingleRecipeModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {ViewState<SingleRecipeModelRecipe> recipe, Option<int> selectedYield});
+      {String recipeId,
+      ViewState<SingleRecipeModelRecipe> recipe,
+      Option<int> selectedYield});
 
   @override
   $ViewStateCopyWith<SingleRecipeModelRecipe, $Res> get recipe;
@@ -101,10 +111,15 @@ class __$$_SingleRecipeModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? recipeId = null,
     Object? recipe = null,
     Object? selectedYield = null,
   }) {
     return _then(_$_SingleRecipeModel(
+      recipeId: null == recipeId
+          ? _value.recipeId
+          : recipeId // ignore: cast_nullable_to_non_nullable
+              as String,
       recipe: null == recipe
           ? _value.recipe
           : recipe // ignore: cast_nullable_to_non_nullable
@@ -121,8 +136,12 @@ class __$$_SingleRecipeModelCopyWithImpl<$Res>
 
 class _$_SingleRecipeModel implements _SingleRecipeModel {
   const _$_SingleRecipeModel(
-      {required this.recipe, required this.selectedYield});
+      {required this.recipeId,
+      required this.recipe,
+      required this.selectedYield});
 
+  @override
+  final String recipeId;
   @override
   final ViewState<SingleRecipeModelRecipe> recipe;
   @override
@@ -130,7 +149,7 @@ class _$_SingleRecipeModel implements _SingleRecipeModel {
 
   @override
   String toString() {
-    return 'SingleRecipeModel(recipe: $recipe, selectedYield: $selectedYield)';
+    return 'SingleRecipeModel(recipeId: $recipeId, recipe: $recipe, selectedYield: $selectedYield)';
   }
 
   @override
@@ -138,13 +157,15 @@ class _$_SingleRecipeModel implements _SingleRecipeModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SingleRecipeModel &&
+            (identical(other.recipeId, recipeId) ||
+                other.recipeId == recipeId) &&
             (identical(other.recipe, recipe) || other.recipe == recipe) &&
             (identical(other.selectedYield, selectedYield) ||
                 other.selectedYield == selectedYield));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, recipe, selectedYield);
+  int get hashCode => Object.hash(runtimeType, recipeId, recipe, selectedYield);
 
   @JsonKey(ignore: true)
   @override
@@ -156,9 +177,12 @@ class _$_SingleRecipeModel implements _SingleRecipeModel {
 
 abstract class _SingleRecipeModel implements SingleRecipeModel {
   const factory _SingleRecipeModel(
-      {required final ViewState<SingleRecipeModelRecipe> recipe,
+      {required final String recipeId,
+      required final ViewState<SingleRecipeModelRecipe> recipe,
       required final Option<int> selectedYield}) = _$_SingleRecipeModel;
 
+  @override
+  String get recipeId;
   @override
   ViewState<SingleRecipeModelRecipe> get recipe;
   @override

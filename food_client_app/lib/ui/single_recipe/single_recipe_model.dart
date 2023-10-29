@@ -7,6 +7,7 @@ part 'single_recipe_model.freezed.dart';
 @freezed
 class SingleRecipeModel with _$SingleRecipeModel {
   const factory SingleRecipeModel({
+    required final String recipeId,
     required final ViewState<SingleRecipeModelRecipe> recipe,
     required final Option<int> selectedYield,
   }) = _SingleRecipeModel;
