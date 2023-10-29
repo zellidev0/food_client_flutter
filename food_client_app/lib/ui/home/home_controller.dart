@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:food_client/commons/view_state.dart';
 import 'package:food_client/generated/locale_keys.g.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
@@ -38,65 +39,73 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
       () => unawaited(
         Task.sequenceList(<Task<void>>[
           _fetchFiltersAndSetState(),
+          _listenToPaginationController(
+            paginationController: paginationController,
+          ),
         ]).run(),
       ),
     );
-    _listenToPaginationController(paginationController: paginationController);
+    ;
     return HomeModel(
-      availableFilters: <HomeModelFilter>[].toViewStateData(),
+      availableFilters: const ViewState<List<HomeModelFilter>>.loading(),
       pagingController: paginationController,
       recipeLocales: recipeLocales,
     );
   }
 
-  void _listenToPaginationController({
+  Task<void> _listenToPaginationController({
     required PagingController<int, HomeModelRecipe> paginationController,
-  }) =>
-      paginationController.addPageRequestListener(
+  }) {
+    Task<void> fetchRecipesTask(List<HomeModelFilter> filters, int pageKey) =>
+        _fetchRecipes(
+          paginationSkip: 0,
+          tagIds: selectedFilterIds(
+            type: filters.whereType<HomeModelFilterTag>().toList(),
+          ),
+          cuisineIds: selectedFilterIds(
+            type: filters.whereType<HomeModelFilterCuisine>().toList(),
+          ),
+        ).match(
+          (final Exception error) {
+            loggingService.error(
+              message: 'Error fetching more recipes for filter',
+              error: error,
+            );
+            globalNavigationService.showSnackBar(
+              message:
+                  LocaleKeys.ui_home_view_error_states_fetching_recipes.tr(),
+            );
+          },
+          (final List<HomeModelRecipe> recipes) {
+            _setRecipesInPageController(
+              pageKey: pageKey,
+              newRecipes: recipes,
+              replaceRecipes: false,
+            );
+          },
+        );
+
+    return Task<void>(
+      () async => paginationController.addPageRequestListener(
         (final int pageKey) {
           state.availableFilters.maybeMap(
-            data: (ViewStateData<List<HomeModelFilter>> data) => unawaited(
-              _fetchRecipes(
-                paginationSkip: 0,
-                tagIds: selectedFilterIds(
-                  type: data.data.whereType<HomeModelFilterTag>().toList(),
-                ),
-                cuisineIds: selectedFilterIds(
-                  type: data.data.whereType<HomeModelFilterCuisine>().toList(),
-                ),
-              ).match(
-                (final Exception error) {
-                  loggingService.error(
-                    message: 'Error fetching more recipes for filter',
-                    error: error,
-                  );
-                  globalNavigationService.showSnackBar(
-                    message: LocaleKeys
-                        .ui_home_view_error_states_fetching_recipes
-                        .tr(),
-                  );
-                },
-                (final List<HomeModelRecipe> recipes) {
-                  _setRecipesInPageController(
-                    pageKey: pageKey,
-                    newRecipes: recipes,
-                    replaceRecipes: false,
-                  );
-                },
-              ).run(),
-            ),
+            data: (ViewStateData<List<HomeModelFilter>> data) =>
+                unawaited(fetchRecipesTask(data.data, pageKey).run()),
             orElse: () {
               loggingService.error(message: 'Error fetching with filters');
-              globalNavigationService.showSnackBar(
-                message: LocaleKeys
-                    .ui_home_view_error_states_fetching_recipes_for_filter
-                    .tr(),
-              );
+
+              // globalNavigationService.showSnackBar(
+              //   message: LocaleKeys
+              //       .ui_home_view_error_states_fetching_recipes_for_filter
+              //       .tr(),
+              // );
               return null;
             },
           );
         },
-      );
+      ),
+    ).andThen(() => fetchRecipesTask(<HomeModelFilter>[], 0));
+  }
 
   @override
   void setFiltersSelected({

@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:food_client/commons/view_state.dart';
 import 'package:food_client/commons/widgets.dart';
+import 'package:food_client/generated/locale_keys.g.dart';
 import 'package:food_client/mvc.dart';
 import 'package:food_client/ui/home/home_model.dart';
 import 'package:fpdart/fpdart.dart';
@@ -57,7 +58,7 @@ class HomeView extends MvcView<HomeController, HomeModel> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               buildSingleFilterChip(
-                text: 'ui.home_view.filters.tags'.tr(),
+                text: LocaleKeys.ui_home_view_filters_tags.tr(),
                 controller: controller,
                 selectedFilters: model.availableFilters.mapData(
                   (List<HomeModelFilter> data) => data
@@ -67,12 +68,18 @@ class HomeView extends MvcView<HomeController, HomeModel> {
                       )
                       .toList(),
                 ),
-                widgetToOpenOnClick:
-                    Container(), // TODO(julian): buildDialogTags,
+                widgetToOpenOnClick: model.availableFilters.maybeWhen(
+                  data: (List<HomeModelFilter> filters) => some(
+                    buildFilterDialog(
+                      filters: filters.whereType<HomeModelFilterTag>().toList(),
+                    ),
+                  ),
+                  orElse: () => const None<Widget>(),
+                ),
               ),
               const SizedBox(width: 8),
               buildSingleFilterChip(
-                text: 'ui.home_view.filters.cuisines'.tr(),
+                text: LocaleKeys.ui_home_view_filters_cuisines.tr(),
                 controller: controller,
                 selectedFilters: model.availableFilters.mapData(
                   (List<HomeModelFilter> data) => data
@@ -83,8 +90,15 @@ class HomeView extends MvcView<HomeController, HomeModel> {
                       )
                       .toList(),
                 ),
-                widgetToOpenOnClick:
-                    Container(), // TODO(julian): buildDialogCuisines(),
+                widgetToOpenOnClick: model.availableFilters.maybeWhen(
+                  data: (List<HomeModelFilter> filters) => some(
+                    buildFilterDialog(
+                      filters:
+                          filters.whereType<HomeModelFilterCuisine>().toList(),
+                    ),
+                  ),
+                  orElse: () => const None<Widget>(),
+                ),
               ),
             ],
           ),
@@ -95,14 +109,14 @@ class HomeView extends MvcView<HomeController, HomeModel> {
     required final String text,
     required final ViewState<List<HomeModelFilter>> selectedFilters,
     required final HomeController controller,
-    required final Widget widgetToOpenOnClick,
+    required final Option<Widget> widgetToOpenOnClick,
   }) =>
       FilterChip(
         label: selectedFilters.map(
           data: (ViewStateData<List<HomeModelFilter>> data) => Text(
             data.data.isEmpty
                 ? text
-                : 'ui.home_view.filters.name_with_amount'.tr(
+                : LocaleKeys.ui_home_view_filters_name_with_amount.tr(
                     namedArgs: <String, String>{
                       'name': text,
                       'amount': data.data.length.toString(),
@@ -118,9 +132,12 @@ class HomeView extends MvcView<HomeController, HomeModel> {
           error: (_) => false,
           loading: (_) => false,
         ),
-        onSelected: (final _) {
-          controller.openDialog(child: widgetToOpenOnClick);
-        },
+        onSelected: widgetToOpenOnClick
+            .map(
+              (Widget widget) =>
+                  (final _) => controller.openDialog(child: widget),
+            )
+            .toNullable(),
       );
 
   Widget _buildRecipesList({
@@ -157,13 +174,15 @@ class HomeView extends MvcView<HomeController, HomeModel> {
                   ),
                   noItemsFoundIndicatorBuilder: (final _) =>
                       buildNoItemsFoundIcon(
-                    message: 'ui.home_view.empty_states.no_recipes'.tr(),
+                    message:
+                        LocaleKeys.ui_home_view_empty_states_no_recipes.tr(),
                   ),
                   noMoreItemsIndicatorBuilder: (final _) => Center(
                     child: Padding(
                       padding: const EdgeInsets.all(16),
                       child: Text(
-                        'ui.home_view.empty_states.no_more_recipes'.tr(),
+                        LocaleKeys.ui_home_view_empty_states_no_more_recipes
+                            .tr(),
                       ),
                     ),
                   ),
@@ -171,7 +190,9 @@ class HomeView extends MvcView<HomeController, HomeModel> {
                     children: <Widget>[
                       const SizedBox(height: 64),
                       buildNoItemsFoundIcon(
-                        message: 'ui.home_view.error_states.no_recipes'.tr(),
+                        message: LocaleKeys
+                            .ui_home_view_error_states_fetching_recipes
+                            .tr(),
                       ),
                       const SizedBox(height: 8),
                       _buildTryFetchingRecipesAgainButton(
@@ -184,7 +205,9 @@ class HomeView extends MvcView<HomeController, HomeModel> {
                       const SizedBox(height: 8),
                       Builder(
                         builder: (final BuildContext context) => Text(
-                          'ui.home_view.error_states.no_more_recipes'.tr(),
+                          LocaleKeys
+                              .ui_home_view_error_states_fetchin_more_recipes
+                              .tr(),
                           style: Theme.of(context).textTheme.bodySmall,
                         ),
                       ),
@@ -217,7 +240,7 @@ class HomeView extends MvcView<HomeController, HomeModel> {
       ElevatedButton.icon(
         onPressed: controller.retryLastRecipeFetching,
         icon: const Icon(Icons.refresh),
-        label: Text('ui.home_view.buttons.try_again'.tr()),
+        label: Text(LocaleKeys.ui_home_view_buttons_try_again.tr()),
       );
 
   Widget _buildRecipeCardItem({
@@ -306,6 +329,34 @@ class HomeView extends MvcView<HomeController, HomeModel> {
         ),
       );
 
+  Widget buildFilterDialog({
+    required final List<HomeModelFilter> filters,
+  }) =>
+      buildDialog(
+        children: filters
+            .filter(
+              (final HomeModelFilter filter) =>
+                  filter.numberOfRecipes.getOrElse(() => 0) > 0,
+            )
+            .map(
+              (final HomeModelFilter filter) => ChoiceChip(
+                label: Text(
+                  '${filter.displayedName} (${filter.numberOfRecipes.fold(
+                    () => '',
+                    (final int number) => number < 1 ? '' : '$number',
+                  )})',
+                ),
+                selected: filter.isSelected,
+                onSelected: (final bool selected) =>
+                    controller.setFiltersSelected(
+                  filterId: filter.id,
+                  isSelected: selected,
+                ),
+              ),
+            )
+            .toList(),
+      );
+
   Widget buildRecipeCardItemDescription({
     required final HomeModelRecipe recipe,
     required final List<HomeModelFilterTag> tags,
@@ -346,77 +397,6 @@ class HomeView extends MvcView<HomeController, HomeModel> {
         ],
       );
 }
-
-// Widget buildDialogTags() => Consumer(
-//       builder: (final _, final WidgetRef ref, final __) => buildDialog(
-//         children: ref
-//             .watch(providers.homeControllerProvider)
-//             .availableTags
-//             .filter(
-//               (final HomeModelFilterTag tag) =>
-//                   tag.numberOfRecipes.getOrElse(() => 0) > 0,
-//             )
-//             .map(
-//               (final HomeModelFilterTag tag) => ChoiceChip(
-//                 label: Text(
-//                   '${tag.displayedName} (${tag.numberOfRecipes.fold(
-//                     () => '',
-//                     (final int number) => number < 1 ? '' : '$number',
-//                   )})',
-//                 ),
-//                 selected: tag.isSelected,
-//                 onSelected: (final bool selected) => ref
-//                     .watch(providers.homeControllerProvider.notifier)
-//                     .setTagSelected(
-//                       tagId: tag.id,
-//                       selected: selected,
-//                     ),
-//               ),
-//             )
-//             .toList(),
-//       ),
-//     );
-
-// Widget buildDialogCuisines() => Consumer(
-//       builder: (final _, final WidgetRef ref, final __) => buildDialog(
-//         children: ref
-//             .watch(providers.homeControllerProvider)
-//             .allCuisines
-//             .filter(
-//               (final HomeModelFilterCuisine cuisine) =>
-//                   cuisine.numberOfRecipes.getOrElse(() => 0) > 0,
-//             )
-//             .map(
-//               (final HomeModelFilterCuisine cuisine) => Tooltip(
-//                 message: cuisine.toString(),
-//                 child: ChoiceChip(
-//                   label: Text(
-//                     '${cuisine.displayedName} (${cuisine.numberOfRecipes.fold(
-//                       () => '',
-//                       (final int number) => number < 1 ? '' : '$number',
-//                     )})',
-//                   ),
-//                   selected: cuisine.isSelected,
-//                   onSelected: ref
-//                           .watch(providers.homeControllerProvider)
-//                           .allCuisines
-//                           .any(
-//                             (final HomeModelFilterCuisine element) =>
-//                                 element.isSelected && element.id != cuisine.id,
-//                           )
-//                       ? null
-//                       : (final bool selected) => ref
-//                           .watch(providers.homeControllerProvider.notifier)
-//                           .setCuisineSelected(
-//                             cuisineId: cuisine.id,
-//                             selected: selected,
-//                           ),
-//                 ),
-//               ),
-//             )
-//             .toList(),
-//       ),
-//     );
 
 Widget buildDialog({
   required final List<Widget> children,
