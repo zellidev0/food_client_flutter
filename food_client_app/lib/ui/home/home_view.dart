@@ -418,10 +418,6 @@ abstract class HomeController implements MvcController {
     required final String filterId,
     required final bool isSelected,
   });
-  void goToSingleRecipeView({
-    required final String recipeId,
-  });
-  void openDialog({
-    required final Widget child,
-  });
+  void goToSingleRecipeView({required final String recipeId});
+  void openDialog({required final Widget child});
 }
