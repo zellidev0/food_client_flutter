@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:food_client/services/web_client/web_client_model.dart';
 import 'package:food_client/ui/home/services/home_web_client_service.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_web_client_service.dart';
-import 'package:food_client/ui/single_recipe/single_recipe_web_client_service.dart';
+import 'package:food_client/ui/single_recipe/services/single_recipe_web_client_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

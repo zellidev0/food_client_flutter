@@ -1,7 +1,7 @@
 import 'package:food_client/ui/cart/cart_web_image_sizer_service.dart';
 import 'package:food_client/ui/home/services/home_web_image_sizer_service.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_web_image_sizer_service.dart';
-import 'package:food_client/ui/single_recipe/single_recipe_web_image_sizer_service.dart';
+import 'package:food_client/ui/single_recipe/services/single_recipe_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

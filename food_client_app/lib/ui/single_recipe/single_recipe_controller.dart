@@ -2,12 +2,12 @@ import 'dart:async';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
+import 'package:food_client/ui/single_recipe/services/single_recipe_navigation_service.dart';
+import 'package:food_client/ui/single_recipe/services/single_recipe_persistence_service.dart';
+import 'package:food_client/ui/single_recipe/services/single_recipe_web_client_service.dart';
+import 'package:food_client/ui/single_recipe/services/single_recipe_web_image_sizer_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_model.dart';
-import 'package:food_client/ui/single_recipe/single_recipe_navigation_service.dart';
-import 'package:food_client/ui/single_recipe/single_recipe_persistence_service.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_view.dart';
-import 'package:food_client/ui/single_recipe/single_recipe_web_client_service.dart';
-import 'package:food_client/ui/single_recipe/single_recipe_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:share_plus/share_plus.dart';

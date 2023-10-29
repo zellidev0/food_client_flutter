@@ -2,7 +2,8 @@ import 'package:food_client/commons/utils.dart';
 import 'package:food_client/services/persistence_service/persistence_service_model.dart';
 import 'package:food_client/ui/cart/cart_persistence_service.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_persistence_service.dart';
-import 'package:food_client/ui/single_recipe/single_recipe_persistence_service.dart';
+import 'package:food_client/ui/single_recipe/services/single_recipe_persistence_service.dart';
+
 import 'package:fpdart/fpdart.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
