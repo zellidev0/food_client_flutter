@@ -2,13 +2,17 @@ import 'dart:developer';
 
 import 'package:food_client/ui/home/services/home_logging_service.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_logging_service.dart';
+import 'package:food_client/ui/single_recipe/services/single_recipe_logging_service.dart';
 import 'package:logging/logging.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'logging_service.g.dart';
 
 abstract class LoggingServiceAggregator
-    implements HomeLoggingService, IngredientsSortingLoggingService {}
+    implements
+        HomeLoggingService,
+        IngredientsSortingLoggingService,
+        SingleRecipeLoggingService {}
 
 @riverpod
 LoggingServiceAggregator loggingService(

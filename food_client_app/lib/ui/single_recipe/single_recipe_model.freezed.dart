@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SingleRecipeModel {
-  Either<Exception, Option<SingleRecipeModelRecipe>> get recipe =>
+  ViewState<SingleRecipeModelRecipe> get recipe =>
       throw _privateConstructorUsedError;
   Option<int> get selectedYield => throw _privateConstructorUsedError;
 
@@ -32,8 +32,9 @@ abstract class $SingleRecipeModelCopyWith<$Res> {
       _$SingleRecipeModelCopyWithImpl<$Res, SingleRecipeModel>;
   @useResult
   $Res call(
-      {Either<Exception, Option<SingleRecipeModelRecipe>> recipe,
-      Option<int> selectedYield});
+      {ViewState<SingleRecipeModelRecipe> recipe, Option<int> selectedYield});
+
+  $ViewStateCopyWith<SingleRecipeModelRecipe, $Res> get recipe;
 }
 
 /// @nodoc
@@ -56,12 +57,21 @@ class _$SingleRecipeModelCopyWithImpl<$Res, $Val extends SingleRecipeModel>
       recipe: null == recipe
           ? _value.recipe
           : recipe // ignore: cast_nullable_to_non_nullable
-              as Either<Exception, Option<SingleRecipeModelRecipe>>,
+              as ViewState<SingleRecipeModelRecipe>,
       selectedYield: null == selectedYield
           ? _value.selectedYield
           : selectedYield // ignore: cast_nullable_to_non_nullable
               as Option<int>,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ViewStateCopyWith<SingleRecipeModelRecipe, $Res> get recipe {
+    return $ViewStateCopyWith<SingleRecipeModelRecipe, $Res>(_value.recipe,
+        (value) {
+      return _then(_value.copyWith(recipe: value) as $Val);
+    });
   }
 }
 
@@ -74,8 +84,10 @@ abstract class _$$_SingleRecipeModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Either<Exception, Option<SingleRecipeModelRecipe>> recipe,
-      Option<int> selectedYield});
+      {ViewState<SingleRecipeModelRecipe> recipe, Option<int> selectedYield});
+
+  @override
+  $ViewStateCopyWith<SingleRecipeModelRecipe, $Res> get recipe;
 }
 
 /// @nodoc
@@ -96,7 +108,7 @@ class __$$_SingleRecipeModelCopyWithImpl<$Res>
       recipe: null == recipe
           ? _value.recipe
           : recipe // ignore: cast_nullable_to_non_nullable
-              as Either<Exception, Option<SingleRecipeModelRecipe>>,
+              as ViewState<SingleRecipeModelRecipe>,
       selectedYield: null == selectedYield
           ? _value.selectedYield
           : selectedYield // ignore: cast_nullable_to_non_nullable
@@ -112,7 +124,7 @@ class _$_SingleRecipeModel implements _SingleRecipeModel {
       {required this.recipe, required this.selectedYield});
 
   @override
-  final Either<Exception, Option<SingleRecipeModelRecipe>> recipe;
+  final ViewState<SingleRecipeModelRecipe> recipe;
   @override
   final Option<int> selectedYield;
 
@@ -144,11 +156,11 @@ class _$_SingleRecipeModel implements _SingleRecipeModel {
 
 abstract class _SingleRecipeModel implements SingleRecipeModel {
   const factory _SingleRecipeModel(
-      {required final Either<Exception, Option<SingleRecipeModelRecipe>> recipe,
+      {required final ViewState<SingleRecipeModelRecipe> recipe,
       required final Option<int> selectedYield}) = _$_SingleRecipeModel;
 
   @override
-  Either<Exception, Option<SingleRecipeModelRecipe>> get recipe;
+  ViewState<SingleRecipeModelRecipe> get recipe;
   @override
   Option<int> get selectedYield;
   @override

@@ -25,36 +25,34 @@ class SingleRecipeView
   @override
   Widget build(final BuildContext context) => Scaffold(
         extendBodyBehindAppBar: true,
-        body: model.recipe.fold(
-          (final Exception exception) => Text(exception.toString()),
-          (final Option<SingleRecipeModelRecipe> content) => content.fold(
-            () => const Center(child: CircularProgressIndicator()),
-            (final SingleRecipeModelRecipe recipe) => Stack(
-              children: <Widget>[
-                DefaultTabController(
-                  length: 2,
-                  child: _buildContent(
-                    recipe: recipe,
-                    selectedYield: model.selectedYield,
-                    controller: controller,
-                  ),
+        body: model.recipe.when(
+          data: (SingleRecipeModelRecipe recipe) => Stack(
+            children: <Widget>[
+              DefaultTabController(
+                length: 2,
+                child: _buildContent(
+                  recipe: recipe,
+                  selectedYield: model.selectedYield,
+                  controller: controller,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: FloatingActionButton(
-                      onPressed: () => controller.openAddToShoppingCartDialog(
-                        recipe: recipe,
-                        recipeId: _recipeId,
-                      ),
-                      child: const Icon(Icons.add_shopping_cart),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: FloatingActionButton(
+                    onPressed: () => controller.openAddToShoppingCartDialog(
+                      recipe: recipe,
+                      recipeId: _recipeId,
                     ),
+                    child: const Icon(Icons.add_shopping_cart),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
+          error: (Object error) => Text(error.toString()),
+          loading: () => const Center(child: CircularProgressIndicator()),
         ),
       );
 

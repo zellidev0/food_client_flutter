@@ -1,3 +1,4 @@
+import 'package:food_client/commons/view_state.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -6,7 +7,7 @@ part 'single_recipe_model.freezed.dart';
 @freezed
 class SingleRecipeModel with _$SingleRecipeModel {
   const factory SingleRecipeModel({
-    required final Either<Exception, Option<SingleRecipeModelRecipe>> recipe,
+    required final ViewState<SingleRecipeModelRecipe> recipe,
     required final Option<int> selectedYield,
   }) = _SingleRecipeModel;
 }

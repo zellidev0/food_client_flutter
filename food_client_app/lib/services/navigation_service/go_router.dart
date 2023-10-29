@@ -157,6 +157,9 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
                 persistenceService:
                     ref.watch(persistenceServiceProvider.notifier),
                 recipeId: recipeId,
+                loggingService: ref.watch(
+                  loggingServiceProvider(loggerName: 'SingleRecipeController'),
+                ),
               );
               return SingleRecipeView(
                 model: ref.watch(provider),

@@ -7,7 +7,7 @@ part of 'single_recipe_controller.dart';
 // **************************************************************************
 
 String _$singleRecipeControllerImplementationHash() =>
-    r'96ec6be0fcb915d47a2ed413cb13f317345f73e5';
+    r'8c6f64eaaecacba104349a7496dbd55ddb5962f5';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -37,6 +37,7 @@ abstract class _$SingleRecipeControllerImplementation
   late final SingleRecipeWebImageSizerService webImageSizerService;
   late final SingleRecipeNavigationService navigationService;
   late final SingleRecipePersistenceService persistenceService;
+  late final SingleRecipeLoggingService loggingService;
 
   SingleRecipeModel build({
     required String recipeId,
@@ -44,6 +45,7 @@ abstract class _$SingleRecipeControllerImplementation
     required SingleRecipeWebImageSizerService webImageSizerService,
     required SingleRecipeNavigationService navigationService,
     required SingleRecipePersistenceService persistenceService,
+    required SingleRecipeLoggingService loggingService,
   });
 }
 
@@ -65,6 +67,7 @@ class SingleRecipeControllerImplementationFamily
     required SingleRecipeWebImageSizerService webImageSizerService,
     required SingleRecipeNavigationService navigationService,
     required SingleRecipePersistenceService persistenceService,
+    required SingleRecipeLoggingService loggingService,
   }) {
     return SingleRecipeControllerImplementationProvider(
       recipeId: recipeId,
@@ -72,6 +75,7 @@ class SingleRecipeControllerImplementationFamily
       webImageSizerService: webImageSizerService,
       navigationService: navigationService,
       persistenceService: persistenceService,
+      loggingService: loggingService,
     );
   }
 
@@ -85,6 +89,7 @@ class SingleRecipeControllerImplementationFamily
       webImageSizerService: provider.webImageSizerService,
       navigationService: provider.navigationService,
       persistenceService: provider.persistenceService,
+      loggingService: provider.loggingService,
     );
   }
 
@@ -114,13 +119,15 @@ class SingleRecipeControllerImplementationProvider
     required SingleRecipeWebImageSizerService webImageSizerService,
     required SingleRecipeNavigationService navigationService,
     required SingleRecipePersistenceService persistenceService,
+    required SingleRecipeLoggingService loggingService,
   }) : this._internal(
           () => SingleRecipeControllerImplementation()
             ..recipeId = recipeId
             ..webClientService = webClientService
             ..webImageSizerService = webImageSizerService
             ..navigationService = navigationService
-            ..persistenceService = persistenceService,
+            ..persistenceService = persistenceService
+            ..loggingService = loggingService,
           from: singleRecipeControllerImplementationProvider,
           name: r'singleRecipeControllerImplementationProvider',
           debugGetCreateSourceHash:
@@ -136,6 +143,7 @@ class SingleRecipeControllerImplementationProvider
           webImageSizerService: webImageSizerService,
           navigationService: navigationService,
           persistenceService: persistenceService,
+          loggingService: loggingService,
         );
 
   SingleRecipeControllerImplementationProvider._internal(
@@ -150,6 +158,7 @@ class SingleRecipeControllerImplementationProvider
     required this.webImageSizerService,
     required this.navigationService,
     required this.persistenceService,
+    required this.loggingService,
   }) : super.internal();
 
   final String recipeId;
@@ -157,6 +166,7 @@ class SingleRecipeControllerImplementationProvider
   final SingleRecipeWebImageSizerService webImageSizerService;
   final SingleRecipeNavigationService navigationService;
   final SingleRecipePersistenceService persistenceService;
+  final SingleRecipeLoggingService loggingService;
 
   @override
   SingleRecipeModel runNotifierBuild(
@@ -168,6 +178,7 @@ class SingleRecipeControllerImplementationProvider
       webImageSizerService: webImageSizerService,
       navigationService: navigationService,
       persistenceService: persistenceService,
+      loggingService: loggingService,
     );
   }
 
@@ -182,7 +193,8 @@ class SingleRecipeControllerImplementationProvider
           ..webClientService = webClientService
           ..webImageSizerService = webImageSizerService
           ..navigationService = navigationService
-          ..persistenceService = persistenceService,
+          ..persistenceService = persistenceService
+          ..loggingService = loggingService,
         from: from,
         name: null,
         dependencies: null,
@@ -193,6 +205,7 @@ class SingleRecipeControllerImplementationProvider
         webImageSizerService: webImageSizerService,
         navigationService: navigationService,
         persistenceService: persistenceService,
+        loggingService: loggingService,
       ),
     );
   }
@@ -210,7 +223,8 @@ class SingleRecipeControllerImplementationProvider
         other.webClientService == webClientService &&
         other.webImageSizerService == webImageSizerService &&
         other.navigationService == navigationService &&
-        other.persistenceService == persistenceService;
+        other.persistenceService == persistenceService &&
+        other.loggingService == loggingService;
   }
 
   @override
@@ -221,6 +235,7 @@ class SingleRecipeControllerImplementationProvider
     hash = _SystemHash.combine(hash, webImageSizerService.hashCode);
     hash = _SystemHash.combine(hash, navigationService.hashCode);
     hash = _SystemHash.combine(hash, persistenceService.hashCode);
+    hash = _SystemHash.combine(hash, loggingService.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -242,6 +257,9 @@ mixin SingleRecipeControllerImplementationRef
 
   /// The parameter `persistenceService` of this provider.
   SingleRecipePersistenceService get persistenceService;
+
+  /// The parameter `loggingService` of this provider.
+  SingleRecipeLoggingService get loggingService;
 }
 
 class _SingleRecipeControllerImplementationProviderElement
@@ -268,6 +286,9 @@ class _SingleRecipeControllerImplementationProviderElement
   SingleRecipePersistenceService get persistenceService =>
       (origin as SingleRecipeControllerImplementationProvider)
           .persistenceService;
+  @override
+  SingleRecipeLoggingService get loggingService =>
+      (origin as SingleRecipeControllerImplementationProvider).loggingService;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

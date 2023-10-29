@@ -1,7 +1,10 @@
 import 'dart:async';
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:food_client/services/navigation_service/navigation_service.dart';
+import 'package:food_client/commons/view_state.dart';
+import 'package:food_client/services/navigation_service/navigation_service.dart'
+    hide navigationService;
+import 'package:food_client/ui/single_recipe/services/single_recipe_logging_service.dart';
 import 'package:food_client/ui/single_recipe/services/single_recipe_navigation_service.dart';
 import 'package:food_client/ui/single_recipe/services/single_recipe_persistence_service.dart';
 import 'package:food_client/ui/single_recipe/services/single_recipe_web_client_service.dart';
@@ -21,11 +24,6 @@ const int widthPixelsIngredientThumbNail = 256;
 class SingleRecipeControllerImplementation
     extends _$SingleRecipeControllerImplementation
     implements SingleRecipeController {
-  late final SingleRecipeWebClientService _webClientService;
-  late final SingleRecipeWebImageSizerService _webImageSizerService;
-  late final SingleRecipeNavigationService _navigationService;
-  late final SingleRecipePersistenceService _persistenceService;
-
   @override
   SingleRecipeModel build({
     required final String recipeId,
@@ -33,32 +31,18 @@ class SingleRecipeControllerImplementation
     required final SingleRecipeWebImageSizerService webImageSizerService,
     required final SingleRecipeNavigationService navigationService,
     required final SingleRecipePersistenceService persistenceService,
+    required final SingleRecipeLoggingService loggingService,
   }) {
-    unawaited(
-      setRecipe(initialRecipeTask: fetchSingleRecipeTask(recipeId: recipeId)),
+    scheduleMicrotask(
+      () => unawaited(
+        Task.sequenceList(<Task<void>>[
+          fetchSingleRecipe(),
+        ]).run(),
+      ),
     );
     return SingleRecipeModel(
-      recipe: Either<Exception, Option<SingleRecipeModelRecipe>>.right(
-        none(),
-      ),
+      recipe: const ViewState<SingleRecipeModelRecipe>.loading(),
       selectedYield: none(),
-    );
-  }
-
-  Future<void> setRecipe({
-    required final TaskEither<Exception, SingleRecipeModelRecipe>
-        initialRecipeTask,
-  }) async {
-    final Either<Exception, SingleRecipeModelRecipe> recipeTask =
-        await initialRecipeTask.run();
-    state = SingleRecipeModel(
-      recipe: recipeTask.map(some),
-      selectedYield: recipeTask.toOption().flatMap(
-            (final SingleRecipeModelRecipe recipe) =>
-                recipe.yields.firstOption.map(
-              (final SingleRecipeModelYield yield) => yield.servings,
-            ),
-          ),
     );
   }
 
@@ -66,21 +50,36 @@ class SingleRecipeControllerImplementation
   void setSelectedYield({
     required final int yield,
     required final String recipeId,
-  }) {
-    state = state.copyWith(selectedYield: some(yield));
-  }
-
-  TaskEither<Exception, SingleRecipeModelRecipe> fetchSingleRecipeTask({
-    required final String recipeId,
   }) =>
-      _webClientService.fetchSingleRecipe(recipeId: recipeId).map(
+      state = state.copyWith(selectedYield: some(yield));
+
+  Task<void> fetchSingleRecipe() => webClientService
+          .fetchSingleRecipe(recipeId: recipeId)
+          .map(
             (final SingleRecipeWebClientModelRecipe recipe) =>
                 mapToSingleRecipeModelRecipe(
               recipe: recipe,
-              imageResizerService: _webImageSizerService,
-              persistenceService: _persistenceService,
+              imageResizerService: webImageSizerService,
+              persistenceService: persistenceService,
+            ),
+          )
+          .match(
+        (Exception error) {
+          loggingService.error(
+            message: 'Failed to fetch recipe with id $recipeId',
+            error: error,
+          );
+          state = state.copyWith(recipe: error.toViewStateError());
+        },
+        (SingleRecipeModelRecipe recipe) {
+          state = SingleRecipeModel(
+            recipe: recipe.toViewStateData(),
+            selectedYield: recipe.yields.firstOption.map(
+              (final SingleRecipeModelYield yield) => yield.servings,
             ),
           );
+        },
+      );
 
   @override
   void openAddToShoppingCartDialog({
@@ -88,7 +87,7 @@ class SingleRecipeControllerImplementation
     required final String recipeId,
   }) {
     unawaited(
-      _navigationService.showDialog(
+      navigationService.showDialog(
         title: 'ui.single_recipe_view.dialogs.add_to_shopping_cart.title'.tr(),
         content:
             'ui.single_recipe_view.dialogs.add_to_shopping_cart.content'.tr(),
@@ -106,7 +105,7 @@ class SingleRecipeControllerImplementation
                   ),
                   onPressed: () {
                     unawaited(
-                      _persistenceService
+                      persistenceService
                           .addRecipe(
                             recipe: SingleRecipePersistenceServiceRecipe(
                               ingredients: yield.ingredients
@@ -128,7 +127,7 @@ class SingleRecipeControllerImplementation
                           )
                           .run(),
                     );
-                    _navigationService.showSnackBar(
+                    navigationService.showSnackBar(
                       message:
                           'ui.single_recipe_view.snack_bars.add_to_cart_success'
                               .tr(),
@@ -150,11 +149,11 @@ class SingleRecipeControllerImplementation
   Future<void> _shareRecipe({
     required final SingleRecipeModelRecipe recipe,
   }) async {
-    (await _webClientService
+    (await webClientService
             .buildShareUrl(recipeId: recipe.id, recipeSlug: recipe.slug)
             .run())
         .fold(
-      (final Exception exception) => _navigationService.showSnackBar(
+      (final Exception exception) => navigationService.showSnackBar(
         message: 'ui.single_recipe_view.snack_bars.share_recipe_error'.tr(),
       ),
       (final Uri url) => Share.share(url.toString()),
@@ -163,7 +162,7 @@ class SingleRecipeControllerImplementation
 
   @override
   void goBack() {
-    _navigationService.goBack();
+    navigationService.goBack();
   }
 }
 

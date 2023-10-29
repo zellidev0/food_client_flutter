@@ -651,10 +651,13 @@ class WebClientService implements WebClientServiceAggregator {
       ).flatMap(
         (final QueryResult<Query$SingleRecipe> response) =>
             optionOf(response.parsedData)
-                .map(
+                .flatMap(
                   (final Query$SingleRecipe parsedData) =>
-                      _mapToSingleRecipeWebClientModelRecipe(
-                    recipe: parsedData.recipes_by_pk!,
+                      optionOf(parsedData.recipes_by_pk).map(
+                    (Query$SingleRecipe$recipes_by_pk recipe) =>
+                        _mapToSingleRecipeWebClientModelRecipe(
+                      recipe: recipe,
+                    ),
                   ),
                 )
                 .toEither(() => Exception('Failed to fetch recipes: $response'))
