@@ -322,13 +322,12 @@ class PersistenceService extends _$PersistenceService
             ) =>
                 PersistenceServiceModelActiveSorting.unit(
               activeSortingUnitId: selectedUnit.activeSortingUnitId,
-              customSortingIngredientIds:
-                  selectedUnit.customSortingIngredientIds,
+              customSortingIngredientIds: selectedUnit.ingredientIds,
             ),
             custom:
                 (final CartPersistenceServiceModelActiveSortingCustom custom) =>
                     PersistenceServiceModelActiveSorting.custom(
-              customSortingIngredientIds: custom.customSortingIngredientIds,
+              customSortingIngredientIds: custom.ingredientIds,
             ),
           ),
         ),
@@ -346,11 +345,11 @@ class PersistenceService extends _$PersistenceService
           unit: (final PersistenceServiceModelActiveSortingUnit unit) =>
               CartPersistenceServiceModelActiveSorting.selectedUnit(
             activeSortingUnitId: unit.activeSortingUnitId,
-            customSortingIngredientIds: unit.customSortingIngredientIds,
+            ingredientIds: unit.customSortingIngredientIds,
           ),
           custom: (final PersistenceServiceModelActiveSortingCustom custom) =>
               CartPersistenceServiceModelActiveSorting.custom(
-            customSortingIngredientIds: custom.customSortingIngredientIds,
+            ingredientIds: custom.customSortingIngredientIds,
           ),
         ),
       );

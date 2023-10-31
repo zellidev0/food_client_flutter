@@ -81,11 +81,11 @@ class CartPersistenceServiceModelActiveSorting
     with _$CartPersistenceServiceModelActiveSorting {
   const factory CartPersistenceServiceModelActiveSorting.selectedUnit({
     required final String activeSortingUnitId,
-    required final List<String> customSortingIngredientIds,
+    required final List<String> ingredientIds,
   }) = CartPersistenceServiceModelActiveSortingSelectedUnit;
 
   const factory CartPersistenceServiceModelActiveSorting.custom({
-    required final List<String> customSortingIngredientIds,
+    required final List<String> ingredientIds,
   }) = CartPersistenceServiceModelActiveSortingCustom;
 }
 

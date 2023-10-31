@@ -21,76 +21,10 @@ class CartView extends MvcView<CartController, CartModel> {
           child: DefaultTabController(
             length: 3,
             child: Builder(
-              builder: (final BuildContext context) => NestedScrollView(
-                headerSliverBuilder: (final _, final __) => <Widget>[
-                  if (model.recipes.isEmpty)
-                    const SliverToBoxAdapter()
-                  else
-                    _buildRecipeListSliver(
-                      model: model,
-                      controller: controller,
-                    ),
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          TextButton.icon(
-                            onPressed: () => controller.openModalBottomSheet(
-                              child: Container(),
-                              // buildSortingModalBottomSheetWidget(),
-                            ),
-                            icon: const Icon(Icons.sort),
-                            label: const Text(
-                              'ui.cart_view.modals.sorting_modal.button_text',
-                            ).tr(),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  _buildTabBarSliver(
-                    model: model,
-                    controller: controller,
-                  ),
-                ],
-                body: model.recipes.isEmpty
-                    ? buildNoItemsFoundIcon(
-                        message: 'ui.cart_view.empty_states.empty_cart'.tr(),
-                      )
-                    : TabBarView(
-                        children: <Widget>[
-                          buildIngredientsListView(
-                            ingredients: model.ingredients,
-                            keyId: 'total',
-                            controller: controller,
-                            sorting: model.sorting,
-                          ),
-                          buildIngredientsListView(
-                            ingredients: model.ingredients
-                                .where(
-                                  (final CartModelIngredient element) =>
-                                      !element.isTickedOff,
-                                )
-                                .toList(),
-                            keyId: 'missing',
-                            controller: controller,
-                            sorting: model.sorting,
-                          ),
-                          buildIngredientsListView(
-                            ingredients: model.ingredients
-                                .where(
-                                  (final CartModelIngredient element) =>
-                                      element.isTickedOff,
-                                )
-                                .toList(),
-                            keyId: 'ticked-off',
-                            controller: controller,
-                            sorting: model.sorting,
-                          ),
-                        ],
-                      ),
+              builder: (final BuildContext context) => model.data.map(
+                data: (data) => buildContent(model: data.data),
+                error: (_) => Text('error'),
+                loading: (_) => const CircularProgressIndicator(),
               ),
             ),
           ),
@@ -117,6 +51,8 @@ class CartView extends MvcView<CartController, CartModel> {
             buildDefaultDragHandles: false,
             onReorder: (final int oldIndex, final int newIndex) {
               controller.reorderIngredients(
+                ingredients: ingredients,
+                sorting: sorting,
                 oldIndex: oldIndex,
                 newIndex: newIndex,
               );
@@ -137,7 +73,6 @@ class CartView extends MvcView<CartController, CartModel> {
       );
 
   Widget _buildTabBarSliver({
-    required final CartModel model,
     required final CartController controller,
   }) =>
       SliverPersistentHeader(
@@ -152,7 +87,7 @@ class CartView extends MvcView<CartController, CartModel> {
       );
 
   Widget _buildRecipeListSliver({
-    required final CartModel model,
+    required final CartModelData model,
     required final CartController controller,
   }) =>
       Builder(
@@ -243,87 +178,140 @@ class CartView extends MvcView<CartController, CartModel> {
           ),
         ),
       );
-}
 
-// Widget buildSortingModalBottomSheetWidget() => Padding(
-//       padding: const EdgeInsets.all(16),
-//       child: Consumer(
-//         builder: (final _, final WidgetRef ref, final __) => GridView.count(
-//           crossAxisCount: 3,
-//           children: <Widget>[
-//             ...ref.watch(providers.cartControllerProvider).sortingUnits.map(
-//                   (final CartModelSortingUnit ingredientUnit) => Stack(
-//                     children: <Widget>[
-//                       buildCard(
-//                         sorting: CartModelSorting.unit(
-//                           activeUnit: ingredientUnit,
-//                           customSortingIngredientIds: ref
-//                               .watch(providers.cartControllerProvider)
-//                               .sorting
-//                               .customSortingIngredientIds,
-//                         ),
-//                         onTap: () {
-//                           ref
-//                               .read(providers.cartControllerProvider.notifier)
-//                               .setActiveSorting(
-//                                 sorting: CartModelSorting.unit(
-//                                   customSortingIngredientIds: ref
-//                                       .watch(providers.cartControllerProvider)
-//                                       .sorting
-//                                       .customSortingIngredientIds,
-//                                   activeUnit: ingredientUnit,
-//                                 ),
-//                               );
-//                         },
-//                       ),
-//                       buildStarIcon(
-//                         sorting: CartModelSorting.unit(
-//                           activeUnit: ingredientUnit,
-//                           customSortingIngredientIds: ref
-//                               .watch(providers.cartControllerProvider)
-//                               .sorting
-//                               .customSortingIngredientIds,
-//                         ),
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//             Stack(
-//               children: <Widget>[
-//                 buildCard(
-//                   sorting: CartModelSorting.custom(
-//                     customSortingIngredientIds: ref
-//                         .watch(providers.cartControllerProvider)
-//                         .sorting
-//                         .customSortingIngredientIds,
-//                   ),
-//                   onTap: () {
-//                     ref
-//                         .read(providers.cartControllerProvider.notifier)
-//                         .setActiveSorting(
-//                           sorting: CartModelSorting.custom(
-//                             customSortingIngredientIds: ref
-//                                 .watch(providers.cartControllerProvider)
-//                                 .sorting
-//                                 .customSortingIngredientIds,
-//                           ),
-//                         );
-//                   },
-//                 ),
-//                 buildStarIcon(
-//                   sorting: CartModelSorting.custom(
-//                     customSortingIngredientIds: ref
-//                         .watch(providers.cartControllerProvider)
-//                         .sorting
-//                         .customSortingIngredientIds,
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
+  Widget buildContent({required CartModelData model}) => NestedScrollView(
+        headerSliverBuilder: (final _, final __) => <Widget>[
+          if (model.recipes.isEmpty)
+            const SliverToBoxAdapter()
+          else
+            _buildRecipeListSliver(
+              model: model,
+              controller: controller,
+            ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  TextButton.icon(
+                    onPressed: () => controller.openModalBottomSheet(
+                      child: buildSortingModalBottomSheetWidget(
+                        sortingUnits: model.sortingUnits,
+                        sorting: model.sorting,
+                      ),
+                    ),
+                    icon: const Icon(Icons.sort),
+                    label: const Text(
+                      'ui.cart_view.modals.sorting_modal.button_text',
+                    ).tr(),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          _buildTabBarSliver(controller: controller),
+        ],
+        body: model.recipes.isEmpty
+            ? buildNoItemsFoundIcon(
+                message: 'ui.cart_view.empty_states.empty_cart'.tr(),
+              )
+            : TabBarView(
+                children: <Widget>[
+                  buildIngredientsListView(
+                    ingredients: model.ingredients,
+                    keyId: 'total',
+                    controller: controller,
+                    sorting: model.sorting,
+                  ),
+                  buildIngredientsListView(
+                    ingredients: model.ingredients
+                        .where(
+                          (final CartModelIngredient element) =>
+                              !element.isTickedOff,
+                        )
+                        .toList(),
+                    keyId: 'missing',
+                    controller: controller,
+                    sorting: model.sorting,
+                  ),
+                  buildIngredientsListView(
+                    ingredients: model.ingredients
+                        .where(
+                          (final CartModelIngredient element) =>
+                              element.isTickedOff,
+                        )
+                        .toList(),
+                    keyId: 'ticked-off',
+                    controller: controller,
+                    sorting: model.sorting,
+                  ),
+                ],
+              ),
+      );
+
+  Widget buildSortingModalBottomSheetWidget({
+    required final List<CartModelSortingUnit> sortingUnits,
+    required final CartModelSorting sorting,
+  }) =>
+      Padding(
+        padding: const EdgeInsets.all(16),
+        child: Consumer(
+          builder: (final _, final WidgetRef ref, final __) => GridView.count(
+            crossAxisCount: 3,
+            children: <Widget>[
+              ...sortingUnits.map(
+                (final CartModelSortingUnit ingredientUnit) => Stack(
+                  children: <Widget>[
+                    buildCard(
+                      sorting: CartModelSorting.unit(
+                        active: ingredientUnit,
+                        ingredientIds: sorting.ingredientIds,
+                      ),
+                      onTap: () {
+                        controller.setActiveSorting(
+                          sorting: CartModelSorting.unit(
+                            ingredientIds: sorting.ingredientIds,
+                            active: ingredientUnit,
+                          ),
+                        );
+                      },
+                    ),
+                    buildStarIcon(
+                      sorting: CartModelSorting.unit(
+                        active: ingredientUnit,
+                        ingredientIds: sorting.ingredientIds,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Stack(
+                children: <Widget>[
+                  buildCard(
+                    sorting: CartModelSorting.custom(
+                      ingredientIds: sorting.ingredientIds,
+                    ),
+                    onTap: () {
+                      controller.setActiveSorting(
+                        sorting: CartModelSorting.custom(
+                          ingredientIds: sorting.ingredientIds,
+                        ),
+                      );
+                    },
+                  ),
+                  buildStarIcon(
+                    sorting: CartModelSorting.custom(
+                      ingredientIds: sorting.ingredientIds,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      );
+}
 
 SizedBox buildCard({
   required final CartModelSorting sorting,
@@ -347,7 +335,7 @@ SizedBox buildCard({
                 Text(
                   sorting.map(
                     unit: (final CartModelSortingSelectedUnit unit) =>
-                        unit.activeUnit.name,
+                        unit.active.name,
                     custom: (final CartModelSortingCustom custom) => 'Custom',
                   ),
                 ),
@@ -375,7 +363,7 @@ Widget buildStarIcon({
                 unit: (final CartModelSortingSelectedUnit selectedUnit) =>
                     sorting.map(
                   unit: (final CartModelSortingSelectedUnit unit) =>
-                      unit.activeUnit.id == selectedUnit.activeUnit.id,
+                      unit.active.id == selectedUnit.active.id,
                   custom: (final CartModelSortingCustom custom) => false,
                 ),
                 custom: (final _) => sorting.map(
@@ -392,7 +380,7 @@ Widget buildStarIcon({
     );
 
 class RecipesListDelegate extends SliverPersistentHeaderDelegate {
-  final CartModel model;
+  final CartModelData model;
   final CartController controller;
   final double extendedHeight;
   final double collapsedHeight;
@@ -583,5 +571,7 @@ abstract class CartController extends MvcController {
   void reorderIngredients({
     required final int oldIndex,
     required final int newIndex,
+    required final List<CartModelIngredient> ingredients,
+    required final CartModelSorting sorting,
   });
 }

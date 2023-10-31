@@ -16,13 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CartModel {
-  List<CartModelRecipe> get recipes => throw _privateConstructorUsedError;
-  List<CartModelIngredient> get ingredients =>
-      throw _privateConstructorUsedError;
-  bool get combineIngredients => throw _privateConstructorUsedError;
-  CartModelSorting get sorting => throw _privateConstructorUsedError;
-  List<CartModelSortingUnit> get sortingUnits =>
-      throw _privateConstructorUsedError;
+  ViewState<CartModelData> get data => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CartModelCopyWith<CartModel> get copyWith =>
@@ -33,6 +27,142 @@ mixin _$CartModel {
 abstract class $CartModelCopyWith<$Res> {
   factory $CartModelCopyWith(CartModel value, $Res Function(CartModel) then) =
       _$CartModelCopyWithImpl<$Res, CartModel>;
+  @useResult
+  $Res call({ViewState<CartModelData> data});
+
+  $ViewStateCopyWith<CartModelData, $Res> get data;
+}
+
+/// @nodoc
+class _$CartModelCopyWithImpl<$Res, $Val extends CartModel>
+    implements $CartModelCopyWith<$Res> {
+  _$CartModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_value.copyWith(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as ViewState<CartModelData>,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ViewStateCopyWith<CartModelData, $Res> get data {
+    return $ViewStateCopyWith<CartModelData, $Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_CartModelCopyWith<$Res> implements $CartModelCopyWith<$Res> {
+  factory _$$_CartModelCopyWith(
+          _$_CartModel value, $Res Function(_$_CartModel) then) =
+      __$$_CartModelCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({ViewState<CartModelData> data});
+
+  @override
+  $ViewStateCopyWith<CartModelData, $Res> get data;
+}
+
+/// @nodoc
+class __$$_CartModelCopyWithImpl<$Res>
+    extends _$CartModelCopyWithImpl<$Res, _$_CartModel>
+    implements _$$_CartModelCopyWith<$Res> {
+  __$$_CartModelCopyWithImpl(
+      _$_CartModel _value, $Res Function(_$_CartModel) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_$_CartModel(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as ViewState<CartModelData>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_CartModel implements _CartModel {
+  const _$_CartModel({required this.data});
+
+  @override
+  final ViewState<CartModelData> data;
+
+  @override
+  String toString() {
+    return 'CartModel(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CartModel &&
+            (identical(other.data, data) || other.data == data));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, data);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CartModelCopyWith<_$_CartModel> get copyWith =>
+      __$$_CartModelCopyWithImpl<_$_CartModel>(this, _$identity);
+}
+
+abstract class _CartModel implements CartModel {
+  const factory _CartModel({required final ViewState<CartModelData> data}) =
+      _$_CartModel;
+
+  @override
+  ViewState<CartModelData> get data;
+  @override
+  @JsonKey(ignore: true)
+  _$$_CartModelCopyWith<_$_CartModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$CartModelData {
+  List<CartModelRecipe> get recipes => throw _privateConstructorUsedError;
+  List<CartModelIngredient> get ingredients =>
+      throw _privateConstructorUsedError;
+  bool get combineIngredients => throw _privateConstructorUsedError;
+  CartModelSorting get sorting => throw _privateConstructorUsedError;
+  List<CartModelSortingUnit> get sortingUnits =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $CartModelDataCopyWith<CartModelData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CartModelDataCopyWith<$Res> {
+  factory $CartModelDataCopyWith(
+          CartModelData value, $Res Function(CartModelData) then) =
+      _$CartModelDataCopyWithImpl<$Res, CartModelData>;
   @useResult
   $Res call(
       {List<CartModelRecipe> recipes,
@@ -45,9 +175,9 @@ abstract class $CartModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CartModelCopyWithImpl<$Res, $Val extends CartModel>
-    implements $CartModelCopyWith<$Res> {
-  _$CartModelCopyWithImpl(this._value, this._then);
+class _$CartModelDataCopyWithImpl<$Res, $Val extends CartModelData>
+    implements $CartModelDataCopyWith<$Res> {
+  _$CartModelDataCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -97,10 +227,11 @@ class _$CartModelCopyWithImpl<$Res, $Val extends CartModel>
 }
 
 /// @nodoc
-abstract class _$$_CartModelCopyWith<$Res> implements $CartModelCopyWith<$Res> {
-  factory _$$_CartModelCopyWith(
-          _$_CartModel value, $Res Function(_$_CartModel) then) =
-      __$$_CartModelCopyWithImpl<$Res>;
+abstract class _$$_CartModelDataCopyWith<$Res>
+    implements $CartModelDataCopyWith<$Res> {
+  factory _$$_CartModelDataCopyWith(
+          _$_CartModelData value, $Res Function(_$_CartModelData) then) =
+      __$$_CartModelDataCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -115,11 +246,11 @@ abstract class _$$_CartModelCopyWith<$Res> implements $CartModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_CartModelCopyWithImpl<$Res>
-    extends _$CartModelCopyWithImpl<$Res, _$_CartModel>
-    implements _$$_CartModelCopyWith<$Res> {
-  __$$_CartModelCopyWithImpl(
-      _$_CartModel _value, $Res Function(_$_CartModel) _then)
+class __$$_CartModelDataCopyWithImpl<$Res>
+    extends _$CartModelDataCopyWithImpl<$Res, _$_CartModelData>
+    implements _$$_CartModelDataCopyWith<$Res> {
+  __$$_CartModelDataCopyWithImpl(
+      _$_CartModelData _value, $Res Function(_$_CartModelData) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -131,7 +262,7 @@ class __$$_CartModelCopyWithImpl<$Res>
     Object? sorting = null,
     Object? sortingUnits = null,
   }) {
-    return _then(_$_CartModel(
+    return _then(_$_CartModelData(
       recipes: null == recipes
           ? _value._recipes
           : recipes // ignore: cast_nullable_to_non_nullable
@@ -158,8 +289,8 @@ class __$$_CartModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CartModel implements _CartModel {
-  const _$_CartModel(
+class _$_CartModelData implements _CartModelData {
+  const _$_CartModelData(
       {required final List<CartModelRecipe> recipes,
       required final List<CartModelIngredient> ingredients,
       required this.combineIngredients,
@@ -199,14 +330,14 @@ class _$_CartModel implements _CartModel {
 
   @override
   String toString() {
-    return 'CartModel(recipes: $recipes, ingredients: $ingredients, combineIngredients: $combineIngredients, sorting: $sorting, sortingUnits: $sortingUnits)';
+    return 'CartModelData(recipes: $recipes, ingredients: $ingredients, combineIngredients: $combineIngredients, sorting: $sorting, sortingUnits: $sortingUnits)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CartModel &&
+            other is _$_CartModelData &&
             const DeepCollectionEquality().equals(other._recipes, _recipes) &&
             const DeepCollectionEquality()
                 .equals(other._ingredients, _ingredients) &&
@@ -229,17 +360,18 @@ class _$_CartModel implements _CartModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CartModelCopyWith<_$_CartModel> get copyWith =>
-      __$$_CartModelCopyWithImpl<_$_CartModel>(this, _$identity);
+  _$$_CartModelDataCopyWith<_$_CartModelData> get copyWith =>
+      __$$_CartModelDataCopyWithImpl<_$_CartModelData>(this, _$identity);
 }
 
-abstract class _CartModel implements CartModel {
-  const factory _CartModel(
-      {required final List<CartModelRecipe> recipes,
-      required final List<CartModelIngredient> ingredients,
-      required final bool combineIngredients,
-      required final CartModelSorting sorting,
-      required final List<CartModelSortingUnit> sortingUnits}) = _$_CartModel;
+abstract class _CartModelData implements CartModelData {
+  const factory _CartModelData(
+          {required final List<CartModelRecipe> recipes,
+          required final List<CartModelIngredient> ingredients,
+          required final bool combineIngredients,
+          required final CartModelSorting sorting,
+          required final List<CartModelSortingUnit> sortingUnits}) =
+      _$_CartModelData;
 
   @override
   List<CartModelRecipe> get recipes;
@@ -253,36 +385,33 @@ abstract class _CartModel implements CartModel {
   List<CartModelSortingUnit> get sortingUnits;
   @override
   @JsonKey(ignore: true)
-  _$$_CartModelCopyWith<_$_CartModel> get copyWith =>
+  _$$_CartModelDataCopyWith<_$_CartModelData> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$CartModelSorting {
-  List<String> get customSortingIngredientIds =>
-      throw _privateConstructorUsedError;
+  List<String> get ingredientIds => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(CartModelSortingUnit activeUnit,
-            List<String> customSortingIngredientIds)
+    required TResult Function(
+            CartModelSortingUnit active, List<String> ingredientIds)
         unit,
-    required TResult Function(List<String> customSortingIngredientIds) custom,
+    required TResult Function(List<String> ingredientIds) custom,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(CartModelSortingUnit activeUnit,
-            List<String> customSortingIngredientIds)?
+    TResult? Function(CartModelSortingUnit active, List<String> ingredientIds)?
         unit,
-    TResult? Function(List<String> customSortingIngredientIds)? custom,
+    TResult? Function(List<String> ingredientIds)? custom,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(CartModelSortingUnit activeUnit,
-            List<String> customSortingIngredientIds)?
+    TResult Function(CartModelSortingUnit active, List<String> ingredientIds)?
         unit,
-    TResult Function(List<String> customSortingIngredientIds)? custom,
+    TResult Function(List<String> ingredientIds)? custom,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -317,7 +446,7 @@ abstract class $CartModelSortingCopyWith<$Res> {
           CartModelSorting value, $Res Function(CartModelSorting) then) =
       _$CartModelSortingCopyWithImpl<$Res, CartModelSorting>;
   @useResult
-  $Res call({List<String> customSortingIngredientIds});
+  $Res call({List<String> ingredientIds});
 }
 
 /// @nodoc
@@ -333,12 +462,12 @@ class _$CartModelSortingCopyWithImpl<$Res, $Val extends CartModelSorting>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? customSortingIngredientIds = null,
+    Object? ingredientIds = null,
   }) {
     return _then(_value.copyWith(
-      customSortingIngredientIds: null == customSortingIngredientIds
-          ? _value.customSortingIngredientIds
-          : customSortingIngredientIds // ignore: cast_nullable_to_non_nullable
+      ingredientIds: null == ingredientIds
+          ? _value.ingredientIds
+          : ingredientIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
     ) as $Val);
   }
@@ -353,11 +482,9 @@ abstract class _$$CartModelSortingSelectedUnitCopyWith<$Res>
       __$$CartModelSortingSelectedUnitCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {CartModelSortingUnit activeUnit,
-      List<String> customSortingIngredientIds});
+  $Res call({CartModelSortingUnit active, List<String> ingredientIds});
 
-  $CartModelSortingUnitCopyWith<$Res> get activeUnit;
+  $CartModelSortingUnitCopyWith<$Res> get active;
 }
 
 /// @nodoc
@@ -372,26 +499,26 @@ class __$$CartModelSortingSelectedUnitCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? activeUnit = null,
-    Object? customSortingIngredientIds = null,
+    Object? active = null,
+    Object? ingredientIds = null,
   }) {
     return _then(_$CartModelSortingSelectedUnit(
-      activeUnit: null == activeUnit
-          ? _value.activeUnit
-          : activeUnit // ignore: cast_nullable_to_non_nullable
+      active: null == active
+          ? _value.active
+          : active // ignore: cast_nullable_to_non_nullable
               as CartModelSortingUnit,
-      customSortingIngredientIds: null == customSortingIngredientIds
-          ? _value._customSortingIngredientIds
-          : customSortingIngredientIds // ignore: cast_nullable_to_non_nullable
+      ingredientIds: null == ingredientIds
+          ? _value._ingredientIds
+          : ingredientIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $CartModelSortingUnitCopyWith<$Res> get activeUnit {
-    return $CartModelSortingUnitCopyWith<$Res>(_value.activeUnit, (value) {
-      return _then(_value.copyWith(activeUnit: value));
+  $CartModelSortingUnitCopyWith<$Res> get active {
+    return $CartModelSortingUnitCopyWith<$Res>(_value.active, (value) {
+      return _then(_value.copyWith(active: value));
     });
   }
 }
@@ -400,24 +527,22 @@ class __$$CartModelSortingSelectedUnitCopyWithImpl<$Res>
 
 class _$CartModelSortingSelectedUnit implements CartModelSortingSelectedUnit {
   const _$CartModelSortingSelectedUnit(
-      {required this.activeUnit,
-      required final List<String> customSortingIngredientIds})
-      : _customSortingIngredientIds = customSortingIngredientIds;
+      {required this.active, required final List<String> ingredientIds})
+      : _ingredientIds = ingredientIds;
 
   @override
-  final CartModelSortingUnit activeUnit;
-  final List<String> _customSortingIngredientIds;
+  final CartModelSortingUnit active;
+  final List<String> _ingredientIds;
   @override
-  List<String> get customSortingIngredientIds {
-    if (_customSortingIngredientIds is EqualUnmodifiableListView)
-      return _customSortingIngredientIds;
+  List<String> get ingredientIds {
+    if (_ingredientIds is EqualUnmodifiableListView) return _ingredientIds;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_customSortingIngredientIds);
+    return EqualUnmodifiableListView(_ingredientIds);
   }
 
   @override
   String toString() {
-    return 'CartModelSorting.unit(activeUnit: $activeUnit, customSortingIngredientIds: $customSortingIngredientIds)';
+    return 'CartModelSorting.unit(active: $active, ingredientIds: $ingredientIds)';
   }
 
   @override
@@ -425,16 +550,14 @@ class _$CartModelSortingSelectedUnit implements CartModelSortingSelectedUnit {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CartModelSortingSelectedUnit &&
-            (identical(other.activeUnit, activeUnit) ||
-                other.activeUnit == activeUnit) &&
-            const DeepCollectionEquality().equals(
-                other._customSortingIngredientIds,
-                _customSortingIngredientIds));
+            (identical(other.active, active) || other.active == active) &&
+            const DeepCollectionEquality()
+                .equals(other._ingredientIds, _ingredientIds));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, activeUnit,
-      const DeepCollectionEquality().hash(_customSortingIngredientIds));
+  int get hashCode => Object.hash(
+      runtimeType, active, const DeepCollectionEquality().hash(_ingredientIds));
 
   @JsonKey(ignore: true)
   @override
@@ -446,36 +569,34 @@ class _$CartModelSortingSelectedUnit implements CartModelSortingSelectedUnit {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(CartModelSortingUnit activeUnit,
-            List<String> customSortingIngredientIds)
+    required TResult Function(
+            CartModelSortingUnit active, List<String> ingredientIds)
         unit,
-    required TResult Function(List<String> customSortingIngredientIds) custom,
+    required TResult Function(List<String> ingredientIds) custom,
   }) {
-    return unit(activeUnit, customSortingIngredientIds);
+    return unit(active, ingredientIds);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(CartModelSortingUnit activeUnit,
-            List<String> customSortingIngredientIds)?
+    TResult? Function(CartModelSortingUnit active, List<String> ingredientIds)?
         unit,
-    TResult? Function(List<String> customSortingIngredientIds)? custom,
+    TResult? Function(List<String> ingredientIds)? custom,
   }) {
-    return unit?.call(activeUnit, customSortingIngredientIds);
+    return unit?.call(active, ingredientIds);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(CartModelSortingUnit activeUnit,
-            List<String> customSortingIngredientIds)?
+    TResult Function(CartModelSortingUnit active, List<String> ingredientIds)?
         unit,
-    TResult Function(List<String> customSortingIngredientIds)? custom,
+    TResult Function(List<String> ingredientIds)? custom,
     required TResult orElse(),
   }) {
     if (unit != null) {
-      return unit(activeUnit, customSortingIngredientIds);
+      return unit(active, ingredientIds);
     }
     return orElse();
   }
@@ -514,13 +635,13 @@ class _$CartModelSortingSelectedUnit implements CartModelSortingSelectedUnit {
 
 abstract class CartModelSortingSelectedUnit implements CartModelSorting {
   const factory CartModelSortingSelectedUnit(
-          {required final CartModelSortingUnit activeUnit,
-          required final List<String> customSortingIngredientIds}) =
+          {required final CartModelSortingUnit active,
+          required final List<String> ingredientIds}) =
       _$CartModelSortingSelectedUnit;
 
-  CartModelSortingUnit get activeUnit;
+  CartModelSortingUnit get active;
   @override
-  List<String> get customSortingIngredientIds;
+  List<String> get ingredientIds;
   @override
   @JsonKey(ignore: true)
   _$$CartModelSortingSelectedUnitCopyWith<_$CartModelSortingSelectedUnit>
@@ -535,7 +656,7 @@ abstract class _$$CartModelSortingCustomCopyWith<$Res>
       __$$CartModelSortingCustomCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<String> customSortingIngredientIds});
+  $Res call({List<String> ingredientIds});
 }
 
 /// @nodoc
@@ -549,12 +670,12 @@ class __$$CartModelSortingCustomCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? customSortingIngredientIds = null,
+    Object? ingredientIds = null,
   }) {
     return _then(_$CartModelSortingCustom(
-      customSortingIngredientIds: null == customSortingIngredientIds
-          ? _value._customSortingIngredientIds
-          : customSortingIngredientIds // ignore: cast_nullable_to_non_nullable
+      ingredientIds: null == ingredientIds
+          ? _value._ingredientIds
+          : ingredientIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
     ));
   }
@@ -563,22 +684,20 @@ class __$$CartModelSortingCustomCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CartModelSortingCustom implements CartModelSortingCustom {
-  const _$CartModelSortingCustom(
-      {required final List<String> customSortingIngredientIds})
-      : _customSortingIngredientIds = customSortingIngredientIds;
+  const _$CartModelSortingCustom({required final List<String> ingredientIds})
+      : _ingredientIds = ingredientIds;
 
-  final List<String> _customSortingIngredientIds;
+  final List<String> _ingredientIds;
   @override
-  List<String> get customSortingIngredientIds {
-    if (_customSortingIngredientIds is EqualUnmodifiableListView)
-      return _customSortingIngredientIds;
+  List<String> get ingredientIds {
+    if (_ingredientIds is EqualUnmodifiableListView) return _ingredientIds;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_customSortingIngredientIds);
+    return EqualUnmodifiableListView(_ingredientIds);
   }
 
   @override
   String toString() {
-    return 'CartModelSorting.custom(customSortingIngredientIds: $customSortingIngredientIds)';
+    return 'CartModelSorting.custom(ingredientIds: $ingredientIds)';
   }
 
   @override
@@ -586,14 +705,13 @@ class _$CartModelSortingCustom implements CartModelSortingCustom {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CartModelSortingCustom &&
-            const DeepCollectionEquality().equals(
-                other._customSortingIngredientIds,
-                _customSortingIngredientIds));
+            const DeepCollectionEquality()
+                .equals(other._ingredientIds, _ingredientIds));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_customSortingIngredientIds));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_ingredientIds));
 
   @JsonKey(ignore: true)
   @override
@@ -605,36 +723,34 @@ class _$CartModelSortingCustom implements CartModelSortingCustom {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(CartModelSortingUnit activeUnit,
-            List<String> customSortingIngredientIds)
+    required TResult Function(
+            CartModelSortingUnit active, List<String> ingredientIds)
         unit,
-    required TResult Function(List<String> customSortingIngredientIds) custom,
+    required TResult Function(List<String> ingredientIds) custom,
   }) {
-    return custom(customSortingIngredientIds);
+    return custom(ingredientIds);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(CartModelSortingUnit activeUnit,
-            List<String> customSortingIngredientIds)?
+    TResult? Function(CartModelSortingUnit active, List<String> ingredientIds)?
         unit,
-    TResult? Function(List<String> customSortingIngredientIds)? custom,
+    TResult? Function(List<String> ingredientIds)? custom,
   }) {
-    return custom?.call(customSortingIngredientIds);
+    return custom?.call(ingredientIds);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(CartModelSortingUnit activeUnit,
-            List<String> customSortingIngredientIds)?
+    TResult Function(CartModelSortingUnit active, List<String> ingredientIds)?
         unit,
-    TResult Function(List<String> customSortingIngredientIds)? custom,
+    TResult Function(List<String> ingredientIds)? custom,
     required TResult orElse(),
   }) {
     if (custom != null) {
-      return custom(customSortingIngredientIds);
+      return custom(ingredientIds);
     }
     return orElse();
   }
@@ -673,11 +789,10 @@ class _$CartModelSortingCustom implements CartModelSortingCustom {
 
 abstract class CartModelSortingCustom implements CartModelSorting {
   const factory CartModelSortingCustom(
-          {required final List<String> customSortingIngredientIds}) =
-      _$CartModelSortingCustom;
+      {required final List<String> ingredientIds}) = _$CartModelSortingCustom;
 
   @override
-  List<String> get customSortingIngredientIds;
+  List<String> get ingredientIds;
   @override
   @JsonKey(ignore: true)
   _$$CartModelSortingCustomCopyWith<_$CartModelSortingCustom> get copyWith =>
