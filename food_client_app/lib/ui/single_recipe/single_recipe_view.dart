@@ -427,7 +427,7 @@ class TabBarSliverDelegate extends SliverPersistentHeaderDelegate {
             borderRadius: const BorderRadius.all(Radius.circular(64)),
             color: Theme.of(context).colorScheme.surface,
           ),
-          child: buildTabBar(
+          child: TabBar(
             tabs: <Tab>[
               Tab(text: 'general.others.instructions'.tr()),
               const Tab(text: 'Ingredients'),
