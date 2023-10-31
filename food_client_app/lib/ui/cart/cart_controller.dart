@@ -3,7 +3,7 @@ import 'package:food_client/mvc.dart';
 import 'package:food_client/ui/cart/cart_model.dart';
 
 abstract class CartController extends MvcController {
-  Future<void> tickOff({
+  void tickOff({
     required final String ingredientId,
     required final List<String> recipeIds,
     required final bool isTickedOff,

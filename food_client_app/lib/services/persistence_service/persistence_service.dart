@@ -1,3 +1,4 @@
+import 'package:food_client/commons/error.dart';
 import 'package:food_client/commons/utils.dart';
 import 'package:food_client/services/persistence_service/persistence_service_model.dart';
 import 'package:food_client/ui/cart/services/cart_persistence_service.dart';
@@ -113,7 +114,7 @@ class PersistenceService extends _$PersistenceService
           shoppingListBox.values.toList();
 
   @override
-  Task<void> updateIngredient({
+  TaskEither<MyError, void> updateIngredient({
     required final bool isTickedOff,
     required final String ingredientId,
     required final String recipeId,
@@ -132,11 +133,22 @@ class PersistenceService extends _$PersistenceService
                   .toList(),
             ),
           )
-          .fold(
-            () => Task<void>(() async {}),
+          .toEither<MyError>(
+            () => MyError(
+              message:
+                  'Shopping list box does not contain recipe with id $recipeId',
+            ),
+          )
+          .toTaskEither()
+          .flatMap(
             (final PersistenceServiceModelShoppingListRecipe recipe) =>
-                Task<void>(
+                TaskEither<MyError, void>.tryCatch(
               () async => await shoppingListBox.put(recipeId, recipe),
+              (Object error, StackTrace stackTrace) => MyError(
+                stackTrace: stackTrace,
+                originalError: error,
+                message: 'message',
+              ),
             ),
           );
 

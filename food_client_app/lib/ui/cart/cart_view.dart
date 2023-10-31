@@ -169,7 +169,7 @@ class CartView extends MvcView<CartController, CartModel> {
           child: Builder(
             builder: (final BuildContext context) => InkWell(
               borderRadius: BorderRadius.circular(8),
-              onTap: () async => await controller.tickOff(
+              onTap: () => controller.tickOff(
                 ingredientId: ingredient.ingredient.ingredientId,
                 recipeIds: recipeIds,
                 isTickedOff: !ingredient.isTickedOff,
@@ -361,7 +361,7 @@ Widget buildStarIcon({
     );
 
 abstract class CartController extends MvcController {
-  Future<void> tickOff({
+  void tickOff({
     required final String ingredientId,
     required final List<String> recipeIds,
     required final bool isTickedOff,

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/widgets.dart';
+import 'package:food_client/commons/error.dart';
 import 'package:food_client/commons/view_state.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart'
     hide navigationService;
@@ -56,19 +57,22 @@ class CartControllerImplementation extends _$CartControllerImplementation
   }
 
   @override
-  Future<void> tickOff({
+  void tickOff({
     required final String ingredientId,
     required final List<String> recipeIds,
     required final bool isTickedOff,
-  }) async {
+  }) {
     for (final String recipeId in recipeIds) {
-      await persistenceService
+      persistenceService
           .updateIngredient(
             isTickedOff: isTickedOff,
             ingredientId: ingredientId,
             recipeId: recipeId,
           )
-          .run();
+          .match(
+            (MyError error) => debugPrint(error.toString()), // TODO fix
+            (_) {},
+          );
     }
     state = state.copyWith(
       data: state.data.mapData(

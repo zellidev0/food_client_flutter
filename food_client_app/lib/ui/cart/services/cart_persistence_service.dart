@@ -1,3 +1,4 @@
+import 'package:food_client/commons/error.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -10,7 +11,7 @@ abstract class CartPersistenceService {
     required final CartPersistenceServiceModelActiveSorting sorting,
   });
   Option<CartPersistenceServiceModelActiveSorting> getActiveSorting();
-  Task<void> updateIngredient({
+  TaskEither<MyError, void> updateIngredient({
     required final bool isTickedOff,
     required final String ingredientId,
     required final String recipeId,
