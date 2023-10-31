@@ -9,7 +9,7 @@ import 'package:food_client/services/web_client/web_client_service.dart';
 import 'package:food_client/services/web_image_sizer/web_image_sizer_service.dart';
 import 'package:food_client/ui/account/account_controller.dart';
 import 'package:food_client/ui/account/account_view.dart';
-import 'package:food_client/ui/cart/cart_controller.dart';
+import 'package:food_client/ui/cart/cart_controller_implementation.dart';
 import 'package:food_client/ui/cart/cart_view.dart';
 import 'package:food_client/ui/home/home_controller.dart';
 import 'package:food_client/ui/home/home_view.dart';

@@ -5,14 +5,18 @@ class MyTabBarSliver extends StatelessWidget {
   const MyTabBarSliver({super.key});
 
   @override
-  Widget build(BuildContext context) => SliverPersistentHeader(
-        floating: true,
-        pinned: true,
-        delegate: TabBarSliverDelegate(
-          extendedHeight:
-              const TabBar(tabs: <Widget>[]).preferredSize.height + 32,
-          collapsedHeight:
-              const TabBar(tabs: <Widget>[]).preferredSize.height + 32,
-        ),
-      );
+  Widget build(BuildContext context) {
+    final double tabbarheight = const TabBar(
+          tabs: <Widget>[],
+        ).preferredSize.height +
+        32;
+    return SliverPersistentHeader(
+      floating: true,
+      pinned: true,
+      delegate: TabBarSliverDelegate(
+        extendedHeight: tabbarheight,
+        collapsedHeight: tabbarheight,
+      ),
+    );
+  }
 }
