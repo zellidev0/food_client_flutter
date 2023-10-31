@@ -55,6 +55,9 @@
       "empty_states": {
         "empty_cart": "Es sind bisher keine\n Rezepte im Einkaufswagen"
       },
+      "error_states":{
+        "general_error": "Fehler beim Laden der Einkaufsliste!"
+      },
       "dialogs": {
         "remove_recipe": {
           "title": "Rezept entfernen?",

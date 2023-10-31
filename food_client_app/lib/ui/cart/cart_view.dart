@@ -5,7 +5,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/commons/utils.dart';
 import 'package:food_client/commons/widgets.dart';
 import 'package:food_client/mvc.dart';
+import 'package:food_client/my_scaffold.dart';
 import 'package:food_client/ui/cart/cart_model.dart';
+import 'package:food_client/ui/cart/widgets/car_view_tab_bar.dart';
+import 'package:food_client/ui/cart/widgets/cart_view_recipe_list_delegate.dart';
 
 class CartView extends MvcView<CartController, CartModel> {
   const CartView({
@@ -15,19 +18,83 @@ class CartView extends MvcView<CartController, CartModel> {
   });
 
   @override
-  Widget build(final BuildContext context) => Scaffold(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        body: SafeArea(
-          child: DefaultTabController(
-            length: 3,
-            child: Builder(
-              builder: (final BuildContext context) => model.data.map(
-                data: (data) => buildContent(model: data.data),
-                error: (_) => Text('error'),
-                loading: (_) => const CircularProgressIndicator(),
+  Widget build(final BuildContext context) => MyScaffold<CartModelData>(
+        errorText: 'ui.cart_view.error_states.general_error'.tr(),
+        state: model.data,
+        child: (CartModelData modelData) => buildContent(model: modelData),
+      );
+
+  Widget buildContent({required CartModelData model}) => DefaultTabController(
+        length: 3,
+        child: NestedScrollView(
+          headerSliverBuilder: (final _, final __) => <Widget>[
+            if (model.recipes.isEmpty)
+              const SliverToBoxAdapter()
+            else
+              _buildRecipeListSliver(
+                model: model,
+                controller: controller,
+              ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    TextButton.icon(
+                      onPressed: () => controller.openModalBottomSheet(
+                        child: buildSortingModalBottomSheetWidget(
+                          sortingUnits: model.sortingUnits,
+                          sorting: model.sorting,
+                        ),
+                      ),
+                      icon: const Icon(Icons.sort),
+                      label: const Text(
+                        'ui.cart_view.modals.sorting_modal.button_text',
+                      ).tr(),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
+            const MyTabBarSliver(),
+          ],
+          body: model.recipes.isEmpty
+              ? buildNoItemsFoundIcon(
+                  message: 'ui.cart_view.empty_states.empty_cart'.tr(),
+                )
+              : TabBarView(
+                  children: <Widget>[
+                    buildIngredientsListView(
+                      ingredients: model.ingredients,
+                      keyId: 'total',
+                      controller: controller,
+                      sorting: model.sorting,
+                    ),
+                    buildIngredientsListView(
+                      ingredients: model.ingredients
+                          .where(
+                            (final CartModelIngredient element) =>
+                                !element.isTickedOff,
+                          )
+                          .toList(),
+                      keyId: 'missing',
+                      controller: controller,
+                      sorting: model.sorting,
+                    ),
+                    buildIngredientsListView(
+                      ingredients: model.ingredients
+                          .where(
+                            (final CartModelIngredient element) =>
+                                element.isTickedOff,
+                          )
+                          .toList(),
+                      keyId: 'ticked-off',
+                      controller: controller,
+                      sorting: model.sorting,
+                    ),
+                  ],
+                ),
         ),
       );
 
@@ -69,20 +136,6 @@ class CartView extends MvcView<CartController, CartModel> {
               ),
             ),
           ),
-        ),
-      );
-
-  Widget _buildTabBarSliver({
-    required final CartController controller,
-  }) =>
-      SliverPersistentHeader(
-        floating: true,
-        pinned: true,
-        delegate: TabBarSliverDelegate(
-          extendedHeight:
-              const TabBar(tabs: <Widget>[]).preferredSize.height + 32,
-          collapsedHeight:
-              const TabBar(tabs: <Widget>[]).preferredSize.height + 32,
         ),
       );
 
@@ -177,77 +230,6 @@ class CartView extends MvcView<CartController, CartModel> {
             ),
           ),
         ),
-      );
-
-  Widget buildContent({required CartModelData model}) => NestedScrollView(
-        headerSliverBuilder: (final _, final __) => <Widget>[
-          if (model.recipes.isEmpty)
-            const SliverToBoxAdapter()
-          else
-            _buildRecipeListSliver(
-              model: model,
-              controller: controller,
-            ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  TextButton.icon(
-                    onPressed: () => controller.openModalBottomSheet(
-                      child: buildSortingModalBottomSheetWidget(
-                        sortingUnits: model.sortingUnits,
-                        sorting: model.sorting,
-                      ),
-                    ),
-                    icon: const Icon(Icons.sort),
-                    label: const Text(
-                      'ui.cart_view.modals.sorting_modal.button_text',
-                    ).tr(),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          _buildTabBarSliver(controller: controller),
-        ],
-        body: model.recipes.isEmpty
-            ? buildNoItemsFoundIcon(
-                message: 'ui.cart_view.empty_states.empty_cart'.tr(),
-              )
-            : TabBarView(
-                children: <Widget>[
-                  buildIngredientsListView(
-                    ingredients: model.ingredients,
-                    keyId: 'total',
-                    controller: controller,
-                    sorting: model.sorting,
-                  ),
-                  buildIngredientsListView(
-                    ingredients: model.ingredients
-                        .where(
-                          (final CartModelIngredient element) =>
-                              !element.isTickedOff,
-                        )
-                        .toList(),
-                    keyId: 'missing',
-                    controller: controller,
-                    sorting: model.sorting,
-                  ),
-                  buildIngredientsListView(
-                    ingredients: model.ingredients
-                        .where(
-                          (final CartModelIngredient element) =>
-                              element.isTickedOff,
-                        )
-                        .toList(),
-                    keyId: 'ticked-off',
-                    controller: controller,
-                    sorting: model.sorting,
-                  ),
-                ],
-              ),
       );
 
   Widget buildSortingModalBottomSheetWidget({
@@ -378,185 +360,6 @@ Widget buildStarIcon({
         ),
       ),
     );
-
-class RecipesListDelegate extends SliverPersistentHeaderDelegate {
-  final CartModelData model;
-  final CartController controller;
-  final double extendedHeight;
-  final double collapsedHeight;
-
-  RecipesListDelegate({
-    required this.model,
-    required this.controller,
-    required this.extendedHeight,
-    required this.collapsedHeight,
-  });
-
-  @override
-  Widget build(
-    final BuildContext context,
-    final double shrinkOffset,
-    final bool overlapsContent,
-  ) {
-    final double height = (extendedHeight - shrinkOffset).clamp(
-      collapsedHeight,
-      extendedHeight,
-    );
-    if (height == collapsedHeight) {
-      return SizedBox(height: collapsedHeight);
-    }
-    return ListView.separated(
-      padding: const EdgeInsets.all(16).copyWith(bottom: 12),
-      scrollDirection: Axis.horizontal,
-      itemBuilder: (final _, final int index) => buildCardElement(
-        height: height,
-        recipe: model.recipes[index],
-      ),
-      separatorBuilder: (final _, final __) => const SizedBox(height: 8),
-      itemCount: model.recipes.length,
-    );
-  }
-
-  Widget buildCardElement({
-    required final double height,
-    required final CartModelRecipe recipe,
-  }) =>
-      Builder(
-        builder: (final BuildContext context) => SizedBox(
-          width: height * 0.75,
-          child: Card(
-            color: generateRandomPastelColor(
-              seed: recipe.recipeId.hashCode,
-              brightness: Theme.of(context).brightness,
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: InkWell(
-                borderRadius: BorderRadius.circular(12),
-                onTap: () => controller.openSingleRecipe(
-                  recipeId: recipe.recipeId,
-                ),
-                onLongPress: () => controller.showDeleteRecipeDialog(
-                  recipeId: recipe.recipeId,
-                ),
-                child: Stack(
-                  children: <Widget>[
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        _buildCardImage(recipe: recipe),
-                        _buildCardText(recipe: recipe),
-                      ],
-                    ),
-                    _buildServingsChip(serving: recipe.serving),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-      );
-
-  Widget _buildCardImage({
-    required final CartModelRecipe recipe,
-  }) =>
-      AspectRatio(
-        aspectRatio: 1.5 / 1,
-        child: recipe.imageUrl.fold(
-          () => const Icon(Icons.image_not_supported),
-          (final Uri url) => buildCachedNetworkImage(imageUrl: url),
-        ),
-      );
-
-  Widget _buildCardText({
-    required final CartModelRecipe recipe,
-  }) =>
-      Builder(
-        builder: (final BuildContext context) => Expanded(
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: AutoSizeText(
-              recipe.title,
-              minFontSize: 1,
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-          ),
-        ),
-      );
-
-  Widget _buildServingsChip({required final int serving}) => Padding(
-        padding: const EdgeInsets.all(8),
-        child: Align(
-          alignment: Alignment.topCenter,
-          child: Row(
-            children: <Widget>[
-              const Expanded(child: SizedBox.shrink()),
-              Chip(
-                label: Row(
-                  children: <Widget>[
-                    const Icon(Icons.group),
-                    Text(serving.toString()),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-
-  @override
-  double get maxExtent => extendedHeight;
-
-  @override
-  double get minExtent => collapsedHeight;
-
-  @override
-  bool shouldRebuild(final SliverPersistentHeaderDelegate oldDelegate) => true;
-}
-
-class TabBarSliverDelegate extends SliverPersistentHeaderDelegate {
-  final double extendedHeight;
-  final double collapsedHeight;
-
-  TabBarSliverDelegate({
-    required this.extendedHeight,
-    required this.collapsedHeight,
-  });
-
-  @override
-  Widget build(
-    final BuildContext context,
-    final double shrinkOffset,
-    final bool overlapsContent,
-  ) =>
-      Builder(
-        builder: (final BuildContext context) => Padding(
-          padding: const EdgeInsets.all(16),
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(64)),
-              color: Theme.of(context).colorScheme.surface,
-            ),
-            child: TabBar(
-              tabs: <Tab>[
-                Tab(text: 'general.others.total'.tr()),
-                Tab(text: 'general.others.missing'.tr()),
-                Tab(text: 'general.others.ticket_off'.tr()),
-              ],
-            ),
-          ),
-        ),
-      );
-
-  @override
-  double get maxExtent => extendedHeight;
-
-  @override
-  double get minExtent => collapsedHeight;
-
-  @override
-  bool shouldRebuild(final SliverPersistentHeaderDelegate oldDelegate) => true;
-}
 
 abstract class CartController extends MvcController {
   Future<void> tickOff({

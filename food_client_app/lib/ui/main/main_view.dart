@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:food_client/mvc.dart';
-import 'package:food_client/my_scaffold.dart';
 import 'package:food_client/ui/main/main_model.dart';
 
 class MainView extends MvcView<MainController, MainModel> {
@@ -14,27 +13,34 @@ class MainView extends MvcView<MainController, MainModel> {
   }) : _child = child;
 
   @override
-  Widget build(final BuildContext context) => WillPopScope(
-        onWillPop: () async => controller.goBack(),
-        child: MyScaffold(
-          bottomNavigationBar: ClipRRect(
-            child: NavigationBar(
-              onDestinationSelected: (final int selectedIndex) {
-                controller.updateSelectedBottomTabIndex(index: selectedIndex);
-              },
-              selectedIndex: model.bottomNavigationBarIndex,
-              destinations: model.bottomTabs
-                  .map(
-                    (final MainBottomTab tab) => NavigationDestination(
-                      icon: tab.unselectedIcon,
-                      selectedIcon: tab.selectedIcon,
-                      label: tab.label,
-                    ),
-                  )
-                  .toList(),
+  Widget build(final BuildContext context) => Material(
+        child: SafeArea(
+          top: false,
+          bottom: false,
+          child: SelectionArea(
+            child: Scaffold(
+              bottomNavigationBar: ClipRRect(
+                child: NavigationBar(
+                  onDestinationSelected: (final int selectedIndex) {
+                    controller.updateSelectedBottomTabIndex(
+                      index: selectedIndex,
+                    );
+                  },
+                  selectedIndex: model.bottomNavigationBarIndex,
+                  destinations: model.bottomTabs
+                      .map(
+                        (final MainBottomTab tab) => NavigationDestination(
+                          icon: tab.unselectedIcon,
+                          selectedIcon: tab.selectedIcon,
+                          label: tab.label,
+                        ),
+                      )
+                      .toList(),
+                ),
+              ),
+              body: _child,
             ),
           ),
-          body: _child,
         ),
       );
 }

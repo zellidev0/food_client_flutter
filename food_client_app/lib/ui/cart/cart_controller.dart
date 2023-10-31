@@ -7,10 +7,10 @@ import 'package:food_client/commons/view_state.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart'
     hide navigationService;
 import 'package:food_client/ui/cart/cart_model.dart';
-import 'package:food_client/ui/cart/cart_navigation_service.dart';
-import 'package:food_client/ui/cart/cart_persistence_service.dart';
 import 'package:food_client/ui/cart/cart_view.dart';
-import 'package:food_client/ui/cart/cart_web_image_sizer_service.dart';
+import 'package:food_client/ui/cart/services/cart_navigation_service.dart';
+import 'package:food_client/ui/cart/services/cart_persistence_service.dart';
+import 'package:food_client/ui/cart/services/cart_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
