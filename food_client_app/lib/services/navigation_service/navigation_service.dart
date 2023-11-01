@@ -6,7 +6,7 @@ import 'package:food_client/services/navigation_service/go_router.dart';
 import 'package:food_client/ui/account/account_navigation_service.dart';
 import 'package:food_client/ui/cart/services/cart_navigation_service.dart';
 import 'package:food_client/ui/home/services/home_navigation_service.dart';
-import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_navigation_service.dart';
+import 'package:food_client/ui/ingredients_sorting/services/ingredients_sorting_navigation_service.dart';
 import 'package:food_client/ui/main/main_navigation_service.dart';
 import 'package:food_client/ui/single_recipe/services/single_recipe_navigation_service.dart';
 

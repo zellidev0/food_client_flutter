@@ -322,8 +322,8 @@ class CartControllerImplementation extends _$CartControllerImplementation
               ),
             )
             .run(),
-        error: (_) {},
-        loading: (_) {},
+        error: (_) => null,
+        loading: (_) => null,
       ),
     );
 

@@ -9,11 +9,11 @@ import 'package:food_client/services/logging_service/logging_service.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart'
     hide navigationService;
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_model.dart';
-import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_navigation_service.dart';
-import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_persistence_service.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_view.dart';
-import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_web_client_service.dart';
-import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_web_image_sizer_service.dart';
+import 'package:food_client/ui/ingredients_sorting/services/ingredients_sorting_navigation_service.dart';
+import 'package:food_client/ui/ingredients_sorting/services/ingredients_sorting_persistence_service.dart';
+import 'package:food_client/ui/ingredients_sorting/services/ingredients_sorting_web_client_service.dart';
+import 'package:food_client/ui/ingredients_sorting/services/ingredients_sorting_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
