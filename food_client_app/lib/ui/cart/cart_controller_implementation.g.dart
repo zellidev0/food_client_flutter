@@ -7,7 +7,7 @@ part of 'cart_controller_implementation.dart';
 // **************************************************************************
 
 String _$cartControllerImplementationHash() =>
-    r'c3f845a48bbc3e3114d6dfe1b11c97a5021637e4';
+    r'fba9e2f947c1d684121468373bcbcbff0fe501fb';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -35,12 +35,14 @@ abstract class _$CartControllerImplementation
   late final CartNavigationService navigationService;
   late final CartPersistenceService persistenceService;
   late final CartWebImageSizerService imageSizerService;
+  late final LoggingService logger;
   late final bool combinedIngredients;
 
   CartModel build({
     required CartNavigationService navigationService,
     required CartPersistenceService persistenceService,
     required CartWebImageSizerService imageSizerService,
+    required LoggingService logger,
     required bool combinedIngredients,
   });
 }
@@ -60,12 +62,14 @@ class CartControllerImplementationFamily extends Family<CartModel> {
     required CartNavigationService navigationService,
     required CartPersistenceService persistenceService,
     required CartWebImageSizerService imageSizerService,
+    required LoggingService logger,
     required bool combinedIngredients,
   }) {
     return CartControllerImplementationProvider(
       navigationService: navigationService,
       persistenceService: persistenceService,
       imageSizerService: imageSizerService,
+      logger: logger,
       combinedIngredients: combinedIngredients,
     );
   }
@@ -78,6 +82,7 @@ class CartControllerImplementationFamily extends Family<CartModel> {
       navigationService: provider.navigationService,
       persistenceService: provider.persistenceService,
       imageSizerService: provider.imageSizerService,
+      logger: provider.logger,
       combinedIngredients: provider.combinedIngredients,
     );
   }
@@ -106,12 +111,14 @@ class CartControllerImplementationProvider
     required CartNavigationService navigationService,
     required CartPersistenceService persistenceService,
     required CartWebImageSizerService imageSizerService,
+    required LoggingService logger,
     required bool combinedIngredients,
   }) : this._internal(
           () => CartControllerImplementation()
             ..navigationService = navigationService
             ..persistenceService = persistenceService
             ..imageSizerService = imageSizerService
+            ..logger = logger
             ..combinedIngredients = combinedIngredients,
           from: cartControllerImplementationProvider,
           name: r'cartControllerImplementationProvider',
@@ -125,6 +132,7 @@ class CartControllerImplementationProvider
           navigationService: navigationService,
           persistenceService: persistenceService,
           imageSizerService: imageSizerService,
+          logger: logger,
           combinedIngredients: combinedIngredients,
         );
 
@@ -138,12 +146,14 @@ class CartControllerImplementationProvider
     required this.navigationService,
     required this.persistenceService,
     required this.imageSizerService,
+    required this.logger,
     required this.combinedIngredients,
   }) : super.internal();
 
   final CartNavigationService navigationService;
   final CartPersistenceService persistenceService;
   final CartWebImageSizerService imageSizerService;
+  final LoggingService logger;
   final bool combinedIngredients;
 
   @override
@@ -154,6 +164,7 @@ class CartControllerImplementationProvider
       navigationService: navigationService,
       persistenceService: persistenceService,
       imageSizerService: imageSizerService,
+      logger: logger,
       combinedIngredients: combinedIngredients,
     );
   }
@@ -167,6 +178,7 @@ class CartControllerImplementationProvider
           ..navigationService = navigationService
           ..persistenceService = persistenceService
           ..imageSizerService = imageSizerService
+          ..logger = logger
           ..combinedIngredients = combinedIngredients,
         from: from,
         name: null,
@@ -176,6 +188,7 @@ class CartControllerImplementationProvider
         navigationService: navigationService,
         persistenceService: persistenceService,
         imageSizerService: imageSizerService,
+        logger: logger,
         combinedIngredients: combinedIngredients,
       ),
     );
@@ -193,6 +206,7 @@ class CartControllerImplementationProvider
         other.navigationService == navigationService &&
         other.persistenceService == persistenceService &&
         other.imageSizerService == imageSizerService &&
+        other.logger == logger &&
         other.combinedIngredients == combinedIngredients;
   }
 
@@ -202,6 +216,7 @@ class CartControllerImplementationProvider
     hash = _SystemHash.combine(hash, navigationService.hashCode);
     hash = _SystemHash.combine(hash, persistenceService.hashCode);
     hash = _SystemHash.combine(hash, imageSizerService.hashCode);
+    hash = _SystemHash.combine(hash, logger.hashCode);
     hash = _SystemHash.combine(hash, combinedIngredients.hashCode);
 
     return _SystemHash.finish(hash);
@@ -218,6 +233,9 @@ mixin CartControllerImplementationRef
 
   /// The parameter `imageSizerService` of this provider.
   CartWebImageSizerService get imageSizerService;
+
+  /// The parameter `logger` of this provider.
+  LoggingService get logger;
 
   /// The parameter `combinedIngredients` of this provider.
   bool get combinedIngredients;
@@ -237,6 +255,9 @@ class _CartControllerImplementationProviderElement
   @override
   CartWebImageSizerService get imageSizerService =>
       (origin as CartControllerImplementationProvider).imageSizerService;
+  @override
+  LoggingService get logger =>
+      (origin as CartControllerImplementationProvider).logger;
   @override
   bool get combinedIngredients =>
       (origin as CartControllerImplementationProvider).combinedIngredients;

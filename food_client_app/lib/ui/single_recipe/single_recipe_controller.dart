@@ -1,10 +1,11 @@
 import 'dart:async';
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:food_client/commons/error.dart';
 import 'package:food_client/commons/view_state.dart';
+import 'package:food_client/services/logging_service/logging_service.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart'
     hide navigationService;
-import 'package:food_client/ui/single_recipe/services/single_recipe_logging_service.dart';
 import 'package:food_client/ui/single_recipe/services/single_recipe_navigation_service.dart';
 import 'package:food_client/ui/single_recipe/services/single_recipe_persistence_service.dart';
 import 'package:food_client/ui/single_recipe/services/single_recipe_web_client_service.dart';
@@ -31,7 +32,7 @@ class SingleRecipeControllerImplementation
     required final SingleRecipeWebImageSizerService webImageSizerService,
     required final SingleRecipeNavigationService navigationService,
     required final SingleRecipePersistenceService persistenceService,
-    required final SingleRecipeLoggingService loggingService,
+    required final LoggingService logger,
   }) {
     scheduleMicrotask(
       () => unawaited(
@@ -66,10 +67,13 @@ class SingleRecipeControllerImplementation
           )
           .match(
         (Exception error) {
-          loggingService.error(
-            message: 'Failed to fetch recipe with id $recipeId',
-            error: error,
+          logger.error(
+            MyError(
+              message: 'Failed to fetch recipe with id $recipeId',
+              originalError: error,
+            ),
           );
+
           state = state.copyWith(recipe: error.toViewStateError());
         },
         (SingleRecipeModelRecipe recipe) {

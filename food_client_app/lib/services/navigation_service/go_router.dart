@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' hide AsyncData;
@@ -83,6 +85,11 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
                     imageSizerService: ref.read(webImageSizerServiceProvider),
                     persistenceService:
                         ref.watch(persistenceServiceProvider.notifier),
+                    logger: ref.watch(
+                      loggingServiceProvider(
+                        loggerName: 'CartController',
+                      ),
+                    ),
                   );
                   return CartView(
                     model: ref.watch(provider),
@@ -104,7 +111,7 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
                     webClientService: ref.watch(webClientServiceProvider),
                     webImageSizerService:
                         ref.watch(webImageSizerServiceProvider),
-                    loggingService: ref.watch(
+                    logger: ref.watch(
                       loggingServiceProvider(loggerName: 'HomeController'),
                     ),
                   );
@@ -125,7 +132,7 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
                   provider = IngredientsSortingControllerImplementationProvider(
                 webClientService: ref.read(webClientServiceProvider),
                 webImageSizerService: ref.read(webImageSizerServiceProvider),
-                loggingService: ref.read(
+                logger: ref.read(
                   loggingServiceProvider(
                     loggerName: 'IngredientsSortingController',
                   ),
@@ -158,7 +165,7 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
                 persistenceService: ref.watch(
                   persistenceServiceProvider.notifier,
                 ),
-                loggingService: ref.watch(
+                logger: ref.watch(
                   loggingServiceProvider(loggerName: 'SingleRecipe'),
                 ),
               );

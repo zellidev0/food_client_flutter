@@ -2,9 +2,10 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:food_client/commons/error.dart';
+import 'package:food_client/services/logging_service/logging_service.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart'
     hide navigationService;
-import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_logging_service.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_model.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_navigation_service.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_persistence_service.dart';
@@ -30,7 +31,7 @@ class IngredientsSortingControllerImplementation
     required final IngredientsSortingWebClientService webClientService,
     required final IngredientsSortingWebImageSizerService webImageSizerService,
     required final IngredientsSortingPersistenceService persistenceService,
-    required final IngredientsSortingLoggingService loggingService,
+    required final LoggingService logger,
   }) {
     _fetchPersistenceServiceUnits();
     return IngredientsSortingModel(
@@ -48,7 +49,7 @@ class IngredientsSortingControllerImplementation
   Future<void> createSortingUnit({required final String name}) async {
     (await webClientService.fetchIngredientsSorting().run()).fold(
       (final Exception error) => _handleError(
-        exception: error,
+        error: error,
         message: 'Could not fetch ingredients sorting unit',
         userDisplayedErrorMessage: 'An error occurred, try again later',
       ),
@@ -107,7 +108,7 @@ class IngredientsSortingControllerImplementation
                     .fold(
                   (final Exception exception) {
                     _handleError(
-                      exception: exception,
+                      error: exception,
                       message: 'Could not delete unit with id ${unit.id}',
                       userDisplayedErrorMessage: 'Unit could not be deleted',
                     );
@@ -222,11 +223,12 @@ class IngredientsSortingControllerImplementation
   }
 
   void _handleError({
-    required final Exception exception,
+    required final Exception error,
     required final String message,
     required final String userDisplayedErrorMessage,
   }) {
-    loggingService.error(message: message, error: exception);
+    logger.error(MyError(message: message, originalError: error));
+
     navigationService.showSnackBar(message: userDisplayedErrorMessage);
   }
 

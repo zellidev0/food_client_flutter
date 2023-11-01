@@ -7,7 +7,7 @@ part of 'ingredients_sorting_controller.dart';
 // **************************************************************************
 
 String _$ingredientsSortingControllerImplementationHash() =>
-    r'95947afc85cb84d8ae5a98a465361f69e0e14532';
+    r'dfbe78434f2819426f7d1e82c0d849a0d2528bbf';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -36,14 +36,14 @@ abstract class _$IngredientsSortingControllerImplementation
   late final IngredientsSortingWebClientService webClientService;
   late final IngredientsSortingWebImageSizerService webImageSizerService;
   late final IngredientsSortingPersistenceService persistenceService;
-  late final IngredientsSortingLoggingService loggingService;
+  late final LoggingService logger;
 
   IngredientsSortingModel build({
     required IngredientsSortingNavigationService navigationService,
     required IngredientsSortingWebClientService webClientService,
     required IngredientsSortingWebImageSizerService webImageSizerService,
     required IngredientsSortingPersistenceService persistenceService,
-    required IngredientsSortingLoggingService loggingService,
+    required LoggingService logger,
   });
 }
 
@@ -64,14 +64,14 @@ class IngredientsSortingControllerImplementationFamily
     required IngredientsSortingWebClientService webClientService,
     required IngredientsSortingWebImageSizerService webImageSizerService,
     required IngredientsSortingPersistenceService persistenceService,
-    required IngredientsSortingLoggingService loggingService,
+    required LoggingService logger,
   }) {
     return IngredientsSortingControllerImplementationProvider(
       navigationService: navigationService,
       webClientService: webClientService,
       webImageSizerService: webImageSizerService,
       persistenceService: persistenceService,
-      loggingService: loggingService,
+      logger: logger,
     );
   }
 
@@ -84,7 +84,7 @@ class IngredientsSortingControllerImplementationFamily
       webClientService: provider.webClientService,
       webImageSizerService: provider.webImageSizerService,
       persistenceService: provider.persistenceService,
-      loggingService: provider.loggingService,
+      logger: provider.logger,
     );
   }
 
@@ -113,14 +113,14 @@ class IngredientsSortingControllerImplementationProvider
     required IngredientsSortingWebClientService webClientService,
     required IngredientsSortingWebImageSizerService webImageSizerService,
     required IngredientsSortingPersistenceService persistenceService,
-    required IngredientsSortingLoggingService loggingService,
+    required LoggingService logger,
   }) : this._internal(
           () => IngredientsSortingControllerImplementation()
             ..navigationService = navigationService
             ..webClientService = webClientService
             ..webImageSizerService = webImageSizerService
             ..persistenceService = persistenceService
-            ..loggingService = loggingService,
+            ..logger = logger,
           from: ingredientsSortingControllerImplementationProvider,
           name: r'ingredientsSortingControllerImplementationProvider',
           debugGetCreateSourceHash:
@@ -136,7 +136,7 @@ class IngredientsSortingControllerImplementationProvider
           webClientService: webClientService,
           webImageSizerService: webImageSizerService,
           persistenceService: persistenceService,
-          loggingService: loggingService,
+          logger: logger,
         );
 
   IngredientsSortingControllerImplementationProvider._internal(
@@ -150,14 +150,14 @@ class IngredientsSortingControllerImplementationProvider
     required this.webClientService,
     required this.webImageSizerService,
     required this.persistenceService,
-    required this.loggingService,
+    required this.logger,
   }) : super.internal();
 
   final IngredientsSortingNavigationService navigationService;
   final IngredientsSortingWebClientService webClientService;
   final IngredientsSortingWebImageSizerService webImageSizerService;
   final IngredientsSortingPersistenceService persistenceService;
-  final IngredientsSortingLoggingService loggingService;
+  final LoggingService logger;
 
   @override
   IngredientsSortingModel runNotifierBuild(
@@ -168,7 +168,7 @@ class IngredientsSortingControllerImplementationProvider
       webClientService: webClientService,
       webImageSizerService: webImageSizerService,
       persistenceService: persistenceService,
-      loggingService: loggingService,
+      logger: logger,
     );
   }
 
@@ -183,7 +183,7 @@ class IngredientsSortingControllerImplementationProvider
           ..webClientService = webClientService
           ..webImageSizerService = webImageSizerService
           ..persistenceService = persistenceService
-          ..loggingService = loggingService,
+          ..logger = logger,
         from: from,
         name: null,
         dependencies: null,
@@ -193,7 +193,7 @@ class IngredientsSortingControllerImplementationProvider
         webClientService: webClientService,
         webImageSizerService: webImageSizerService,
         persistenceService: persistenceService,
-        loggingService: loggingService,
+        logger: logger,
       ),
     );
   }
@@ -211,7 +211,7 @@ class IngredientsSortingControllerImplementationProvider
         other.webClientService == webClientService &&
         other.webImageSizerService == webImageSizerService &&
         other.persistenceService == persistenceService &&
-        other.loggingService == loggingService;
+        other.logger == logger;
   }
 
   @override
@@ -221,7 +221,7 @@ class IngredientsSortingControllerImplementationProvider
     hash = _SystemHash.combine(hash, webClientService.hashCode);
     hash = _SystemHash.combine(hash, webImageSizerService.hashCode);
     hash = _SystemHash.combine(hash, persistenceService.hashCode);
-    hash = _SystemHash.combine(hash, loggingService.hashCode);
+    hash = _SystemHash.combine(hash, logger.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -241,8 +241,8 @@ mixin IngredientsSortingControllerImplementationRef
   /// The parameter `persistenceService` of this provider.
   IngredientsSortingPersistenceService get persistenceService;
 
-  /// The parameter `loggingService` of this provider.
-  IngredientsSortingLoggingService get loggingService;
+  /// The parameter `logger` of this provider.
+  LoggingService get logger;
 }
 
 class _IngredientsSortingControllerImplementationProviderElement
@@ -268,9 +268,8 @@ class _IngredientsSortingControllerImplementationProviderElement
       (origin as IngredientsSortingControllerImplementationProvider)
           .persistenceService;
   @override
-  IngredientsSortingLoggingService get loggingService =>
-      (origin as IngredientsSortingControllerImplementationProvider)
-          .loggingService;
+  LoggingService get logger =>
+      (origin as IngredientsSortingControllerImplementationProvider).logger;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

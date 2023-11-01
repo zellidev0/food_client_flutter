@@ -1,27 +1,25 @@
 import 'dart:developer';
 
-import 'package:food_client/ui/home/services/home_logging_service.dart';
-import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_logging_service.dart';
-import 'package:food_client/ui/single_recipe/services/single_recipe_logging_service.dart';
+import 'package:food_client/commons/error.dart';
 import 'package:logging/logging.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'logging_service.g.dart';
 
-abstract class LoggingServiceAggregator
-    implements
-        HomeLoggingService,
-        IngredientsSortingLoggingService,
-        SingleRecipeLoggingService {}
+abstract class LoggingService {
+  void info({required final String message});
+  void warning({required final String message});
+  void error(final MyError error);
+}
 
 @riverpod
-LoggingServiceAggregator loggingService(
+LoggingService loggingService(
   final LoggingServiceRef ref, {
   required final String loggerName,
 }) =>
     LoggingServiceImplementation(loggerName: loggerName);
 
-class LoggingServiceImplementation implements LoggingServiceAggregator {
+class LoggingServiceImplementation implements LoggingService {
   final Logger _logger;
 
   LoggingServiceImplementation({
@@ -34,12 +32,11 @@ class LoggingServiceImplementation implements LoggingServiceAggregator {
   }
 
   @override
-  void error({
-    required String message,
-    Object? error,
-    StackTrace? stacktrace,
-  }) =>
-      _logger.severe(message, error, stacktrace);
+  void error(final MyError error) => _logger.severe(
+        error.message,
+        error.originalError,
+        error.stackTrace,
+      );
 
   @override
   void info({required String message}) => _logger.info(message);

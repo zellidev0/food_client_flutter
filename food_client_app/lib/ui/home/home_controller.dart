@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:food_client/commons/error.dart';
 import 'package:food_client/commons/view_state.dart';
 import 'package:food_client/generated/locale_keys.g.dart';
+import 'package:food_client/services/logging_service/logging_service.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/ui/home/home_model.dart';
 import 'package:food_client/ui/home/home_view.dart';
-import 'package:food_client/ui/home/services/home_logging_service.dart';
 import 'package:food_client/ui/home/services/home_navigation_service.dart';
 import 'package:food_client/ui/home/services/home_web_client_service.dart';
 import 'package:food_client/ui/home/services/home_web_image_sizer_service.dart';
@@ -27,7 +28,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
     required final HomeWebClientService webClientService,
     required final HomeWebImageSizerService webImageSizerService,
     required final HomeNavigationService globalNavigationService,
-    required final HomeLoggingService loggingService,
+    required final LoggingService logger,
     required final List<Locale> recipeLocales,
   }) {
     final PagingController<int, HomeModelRecipe> paginationController =
@@ -66,9 +67,11 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
           ),
         ).match(
           (final Exception error) {
-            loggingService.error(
-              message: 'Error fetching more recipes for filter',
-              error: error,
+            logger.error(
+              MyError(
+                message: 'Error fetching more recipes for filter',
+                originalError: error,
+              ),
             );
             globalNavigationService.showSnackBar(
               message:
@@ -91,7 +94,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
             data: (ViewStateData<List<HomeModelFilter>> data) =>
                 unawaited(fetchRecipesTask(data.data, pageKey).run()),
             orElse: () {
-              loggingService.error(message: 'Error fetching with filters');
+              logger.error(MyError(message: 'Error fetching with filters'));
 
               // globalNavigationService.showSnackBar(
               //   message: LocaleKeys
@@ -123,10 +126,13 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
             ),
           ).match(
             (final Exception error) {
-              loggingService.error(
-                message: 'Error fetching recipes for filter',
-                error: error,
+              logger.error(
+                MyError(
+                  message: 'Error fetching recipes for filter',
+                  originalError: error,
+                ),
               );
+
               globalNavigationService.showSnackBar(
                 message: LocaleKeys
                     .ui_home_view_error_states_fetching_recipes_for_filter
@@ -152,7 +158,8 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
           ).run(),
         ),
         orElse: () {
-          loggingService.error(message: 'Error setting filters');
+          logger.error(MyError(message: 'Error setting filters'));
+
           globalNavigationService.showSnackBar(
             message: LocaleKeys
                 .ui_home_view_error_states_fetching_recipes_for_filter
@@ -259,17 +266,20 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
           )
           .match(
         (final Exception error) {
-          loggingService.error(
-            message: 'Failed to fetch filters',
-            error: error,
+          logger.error(
+            MyError(
+              message: 'Failed to fetch filters',
+              originalError: error,
+            ),
           );
+
           globalNavigationService.showSnackBar(
             message: LocaleKeys.ui_home_view_error_states_fetching_filters.tr(),
           );
           state = state.copyWith(availableFilters: error.toViewStateError());
         },
         (final HomeModel newState) {
-          loggingService.info(
+          logger.info(
             message: 'Fetched filters: ${newState.availableFilters}',
           );
           state = newState;
@@ -284,10 +294,13 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
           .getUrl(filePath: imagePath, widthPixels: widthPixels)
           .fold(
         (final Exception error) {
-          loggingService.error(
-            message: 'Failed to get image url from image path',
-            error: error,
+          logger.error(
+            MyError(
+              message: 'Failed to get image url from image path',
+              originalError: error,
+            ),
           );
+
           return none<Uri>();
         },
         some<Uri>,

@@ -6,7 +6,7 @@ part of 'logging_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$loggingServiceHash() => r'55a71616dda8dfba1867e500429ae695f620a3a9';
+String _$loggingServiceHash() => r'62c10939ee18783afd1b9b8a20a48255fb29d9d8';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -34,7 +34,7 @@ class _SystemHash {
 const loggingServiceProvider = LoggingServiceFamily();
 
 /// See also [loggingService].
-class LoggingServiceFamily extends Family<LoggingServiceAggregator> {
+class LoggingServiceFamily extends Family<LoggingService> {
   /// See also [loggingService].
   const LoggingServiceFamily();
 
@@ -72,8 +72,7 @@ class LoggingServiceFamily extends Family<LoggingServiceAggregator> {
 }
 
 /// See also [loggingService].
-class LoggingServiceProvider
-    extends AutoDisposeProvider<LoggingServiceAggregator> {
+class LoggingServiceProvider extends AutoDisposeProvider<LoggingService> {
   /// See also [loggingService].
   LoggingServiceProvider({
     required String loggerName,
@@ -108,7 +107,7 @@ class LoggingServiceProvider
 
   @override
   Override overrideWith(
-    LoggingServiceAggregator Function(LoggingServiceRef provider) create,
+    LoggingService Function(LoggingServiceRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -125,7 +124,7 @@ class LoggingServiceProvider
   }
 
   @override
-  AutoDisposeProviderElement<LoggingServiceAggregator> createElement() {
+  AutoDisposeProviderElement<LoggingService> createElement() {
     return _LoggingServiceProviderElement(this);
   }
 
@@ -143,14 +142,13 @@ class LoggingServiceProvider
   }
 }
 
-mixin LoggingServiceRef on AutoDisposeProviderRef<LoggingServiceAggregator> {
+mixin LoggingServiceRef on AutoDisposeProviderRef<LoggingService> {
   /// The parameter `loggerName` of this provider.
   String get loggerName;
 }
 
 class _LoggingServiceProviderElement
-    extends AutoDisposeProviderElement<LoggingServiceAggregator>
-    with LoggingServiceRef {
+    extends AutoDisposeProviderElement<LoggingService> with LoggingServiceRef {
   _LoggingServiceProviderElement(super.provider);
 
   @override

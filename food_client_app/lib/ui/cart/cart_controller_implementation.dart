@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/widgets.dart';
-import 'package:food_client/commons/error.dart';
 import 'package:food_client/commons/view_state.dart';
+import 'package:food_client/services/logging_service/logging_service.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart'
     hide navigationService;
 import 'package:food_client/ui/cart/cart_model.dart';
@@ -31,6 +31,7 @@ class CartControllerImplementation extends _$CartControllerImplementation
     required final CartNavigationService navigationService,
     required final CartPersistenceService persistenceService,
     required final CartWebImageSizerService imageSizerService,
+    required final LoggingService logger,
     required final bool combinedIngredients,
   }) =>
       CartModel(
@@ -63,28 +64,30 @@ class CartControllerImplementation extends _$CartControllerImplementation
     required final bool isTickedOff,
   }) {
     for (final String recipeId in recipeIds) {
-      persistenceService
-          .updateIngredient(
-            isTickedOff: isTickedOff,
-            ingredientId: ingredientId,
-            recipeId: recipeId,
-          )
-          .match(
-            (MyError error) => debugPrint(error.toString()), // TODO fix
-            (_) {},
-          );
+      unawaited(
+        persistenceService
+            .updateIngredient(
+              isTickedOff: isTickedOff,
+              ingredientId: ingredientId,
+              recipeId: recipeId,
+            )
+            .match(
+              logger.error,
+              (_) => state = state.copyWith(
+                data: state.data.mapData(
+                  (CartModelData data) => data.copyWith(
+                    recipes: _readStoredRecipes(),
+                    ingredients: _getAllIngredientsSorted(
+                      combineIngredients: data.combineIngredients,
+                      sorting: data.sorting,
+                    ),
+                  ),
+                ),
+              ),
+            )
+            .run(),
+      );
     }
-    state = state.copyWith(
-      data: state.data.mapData(
-        (CartModelData data) => data.copyWith(
-          recipes: _readStoredRecipes(),
-          ingredients: _getAllIngredientsSorted(
-            combineIngredients: data.combineIngredients,
-            sorting: data.sorting,
-          ),
-        ),
-      ),
-    );
   }
 
   @override
