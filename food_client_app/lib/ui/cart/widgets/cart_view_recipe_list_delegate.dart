@@ -3,8 +3,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:food_client/commons/utils.dart';
 import 'package:food_client/commons/widgets.dart';
+import 'package:food_client/ui/cart/cart_controller.dart';
 import 'package:food_client/ui/cart/cart_model.dart';
-import 'package:food_client/ui/cart/cart_view.dart';
 
 class RecipesListDelegate extends SliverPersistentHeaderDelegate {
   final CartModelData model;

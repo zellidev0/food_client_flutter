@@ -5,6 +5,7 @@ import 'package:food_client/commons/utils.dart';
 import 'package:food_client/commons/widgets.dart';
 import 'package:food_client/mvc.dart';
 import 'package:food_client/my_scaffold.dart';
+import 'package:food_client/ui/cart/cart_controller.dart';
 import 'package:food_client/ui/cart/cart_model.dart';
 import 'package:food_client/ui/cart/widgets/car_view_tab_bar.dart';
 import 'package:food_client/ui/cart/widgets/cart_view_recipe_list_delegate.dart';
@@ -359,21 +360,3 @@ Widget buildStarIcon({
         ),
       ),
     );
-
-abstract class CartController extends MvcController {
-  void tickOff({
-    required final String ingredientId,
-    required final List<String> recipeIds,
-    required final bool isTickedOff,
-  });
-  void openSingleRecipe({required final String recipeId});
-  void showDeleteRecipeDialog({required final String recipeId});
-  void openModalBottomSheet({required final Widget child});
-  void setActiveSorting({required final CartModelSorting sorting});
-  void reorderIngredients({
-    required final int oldIndex,
-    required final int newIndex,
-    required final List<CartModelIngredient> ingredients,
-    required final CartModelSorting sorting,
-  });
-}

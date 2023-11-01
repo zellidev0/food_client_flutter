@@ -3,13 +3,12 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/widgets.dart';
-import 'package:food_client/commons/error.dart';
 import 'package:food_client/commons/view_state.dart';
 import 'package:food_client/services/logging_service/logging_service.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart'
     hide navigationService;
+import 'package:food_client/ui/cart/cart_controller.dart';
 import 'package:food_client/ui/cart/cart_model.dart';
-import 'package:food_client/ui/cart/cart_view.dart';
 import 'package:food_client/ui/cart/services/cart_navigation_service.dart';
 import 'package:food_client/ui/cart/services/cart_persistence_service.dart';
 import 'package:food_client/ui/cart/services/cart_web_image_sizer_service.dart';
