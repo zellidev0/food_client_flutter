@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:food_client/commons/error.dart';
 import 'package:logging/logging.dart';
+import 'package:logger/logger.dart' as nice_logger;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'logging_service.g.dart';
@@ -21,14 +22,20 @@ LoggingService loggingService(
 
 class LoggingServiceImplementation implements LoggingService {
   final Logger _logger;
+  final nice_logger.Logger niceLogger = nice_logger.Logger();
 
   LoggingServiceImplementation({
     required final String loggerName,
   }) : _logger = Logger(loggerName) {
     Logger.root.level = Level.ALL;
-    Logger.root.onRecord.listen((LogRecord record) {
-      log('${record.level.name}: ${record.time}: ${record.message}');
-    });
+    Logger.root.onRecord.listen(
+      (LogRecord record) => switch (record.level) {
+        Level.SEVERE => niceLogger.e,
+        Level.WARNING => niceLogger.w,
+        Level.INFO => niceLogger.i,
+        Level() => niceLogger.t
+      }(record.message),
+    );
   }
 
   @override

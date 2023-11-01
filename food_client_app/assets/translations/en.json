@@ -53,7 +53,10 @@
     },
     "cart_view": {
       "empty_states": {
-        "empty_cart": "Nothing in your \n shopping cart yet"
+        "empty_cart": "No recipes\n in cart"
+      },
+      "error_states":{
+        "general_error": "Error while loading cart"
       },
       "dialogs": {
         "remove_recipe": {
