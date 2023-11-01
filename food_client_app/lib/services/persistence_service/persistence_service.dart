@@ -114,43 +114,47 @@ class PersistenceService extends _$PersistenceService
           shoppingListBox.values.toList();
 
   @override
-  TaskEither<MyError, void> updateIngredient({
+  TaskEither<MyError, void> updateIngredients({
     required final bool isTickedOff,
     required final String ingredientId,
-    required final String recipeId,
+    required final List<String> recipeIds,
   }) =>
-      optionOf(shoppingListBox.get(recipeId))
-          .map(
-            (final PersistenceServiceModelShoppingListRecipe recipe) =>
-                recipe.copyWith(
-              ingredients: recipe.ingredients
-                  .map(
-                    (final PersistenceServiceModelShoppingListIngredient ing) =>
-                        ing.ingredientId == ingredientId
-                            ? ing.copyWith(isTickedOff: isTickedOff)
-                            : ing,
-                  )
-                  .toList(),
-            ),
-          )
-          .toEither<MyError>(
-            () => MyError(
-              message:
-                  'Shopping list box does not contain recipe with id $recipeId',
-            ),
-          )
-          .toTaskEither()
-          .flatMap(
-            (final PersistenceServiceModelShoppingListRecipe recipe) =>
-                TaskEither<MyError, void>.tryCatch(
-              () async => await shoppingListBox.put(recipeId, recipe),
-              (Object error, StackTrace stackTrace) => MyError(
-                stackTrace: stackTrace,
-                originalError: error,
-                message: 'message',
+      recipeIds.traverseTaskEither(
+        (String id) => optionOf(shoppingListBox.get(id))
+            .map(
+              (final PersistenceServiceModelShoppingListRecipe recipe) =>
+                  recipe.copyWith(
+                ingredients: recipe.ingredients
+                    .map(
+                      (
+                        final PersistenceServiceModelShoppingListIngredient ing,
+                      ) =>
+                          ing.ingredientId == ingredientId
+                              ? ing.copyWith(isTickedOff: isTickedOff)
+                              : ing,
+                    )
+                    .toList(),
+              ),
+            )
+            .toEither<MyError>(
+              () => MyError(
+                message:
+                    'Shopping list box does not contain recipe with id $recipeIds',
+              ),
+            )
+            .toTaskEither()
+            .flatMap(
+              (final PersistenceServiceModelShoppingListRecipe recipe) =>
+                  TaskEither<MyError, void>.tryCatch(
+                () async => await shoppingListBox.put(recipe.recipeId, recipe),
+                (Object error, StackTrace stackTrace) => MyError(
+                  stackTrace: stackTrace,
+                  originalError: error,
+                  message: 'message',
+                ),
               ),
             ),
-          );
+      );
 
   @override
   Task<void> deleteIngredients({
@@ -181,7 +185,7 @@ class PersistenceService extends _$PersistenceService
           );
 
   @override
-  Task<void> deleteTicketOffIngredientsOfRecipe({
+  TaskEither<MyError, void> deleteTicketOffIngredientsOfRecipe({
     required final String recipeId,
   }) =>
       optionOf(shoppingListBox.get(recipeId))
@@ -199,17 +203,26 @@ class PersistenceService extends _$PersistenceService
                   .toList(),
             ),
           )
-          .fold(
-            () => Task<void>(() async {}),
-            (final PersistenceServiceModelShoppingListRecipe recipe) =>
-                Task<void>(
+          .toEither<MyError>(
+            () => MyError(
+              message:
+                  'Shopping list box does not contain recipe with id $recipeId',
+            ),
+          )
+          .toTaskEither()
+          .flatMap(
+            (PersistenceServiceModelShoppingListRecipe recipe) =>
+                TaskEither<MyError, void>.tryCatch(
               () async => await shoppingListBox.put(recipeId, recipe),
+              MyError.fromErrorAndStackTrace,
             ),
           );
 
   @override
-  Task<void> deleteRecipe({required final String recipeId}) => Task<void>(
+  TaskEither<MyError, void> deleteRecipe({required final String recipeId}) =>
+      TaskEither<MyError, void>.tryCatch(
         () async => await shoppingListBox.delete(recipeId),
+        MyError.fromErrorAndStackTrace,
       );
 
   @override
@@ -321,10 +334,10 @@ class PersistenceService extends _$PersistenceService
       .toList();
 
   @override
-  Task<void> saveSorting({
+  TaskEither<MyError, void> saveSorting({
     required final CartPersistenceServiceModelActiveSorting sorting,
   }) =>
-      Task<void>(
+      TaskEither<MyError, void>.tryCatch(
         () async => await activeShoppingListSortingBox.put(
           activeShoppingListSortingKey,
           sorting.map(
@@ -343,6 +356,7 @@ class PersistenceService extends _$PersistenceService
             ),
           ),
         ),
+        MyError.fromErrorAndStackTrace,
       );
 
   @override

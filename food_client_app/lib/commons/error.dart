@@ -9,6 +9,11 @@ class MyError {
     this.originalError,
   });
 
+  MyError.fromErrorAndStackTrace(
+    this.originalError,
+    this.stackTrace,
+  ) : message = '';
+
   @override
   String toString() => 'Error: $message: $originalError, \n$stackTrace';
 }

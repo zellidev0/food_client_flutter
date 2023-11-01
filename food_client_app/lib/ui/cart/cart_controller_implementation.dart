@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/widgets.dart';
+import 'package:food_client/commons/error.dart';
 import 'package:food_client/commons/view_state.dart';
 import 'package:food_client/services/logging_service/logging_service.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart'
@@ -51,25 +52,23 @@ class CartControllerImplementation extends _$CartControllerImplementation
       );
 
   @override
-  void openSingleRecipe({required final String recipeId}) {
-    navigationService.navigateToNamed(
-      uri: NavigationServiceUris.singleRecipe(recipeId: recipeId),
-    );
-  }
+  void openSingleRecipe({required final String recipeId}) =>
+      navigationService.navigateToNamed(
+        uri: NavigationServiceUris.singleRecipe(recipeId: recipeId),
+      );
 
   @override
   void tickOff({
     required final String ingredientId,
     required final List<String> recipeIds,
     required final bool isTickedOff,
-  }) {
-    for (final String recipeId in recipeIds) {
+  }) =>
       unawaited(
         persistenceService
-            .updateIngredient(
+            .updateIngredients(
               isTickedOff: isTickedOff,
               ingredientId: ingredientId,
-              recipeId: recipeId,
+              recipeIds: recipeIds,
             )
             .match(
               logger.error,
@@ -87,8 +86,6 @@ class CartControllerImplementation extends _$CartControllerImplementation
             )
             .run(),
       );
-    }
-  }
 
   @override
   Future<void> openModalBottomSheet({
@@ -113,40 +110,44 @@ class CartControllerImplementation extends _$CartControllerImplementation
             NavigationServiceDialogAction(
               text: 'ui.cart_view.dialogs.remove_recipe.actions.only_ticked_off'
                   .tr(),
-              onPressed: () async {
-                await persistenceService
-                    .deleteTicketOffIngredientsOfRecipe(recipeId: recipeId)
-                    .run();
-                state = state.copyWith(
-                  data: state.data.mapData(
-                    (CartModelData data) => data.copyWith(
-                      recipes: _readStoredRecipes(),
-                      ingredients: _getAllIngredientsSorted(
-                        sorting: data.sorting,
-                        combineIngredients: data.combineIngredients,
+              onPressed: persistenceService
+                  .deleteTicketOffIngredientsOfRecipe(recipeId: recipeId)
+                  .match(
+                    logger.error,
+                    (_) => state = state.copyWith(
+                      data: state.data.mapData(
+                        (CartModelData data) => data.copyWith(
+                          recipes: _readStoredRecipes(),
+                          ingredients: _getAllIngredientsSorted(
+                            sorting: data.sorting,
+                            combineIngredients: data.combineIngredients,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                );
-              },
+                  )
+                  .run,
             ),
             NavigationServiceDialogAction(
               text: 'ui.cart_view.dialogs.remove_recipe.actions.whole_recipe'
                   .tr(),
-              onPressed: () async {
-                await persistenceService.deleteRecipe(recipeId: recipeId).run();
-                state = state.copyWith(
-                  data: state.data.mapData(
-                    (CartModelData data) => data.copyWith(
-                      recipes: _readStoredRecipes(),
-                      ingredients: _getAllIngredientsSorted(
-                        sorting: data.sorting,
-                        combineIngredients: data.combineIngredients,
+              onPressed: persistenceService
+                  .deleteRecipe(recipeId: recipeId)
+                  .match(
+                    logger.error,
+                    (_) => state = state.copyWith(
+                      data: state.data.mapData(
+                        (CartModelData data) => data.copyWith(
+                          recipes: _readStoredRecipes(),
+                          ingredients: _getAllIngredientsSorted(
+                            sorting: data.sorting,
+                            combineIngredients: data.combineIngredients,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                );
-              },
+                  )
+                  .run,
             ),
           ],
         ),
@@ -361,21 +362,22 @@ class CartControllerImplementation extends _$CartControllerImplementation
                   ingredient.ingredient.ingredientId,
             )
             .toList();
-        state = state.copyWith(
-          data: state.data.mapData(
-            (CartModelData data) => data.copyWith(
-              ingredients: ingredients2,
-              sorting: custom.copyWith(ingredientIds: ingredientIds),
-            ),
-          ),
-        );
-
-        // TODO make task
         unawaited(
           persistenceService
               .saveSorting(
                 sorting: CartPersistenceServiceModelActiveSorting.custom(
                   ingredientIds: ingredientIds,
+                ),
+              )
+              .match(
+                logger.error,
+                (_) => state = state.copyWith(
+                  data: state.data.mapData(
+                    (CartModelData data) => data.copyWith(
+                      ingredients: ingredients2,
+                      sorting: custom.copyWith(ingredientIds: ingredientIds),
+                    ),
+                  ),
                 ),
               )
               .run(),

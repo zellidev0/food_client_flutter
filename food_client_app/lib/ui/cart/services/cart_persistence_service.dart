@@ -7,21 +7,21 @@ part 'cart_persistence_service.freezed.dart';
 abstract class CartPersistenceService {
   List<CartPersistenceServiceModelRecipe> getShoppingCardRecipes();
   List<CartPersistenceServiceModelSortingUnit> getSortingUnits();
-  Task<void> saveSorting({
+  TaskEither<MyError, void> saveSorting({
     required final CartPersistenceServiceModelActiveSorting sorting,
   });
   Option<CartPersistenceServiceModelActiveSorting> getActiveSorting();
-  TaskEither<MyError, void> updateIngredient({
+  TaskEither<MyError, void> updateIngredients({
     required final bool isTickedOff,
     required final String ingredientId,
-    required final String recipeId,
+    required final List<String> recipeIds,
   });
   Task<void> deleteIngredients({
     required final List<String> ingredientKeys,
     required final String recipeId,
   });
-  Task<void> deleteRecipe({required final String recipeId});
-  Task<void> deleteTicketOffIngredientsOfRecipe({
+  TaskEither<MyError, void> deleteRecipe({required final String recipeId});
+  TaskEither<MyError, void> deleteTicketOffIngredientsOfRecipe({
     required final String recipeId,
   });
 }
