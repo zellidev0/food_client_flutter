@@ -1,5 +1,18 @@
 {
   "ui": {
+    "ingredients_sorting_view": {
+      "dialogs":{
+        "delete_dialog": {
+          "title": "Supermarkt löschen?",
+          "content": "Sicher dass du {unitTitle} löschen willst?",
+          "actions": {
+            "cancel": "Abbrechen",
+            "delete": "Löschen"
+          }
+
+        }
+      }
+    },
     "single_recipe_view": {
       "dialogs": {
         "add_to_shopping_cart": {

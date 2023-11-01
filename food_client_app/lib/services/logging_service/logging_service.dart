@@ -1,8 +1,6 @@
-import 'dart:developer';
-
 import 'package:food_client/commons/error.dart';
-import 'package:logging/logging.dart';
 import 'package:logger/logger.dart' as nice_logger;
+import 'package:logging/logging.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'logging_service.g.dart';

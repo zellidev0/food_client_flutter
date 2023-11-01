@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:collection/collection.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:food_client/commons/error.dart';
+import 'package:food_client/generated/locale_keys.g.dart';
 import 'package:food_client/services/logging_service/logging_service.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart'
     hide navigationService;
@@ -17,6 +19,12 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
 
 part 'ingredients_sorting_controller.g.dart';
+
+typedef WebClientSorting = IngredientsSortingWebClientModelIngredientSorting;
+typedef PersistenceSorting = IngredientsSortingPersistenceModelSorting;
+typedef Unit = IngredientsSortingModelUnit;
+typedef PersistenceFamily = IngredientsSortingPersistenceModelIngredientFamily;
+typedef Family = IngredientsSortingModelIngredientFamily;
 
 const int takeSize = 250;
 const int _widthPixels = 256;
@@ -42,107 +50,97 @@ class IngredientsSortingControllerImplementation
   void goBack() => navigationService.goBack();
 
   @override
-  Future<void> createSortingUnit({required final String name}) async {
-    (await webClientService.fetchIngredientsSorting().run()).fold(
-      (final Exception error) => _handleError(
-        error: error,
-        message: 'Could not fetch ingredients sorting unit',
-        userDisplayedErrorMessage: 'An error occurred, try again later',
-      ),
-      (
-        final List<IngredientsSortingWebClientModelIngredientSorting> sortings,
-      ) async {
-        await persistenceService
-            .saveUnit(
-              unit: IngredientsSortingPersistenceModelUnit(
-                name: name,
-                sortings: sortings
-                    .map(
-                      (
-                        final IngredientsSortingWebClientModelIngredientSorting
-                            sorting,
-                      ) =>
-                          IngredientsSortingPersistenceModelSorting(
-                        type: sorting.type,
-                        iconPath: sorting.iconPath,
-                        name: sorting.name,
-                        ingredientFamilies: sorting.ingredientFamilyIds
-                            .map(
-                              (final String helloFreshFamilyId) =>
-                                  IngredientsSortingPersistenceModelIngredientFamily
-                                      .helloFresh(
-                                helloFreshFamilyId: helloFreshFamilyId,
-                              ),
-                            )
-                            .toList(),
-                      ),
-                    )
-                    .toList(),
-                id: const Uuid().v4(),
-              ),
-            )
-            .run();
-        state = state.copyWith(units: _fetchPersistenceServiceUnits());
-      },
-    );
+  void createSortingUnit({required final String name}) {
+    webClientService
+        .fetchIngredientsSorting()
+        .flatMap(
+          (final List<WebClientSorting> sortings) =>
+              persistenceService.saveUnit(
+            unit: IngredientsSortingPersistenceModelUnit(
+              name: name,
+              sortings: sortings
+                  .map(
+                    (final WebClientSorting sorting) => PersistenceSorting(
+                      type: sorting.type,
+                      iconPath: sorting.iconPath,
+                      name: sorting.name,
+                      ingredientFamilies: sorting.ingredientFamilyIds
+                          .map(
+                            (final String helloFreshFamilyId) =>
+                                PersistenceFamily.helloFresh(
+                              helloFreshFamilyId: helloFreshFamilyId,
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  )
+                  .toList(),
+              id: const Uuid().v4(),
+            ),
+          ),
+        )
+        .match(
+          logger.error,
+          (_) => state = state.copyWith(units: _fetchPersistenceServiceUnits()),
+        );
     navigationService.pop();
   }
 
   @override
-  void showDeleteUnitDialog({required final IngredientsSortingModelUnit unit}) {
-    unawaited(
-      navigationService.showDialog(
-        title: 'Delete Supermarket?',
-        content: ' Do you really want to delete the unit ${unit.title}?',
-        actions: some(
-          <NavigationServiceDialogAction>[
-            NavigationServiceDialogAction(text: 'cancel', onPressed: () {}),
-            NavigationServiceDialogAction(
-              text: 'yes',
-              onPressed: () async {
-                (await persistenceService.deleteUnit(unitId: unit.id).run())
-                    .fold(
-                  (final Exception exception) {
-                    _handleError(
-                      error: exception,
-                      message: 'Could not delete unit with id ${unit.id}',
-                      userDisplayedErrorMessage: 'Unit could not be deleted',
-                    );
-                  },
-                  (final void _) => state =
-                      state.copyWith(units: _fetchPersistenceServiceUnits()),
-                );
-              },
-            ),
-          ],
+  void showDeleteUnitDialog({required final Unit unit}) => unawaited(
+        navigationService.showDialog(
+          title: LocaleKeys
+              .ui_ingredients_sorting_view_dialogs_delete_dialog_title
+              .tr(),
+          content: LocaleKeys
+              .ui_ingredients_sorting_view_dialogs_delete_dialog_content
+              .tr(namedArgs: <String, String>{'unitTitle': unit.title}),
+          actions: some(
+            <NavigationServiceDialogAction>[
+              NavigationServiceDialogAction(
+                text: LocaleKeys
+                    .ui_ingredients_sorting_view_dialogs_delete_dialog_actions_cancel
+                    .tr(),
+                onPressed: () {},
+              ),
+              NavigationServiceDialogAction(
+                text: LocaleKeys
+                    .ui_ingredients_sorting_view_dialogs_delete_dialog_actions_delete
+                    .tr(),
+                onPressed: persistenceService
+                    .deleteUnit(unitId: unit.id)
+                    .match(
+                      (final Exception error) => MyError(
+                        originalError: error,
+                        message: 'Could not delete unit with id ${unit.id}',
+                      ),
+                      (final _) => state = state.copyWith(
+                        units: _fetchPersistenceServiceUnits(),
+                      ),
+                    )
+                    .run,
+              ),
+            ],
+          ),
         ),
-      ),
-    );
-  }
+      );
 
   @override
   void openAddUnitModal({
     required final Widget child,
-  }) {
-    unawaited(
-      navigationService.showModalBottomSheet(
-        child: child,
-      ),
-    );
-  }
+  }) =>
+      unawaited(navigationService.showModalBottomSheet(child: child));
 
   @override
-  void setUnitSelected({required final IngredientsSortingModelUnit unit}) {
-    state = state.copyWith(
-      units: state.units
-          .map(
-            (final IngredientsSortingModelUnit element) => element.copyWith(
-              selected: element.id == unit.id,
-            ),
-          )
-          .toList(),
-    );
-  }
+  void setUnitSelected({required final Unit unit}) => state = state.copyWith(
+        units: state.units
+            .map(
+              (final Unit element) => element.copyWith(
+                selected: element.id == unit.id,
+              ),
+            )
+            .toList(),
+      );
 
   @override
   void updateCurrentEditingUnitTitle({required final Option<String> title}) {
@@ -150,11 +148,11 @@ class IngredientsSortingControllerImplementation
   }
 
   @override
-  Future<void> reorderIngredientFamily({
-    required final IngredientsSortingModelUnit unit,
+  void reorderIngredientFamily({
+    required final Unit unit,
     required final int oldIndex,
     required final int newIndex,
-  }) async {
+  }) {
     final List<IngredientsSortingModelSorting> sortings =
         List<IngredientsSortingModelSorting>.from(unit.sorting);
     final IngredientsSortingModelSorting sorting = sortings.removeAt(oldIndex);
@@ -162,82 +160,72 @@ class IngredientsSortingControllerImplementation
     state = state.copyWith(
       units: state.units
           .map(
-            (final IngredientsSortingModelUnit element) => element.copyWith(
+            (final Unit element) => element.copyWith(
               sorting: element.id == unit.id ? sortings : element.sorting,
             ),
           )
           .toList(),
     );
-    await persistenceService
-        .saveUnit(
-          unit: IngredientsSortingPersistenceModelUnit(
-            id: unit.id,
-            name: unit.title,
-            sortings: sortings
-                .map(
-                  (final IngredientsSortingModelSorting currentSorting) =>
-                      IngredientsSortingPersistenceModelSorting(
-                    type: currentSorting.type,
-                    iconPath: currentSorting.iconPath,
-                    name: currentSorting.name,
-                    ingredientFamilies: currentSorting.ingredientFamilies
-                        .map(
-                          (
-                            final IngredientsSortingModelIngredientFamily
-                                family,
-                          ) =>
-                              IngredientsSortingPersistenceModelIngredientFamily
-                                  .helloFresh(
-                            helloFreshFamilyId: family.helloFreshFamilyId,
-                          ),
-                        )
-                        .toList(),
-                  ),
-                )
-                .toList(),
-          ),
-        )
-        .run();
-  }
-
-  List<IngredientsSortingModelUnit> _fetchPersistenceServiceUnits() =>
+    unawaited(
       persistenceService
-          .getUnits()
-          .mapIndexed(
-            (
-              final int index,
-              final IngredientsSortingPersistenceModelUnit unit,
-            ) =>
-                mapToIngredientsSortingModelUnit(
-              unit: unit,
-              imageSizerService: webImageSizerService,
-              isSelected: index == 0,
+          .saveUnit(
+            unit: IngredientsSortingPersistenceModelUnit(
+              id: unit.id,
+              name: unit.title,
+              sortings: sortings
+                  .map(
+                    (final IngredientsSortingModelSorting currentSorting) =>
+                        PersistenceSorting(
+                      type: currentSorting.type,
+                      iconPath: currentSorting.iconPath,
+                      name: currentSorting.name,
+                      ingredientFamilies: currentSorting.ingredientFamilies
+                          .map(
+                            (
+                              final Family family,
+                            ) =>
+                                PersistenceFamily.helloFresh(
+                              helloFreshFamilyId: family.helloFreshFamilyId,
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  )
+                  .toList(),
             ),
           )
-          .toList();
-
-  void _handleError({
-    required final Exception error,
-    required final String message,
-    required final String userDisplayedErrorMessage,
-  }) {
-    logger.error(MyError(message: message, originalError: error));
-
-    navigationService.showSnackBar(message: userDisplayedErrorMessage);
+          .match(logger.error, (_) {})
+          .run(),
+    );
   }
 
-  IngredientsSortingModelUnit mapToIngredientsSortingModelUnit({
+  List<Unit> _fetchPersistenceServiceUnits() => persistenceService
+      .getUnits()
+      .mapIndexed(
+        (
+          final int index,
+          final IngredientsSortingPersistenceModelUnit unit,
+        ) =>
+            mapToUnit(
+          unit: unit,
+          imageSizerService: webImageSizerService,
+          isSelected: index == 0,
+        ),
+      )
+      .toList();
+
+  Unit mapToUnit({
     required final IngredientsSortingPersistenceModelUnit unit,
     required final bool isSelected,
     required final IngredientsSortingWebImageSizerService imageSizerService,
   }) =>
-      IngredientsSortingModelUnit(
+      Unit(
         id: unit.id,
         title: unit.name,
         selected: isSelected,
         sorting: unit.sortings
             .map(
-              (final IngredientsSortingPersistenceModelSorting sorting) =>
+              (final PersistenceSorting sorting) =>
                   IngredientsSortingModelSorting(
                 type: sorting.type,
                 iconUrl: getImageUrl(
@@ -247,11 +235,7 @@ class IngredientsSortingControllerImplementation
                 name: sorting.name,
                 ingredientFamilies: sorting.ingredientFamilies
                     .map(
-                      (
-                        final IngredientsSortingPersistenceModelIngredientFamily
-                            family,
-                      ) =>
-                          IngredientsSortingModelIngredientFamily.helloFresh(
+                      (final PersistenceFamily family) => Family.helloFresh(
                         helloFreshFamilyId: family.helloFreshFamilyId,
                       ),
                     )
@@ -264,49 +248,35 @@ class IngredientsSortingControllerImplementation
       );
 }
 
-List<IngredientsSortingPersistenceModelIngredientFamily>
-    mapToIngredientsSortingPersistenceModelIngredientFamily(
-  final List<IngredientsSortingModelIngredientFamily> families,
+List<PersistenceFamily> mapToPersistenceFamily(
+  final List<Family> families,
 ) =>
-        families
-            .map(
-              (final IngredientsSortingModelIngredientFamily ingredient) =>
-                  IngredientsSortingPersistenceModelIngredientFamily.helloFresh(
-                helloFreshFamilyId: ingredient.helloFreshFamilyId,
-              ),
-            )
-            .toList();
+    families
+        .map(
+          (final Family ingredient) => PersistenceFamily.helloFresh(
+            helloFreshFamilyId: ingredient.helloFreshFamilyId,
+          ),
+        )
+        .toList();
 
-List<IngredientsSortingPersistenceModelSorting> combineIngredientsWithSorting({
-  required final List<IngredientsSortingWebClientModelIngredientSorting>
-      sortings,
-  required final List<IngredientsSortingModelIngredientFamily> families,
+List<PersistenceSorting> combineIngredientsWithSorting({
+  required final List<WebClientSorting> sortings,
+  required final List<Family> families,
 }) =>
     sortings
         .map(
-          (final IngredientsSortingWebClientModelIngredientSorting sorting) =>
-              IngredientsSortingPersistenceModelSorting(
+          (final WebClientSorting sorting) => PersistenceSorting(
             type: sorting.type,
             name: sorting.name,
-            // iconUrl: families.firstOption.flatMap(
-            //   (final IngredientsSortingModelIngredientFamily family) =>
-            //       getImageUrl(
-            //         iconPath: family,
-            //         imageSizerService: webImageSizerService,
-            //       ),
-            // ),
             iconPath: none(),
             ingredientFamilies: families
                 .where(
-                  (final IngredientsSortingModelIngredientFamily family) =>
-                      sorting.ingredientFamilyIds
-                          .contains(family.helloFreshFamilyId),
+                  (final Family family) => sorting.ingredientFamilyIds
+                      .contains(family.helloFreshFamilyId),
                 )
                 .map(
-                  (final IngredientsSortingModelIngredientFamily ingredient) =>
-                      IngredientsSortingPersistenceModelIngredientFamily
-                          .helloFresh(
-                    helloFreshFamilyId: ingredient.helloFreshFamilyId,
+                  (final Family family) => PersistenceFamily.helloFresh(
+                    helloFreshFamilyId: family.helloFreshFamilyId,
                   ),
                 )
                 .toSet()

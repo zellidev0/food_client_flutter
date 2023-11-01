@@ -258,10 +258,10 @@ class PersistenceService extends _$PersistenceService
       .toList();
 
   @override
-  Task<void> saveUnit({
+  TaskEither<MyError, void> saveUnit({
     required final IngredientsSortingPersistenceModelUnit unit,
   }) =>
-      Task<void>(
+      TaskEither<MyError, void>.tryCatch(
         () async => await sortingUnits.put(
           unit.id,
           PersistenceServiceModelSortingUnit(
@@ -294,6 +294,7 @@ class PersistenceService extends _$PersistenceService
                 .toList(),
           ),
         ),
+        MyError.fromErrorAndStackTrace,
       );
 
   @override

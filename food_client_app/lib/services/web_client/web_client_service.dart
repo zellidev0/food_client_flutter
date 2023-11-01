@@ -4,6 +4,7 @@ import 'dart:core';
 import 'package:collection/collection.dart';
 import 'package:commons_graphql/commons_graphql.dart';
 import 'package:flutter/material.dart';
+import 'package:food_client/commons/error.dart';
 import 'package:food_client/services/web_client/web_client_model.dart';
 import 'package:food_client/ui/home/services/home_web_client_service.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_web_client_service.dart';
@@ -31,11 +32,11 @@ List<SingleRecipeWebClientModelTag> mapBridgeRecipeTags({
         .whereNotNull()
         .toList();
 
-TaskEither<Exception, List<IngredientsSortingWebClientModelIngredientSorting>>
+TaskEither<MyError, List<IngredientsSortingWebClientModelIngredientSorting>>
     mapIngredientsSortingResponse(
   final QueryResult<Query$GetIngredientSortings> response,
 ) =>
-        TaskEither<Exception,
+        TaskEither<MyError,
             List<IngredientsSortingWebClientModelIngredientSorting>>.tryCatch(
           () async => optionOf(response.parsedData)
               .map(
@@ -63,9 +64,7 @@ TaskEither<Exception, List<IngredientsSortingWebClientModelIngredientSorting>>
               .getOrElse(
                 () => throw Exception(),
               ),
-          (final Object error, final StackTrace stackTrace) => Exception(
-            'Error parsing ingredients sorting response: $response, $error, $stackTrace',
-          ),
+          MyError.fromErrorAndStackTrace,
         );
 
 List<HomeWebClientModelYield> mapRecipeYields({
@@ -531,8 +530,8 @@ class WebClientService implements WebClientServiceAggregator {
       );
 
   @override
-  TaskEither<Exception, List<IngredientsSortingWebClientModelIngredientSorting>>
-      fetchIngredientsSorting() => TaskEither<Exception,
+  TaskEither<MyError, List<IngredientsSortingWebClientModelIngredientSorting>>
+      fetchIngredientsSorting() => TaskEither<MyError,
               QueryResult<Query$GetIngredientSortings>>.tryCatch(
             () async => await _client.query(
               QueryOptions<Query$GetIngredientSortings>(
@@ -540,8 +539,7 @@ class WebClientService implements WebClientServiceAggregator {
                 document: documentNodeQueryGetIngredientSortings,
               ),
             ),
-            (final Object error, final StackTrace stackTrace) =>
-                Exception('Failed to fetch ingredients'),
+            MyError.fromErrorAndStackTrace,
           ).flatMap(mapIngredientsSortingResponse);
 
   @override

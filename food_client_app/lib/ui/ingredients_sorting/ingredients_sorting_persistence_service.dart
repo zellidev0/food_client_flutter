@@ -1,3 +1,4 @@
+import 'package:food_client/commons/error.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -6,7 +7,7 @@ part 'ingredients_sorting_persistence_service.freezed.dart';
 abstract class IngredientsSortingPersistenceService {
   List<IngredientsSortingPersistenceModelUnit> getUnits();
   TaskEither<Exception, void> deleteUnit({required final String unitId});
-  Task<void> saveUnit({
+  TaskEither<MyError, void> saveUnit({
     required final IngredientsSortingPersistenceModelUnit unit,
   });
 }
