@@ -1,14 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/commons/utils.dart';
 import 'package:food_client/commons/widgets.dart';
 import 'package:food_client/mvc.dart';
 import 'package:food_client/my_scaffold.dart';
 import 'package:food_client/ui/cart/cart_controller.dart';
 import 'package:food_client/ui/cart/cart_model.dart';
-import 'package:food_client/ui/cart/widgets/car_view_tab_bar.dart';
 import 'package:food_client/ui/cart/widgets/cart_view_recipe_list_delegate.dart';
+import 'package:food_client/ui/cart/widgets/cart_view_single_ingredient_item.dart';
+import 'package:food_client/ui/cart/widgets/cart_view_sorting_card.dart';
+import 'package:food_client/ui/cart/widgets/cart_view_star_icon.dart';
+import 'package:food_client/ui/cart/widgets/cart_view_tab_bar.dart';
 
 class CartView extends MvcView<CartController, CartModel> {
   const CartView({
@@ -125,7 +127,8 @@ class CartView extends MvcView<CartController, CartModel> {
               );
             },
             itemBuilder: (final BuildContext context, final int index) =>
-                buildSingleIngredientItem(
+                CartViewSingleIngredientItem(
+              key: ValueKey<String>(index.toString()),
               ingredient: ingredients[index],
               controller: controller,
               recipeIds: ingredients[index].ingredient.recipeIds,
@@ -156,207 +159,59 @@ class CartView extends MvcView<CartController, CartModel> {
         ),
       );
 
-  Widget buildSingleIngredientItem({
-    required final List<String> recipeIds,
-    required final int listIndex,
-    required final bool showDragHandle,
-    required final CartModelIngredient ingredient,
-    required final CartController controller,
-  }) =>
-      Material(
-        key: ValueKey<String>(listIndex.toString()),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-          child: Builder(
-            builder: (final BuildContext context) => InkWell(
-              borderRadius: BorderRadius.circular(8),
-              onTap: () => controller.tickOff(
-                ingredientId: ingredient.ingredient.ingredientId,
-                recipeIds: recipeIds,
-                isTickedOff: !ingredient.isTickedOff,
-              ),
-              child: Ink(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: !ingredient.isTickedOff && recipeIds.length == 1
-                      ? generateRandomPastelColor(
-                          seed: recipeIds.first.hashCode,
-                          brightness: Theme.of(context).brightness,
-                        )
-                      : null,
-                  gradient: !ingredient.isTickedOff && recipeIds.length > 1
-                      ? LinearGradient(
-                          begin: Alignment.topRight,
-                          end: Alignment.bottomLeft,
-                          colors: recipeIds
-                              .map(
-                                (final String recipeId) =>
-                                    generateRandomPastelColor(
-                                  seed: recipeId.hashCode,
-                                  brightness: Theme.of(context).brightness,
-                                ),
-                              )
-                              .toList(),
-                        )
-                      : null,
-                ),
-                child: ListTile(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  enabled: !ingredient.isTickedOff,
-                  leading: AspectRatio(
-                    aspectRatio: 1,
-                    child: ingredient.ingredient.imageUrl.fold(
-                      () => const Icon(Icons.image_not_supported),
-                      (final Uri url) => buildCachedNetworkImage(imageUrl: url),
-                    ),
-                  ),
-                  title: Text(ingredient.ingredient.displayedName),
-                  subtitle: Text(
-                    '${ingredient.ingredient.amount.fold(
-                      () => '',
-                      (final double amount) => amount.toStringAsFixed(0),
-                    )} ${ingredient.ingredient.unit.getOrElse(() => '')}',
-                  ),
-                  trailing: showDragHandle
-                      ? ReorderableDragStartListener(
-                          index: listIndex,
-                          child: const Icon(Icons.drag_handle),
-                        )
-                      : null,
-                ),
-              ),
-            ),
-          ),
-        ),
-      );
-
   Widget buildSortingModalBottomSheetWidget({
     required final List<CartModelSortingUnit> sortingUnits,
     required final CartModelSorting sorting,
   }) =>
       Padding(
         padding: const EdgeInsets.all(16),
-        child: Consumer(
-          builder: (final _, final WidgetRef ref, final __) => GridView.count(
-            crossAxisCount: 3,
-            children: <Widget>[
-              ...sortingUnits.map(
-                (final CartModelSortingUnit ingredientUnit) => Stack(
-                  children: <Widget>[
-                    buildCard(
-                      sorting: CartModelSorting.unit(
-                        active: ingredientUnit,
-                        ingredientIds: sorting.ingredientIds,
-                      ),
-                      onTap: () {
-                        controller.setActiveSorting(
-                          sorting: CartModelSorting.unit(
-                            ingredientIds: sorting.ingredientIds,
-                            active: ingredientUnit,
-                          ),
-                        );
-                      },
-                    ),
-                    buildStarIcon(
-                      sorting: CartModelSorting.unit(
-                        active: ingredientUnit,
-                        ingredientIds: sorting.ingredientIds,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Stack(
+        child: GridView.count(
+          crossAxisCount: 3,
+          children: <Widget>[
+            ...sortingUnits.map(
+              (final CartModelSortingUnit ingredientUnit) => Stack(
                 children: <Widget>[
-                  buildCard(
-                    sorting: CartModelSorting.custom(
+                  CartViewSortingCard(
+                    sorting: CartModelSorting.unit(
+                      active: ingredientUnit,
                       ingredientIds: sorting.ingredientIds,
                     ),
-                    onTap: () {
-                      controller.setActiveSorting(
-                        sorting: CartModelSorting.custom(
-                          ingredientIds: sorting.ingredientIds,
-                        ),
-                      );
-                    },
+                    onTap: () => controller.setActiveSorting(
+                      sorting: CartModelSorting.unit(
+                        ingredientIds: sorting.ingredientIds,
+                        active: ingredientUnit,
+                      ),
+                    ),
                   ),
-                  buildStarIcon(
-                    sorting: CartModelSorting.custom(
+                  CartViewStarIcon(
+                    sorting: CartModelSorting.unit(
+                      active: ingredientUnit,
                       ingredientIds: sorting.ingredientIds,
                     ),
                   ),
                 ],
               ),
-            ],
-          ),
-        ),
-      );
-}
-
-SizedBox buildCard({
-  required final CartModelSorting sorting,
-  required final VoidCallback onTap,
-}) =>
-    SizedBox.expand(
-      child: Card(
-        child: Consumer(
-          builder: (final _, final WidgetRef ref, final __) => InkWell(
-            onTap: onTap,
-            borderRadius: BorderRadius.circular(12),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+            ),
+            Stack(
               children: <Widget>[
-                Icon(
-                  sorting.map(
-                    unit: (final _) => Icons.shopping_basket,
-                    custom: (final _) => Icons.list,
+                CartViewSortingCard(
+                  sorting: CartModelSorting.custom(
+                    ingredientIds: sorting.ingredientIds,
+                  ),
+                  onTap: () => controller.setActiveSorting(
+                    sorting: CartModelSorting.custom(
+                      ingredientIds: sorting.ingredientIds,
+                    ),
                   ),
                 ),
-                Text(
-                  sorting.map(
-                    unit: (final CartModelSortingSelectedUnit unit) =>
-                        unit.active.name,
-                    custom: (final CartModelSortingCustom custom) => 'Custom',
+                CartViewStarIcon(
+                  sorting: CartModelSorting.custom(
+                    ingredientIds: sorting.ingredientIds,
                   ),
                 ),
               ],
             ),
-          ),
+          ],
         ),
-      ),
-    );
-
-Widget buildStarIcon({
-  required final CartModelSorting sorting,
-}) =>
-    IgnorePointer(
-      child: Align(
-        alignment: Alignment.bottomRight,
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Consumer(
-            builder:
-                (final BuildContext context, final WidgetRef ref, final __) =>
-                    Icon(
-              Icons.star,
-              color: sorting.map(
-                unit: (final CartModelSortingSelectedUnit selectedUnit) =>
-                    sorting.map(
-                  unit: (final CartModelSortingSelectedUnit unit) =>
-                      unit.active.id == selectedUnit.active.id,
-                  custom: (final CartModelSortingCustom custom) => false,
-                ),
-                custom: (final _) => sorting.map(
-                  unit: (final _) => false,
-                  custom: (final _) => true,
-                ),
-              )
-                  ? Theme.of(context).colorScheme.primary
-                  : Theme.of(context).colorScheme.onPrimary,
-            ),
-          ),
-        ),
-      ),
-    );
+      );
+}
