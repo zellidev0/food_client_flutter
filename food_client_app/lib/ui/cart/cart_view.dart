@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:food_client/commons/utils.dart';
 import 'package:food_client/commons/widgets.dart';
+import 'package:food_client/generated/locale_keys.g.dart';
 import 'package:food_client/mvc.dart';
 import 'package:food_client/my_scaffold.dart';
 import 'package:food_client/ui/cart/cart_controller.dart';
@@ -21,7 +21,7 @@ class CartView extends MvcView<CartController, CartModel> {
 
   @override
   Widget build(final BuildContext context) => MyScaffold<CartModelData>(
-        errorText: 'ui.cart_view.error_states.general_error'.tr(),
+        errorText: LocaleKeys.ui_cart_view_error_states_general_error.tr(),
         state: model.data,
         child: (CartModelData modelData) => buildContent(model: modelData),
       );
@@ -52,7 +52,8 @@ class CartView extends MvcView<CartController, CartModel> {
                       ),
                       icon: const Icon(Icons.sort),
                       label: const Text(
-                        'ui.cart_view.modals.sorting_modal.button_text',
+                        LocaleKeys
+                            .ui_cart_view_modals_sorting_modal_button_text,
                       ).tr(),
                     ),
                   ],
@@ -63,7 +64,7 @@ class CartView extends MvcView<CartController, CartModel> {
           ],
           body: model.recipes.isEmpty
               ? buildNoItemsFoundIcon(
-                  message: 'ui.cart_view.empty_states.empty_cart'.tr(),
+                  message: LocaleKeys.ui_cart_view_empty_states_empty_cart.tr(),
                 )
               : TabBarView(
                   children: <Widget>[

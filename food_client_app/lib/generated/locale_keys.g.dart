@@ -38,6 +38,8 @@ abstract class  LocaleKeys {
   static const ui_home_view = 'ui.home_view';
   static const ui_cart_view_empty_states_empty_cart = 'ui.cart_view.empty_states.empty_cart';
   static const ui_cart_view_empty_states = 'ui.cart_view.empty_states';
+  static const ui_cart_view_error_states_general_error = 'ui.cart_view.error_states.general_error';
+  static const ui_cart_view_error_states = 'ui.cart_view.error_states';
   static const ui_cart_view_dialogs_remove_recipe_title = 'ui.cart_view.dialogs.remove_recipe.title';
   static const ui_cart_view_dialogs_remove_recipe_content = 'ui.cart_view.dialogs.remove_recipe.content';
   static const ui_cart_view_dialogs_remove_recipe_actions_cancel = 'ui.cart_view.dialogs.remove_recipe.actions.cancel';
