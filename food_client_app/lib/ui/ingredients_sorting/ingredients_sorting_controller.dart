@@ -32,18 +32,14 @@ class IngredientsSortingControllerImplementation
     required final IngredientsSortingWebImageSizerService webImageSizerService,
     required final IngredientsSortingPersistenceService persistenceService,
     required final LoggingService logger,
-  }) {
-    _fetchPersistenceServiceUnits();
-    return IngredientsSortingModel(
-      units: <IngredientsSortingModelUnit>[],
-      currentlyEditingUnitName: none(),
-    );
-  }
+  }) =>
+      IngredientsSortingModel(
+        units: _fetchPersistenceServiceUnits(),
+        currentlyEditingUnitName: none(),
+      );
 
   @override
-  void goBack() {
-    navigationService.goBack();
-  }
+  void goBack() => navigationService.goBack();
 
   @override
   Future<void> createSortingUnit({required final String name}) async {
@@ -86,7 +82,7 @@ class IngredientsSortingControllerImplementation
               ),
             )
             .run();
-        _fetchPersistenceServiceUnits();
+        state = state.copyWith(units: _fetchPersistenceServiceUnits());
       },
     );
     navigationService.pop();
@@ -113,7 +109,8 @@ class IngredientsSortingControllerImplementation
                       userDisplayedErrorMessage: 'Unit could not be deleted',
                     );
                   },
-                  (final void _) => _fetchPersistenceServiceUnits(),
+                  (final void _) => state =
+                      state.copyWith(units: _fetchPersistenceServiceUnits()),
                 );
               },
             ),
@@ -203,9 +200,8 @@ class IngredientsSortingControllerImplementation
         .run();
   }
 
-  void _fetchPersistenceServiceUnits() {
-    state = state.copyWith(
-      units: persistenceService
+  List<IngredientsSortingModelUnit> _fetchPersistenceServiceUnits() =>
+      persistenceService
           .getUnits()
           .mapIndexed(
             (
@@ -218,9 +214,7 @@ class IngredientsSortingControllerImplementation
               isSelected: index == 0,
             ),
           )
-          .toList(),
-    );
-  }
+          .toList();
 
   void _handleError({
     required final Exception error,
