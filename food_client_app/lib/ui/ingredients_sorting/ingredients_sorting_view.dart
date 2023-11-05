@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:food_client/commons/view_state.dart';
 import 'package:food_client/commons/widgets.dart';
 import 'package:food_client/mvc.dart';
+import 'package:food_client/my_scaffold.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_model.dart';
 import 'package:food_client/ui/ingredients_sorting/widgets/ingredients_sorting_card_item.dart';
 import 'package:fpdart/fpdart.dart';
@@ -16,16 +18,14 @@ class IngredientsSortingView
   @override
   Widget build(final BuildContext context) => Stack(
         children: <Widget>[
-          Scaffold(
-            appBar: AppBar(
-              backgroundColor: Colors.transparent,
-              scrolledUnderElevation: 0,
-              leading: IconButton(
-                icon: const Icon(Icons.arrow_back),
-                onPressed: controller.goBack,
-              ),
+          MyScaffold<IngredientsSortingModel>(
+            onAppbarBackPressed: controller.goBack,
+            errorText: '',
+            state: model.toViewStateData(),
+            child: (IngredientsSortingModel model) => _buildContent(
+              model: model,
+              controller: controller,
             ),
-            body: _buildContent(model: model, controller: controller),
           ),
         ],
       );
