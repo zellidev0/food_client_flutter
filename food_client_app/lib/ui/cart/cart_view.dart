@@ -23,7 +23,10 @@ class CartView extends MvcView<CartController, CartModel> {
   Widget build(final BuildContext context) => MyScaffold<CartModelData>(
         errorText: LocaleKeys.ui_cart_view_error_states_general_error.tr(),
         state: model.data,
-        child: (CartModelData modelData) => buildContent(model: modelData),
+        child: (CartModelData modelData) => Padding(
+          padding: const EdgeInsets.only(top: 32),
+          child: buildContent(model: modelData),
+        ),
       );
 
   Widget buildContent({required CartModelData model}) => DefaultTabController(
