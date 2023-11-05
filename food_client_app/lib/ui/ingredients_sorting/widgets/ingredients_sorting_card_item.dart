@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_model.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_view.dart';
 import 'package:fpdart/fpdart.dart';
