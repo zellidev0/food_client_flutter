@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_model.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_view.dart';
 import 'package:fpdart/fpdart.dart';
@@ -34,7 +35,7 @@ class IngredientsSortingCardItem extends StatelessWidget {
             child: InkWell(
               borderRadius: borderRadius,
               onTap: unit.fold(
-                () => () => controller.openAddUnitModal(
+                () => () => controller.openModal(
                       child: buildAddUnitModalContent(),
                     ),
                 (final IngredientsSortingModelUnit card) =>
@@ -83,11 +84,10 @@ class IngredientsSortingCardItem extends StatelessWidget {
                 decoration: const InputDecoration(
                   labelText: 'Suparmarket name',
                 ),
-                onChanged: (final String value) {
-                  controller.updateCurrentEditingUnitTitle(
-                    title: value.trim().isNotEmpty ? some(value) : none(),
-                  );
-                },
+                onChanged: (final String value) =>
+                    controller.updateCurrentEditingUnitTitle(
+                  title: value.trim().isNotEmpty ? some(value) : none(),
+                ),
               ),
               const SizedBox(height: 16),
               Center(

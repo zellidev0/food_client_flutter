@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +23,7 @@ typedef WebClientSorting = IngredientsSortingWebClientModelIngredientSorting;
 typedef PersistenceSorting = IngredientsSortingPersistenceModelSorting;
 typedef Unit = IngredientsSortingModelUnit;
 typedef PersistenceFamily = IngredientsSortingPersistenceModelIngredientFamily;
-typedef Family = IngredientsSortingModelIngredientFamily;
+typedef Family1 = IngredientsSortingModelIngredientFamily;
 
 const int takeSize = 250;
 const int _widthPixels = 256;
@@ -126,9 +125,7 @@ class IngredientsSortingControllerImplementation
       );
 
   @override
-  void openAddUnitModal({
-    required final Widget child,
-  }) =>
+  void openModal({required final Widget child}) =>
       unawaited(navigationService.showModalBottomSheet(child: child));
 
   @override
@@ -182,7 +179,7 @@ class IngredientsSortingControllerImplementation
                       ingredientFamilies: currentSorting.ingredientFamilies
                           .map(
                             (
-                              final Family family,
+                              final Family1 family,
                             ) =>
                                 PersistenceFamily.helloFresh(
                               helloFreshFamilyId: family.helloFreshFamilyId,
@@ -235,7 +232,7 @@ class IngredientsSortingControllerImplementation
                 name: sorting.name,
                 ingredientFamilies: sorting.ingredientFamilies
                     .map(
-                      (final PersistenceFamily family) => Family.helloFresh(
+                      (final PersistenceFamily family) => Family1.helloFresh(
                         helloFreshFamilyId: family.helloFreshFamilyId,
                       ),
                     )
@@ -249,11 +246,11 @@ class IngredientsSortingControllerImplementation
 }
 
 List<PersistenceFamily> mapToPersistenceFamily(
-  final List<Family> families,
+  final List<Family1> families,
 ) =>
     families
         .map(
-          (final Family ingredient) => PersistenceFamily.helloFresh(
+          (final Family1 ingredient) => PersistenceFamily.helloFresh(
             helloFreshFamilyId: ingredient.helloFreshFamilyId,
           ),
         )
@@ -261,7 +258,7 @@ List<PersistenceFamily> mapToPersistenceFamily(
 
 List<PersistenceSorting> combineIngredientsWithSorting({
   required final List<WebClientSorting> sortings,
-  required final List<Family> families,
+  required final List<Family1> families,
 }) =>
     sortings
         .map(
@@ -271,11 +268,11 @@ List<PersistenceSorting> combineIngredientsWithSorting({
             iconPath: none(),
             ingredientFamilies: families
                 .where(
-                  (final Family family) => sorting.ingredientFamilyIds
+                  (final Family1 family) => sorting.ingredientFamilyIds
                       .contains(family.helloFreshFamilyId),
                 )
                 .map(
-                  (final Family family) => PersistenceFamily.helloFresh(
+                  (final Family1 family) => PersistenceFamily.helloFresh(
                     helloFreshFamilyId: family.helloFreshFamilyId,
                   ),
                 )

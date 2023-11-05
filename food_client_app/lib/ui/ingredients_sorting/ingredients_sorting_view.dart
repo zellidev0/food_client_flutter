@@ -125,7 +125,7 @@ abstract class IngredientsSortingController implements MvcController {
   void goBack();
   void createSortingUnit({required final String name});
   void showDeleteUnitDialog({required final IngredientsSortingModelUnit unit});
-  void openAddUnitModal({required final Widget child});
+  void openModal({required final Widget child});
   void setUnitSelected({required final IngredientsSortingModelUnit unit});
   void updateCurrentEditingUnitTitle({required final Option<String> title});
   void reorderIngredientFamily({
