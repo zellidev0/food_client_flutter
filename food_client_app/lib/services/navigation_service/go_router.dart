@@ -38,7 +38,7 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
       initialLocation: NavigationServiceUris.homeRouteUri.toString(),
       navigatorKey: rootNavigatorKey,
       routes: <RouteBase>[
-        ShellRoute(
+        StatefulShellRoute.indexedStack(
           builder: (_, __, Widget child) => Consumer(
             builder: (_, WidgetRef ref, __) {
               final MainControllerImplementationProvider provider =
@@ -54,72 +54,84 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
               );
             },
           ),
-          navigatorKey: shellNavigatorKey,
-          routes: <GoRoute>[
-            GoRoute(
-              builder: (_, GoRouterState state) => Consumer(
-                builder: (_, WidgetRef ref, ___) {
-                  final AccountControllerImplementationProvider provider =
-                      accountControllerImplementationProvider(
-                    navigationService: ref.watch(navigationServiceProvider),
-                  );
-                  return AccountView(
-                    model: ref.watch(provider),
-                    controller: ref.watch(provider.notifier),
-                  );
-                },
-              ),
-              path: NavigationServiceUris.accountRouteUri.toString(),
+          branches: <StatefulShellBranch>[
+            StatefulShellBranch(
+              routes: <RouteBase>[
+                GoRoute(
+                  builder: (_, GoRouterState state) => Consumer(
+                    builder: (_, WidgetRef ref, ___) {
+                      final AccountControllerImplementationProvider provider =
+                          accountControllerImplementationProvider(
+                        navigationService: ref.watch(navigationServiceProvider),
+                      );
+                      return AccountView(
+                        model: ref.watch(provider),
+                        controller: ref.watch(provider.notifier),
+                      );
+                    },
+                  ),
+                  path: NavigationServiceUris.accountRouteUri.toString(),
+                ),
+              ],
             ),
-            GoRoute(
-              builder: (_, GoRouterState state) => Consumer(
-                builder: (_, WidgetRef ref, ___) {
-                  final CartControllerImplementationProvider provider =
-                      cartControllerImplementationProvider(
-                    navigationService: ref.watch(navigationServiceProvider),
-                    combinedIngredients: ref
-                        .watch(appSettingsServiceProvider)
-                        .combineIngredients,
-                    imageSizerService: ref.read(webImageSizerServiceProvider),
-                    persistenceService:
-                        ref.watch(persistenceServiceProvider.notifier),
-                    logger: ref.watch(
-                      loggingServiceProvider(
-                        loggerName: 'CartController',
-                      ),
-                    ),
-                  );
-                  return CartView(
-                    model: ref.watch(provider),
-                    controller: ref.watch(provider.notifier),
-                  );
-                },
-              ),
-              path: NavigationServiceUris.cartRouteUri.toString(),
+            StatefulShellBranch(
+              routes: <RouteBase>[
+                GoRoute(
+                  builder: (_, GoRouterState state) => Consumer(
+                    builder: (_, WidgetRef ref, ___) {
+                      final CartControllerImplementationProvider provider =
+                          cartControllerImplementationProvider(
+                        navigationService: ref.watch(navigationServiceProvider),
+                        combinedIngredients: ref
+                            .watch(appSettingsServiceProvider)
+                            .combineIngredients,
+                        imageSizerService:
+                            ref.read(webImageSizerServiceProvider),
+                        persistenceService:
+                            ref.watch(persistenceServiceProvider.notifier),
+                        logger: ref.watch(
+                          loggingServiceProvider(
+                            loggerName: 'CartController',
+                          ),
+                        ),
+                      );
+                      return CartView(
+                        model: ref.watch(provider),
+                        controller: ref.watch(provider.notifier),
+                      );
+                    },
+                  ),
+                  path: NavigationServiceUris.cartRouteUri.toString(),
+                ),
+              ],
             ),
-            GoRoute(
-              builder: (_, GoRouterState state) => Consumer(
-                builder: (_, WidgetRef ref, ___) {
-                  final HomeControllerImplementationProvider provider =
-                      homeControllerImplementationProvider(
-                    recipeLocales:
-                        ref.watch(appSettingsServiceProvider).recipeLocales,
-                    globalNavigationService:
-                        ref.read(navigationServiceProvider),
-                    webClientService: ref.watch(webClientServiceProvider),
-                    webImageSizerService:
-                        ref.watch(webImageSizerServiceProvider),
-                    logger: ref.watch(
-                      loggingServiceProvider(loggerName: 'HomeController'),
-                    ),
-                  );
-                  return HomeView(
-                    model: ref.watch(provider),
-                    controller: ref.watch(provider.notifier),
-                  );
-                },
-              ),
-              path: NavigationServiceUris.homeRouteUri.toString(),
+            StatefulShellBranch(
+              routes: <RouteBase>[
+                GoRoute(
+                  builder: (_, GoRouterState state) => Consumer(
+                    builder: (_, WidgetRef ref, ___) {
+                      final HomeControllerImplementationProvider provider =
+                          homeControllerImplementationProvider(
+                        recipeLocales:
+                            ref.watch(appSettingsServiceProvider).recipeLocales,
+                        globalNavigationService:
+                            ref.read(navigationServiceProvider),
+                        webClientService: ref.watch(webClientServiceProvider),
+                        webImageSizerService:
+                            ref.watch(webImageSizerServiceProvider),
+                        logger: ref.watch(
+                          loggingServiceProvider(loggerName: 'HomeController'),
+                        ),
+                      );
+                      return HomeView(
+                        model: ref.watch(provider),
+                        controller: ref.watch(provider.notifier),
+                      );
+                    },
+                  ),
+                  path: NavigationServiceUris.homeRouteUri.toString(),
+                ),
+              ],
             ),
           ],
         ),
