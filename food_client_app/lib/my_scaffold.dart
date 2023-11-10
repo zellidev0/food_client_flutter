@@ -5,13 +5,13 @@ class MyScaffold<T> extends StatelessWidget {
   final ViewState<T> state;
   final String errorText;
   final Widget Function(T) child;
-  final VoidCallback? onAppbarBackPressed;
+  final VoidCallback? onAppBarBackPressed;
   const MyScaffold({
     super.key,
     required this.state,
     required this.child,
     required this.errorText,
-    this.onAppbarBackPressed,
+    this.onAppBarBackPressed,
   });
 
   @override
@@ -19,13 +19,13 @@ class MyScaffold<T> extends StatelessWidget {
         bottom: false,
         top: false,
         child: Scaffold(
-          appBar: onAppbarBackPressed != null
+          appBar: onAppBarBackPressed != null
               ? AppBar(
                   backgroundColor: Colors.transparent,
                   scrolledUnderElevation: 0,
                   leading: IconButton(
                     icon: const Icon(Icons.arrow_back),
-                    onPressed: onAppbarBackPressed,
+                    onPressed: onAppBarBackPressed,
                   ),
                 )
               : null,

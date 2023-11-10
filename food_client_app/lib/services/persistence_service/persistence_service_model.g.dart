@@ -361,6 +361,78 @@ class PersistenceServiceModelActiveSortingCustomAdapter
           typeId == other.typeId;
 }
 
+class PersistenceServiceModelHistoryRecipeAdapter
+    extends TypeAdapter<_$_PersistenceServiceModelHistoryRecipe> {
+  @override
+  final int typeId = 8;
+
+  @override
+  _$_PersistenceServiceModelHistoryRecipe read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return _$_PersistenceServiceModelHistoryRecipe(
+      recipeId: fields[0] as String,
+      title: fields[1] as String,
+      imagePath: fields[2] as Option<Uri>,
+      origin: fields[3] as PersistenceServiceModelHistoryRecipeOrigin,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, _$_PersistenceServiceModelHistoryRecipe obj) {
+    writer
+      ..writeByte(4)
+      ..writeByte(0)
+      ..write(obj.recipeId)
+      ..writeByte(1)
+      ..write(obj.title)
+      ..writeByte(2)
+      ..write(obj.imagePath)
+      ..writeByte(3)
+      ..write(obj.origin);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PersistenceServiceModelHistoryRecipeAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class PersistenceServiceModelHistoryRecipeOriginAdapter
+    extends TypeAdapter<_$PersistenceServiceModelHistoryRecipeOriginClicked> {
+  @override
+  final int typeId = 9;
+
+  @override
+  _$PersistenceServiceModelHistoryRecipeOriginClicked read(
+      BinaryReader reader) {
+    return _$PersistenceServiceModelHistoryRecipeOriginClicked();
+  }
+
+  @override
+  void write(BinaryWriter writer,
+      _$PersistenceServiceModelHistoryRecipeOriginClicked obj) {
+    writer.writeByte(0);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PersistenceServiceModelHistoryRecipeOriginAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
@@ -545,3 +617,12 @@ Map<String, dynamic> _$$PersistenceServiceModelActiveSortingCustomToJson(
       'customSortingIngredientIds': instance.customSortingIngredientIds,
       'runtimeType': instance.$type,
     };
+
+_$PersistenceServiceModelHistoryRecipeOriginClicked
+    _$$PersistenceServiceModelHistoryRecipeOriginClickedFromJson(
+            Map<String, dynamic> json) =>
+        _$PersistenceServiceModelHistoryRecipeOriginClicked();
+
+Map<String, dynamic> _$$PersistenceServiceModelHistoryRecipeOriginClickedToJson(
+        _$PersistenceServiceModelHistoryRecipeOriginClicked instance) =>
+    <String, dynamic>{};

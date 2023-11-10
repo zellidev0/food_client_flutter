@@ -2281,3 +2281,426 @@ abstract class PersistenceServiceModelActiveSortingCustom
           _$PersistenceServiceModelActiveSortingCustom>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$PersistenceServiceModelHistoryRecipe {
+  @HiveField(0)
+  String get recipeId => throw _privateConstructorUsedError;
+  @HiveField(1)
+  String get title => throw _privateConstructorUsedError;
+  @HiveField(2)
+  Option<Uri> get imagePath => throw _privateConstructorUsedError;
+  @HiveField(3)
+  PersistenceServiceModelHistoryRecipeOrigin get origin =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $PersistenceServiceModelHistoryRecipeCopyWith<
+          PersistenceServiceModelHistoryRecipe>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PersistenceServiceModelHistoryRecipeCopyWith<$Res> {
+  factory $PersistenceServiceModelHistoryRecipeCopyWith(
+          PersistenceServiceModelHistoryRecipe value,
+          $Res Function(PersistenceServiceModelHistoryRecipe) then) =
+      _$PersistenceServiceModelHistoryRecipeCopyWithImpl<$Res,
+          PersistenceServiceModelHistoryRecipe>;
+  @useResult
+  $Res call(
+      {@HiveField(0) String recipeId,
+      @HiveField(1) String title,
+      @HiveField(2) Option<Uri> imagePath,
+      @HiveField(3) PersistenceServiceModelHistoryRecipeOrigin origin});
+
+  $PersistenceServiceModelHistoryRecipeOriginCopyWith<$Res> get origin;
+}
+
+/// @nodoc
+class _$PersistenceServiceModelHistoryRecipeCopyWithImpl<$Res,
+        $Val extends PersistenceServiceModelHistoryRecipe>
+    implements $PersistenceServiceModelHistoryRecipeCopyWith<$Res> {
+  _$PersistenceServiceModelHistoryRecipeCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? recipeId = null,
+    Object? title = null,
+    Object? imagePath = null,
+    Object? origin = null,
+  }) {
+    return _then(_value.copyWith(
+      recipeId: null == recipeId
+          ? _value.recipeId
+          : recipeId // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      imagePath: null == imagePath
+          ? _value.imagePath
+          : imagePath // ignore: cast_nullable_to_non_nullable
+              as Option<Uri>,
+      origin: null == origin
+          ? _value.origin
+          : origin // ignore: cast_nullable_to_non_nullable
+              as PersistenceServiceModelHistoryRecipeOrigin,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PersistenceServiceModelHistoryRecipeOriginCopyWith<$Res> get origin {
+    return $PersistenceServiceModelHistoryRecipeOriginCopyWith<$Res>(
+        _value.origin, (value) {
+      return _then(_value.copyWith(origin: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_PersistenceServiceModelHistoryRecipeCopyWith<$Res>
+    implements $PersistenceServiceModelHistoryRecipeCopyWith<$Res> {
+  factory _$$_PersistenceServiceModelHistoryRecipeCopyWith(
+          _$_PersistenceServiceModelHistoryRecipe value,
+          $Res Function(_$_PersistenceServiceModelHistoryRecipe) then) =
+      __$$_PersistenceServiceModelHistoryRecipeCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@HiveField(0) String recipeId,
+      @HiveField(1) String title,
+      @HiveField(2) Option<Uri> imagePath,
+      @HiveField(3) PersistenceServiceModelHistoryRecipeOrigin origin});
+
+  @override
+  $PersistenceServiceModelHistoryRecipeOriginCopyWith<$Res> get origin;
+}
+
+/// @nodoc
+class __$$_PersistenceServiceModelHistoryRecipeCopyWithImpl<$Res>
+    extends _$PersistenceServiceModelHistoryRecipeCopyWithImpl<$Res,
+        _$_PersistenceServiceModelHistoryRecipe>
+    implements _$$_PersistenceServiceModelHistoryRecipeCopyWith<$Res> {
+  __$$_PersistenceServiceModelHistoryRecipeCopyWithImpl(
+      _$_PersistenceServiceModelHistoryRecipe _value,
+      $Res Function(_$_PersistenceServiceModelHistoryRecipe) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? recipeId = null,
+    Object? title = null,
+    Object? imagePath = null,
+    Object? origin = null,
+  }) {
+    return _then(_$_PersistenceServiceModelHistoryRecipe(
+      recipeId: null == recipeId
+          ? _value.recipeId
+          : recipeId // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      imagePath: null == imagePath
+          ? _value.imagePath
+          : imagePath // ignore: cast_nullable_to_non_nullable
+              as Option<Uri>,
+      origin: null == origin
+          ? _value.origin
+          : origin // ignore: cast_nullable_to_non_nullable
+              as PersistenceServiceModelHistoryRecipeOrigin,
+    ));
+  }
+}
+
+/// @nodoc
+
+@HiveType(typeId: 8, adapterName: 'PersistenceServiceModelHistoryRecipeAdapter')
+class _$_PersistenceServiceModelHistoryRecipe
+    implements _PersistenceServiceModelHistoryRecipe {
+  const _$_PersistenceServiceModelHistoryRecipe(
+      {@HiveField(0) required this.recipeId,
+      @HiveField(1) required this.title,
+      @HiveField(2) required this.imagePath,
+      @HiveField(3) required this.origin});
+
+  @override
+  @HiveField(0)
+  final String recipeId;
+  @override
+  @HiveField(1)
+  final String title;
+  @override
+  @HiveField(2)
+  final Option<Uri> imagePath;
+  @override
+  @HiveField(3)
+  final PersistenceServiceModelHistoryRecipeOrigin origin;
+
+  @override
+  String toString() {
+    return 'PersistenceServiceModelHistoryRecipe(recipeId: $recipeId, title: $title, imagePath: $imagePath, origin: $origin)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_PersistenceServiceModelHistoryRecipe &&
+            (identical(other.recipeId, recipeId) ||
+                other.recipeId == recipeId) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.imagePath, imagePath) ||
+                other.imagePath == imagePath) &&
+            (identical(other.origin, origin) || other.origin == origin));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, recipeId, title, imagePath, origin);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_PersistenceServiceModelHistoryRecipeCopyWith<
+          _$_PersistenceServiceModelHistoryRecipe>
+      get copyWith => __$$_PersistenceServiceModelHistoryRecipeCopyWithImpl<
+          _$_PersistenceServiceModelHistoryRecipe>(this, _$identity);
+}
+
+abstract class _PersistenceServiceModelHistoryRecipe
+    implements PersistenceServiceModelHistoryRecipe {
+  const factory _PersistenceServiceModelHistoryRecipe(
+          {@HiveField(0) required final String recipeId,
+          @HiveField(1) required final String title,
+          @HiveField(2) required final Option<Uri> imagePath,
+          @HiveField(3)
+          required final PersistenceServiceModelHistoryRecipeOrigin origin}) =
+      _$_PersistenceServiceModelHistoryRecipe;
+
+  @override
+  @HiveField(0)
+  String get recipeId;
+  @override
+  @HiveField(1)
+  String get title;
+  @override
+  @HiveField(2)
+  Option<Uri> get imagePath;
+  @override
+  @HiveField(3)
+  PersistenceServiceModelHistoryRecipeOrigin get origin;
+  @override
+  @JsonKey(ignore: true)
+  _$$_PersistenceServiceModelHistoryRecipeCopyWith<
+          _$_PersistenceServiceModelHistoryRecipe>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+PersistenceServiceModelHistoryRecipeOrigin
+    _$PersistenceServiceModelHistoryRecipeOriginFromJson(
+        Map<String, dynamic> json) {
+  return PersistenceServiceModelHistoryRecipeOriginClicked.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PersistenceServiceModelHistoryRecipeOrigin {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() clicked,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clicked,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clicked,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(
+            PersistenceServiceModelHistoryRecipeOriginClicked value)
+        clicked,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(PersistenceServiceModelHistoryRecipeOriginClicked value)?
+        clicked,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(PersistenceServiceModelHistoryRecipeOriginClicked value)?
+        clicked,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PersistenceServiceModelHistoryRecipeOriginCopyWith<$Res> {
+  factory $PersistenceServiceModelHistoryRecipeOriginCopyWith(
+          PersistenceServiceModelHistoryRecipeOrigin value,
+          $Res Function(PersistenceServiceModelHistoryRecipeOrigin) then) =
+      _$PersistenceServiceModelHistoryRecipeOriginCopyWithImpl<$Res,
+          PersistenceServiceModelHistoryRecipeOrigin>;
+}
+
+/// @nodoc
+class _$PersistenceServiceModelHistoryRecipeOriginCopyWithImpl<$Res,
+        $Val extends PersistenceServiceModelHistoryRecipeOrigin>
+    implements $PersistenceServiceModelHistoryRecipeOriginCopyWith<$Res> {
+  _$PersistenceServiceModelHistoryRecipeOriginCopyWithImpl(
+      this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$PersistenceServiceModelHistoryRecipeOriginClickedCopyWith<
+    $Res> {
+  factory _$$PersistenceServiceModelHistoryRecipeOriginClickedCopyWith(
+          _$PersistenceServiceModelHistoryRecipeOriginClicked value,
+          $Res Function(_$PersistenceServiceModelHistoryRecipeOriginClicked)
+              then) =
+      __$$PersistenceServiceModelHistoryRecipeOriginClickedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$PersistenceServiceModelHistoryRecipeOriginClickedCopyWithImpl<$Res>
+    extends _$PersistenceServiceModelHistoryRecipeOriginCopyWithImpl<$Res,
+        _$PersistenceServiceModelHistoryRecipeOriginClicked>
+    implements
+        _$$PersistenceServiceModelHistoryRecipeOriginClickedCopyWith<$Res> {
+  __$$PersistenceServiceModelHistoryRecipeOriginClickedCopyWithImpl(
+      _$PersistenceServiceModelHistoryRecipeOriginClicked _value,
+      $Res Function(_$PersistenceServiceModelHistoryRecipeOriginClicked) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+@JsonSerializable()
+@HiveType(
+    typeId: 9, adapterName: 'PersistenceServiceModelHistoryRecipeOriginAdapter')
+class _$PersistenceServiceModelHistoryRecipeOriginClicked
+    implements PersistenceServiceModelHistoryRecipeOriginClicked {
+  const _$PersistenceServiceModelHistoryRecipeOriginClicked();
+
+  factory _$PersistenceServiceModelHistoryRecipeOriginClicked.fromJson(
+          Map<String, dynamic> json) =>
+      _$$PersistenceServiceModelHistoryRecipeOriginClickedFromJson(json);
+
+  @override
+  String toString() {
+    return 'PersistenceServiceModelHistoryRecipeOrigin.clicked()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PersistenceServiceModelHistoryRecipeOriginClicked);
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() clicked,
+  }) {
+    return clicked();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clicked,
+  }) {
+    return clicked?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clicked,
+    required TResult orElse(),
+  }) {
+    if (clicked != null) {
+      return clicked();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(
+            PersistenceServiceModelHistoryRecipeOriginClicked value)
+        clicked,
+  }) {
+    return clicked(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(PersistenceServiceModelHistoryRecipeOriginClicked value)?
+        clicked,
+  }) {
+    return clicked?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(PersistenceServiceModelHistoryRecipeOriginClicked value)?
+        clicked,
+    required TResult orElse(),
+  }) {
+    if (clicked != null) {
+      return clicked(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PersistenceServiceModelHistoryRecipeOriginClickedToJson(
+      this,
+    );
+  }
+}
+
+abstract class PersistenceServiceModelHistoryRecipeOriginClicked
+    implements PersistenceServiceModelHistoryRecipeOrigin {
+  const factory PersistenceServiceModelHistoryRecipeOriginClicked() =
+      _$PersistenceServiceModelHistoryRecipeOriginClicked;
+
+  factory PersistenceServiceModelHistoryRecipeOriginClicked.fromJson(
+          Map<String, dynamic> json) =
+      _$PersistenceServiceModelHistoryRecipeOriginClicked.fromJson;
+}

@@ -9,6 +9,7 @@ import 'package:food_client/services/navigation_service/navigation_service.dart'
 import 'package:food_client/ui/home/home_model.dart';
 import 'package:food_client/ui/home/home_view.dart';
 import 'package:food_client/ui/home/services/home_navigation_service.dart';
+import 'package:food_client/ui/home/services/home_persistence_service.dart';
 import 'package:food_client/ui/home/services/home_web_client_service.dart';
 import 'package:food_client/ui/home/services/home_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
@@ -26,6 +27,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
   @override
   HomeModel build({
     required final HomeWebClientService webClientService,
+    required final HomePersistenceService persistenceService,
     required final HomeWebImageSizerService webImageSizerService,
     required final HomeNavigationService globalNavigationService,
     required final LoggingService logger,
@@ -170,9 +172,35 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
       );
 
   @override
-  void goToSingleRecipeView({required final String recipeId}) =>
-      globalNavigationService.navigateToNamed(
-        uri: NavigationServiceUris.singleRecipe(recipeId: recipeId),
+  void goToSingleRecipeView({
+    required final String recipeId,
+    required final String recipeTitle,
+    required final Uri imagePath,
+  }) =>
+      unawaited(
+        persistenceService
+            .addRecipeOpeningToHistory(
+              recipeId: recipeId,
+              recipeTitle: recipeTitle,
+              imagePath: some(imagePath),
+            )
+            .match(
+              logger.error,
+              (_) => null,
+            )
+            .andThen(
+              () => Task<void>.of(
+                globalNavigationService.navigateToNamed(
+                  uri: NavigationServiceUris.singleRecipe(recipeId: recipeId),
+                ),
+              ),
+            )
+            .run(),
+      );
+
+  @override
+  void goToHistoryView() => globalNavigationService.navigateToNamed(
+        uri: NavigationServiceUris.historyRouteUri,
       );
 
   List<HomeModelFilter> replaceWIthId({

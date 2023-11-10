@@ -11,6 +11,8 @@ import 'package:food_client/ui/account/account_controller.dart';
 import 'package:food_client/ui/account/account_view.dart';
 import 'package:food_client/ui/cart/cart_controller_implementation.dart';
 import 'package:food_client/ui/cart/cart_view.dart';
+import 'package:food_client/ui/history/history_controller.dart';
+import 'package:food_client/ui/history/history_view.dart';
 import 'package:food_client/ui/home/home_controller.dart';
 import 'package:food_client/ui/home/home_view.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_controller.dart';
@@ -122,6 +124,9 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
                         logger: ref.watch(
                           loggingServiceProvider(loggerName: 'HomeController'),
                         ),
+                        persistenceService: ref.watch(
+                          persistenceServiceProvider.notifier,
+                        ),
                       );
                       return HomeView(
                         model: ref.watch(provider),
@@ -159,6 +164,27 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
           ),
           parentNavigatorKey: rootNavigatorKey,
           path: NavigationServiceUris.ingredientsSortingRouteUri.toString(),
+        ),
+        GoRoute(
+          builder: (_, GoRouterState state) => Consumer(
+            builder: (_, WidgetRef ref, ___) {
+              final HistoryControllerImplementationProvider provider =
+                  historyControllerImplementationProvider(
+                logger: ref.watch(
+                  loggingServiceProvider(loggerName: 'SingleRecipe'),
+                ),
+                navigationService: ref.watch(navigationServiceProvider),
+                persistenceService:
+                    ref.watch(persistenceServiceProvider.notifier),
+              );
+              return HistoryView(
+                model: ref.watch(provider),
+                controller: ref.watch(provider.notifier),
+              );
+            },
+          ),
+          parentNavigatorKey: rootNavigatorKey,
+          path: NavigationServiceUris.historyRouteUri.toString(),
         ),
         GoRoute(
           builder: (_, GoRouterState state) => Consumer(

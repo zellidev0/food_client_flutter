@@ -51,57 +51,65 @@ class HomeView extends MvcView<HomeController, HomeModel> {
     required final HomeModel model,
   }) =>
       Builder(
-        builder: (final BuildContext context) => Padding(
-          padding: const EdgeInsets.all(16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              buildSingleFilterChip(
-                text: LocaleKeys.ui_home_view_filters_tags.tr(),
-                controller: controller,
-                selectedFilters: model.availableFilters.mapData(
-                  (List<HomeModelFilter> data) => data
-                      .filter(
-                        (final HomeModelFilter filter) =>
-                            filter is HomeModelFilterTag && filter.isSelected,
-                      )
-                      .toList(),
-                ),
-                widgetToOpenOnClick: model.availableFilters.maybeWhen(
-                  data: (List<HomeModelFilter> filters) => some(
-                    buildFilterDialog(
-                      filters: filters.whereType<HomeModelFilterTag>().toList(),
-                    ),
+        builder: (final BuildContext context) => Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.history),
+              onPressed: controller.goToHistoryView,
+            ),
+            Expanded(child: Container()),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                buildSingleFilterChip(
+                  text: LocaleKeys.ui_home_view_filters_tags.tr(),
+                  controller: controller,
+                  selectedFilters: model.availableFilters.mapData(
+                    (List<HomeModelFilter> data) => data
+                        .filter(
+                          (final HomeModelFilter filter) =>
+                              filter is HomeModelFilterTag && filter.isSelected,
+                        )
+                        .toList(),
                   ),
-                  orElse: () => const None<Widget>(),
-                ),
-              ),
-              const SizedBox(width: 8),
-              buildSingleFilterChip(
-                text: LocaleKeys.ui_home_view_filters_cuisines.tr(),
-                controller: controller,
-                selectedFilters: model.availableFilters.mapData(
-                  (List<HomeModelFilter> data) => data
-                      .filter(
-                        (final HomeModelFilter filter) =>
-                            filter is HomeModelFilterCuisine &&
-                            filter.isSelected,
-                      )
-                      .toList(),
-                ),
-                widgetToOpenOnClick: model.availableFilters.maybeWhen(
-                  data: (List<HomeModelFilter> filters) => some(
-                    buildFilterDialog(
-                      filters:
-                          filters.whereType<HomeModelFilterCuisine>().toList(),
+                  widgetToOpenOnClick: model.availableFilters.maybeWhen(
+                    data: (List<HomeModelFilter> filters) => some(
+                      buildFilterDialog(
+                        filters:
+                            filters.whereType<HomeModelFilterTag>().toList(),
+                      ),
                     ),
+                    orElse: () => const None<Widget>(),
                   ),
-                  orElse: () => const None<Widget>(),
                 ),
-              ),
-            ],
-          ),
+                const SizedBox(width: 8),
+                buildSingleFilterChip(
+                  text: LocaleKeys.ui_home_view_filters_cuisines.tr(),
+                  controller: controller,
+                  selectedFilters: model.availableFilters.mapData(
+                    (List<HomeModelFilter> data) => data
+                        .filter(
+                          (final HomeModelFilter filter) =>
+                              filter is HomeModelFilterCuisine &&
+                              filter.isSelected,
+                        )
+                        .toList(),
+                  ),
+                  widgetToOpenOnClick: model.availableFilters.maybeWhen(
+                    data: (List<HomeModelFilter> filters) => some(
+                      buildFilterDialog(
+                        filters: filters
+                            .whereType<HomeModelFilterCuisine>()
+                            .toList(),
+                      ),
+                    ),
+                    orElse: () => const None<Widget>(),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       );
 
@@ -144,94 +152,81 @@ class HomeView extends MvcView<HomeController, HomeModel> {
     required final HomeController controller,
     required final HomeModel model,
   }) =>
-      Column(
-        children: <Widget>[
-          Expanded(
-            child: PageStorage(
-              bucket: pageStorageBucket,
-              child: PagedListView<int, HomeModelRecipe>(
-                padding: EdgeInsets.zero,
-                key: const PageStorageKey<String>('recipes'),
-                pagingController: model.pagingController,
-                builderDelegate: PagedChildBuilderDelegate<HomeModelRecipe>(
-                  itemBuilder: (
-                    final BuildContext context,
-                    final HomeModelRecipe recipe,
-                    final _,
-                  ) =>
-                      _buildRecipeCardItem(
-                    recipe: recipe,
-                    model: model,
-                    controller: controller,
-                    cuisines: model.availableFilters.map(
-                      data: (ViewStateData<List<HomeModelFilter>> data) => data
-                          .data
-                          .whereType<HomeModelFilterCuisine>()
-                          .toList(),
-                      error: (_) => <HomeModelFilterCuisine>[],
-                      loading: (_) => <HomeModelFilterCuisine>[],
-                    ),
-                  ),
-                  noItemsFoundIndicatorBuilder: (final _) =>
-                      buildNoItemsFoundIcon(
-                    message:
-                        LocaleKeys.ui_home_view_empty_states_no_recipes.tr(),
-                  ),
-                  noMoreItemsIndicatorBuilder: (final _) => Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Text(
-                        LocaleKeys.ui_home_view_empty_states_no_more_recipes
-                            .tr(),
-                      ),
-                    ),
-                  ),
-                  firstPageErrorIndicatorBuilder: (final _) => Column(
-                    children: <Widget>[
-                      const SizedBox(height: 64),
-                      buildNoItemsFoundIcon(
-                        message: LocaleKeys
-                            .ui_home_view_error_states_fetching_recipes
-                            .tr(),
-                      ),
-                      const SizedBox(height: 8),
-                      _buildTryFetchingRecipesAgainButton(
-                        controller: controller,
-                      ),
-                    ],
-                  ),
-                  newPageErrorIndicatorBuilder: (final _) => Column(
-                    children: <Widget>[
-                      const SizedBox(height: 8),
-                      Builder(
-                        builder: (final BuildContext context) => Text(
-                          LocaleKeys
-                              .ui_home_view_error_states_fetchin_more_recipes
-                              .tr(),
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      _buildTryFetchingRecipesAgainButton(
-                        controller: controller,
-                      ),
-                    ],
-                  ),
-                  firstPageProgressIndicatorBuilder: (final _) => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                  newPageProgressIndicatorBuilder: (final _) => const Column(
-                    children: <Widget>[
-                      SizedBox(height: 16),
-                      CircularProgressIndicator(),
-                      SizedBox(height: 8),
-                    ],
-                  ),
+      PageStorage(
+        bucket: pageStorageBucket,
+        child: PagedListView<int, HomeModelRecipe>(
+          padding: EdgeInsets.zero,
+          key: const PageStorageKey<String>('recipes'),
+          pagingController: model.pagingController,
+          builderDelegate: PagedChildBuilderDelegate<HomeModelRecipe>(
+            itemBuilder: (
+              final BuildContext context,
+              final HomeModelRecipe recipe,
+              final _,
+            ) =>
+                _buildRecipeCardItem(
+              recipe: recipe,
+              model: model,
+              controller: controller,
+              cuisines: model.availableFilters.map(
+                data: (ViewStateData<List<HomeModelFilter>> data) =>
+                    data.data.whereType<HomeModelFilterCuisine>().toList(),
+                error: (_) => <HomeModelFilterCuisine>[],
+                loading: (_) => <HomeModelFilterCuisine>[],
+              ),
+            ),
+            noItemsFoundIndicatorBuilder: (final _) => buildNoItemsFoundIcon(
+              message: LocaleKeys.ui_home_view_empty_states_no_recipes.tr(),
+            ),
+            noMoreItemsIndicatorBuilder: (final _) => Center(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Text(
+                  LocaleKeys.ui_home_view_empty_states_no_more_recipes.tr(),
                 ),
               ),
             ),
+            firstPageErrorIndicatorBuilder: (final _) => Column(
+              children: <Widget>[
+                const SizedBox(height: 64),
+                buildNoItemsFoundIcon(
+                  message: LocaleKeys.ui_home_view_error_states_fetching_recipes
+                      .tr(),
+                ),
+                const SizedBox(height: 8),
+                _buildTryFetchingRecipesAgainButton(
+                  controller: controller,
+                ),
+              ],
+            ),
+            newPageErrorIndicatorBuilder: (final _) => Column(
+              children: <Widget>[
+                const SizedBox(height: 8),
+                Builder(
+                  builder: (final BuildContext context) => Text(
+                    LocaleKeys.ui_home_view_error_states_fetchin_more_recipes
+                        .tr(),
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                _buildTryFetchingRecipesAgainButton(
+                  controller: controller,
+                ),
+              ],
+            ),
+            firstPageProgressIndicatorBuilder: (final _) => const Center(
+              child: CircularProgressIndicator(),
+            ),
+            newPageProgressIndicatorBuilder: (final _) => const Column(
+              children: <Widget>[
+                SizedBox(height: 16),
+                CircularProgressIndicator(),
+                SizedBox(height: 8),
+              ],
+            ),
           ),
-        ],
+        ),
       );
 
   ElevatedButton _buildTryFetchingRecipesAgainButton({
@@ -319,8 +314,11 @@ class HomeView extends MvcView<HomeController, HomeModel> {
                 type: MaterialType.transparency,
                 child: InkWell(
                   borderRadius: BorderRadius.circular(24),
-                  onTap: () =>
-                      controller.goToSingleRecipeView(recipeId: recipe.id),
+                  onTap: () => controller.goToSingleRecipeView(
+                    recipeId: recipe.id,
+                    recipeTitle: recipe.displayedAttributes.name,
+                    imagePath: recipe.imageUri,
+                  ),
                   child: Container(),
                 ),
               ),
@@ -418,6 +416,11 @@ abstract class HomeController implements MvcController {
     required final String filterId,
     required final bool isSelected,
   });
-  void goToSingleRecipeView({required final String recipeId});
+  void goToSingleRecipeView({
+    required final String recipeId,
+    required final String recipeTitle,
+    required final Uri imagePath,
+  });
   void openDialog({required final Widget child});
+  void goToHistoryView();
 }

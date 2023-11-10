@@ -164,3 +164,35 @@ class PersistenceServiceModelActiveSorting
   ) =>
       _$PersistenceServiceModelActiveSortingFromJson(json);
 }
+
+@freezed
+class PersistenceServiceModelHistoryRecipe
+    with _$PersistenceServiceModelHistoryRecipe {
+  @HiveType(
+    typeId: 8,
+    adapterName: 'PersistenceServiceModelHistoryRecipeAdapter',
+  )
+  const factory PersistenceServiceModelHistoryRecipe({
+    @HiveField(0) required final String recipeId,
+    @HiveField(1) required final String title,
+    @HiveField(2) required final Option<Uri> imagePath,
+    @HiveField(3)
+    required final PersistenceServiceModelHistoryRecipeOrigin origin,
+  }) = _PersistenceServiceModelHistoryRecipe;
+}
+
+@freezed
+class PersistenceServiceModelHistoryRecipeOrigin
+    with _$PersistenceServiceModelHistoryRecipeOrigin {
+  @HiveType(
+    typeId: 9,
+    adapterName: 'PersistenceServiceModelHistoryRecipeOriginAdapter',
+  )
+  const factory PersistenceServiceModelHistoryRecipeOrigin.clicked() =
+      PersistenceServiceModelHistoryRecipeOriginClicked;
+
+  factory PersistenceServiceModelHistoryRecipeOrigin.fromJson(
+    final Map<String, dynamic> json,
+  ) =>
+      _$PersistenceServiceModelHistoryRecipeOriginFromJson(json);
+}

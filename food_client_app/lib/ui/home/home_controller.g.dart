@@ -7,7 +7,7 @@ part of 'home_controller.dart';
 // **************************************************************************
 
 String _$homeControllerImplementationHash() =>
-    r'71c5db5179548008b2b018b8ad2d97414f70b898';
+    r'6223ede2ed6eafb800e415d46e204ebc1897d8ef';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -33,6 +33,7 @@ class _SystemHash {
 abstract class _$HomeControllerImplementation
     extends BuildlessAutoDisposeNotifier<HomeModel> {
   late final HomeWebClientService webClientService;
+  late final HomePersistenceService persistenceService;
   late final HomeWebImageSizerService webImageSizerService;
   late final HomeNavigationService globalNavigationService;
   late final LoggingService logger;
@@ -40,6 +41,7 @@ abstract class _$HomeControllerImplementation
 
   HomeModel build({
     required HomeWebClientService webClientService,
+    required HomePersistenceService persistenceService,
     required HomeWebImageSizerService webImageSizerService,
     required HomeNavigationService globalNavigationService,
     required LoggingService logger,
@@ -60,6 +62,7 @@ class HomeControllerImplementationFamily extends Family<HomeModel> {
   /// See also [HomeControllerImplementation].
   HomeControllerImplementationProvider call({
     required HomeWebClientService webClientService,
+    required HomePersistenceService persistenceService,
     required HomeWebImageSizerService webImageSizerService,
     required HomeNavigationService globalNavigationService,
     required LoggingService logger,
@@ -67,6 +70,7 @@ class HomeControllerImplementationFamily extends Family<HomeModel> {
   }) {
     return HomeControllerImplementationProvider(
       webClientService: webClientService,
+      persistenceService: persistenceService,
       webImageSizerService: webImageSizerService,
       globalNavigationService: globalNavigationService,
       logger: logger,
@@ -80,6 +84,7 @@ class HomeControllerImplementationFamily extends Family<HomeModel> {
   ) {
     return call(
       webClientService: provider.webClientService,
+      persistenceService: provider.persistenceService,
       webImageSizerService: provider.webImageSizerService,
       globalNavigationService: provider.globalNavigationService,
       logger: provider.logger,
@@ -109,6 +114,7 @@ class HomeControllerImplementationProvider
   /// See also [HomeControllerImplementation].
   HomeControllerImplementationProvider({
     required HomeWebClientService webClientService,
+    required HomePersistenceService persistenceService,
     required HomeWebImageSizerService webImageSizerService,
     required HomeNavigationService globalNavigationService,
     required LoggingService logger,
@@ -116,6 +122,7 @@ class HomeControllerImplementationProvider
   }) : this._internal(
           () => HomeControllerImplementation()
             ..webClientService = webClientService
+            ..persistenceService = persistenceService
             ..webImageSizerService = webImageSizerService
             ..globalNavigationService = globalNavigationService
             ..logger = logger
@@ -130,6 +137,7 @@ class HomeControllerImplementationProvider
           allTransitiveDependencies:
               HomeControllerImplementationFamily._allTransitiveDependencies,
           webClientService: webClientService,
+          persistenceService: persistenceService,
           webImageSizerService: webImageSizerService,
           globalNavigationService: globalNavigationService,
           logger: logger,
@@ -144,6 +152,7 @@ class HomeControllerImplementationProvider
     required super.debugGetCreateSourceHash,
     required super.from,
     required this.webClientService,
+    required this.persistenceService,
     required this.webImageSizerService,
     required this.globalNavigationService,
     required this.logger,
@@ -151,6 +160,7 @@ class HomeControllerImplementationProvider
   }) : super.internal();
 
   final HomeWebClientService webClientService;
+  final HomePersistenceService persistenceService;
   final HomeWebImageSizerService webImageSizerService;
   final HomeNavigationService globalNavigationService;
   final LoggingService logger;
@@ -162,6 +172,7 @@ class HomeControllerImplementationProvider
   ) {
     return notifier.build(
       webClientService: webClientService,
+      persistenceService: persistenceService,
       webImageSizerService: webImageSizerService,
       globalNavigationService: globalNavigationService,
       logger: logger,
@@ -176,6 +187,7 @@ class HomeControllerImplementationProvider
       override: HomeControllerImplementationProvider._internal(
         () => create()
           ..webClientService = webClientService
+          ..persistenceService = persistenceService
           ..webImageSizerService = webImageSizerService
           ..globalNavigationService = globalNavigationService
           ..logger = logger
@@ -186,6 +198,7 @@ class HomeControllerImplementationProvider
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
         webClientService: webClientService,
+        persistenceService: persistenceService,
         webImageSizerService: webImageSizerService,
         globalNavigationService: globalNavigationService,
         logger: logger,
@@ -204,6 +217,7 @@ class HomeControllerImplementationProvider
   bool operator ==(Object other) {
     return other is HomeControllerImplementationProvider &&
         other.webClientService == webClientService &&
+        other.persistenceService == persistenceService &&
         other.webImageSizerService == webImageSizerService &&
         other.globalNavigationService == globalNavigationService &&
         other.logger == logger &&
@@ -214,6 +228,7 @@ class HomeControllerImplementationProvider
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, webClientService.hashCode);
+    hash = _SystemHash.combine(hash, persistenceService.hashCode);
     hash = _SystemHash.combine(hash, webImageSizerService.hashCode);
     hash = _SystemHash.combine(hash, globalNavigationService.hashCode);
     hash = _SystemHash.combine(hash, logger.hashCode);
@@ -227,6 +242,9 @@ mixin HomeControllerImplementationRef
     on AutoDisposeNotifierProviderRef<HomeModel> {
   /// The parameter `webClientService` of this provider.
   HomeWebClientService get webClientService;
+
+  /// The parameter `persistenceService` of this provider.
+  HomePersistenceService get persistenceService;
 
   /// The parameter `webImageSizerService` of this provider.
   HomeWebImageSizerService get webImageSizerService;
@@ -249,6 +267,9 @@ class _HomeControllerImplementationProviderElement
   @override
   HomeWebClientService get webClientService =>
       (origin as HomeControllerImplementationProvider).webClientService;
+  @override
+  HomePersistenceService get persistenceService =>
+      (origin as HomeControllerImplementationProvider).persistenceService;
   @override
   HomeWebImageSizerService get webImageSizerService =>
       (origin as HomeControllerImplementationProvider).webImageSizerService;

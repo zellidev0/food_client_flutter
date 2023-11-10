@@ -1,0 +1,58 @@
+import 'dart:async';
+
+import 'package:food_client/commons/view_state.dart';
+import 'package:food_client/services/logging_service/logging_service.dart';
+import 'package:food_client/services/navigation_service/navigation_service.dart'
+    hide navigationService;
+
+import 'package:food_client/ui/history/history_model.dart';
+import 'package:food_client/ui/history/history_view.dart';
+import 'package:food_client/ui/history/services/history_navigation_service.dart';
+import 'package:food_client/ui/history/services/history_persistence_service.dart';
+import 'package:fpdart/fpdart.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'history_controller.g.dart';
+
+@riverpod
+class HistoryControllerImplementation extends _$HistoryControllerImplementation
+    implements HistoryController {
+  @override
+  HistoryModel build({
+    required final HistoryPersistenceService persistenceService,
+    required final HistoryNavigationService navigationService,
+    required final LoggingService logger,
+  }) {
+    scheduleMicrotask(fetchHistory().run);
+    return const HistoryModel(
+      recipes: ViewState<List<HistoryModelRecipe>>.loading(),
+    );
+  }
+
+  Task<void> fetchHistory() => persistenceService.getHistoryRecipes().match(
+        logger.error,
+        (List<HistoryPersistenceServiceModelRecipe> recipes) =>
+            state = state.copyWith(
+          recipes: recipes
+              .map(
+                (HistoryPersistenceServiceModelRecipe recipe) =>
+                    HistoryModelRecipe(
+                  id: recipe.recipeId,
+                  title: recipe.title,
+                  imageUri: recipe.imagePath,
+                ),
+              )
+              .toList()
+              .toViewStateData(),
+        ),
+      );
+
+  @override
+  void goToSingleRecipeView({required String recipeId}) =>
+      navigationService.navigateToNamed(
+        uri: NavigationServiceUris.singleRecipe(recipeId: recipeId),
+      );
+
+  @override
+  void goBack() => navigationService.goBack();
+}

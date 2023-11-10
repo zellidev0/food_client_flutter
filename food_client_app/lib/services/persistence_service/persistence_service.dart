@@ -2,6 +2,8 @@ import 'package:food_client/commons/error.dart';
 import 'package:food_client/commons/utils.dart';
 import 'package:food_client/services/persistence_service/persistence_service_model.dart';
 import 'package:food_client/ui/cart/services/cart_persistence_service.dart';
+import 'package:food_client/ui/history/services/history_persistence_service.dart';
+import 'package:food_client/ui/home/services/home_persistence_service.dart';
 import 'package:food_client/ui/ingredients_sorting/services/ingredients_sorting_persistence_service.dart';
 import 'package:food_client/ui/single_recipe/services/single_recipe_persistence_service.dart';
 
@@ -15,12 +17,15 @@ const String ingredientsBoxName = 'ingredientsBox';
 const String sortingUnitsBoxName = 'sortingUnitsBox';
 const String activeShoppingListSortingBoxName = 'activeShoppingListSortingBox';
 const String activeShoppingListSortingKey = 'activeShoppingListSortingBoxKey';
+const String historyRecipeBoxName = 'historyRecipeBox';
 
 abstract class PersistenceServiceAggregator
     implements
         CartPersistenceService,
         SingleRecipePersistenceService,
-        IngredientsSortingPersistenceService {}
+        IngredientsSortingPersistenceService,
+        HistoryPersistenceService,
+        HomePersistenceService {}
 
 @riverpod
 class PersistenceService extends _$PersistenceService
@@ -28,6 +33,7 @@ class PersistenceService extends _$PersistenceService
   late Box<PersistenceServiceModelShoppingListRecipe> shoppingListBox;
   late Box<PersistenceServiceModelSortingUnit> sortingUnits;
   late Box<PersistenceServiceModelActiveSorting> activeShoppingListSortingBox;
+  late Box<PersistenceServiceModelHistoryRecipe> historyRecipeBox;
 
   @override
   PersistenceServiceModel build() {
@@ -43,6 +49,9 @@ class PersistenceService extends _$PersistenceService
     activeShoppingListSortingBox =
         Hive.box<PersistenceServiceModelActiveSorting>(
       activeShoppingListSortingBoxName,
+    );
+    historyRecipeBox = Hive.box<PersistenceServiceModelHistoryRecipe>(
+      historyRecipeBoxName,
     );
     return const PersistenceServiceModel(
       recipes: <PersistenceServiceModelShoppingListRecipe>[],
@@ -379,6 +388,47 @@ class PersistenceService extends _$PersistenceService
             ingredientIds: custom.customSortingIngredientIds,
           ),
         ),
+      );
+
+  @override
+  TaskEither<
+      MyError,
+      List<
+          HistoryPersistenceServiceModelRecipe>> getHistoryRecipes() =>
+      TaskEither<MyError, List<HistoryPersistenceServiceModelRecipe>>.tryCatch(
+        () async => historyRecipeBox.values
+            .map(
+              (PersistenceServiceModelHistoryRecipe e) =>
+                  HistoryPersistenceServiceModelRecipe(
+                recipeId: e.recipeId,
+                title: e.title,
+                imagePath: e.imagePath,
+                origin: e.origin.map(
+                  clicked: (_) =>
+                      const HistoryPersistenceServiceModelOrigin.clicked(),
+                ),
+              ),
+            )
+            .toList(),
+        MyError.fromErrorAndStackTrace,
+      );
+
+  @override
+  TaskEither<MyError, void> addRecipeOpeningToHistory({
+    required final String recipeId,
+    required final String recipeTitle,
+    required final Option<Uri> imagePath,
+  }) =>
+      TaskEither<MyError, void>.tryCatch(
+        () async => historyRecipeBox.add(
+          PersistenceServiceModelHistoryRecipe(
+            recipeId: recipeId,
+            title: recipeTitle,
+            imagePath: imagePath,
+            origin: const PersistenceServiceModelHistoryRecipeOrigin.clicked(),
+          ),
+        ),
+        MyError.fromErrorAndStackTrace,
       );
 }
 

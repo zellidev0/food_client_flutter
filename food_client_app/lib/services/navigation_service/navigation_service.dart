@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:food_client/services/navigation_service/go_router.dart';
 import 'package:food_client/ui/account/account_navigation_service.dart';
 import 'package:food_client/ui/cart/services/cart_navigation_service.dart';
+import 'package:food_client/ui/history/services/history_navigation_service.dart';
 import 'package:food_client/ui/home/services/home_navigation_service.dart';
 import 'package:food_client/ui/ingredients_sorting/services/ingredients_sorting_navigation_service.dart';
 import 'package:food_client/ui/main/main_navigation_service.dart';
@@ -25,7 +26,8 @@ abstract class NavigationServiceAggregator
         MainNavigationService,
         CartNavigationService,
         AccountNavigationService,
-        IngredientsSortingNavigationService {}
+        IngredientsSortingNavigationService,
+        HistoryNavigationService {}
 
 class NavigationServiceUris {
   NavigationServiceUris._();
@@ -37,6 +39,7 @@ class NavigationServiceUris {
   static Uri accountRouteUri = Uri.parse('/account');
   static Uri cartRouteUri = Uri.parse('/cart');
   static Uri ingredientsSortingRouteUri = Uri.parse('/ingredients-sorting');
+  static Uri historyRouteUri = Uri.parse('/history');
 }
 
 @freezed

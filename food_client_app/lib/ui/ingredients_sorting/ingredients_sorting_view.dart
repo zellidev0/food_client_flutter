@@ -19,7 +19,7 @@ class IngredientsSortingView
   Widget build(final BuildContext context) => Stack(
         children: <Widget>[
           MyScaffold<IngredientsSortingModel>(
-            onAppbarBackPressed: controller.goBack,
+            onAppBarBackPressed: controller.goBack,
             errorText: '',
             state: model.toViewStateData(),
             child: (IngredientsSortingModel model) => _buildContent(
