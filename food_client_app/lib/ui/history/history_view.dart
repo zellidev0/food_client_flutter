@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_client/commons/empty_view_content.dart';
 import 'package:food_client/mvc.dart';
 import 'package:food_client/my_scaffold.dart';
 import 'package:food_client/ui/history/history_model.dart';
@@ -17,18 +18,28 @@ class HistoryView extends MvcView<HistoryController, HistoryModel> {
         state: model.recipes,
         errorText: 'TODO', //TODO: do this
         onAppBarBackPressed: controller.goBack,
-        child: (List<HistoryModelRecipe> data) => ListView.separated(
-          itemCount: data.length,
-          itemBuilder: (BuildContext context, int index) =>
-              HistoryViewRecipeListItem(
-            recipeTitle: data[index].title,
-            recipeImageUrl: data[index].imageUri,
-            onTap: () => controller.goToSingleRecipeView(
-              recipeId: data[index].id,
-            ),
-          ),
-          separatorBuilder: (_, __) => const SizedBox(height: 8),
-        ),
+        child: (List<HistoryModelRecipe> data) => data.isEmpty
+            ? const Padding(
+                padding: EdgeInsets.all(32),
+                child: Center(
+                  child: EmptyViewContent(
+                    message:
+                        'No items yet, open some recipes to find your history here',
+                  ),
+                ),
+              )
+            : ListView.separated(
+                itemCount: data.length,
+                itemBuilder: (BuildContext context, int index) =>
+                    HistoryViewRecipeListItem(
+                  recipeTitle: data[index].title,
+                  recipeImageUrl: data[index].imageUri,
+                  onTap: () => controller.goToSingleRecipeView(
+                    recipeId: data[index].id,
+                  ),
+                ),
+                separatorBuilder: (_, __) => const SizedBox(height: 8),
+              ),
       );
 }
 

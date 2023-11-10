@@ -21,6 +21,7 @@ mixin _$HistoryPersistenceServiceModelRecipe {
   Option<Uri> get imagePath => throw _privateConstructorUsedError;
   HistoryPersistenceServiceModelOrigin get origin =>
       throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HistoryPersistenceServiceModelRecipeCopyWith<
@@ -40,7 +41,8 @@ abstract class $HistoryPersistenceServiceModelRecipeCopyWith<$Res> {
       {String recipeId,
       String title,
       Option<Uri> imagePath,
-      HistoryPersistenceServiceModelOrigin origin});
+      HistoryPersistenceServiceModelOrigin origin,
+      DateTime createdAt});
 
   $HistoryPersistenceServiceModelOriginCopyWith<$Res> get origin;
 }
@@ -63,6 +65,7 @@ class _$HistoryPersistenceServiceModelRecipeCopyWithImpl<$Res,
     Object? title = null,
     Object? imagePath = null,
     Object? origin = null,
+    Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
       recipeId: null == recipeId
@@ -81,6 +84,10 @@ class _$HistoryPersistenceServiceModelRecipeCopyWithImpl<$Res,
           ? _value.origin
           : origin // ignore: cast_nullable_to_non_nullable
               as HistoryPersistenceServiceModelOrigin,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 
@@ -107,7 +114,8 @@ abstract class _$$_HistoryPersistenceServiceModelRecipeCopyWith<$Res>
       {String recipeId,
       String title,
       Option<Uri> imagePath,
-      HistoryPersistenceServiceModelOrigin origin});
+      HistoryPersistenceServiceModelOrigin origin,
+      DateTime createdAt});
 
   @override
   $HistoryPersistenceServiceModelOriginCopyWith<$Res> get origin;
@@ -130,6 +138,7 @@ class __$$_HistoryPersistenceServiceModelRecipeCopyWithImpl<$Res>
     Object? title = null,
     Object? imagePath = null,
     Object? origin = null,
+    Object? createdAt = null,
   }) {
     return _then(_$_HistoryPersistenceServiceModelRecipe(
       recipeId: null == recipeId
@@ -148,6 +157,10 @@ class __$$_HistoryPersistenceServiceModelRecipeCopyWithImpl<$Res>
           ? _value.origin
           : origin // ignore: cast_nullable_to_non_nullable
               as HistoryPersistenceServiceModelOrigin,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -160,7 +173,8 @@ class _$_HistoryPersistenceServiceModelRecipe
       {required this.recipeId,
       required this.title,
       required this.imagePath,
-      required this.origin});
+      required this.origin,
+      required this.createdAt});
 
   @override
   final String recipeId;
@@ -170,10 +184,12 @@ class _$_HistoryPersistenceServiceModelRecipe
   final Option<Uri> imagePath;
   @override
   final HistoryPersistenceServiceModelOrigin origin;
+  @override
+  final DateTime createdAt;
 
   @override
   String toString() {
-    return 'HistoryPersistenceServiceModelRecipe(recipeId: $recipeId, title: $title, imagePath: $imagePath, origin: $origin)';
+    return 'HistoryPersistenceServiceModelRecipe(recipeId: $recipeId, title: $title, imagePath: $imagePath, origin: $origin, createdAt: $createdAt)';
   }
 
   @override
@@ -186,12 +202,14 @@ class _$_HistoryPersistenceServiceModelRecipe
             (identical(other.title, title) || other.title == title) &&
             (identical(other.imagePath, imagePath) ||
                 other.imagePath == imagePath) &&
-            (identical(other.origin, origin) || other.origin == origin));
+            (identical(other.origin, origin) || other.origin == origin) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, recipeId, title, imagePath, origin);
+      Object.hash(runtimeType, recipeId, title, imagePath, origin, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -208,7 +226,8 @@ abstract class _HistoryPersistenceServiceModelRecipe
           {required final String recipeId,
           required final String title,
           required final Option<Uri> imagePath,
-          required final HistoryPersistenceServiceModelOrigin origin}) =
+          required final HistoryPersistenceServiceModelOrigin origin,
+          required final DateTime createdAt}) =
       _$_HistoryPersistenceServiceModelRecipe;
 
   @override
@@ -219,6 +238,8 @@ abstract class _HistoryPersistenceServiceModelRecipe
   Option<Uri> get imagePath;
   @override
   HistoryPersistenceServiceModelOrigin get origin;
+  @override
+  DateTime get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$_HistoryPersistenceServiceModelRecipeCopyWith<

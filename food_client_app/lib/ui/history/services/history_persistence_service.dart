@@ -17,6 +17,7 @@ class HistoryPersistenceServiceModelRecipe
     required final String title,
     required final Option<Uri> imagePath,
     required final HistoryPersistenceServiceModelOrigin origin,
+    required final DateTime createdAt,
   }) = _HistoryPersistenceServiceModelRecipe;
 }
 

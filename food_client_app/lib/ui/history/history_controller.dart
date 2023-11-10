@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
+import 'package:food_client/commons/error.dart';
 import 'package:food_client/commons/view_state.dart';
 import 'package:food_client/services/logging_service/logging_service.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart'
@@ -30,10 +32,11 @@ class HistoryControllerImplementation extends _$HistoryControllerImplementation
   }
 
   Task<void> fetchHistory() => persistenceService.getHistoryRecipes().match(
-        logger.error,
+        _handleError,
         (List<HistoryPersistenceServiceModelRecipe> recipes) =>
             state = state.copyWith(
           recipes: recipes
+              .sorted((_, __) => _.createdAt.isBefore(__.createdAt) ? 1 : -1)
               .map(
                 (HistoryPersistenceServiceModelRecipe recipe) =>
                     HistoryModelRecipe(
@@ -55,4 +58,11 @@ class HistoryControllerImplementation extends _$HistoryControllerImplementation
 
   @override
   void goBack() => navigationService.goBack();
+
+  void _handleError(MyError error) {
+    state = state.copyWith(
+      recipes: ViewState<List<HistoryModelRecipe>>.error(error),
+    );
+    logger.error(error);
+  }
 }
