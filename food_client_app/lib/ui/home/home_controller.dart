@@ -183,6 +183,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
               recipeId: recipeId,
               recipeTitle: recipeTitle,
               imagePath: some(imagePath),
+              createdAt: DateTime.now(),
             )
             .match(
               logger.error,

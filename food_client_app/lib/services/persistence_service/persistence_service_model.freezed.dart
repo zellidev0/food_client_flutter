@@ -2293,6 +2293,8 @@ mixin _$PersistenceServiceModelHistoryRecipe {
   @HiveField(3)
   PersistenceServiceModelHistoryRecipeOrigin get origin =>
       throw _privateConstructorUsedError;
+  @HiveField(4)
+  DateTime get createdAt => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PersistenceServiceModelHistoryRecipeCopyWith<
@@ -2312,7 +2314,8 @@ abstract class $PersistenceServiceModelHistoryRecipeCopyWith<$Res> {
       {@HiveField(0) String recipeId,
       @HiveField(1) String title,
       @HiveField(2) Option<Uri> imagePath,
-      @HiveField(3) PersistenceServiceModelHistoryRecipeOrigin origin});
+      @HiveField(3) PersistenceServiceModelHistoryRecipeOrigin origin,
+      @HiveField(4) DateTime createdAt});
 
   $PersistenceServiceModelHistoryRecipeOriginCopyWith<$Res> get origin;
 }
@@ -2335,6 +2338,7 @@ class _$PersistenceServiceModelHistoryRecipeCopyWithImpl<$Res,
     Object? title = null,
     Object? imagePath = null,
     Object? origin = null,
+    Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
       recipeId: null == recipeId
@@ -2353,6 +2357,10 @@ class _$PersistenceServiceModelHistoryRecipeCopyWithImpl<$Res,
           ? _value.origin
           : origin // ignore: cast_nullable_to_non_nullable
               as PersistenceServiceModelHistoryRecipeOrigin,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 
@@ -2379,7 +2387,8 @@ abstract class _$$_PersistenceServiceModelHistoryRecipeCopyWith<$Res>
       {@HiveField(0) String recipeId,
       @HiveField(1) String title,
       @HiveField(2) Option<Uri> imagePath,
-      @HiveField(3) PersistenceServiceModelHistoryRecipeOrigin origin});
+      @HiveField(3) PersistenceServiceModelHistoryRecipeOrigin origin,
+      @HiveField(4) DateTime createdAt});
 
   @override
   $PersistenceServiceModelHistoryRecipeOriginCopyWith<$Res> get origin;
@@ -2402,6 +2411,7 @@ class __$$_PersistenceServiceModelHistoryRecipeCopyWithImpl<$Res>
     Object? title = null,
     Object? imagePath = null,
     Object? origin = null,
+    Object? createdAt = null,
   }) {
     return _then(_$_PersistenceServiceModelHistoryRecipe(
       recipeId: null == recipeId
@@ -2420,6 +2430,10 @@ class __$$_PersistenceServiceModelHistoryRecipeCopyWithImpl<$Res>
           ? _value.origin
           : origin // ignore: cast_nullable_to_non_nullable
               as PersistenceServiceModelHistoryRecipeOrigin,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -2433,7 +2447,8 @@ class _$_PersistenceServiceModelHistoryRecipe
       {@HiveField(0) required this.recipeId,
       @HiveField(1) required this.title,
       @HiveField(2) required this.imagePath,
-      @HiveField(3) required this.origin});
+      @HiveField(3) required this.origin,
+      @HiveField(4) required this.createdAt});
 
   @override
   @HiveField(0)
@@ -2447,10 +2462,13 @@ class _$_PersistenceServiceModelHistoryRecipe
   @override
   @HiveField(3)
   final PersistenceServiceModelHistoryRecipeOrigin origin;
+  @override
+  @HiveField(4)
+  final DateTime createdAt;
 
   @override
   String toString() {
-    return 'PersistenceServiceModelHistoryRecipe(recipeId: $recipeId, title: $title, imagePath: $imagePath, origin: $origin)';
+    return 'PersistenceServiceModelHistoryRecipe(recipeId: $recipeId, title: $title, imagePath: $imagePath, origin: $origin, createdAt: $createdAt)';
   }
 
   @override
@@ -2463,12 +2481,14 @@ class _$_PersistenceServiceModelHistoryRecipe
             (identical(other.title, title) || other.title == title) &&
             (identical(other.imagePath, imagePath) ||
                 other.imagePath == imagePath) &&
-            (identical(other.origin, origin) || other.origin == origin));
+            (identical(other.origin, origin) || other.origin == origin) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, recipeId, title, imagePath, origin);
+      Object.hash(runtimeType, recipeId, title, imagePath, origin, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -2486,7 +2506,8 @@ abstract class _PersistenceServiceModelHistoryRecipe
           @HiveField(1) required final String title,
           @HiveField(2) required final Option<Uri> imagePath,
           @HiveField(3)
-          required final PersistenceServiceModelHistoryRecipeOrigin origin}) =
+          required final PersistenceServiceModelHistoryRecipeOrigin origin,
+          @HiveField(4) required final DateTime createdAt}) =
       _$_PersistenceServiceModelHistoryRecipe;
 
   @override
@@ -2501,6 +2522,9 @@ abstract class _PersistenceServiceModelHistoryRecipe
   @override
   @HiveField(3)
   PersistenceServiceModelHistoryRecipeOrigin get origin;
+  @override
+  @HiveField(4)
+  DateTime get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$_PersistenceServiceModelHistoryRecipeCopyWith<

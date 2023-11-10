@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_client/commons/empty_view_content.dart';
 import 'package:food_client/commons/view_state.dart';
 import 'package:food_client/commons/widgets.dart';
 import 'package:food_client/mvc.dart';
@@ -63,9 +64,9 @@ class IngredientsSortingView
             ),
           ),
           if (model.units.isEmpty)
-            Padding(
-              padding: const EdgeInsets.all(64),
-              child: buildNoItemsFoundIcon(message: 'Create a new location'),
+            const Padding(
+              padding: EdgeInsets.all(64),
+              child: EmptyViewContent(message: 'Create a new location'),
             )
           else
             buildIngredientsList(

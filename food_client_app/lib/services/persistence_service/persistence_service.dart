@@ -398,15 +398,16 @@ class PersistenceService extends _$PersistenceService
       TaskEither<MyError, List<HistoryPersistenceServiceModelRecipe>>.tryCatch(
         () async => historyRecipeBox.values
             .map(
-              (PersistenceServiceModelHistoryRecipe e) =>
+              (PersistenceServiceModelHistoryRecipe recipe) =>
                   HistoryPersistenceServiceModelRecipe(
-                recipeId: e.recipeId,
-                title: e.title,
-                imagePath: e.imagePath,
-                origin: e.origin.map(
+                recipeId: recipe.recipeId,
+                title: recipe.title,
+                imagePath: recipe.imagePath,
+                origin: recipe.origin.map(
                   clicked: (_) =>
                       const HistoryPersistenceServiceModelOrigin.clicked(),
                 ),
+                createdAt: recipe.createdAt,
               ),
             )
             .toList(),
@@ -418,6 +419,7 @@ class PersistenceService extends _$PersistenceService
     required final String recipeId,
     required final String recipeTitle,
     required final Option<Uri> imagePath,
+    required final DateTime createdAt,
   }) =>
       TaskEither<MyError, void>.tryCatch(
         () async => historyRecipeBox.add(
@@ -426,6 +428,7 @@ class PersistenceService extends _$PersistenceService
             title: recipeTitle,
             imagePath: imagePath,
             origin: const PersistenceServiceModelHistoryRecipeOrigin.clicked(),
+            createdAt: createdAt,
           ),
         ),
         MyError.fromErrorAndStackTrace,

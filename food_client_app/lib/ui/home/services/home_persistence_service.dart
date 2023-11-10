@@ -6,5 +6,6 @@ abstract class HomePersistenceService {
     required final String recipeId,
     required final String recipeTitle,
     required final Option<Uri> imagePath,
+    required final DateTime createdAt,
   });
 }

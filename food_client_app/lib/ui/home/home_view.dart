@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:food_client/commons/empty_view_content.dart';
 import 'package:food_client/commons/view_state.dart';
 import 'package:food_client/commons/widgets.dart';
 import 'package:food_client/generated/locale_keys.g.dart';
@@ -175,7 +176,7 @@ class HomeView extends MvcView<HomeController, HomeModel> {
                 loading: (_) => <HomeModelFilterCuisine>[],
               ),
             ),
-            noItemsFoundIndicatorBuilder: (final _) => buildNoItemsFoundIcon(
+            noItemsFoundIndicatorBuilder: (final _) => EmptyViewContent(
               message: LocaleKeys.ui_home_view_empty_states_no_recipes.tr(),
             ),
             noMoreItemsIndicatorBuilder: (final _) => Center(
@@ -189,7 +190,7 @@ class HomeView extends MvcView<HomeController, HomeModel> {
             firstPageErrorIndicatorBuilder: (final _) => Column(
               children: <Widget>[
                 const SizedBox(height: 64),
-                buildNoItemsFoundIcon(
+                EmptyViewContent(
                   message: LocaleKeys.ui_home_view_error_states_fetching_recipes
                       .tr(),
                 ),

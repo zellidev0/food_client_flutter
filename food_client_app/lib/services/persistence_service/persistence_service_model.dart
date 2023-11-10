@@ -178,6 +178,7 @@ class PersistenceServiceModelHistoryRecipe
     @HiveField(2) required final Option<Uri> imagePath,
     @HiveField(3)
     required final PersistenceServiceModelHistoryRecipeOrigin origin,
+    @HiveField(4) required final DateTime createdAt,
   }) = _PersistenceServiceModelHistoryRecipe;
 }
 

@@ -377,13 +377,14 @@ class PersistenceServiceModelHistoryRecipeAdapter
       title: fields[1] as String,
       imagePath: fields[2] as Option<Uri>,
       origin: fields[3] as PersistenceServiceModelHistoryRecipeOrigin,
+      createdAt: fields[4] as DateTime,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$_PersistenceServiceModelHistoryRecipe obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.recipeId)
       ..writeByte(1)
@@ -391,7 +392,9 @@ class PersistenceServiceModelHistoryRecipeAdapter
       ..writeByte(2)
       ..write(obj.imagePath)
       ..writeByte(3)
-      ..write(obj.origin);
+      ..write(obj.origin)
+      ..writeByte(4)
+      ..write(obj.createdAt);
   }
 
   @override
