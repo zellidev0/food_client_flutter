@@ -17,5 +17,6 @@ class HistoryModelRecipe with _$HistoryModelRecipe {
     required final String id,
     required final String title,
     required final Option<Uri> imageUri,
+    required final String createdAt,
   }) = _HistoryModelRecipe;
 }

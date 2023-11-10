@@ -376,8 +376,8 @@ class PersistenceServiceModelHistoryRecipeAdapter
       recipeId: fields[0] as String,
       title: fields[1] as String,
       imagePath: fields[2] as Option<Uri>,
-      origin: fields[3] as PersistenceServiceModelHistoryRecipeOrigin,
-      createdAt: fields[4] as DateTime,
+      origin: fields[3] as String,
+      createdAt: fields[4] as String,
     );
   }
 
@@ -408,7 +408,7 @@ class PersistenceServiceModelHistoryRecipeAdapter
           typeId == other.typeId;
 }
 
-class PersistenceServiceModelHistoryRecipeOriginAdapter
+class PersistenceServiceModelHistoryRecipeOriginClickedAdapter
     extends TypeAdapter<_$PersistenceServiceModelHistoryRecipeOriginClicked> {
   @override
   final int typeId = 9;
@@ -431,7 +431,7 @@ class PersistenceServiceModelHistoryRecipeOriginAdapter
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is PersistenceServiceModelHistoryRecipeOriginAdapter &&
+      other is PersistenceServiceModelHistoryRecipeOriginClickedAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

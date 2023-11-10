@@ -176,9 +176,8 @@ class PersistenceServiceModelHistoryRecipe
     @HiveField(0) required final String recipeId,
     @HiveField(1) required final String title,
     @HiveField(2) required final Option<Uri> imagePath,
-    @HiveField(3)
-    required final PersistenceServiceModelHistoryRecipeOrigin origin,
-    @HiveField(4) required final DateTime createdAt,
+    @HiveField(3) required final String origin,
+    @HiveField(4) required final String createdAt,
   }) = _PersistenceServiceModelHistoryRecipe;
 }
 
@@ -187,7 +186,7 @@ class PersistenceServiceModelHistoryRecipeOrigin
     with _$PersistenceServiceModelHistoryRecipeOrigin {
   @HiveType(
     typeId: 9,
-    adapterName: 'PersistenceServiceModelHistoryRecipeOriginAdapter',
+    adapterName: 'PersistenceServiceModelHistoryRecipeOriginClickedAdapter',
   )
   const factory PersistenceServiceModelHistoryRecipeOrigin.clicked() =
       PersistenceServiceModelHistoryRecipeOriginClicked;

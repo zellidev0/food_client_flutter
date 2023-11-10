@@ -5,6 +5,7 @@ import 'package:fpdart/fpdart.dart';
 
 class HistoryViewRecipeListItem extends StatelessWidget {
   final String recipeTitle;
+  final String createdAt;
   final Option<Uri> recipeImageUrl;
   final VoidCallback onTap;
 
@@ -12,6 +13,7 @@ class HistoryViewRecipeListItem extends StatelessWidget {
     super.key,
     required this.recipeTitle,
     required this.recipeImageUrl,
+    required this.createdAt,
     required this.onTap,
   });
 
@@ -35,24 +37,34 @@ class HistoryViewRecipeListItem extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  contentPadding: const EdgeInsets.only(right: 16),
+                  contentPadding: const EdgeInsets.all(8),
                   minVerticalPadding: 0,
                   leading: SizedBox(
-                    height: 200,
+                    height: 300,
                     child: AspectRatio(
-                      aspectRatio: 1,
+                      aspectRatio: 2,
                       child: recipeImageUrl.fold(
                         () => const Icon(Icons.image_not_supported),
                         (final Uri url) => ClipRRect(
-                          borderRadius: const BorderRadius.horizontal(
-                            left: Radius.circular(8),
-                          ),
+                          borderRadius: BorderRadius.circular(8),
                           child: buildCachedNetworkImage(imageUrl: url),
                         ),
                       ),
                     ),
                   ),
                   title: Text(recipeTitle),
+                  subtitle: Align(
+                    alignment: Alignment.centerLeft,
+                    child: SizedBox(
+                      height: 24,
+                      child: FittedBox(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          child: Text(createdAt),
+                        ),
+                      ),
+                    ),
+                  ),
                   trailing: const Icon(Icons.chevron_right),
                 ),
               ),

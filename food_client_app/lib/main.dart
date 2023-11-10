@@ -32,7 +32,9 @@ void main() async {
     )
     ..registerAdapter(PersistenceServiceModelShoppingListRecipeAdapter())
     ..registerAdapter(PersistenceServiceModelHistoryRecipeAdapter())
-    ..registerAdapter(PersistenceServiceModelHistoryRecipeOriginAdapter());
+    ..registerAdapter(
+      PersistenceServiceModelHistoryRecipeOriginClickedAdapter(),
+    );
   await Hive.initFlutter();
   await Hive.openBox<PersistenceServiceModelShoppingListRecipe>(
     ingredientsBoxName,

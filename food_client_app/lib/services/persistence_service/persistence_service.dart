@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:food_client/commons/error.dart';
 import 'package:food_client/commons/utils.dart';
 import 'package:food_client/services/persistence_service/persistence_service_model.dart';
@@ -403,11 +405,13 @@ class PersistenceService extends _$PersistenceService
                 recipeId: recipe.recipeId,
                 title: recipe.title,
                 imagePath: recipe.imagePath,
-                origin: recipe.origin.map(
+                createdAt: DateTime.parse(recipe.createdAt),
+                origin: PersistenceServiceModelHistoryRecipeOrigin.fromJson(
+                  jsonDecode(recipe.origin),
+                ).map(
                   clicked: (_) =>
                       const HistoryPersistenceServiceModelOrigin.clicked(),
                 ),
-                createdAt: recipe.createdAt,
               ),
             )
             .toList(),
@@ -427,8 +431,11 @@ class PersistenceService extends _$PersistenceService
             recipeId: recipeId,
             title: recipeTitle,
             imagePath: imagePath,
-            origin: const PersistenceServiceModelHistoryRecipeOrigin.clicked(),
-            createdAt: createdAt,
+            origin: jsonEncode(
+              const PersistenceServiceModelHistoryRecipeOrigin.clicked()
+                  .toJson(),
+            ),
+            createdAt: createdAt.toIso8601String(),
           ),
         ),
         MyError.fromErrorAndStackTrace,

@@ -16,22 +16,15 @@ class HistoryView extends MvcView<HistoryController, HistoryModel> {
   Widget build(final BuildContext context) =>
       MyScaffold<List<HistoryModelRecipe>>(
         state: model.recipes,
-        errorText: 'TODO', //TODO: do this
+        errorText: 'An Error occured while loading, please try again later',
         onAppBarBackPressed: controller.goBack,
         child: (List<HistoryModelRecipe> data) => data.isEmpty
-            ? const Padding(
-                padding: EdgeInsets.all(32),
-                child: Center(
-                  child: EmptyViewContent(
-                    message:
-                        'No items yet, open some recipes to find your history here',
-                  ),
-                ),
-              )
+            ? buildEmptyState()
             : ListView.separated(
                 itemCount: data.length,
                 itemBuilder: (BuildContext context, int index) =>
                     HistoryViewRecipeListItem(
+                  createdAt: data[index].createdAt,
                   recipeTitle: data[index].title,
                   recipeImageUrl: data[index].imageUri,
                   onTap: () => controller.goToSingleRecipeView(
@@ -40,6 +33,16 @@ class HistoryView extends MvcView<HistoryController, HistoryModel> {
                 ),
                 separatorBuilder: (_, __) => const SizedBox(height: 8),
               ),
+      );
+
+  Padding buildEmptyState() => const Padding(
+        padding: EdgeInsets.all(32),
+        child: Center(
+          child: EmptyViewContent(
+            message:
+                'No items yet, open some recipes to find your history here',
+          ),
+        ),
       );
 }
 

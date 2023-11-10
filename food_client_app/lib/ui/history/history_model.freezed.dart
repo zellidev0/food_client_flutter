@@ -153,6 +153,7 @@ mixin _$HistoryModelRecipe {
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   Option<Uri> get imageUri => throw _privateConstructorUsedError;
+  String get createdAt => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HistoryModelRecipeCopyWith<HistoryModelRecipe> get copyWith =>
@@ -165,7 +166,7 @@ abstract class $HistoryModelRecipeCopyWith<$Res> {
           HistoryModelRecipe value, $Res Function(HistoryModelRecipe) then) =
       _$HistoryModelRecipeCopyWithImpl<$Res, HistoryModelRecipe>;
   @useResult
-  $Res call({String id, String title, Option<Uri> imageUri});
+  $Res call({String id, String title, Option<Uri> imageUri, String createdAt});
 }
 
 /// @nodoc
@@ -184,6 +185,7 @@ class _$HistoryModelRecipeCopyWithImpl<$Res, $Val extends HistoryModelRecipe>
     Object? id = null,
     Object? title = null,
     Object? imageUri = null,
+    Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -198,6 +200,10 @@ class _$HistoryModelRecipeCopyWithImpl<$Res, $Val extends HistoryModelRecipe>
           ? _value.imageUri
           : imageUri // ignore: cast_nullable_to_non_nullable
               as Option<Uri>,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -210,7 +216,7 @@ abstract class _$$_HistoryModelRecipeCopyWith<$Res>
       __$$_HistoryModelRecipeCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String title, Option<Uri> imageUri});
+  $Res call({String id, String title, Option<Uri> imageUri, String createdAt});
 }
 
 /// @nodoc
@@ -227,6 +233,7 @@ class __$$_HistoryModelRecipeCopyWithImpl<$Res>
     Object? id = null,
     Object? title = null,
     Object? imageUri = null,
+    Object? createdAt = null,
   }) {
     return _then(_$_HistoryModelRecipe(
       id: null == id
@@ -241,6 +248,10 @@ class __$$_HistoryModelRecipeCopyWithImpl<$Res>
           ? _value.imageUri
           : imageUri // ignore: cast_nullable_to_non_nullable
               as Option<Uri>,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -249,7 +260,10 @@ class __$$_HistoryModelRecipeCopyWithImpl<$Res>
 
 class _$_HistoryModelRecipe implements _HistoryModelRecipe {
   const _$_HistoryModelRecipe(
-      {required this.id, required this.title, required this.imageUri});
+      {required this.id,
+      required this.title,
+      required this.imageUri,
+      required this.createdAt});
 
   @override
   final String id;
@@ -257,10 +271,12 @@ class _$_HistoryModelRecipe implements _HistoryModelRecipe {
   final String title;
   @override
   final Option<Uri> imageUri;
+  @override
+  final String createdAt;
 
   @override
   String toString() {
-    return 'HistoryModelRecipe(id: $id, title: $title, imageUri: $imageUri)';
+    return 'HistoryModelRecipe(id: $id, title: $title, imageUri: $imageUri, createdAt: $createdAt)';
   }
 
   @override
@@ -271,11 +287,13 @@ class _$_HistoryModelRecipe implements _HistoryModelRecipe {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.imageUri, imageUri) ||
-                other.imageUri == imageUri));
+                other.imageUri == imageUri) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, imageUri);
+  int get hashCode => Object.hash(runtimeType, id, title, imageUri, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -289,7 +307,8 @@ abstract class _HistoryModelRecipe implements HistoryModelRecipe {
   const factory _HistoryModelRecipe(
       {required final String id,
       required final String title,
-      required final Option<Uri> imageUri}) = _$_HistoryModelRecipe;
+      required final Option<Uri> imageUri,
+      required final String createdAt}) = _$_HistoryModelRecipe;
 
   @override
   String get id;
@@ -297,6 +316,8 @@ abstract class _HistoryModelRecipe implements HistoryModelRecipe {
   String get title;
   @override
   Option<Uri> get imageUri;
+  @override
+  String get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$_HistoryModelRecipeCopyWith<_$_HistoryModelRecipe> get copyWith =>

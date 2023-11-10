@@ -2291,10 +2291,9 @@ mixin _$PersistenceServiceModelHistoryRecipe {
   @HiveField(2)
   Option<Uri> get imagePath => throw _privateConstructorUsedError;
   @HiveField(3)
-  PersistenceServiceModelHistoryRecipeOrigin get origin =>
-      throw _privateConstructorUsedError;
+  String get origin => throw _privateConstructorUsedError;
   @HiveField(4)
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  String get createdAt => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PersistenceServiceModelHistoryRecipeCopyWith<
@@ -2314,10 +2313,8 @@ abstract class $PersistenceServiceModelHistoryRecipeCopyWith<$Res> {
       {@HiveField(0) String recipeId,
       @HiveField(1) String title,
       @HiveField(2) Option<Uri> imagePath,
-      @HiveField(3) PersistenceServiceModelHistoryRecipeOrigin origin,
-      @HiveField(4) DateTime createdAt});
-
-  $PersistenceServiceModelHistoryRecipeOriginCopyWith<$Res> get origin;
+      @HiveField(3) String origin,
+      @HiveField(4) String createdAt});
 }
 
 /// @nodoc
@@ -2356,21 +2353,12 @@ class _$PersistenceServiceModelHistoryRecipeCopyWithImpl<$Res,
       origin: null == origin
           ? _value.origin
           : origin // ignore: cast_nullable_to_non_nullable
-              as PersistenceServiceModelHistoryRecipeOrigin,
+              as String,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as String,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $PersistenceServiceModelHistoryRecipeOriginCopyWith<$Res> get origin {
-    return $PersistenceServiceModelHistoryRecipeOriginCopyWith<$Res>(
-        _value.origin, (value) {
-      return _then(_value.copyWith(origin: value) as $Val);
-    });
   }
 }
 
@@ -2387,11 +2375,8 @@ abstract class _$$_PersistenceServiceModelHistoryRecipeCopyWith<$Res>
       {@HiveField(0) String recipeId,
       @HiveField(1) String title,
       @HiveField(2) Option<Uri> imagePath,
-      @HiveField(3) PersistenceServiceModelHistoryRecipeOrigin origin,
-      @HiveField(4) DateTime createdAt});
-
-  @override
-  $PersistenceServiceModelHistoryRecipeOriginCopyWith<$Res> get origin;
+      @HiveField(3) String origin,
+      @HiveField(4) String createdAt});
 }
 
 /// @nodoc
@@ -2429,11 +2414,11 @@ class __$$_PersistenceServiceModelHistoryRecipeCopyWithImpl<$Res>
       origin: null == origin
           ? _value.origin
           : origin // ignore: cast_nullable_to_non_nullable
-              as PersistenceServiceModelHistoryRecipeOrigin,
+              as String,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as String,
     ));
   }
 }
@@ -2461,10 +2446,10 @@ class _$_PersistenceServiceModelHistoryRecipe
   final Option<Uri> imagePath;
   @override
   @HiveField(3)
-  final PersistenceServiceModelHistoryRecipeOrigin origin;
+  final String origin;
   @override
   @HiveField(4)
-  final DateTime createdAt;
+  final String createdAt;
 
   @override
   String toString() {
@@ -2505,9 +2490,8 @@ abstract class _PersistenceServiceModelHistoryRecipe
           {@HiveField(0) required final String recipeId,
           @HiveField(1) required final String title,
           @HiveField(2) required final Option<Uri> imagePath,
-          @HiveField(3)
-          required final PersistenceServiceModelHistoryRecipeOrigin origin,
-          @HiveField(4) required final DateTime createdAt}) =
+          @HiveField(3) required final String origin,
+          @HiveField(4) required final String createdAt}) =
       _$_PersistenceServiceModelHistoryRecipe;
 
   @override
@@ -2521,10 +2505,10 @@ abstract class _PersistenceServiceModelHistoryRecipe
   Option<Uri> get imagePath;
   @override
   @HiveField(3)
-  PersistenceServiceModelHistoryRecipeOrigin get origin;
+  String get origin;
   @override
   @HiveField(4)
-  DateTime get createdAt;
+  String get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$_PersistenceServiceModelHistoryRecipeCopyWith<
@@ -2626,7 +2610,8 @@ class __$$PersistenceServiceModelHistoryRecipeOriginClickedCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 @HiveType(
-    typeId: 9, adapterName: 'PersistenceServiceModelHistoryRecipeOriginAdapter')
+    typeId: 9,
+    adapterName: 'PersistenceServiceModelHistoryRecipeOriginClickedAdapter')
 class _$PersistenceServiceModelHistoryRecipeOriginClicked
     implements PersistenceServiceModelHistoryRecipeOriginClicked {
   const _$PersistenceServiceModelHistoryRecipeOriginClicked();

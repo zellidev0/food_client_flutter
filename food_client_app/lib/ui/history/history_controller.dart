@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:collection/collection.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:food_client/commons/constants.dart';
 import 'package:food_client/commons/error.dart';
 import 'package:food_client/commons/view_state.dart';
 import 'package:food_client/services/logging_service/logging_service.dart';
@@ -37,12 +39,25 @@ class HistoryControllerImplementation extends _$HistoryControllerImplementation
             state = state.copyWith(
           recipes: recipes
               .sorted((_, __) => _.createdAt.isBefore(__.createdAt) ? 1 : -1)
+              .fold<List<HistoryPersistenceServiceModelRecipe>>(
+                  <HistoryPersistenceServiceModelRecipe>[], (
+                List<HistoryPersistenceServiceModelRecipe> uniqueRecipes,
+                HistoryPersistenceServiceModelRecipe recipe,
+              ) {
+                if (uniqueRecipes.isEmpty ||
+                    uniqueRecipes.last.recipeId != recipe.recipeId) {
+                  uniqueRecipes.add(recipe);
+                }
+                return uniqueRecipes;
+              })
               .map(
                 (HistoryPersistenceServiceModelRecipe recipe) =>
                     HistoryModelRecipe(
                   id: recipe.recipeId,
                   title: recipe.title,
                   imageUri: recipe.imagePath,
+                  createdAt:
+                      Constants.dateWithTimeFormat.format(recipe.createdAt),
                 ),
               )
               .toList()
