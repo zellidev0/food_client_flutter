@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:food_client/commons/error.dart';
 import 'package:food_client/commons/view_state.dart';
@@ -92,57 +93,45 @@ class SingleRecipeControllerImplementation
     required final String recipeId,
   }) {
     unawaited(
-      navigationService.showDialog(
-        title: 'ui.single_recipe_view.dialogs.add_to_shopping_cart.title'.tr(),
-        content:
-            'ui.single_recipe_view.dialogs.add_to_shopping_cart.content'.tr(),
-        actions: some(
-          recipe.yields
-              .map(
+      state.selectedYield
+          .flatMap(
+            (int servings) => optionOf(
+              recipe.yields.firstWhereOrNull(
                 (final SingleRecipeModelYield yield) =>
-                    NavigationServiceDialogAction(
-                  text: plural(
-                    'ui.single_recipe_view.dialogs.add_to_shopping_cart.actions.amount_persons',
-                    yield.servings,
-                    namedArgs: <String, String>{
-                      'amount': yield.servings.toString(),
-                    },
-                  ),
-                  onPressed: () {
-                    unawaited(
-                      persistenceService
-                          .addRecipe(
-                            recipe: SingleRecipePersistenceServiceRecipe(
-                              ingredients: yield.ingredients
-                                  .map(
-                                    (
-                                      final SingleRecipeModelIngredient
-                                          ingredient,
-                                    ) =>
-                                        mapToSingleRecipePersistenceServiceIngredient(
-                                      ingredient: ingredient,
-                                    ),
-                                  )
-                                  .toList(),
-                              recipeId: recipeId,
-                              servings: yield.servings,
-                              imagePath: recipe.imagePath,
-                              title: recipe.displayedAttributes.name,
-                            ),
-                          )
-                          .run(),
-                    );
-                    navigationService.showSnackBar(
-                      message:
-                          'ui.single_recipe_view.snack_bars.add_to_cart_success'
-                              .tr(),
-                    );
-                  },
-                ),
-              )
-              .toList(),
-        ),
-      ),
+                    yield.servings == servings,
+              ),
+            ),
+          )
+          .map(
+            (SingleRecipeModelYield yield) => persistenceService.addRecipe(
+              recipe: SingleRecipePersistenceServiceRecipe(
+                ingredients: yield.ingredients
+                    .map(
+                      (
+                        final SingleRecipeModelIngredient ingredient,
+                      ) =>
+                          mapToSingleRecipePersistenceServiceIngredient(
+                        ingredient: ingredient,
+                      ),
+                    )
+                    .toList(),
+                recipeId: recipeId,
+                servings: yield.servings,
+                imagePath: recipe.imagePath,
+                title: recipe.displayedAttributes.name,
+              ),
+            ),
+          )
+          .getOrElse(
+            () => Task<void>(
+              () async => logger.error(MyError(message: 'No yield selected')),
+            ),
+          )
+          .run(),
+    );
+
+    navigationService.showSnackBar(
+      message: 'ui.single_recipe_view.snack_bars.add_to_cart_success'.tr(),
     );
   }
 
