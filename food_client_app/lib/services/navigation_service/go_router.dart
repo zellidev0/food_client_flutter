@@ -97,6 +97,9 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
                           ),
                         ),
                       );
+                      ref.listen(persistenceServiceProvider, (_, __) {
+                        ref.invalidate(cartControllerImplementationProvider);
+                      });
                       return CartView(
                         model: ref.watch(provider),
                         controller: ref.watch(provider.notifier),
