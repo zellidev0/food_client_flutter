@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:food_client/commons/constants.dart';
 import 'package:food_client/commons/error.dart';
 import 'package:food_client/commons/view_state.dart';
