@@ -245,9 +245,8 @@ class SingleRecipeView
   }) =>
       Padding(
         padding: const EdgeInsets.all(16),
-        child: FloatingActionButton(
-          onPressed: null,
-          child: Text((stepNumber + 1).toString()),
+        child: Chip(
+          label: Text((stepNumber + 1).toString()),
         ),
       );
 
@@ -429,8 +428,8 @@ class TabBarSliverDelegate extends SliverPersistentHeaderDelegate {
           ),
           child: TabBar(
             tabs: <Tab>[
-              Tab(text: 'general.others.instructions'.tr()),
               const Tab(text: 'Ingredients'),
+              Tab(text: 'general.others.instructions'.tr()),
             ],
           ),
         ),
