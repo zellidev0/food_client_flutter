@@ -1,6 +1,9 @@
 {
   "ui": {
     "ingredients_sorting_view": {
+      "empty_states": {
+        "no_units": "No existing location yet!"
+      },
       "dialogs":{
         "delete_dialog": {
           "title": "Supermarkt löschen?",
@@ -9,7 +12,14 @@
             "cancel": "Abbrechen",
             "delete": "Löschen"
           }
-
+        },
+        "create_dialog": {
+          "title": "A new location",
+          "content": "Create a location of one of your supermarkets. You can then sort the shopping cart accordingly.",
+          "inputTitle": "Supermarket name",
+          "buttons": {
+            "done": "Done"
+          }
         }
       }
     },

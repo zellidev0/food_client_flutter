@@ -7,7 +7,6 @@ part 'ingredients_sorting_model.freezed.dart';
 class IngredientsSortingModel with _$IngredientsSortingModel {
   const factory IngredientsSortingModel({
     required final List<IngredientsSortingModelUnit> units,
-    required final Option<String> currentlyEditingUnitName,
   }) = _IngredientsSortingModel;
 }
 

@@ -42,48 +42,34 @@ class IngredientsSortingControllerImplementation
   }) =>
       IngredientsSortingModel(
         units: _fetchPersistenceServiceUnits(),
-        currentlyEditingUnitName: none(),
       );
 
   @override
   void goBack() => navigationService.goBack();
 
   @override
-  void createSortingUnit({required final String name}) {
-    webClientService
-        .fetchIngredientsSorting()
-        .flatMap(
-          (final List<WebClientSorting> sortings) =>
-              persistenceService.saveUnit(
-            unit: IngredientsSortingPersistenceModelUnit(
-              name: name,
-              sortings: sortings
-                  .map(
-                    (final WebClientSorting sorting) => PersistenceSorting(
-                      type: sorting.type,
-                      iconPath: sorting.iconPath,
-                      name: sorting.name,
-                      ingredientFamilies: sorting.ingredientFamilyIds
-                          .map(
-                            (final String helloFreshFamilyId) =>
-                                PersistenceFamily.helloFresh(
-                              helloFreshFamilyId: helloFreshFamilyId,
-                            ),
-                          )
-                          .toList(),
-                    ),
-                  )
-                  .toList(),
-              id: const Uuid().v4(),
-            ),
-          ),
-        )
-        .match(
-          logger.error,
-          (_) => state = state.copyWith(units: _fetchPersistenceServiceUnits()),
-        );
-    navigationService.pop();
-  }
+  void createSortingUnit({required final String name}) => unawaited(
+        webClientService
+            .fetchIngredientsSorting()
+            .flatMap(
+              (final List<WebClientSorting> sortings) =>
+                  persistenceService.saveUnit(
+                unit: IngredientsSortingPersistenceModelUnit(
+                  name: name,
+                  sortings: sortings.map(mapToSorting).toList(),
+                  id: const Uuid().v4(),
+                ),
+              ),
+            )
+            .match(
+              logger.error,
+              (_) => state = state.copyWith(
+                units: _fetchPersistenceServiceUnits(),
+              ),
+            )
+            .andThen(IO<void>(navigationService.pop).toTask)
+            .run(),
+      );
 
   @override
   void showDeleteUnitDialog({required final Unit unit}) => unawaited(
@@ -109,9 +95,11 @@ class IngredientsSortingControllerImplementation
                 onPressed: persistenceService
                     .deleteUnit(unitId: unit.id)
                     .match(
-                      (final Exception error) => MyError(
-                        originalError: error,
-                        message: 'Could not delete unit with id ${unit.id}',
+                      (final Exception error) => logger.error(
+                        MyError(
+                          originalError: error,
+                          message: 'Could not delete unit with id ${unit.id}',
+                        ),
                       ),
                       (final _) => state = state.copyWith(
                         units: _fetchPersistenceServiceUnits(),
@@ -138,11 +126,6 @@ class IngredientsSortingControllerImplementation
             )
             .toList(),
       );
-
-  @override
-  void updateCurrentEditingUnitTitle({required final Option<String> title}) {
-    state = state.copyWith(currentlyEditingUnitName: title);
-  }
 
   @override
   void reorderIngredientFamily({
@@ -290,4 +273,20 @@ Option<Uri> getImageUrl({
       (final Uri uri) => imageSizerService
           .getUrl(filePath: uri, widthPixels: _widthPixels)
           .toOption(),
+    );
+
+IngredientsSortingPersistenceModelSorting mapToSorting(
+  WebClientSorting sorting,
+) =>
+    PersistenceSorting(
+      type: sorting.type,
+      iconPath: sorting.iconPath,
+      name: sorting.name,
+      ingredientFamilies: sorting.ingredientFamilyIds
+          .map(
+            (final String helloFreshFamilyId) => PersistenceFamily.helloFresh(
+              helloFreshFamilyId: helloFreshFamilyId,
+            ),
+          )
+          .toList(),
     );

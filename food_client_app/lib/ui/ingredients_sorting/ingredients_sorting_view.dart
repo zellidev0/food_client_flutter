@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:food_client/commons/empty_view_content.dart';
 import 'package:food_client/commons/view_state.dart';
 import 'package:food_client/commons/widgets.dart';
+import 'package:food_client/generated/locale_keys.g.dart';
 import 'package:food_client/mvc.dart';
 import 'package:food_client/my_scaffold.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_model.dart';
@@ -49,24 +51,23 @@ class IngredientsSortingView
                       (final IngredientsSortingModelUnit unit) =>
                           IngredientsSortingCardItem(
                         controller: controller,
-                        currentlyEditingUnitName:
-                            model.currentlyEditingUnitName,
                         unit: some(unit),
                       ),
                     ),
-                    IngredientsSortingCardItem(
-                      controller: controller,
-                      currentlyEditingUnitName: model.currentlyEditingUnitName,
-                    ),
+                    IngredientsSortingCardItem(controller: controller),
                   ],
                 ),
               ),
             ),
           ),
           if (model.units.isEmpty)
-            const Padding(
-              padding: EdgeInsets.all(64),
-              child: EmptyViewContent(message: 'Create a new location'),
+            Padding(
+              padding: const EdgeInsets.all(64),
+              child: EmptyViewContent(
+                message: LocaleKeys
+                    .ui_ingredients_sorting_view_empty_states_no_units
+                    .tr(),
+              ),
             )
           else
             buildIngredientsList(
@@ -87,7 +88,7 @@ class IngredientsSortingView
           padding: const EdgeInsets.all(8),
           child: ReorderableListView.builder(
             itemCount: unit.sorting.length,
-            buildDefaultDragHandles: false,
+            buildDefaultDragHandles: true,
             onReorder: (final int oldIndex, final int newIndex) {
               controller.reorderIngredientFamily(
                 unit: unit,
@@ -100,16 +101,11 @@ class IngredientsSortingView
               key: Key(unit.sorting[index].id),
               title: Text(unit.sorting[index].name),
               leading: unit.sorting[index].iconUrl.fold(
-                () => const SizedBox(
-                  width: 64,
-                  height: 64,
-                ),
+                () => const SizedBox(width: 64, height: 64),
                 (final Uri imageUrl) => SizedBox(
                   width: 64,
                   height: 64,
-                  child: buildCachedNetworkImage(
-                    imageUrl: imageUrl,
-                  ),
+                  child: buildCachedNetworkImage(imageUrl: imageUrl),
                 ),
               ),
               trailing: ReorderableDragStartListener(
@@ -128,7 +124,6 @@ abstract class IngredientsSortingController implements MvcController {
   void showDeleteUnitDialog({required final IngredientsSortingModelUnit unit});
   void openModal({required final Widget child});
   void setUnitSelected({required final IngredientsSortingModelUnit unit});
-  void updateCurrentEditingUnitTitle({required final Option<String> title});
   void reorderIngredientFamily({
     required final IngredientsSortingModelUnit unit,
     required final int oldIndex,

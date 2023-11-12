@@ -7,7 +7,7 @@ part of 'ingredients_sorting_controller.dart';
 // **************************************************************************
 
 String _$ingredientsSortingControllerImplementationHash() =>
-    r'77dbac363aad1f69d95009577638e192621ca6dd';
+    r'2a3f1b656f384398ae928bb2fbb4b2c337380c92';
 
 /// Copied from Dart SDK
 class _SystemHash {

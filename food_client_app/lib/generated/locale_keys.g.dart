@@ -1,12 +1,20 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
 abstract class  LocaleKeys {
+  static const ui_ingredients_sorting_view_empty_states_no_units = 'ui.ingredients_sorting_view.empty_states.no_units';
+  static const ui_ingredients_sorting_view_empty_states = 'ui.ingredients_sorting_view.empty_states';
   static const ui_ingredients_sorting_view_dialogs_delete_dialog_title = 'ui.ingredients_sorting_view.dialogs.delete_dialog.title';
   static const ui_ingredients_sorting_view_dialogs_delete_dialog_content = 'ui.ingredients_sorting_view.dialogs.delete_dialog.content';
   static const ui_ingredients_sorting_view_dialogs_delete_dialog_actions_cancel = 'ui.ingredients_sorting_view.dialogs.delete_dialog.actions.cancel';
   static const ui_ingredients_sorting_view_dialogs_delete_dialog_actions_delete = 'ui.ingredients_sorting_view.dialogs.delete_dialog.actions.delete';
   static const ui_ingredients_sorting_view_dialogs_delete_dialog_actions = 'ui.ingredients_sorting_view.dialogs.delete_dialog.actions';
   static const ui_ingredients_sorting_view_dialogs_delete_dialog = 'ui.ingredients_sorting_view.dialogs.delete_dialog';
+  static const ui_ingredients_sorting_view_dialogs_create_dialog_title = 'ui.ingredients_sorting_view.dialogs.create_dialog.title';
+  static const ui_ingredients_sorting_view_dialogs_create_dialog_content = 'ui.ingredients_sorting_view.dialogs.create_dialog.content';
+  static const ui_ingredients_sorting_view_dialogs_create_dialog_inputTitle = 'ui.ingredients_sorting_view.dialogs.create_dialog.inputTitle';
+  static const ui_ingredients_sorting_view_dialogs_create_dialog_buttons_done = 'ui.ingredients_sorting_view.dialogs.create_dialog.buttons.done';
+  static const ui_ingredients_sorting_view_dialogs_create_dialog_buttons = 'ui.ingredients_sorting_view.dialogs.create_dialog.buttons';
+  static const ui_ingredients_sorting_view_dialogs_create_dialog = 'ui.ingredients_sorting_view.dialogs.create_dialog';
   static const ui_ingredients_sorting_view_dialogs = 'ui.ingredients_sorting_view.dialogs';
   static const ui_ingredients_sorting_view = 'ui.ingredients_sorting_view';
   static const ui_single_recipe_view_dialogs_add_to_shopping_cart_title = 'ui.single_recipe_view.dialogs.add_to_shopping_cart.title';

@@ -3,18 +3,33 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i7;
-import 'dart:ui' as _i4;
+import 'dart:async' as _i9;
+import 'dart:ui' as _i14;
 
-import 'package:flutter/material.dart' as _i8;
+import 'package:flutter/material.dart' as _i5;
+import 'package:food_client/commons/error.dart' as _i7;
+import 'package:food_client/services/logging_service/logging_service.dart'
+    as _i17;
 import 'package:food_client/services/navigation_service/navigation_service.dart'
-    as _i9;
+    as _i10;
 import 'package:food_client/ui/home/services/home_navigation_service.dart'
-    as _i6;
+    as _i16;
 import 'package:food_client/ui/home/services/home_web_client_service.dart'
-    as _i3;
+    as _i13;
 import 'package:food_client/ui/home/services/home_web_image_sizer_service.dart'
-    as _i5;
+    as _i15;
+import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_model.dart'
+    as _i4;
+import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_view.dart'
+    as _i3;
+import 'package:food_client/ui/ingredients_sorting/services/ingredients_sorting_navigation_service.dart'
+    as _i8;
+import 'package:food_client/ui/ingredients_sorting/services/ingredients_sorting_persistence_service.dart'
+    as _i12;
+import 'package:food_client/ui/ingredients_sorting/services/ingredients_sorting_web_client_service.dart'
+    as _i6;
+import 'package:food_client/ui/ingredients_sorting/services/ingredients_sorting_web_image_sizer_service.dart'
+    as _i11;
 import 'package:fpdart/fpdart.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -50,20 +65,317 @@ class _FakeEither_1<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
         );
 }
 
+/// A class which mocks [IngredientsSortingController].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockIngredientsSortingController extends _i1.Mock
+    implements _i3.IngredientsSortingController {
+  MockIngredientsSortingController() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  void goBack() => super.noSuchMethod(
+        Invocation.method(
+          #goBack,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void createSortingUnit({required String? name}) => super.noSuchMethod(
+        Invocation.method(
+          #createSortingUnit,
+          [],
+          {#name: name},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void showDeleteUnitDialog({required _i4.IngredientsSortingModelUnit? unit}) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #showDeleteUnitDialog,
+          [],
+          {#unit: unit},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void openModal({required _i5.Widget? child}) => super.noSuchMethod(
+        Invocation.method(
+          #openModal,
+          [],
+          {#child: child},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void setUnitSelected({required _i4.IngredientsSortingModelUnit? unit}) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #setUnitSelected,
+          [],
+          {#unit: unit},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void reorderIngredientFamily({
+    required _i4.IngredientsSortingModelUnit? unit,
+    required int? oldIndex,
+    required int? newIndex,
+  }) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #reorderIngredientFamily,
+          [],
+          {
+            #unit: unit,
+            #oldIndex: oldIndex,
+            #newIndex: newIndex,
+          },
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [IngredientsSortingWebClientService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockIngredientsSortingWebClientService extends _i1.Mock
+    implements _i6.IngredientsSortingWebClientService {
+  MockIngredientsSortingWebClientService() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i2.TaskEither<_i7.MyError,
+          List<_i6.IngredientsSortingWebClientModelIngredientSorting>>
+      fetchIngredientsSorting() => (super.noSuchMethod(
+            Invocation.method(
+              #fetchIngredientsSorting,
+              [],
+            ),
+            returnValue: _FakeTaskEither_0<_i7.MyError,
+                List<_i6.IngredientsSortingWebClientModelIngredientSorting>>(
+              this,
+              Invocation.method(
+                #fetchIngredientsSorting,
+                [],
+              ),
+            ),
+          ) as _i2.TaskEither<_i7.MyError,
+              List<_i6.IngredientsSortingWebClientModelIngredientSorting>>);
+}
+
+/// A class which mocks [IngredientsSortingNavigationService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockIngredientsSortingNavigationService extends _i1.Mock
+    implements _i8.IngredientsSortingNavigationService {
+  MockIngredientsSortingNavigationService() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  void goBack({Uri? fallbackUri}) => super.noSuchMethod(
+        Invocation.method(
+          #goBack,
+          [],
+          {#fallbackUri: fallbackUri},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void replaceWithNamed({required Uri? uri}) => super.noSuchMethod(
+        Invocation.method(
+          #replaceWithNamed,
+          [],
+          {#uri: uri},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void navigateToNamed({required Uri? uri}) => super.noSuchMethod(
+        Invocation.method(
+          #navigateToNamed,
+          [],
+          {#uri: uri},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void showSnackBar({required String? message}) => super.noSuchMethod(
+        Invocation.method(
+          #showSnackBar,
+          [],
+          {#message: message},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void pop<T>({T? data}) => super.noSuchMethod(
+        Invocation.method(
+          #pop,
+          [],
+          {#data: data},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i9.Future<void> showModalBottomSheet({required _i5.Widget? child}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #showModalBottomSheet,
+          [],
+          {#child: child},
+        ),
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
+
+  @override
+  _i9.Future<void> showDialog({
+    _i2.Option<List<_i10.NavigationServiceDialogAction>>? actions =
+        const _i2.None(),
+    required String? content,
+    required String? title,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #showDialog,
+          [],
+          {
+            #actions: actions,
+            #content: content,
+            #title: title,
+          },
+        ),
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
+}
+
+/// A class which mocks [IngredientsSortingWebImageSizerService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockIngredientsSortingWebImageSizerService extends _i1.Mock
+    implements _i11.IngredientsSortingWebImageSizerService {
+  MockIngredientsSortingWebImageSizerService() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i2.Either<Exception, Uri> getUrl({
+    required Uri? filePath,
+    required int? widthPixels,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getUrl,
+          [],
+          {
+            #filePath: filePath,
+            #widthPixels: widthPixels,
+          },
+        ),
+        returnValue: _FakeEither_1<Exception, Uri>(
+          this,
+          Invocation.method(
+            #getUrl,
+            [],
+            {
+              #filePath: filePath,
+              #widthPixels: widthPixels,
+            },
+          ),
+        ),
+      ) as _i2.Either<Exception, Uri>);
+}
+
+/// A class which mocks [IngredientsSortingPersistenceService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockIngredientsSortingPersistenceService extends _i1.Mock
+    implements _i12.IngredientsSortingPersistenceService {
+  MockIngredientsSortingPersistenceService() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  List<_i12.IngredientsSortingPersistenceModelUnit> getUnits() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getUnits,
+          [],
+        ),
+        returnValue: <_i12.IngredientsSortingPersistenceModelUnit>[],
+      ) as List<_i12.IngredientsSortingPersistenceModelUnit>);
+
+  @override
+  _i2.TaskEither<Exception, void> deleteUnit({required String? unitId}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #deleteUnit,
+          [],
+          {#unitId: unitId},
+        ),
+        returnValue: _FakeTaskEither_0<Exception, void>(
+          this,
+          Invocation.method(
+            #deleteUnit,
+            [],
+            {#unitId: unitId},
+          ),
+        ),
+      ) as _i2.TaskEither<Exception, void>);
+
+  @override
+  _i2.TaskEither<_i7.MyError, void> saveUnit(
+          {required _i12.IngredientsSortingPersistenceModelUnit? unit}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #saveUnit,
+          [],
+          {#unit: unit},
+        ),
+        returnValue: _FakeTaskEither_0<_i7.MyError, void>(
+          this,
+          Invocation.method(
+            #saveUnit,
+            [],
+            {#unit: unit},
+          ),
+        ),
+      ) as _i2.TaskEither<_i7.MyError, void>);
+}
+
 /// A class which mocks [HomeWebClientService].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockHomeWebClientService extends _i1.Mock
-    implements _i3.HomeWebClientService {
+    implements _i13.HomeWebClientService {
   MockHomeWebClientService() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i2.TaskEither<Exception, _i3.HomeWebClientModelRecipeResponse> fetchRecipes({
+  _i2.TaskEither<Exception,
+      _i13.HomeWebClientModelRecipeResponse> fetchRecipes({
     required int? take,
     required int? skip,
-    required List<_i4.Locale>? recipeLocales,
+    required List<_i14.Locale>? recipeLocales,
     _i2.Option<List<String>>? tagIds = const _i2.None(),
     _i2.Option<String>? cuisineId = const _i2.None(),
     _i2.Option<List<String>>? ingredients = const _i2.None(),
@@ -84,7 +396,7 @@ class MockHomeWebClientService extends _i1.Mock
           },
         ),
         returnValue:
-            _FakeTaskEither_0<Exception, _i3.HomeWebClientModelRecipeResponse>(
+            _FakeTaskEither_0<Exception, _i13.HomeWebClientModelRecipeResponse>(
           this,
           Invocation.method(
             #fetchRecipes,
@@ -100,39 +412,40 @@ class MockHomeWebClientService extends _i1.Mock
             },
           ),
         ),
-      ) as _i2.TaskEither<Exception, _i3.HomeWebClientModelRecipeResponse>);
+      ) as _i2.TaskEither<Exception, _i13.HomeWebClientModelRecipeResponse>);
 
   @override
-  _i2.TaskEither<Exception, List<_i3.HomeWebClientModelCuisine>> fetchCuisines({
-    required List<_i4.Locale>? recipeLocales,
+  _i2.TaskEither<Exception, List<_i13.HomeWebClientModelCuisine>>
+      fetchCuisines({
+    required List<_i14.Locale>? recipeLocales,
     _i2.Option<int>? take = const _i2.None(),
   }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #fetchCuisines,
-          [],
-          {
-            #recipeLocales: recipeLocales,
-            #take: take,
-          },
-        ),
-        returnValue:
-            _FakeTaskEither_0<Exception, List<_i3.HomeWebClientModelCuisine>>(
-          this,
-          Invocation.method(
-            #fetchCuisines,
-            [],
-            {
-              #recipeLocales: recipeLocales,
-              #take: take,
-            },
-          ),
-        ),
-      ) as _i2.TaskEither<Exception, List<_i3.HomeWebClientModelCuisine>>);
+          (super.noSuchMethod(
+            Invocation.method(
+              #fetchCuisines,
+              [],
+              {
+                #recipeLocales: recipeLocales,
+                #take: take,
+              },
+            ),
+            returnValue: _FakeTaskEither_0<Exception,
+                List<_i13.HomeWebClientModelCuisine>>(
+              this,
+              Invocation.method(
+                #fetchCuisines,
+                [],
+                {
+                  #recipeLocales: recipeLocales,
+                  #take: take,
+                },
+              ),
+            ),
+          ) as _i2.TaskEither<Exception, List<_i13.HomeWebClientModelCuisine>>);
 
   @override
-  _i2.TaskEither<Exception, List<_i3.HomeWebClientModelTag>> fetchTags({
-    required List<_i4.Locale>? recipeLocales,
+  _i2.TaskEither<Exception, List<_i13.HomeWebClientModelTag>> fetchTags({
+    required List<_i14.Locale>? recipeLocales,
     _i2.Option<int>? take = const _i2.None(),
   }) =>
       (super.noSuchMethod(
@@ -145,7 +458,7 @@ class MockHomeWebClientService extends _i1.Mock
           },
         ),
         returnValue:
-            _FakeTaskEither_0<Exception, List<_i3.HomeWebClientModelTag>>(
+            _FakeTaskEither_0<Exception, List<_i13.HomeWebClientModelTag>>(
           this,
           Invocation.method(
             #fetchTags,
@@ -156,14 +469,14 @@ class MockHomeWebClientService extends _i1.Mock
             },
           ),
         ),
-      ) as _i2.TaskEither<Exception, List<_i3.HomeWebClientModelTag>>);
+      ) as _i2.TaskEither<Exception, List<_i13.HomeWebClientModelTag>>);
 }
 
 /// A class which mocks [HomeWebImageSizerService].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockHomeWebImageSizerService extends _i1.Mock
-    implements _i5.HomeWebImageSizerService {
+    implements _i15.HomeWebImageSizerService {
   MockHomeWebImageSizerService() {
     _i1.throwOnMissingStub(this);
   }
@@ -200,7 +513,7 @@ class MockHomeWebImageSizerService extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockHomeNavigationService extends _i1.Mock
-    implements _i6.HomeNavigationService {
+    implements _i16.HomeNavigationService {
   MockHomeNavigationService() {
     _i1.throwOnMissingStub(this);
   }
@@ -246,20 +559,20 @@ class MockHomeNavigationService extends _i1.Mock
       );
 
   @override
-  _i7.Future<void> showModalBottomSheet({required _i8.Widget? child}) =>
+  _i9.Future<void> showModalBottomSheet({required _i5.Widget? child}) =>
       (super.noSuchMethod(
         Invocation.method(
           #showModalBottomSheet,
           [],
           {#child: child},
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
 
   @override
-  _i7.Future<void> showDialog({
-    _i2.Option<List<_i9.NavigationServiceDialogAction>>? actions =
+  _i9.Future<void> showDialog({
+    _i2.Option<List<_i10.NavigationServiceDialogAction>>? actions =
         const _i2.None(),
     required String? content,
     required String? title,
@@ -274,9 +587,9 @@ class MockHomeNavigationService extends _i1.Mock
             #title: title,
           },
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
 
   @override
   void closeDialog<T>({T? data}) => super.noSuchMethod(
@@ -284,6 +597,44 @@ class MockHomeNavigationService extends _i1.Mock
           #closeDialog,
           [],
           {#data: data},
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [LoggingService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockLoggingService extends _i1.Mock implements _i17.LoggingService {
+  MockLoggingService() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  void info({required String? message}) => super.noSuchMethod(
+        Invocation.method(
+          #info,
+          [],
+          {#message: message},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void warning({required String? message}) => super.noSuchMethod(
+        Invocation.method(
+          #warning,
+          [],
+          {#message: message},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void error(_i7.MyError? error) => super.noSuchMethod(
+        Invocation.method(
+          #error,
+          [error],
         ),
         returnValueForMissingStub: null,
       );

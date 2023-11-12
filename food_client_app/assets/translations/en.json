@@ -1,6 +1,9 @@
 {
   "ui": {
     "ingredients_sorting_view": {
+      "empty_states": {
+        "no_units": "No existing location yet!"
+      },
       "dialogs":{
         "delete_dialog": {
           "title": "Delete Supermarket?",
@@ -9,7 +12,14 @@
             "cancel": "Cancel",
             "delete": "Delete"
           }
-
+        },
+        "create_dialog": {
+          "title": "A new location",
+          "content": "Create a location of one of your supermarkets. You can then sort the shopping cart accordingly.",
+          "inputTitle": "Supermarket name",
+          "buttons": {
+            "done": "Done"
+          }
         }
       }
     },
@@ -55,8 +65,8 @@
         "no_more_recipes": "No more recipes found"
       },
       "error_states": {
-        "fetching_filters": "Error searchinf for available filters!",
-        "fetching_recipes_for_filter": "Error fetchin recipes for this filter combination!",
+        "fetching_filters": "Error searching for available filters!",
+        "fetching_recipes_for_filter": "Error fetching recipes for this filter combination!",
         "fetching_recipes": "Error fetching recipes from the server",
         "fetchin_more_recipes": "Error fetching more recipes from the server"
       },

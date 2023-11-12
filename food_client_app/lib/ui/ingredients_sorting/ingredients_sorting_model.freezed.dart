@@ -18,8 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$IngredientsSortingModel {
   List<IngredientsSortingModelUnit> get units =>
       throw _privateConstructorUsedError;
-  Option<String> get currentlyEditingUnitName =>
-      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $IngredientsSortingModelCopyWith<IngredientsSortingModel> get copyWith =>
@@ -32,9 +30,7 @@ abstract class $IngredientsSortingModelCopyWith<$Res> {
           $Res Function(IngredientsSortingModel) then) =
       _$IngredientsSortingModelCopyWithImpl<$Res, IngredientsSortingModel>;
   @useResult
-  $Res call(
-      {List<IngredientsSortingModelUnit> units,
-      Option<String> currentlyEditingUnitName});
+  $Res call({List<IngredientsSortingModelUnit> units});
 }
 
 /// @nodoc
@@ -52,17 +48,12 @@ class _$IngredientsSortingModelCopyWithImpl<$Res,
   @override
   $Res call({
     Object? units = null,
-    Object? currentlyEditingUnitName = null,
   }) {
     return _then(_value.copyWith(
       units: null == units
           ? _value.units
           : units // ignore: cast_nullable_to_non_nullable
               as List<IngredientsSortingModelUnit>,
-      currentlyEditingUnitName: null == currentlyEditingUnitName
-          ? _value.currentlyEditingUnitName
-          : currentlyEditingUnitName // ignore: cast_nullable_to_non_nullable
-              as Option<String>,
     ) as $Val);
   }
 }
@@ -75,9 +66,7 @@ abstract class _$$_IngredientsSortingModelCopyWith<$Res>
       __$$_IngredientsSortingModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {List<IngredientsSortingModelUnit> units,
-      Option<String> currentlyEditingUnitName});
+  $Res call({List<IngredientsSortingModelUnit> units});
 }
 
 /// @nodoc
@@ -93,17 +82,12 @@ class __$$_IngredientsSortingModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? units = null,
-    Object? currentlyEditingUnitName = null,
   }) {
     return _then(_$_IngredientsSortingModel(
       units: null == units
           ? _value._units
           : units // ignore: cast_nullable_to_non_nullable
               as List<IngredientsSortingModelUnit>,
-      currentlyEditingUnitName: null == currentlyEditingUnitName
-          ? _value.currentlyEditingUnitName
-          : currentlyEditingUnitName // ignore: cast_nullable_to_non_nullable
-              as Option<String>,
     ));
   }
 }
@@ -112,8 +96,7 @@ class __$$_IngredientsSortingModelCopyWithImpl<$Res>
 
 class _$_IngredientsSortingModel implements _IngredientsSortingModel {
   const _$_IngredientsSortingModel(
-      {required final List<IngredientsSortingModelUnit> units,
-      required this.currentlyEditingUnitName})
+      {required final List<IngredientsSortingModelUnit> units})
       : _units = units;
 
   final List<IngredientsSortingModelUnit> _units;
@@ -125,11 +108,8 @@ class _$_IngredientsSortingModel implements _IngredientsSortingModel {
   }
 
   @override
-  final Option<String> currentlyEditingUnitName;
-
-  @override
   String toString() {
-    return 'IngredientsSortingModel(units: $units, currentlyEditingUnitName: $currentlyEditingUnitName)';
+    return 'IngredientsSortingModel(units: $units)';
   }
 
   @override
@@ -137,15 +117,12 @@ class _$_IngredientsSortingModel implements _IngredientsSortingModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_IngredientsSortingModel &&
-            const DeepCollectionEquality().equals(other._units, _units) &&
-            (identical(
-                    other.currentlyEditingUnitName, currentlyEditingUnitName) ||
-                other.currentlyEditingUnitName == currentlyEditingUnitName));
+            const DeepCollectionEquality().equals(other._units, _units));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_units), currentlyEditingUnitName);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_units));
 
   @JsonKey(ignore: true)
   @override
@@ -158,14 +135,11 @@ class _$_IngredientsSortingModel implements _IngredientsSortingModel {
 
 abstract class _IngredientsSortingModel implements IngredientsSortingModel {
   const factory _IngredientsSortingModel(
-          {required final List<IngredientsSortingModelUnit> units,
-          required final Option<String> currentlyEditingUnitName}) =
+          {required final List<IngredientsSortingModelUnit> units}) =
       _$_IngredientsSortingModel;
 
   @override
   List<IngredientsSortingModelUnit> get units;
-  @override
-  Option<String> get currentlyEditingUnitName;
   @override
   @JsonKey(ignore: true)
   _$$_IngredientsSortingModelCopyWith<_$_IngredientsSortingModel>
