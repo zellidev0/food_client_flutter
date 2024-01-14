@@ -5,7 +5,7 @@ import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:commons_graphql/commons_graphql.dart';
-import 'package:console/hasura/hasure_graphql_service.dart';
+import 'package:console/hasura/hasura_graphql_service.dart';
 import 'package:console/hello_fresh/hello_fresh_fetcher.dart';
 import 'package:console/hello_fresh/hello_fresh_ingredients_combiner.dart';
 import 'package:console/hello_fresh/hello_fresh_model.dart';
@@ -15,11 +15,6 @@ import 'package:graphql/client.dart';
 void main() async {
   const bearerToken =
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDc4NTY4NDcsImlhdCI6MTcwNTIyNzEwNCwiaXNzIjoic2VuZiIsImp0aSI6IjdlMTExYjQ4LTMwNzUtNDA3MC1hYzBiLWMxMzNjZDNhMjQ1MSJ9.xOALeUgVp5e9bVWtyUgAEHpfBLYfTgtxaugs0a704BQ';
-
-  final QueryResult<Object?> result = await writeAllSortingsToHasura(
-    input: await HelloFreshIngredientsFamilyCombiner.createGraphQlInput(),
-  );
-  print(result);
 }
 
 Future<void> fetchAllFromHelloFreshAndWriteToHasura({
@@ -68,7 +63,10 @@ Future<Either<Exception, HelloFreshModelRecipeApiRecipeResponse>>
 }) async =>
         await HelloFreshFetcher(bearerToken: bearerToken)
             .fetchRecipesWithEverything(
-                country: countryCode, take: take, skip: skip)
+              country: countryCode,
+              take: take,
+              skip: skip,
+            )
             .run();
 
 Future<String> readFromFile({
@@ -76,11 +74,9 @@ Future<String> readFromFile({
 }) async =>
     await File('./assets/json/$fileName').readAsString();
 
-Future<QueryResult<Object?>> writeAllSortingsToHasura({
-  required final List<Input$ingredients_sortings_insert_input> input,
-}) async =>
+Future<QueryResult<Object?>> writeAllSortingsToHasura() async =>
     await GraphQlBackendService().createSortings(
-      sortings: input,
+      sortings: await HelloFreshIngredientsFamilyCombiner.createGraphQlInput(),
     );
 
 Future<QueryResult<Object?>> writeAllToHasura(

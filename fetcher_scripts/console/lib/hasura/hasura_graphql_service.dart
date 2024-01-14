@@ -46,6 +46,7 @@ class GraphQlBackendService {
       recipes_cuisines: recipesCuisines,
     );
 
+    // ignore: always_specify_types
     final MutationOptions options = MutationOptions(
       document: documentNodeMutationCreateRecipes,
       variables: variables.toJson(),
@@ -61,6 +62,7 @@ class GraphQlBackendService {
       input: sortings,
     );
 
+    // ignore: always_specify_types
     final MutationOptions options = MutationOptions(
       document: documentNodeMutationAddIngredientsSorting,
       variables: variables.toJson(),
