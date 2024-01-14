@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'hello_fresh_model.dart';
 
@@ -97,12 +97,12 @@ class _$HelloFreshModelRecipeApiRecipeResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_HelloFreshModelRecipeApiRecipeResponseCopyWith<$Res>
+abstract class _$$HelloFreshModelRecipeApiRecipeResponseImplCopyWith<$Res>
     implements $HelloFreshModelRecipeApiRecipeResponseCopyWith<$Res> {
-  factory _$$_HelloFreshModelRecipeApiRecipeResponseCopyWith(
-          _$_HelloFreshModelRecipeApiRecipeResponse value,
-          $Res Function(_$_HelloFreshModelRecipeApiRecipeResponse) then) =
-      __$$_HelloFreshModelRecipeApiRecipeResponseCopyWithImpl<$Res>;
+  factory _$$HelloFreshModelRecipeApiRecipeResponseImplCopyWith(
+          _$HelloFreshModelRecipeApiRecipeResponseImpl value,
+          $Res Function(_$HelloFreshModelRecipeApiRecipeResponseImpl) then) =
+      __$$HelloFreshModelRecipeApiRecipeResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -114,13 +114,13 @@ abstract class _$$_HelloFreshModelRecipeApiRecipeResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_HelloFreshModelRecipeApiRecipeResponseCopyWithImpl<$Res>
+class __$$HelloFreshModelRecipeApiRecipeResponseImplCopyWithImpl<$Res>
     extends _$HelloFreshModelRecipeApiRecipeResponseCopyWithImpl<$Res,
-        _$_HelloFreshModelRecipeApiRecipeResponse>
-    implements _$$_HelloFreshModelRecipeApiRecipeResponseCopyWith<$Res> {
-  __$$_HelloFreshModelRecipeApiRecipeResponseCopyWithImpl(
-      _$_HelloFreshModelRecipeApiRecipeResponse _value,
-      $Res Function(_$_HelloFreshModelRecipeApiRecipeResponse) _then)
+        _$HelloFreshModelRecipeApiRecipeResponseImpl>
+    implements _$$HelloFreshModelRecipeApiRecipeResponseImplCopyWith<$Res> {
+  __$$HelloFreshModelRecipeApiRecipeResponseImplCopyWithImpl(
+      _$HelloFreshModelRecipeApiRecipeResponseImpl _value,
+      $Res Function(_$HelloFreshModelRecipeApiRecipeResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -132,7 +132,7 @@ class __$$_HelloFreshModelRecipeApiRecipeResponseCopyWithImpl<$Res>
     Object? skip = null,
     Object? items = null,
   }) {
-    return _then(_$_HelloFreshModelRecipeApiRecipeResponse(
+    return _then(_$HelloFreshModelRecipeApiRecipeResponseImpl(
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
@@ -159,9 +159,9 @@ class __$$_HelloFreshModelRecipeApiRecipeResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_HelloFreshModelRecipeApiRecipeResponse
+class _$HelloFreshModelRecipeApiRecipeResponseImpl
     implements _HelloFreshModelRecipeApiRecipeResponse {
-  const _$_HelloFreshModelRecipeApiRecipeResponse(
+  const _$HelloFreshModelRecipeApiRecipeResponseImpl(
       {required this.total,
       required this.take,
       required this.count,
@@ -169,9 +169,9 @@ class _$_HelloFreshModelRecipeApiRecipeResponse
       required final List<HelloFreshModelRecipe> items})
       : _items = items;
 
-  factory _$_HelloFreshModelRecipeApiRecipeResponse.fromJson(
+  factory _$HelloFreshModelRecipeApiRecipeResponseImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$_HelloFreshModelRecipeApiRecipeResponseFromJson(json);
+      _$$HelloFreshModelRecipeApiRecipeResponseImplFromJson(json);
 
   @override
   final int total;
@@ -184,6 +184,7 @@ class _$_HelloFreshModelRecipeApiRecipeResponse
   final List<HelloFreshModelRecipe> _items;
   @override
   List<HelloFreshModelRecipe> get items {
+    if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
   }
@@ -194,10 +195,10 @@ class _$_HelloFreshModelRecipeApiRecipeResponse
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HelloFreshModelRecipeApiRecipeResponse &&
+            other is _$HelloFreshModelRecipeApiRecipeResponseImpl &&
             (identical(other.total, total) || other.total == total) &&
             (identical(other.take, take) || other.take == take) &&
             (identical(other.count, count) || other.count == count) &&
@@ -213,14 +214,15 @@ class _$_HelloFreshModelRecipeApiRecipeResponse
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HelloFreshModelRecipeApiRecipeResponseCopyWith<
-          _$_HelloFreshModelRecipeApiRecipeResponse>
-      get copyWith => __$$_HelloFreshModelRecipeApiRecipeResponseCopyWithImpl<
-          _$_HelloFreshModelRecipeApiRecipeResponse>(this, _$identity);
+  _$$HelloFreshModelRecipeApiRecipeResponseImplCopyWith<
+          _$HelloFreshModelRecipeApiRecipeResponseImpl>
+      get copyWith =>
+          __$$HelloFreshModelRecipeApiRecipeResponseImplCopyWithImpl<
+              _$HelloFreshModelRecipeApiRecipeResponseImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_HelloFreshModelRecipeApiRecipeResponseToJson(
+    return _$$HelloFreshModelRecipeApiRecipeResponseImplToJson(
       this,
     );
   }
@@ -234,11 +236,11 @@ abstract class _HelloFreshModelRecipeApiRecipeResponse
           required final int count,
           required final int skip,
           required final List<HelloFreshModelRecipe> items}) =
-      _$_HelloFreshModelRecipeApiRecipeResponse;
+      _$HelloFreshModelRecipeApiRecipeResponseImpl;
 
   factory _HelloFreshModelRecipeApiRecipeResponse.fromJson(
           Map<String, dynamic> json) =
-      _$_HelloFreshModelRecipeApiRecipeResponse.fromJson;
+      _$HelloFreshModelRecipeApiRecipeResponseImpl.fromJson;
 
   @override
   int get total;
@@ -252,8 +254,8 @@ abstract class _HelloFreshModelRecipeApiRecipeResponse
   List<HelloFreshModelRecipe> get items;
   @override
   @JsonKey(ignore: true)
-  _$$_HelloFreshModelRecipeApiRecipeResponseCopyWith<
-          _$_HelloFreshModelRecipeApiRecipeResponse>
+  _$$HelloFreshModelRecipeApiRecipeResponseImplCopyWith<
+          _$HelloFreshModelRecipeApiRecipeResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -339,12 +341,12 @@ class _$HelloFreshModelRecipeApiTagResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_HelloFreshModelRecipeApiTagResponseCopyWith<$Res>
+abstract class _$$HelloFreshModelRecipeApiTagResponseImplCopyWith<$Res>
     implements $HelloFreshModelRecipeApiTagResponseCopyWith<$Res> {
-  factory _$$_HelloFreshModelRecipeApiTagResponseCopyWith(
-          _$_HelloFreshModelRecipeApiTagResponse value,
-          $Res Function(_$_HelloFreshModelRecipeApiTagResponse) then) =
-      __$$_HelloFreshModelRecipeApiTagResponseCopyWithImpl<$Res>;
+  factory _$$HelloFreshModelRecipeApiTagResponseImplCopyWith(
+          _$HelloFreshModelRecipeApiTagResponseImpl value,
+          $Res Function(_$HelloFreshModelRecipeApiTagResponseImpl) then) =
+      __$$HelloFreshModelRecipeApiTagResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -356,13 +358,13 @@ abstract class _$$_HelloFreshModelRecipeApiTagResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_HelloFreshModelRecipeApiTagResponseCopyWithImpl<$Res>
+class __$$HelloFreshModelRecipeApiTagResponseImplCopyWithImpl<$Res>
     extends _$HelloFreshModelRecipeApiTagResponseCopyWithImpl<$Res,
-        _$_HelloFreshModelRecipeApiTagResponse>
-    implements _$$_HelloFreshModelRecipeApiTagResponseCopyWith<$Res> {
-  __$$_HelloFreshModelRecipeApiTagResponseCopyWithImpl(
-      _$_HelloFreshModelRecipeApiTagResponse _value,
-      $Res Function(_$_HelloFreshModelRecipeApiTagResponse) _then)
+        _$HelloFreshModelRecipeApiTagResponseImpl>
+    implements _$$HelloFreshModelRecipeApiTagResponseImplCopyWith<$Res> {
+  __$$HelloFreshModelRecipeApiTagResponseImplCopyWithImpl(
+      _$HelloFreshModelRecipeApiTagResponseImpl _value,
+      $Res Function(_$HelloFreshModelRecipeApiTagResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -374,7 +376,7 @@ class __$$_HelloFreshModelRecipeApiTagResponseCopyWithImpl<$Res>
     Object? skip = null,
     Object? items = null,
   }) {
-    return _then(_$_HelloFreshModelRecipeApiTagResponse(
+    return _then(_$HelloFreshModelRecipeApiTagResponseImpl(
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
@@ -401,9 +403,9 @@ class __$$_HelloFreshModelRecipeApiTagResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_HelloFreshModelRecipeApiTagResponse
+class _$HelloFreshModelRecipeApiTagResponseImpl
     implements _HelloFreshModelRecipeApiTagResponse {
-  const _$_HelloFreshModelRecipeApiTagResponse(
+  const _$HelloFreshModelRecipeApiTagResponseImpl(
       {required this.total,
       required this.take,
       required this.count,
@@ -411,9 +413,9 @@ class _$_HelloFreshModelRecipeApiTagResponse
       required final List<HelloFreshModelTag> items})
       : _items = items;
 
-  factory _$_HelloFreshModelRecipeApiTagResponse.fromJson(
+  factory _$HelloFreshModelRecipeApiTagResponseImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$_HelloFreshModelRecipeApiTagResponseFromJson(json);
+      _$$HelloFreshModelRecipeApiTagResponseImplFromJson(json);
 
   @override
   final int total;
@@ -426,6 +428,7 @@ class _$_HelloFreshModelRecipeApiTagResponse
   final List<HelloFreshModelTag> _items;
   @override
   List<HelloFreshModelTag> get items {
+    if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
   }
@@ -436,10 +439,10 @@ class _$_HelloFreshModelRecipeApiTagResponse
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HelloFreshModelRecipeApiTagResponse &&
+            other is _$HelloFreshModelRecipeApiTagResponseImpl &&
             (identical(other.total, total) || other.total == total) &&
             (identical(other.take, take) || other.take == take) &&
             (identical(other.count, count) || other.count == count) &&
@@ -455,14 +458,14 @@ class _$_HelloFreshModelRecipeApiTagResponse
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HelloFreshModelRecipeApiTagResponseCopyWith<
-          _$_HelloFreshModelRecipeApiTagResponse>
-      get copyWith => __$$_HelloFreshModelRecipeApiTagResponseCopyWithImpl<
-          _$_HelloFreshModelRecipeApiTagResponse>(this, _$identity);
+  _$$HelloFreshModelRecipeApiTagResponseImplCopyWith<
+          _$HelloFreshModelRecipeApiTagResponseImpl>
+      get copyWith => __$$HelloFreshModelRecipeApiTagResponseImplCopyWithImpl<
+          _$HelloFreshModelRecipeApiTagResponseImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_HelloFreshModelRecipeApiTagResponseToJson(
+    return _$$HelloFreshModelRecipeApiTagResponseImplToJson(
       this,
     );
   }
@@ -476,11 +479,11 @@ abstract class _HelloFreshModelRecipeApiTagResponse
           required final int count,
           required final int skip,
           required final List<HelloFreshModelTag> items}) =
-      _$_HelloFreshModelRecipeApiTagResponse;
+      _$HelloFreshModelRecipeApiTagResponseImpl;
 
   factory _HelloFreshModelRecipeApiTagResponse.fromJson(
           Map<String, dynamic> json) =
-      _$_HelloFreshModelRecipeApiTagResponse.fromJson;
+      _$HelloFreshModelRecipeApiTagResponseImpl.fromJson;
 
   @override
   int get total;
@@ -494,8 +497,8 @@ abstract class _HelloFreshModelRecipeApiTagResponse
   List<HelloFreshModelTag> get items;
   @override
   @JsonKey(ignore: true)
-  _$$_HelloFreshModelRecipeApiTagResponseCopyWith<
-          _$_HelloFreshModelRecipeApiTagResponse>
+  _$$HelloFreshModelRecipeApiTagResponseImplCopyWith<
+          _$HelloFreshModelRecipeApiTagResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -583,12 +586,12 @@ class _$HelloFreshModelRecipeApiCuisineResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_HelloFreshModelRecipeApiCuisineResponseCopyWith<$Res>
+abstract class _$$HelloFreshModelRecipeApiCuisineResponseImplCopyWith<$Res>
     implements $HelloFreshModelRecipeApiCuisineResponseCopyWith<$Res> {
-  factory _$$_HelloFreshModelRecipeApiCuisineResponseCopyWith(
-          _$_HelloFreshModelRecipeApiCuisineResponse value,
-          $Res Function(_$_HelloFreshModelRecipeApiCuisineResponse) then) =
-      __$$_HelloFreshModelRecipeApiCuisineResponseCopyWithImpl<$Res>;
+  factory _$$HelloFreshModelRecipeApiCuisineResponseImplCopyWith(
+          _$HelloFreshModelRecipeApiCuisineResponseImpl value,
+          $Res Function(_$HelloFreshModelRecipeApiCuisineResponseImpl) then) =
+      __$$HelloFreshModelRecipeApiCuisineResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -600,13 +603,13 @@ abstract class _$$_HelloFreshModelRecipeApiCuisineResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_HelloFreshModelRecipeApiCuisineResponseCopyWithImpl<$Res>
+class __$$HelloFreshModelRecipeApiCuisineResponseImplCopyWithImpl<$Res>
     extends _$HelloFreshModelRecipeApiCuisineResponseCopyWithImpl<$Res,
-        _$_HelloFreshModelRecipeApiCuisineResponse>
-    implements _$$_HelloFreshModelRecipeApiCuisineResponseCopyWith<$Res> {
-  __$$_HelloFreshModelRecipeApiCuisineResponseCopyWithImpl(
-      _$_HelloFreshModelRecipeApiCuisineResponse _value,
-      $Res Function(_$_HelloFreshModelRecipeApiCuisineResponse) _then)
+        _$HelloFreshModelRecipeApiCuisineResponseImpl>
+    implements _$$HelloFreshModelRecipeApiCuisineResponseImplCopyWith<$Res> {
+  __$$HelloFreshModelRecipeApiCuisineResponseImplCopyWithImpl(
+      _$HelloFreshModelRecipeApiCuisineResponseImpl _value,
+      $Res Function(_$HelloFreshModelRecipeApiCuisineResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -618,7 +621,7 @@ class __$$_HelloFreshModelRecipeApiCuisineResponseCopyWithImpl<$Res>
     Object? skip = null,
     Object? items = null,
   }) {
-    return _then(_$_HelloFreshModelRecipeApiCuisineResponse(
+    return _then(_$HelloFreshModelRecipeApiCuisineResponseImpl(
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
@@ -645,9 +648,9 @@ class __$$_HelloFreshModelRecipeApiCuisineResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_HelloFreshModelRecipeApiCuisineResponse
+class _$HelloFreshModelRecipeApiCuisineResponseImpl
     implements _HelloFreshModelRecipeApiCuisineResponse {
-  const _$_HelloFreshModelRecipeApiCuisineResponse(
+  const _$HelloFreshModelRecipeApiCuisineResponseImpl(
       {required this.total,
       required this.take,
       required this.count,
@@ -655,9 +658,9 @@ class _$_HelloFreshModelRecipeApiCuisineResponse
       required final List<HelloFreshModelCuisine> items})
       : _items = items;
 
-  factory _$_HelloFreshModelRecipeApiCuisineResponse.fromJson(
+  factory _$HelloFreshModelRecipeApiCuisineResponseImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$_HelloFreshModelRecipeApiCuisineResponseFromJson(json);
+      _$$HelloFreshModelRecipeApiCuisineResponseImplFromJson(json);
 
   @override
   final int total;
@@ -670,6 +673,7 @@ class _$_HelloFreshModelRecipeApiCuisineResponse
   final List<HelloFreshModelCuisine> _items;
   @override
   List<HelloFreshModelCuisine> get items {
+    if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
   }
@@ -680,10 +684,10 @@ class _$_HelloFreshModelRecipeApiCuisineResponse
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HelloFreshModelRecipeApiCuisineResponse &&
+            other is _$HelloFreshModelRecipeApiCuisineResponseImpl &&
             (identical(other.total, total) || other.total == total) &&
             (identical(other.take, take) || other.take == take) &&
             (identical(other.count, count) || other.count == count) &&
@@ -699,14 +703,15 @@ class _$_HelloFreshModelRecipeApiCuisineResponse
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HelloFreshModelRecipeApiCuisineResponseCopyWith<
-          _$_HelloFreshModelRecipeApiCuisineResponse>
-      get copyWith => __$$_HelloFreshModelRecipeApiCuisineResponseCopyWithImpl<
-          _$_HelloFreshModelRecipeApiCuisineResponse>(this, _$identity);
+  _$$HelloFreshModelRecipeApiCuisineResponseImplCopyWith<
+          _$HelloFreshModelRecipeApiCuisineResponseImpl>
+      get copyWith =>
+          __$$HelloFreshModelRecipeApiCuisineResponseImplCopyWithImpl<
+              _$HelloFreshModelRecipeApiCuisineResponseImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_HelloFreshModelRecipeApiCuisineResponseToJson(
+    return _$$HelloFreshModelRecipeApiCuisineResponseImplToJson(
       this,
     );
   }
@@ -720,11 +725,11 @@ abstract class _HelloFreshModelRecipeApiCuisineResponse
           required final int count,
           required final int skip,
           required final List<HelloFreshModelCuisine> items}) =
-      _$_HelloFreshModelRecipeApiCuisineResponse;
+      _$HelloFreshModelRecipeApiCuisineResponseImpl;
 
   factory _HelloFreshModelRecipeApiCuisineResponse.fromJson(
           Map<String, dynamic> json) =
-      _$_HelloFreshModelRecipeApiCuisineResponse.fromJson;
+      _$HelloFreshModelRecipeApiCuisineResponseImpl.fromJson;
 
   @override
   int get total;
@@ -738,8 +743,8 @@ abstract class _HelloFreshModelRecipeApiCuisineResponse
   List<HelloFreshModelCuisine> get items;
   @override
   @JsonKey(ignore: true)
-  _$$_HelloFreshModelRecipeApiCuisineResponseCopyWith<
-          _$_HelloFreshModelRecipeApiCuisineResponse>
+  _$$HelloFreshModelRecipeApiCuisineResponseImplCopyWith<
+          _$HelloFreshModelRecipeApiCuisineResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -828,12 +833,13 @@ class _$HelloFreshModelRecipeApiIngredientsResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_HelloFreshModelRecipeApiIngredientsResponseCopyWith<$Res>
+abstract class _$$HelloFreshModelRecipeApiIngredientsResponseImplCopyWith<$Res>
     implements $HelloFreshModelRecipeApiIngredientsResponseCopyWith<$Res> {
-  factory _$$_HelloFreshModelRecipeApiIngredientsResponseCopyWith(
-          _$_HelloFreshModelRecipeApiIngredientsResponse value,
-          $Res Function(_$_HelloFreshModelRecipeApiIngredientsResponse) then) =
-      __$$_HelloFreshModelRecipeApiIngredientsResponseCopyWithImpl<$Res>;
+  factory _$$HelloFreshModelRecipeApiIngredientsResponseImplCopyWith(
+          _$HelloFreshModelRecipeApiIngredientsResponseImpl value,
+          $Res Function(_$HelloFreshModelRecipeApiIngredientsResponseImpl)
+              then) =
+      __$$HelloFreshModelRecipeApiIngredientsResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -845,13 +851,14 @@ abstract class _$$_HelloFreshModelRecipeApiIngredientsResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_HelloFreshModelRecipeApiIngredientsResponseCopyWithImpl<$Res>
+class __$$HelloFreshModelRecipeApiIngredientsResponseImplCopyWithImpl<$Res>
     extends _$HelloFreshModelRecipeApiIngredientsResponseCopyWithImpl<$Res,
-        _$_HelloFreshModelRecipeApiIngredientsResponse>
-    implements _$$_HelloFreshModelRecipeApiIngredientsResponseCopyWith<$Res> {
-  __$$_HelloFreshModelRecipeApiIngredientsResponseCopyWithImpl(
-      _$_HelloFreshModelRecipeApiIngredientsResponse _value,
-      $Res Function(_$_HelloFreshModelRecipeApiIngredientsResponse) _then)
+        _$HelloFreshModelRecipeApiIngredientsResponseImpl>
+    implements
+        _$$HelloFreshModelRecipeApiIngredientsResponseImplCopyWith<$Res> {
+  __$$HelloFreshModelRecipeApiIngredientsResponseImplCopyWithImpl(
+      _$HelloFreshModelRecipeApiIngredientsResponseImpl _value,
+      $Res Function(_$HelloFreshModelRecipeApiIngredientsResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -863,7 +870,7 @@ class __$$_HelloFreshModelRecipeApiIngredientsResponseCopyWithImpl<$Res>
     Object? skip = null,
     Object? items = null,
   }) {
-    return _then(_$_HelloFreshModelRecipeApiIngredientsResponse(
+    return _then(_$HelloFreshModelRecipeApiIngredientsResponseImpl(
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
@@ -890,9 +897,9 @@ class __$$_HelloFreshModelRecipeApiIngredientsResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_HelloFreshModelRecipeApiIngredientsResponse
+class _$HelloFreshModelRecipeApiIngredientsResponseImpl
     implements _HelloFreshModelRecipeApiIngredientsResponse {
-  const _$_HelloFreshModelRecipeApiIngredientsResponse(
+  const _$HelloFreshModelRecipeApiIngredientsResponseImpl(
       {required this.total,
       required this.take,
       required this.count,
@@ -900,9 +907,9 @@ class _$_HelloFreshModelRecipeApiIngredientsResponse
       required final List<HelloFreshModelIngredient> items})
       : _items = items;
 
-  factory _$_HelloFreshModelRecipeApiIngredientsResponse.fromJson(
+  factory _$HelloFreshModelRecipeApiIngredientsResponseImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$_HelloFreshModelRecipeApiIngredientsResponseFromJson(json);
+      _$$HelloFreshModelRecipeApiIngredientsResponseImplFromJson(json);
 
   @override
   final int total;
@@ -915,6 +922,7 @@ class _$_HelloFreshModelRecipeApiIngredientsResponse
   final List<HelloFreshModelIngredient> _items;
   @override
   List<HelloFreshModelIngredient> get items {
+    if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
   }
@@ -925,10 +933,10 @@ class _$_HelloFreshModelRecipeApiIngredientsResponse
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HelloFreshModelRecipeApiIngredientsResponse &&
+            other is _$HelloFreshModelRecipeApiIngredientsResponseImpl &&
             (identical(other.total, total) || other.total == total) &&
             (identical(other.take, take) || other.take == take) &&
             (identical(other.count, count) || other.count == count) &&
@@ -944,15 +952,16 @@ class _$_HelloFreshModelRecipeApiIngredientsResponse
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HelloFreshModelRecipeApiIngredientsResponseCopyWith<
-          _$_HelloFreshModelRecipeApiIngredientsResponse>
+  _$$HelloFreshModelRecipeApiIngredientsResponseImplCopyWith<
+          _$HelloFreshModelRecipeApiIngredientsResponseImpl>
       get copyWith =>
-          __$$_HelloFreshModelRecipeApiIngredientsResponseCopyWithImpl<
-              _$_HelloFreshModelRecipeApiIngredientsResponse>(this, _$identity);
+          __$$HelloFreshModelRecipeApiIngredientsResponseImplCopyWithImpl<
+                  _$HelloFreshModelRecipeApiIngredientsResponseImpl>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_HelloFreshModelRecipeApiIngredientsResponseToJson(
+    return _$$HelloFreshModelRecipeApiIngredientsResponseImplToJson(
       this,
     );
   }
@@ -966,11 +975,11 @@ abstract class _HelloFreshModelRecipeApiIngredientsResponse
           required final int count,
           required final int skip,
           required final List<HelloFreshModelIngredient> items}) =
-      _$_HelloFreshModelRecipeApiIngredientsResponse;
+      _$HelloFreshModelRecipeApiIngredientsResponseImpl;
 
   factory _HelloFreshModelRecipeApiIngredientsResponse.fromJson(
           Map<String, dynamic> json) =
-      _$_HelloFreshModelRecipeApiIngredientsResponse.fromJson;
+      _$HelloFreshModelRecipeApiIngredientsResponseImpl.fromJson;
 
   @override
   int get total;
@@ -984,8 +993,8 @@ abstract class _HelloFreshModelRecipeApiIngredientsResponse
   List<HelloFreshModelIngredient> get items;
   @override
   @JsonKey(ignore: true)
-  _$$_HelloFreshModelRecipeApiIngredientsResponseCopyWith<
-          _$_HelloFreshModelRecipeApiIngredientsResponse>
+  _$$HelloFreshModelRecipeApiIngredientsResponseImplCopyWith<
+          _$HelloFreshModelRecipeApiIngredientsResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1070,12 +1079,12 @@ class _$HelloFreshModelTagsApiResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_HelloFreshModelTagsApiResponseCopyWith<$Res>
+abstract class _$$HelloFreshModelTagsApiResponseImplCopyWith<$Res>
     implements $HelloFreshModelTagsApiResponseCopyWith<$Res> {
-  factory _$$_HelloFreshModelTagsApiResponseCopyWith(
-          _$_HelloFreshModelTagsApiResponse value,
-          $Res Function(_$_HelloFreshModelTagsApiResponse) then) =
-      __$$_HelloFreshModelTagsApiResponseCopyWithImpl<$Res>;
+  factory _$$HelloFreshModelTagsApiResponseImplCopyWith(
+          _$HelloFreshModelTagsApiResponseImpl value,
+          $Res Function(_$HelloFreshModelTagsApiResponseImpl) then) =
+      __$$HelloFreshModelTagsApiResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1087,13 +1096,13 @@ abstract class _$$_HelloFreshModelTagsApiResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_HelloFreshModelTagsApiResponseCopyWithImpl<$Res>
+class __$$HelloFreshModelTagsApiResponseImplCopyWithImpl<$Res>
     extends _$HelloFreshModelTagsApiResponseCopyWithImpl<$Res,
-        _$_HelloFreshModelTagsApiResponse>
-    implements _$$_HelloFreshModelTagsApiResponseCopyWith<$Res> {
-  __$$_HelloFreshModelTagsApiResponseCopyWithImpl(
-      _$_HelloFreshModelTagsApiResponse _value,
-      $Res Function(_$_HelloFreshModelTagsApiResponse) _then)
+        _$HelloFreshModelTagsApiResponseImpl>
+    implements _$$HelloFreshModelTagsApiResponseImplCopyWith<$Res> {
+  __$$HelloFreshModelTagsApiResponseImplCopyWithImpl(
+      _$HelloFreshModelTagsApiResponseImpl _value,
+      $Res Function(_$HelloFreshModelTagsApiResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1105,7 +1114,7 @@ class __$$_HelloFreshModelTagsApiResponseCopyWithImpl<$Res>
     Object? skip = null,
     Object? items = null,
   }) {
-    return _then(_$_HelloFreshModelTagsApiResponse(
+    return _then(_$HelloFreshModelTagsApiResponseImpl(
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
@@ -1132,9 +1141,9 @@ class __$$_HelloFreshModelTagsApiResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_HelloFreshModelTagsApiResponse
+class _$HelloFreshModelTagsApiResponseImpl
     implements _HelloFreshModelTagsApiResponse {
-  const _$_HelloFreshModelTagsApiResponse(
+  const _$HelloFreshModelTagsApiResponseImpl(
       {required this.total,
       required this.take,
       required this.count,
@@ -1142,9 +1151,9 @@ class _$_HelloFreshModelTagsApiResponse
       required final List<HelloFreshModelTag> items})
       : _items = items;
 
-  factory _$_HelloFreshModelTagsApiResponse.fromJson(
+  factory _$HelloFreshModelTagsApiResponseImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$_HelloFreshModelTagsApiResponseFromJson(json);
+      _$$HelloFreshModelTagsApiResponseImplFromJson(json);
 
   @override
   final int total;
@@ -1157,6 +1166,7 @@ class _$_HelloFreshModelTagsApiResponse
   final List<HelloFreshModelTag> _items;
   @override
   List<HelloFreshModelTag> get items {
+    if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
   }
@@ -1167,10 +1177,10 @@ class _$_HelloFreshModelTagsApiResponse
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HelloFreshModelTagsApiResponse &&
+            other is _$HelloFreshModelTagsApiResponseImpl &&
             (identical(other.total, total) || other.total == total) &&
             (identical(other.take, take) || other.take == take) &&
             (identical(other.count, count) || other.count == count) &&
@@ -1186,13 +1196,14 @@ class _$_HelloFreshModelTagsApiResponse
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HelloFreshModelTagsApiResponseCopyWith<_$_HelloFreshModelTagsApiResponse>
-      get copyWith => __$$_HelloFreshModelTagsApiResponseCopyWithImpl<
-          _$_HelloFreshModelTagsApiResponse>(this, _$identity);
+  _$$HelloFreshModelTagsApiResponseImplCopyWith<
+          _$HelloFreshModelTagsApiResponseImpl>
+      get copyWith => __$$HelloFreshModelTagsApiResponseImplCopyWithImpl<
+          _$HelloFreshModelTagsApiResponseImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_HelloFreshModelTagsApiResponseToJson(
+    return _$$HelloFreshModelTagsApiResponseImplToJson(
       this,
     );
   }
@@ -1206,10 +1217,10 @@ abstract class _HelloFreshModelTagsApiResponse
           required final int count,
           required final int skip,
           required final List<HelloFreshModelTag> items}) =
-      _$_HelloFreshModelTagsApiResponse;
+      _$HelloFreshModelTagsApiResponseImpl;
 
   factory _HelloFreshModelTagsApiResponse.fromJson(Map<String, dynamic> json) =
-      _$_HelloFreshModelTagsApiResponse.fromJson;
+      _$HelloFreshModelTagsApiResponseImpl.fromJson;
 
   @override
   int get total;
@@ -1223,7 +1234,8 @@ abstract class _HelloFreshModelTagsApiResponse
   List<HelloFreshModelTag> get items;
   @override
   @JsonKey(ignore: true)
-  _$$_HelloFreshModelTagsApiResponseCopyWith<_$_HelloFreshModelTagsApiResponse>
+  _$$HelloFreshModelTagsApiResponseImplCopyWith<
+          _$HelloFreshModelTagsApiResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1385,11 +1397,12 @@ class _$HelloFreshModelRecipeCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_HelloFreshModelRecipeCopyWith<$Res>
+abstract class _$$HelloFreshModelRecipeImplCopyWith<$Res>
     implements $HelloFreshModelRecipeCopyWith<$Res> {
-  factory _$$_HelloFreshModelRecipeCopyWith(_$_HelloFreshModelRecipe value,
-          $Res Function(_$_HelloFreshModelRecipe) then) =
-      __$$_HelloFreshModelRecipeCopyWithImpl<$Res>;
+  factory _$$HelloFreshModelRecipeImplCopyWith(
+          _$HelloFreshModelRecipeImpl value,
+          $Res Function(_$HelloFreshModelRecipeImpl) then) =
+      __$$HelloFreshModelRecipeImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1412,11 +1425,12 @@ abstract class _$$_HelloFreshModelRecipeCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_HelloFreshModelRecipeCopyWithImpl<$Res>
-    extends _$HelloFreshModelRecipeCopyWithImpl<$Res, _$_HelloFreshModelRecipe>
-    implements _$$_HelloFreshModelRecipeCopyWith<$Res> {
-  __$$_HelloFreshModelRecipeCopyWithImpl(_$_HelloFreshModelRecipe _value,
-      $Res Function(_$_HelloFreshModelRecipe) _then)
+class __$$HelloFreshModelRecipeImplCopyWithImpl<$Res>
+    extends _$HelloFreshModelRecipeCopyWithImpl<$Res,
+        _$HelloFreshModelRecipeImpl>
+    implements _$$HelloFreshModelRecipeImplCopyWith<$Res> {
+  __$$HelloFreshModelRecipeImplCopyWithImpl(_$HelloFreshModelRecipeImpl _value,
+      $Res Function(_$HelloFreshModelRecipeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1439,7 +1453,7 @@ class __$$_HelloFreshModelRecipeCopyWithImpl<$Res>
     Object? steps = null,
     Object? cuisines = null,
   }) {
-    return _then(_$_HelloFreshModelRecipe(
+    return _then(_$HelloFreshModelRecipeImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1510,8 +1524,8 @@ class __$$_HelloFreshModelRecipeCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_HelloFreshModelRecipe implements _HelloFreshModelRecipe {
-  const _$_HelloFreshModelRecipe(
+class _$HelloFreshModelRecipeImpl implements _HelloFreshModelRecipe {
+  const _$HelloFreshModelRecipeImpl(
       {required this.id,
       required this.name,
       required this.slug,
@@ -1534,8 +1548,8 @@ class _$_HelloFreshModelRecipe implements _HelloFreshModelRecipe {
         _steps = steps,
         _cuisines = cuisines;
 
-  factory _$_HelloFreshModelRecipe.fromJson(Map<String, dynamic> json) =>
-      _$$_HelloFreshModelRecipeFromJson(json);
+  factory _$HelloFreshModelRecipeImpl.fromJson(Map<String, dynamic> json) =>
+      _$$HelloFreshModelRecipeImplFromJson(json);
 
   @override
   final String id;
@@ -1562,6 +1576,7 @@ class _$_HelloFreshModelRecipe implements _HelloFreshModelRecipe {
   final List<HelloFreshModelIngredient> _ingredients;
   @override
   List<HelloFreshModelIngredient> get ingredients {
+    if (_ingredients is EqualUnmodifiableListView) return _ingredients;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_ingredients);
   }
@@ -1569,6 +1584,7 @@ class _$_HelloFreshModelRecipe implements _HelloFreshModelRecipe {
   final List<HelloFreshModelYield> _yields;
   @override
   List<HelloFreshModelYield> get yields {
+    if (_yields is EqualUnmodifiableListView) return _yields;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_yields);
   }
@@ -1576,6 +1592,7 @@ class _$_HelloFreshModelRecipe implements _HelloFreshModelRecipe {
   final List<HelloFreshModelRecipeTag> _tags;
   @override
   List<HelloFreshModelRecipeTag> get tags {
+    if (_tags is EqualUnmodifiableListView) return _tags;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_tags);
   }
@@ -1583,6 +1600,7 @@ class _$_HelloFreshModelRecipe implements _HelloFreshModelRecipe {
   final List<HelloFreshModelStep> _steps;
   @override
   List<HelloFreshModelStep> get steps {
+    if (_steps is EqualUnmodifiableListView) return _steps;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_steps);
   }
@@ -1590,6 +1608,7 @@ class _$_HelloFreshModelRecipe implements _HelloFreshModelRecipe {
   final List<HelloFreshModelCuisine> _cuisines;
   @override
   List<HelloFreshModelCuisine> get cuisines {
+    if (_cuisines is EqualUnmodifiableListView) return _cuisines;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_cuisines);
   }
@@ -1600,10 +1619,10 @@ class _$_HelloFreshModelRecipe implements _HelloFreshModelRecipe {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HelloFreshModelRecipe &&
+            other is _$HelloFreshModelRecipeImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.slug, slug) || other.slug == slug) &&
@@ -1654,13 +1673,13 @@ class _$_HelloFreshModelRecipe implements _HelloFreshModelRecipe {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HelloFreshModelRecipeCopyWith<_$_HelloFreshModelRecipe> get copyWith =>
-      __$$_HelloFreshModelRecipeCopyWithImpl<_$_HelloFreshModelRecipe>(
-          this, _$identity);
+  _$$HelloFreshModelRecipeImplCopyWith<_$HelloFreshModelRecipeImpl>
+      get copyWith => __$$HelloFreshModelRecipeImplCopyWithImpl<
+          _$HelloFreshModelRecipeImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_HelloFreshModelRecipeToJson(
+    return _$$HelloFreshModelRecipeImplToJson(
       this,
     );
   }
@@ -1684,10 +1703,10 @@ abstract class _HelloFreshModelRecipe implements HelloFreshModelRecipe {
           required final List<HelloFreshModelRecipeTag> tags,
           required final List<HelloFreshModelStep> steps,
           required final List<HelloFreshModelCuisine> cuisines}) =
-      _$_HelloFreshModelRecipe;
+      _$HelloFreshModelRecipeImpl;
 
   factory _HelloFreshModelRecipe.fromJson(Map<String, dynamic> json) =
-      _$_HelloFreshModelRecipe.fromJson;
+      _$HelloFreshModelRecipeImpl.fromJson;
 
   @override
   String get id;
@@ -1723,8 +1742,8 @@ abstract class _HelloFreshModelRecipe implements HelloFreshModelRecipe {
   List<HelloFreshModelCuisine> get cuisines;
   @override
   @JsonKey(ignore: true)
-  _$$_HelloFreshModelRecipeCopyWith<_$_HelloFreshModelRecipe> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$HelloFreshModelRecipeImplCopyWith<_$HelloFreshModelRecipeImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 HelloFreshModelIngredient _$HelloFreshModelIngredientFromJson(
@@ -1836,12 +1855,12 @@ class _$HelloFreshModelIngredientCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_HelloFreshModelIngredientCopyWith<$Res>
+abstract class _$$HelloFreshModelIngredientImplCopyWith<$Res>
     implements $HelloFreshModelIngredientCopyWith<$Res> {
-  factory _$$_HelloFreshModelIngredientCopyWith(
-          _$_HelloFreshModelIngredient value,
-          $Res Function(_$_HelloFreshModelIngredient) then) =
-      __$$_HelloFreshModelIngredientCopyWithImpl<$Res>;
+  factory _$$HelloFreshModelIngredientImplCopyWith(
+          _$HelloFreshModelIngredientImpl value,
+          $Res Function(_$HelloFreshModelIngredientImpl) then) =
+      __$$HelloFreshModelIngredientImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1858,13 +1877,13 @@ abstract class _$$_HelloFreshModelIngredientCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_HelloFreshModelIngredientCopyWithImpl<$Res>
+class __$$HelloFreshModelIngredientImplCopyWithImpl<$Res>
     extends _$HelloFreshModelIngredientCopyWithImpl<$Res,
-        _$_HelloFreshModelIngredient>
-    implements _$$_HelloFreshModelIngredientCopyWith<$Res> {
-  __$$_HelloFreshModelIngredientCopyWithImpl(
-      _$_HelloFreshModelIngredient _value,
-      $Res Function(_$_HelloFreshModelIngredient) _then)
+        _$HelloFreshModelIngredientImpl>
+    implements _$$HelloFreshModelIngredientImplCopyWith<$Res> {
+  __$$HelloFreshModelIngredientImplCopyWithImpl(
+      _$HelloFreshModelIngredientImpl _value,
+      $Res Function(_$HelloFreshModelIngredientImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1878,7 +1897,7 @@ class __$$_HelloFreshModelIngredientCopyWithImpl<$Res>
     Object? imagePath = null,
     Object? family = freezed,
   }) {
-    return _then(_$_HelloFreshModelIngredient(
+    return _then(_$HelloFreshModelIngredientImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1913,8 +1932,8 @@ class __$$_HelloFreshModelIngredientCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_HelloFreshModelIngredient implements _HelloFreshModelIngredient {
-  const _$_HelloFreshModelIngredient(
+class _$HelloFreshModelIngredientImpl implements _HelloFreshModelIngredient {
+  const _$HelloFreshModelIngredientImpl(
       {required this.id,
       required this.country,
       required this.slug,
@@ -1923,8 +1942,8 @@ class _$_HelloFreshModelIngredient implements _HelloFreshModelIngredient {
       required this.imagePath,
       required this.family});
 
-  factory _$_HelloFreshModelIngredient.fromJson(Map<String, dynamic> json) =>
-      _$$_HelloFreshModelIngredientFromJson(json);
+  factory _$HelloFreshModelIngredientImpl.fromJson(Map<String, dynamic> json) =>
+      _$$HelloFreshModelIngredientImplFromJson(json);
 
   @override
   final String id;
@@ -1947,10 +1966,10 @@ class _$_HelloFreshModelIngredient implements _HelloFreshModelIngredient {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HelloFreshModelIngredient &&
+            other is _$HelloFreshModelIngredientImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.country, country) || other.country == country) &&
             (identical(other.slug, slug) || other.slug == slug) &&
@@ -1969,13 +1988,13 @@ class _$_HelloFreshModelIngredient implements _HelloFreshModelIngredient {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HelloFreshModelIngredientCopyWith<_$_HelloFreshModelIngredient>
-      get copyWith => __$$_HelloFreshModelIngredientCopyWithImpl<
-          _$_HelloFreshModelIngredient>(this, _$identity);
+  _$$HelloFreshModelIngredientImplCopyWith<_$HelloFreshModelIngredientImpl>
+      get copyWith => __$$HelloFreshModelIngredientImplCopyWithImpl<
+          _$HelloFreshModelIngredientImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_HelloFreshModelIngredientToJson(
+    return _$$HelloFreshModelIngredientImplToJson(
       this,
     );
   }
@@ -1990,10 +2009,10 @@ abstract class _HelloFreshModelIngredient implements HelloFreshModelIngredient {
           required final String type,
           required final Option<String> imagePath,
           required final HelloFreshModelIngredientFamily? family}) =
-      _$_HelloFreshModelIngredient;
+      _$HelloFreshModelIngredientImpl;
 
   factory _HelloFreshModelIngredient.fromJson(Map<String, dynamic> json) =
-      _$_HelloFreshModelIngredient.fromJson;
+      _$HelloFreshModelIngredientImpl.fromJson;
 
   @override
   String get id;
@@ -2011,7 +2030,7 @@ abstract class _HelloFreshModelIngredient implements HelloFreshModelIngredient {
   HelloFreshModelIngredientFamily? get family;
   @override
   @JsonKey(ignore: true)
-  _$$_HelloFreshModelIngredientCopyWith<_$_HelloFreshModelIngredient>
+  _$$HelloFreshModelIngredientImplCopyWith<_$HelloFreshModelIngredientImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -2026,7 +2045,7 @@ mixin _$HelloFreshModelRecipeTag {
   String get slug => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  Map<String, int> get numberOfRecipesByCountry =>
+  Option<Map<String, int>> get numberOfRecipesByCountry =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -2046,7 +2065,7 @@ abstract class $HelloFreshModelRecipeTagCopyWith<$Res> {
       String slug,
       String type,
       String name,
-      Map<String, int> numberOfRecipesByCountry});
+      Option<Map<String, int>> numberOfRecipesByCountry});
 }
 
 /// @nodoc
@@ -2089,18 +2108,18 @@ class _$HelloFreshModelRecipeTagCopyWithImpl<$Res,
       numberOfRecipesByCountry: null == numberOfRecipesByCountry
           ? _value.numberOfRecipesByCountry
           : numberOfRecipesByCountry // ignore: cast_nullable_to_non_nullable
-              as Map<String, int>,
+              as Option<Map<String, int>>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_HelloFreshModelRecipeTagCopyWith<$Res>
+abstract class _$$HelloFreshModelRecipeTagImplCopyWith<$Res>
     implements $HelloFreshModelRecipeTagCopyWith<$Res> {
-  factory _$$_HelloFreshModelRecipeTagCopyWith(
-          _$_HelloFreshModelRecipeTag value,
-          $Res Function(_$_HelloFreshModelRecipeTag) then) =
-      __$$_HelloFreshModelRecipeTagCopyWithImpl<$Res>;
+  factory _$$HelloFreshModelRecipeTagImplCopyWith(
+          _$HelloFreshModelRecipeTagImpl value,
+          $Res Function(_$HelloFreshModelRecipeTagImpl) then) =
+      __$$HelloFreshModelRecipeTagImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -2108,16 +2127,17 @@ abstract class _$$_HelloFreshModelRecipeTagCopyWith<$Res>
       String slug,
       String type,
       String name,
-      Map<String, int> numberOfRecipesByCountry});
+      Option<Map<String, int>> numberOfRecipesByCountry});
 }
 
 /// @nodoc
-class __$$_HelloFreshModelRecipeTagCopyWithImpl<$Res>
+class __$$HelloFreshModelRecipeTagImplCopyWithImpl<$Res>
     extends _$HelloFreshModelRecipeTagCopyWithImpl<$Res,
-        _$_HelloFreshModelRecipeTag>
-    implements _$$_HelloFreshModelRecipeTagCopyWith<$Res> {
-  __$$_HelloFreshModelRecipeTagCopyWithImpl(_$_HelloFreshModelRecipeTag _value,
-      $Res Function(_$_HelloFreshModelRecipeTag) _then)
+        _$HelloFreshModelRecipeTagImpl>
+    implements _$$HelloFreshModelRecipeTagImplCopyWith<$Res> {
+  __$$HelloFreshModelRecipeTagImplCopyWithImpl(
+      _$HelloFreshModelRecipeTagImpl _value,
+      $Res Function(_$HelloFreshModelRecipeTagImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2129,7 +2149,7 @@ class __$$_HelloFreshModelRecipeTagCopyWithImpl<$Res>
     Object? name = null,
     Object? numberOfRecipesByCountry = null,
   }) {
-    return _then(_$_HelloFreshModelRecipeTag(
+    return _then(_$HelloFreshModelRecipeTagImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -2147,26 +2167,25 @@ class __$$_HelloFreshModelRecipeTagCopyWithImpl<$Res>
           : name // ignore: cast_nullable_to_non_nullable
               as String,
       numberOfRecipesByCountry: null == numberOfRecipesByCountry
-          ? _value._numberOfRecipesByCountry
+          ? _value.numberOfRecipesByCountry
           : numberOfRecipesByCountry // ignore: cast_nullable_to_non_nullable
-              as Map<String, int>,
+              as Option<Map<String, int>>,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_HelloFreshModelRecipeTag implements _HelloFreshModelRecipeTag {
-  const _$_HelloFreshModelRecipeTag(
+class _$HelloFreshModelRecipeTagImpl implements _HelloFreshModelRecipeTag {
+  const _$HelloFreshModelRecipeTagImpl(
       {required this.id,
       required this.slug,
       required this.type,
       required this.name,
-      required final Map<String, int> numberOfRecipesByCountry})
-      : _numberOfRecipesByCountry = numberOfRecipesByCountry;
+      required this.numberOfRecipesByCountry});
 
-  factory _$_HelloFreshModelRecipeTag.fromJson(Map<String, dynamic> json) =>
-      _$$_HelloFreshModelRecipeTagFromJson(json);
+  factory _$HelloFreshModelRecipeTagImpl.fromJson(Map<String, dynamic> json) =>
+      _$$HelloFreshModelRecipeTagImplFromJson(json);
 
   @override
   final String id;
@@ -2176,12 +2195,8 @@ class _$_HelloFreshModelRecipeTag implements _HelloFreshModelRecipeTag {
   final String type;
   @override
   final String name;
-  final Map<String, int> _numberOfRecipesByCountry;
   @override
-  Map<String, int> get numberOfRecipesByCountry {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_numberOfRecipesByCountry);
-  }
+  final Option<Map<String, int>> numberOfRecipesByCountry;
 
   @override
   String toString() {
@@ -2189,33 +2204,34 @@ class _$_HelloFreshModelRecipeTag implements _HelloFreshModelRecipeTag {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HelloFreshModelRecipeTag &&
+            other is _$HelloFreshModelRecipeTagImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.slug, slug) || other.slug == slug) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.name, name) || other.name == name) &&
-            const DeepCollectionEquality().equals(
-                other._numberOfRecipesByCountry, _numberOfRecipesByCountry));
+            (identical(
+                    other.numberOfRecipesByCountry, numberOfRecipesByCountry) ||
+                other.numberOfRecipesByCountry == numberOfRecipesByCountry));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, slug, type, name,
-      const DeepCollectionEquality().hash(_numberOfRecipesByCountry));
+  int get hashCode =>
+      Object.hash(runtimeType, id, slug, type, name, numberOfRecipesByCountry);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HelloFreshModelRecipeTagCopyWith<_$_HelloFreshModelRecipeTag>
-      get copyWith => __$$_HelloFreshModelRecipeTagCopyWithImpl<
-          _$_HelloFreshModelRecipeTag>(this, _$identity);
+  _$$HelloFreshModelRecipeTagImplCopyWith<_$HelloFreshModelRecipeTagImpl>
+      get copyWith => __$$HelloFreshModelRecipeTagImplCopyWithImpl<
+          _$HelloFreshModelRecipeTagImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_HelloFreshModelRecipeTagToJson(
+    return _$$HelloFreshModelRecipeTagImplToJson(
       this,
     );
   }
@@ -2227,11 +2243,11 @@ abstract class _HelloFreshModelRecipeTag implements HelloFreshModelRecipeTag {
           required final String slug,
           required final String type,
           required final String name,
-          required final Map<String, int> numberOfRecipesByCountry}) =
-      _$_HelloFreshModelRecipeTag;
+          required final Option<Map<String, int>> numberOfRecipesByCountry}) =
+      _$HelloFreshModelRecipeTagImpl;
 
   factory _HelloFreshModelRecipeTag.fromJson(Map<String, dynamic> json) =
-      _$_HelloFreshModelRecipeTag.fromJson;
+      _$HelloFreshModelRecipeTagImpl.fromJson;
 
   @override
   String get id;
@@ -2242,10 +2258,10 @@ abstract class _HelloFreshModelRecipeTag implements HelloFreshModelRecipeTag {
   @override
   String get name;
   @override
-  Map<String, int> get numberOfRecipesByCountry;
+  Option<Map<String, int>> get numberOfRecipesByCountry;
   @override
   @JsonKey(ignore: true)
-  _$$_HelloFreshModelRecipeTagCopyWith<_$_HelloFreshModelRecipeTag>
+  _$$HelloFreshModelRecipeTagImplCopyWith<_$HelloFreshModelRecipeTagImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -2260,7 +2276,7 @@ mixin _$HelloFreshModelCuisine {
   String get slug => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  int get usage => throw _privateConstructorUsedError;
+  Option<int> get usage => throw _privateConstructorUsedError;
   Option<String> get iconPath => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -2280,7 +2296,7 @@ abstract class $HelloFreshModelCuisineCopyWith<$Res> {
       String slug,
       String type,
       String name,
-      int usage,
+      Option<int> usage,
       Option<String> iconPath});
 }
 
@@ -2325,7 +2341,7 @@ class _$HelloFreshModelCuisineCopyWithImpl<$Res,
       usage: null == usage
           ? _value.usage
           : usage // ignore: cast_nullable_to_non_nullable
-              as int,
+              as Option<int>,
       iconPath: null == iconPath
           ? _value.iconPath
           : iconPath // ignore: cast_nullable_to_non_nullable
@@ -2335,11 +2351,12 @@ class _$HelloFreshModelCuisineCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_HelloFreshModelCuisineCopyWith<$Res>
+abstract class _$$HelloFreshModelCuisineImplCopyWith<$Res>
     implements $HelloFreshModelCuisineCopyWith<$Res> {
-  factory _$$_HelloFreshModelCuisineCopyWith(_$_HelloFreshModelCuisine value,
-          $Res Function(_$_HelloFreshModelCuisine) then) =
-      __$$_HelloFreshModelCuisineCopyWithImpl<$Res>;
+  factory _$$HelloFreshModelCuisineImplCopyWith(
+          _$HelloFreshModelCuisineImpl value,
+          $Res Function(_$HelloFreshModelCuisineImpl) then) =
+      __$$HelloFreshModelCuisineImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -2347,17 +2364,18 @@ abstract class _$$_HelloFreshModelCuisineCopyWith<$Res>
       String slug,
       String type,
       String name,
-      int usage,
+      Option<int> usage,
       Option<String> iconPath});
 }
 
 /// @nodoc
-class __$$_HelloFreshModelCuisineCopyWithImpl<$Res>
+class __$$HelloFreshModelCuisineImplCopyWithImpl<$Res>
     extends _$HelloFreshModelCuisineCopyWithImpl<$Res,
-        _$_HelloFreshModelCuisine>
-    implements _$$_HelloFreshModelCuisineCopyWith<$Res> {
-  __$$_HelloFreshModelCuisineCopyWithImpl(_$_HelloFreshModelCuisine _value,
-      $Res Function(_$_HelloFreshModelCuisine) _then)
+        _$HelloFreshModelCuisineImpl>
+    implements _$$HelloFreshModelCuisineImplCopyWith<$Res> {
+  __$$HelloFreshModelCuisineImplCopyWithImpl(
+      _$HelloFreshModelCuisineImpl _value,
+      $Res Function(_$HelloFreshModelCuisineImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2370,7 +2388,7 @@ class __$$_HelloFreshModelCuisineCopyWithImpl<$Res>
     Object? usage = null,
     Object? iconPath = null,
   }) {
-    return _then(_$_HelloFreshModelCuisine(
+    return _then(_$HelloFreshModelCuisineImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -2390,7 +2408,7 @@ class __$$_HelloFreshModelCuisineCopyWithImpl<$Res>
       usage: null == usage
           ? _value.usage
           : usage // ignore: cast_nullable_to_non_nullable
-              as int,
+              as Option<int>,
       iconPath: null == iconPath
           ? _value.iconPath
           : iconPath // ignore: cast_nullable_to_non_nullable
@@ -2401,8 +2419,8 @@ class __$$_HelloFreshModelCuisineCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_HelloFreshModelCuisine implements _HelloFreshModelCuisine {
-  const _$_HelloFreshModelCuisine(
+class _$HelloFreshModelCuisineImpl implements _HelloFreshModelCuisine {
+  const _$HelloFreshModelCuisineImpl(
       {required this.id,
       required this.slug,
       required this.type,
@@ -2410,8 +2428,8 @@ class _$_HelloFreshModelCuisine implements _HelloFreshModelCuisine {
       required this.usage,
       required this.iconPath});
 
-  factory _$_HelloFreshModelCuisine.fromJson(Map<String, dynamic> json) =>
-      _$$_HelloFreshModelCuisineFromJson(json);
+  factory _$HelloFreshModelCuisineImpl.fromJson(Map<String, dynamic> json) =>
+      _$$HelloFreshModelCuisineImplFromJson(json);
 
   @override
   final String id;
@@ -2422,7 +2440,7 @@ class _$_HelloFreshModelCuisine implements _HelloFreshModelCuisine {
   @override
   final String name;
   @override
-  final int usage;
+  final Option<int> usage;
   @override
   final Option<String> iconPath;
 
@@ -2432,10 +2450,10 @@ class _$_HelloFreshModelCuisine implements _HelloFreshModelCuisine {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HelloFreshModelCuisine &&
+            other is _$HelloFreshModelCuisineImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.slug, slug) || other.slug == slug) &&
             (identical(other.type, type) || other.type == type) &&
@@ -2453,13 +2471,13 @@ class _$_HelloFreshModelCuisine implements _HelloFreshModelCuisine {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HelloFreshModelCuisineCopyWith<_$_HelloFreshModelCuisine> get copyWith =>
-      __$$_HelloFreshModelCuisineCopyWithImpl<_$_HelloFreshModelCuisine>(
-          this, _$identity);
+  _$$HelloFreshModelCuisineImplCopyWith<_$HelloFreshModelCuisineImpl>
+      get copyWith => __$$HelloFreshModelCuisineImplCopyWithImpl<
+          _$HelloFreshModelCuisineImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_HelloFreshModelCuisineToJson(
+    return _$$HelloFreshModelCuisineImplToJson(
       this,
     );
   }
@@ -2471,11 +2489,11 @@ abstract class _HelloFreshModelCuisine implements HelloFreshModelCuisine {
       required final String slug,
       required final String type,
       required final String name,
-      required final int usage,
-      required final Option<String> iconPath}) = _$_HelloFreshModelCuisine;
+      required final Option<int> usage,
+      required final Option<String> iconPath}) = _$HelloFreshModelCuisineImpl;
 
   factory _HelloFreshModelCuisine.fromJson(Map<String, dynamic> json) =
-      _$_HelloFreshModelCuisine.fromJson;
+      _$HelloFreshModelCuisineImpl.fromJson;
 
   @override
   String get id;
@@ -2486,13 +2504,13 @@ abstract class _HelloFreshModelCuisine implements HelloFreshModelCuisine {
   @override
   String get name;
   @override
-  int get usage;
+  Option<int> get usage;
   @override
   Option<String> get iconPath;
   @override
   @JsonKey(ignore: true)
-  _$$_HelloFreshModelCuisineCopyWith<_$_HelloFreshModelCuisine> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$HelloFreshModelCuisineImplCopyWith<_$HelloFreshModelCuisineImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 HelloFreshModelYield _$HelloFreshModelYieldFromJson(Map<String, dynamic> json) {
@@ -2552,11 +2570,11 @@ class _$HelloFreshModelYieldCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_HelloFreshModelYieldCopyWith<$Res>
+abstract class _$$HelloFreshModelYieldImplCopyWith<$Res>
     implements $HelloFreshModelYieldCopyWith<$Res> {
-  factory _$$_HelloFreshModelYieldCopyWith(_$_HelloFreshModelYield value,
-          $Res Function(_$_HelloFreshModelYield) then) =
-      __$$_HelloFreshModelYieldCopyWithImpl<$Res>;
+  factory _$$HelloFreshModelYieldImplCopyWith(_$HelloFreshModelYieldImpl value,
+          $Res Function(_$HelloFreshModelYieldImpl) then) =
+      __$$HelloFreshModelYieldImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -2564,11 +2582,11 @@ abstract class _$$_HelloFreshModelYieldCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_HelloFreshModelYieldCopyWithImpl<$Res>
-    extends _$HelloFreshModelYieldCopyWithImpl<$Res, _$_HelloFreshModelYield>
-    implements _$$_HelloFreshModelYieldCopyWith<$Res> {
-  __$$_HelloFreshModelYieldCopyWithImpl(_$_HelloFreshModelYield _value,
-      $Res Function(_$_HelloFreshModelYield) _then)
+class __$$HelloFreshModelYieldImplCopyWithImpl<$Res>
+    extends _$HelloFreshModelYieldCopyWithImpl<$Res, _$HelloFreshModelYieldImpl>
+    implements _$$HelloFreshModelYieldImplCopyWith<$Res> {
+  __$$HelloFreshModelYieldImplCopyWithImpl(_$HelloFreshModelYieldImpl _value,
+      $Res Function(_$HelloFreshModelYieldImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2577,7 +2595,7 @@ class __$$_HelloFreshModelYieldCopyWithImpl<$Res>
     Object? yields = null,
     Object? ingredients = null,
   }) {
-    return _then(_$_HelloFreshModelYield(
+    return _then(_$HelloFreshModelYieldImpl(
       yields: null == yields
           ? _value.yields
           : yields // ignore: cast_nullable_to_non_nullable
@@ -2592,20 +2610,21 @@ class __$$_HelloFreshModelYieldCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_HelloFreshModelYield implements _HelloFreshModelYield {
-  const _$_HelloFreshModelYield(
+class _$HelloFreshModelYieldImpl implements _HelloFreshModelYield {
+  const _$HelloFreshModelYieldImpl(
       {required this.yields,
       required final List<HelloFreshModelYieldIngredient> ingredients})
       : _ingredients = ingredients;
 
-  factory _$_HelloFreshModelYield.fromJson(Map<String, dynamic> json) =>
-      _$$_HelloFreshModelYieldFromJson(json);
+  factory _$HelloFreshModelYieldImpl.fromJson(Map<String, dynamic> json) =>
+      _$$HelloFreshModelYieldImplFromJson(json);
 
   @override
   final Option<int> yields;
   final List<HelloFreshModelYieldIngredient> _ingredients;
   @override
   List<HelloFreshModelYieldIngredient> get ingredients {
+    if (_ingredients is EqualUnmodifiableListView) return _ingredients;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_ingredients);
   }
@@ -2616,10 +2635,10 @@ class _$_HelloFreshModelYield implements _HelloFreshModelYield {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HelloFreshModelYield &&
+            other is _$HelloFreshModelYieldImpl &&
             (identical(other.yields, yields) || other.yields == yields) &&
             const DeepCollectionEquality()
                 .equals(other._ingredients, _ingredients));
@@ -2633,13 +2652,14 @@ class _$_HelloFreshModelYield implements _HelloFreshModelYield {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HelloFreshModelYieldCopyWith<_$_HelloFreshModelYield> get copyWith =>
-      __$$_HelloFreshModelYieldCopyWithImpl<_$_HelloFreshModelYield>(
-          this, _$identity);
+  _$$HelloFreshModelYieldImplCopyWith<_$HelloFreshModelYieldImpl>
+      get copyWith =>
+          __$$HelloFreshModelYieldImplCopyWithImpl<_$HelloFreshModelYieldImpl>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_HelloFreshModelYieldToJson(
+    return _$$HelloFreshModelYieldImplToJson(
       this,
     );
   }
@@ -2649,10 +2669,10 @@ abstract class _HelloFreshModelYield implements HelloFreshModelYield {
   const factory _HelloFreshModelYield(
           {required final Option<int> yields,
           required final List<HelloFreshModelYieldIngredient> ingredients}) =
-      _$_HelloFreshModelYield;
+      _$HelloFreshModelYieldImpl;
 
   factory _HelloFreshModelYield.fromJson(Map<String, dynamic> json) =
-      _$_HelloFreshModelYield.fromJson;
+      _$HelloFreshModelYieldImpl.fromJson;
 
   @override
   Option<int> get yields;
@@ -2660,8 +2680,8 @@ abstract class _HelloFreshModelYield implements HelloFreshModelYield {
   List<HelloFreshModelYieldIngredient> get ingredients;
   @override
   @JsonKey(ignore: true)
-  _$$_HelloFreshModelYieldCopyWith<_$_HelloFreshModelYield> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$HelloFreshModelYieldImplCopyWith<_$HelloFreshModelYieldImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 HelloFreshModelStep _$HelloFreshModelStepFromJson(Map<String, dynamic> json) {
@@ -2735,11 +2755,11 @@ class _$HelloFreshModelStepCopyWithImpl<$Res, $Val extends HelloFreshModelStep>
 }
 
 /// @nodoc
-abstract class _$$_HelloFreshModelStepCopyWith<$Res>
+abstract class _$$HelloFreshModelStepImplCopyWith<$Res>
     implements $HelloFreshModelStepCopyWith<$Res> {
-  factory _$$_HelloFreshModelStepCopyWith(_$_HelloFreshModelStep value,
-          $Res Function(_$_HelloFreshModelStep) then) =
-      __$$_HelloFreshModelStepCopyWithImpl<$Res>;
+  factory _$$HelloFreshModelStepImplCopyWith(_$HelloFreshModelStepImpl value,
+          $Res Function(_$HelloFreshModelStepImpl) then) =
+      __$$HelloFreshModelStepImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -2750,11 +2770,11 @@ abstract class _$$_HelloFreshModelStepCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_HelloFreshModelStepCopyWithImpl<$Res>
-    extends _$HelloFreshModelStepCopyWithImpl<$Res, _$_HelloFreshModelStep>
-    implements _$$_HelloFreshModelStepCopyWith<$Res> {
-  __$$_HelloFreshModelStepCopyWithImpl(_$_HelloFreshModelStep _value,
-      $Res Function(_$_HelloFreshModelStep) _then)
+class __$$HelloFreshModelStepImplCopyWithImpl<$Res>
+    extends _$HelloFreshModelStepCopyWithImpl<$Res, _$HelloFreshModelStepImpl>
+    implements _$$HelloFreshModelStepImplCopyWith<$Res> {
+  __$$HelloFreshModelStepImplCopyWithImpl(_$HelloFreshModelStepImpl _value,
+      $Res Function(_$HelloFreshModelStepImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2765,7 +2785,7 @@ class __$$_HelloFreshModelStepCopyWithImpl<$Res>
     Object? ingredients = null,
     Object? images = null,
   }) {
-    return _then(_$_HelloFreshModelStep(
+    return _then(_$HelloFreshModelStepImpl(
       index: null == index
           ? _value.index
           : index // ignore: cast_nullable_to_non_nullable
@@ -2788,8 +2808,8 @@ class __$$_HelloFreshModelStepCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_HelloFreshModelStep implements _HelloFreshModelStep {
-  const _$_HelloFreshModelStep(
+class _$HelloFreshModelStepImpl implements _HelloFreshModelStep {
+  const _$HelloFreshModelStepImpl(
       {required this.index,
       required this.instructionsMarkdown,
       required final List<String> ingredients,
@@ -2797,8 +2817,8 @@ class _$_HelloFreshModelStep implements _HelloFreshModelStep {
       : _ingredients = ingredients,
         _images = images;
 
-  factory _$_HelloFreshModelStep.fromJson(Map<String, dynamic> json) =>
-      _$$_HelloFreshModelStepFromJson(json);
+  factory _$HelloFreshModelStepImpl.fromJson(Map<String, dynamic> json) =>
+      _$$HelloFreshModelStepImplFromJson(json);
 
   @override
   final int index;
@@ -2807,6 +2827,7 @@ class _$_HelloFreshModelStep implements _HelloFreshModelStep {
   final List<String> _ingredients;
   @override
   List<String> get ingredients {
+    if (_ingredients is EqualUnmodifiableListView) return _ingredients;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_ingredients);
   }
@@ -2814,6 +2835,7 @@ class _$_HelloFreshModelStep implements _HelloFreshModelStep {
   final List<HelloFreshModelStepImage> _images;
   @override
   List<HelloFreshModelStepImage> get images {
+    if (_images is EqualUnmodifiableListView) return _images;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_images);
   }
@@ -2824,10 +2846,10 @@ class _$_HelloFreshModelStep implements _HelloFreshModelStep {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HelloFreshModelStep &&
+            other is _$HelloFreshModelStepImpl &&
             (identical(other.index, index) || other.index == index) &&
             (identical(other.instructionsMarkdown, instructionsMarkdown) ||
                 other.instructionsMarkdown == instructionsMarkdown) &&
@@ -2848,13 +2870,13 @@ class _$_HelloFreshModelStep implements _HelloFreshModelStep {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HelloFreshModelStepCopyWith<_$_HelloFreshModelStep> get copyWith =>
-      __$$_HelloFreshModelStepCopyWithImpl<_$_HelloFreshModelStep>(
+  _$$HelloFreshModelStepImplCopyWith<_$HelloFreshModelStepImpl> get copyWith =>
+      __$$HelloFreshModelStepImplCopyWithImpl<_$HelloFreshModelStepImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_HelloFreshModelStepToJson(
+    return _$$HelloFreshModelStepImplToJson(
       this,
     );
   }
@@ -2866,10 +2888,10 @@ abstract class _HelloFreshModelStep implements HelloFreshModelStep {
           required final String instructionsMarkdown,
           required final List<String> ingredients,
           required final List<HelloFreshModelStepImage> images}) =
-      _$_HelloFreshModelStep;
+      _$HelloFreshModelStepImpl;
 
   factory _HelloFreshModelStep.fromJson(Map<String, dynamic> json) =
-      _$_HelloFreshModelStep.fromJson;
+      _$HelloFreshModelStepImpl.fromJson;
 
   @override
   int get index;
@@ -2881,7 +2903,7 @@ abstract class _HelloFreshModelStep implements HelloFreshModelStep {
   List<HelloFreshModelStepImage> get images;
   @override
   @JsonKey(ignore: true)
-  _$$_HelloFreshModelStepCopyWith<_$_HelloFreshModelStep> get copyWith =>
+  _$$HelloFreshModelStepImplCopyWith<_$HelloFreshModelStepImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -2941,24 +2963,25 @@ class _$HelloFreshModelStepImageCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_HelloFreshModelStepImageCopyWith<$Res>
+abstract class _$$HelloFreshModelStepImageImplCopyWith<$Res>
     implements $HelloFreshModelStepImageCopyWith<$Res> {
-  factory _$$_HelloFreshModelStepImageCopyWith(
-          _$_HelloFreshModelStepImage value,
-          $Res Function(_$_HelloFreshModelStepImage) then) =
-      __$$_HelloFreshModelStepImageCopyWithImpl<$Res>;
+  factory _$$HelloFreshModelStepImageImplCopyWith(
+          _$HelloFreshModelStepImageImpl value,
+          $Res Function(_$HelloFreshModelStepImageImpl) then) =
+      __$$HelloFreshModelStepImageImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String path, String caption});
 }
 
 /// @nodoc
-class __$$_HelloFreshModelStepImageCopyWithImpl<$Res>
+class __$$HelloFreshModelStepImageImplCopyWithImpl<$Res>
     extends _$HelloFreshModelStepImageCopyWithImpl<$Res,
-        _$_HelloFreshModelStepImage>
-    implements _$$_HelloFreshModelStepImageCopyWith<$Res> {
-  __$$_HelloFreshModelStepImageCopyWithImpl(_$_HelloFreshModelStepImage _value,
-      $Res Function(_$_HelloFreshModelStepImage) _then)
+        _$HelloFreshModelStepImageImpl>
+    implements _$$HelloFreshModelStepImageImplCopyWith<$Res> {
+  __$$HelloFreshModelStepImageImplCopyWithImpl(
+      _$HelloFreshModelStepImageImpl _value,
+      $Res Function(_$HelloFreshModelStepImageImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2967,7 +2990,7 @@ class __$$_HelloFreshModelStepImageCopyWithImpl<$Res>
     Object? path = null,
     Object? caption = null,
   }) {
-    return _then(_$_HelloFreshModelStepImage(
+    return _then(_$HelloFreshModelStepImageImpl(
       path: null == path
           ? _value.path
           : path // ignore: cast_nullable_to_non_nullable
@@ -2982,12 +3005,12 @@ class __$$_HelloFreshModelStepImageCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_HelloFreshModelStepImage implements _HelloFreshModelStepImage {
-  const _$_HelloFreshModelStepImage(
+class _$HelloFreshModelStepImageImpl implements _HelloFreshModelStepImage {
+  const _$HelloFreshModelStepImageImpl(
       {required this.path, required this.caption});
 
-  factory _$_HelloFreshModelStepImage.fromJson(Map<String, dynamic> json) =>
-      _$$_HelloFreshModelStepImageFromJson(json);
+  factory _$HelloFreshModelStepImageImpl.fromJson(Map<String, dynamic> json) =>
+      _$$HelloFreshModelStepImageImplFromJson(json);
 
   @override
   final String path;
@@ -3000,10 +3023,10 @@ class _$_HelloFreshModelStepImage implements _HelloFreshModelStepImage {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HelloFreshModelStepImage &&
+            other is _$HelloFreshModelStepImageImpl &&
             (identical(other.path, path) || other.path == path) &&
             (identical(other.caption, caption) || other.caption == caption));
   }
@@ -3015,13 +3038,13 @@ class _$_HelloFreshModelStepImage implements _HelloFreshModelStepImage {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HelloFreshModelStepImageCopyWith<_$_HelloFreshModelStepImage>
-      get copyWith => __$$_HelloFreshModelStepImageCopyWithImpl<
-          _$_HelloFreshModelStepImage>(this, _$identity);
+  _$$HelloFreshModelStepImageImplCopyWith<_$HelloFreshModelStepImageImpl>
+      get copyWith => __$$HelloFreshModelStepImageImplCopyWithImpl<
+          _$HelloFreshModelStepImageImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_HelloFreshModelStepImageToJson(
+    return _$$HelloFreshModelStepImageImplToJson(
       this,
     );
   }
@@ -3030,10 +3053,10 @@ class _$_HelloFreshModelStepImage implements _HelloFreshModelStepImage {
 abstract class _HelloFreshModelStepImage implements HelloFreshModelStepImage {
   const factory _HelloFreshModelStepImage(
       {required final String path,
-      required final String caption}) = _$_HelloFreshModelStepImage;
+      required final String caption}) = _$HelloFreshModelStepImageImpl;
 
   factory _HelloFreshModelStepImage.fromJson(Map<String, dynamic> json) =
-      _$_HelloFreshModelStepImage.fromJson;
+      _$HelloFreshModelStepImageImpl.fromJson;
 
   @override
   String get path;
@@ -3041,7 +3064,7 @@ abstract class _HelloFreshModelStepImage implements HelloFreshModelStepImage {
   String get caption;
   @override
   @JsonKey(ignore: true)
-  _$$_HelloFreshModelStepImageCopyWith<_$_HelloFreshModelStepImage>
+  _$$HelloFreshModelStepImageImplCopyWith<_$HelloFreshModelStepImageImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -3109,25 +3132,25 @@ class _$HelloFreshModelYieldIngredientCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_HelloFreshModelYieldIngredientCopyWith<$Res>
+abstract class _$$HelloFreshModelYieldIngredientImplCopyWith<$Res>
     implements $HelloFreshModelYieldIngredientCopyWith<$Res> {
-  factory _$$_HelloFreshModelYieldIngredientCopyWith(
-          _$_HelloFreshModelYieldIngredient value,
-          $Res Function(_$_HelloFreshModelYieldIngredient) then) =
-      __$$_HelloFreshModelYieldIngredientCopyWithImpl<$Res>;
+  factory _$$HelloFreshModelYieldIngredientImplCopyWith(
+          _$HelloFreshModelYieldIngredientImpl value,
+          $Res Function(_$HelloFreshModelYieldIngredientImpl) then) =
+      __$$HelloFreshModelYieldIngredientImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, Option<num> amount, Option<String> unit});
 }
 
 /// @nodoc
-class __$$_HelloFreshModelYieldIngredientCopyWithImpl<$Res>
+class __$$HelloFreshModelYieldIngredientImplCopyWithImpl<$Res>
     extends _$HelloFreshModelYieldIngredientCopyWithImpl<$Res,
-        _$_HelloFreshModelYieldIngredient>
-    implements _$$_HelloFreshModelYieldIngredientCopyWith<$Res> {
-  __$$_HelloFreshModelYieldIngredientCopyWithImpl(
-      _$_HelloFreshModelYieldIngredient _value,
-      $Res Function(_$_HelloFreshModelYieldIngredient) _then)
+        _$HelloFreshModelYieldIngredientImpl>
+    implements _$$HelloFreshModelYieldIngredientImplCopyWith<$Res> {
+  __$$HelloFreshModelYieldIngredientImplCopyWithImpl(
+      _$HelloFreshModelYieldIngredientImpl _value,
+      $Res Function(_$HelloFreshModelYieldIngredientImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -3137,7 +3160,7 @@ class __$$_HelloFreshModelYieldIngredientCopyWithImpl<$Res>
     Object? amount = null,
     Object? unit = null,
   }) {
-    return _then(_$_HelloFreshModelYieldIngredient(
+    return _then(_$HelloFreshModelYieldIngredientImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -3156,14 +3179,14 @@ class __$$_HelloFreshModelYieldIngredientCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_HelloFreshModelYieldIngredient
+class _$HelloFreshModelYieldIngredientImpl
     implements _HelloFreshModelYieldIngredient {
-  const _$_HelloFreshModelYieldIngredient(
+  const _$HelloFreshModelYieldIngredientImpl(
       {required this.id, required this.amount, required this.unit});
 
-  factory _$_HelloFreshModelYieldIngredient.fromJson(
+  factory _$HelloFreshModelYieldIngredientImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$_HelloFreshModelYieldIngredientFromJson(json);
+      _$$HelloFreshModelYieldIngredientImplFromJson(json);
 
   @override
   final String id;
@@ -3178,10 +3201,10 @@ class _$_HelloFreshModelYieldIngredient
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HelloFreshModelYieldIngredient &&
+            other is _$HelloFreshModelYieldIngredientImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.unit, unit) || other.unit == unit));
@@ -3194,13 +3217,14 @@ class _$_HelloFreshModelYieldIngredient
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HelloFreshModelYieldIngredientCopyWith<_$_HelloFreshModelYieldIngredient>
-      get copyWith => __$$_HelloFreshModelYieldIngredientCopyWithImpl<
-          _$_HelloFreshModelYieldIngredient>(this, _$identity);
+  _$$HelloFreshModelYieldIngredientImplCopyWith<
+          _$HelloFreshModelYieldIngredientImpl>
+      get copyWith => __$$HelloFreshModelYieldIngredientImplCopyWithImpl<
+          _$HelloFreshModelYieldIngredientImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_HelloFreshModelYieldIngredientToJson(
+    return _$$HelloFreshModelYieldIngredientImplToJson(
       this,
     );
   }
@@ -3209,12 +3233,13 @@ class _$_HelloFreshModelYieldIngredient
 abstract class _HelloFreshModelYieldIngredient
     implements HelloFreshModelYieldIngredient {
   const factory _HelloFreshModelYieldIngredient(
-      {required final String id,
-      required final Option<num> amount,
-      required final Option<String> unit}) = _$_HelloFreshModelYieldIngredient;
+          {required final String id,
+          required final Option<num> amount,
+          required final Option<String> unit}) =
+      _$HelloFreshModelYieldIngredientImpl;
 
   factory _HelloFreshModelYieldIngredient.fromJson(Map<String, dynamic> json) =
-      _$_HelloFreshModelYieldIngredient.fromJson;
+      _$HelloFreshModelYieldIngredientImpl.fromJson;
 
   @override
   String get id;
@@ -3224,7 +3249,8 @@ abstract class _HelloFreshModelYieldIngredient
   Option<String> get unit;
   @override
   @JsonKey(ignore: true)
-  _$$_HelloFreshModelYieldIngredientCopyWith<_$_HelloFreshModelYieldIngredient>
+  _$$HelloFreshModelYieldIngredientImplCopyWith<
+          _$HelloFreshModelYieldIngredientImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -3299,11 +3325,11 @@ class _$HelloFreshModelTagCopyWithImpl<$Res, $Val extends HelloFreshModelTag>
 }
 
 /// @nodoc
-abstract class _$$_HelloFreshModelTagCopyWith<$Res>
+abstract class _$$HelloFreshModelTagImplCopyWith<$Res>
     implements $HelloFreshModelTagCopyWith<$Res> {
-  factory _$$_HelloFreshModelTagCopyWith(_$_HelloFreshModelTag value,
-          $Res Function(_$_HelloFreshModelTag) then) =
-      __$$_HelloFreshModelTagCopyWithImpl<$Res>;
+  factory _$$HelloFreshModelTagImplCopyWith(_$HelloFreshModelTagImpl value,
+          $Res Function(_$HelloFreshModelTagImpl) then) =
+      __$$HelloFreshModelTagImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -3314,11 +3340,11 @@ abstract class _$$_HelloFreshModelTagCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_HelloFreshModelTagCopyWithImpl<$Res>
-    extends _$HelloFreshModelTagCopyWithImpl<$Res, _$_HelloFreshModelTag>
-    implements _$$_HelloFreshModelTagCopyWith<$Res> {
-  __$$_HelloFreshModelTagCopyWithImpl(
-      _$_HelloFreshModelTag _value, $Res Function(_$_HelloFreshModelTag) _then)
+class __$$HelloFreshModelTagImplCopyWithImpl<$Res>
+    extends _$HelloFreshModelTagCopyWithImpl<$Res, _$HelloFreshModelTagImpl>
+    implements _$$HelloFreshModelTagImplCopyWith<$Res> {
+  __$$HelloFreshModelTagImplCopyWithImpl(_$HelloFreshModelTagImpl _value,
+      $Res Function(_$HelloFreshModelTagImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -3329,7 +3355,7 @@ class __$$_HelloFreshModelTagCopyWithImpl<$Res>
     Object? type = null,
     Object? numberOfRecipesByCountry = null,
   }) {
-    return _then(_$_HelloFreshModelTag(
+    return _then(_$HelloFreshModelTagImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -3352,16 +3378,16 @@ class __$$_HelloFreshModelTagCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_HelloFreshModelTag implements _HelloFreshModelTag {
-  const _$_HelloFreshModelTag(
+class _$HelloFreshModelTagImpl implements _HelloFreshModelTag {
+  const _$HelloFreshModelTagImpl(
       {required this.id,
       required this.name,
       required this.type,
       required final Map<String, int> numberOfRecipesByCountry})
       : _numberOfRecipesByCountry = numberOfRecipesByCountry;
 
-  factory _$_HelloFreshModelTag.fromJson(Map<String, dynamic> json) =>
-      _$$_HelloFreshModelTagFromJson(json);
+  factory _$HelloFreshModelTagImpl.fromJson(Map<String, dynamic> json) =>
+      _$$HelloFreshModelTagImplFromJson(json);
 
   @override
   final String id;
@@ -3372,6 +3398,8 @@ class _$_HelloFreshModelTag implements _HelloFreshModelTag {
   final Map<String, int> _numberOfRecipesByCountry;
   @override
   Map<String, int> get numberOfRecipesByCountry {
+    if (_numberOfRecipesByCountry is EqualUnmodifiableMapView)
+      return _numberOfRecipesByCountry;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_numberOfRecipesByCountry);
   }
@@ -3382,10 +3410,10 @@ class _$_HelloFreshModelTag implements _HelloFreshModelTag {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HelloFreshModelTag &&
+            other is _$HelloFreshModelTagImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.type, type) || other.type == type) &&
@@ -3401,13 +3429,13 @@ class _$_HelloFreshModelTag implements _HelloFreshModelTag {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HelloFreshModelTagCopyWith<_$_HelloFreshModelTag> get copyWith =>
-      __$$_HelloFreshModelTagCopyWithImpl<_$_HelloFreshModelTag>(
+  _$$HelloFreshModelTagImplCopyWith<_$HelloFreshModelTagImpl> get copyWith =>
+      __$$HelloFreshModelTagImplCopyWithImpl<_$HelloFreshModelTagImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_HelloFreshModelTagToJson(
+    return _$$HelloFreshModelTagImplToJson(
       this,
     );
   }
@@ -3419,10 +3447,10 @@ abstract class _HelloFreshModelTag implements HelloFreshModelTag {
           required final String name,
           required final String type,
           required final Map<String, int> numberOfRecipesByCountry}) =
-      _$_HelloFreshModelTag;
+      _$HelloFreshModelTagImpl;
 
   factory _HelloFreshModelTag.fromJson(Map<String, dynamic> json) =
-      _$_HelloFreshModelTag.fromJson;
+      _$HelloFreshModelTagImpl.fromJson;
 
   @override
   String get id;
@@ -3434,7 +3462,7 @@ abstract class _HelloFreshModelTag implements HelloFreshModelTag {
   Map<String, int> get numberOfRecipesByCountry;
   @override
   @JsonKey(ignore: true)
-  _$$_HelloFreshModelTagCopyWith<_$_HelloFreshModelTag> get copyWith =>
+  _$$HelloFreshModelTagImplCopyWith<_$HelloFreshModelTagImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -3519,12 +3547,12 @@ class _$HelloFreshModelIngredientFamilyCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_HelloFreshModelIngredientFamilyCopyWith<$Res>
+abstract class _$$HelloFreshModelIngredientFamilyImplCopyWith<$Res>
     implements $HelloFreshModelIngredientFamilyCopyWith<$Res> {
-  factory _$$_HelloFreshModelIngredientFamilyCopyWith(
-          _$_HelloFreshModelIngredientFamily value,
-          $Res Function(_$_HelloFreshModelIngredientFamily) then) =
-      __$$_HelloFreshModelIngredientFamilyCopyWithImpl<$Res>;
+  factory _$$HelloFreshModelIngredientFamilyImplCopyWith(
+          _$HelloFreshModelIngredientFamilyImpl value,
+          $Res Function(_$HelloFreshModelIngredientFamilyImpl) then) =
+      __$$HelloFreshModelIngredientFamilyImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -3536,13 +3564,13 @@ abstract class _$$_HelloFreshModelIngredientFamilyCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_HelloFreshModelIngredientFamilyCopyWithImpl<$Res>
+class __$$HelloFreshModelIngredientFamilyImplCopyWithImpl<$Res>
     extends _$HelloFreshModelIngredientFamilyCopyWithImpl<$Res,
-        _$_HelloFreshModelIngredientFamily>
-    implements _$$_HelloFreshModelIngredientFamilyCopyWith<$Res> {
-  __$$_HelloFreshModelIngredientFamilyCopyWithImpl(
-      _$_HelloFreshModelIngredientFamily _value,
-      $Res Function(_$_HelloFreshModelIngredientFamily) _then)
+        _$HelloFreshModelIngredientFamilyImpl>
+    implements _$$HelloFreshModelIngredientFamilyImplCopyWith<$Res> {
+  __$$HelloFreshModelIngredientFamilyImplCopyWithImpl(
+      _$HelloFreshModelIngredientFamilyImpl _value,
+      $Res Function(_$HelloFreshModelIngredientFamilyImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -3554,7 +3582,7 @@ class __$$_HelloFreshModelIngredientFamilyCopyWithImpl<$Res>
     Object? name = null,
     Object? slug = null,
   }) {
-    return _then(_$_HelloFreshModelIngredientFamily(
+    return _then(_$HelloFreshModelIngredientFamilyImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -3581,18 +3609,18 @@ class __$$_HelloFreshModelIngredientFamilyCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_HelloFreshModelIngredientFamily
+class _$HelloFreshModelIngredientFamilyImpl
     implements _HelloFreshModelIngredientFamily {
-  const _$_HelloFreshModelIngredientFamily(
+  const _$HelloFreshModelIngredientFamilyImpl(
       {required this.id,
       required this.type,
       required this.iconPath,
       required this.name,
       required this.slug});
 
-  factory _$_HelloFreshModelIngredientFamily.fromJson(
+  factory _$HelloFreshModelIngredientFamilyImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$_HelloFreshModelIngredientFamilyFromJson(json);
+      _$$HelloFreshModelIngredientFamilyImplFromJson(json);
 
   @override
   final String id;
@@ -3611,10 +3639,10 @@ class _$_HelloFreshModelIngredientFamily
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HelloFreshModelIngredientFamily &&
+            other is _$HelloFreshModelIngredientFamilyImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.iconPath, iconPath) ||
@@ -3630,14 +3658,14 @@ class _$_HelloFreshModelIngredientFamily
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HelloFreshModelIngredientFamilyCopyWith<
-          _$_HelloFreshModelIngredientFamily>
-      get copyWith => __$$_HelloFreshModelIngredientFamilyCopyWithImpl<
-          _$_HelloFreshModelIngredientFamily>(this, _$identity);
+  _$$HelloFreshModelIngredientFamilyImplCopyWith<
+          _$HelloFreshModelIngredientFamilyImpl>
+      get copyWith => __$$HelloFreshModelIngredientFamilyImplCopyWithImpl<
+          _$HelloFreshModelIngredientFamilyImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_HelloFreshModelIngredientFamilyToJson(
+    return _$$HelloFreshModelIngredientFamilyImplToJson(
       this,
     );
   }
@@ -3650,10 +3678,10 @@ abstract class _HelloFreshModelIngredientFamily
       required final String type,
       required final Option<String> iconPath,
       required final String name,
-      required final String slug}) = _$_HelloFreshModelIngredientFamily;
+      required final String slug}) = _$HelloFreshModelIngredientFamilyImpl;
 
   factory _HelloFreshModelIngredientFamily.fromJson(Map<String, dynamic> json) =
-      _$_HelloFreshModelIngredientFamily.fromJson;
+      _$HelloFreshModelIngredientFamilyImpl.fromJson;
 
   @override
   String get id;
@@ -3667,7 +3695,7 @@ abstract class _HelloFreshModelIngredientFamily
   String get slug;
   @override
   @JsonKey(ignore: true)
-  _$$_HelloFreshModelIngredientFamilyCopyWith<
-          _$_HelloFreshModelIngredientFamily>
+  _$$HelloFreshModelIngredientFamilyImplCopyWith<
+          _$HelloFreshModelIngredientFamilyImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

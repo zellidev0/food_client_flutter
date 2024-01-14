@@ -67,8 +67,8 @@ class HelloFreshModelRecipeApiIngredientsResponse
   }) = _HelloFreshModelRecipeApiIngredientsResponse;
 
   factory HelloFreshModelRecipeApiIngredientsResponse.fromJson(
-      final Map<String, dynamic> json,
-      ) =>
+    final Map<String, dynamic> json,
+  ) =>
       _$HelloFreshModelRecipeApiIngredientsResponseFromJson(json);
 }
 
@@ -140,7 +140,7 @@ class HelloFreshModelRecipeTag with _$HelloFreshModelRecipeTag {
     required final String slug,
     required final String type,
     required final String name,
-    required final Map<String, int> numberOfRecipesByCountry,
+    required final Option<Map<String, int>> numberOfRecipesByCountry,
   }) = _HelloFreshModelRecipeTag;
 
   factory HelloFreshModelRecipeTag.fromJson(
@@ -156,7 +156,7 @@ class HelloFreshModelCuisine with _$HelloFreshModelCuisine {
     required final String slug,
     required final String type,
     required final String name,
-    required final int usage,
+    required final Option<int> usage,
     required final Option<String> iconPath,
   }) = _HelloFreshModelCuisine;
 

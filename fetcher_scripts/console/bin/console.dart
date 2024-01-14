@@ -1,48 +1,80 @@
 // ignore_for_file: avoid_print, always_specify_types, unreachable_from_main
 
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:commons_graphql/commons_graphql.dart';
-import 'package:console/hello_fresh_fetcher.dart';
-import 'package:console/hello_fresh_ingredients_combiner.dart';
-import 'package:console/hello_fresh_model.dart';
+import 'package:console/hasura/hasure_graphql_service.dart';
+import 'package:console/hello_fresh/hello_fresh_fetcher.dart';
+import 'package:console/hello_fresh/hello_fresh_ingredients_combiner.dart';
+import 'package:console/hello_fresh/hello_fresh_model.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:graphql/client.dart';
 
 void main() async {
-  // await fetchAllFromHasura();
+  const bearerToken =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDc4NTY4NDcsImlhdCI6MTcwNTIyNzEwNCwiaXNzIjoic2VuZiIsImp0aSI6IjdlMTExYjQ4LTMwNzUtNDA3MC1hYzBiLWMxMzNjZDNhMjQ1MSJ9.xOALeUgVp5e9bVWtyUgAEHpfBLYfTgtxaugs0a704BQ';
 
   final QueryResult<Object?> result = await writeAllSortingsToHasura(
     input: await HelloFreshIngredientsFamilyCombiner.createGraphQlInput(),
   );
   print(result);
-
-  // final HelloFreshModelRecipeApiRecipeResponse response =
-  //     (await fetchAllFromHelloFresh(take: 0, skip: 0)).fold(
-  //   (final Exception exception) => throw exception,
-  //   (final HelloFreshModelRecipeApiRecipeResponse response) => response,
-  // );
-  //
-  // print('Total: ${response.total}');
-  // for (int i = 0; i <= response.total + 300; i += 200) {
-  //   print('Fetching 200 and skipping $i');
-  //   final Either<Exception, HelloFreshModelRecipeApiRecipeResponse> result =
-  //       await fetchAllFromHelloFresh(take: 200, skip: i);
-  //   await result.fold(
-  //     (final Exception error) async => print('Error: $error'),
-  //     (final HelloFreshModelRecipeApiRecipeResponse response) async {
-  //       final QueryResult<Object?> hasuraResult =
-  //           await writeAllToHasura(response);
-  //       print('Success: $hasuraResult');
-  //     },
-  //   );
-  //   await Future<void>.delayed(const Duration(milliseconds: 1500));
-  // }
-
-  // String input =
-  //     await File('./assets/json/example_hf_recipe.json').readAsString();
 }
+
+Future<void> fetchAllFromHelloFreshAndWriteToHasura({
+  required final String bearerToken,
+  required final String countryCode,
+}) async {
+  final HelloFreshModelRecipeApiRecipeResponse response =
+      (await fetchAllFromHelloFresh(
+    take: 0,
+    skip: 0,
+    bearerToken: bearerToken,
+    countryCode: countryCode,
+  ))
+          .fold(
+    (final Exception exception) => throw exception,
+    (final HelloFreshModelRecipeApiRecipeResponse response) => response,
+  );
+
+  for (int i = 0; i <= response.total + 300; i += 200) {
+    print('Fetching 200 and skipping $i');
+    final Either<Exception, HelloFreshModelRecipeApiRecipeResponse> result =
+        await fetchAllFromHelloFresh(
+      take: 200,
+      skip: i,
+      bearerToken: bearerToken,
+      countryCode: countryCode,
+    );
+    await result.fold(
+      (final Exception error) async => print('Error: $error'),
+      (final HelloFreshModelRecipeApiRecipeResponse response) async {
+        final QueryResult<Object?> hasuraResult =
+            await writeAllToHasura(response);
+        print('Success: $hasuraResult');
+      },
+    );
+    await Future<void>.delayed(const Duration(milliseconds: 1500));
+  }
+}
+
+Future<Either<Exception, HelloFreshModelRecipeApiRecipeResponse>>
+    fetchAllFromHelloFresh({
+  required final String bearerToken,
+  required final String countryCode,
+  required final int take,
+  required final int skip,
+}) async =>
+        await HelloFreshFetcher(bearerToken: bearerToken)
+            .fetchRecipesWithEverything(
+                country: countryCode, take: take, skip: skip)
+            .run();
+
+Future<String> readFromFile({
+  required final String fileName,
+}) async =>
+    await File('./assets/json/$fileName').readAsString();
 
 Future<QueryResult<Object?>> writeAllSortingsToHasura({
   required final List<Input$ingredients_sortings_insert_input> input,
@@ -92,7 +124,7 @@ Future<QueryResult<Object?>> writeAllToHasura(
   final List<Input$tags_insert_input> tags = response.items
       .flatMap((final HelloFreshModelRecipe recipe) => recipe.tags)
       .map(
-        (final tag) => Input$tags_insert_input(
+        (final HelloFreshModelRecipeTag tag) => Input$tags_insert_input(
           id: tag.id,
           name: tag.name,
           numberOfRecipesByCountry: jsonEncode(tag.numberOfRecipesByCountry),
@@ -105,7 +137,7 @@ Future<QueryResult<Object?>> writeAllToHasura(
   final List<Input$cuisines_insert_input> cuisines = response.items
       .flatMap((final HelloFreshModelRecipe recipe) => recipe.cuisines)
       .map(
-        (final cuisine) => Input$cuisines_insert_input(
+        (final HelloFreshModelCuisine cuisine) => Input$cuisines_insert_input(
           iconPath: cuisine.iconPath.toNullable(),
           id: cuisine.id,
           name: cuisine.name,
@@ -138,8 +170,9 @@ Future<QueryResult<Object?>> writeAllToHasura(
 
   final List<Input$bridge_recipes_tags_insert_input> recipeTags = response.items
       .flatMap(
-        (final HelloFreshModelRecipe recipe) =>
-            recipe.tags.map((final tag) => Tuple2(recipe.id, tag.id)),
+        (final HelloFreshModelRecipe recipe) => recipe.tags.map(
+          (final HelloFreshModelRecipeTag tag) => Tuple2(recipe.id, tag.id),
+        ),
       )
       .map(
         (final Tuple2<String, String> recipeIdAndTagId) =>
@@ -153,11 +186,13 @@ Future<QueryResult<Object?>> writeAllToHasura(
   final List<Input$bridge_recipes_cuisines_insert_input> recipeCuisines =
       response.items
           .flatMap(
-            (final HelloFreshModelRecipe recipe) => recipe.cuisines
-                .map((final cuisine) => Tuple2(recipe.id, cuisine.id)),
+            (final HelloFreshModelRecipe recipe) => recipe.cuisines.map(
+              (final HelloFreshModelCuisine cuisine) =>
+                  Tuple2(recipe.id, cuisine.id),
+            ),
           )
           .map(
-            (final recipeIdAndTagId) =>
+            (final Tuple2<String, String> recipeIdAndTagId) =>
                 Input$bridge_recipes_cuisines_insert_input(
               $_recipe_id: recipeIdAndTagId.first,
               $_cuisine_id: recipeIdAndTagId.second,
@@ -192,80 +227,4 @@ Future<QueryResult<Object?>> writeAllToHasura(
     recipesCuisines: recipeCuisines,
     recipesIngredients: recipeIngredients,
   );
-}
-
-Future<Either<Exception, HelloFreshModelRecipeApiRecipeResponse>>
-    fetchAllFromHelloFresh({
-  required final int take,
-  required final int skip,
-}) async =>
-        await HelloFreshFetcher()
-            .fetchRecipes(country: 'AT', take: take, skip: skip)
-            .run();
-
-class GraphQlBackendService {
-  final GraphQLClient _client;
-
-  GraphQlBackendService()
-      : _client = GraphQLClient(
-          defaultPolicies: DefaultPolicies(
-            query: Policies(
-              fetch: FetchPolicy.networkOnly,
-            ),
-          ),
-          link: HttpLink(
-            'https://super-chigger-54.hasura.app/v1/graphql',
-            defaultHeaders: <String, String>{
-              'x-hasura-admin-secret':
-                  '479mMb5g4g5zESHV2Xp2xGEixaD0X7YdeOFMFdRcz0ADeRrRrW0nc1mQbb1haeE5',
-            },
-          ),
-          cache: GraphQLCache(),
-        );
-
-  Future<QueryResult<Object?>> createRecipe({
-    required final List<Input$ingredient_family_insert_input> families,
-    required final List<Input$ingredients_insert_input> ingredients,
-    required final List<Input$tags_insert_input> tags,
-    required final List<Input$cuisines_insert_input> cuisines,
-    required final List<Input$recipes_insert_input> recipes,
-    required final List<Input$bridge_recipes_tags_insert_input> recipesTags,
-    required final List<Input$bridge_recipes_ingredients_insert_input>
-        recipesIngredients,
-    required final List<Input$bridge_recipes_cuisines_insert_input>
-        recipesCuisines,
-  }) async {
-    final Variables$Mutation$CreateRecipes variables =
-        Variables$Mutation$CreateRecipes(
-      families: families,
-      ingredients: ingredients,
-      tags: tags,
-      cuisines: cuisines,
-      recipes: recipes,
-      recipes_tags: recipesTags,
-      recipes_ingredients: recipesIngredients,
-      recipes_cuisines: recipesCuisines,
-    );
-
-    final MutationOptions options = MutationOptions(
-      document: documentNodeMutationCreateRecipes,
-      variables: variables.toJson(),
-    );
-    return await _client.mutate(options);
-  }
-
-  Future<QueryResult<Object?>> createSortings({
-    required final List<Input$ingredients_sortings_insert_input> sortings,
-  }) async {
-    final Variables$Mutation$AddIngredientsSorting variables =
-        Variables$Mutation$AddIngredientsSorting(
-      input: sortings,
-    );
-
-    final MutationOptions options = MutationOptions(
-      document: documentNodeMutationAddIngredientsSorting,
-      variables: variables.toJson(),
-    );
-    return await _client.mutate(options);
-  }
 }

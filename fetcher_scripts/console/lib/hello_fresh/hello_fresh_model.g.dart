@@ -6,10 +6,10 @@ part of 'hello_fresh_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_HelloFreshModelRecipeApiRecipeResponse
-    _$$_HelloFreshModelRecipeApiRecipeResponseFromJson(
+_$HelloFreshModelRecipeApiRecipeResponseImpl
+    _$$HelloFreshModelRecipeApiRecipeResponseImplFromJson(
             Map<String, dynamic> json) =>
-        _$_HelloFreshModelRecipeApiRecipeResponse(
+        _$HelloFreshModelRecipeApiRecipeResponseImpl(
           total: json['total'] as int,
           take: json['take'] as int,
           count: json['count'] as int,
@@ -20,8 +20,8 @@ _$_HelloFreshModelRecipeApiRecipeResponse
               .toList(),
         );
 
-Map<String, dynamic> _$$_HelloFreshModelRecipeApiRecipeResponseToJson(
-        _$_HelloFreshModelRecipeApiRecipeResponse instance) =>
+Map<String, dynamic> _$$HelloFreshModelRecipeApiRecipeResponseImplToJson(
+        _$HelloFreshModelRecipeApiRecipeResponseImpl instance) =>
     <String, dynamic>{
       'total': instance.total,
       'take': instance.take,
@@ -30,10 +30,10 @@ Map<String, dynamic> _$$_HelloFreshModelRecipeApiRecipeResponseToJson(
       'items': instance.items,
     };
 
-_$_HelloFreshModelRecipeApiTagResponse
-    _$$_HelloFreshModelRecipeApiTagResponseFromJson(
+_$HelloFreshModelRecipeApiTagResponseImpl
+    _$$HelloFreshModelRecipeApiTagResponseImplFromJson(
             Map<String, dynamic> json) =>
-        _$_HelloFreshModelRecipeApiTagResponse(
+        _$HelloFreshModelRecipeApiTagResponseImpl(
           total: json['total'] as int,
           take: json['take'] as int,
           count: json['count'] as int,
@@ -44,8 +44,8 @@ _$_HelloFreshModelRecipeApiTagResponse
               .toList(),
         );
 
-Map<String, dynamic> _$$_HelloFreshModelRecipeApiTagResponseToJson(
-        _$_HelloFreshModelRecipeApiTagResponse instance) =>
+Map<String, dynamic> _$$HelloFreshModelRecipeApiTagResponseImplToJson(
+        _$HelloFreshModelRecipeApiTagResponseImpl instance) =>
     <String, dynamic>{
       'total': instance.total,
       'take': instance.take,
@@ -54,10 +54,10 @@ Map<String, dynamic> _$$_HelloFreshModelRecipeApiTagResponseToJson(
       'items': instance.items,
     };
 
-_$_HelloFreshModelRecipeApiCuisineResponse
-    _$$_HelloFreshModelRecipeApiCuisineResponseFromJson(
+_$HelloFreshModelRecipeApiCuisineResponseImpl
+    _$$HelloFreshModelRecipeApiCuisineResponseImplFromJson(
             Map<String, dynamic> json) =>
-        _$_HelloFreshModelRecipeApiCuisineResponse(
+        _$HelloFreshModelRecipeApiCuisineResponseImpl(
           total: json['total'] as int,
           take: json['take'] as int,
           count: json['count'] as int,
@@ -68,8 +68,8 @@ _$_HelloFreshModelRecipeApiCuisineResponse
               .toList(),
         );
 
-Map<String, dynamic> _$$_HelloFreshModelRecipeApiCuisineResponseToJson(
-        _$_HelloFreshModelRecipeApiCuisineResponse instance) =>
+Map<String, dynamic> _$$HelloFreshModelRecipeApiCuisineResponseImplToJson(
+        _$HelloFreshModelRecipeApiCuisineResponseImpl instance) =>
     <String, dynamic>{
       'total': instance.total,
       'take': instance.take,
@@ -78,10 +78,10 @@ Map<String, dynamic> _$$_HelloFreshModelRecipeApiCuisineResponseToJson(
       'items': instance.items,
     };
 
-_$_HelloFreshModelRecipeApiIngredientsResponse
-    _$$_HelloFreshModelRecipeApiIngredientsResponseFromJson(
+_$HelloFreshModelRecipeApiIngredientsResponseImpl
+    _$$HelloFreshModelRecipeApiIngredientsResponseImplFromJson(
             Map<String, dynamic> json) =>
-        _$_HelloFreshModelRecipeApiIngredientsResponse(
+        _$HelloFreshModelRecipeApiIngredientsResponseImpl(
           total: json['total'] as int,
           take: json['take'] as int,
           count: json['count'] as int,
@@ -92,8 +92,8 @@ _$_HelloFreshModelRecipeApiIngredientsResponse
               .toList(),
         );
 
-Map<String, dynamic> _$$_HelloFreshModelRecipeApiIngredientsResponseToJson(
-        _$_HelloFreshModelRecipeApiIngredientsResponse instance) =>
+Map<String, dynamic> _$$HelloFreshModelRecipeApiIngredientsResponseImplToJson(
+        _$HelloFreshModelRecipeApiIngredientsResponseImpl instance) =>
     <String, dynamic>{
       'total': instance.total,
       'take': instance.take,
@@ -102,20 +102,21 @@ Map<String, dynamic> _$$_HelloFreshModelRecipeApiIngredientsResponseToJson(
       'items': instance.items,
     };
 
-_$_HelloFreshModelTagsApiResponse _$$_HelloFreshModelTagsApiResponseFromJson(
-        Map<String, dynamic> json) =>
-    _$_HelloFreshModelTagsApiResponse(
-      total: json['total'] as int,
-      take: json['take'] as int,
-      count: json['count'] as int,
-      skip: json['skip'] as int,
-      items: (json['items'] as List<dynamic>)
-          .map((e) => HelloFreshModelTag.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
+_$HelloFreshModelTagsApiResponseImpl
+    _$$HelloFreshModelTagsApiResponseImplFromJson(Map<String, dynamic> json) =>
+        _$HelloFreshModelTagsApiResponseImpl(
+          total: json['total'] as int,
+          take: json['take'] as int,
+          count: json['count'] as int,
+          skip: json['skip'] as int,
+          items: (json['items'] as List<dynamic>)
+              .map(
+                  (e) => HelloFreshModelTag.fromJson(e as Map<String, dynamic>))
+              .toList(),
+        );
 
-Map<String, dynamic> _$$_HelloFreshModelTagsApiResponseToJson(
-        _$_HelloFreshModelTagsApiResponse instance) =>
+Map<String, dynamic> _$$HelloFreshModelTagsApiResponseImplToJson(
+        _$HelloFreshModelTagsApiResponseImpl instance) =>
     <String, dynamic>{
       'total': instance.total,
       'take': instance.take,
@@ -124,9 +125,9 @@ Map<String, dynamic> _$$_HelloFreshModelTagsApiResponseToJson(
       'items': instance.items,
     };
 
-_$_HelloFreshModelRecipe _$$_HelloFreshModelRecipeFromJson(
+_$HelloFreshModelRecipeImpl _$$HelloFreshModelRecipeImplFromJson(
         Map<String, dynamic> json) =>
-    _$_HelloFreshModelRecipe(
+    _$HelloFreshModelRecipeImpl(
       id: json['id'] as String,
       name: json['name'] as String,
       slug: json['slug'] as String,
@@ -158,8 +159,8 @@ _$_HelloFreshModelRecipe _$$_HelloFreshModelRecipeFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$$_HelloFreshModelRecipeToJson(
-        _$_HelloFreshModelRecipe instance) =>
+Map<String, dynamic> _$$HelloFreshModelRecipeImplToJson(
+        _$HelloFreshModelRecipeImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
@@ -187,9 +188,9 @@ Map<String, dynamic> _$$_HelloFreshModelRecipeToJson(
       'cuisines': instance.cuisines,
     };
 
-_$_HelloFreshModelIngredient _$$_HelloFreshModelIngredientFromJson(
+_$HelloFreshModelIngredientImpl _$$HelloFreshModelIngredientImplFromJson(
         Map<String, dynamic> json) =>
-    _$_HelloFreshModelIngredient(
+    _$HelloFreshModelIngredientImpl(
       id: json['id'] as String,
       country: json['country'] as String,
       slug: json['slug'] as String,
@@ -202,8 +203,8 @@ _$_HelloFreshModelIngredient _$$_HelloFreshModelIngredientFromJson(
               json['family'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_HelloFreshModelIngredientToJson(
-        _$_HelloFreshModelIngredient instance) =>
+Map<String, dynamic> _$$HelloFreshModelIngredientImplToJson(
+        _$HelloFreshModelIngredientImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'country': instance.country,
@@ -216,54 +217,58 @@ Map<String, dynamic> _$$_HelloFreshModelIngredientToJson(
       'family': instance.family,
     };
 
-_$_HelloFreshModelRecipeTag _$$_HelloFreshModelRecipeTagFromJson(
+_$HelloFreshModelRecipeTagImpl _$$HelloFreshModelRecipeTagImplFromJson(
         Map<String, dynamic> json) =>
-    _$_HelloFreshModelRecipeTag(
+    _$HelloFreshModelRecipeTagImpl(
       id: json['id'] as String,
       slug: json['slug'] as String,
       type: json['type'] as String,
       name: json['name'] as String,
       numberOfRecipesByCountry:
-          Map<String, int>.from(json['numberOfRecipesByCountry'] as Map),
+          Option<Map<String, int>>.fromJson(json['numberOfRecipesByCountry']),
     );
 
-Map<String, dynamic> _$$_HelloFreshModelRecipeTagToJson(
-        _$_HelloFreshModelRecipeTag instance) =>
+Map<String, dynamic> _$$HelloFreshModelRecipeTagImplToJson(
+        _$HelloFreshModelRecipeTagImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'slug': instance.slug,
       'type': instance.type,
       'name': instance.name,
-      'numberOfRecipesByCountry': instance.numberOfRecipesByCountry,
+      'numberOfRecipesByCountry': instance.numberOfRecipesByCountry.toJson(
+        (value) => value,
+      ),
     };
 
-_$_HelloFreshModelCuisine _$$_HelloFreshModelCuisineFromJson(
+_$HelloFreshModelCuisineImpl _$$HelloFreshModelCuisineImplFromJson(
         Map<String, dynamic> json) =>
-    _$_HelloFreshModelCuisine(
+    _$HelloFreshModelCuisineImpl(
       id: json['id'] as String,
       slug: json['slug'] as String,
       type: json['type'] as String,
       name: json['name'] as String,
-      usage: json['usage'] as int,
+      usage: Option<int>.fromJson(json['usage']),
       iconPath: Option<String>.fromJson(json['iconPath']),
     );
 
-Map<String, dynamic> _$$_HelloFreshModelCuisineToJson(
-        _$_HelloFreshModelCuisine instance) =>
+Map<String, dynamic> _$$HelloFreshModelCuisineImplToJson(
+        _$HelloFreshModelCuisineImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'slug': instance.slug,
       'type': instance.type,
       'name': instance.name,
-      'usage': instance.usage,
+      'usage': instance.usage.toJson(
+        (value) => value,
+      ),
       'iconPath': instance.iconPath.toJson(
         (value) => value,
       ),
     };
 
-_$_HelloFreshModelYield _$$_HelloFreshModelYieldFromJson(
+_$HelloFreshModelYieldImpl _$$HelloFreshModelYieldImplFromJson(
         Map<String, dynamic> json) =>
-    _$_HelloFreshModelYield(
+    _$HelloFreshModelYieldImpl(
       yields: Option<int>.fromJson(json['yields']),
       ingredients: (json['ingredients'] as List<dynamic>)
           .map((e) => HelloFreshModelYieldIngredient.fromJson(
@@ -271,8 +276,8 @@ _$_HelloFreshModelYield _$$_HelloFreshModelYieldFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$$_HelloFreshModelYieldToJson(
-        _$_HelloFreshModelYield instance) =>
+Map<String, dynamic> _$$HelloFreshModelYieldImplToJson(
+        _$HelloFreshModelYieldImpl instance) =>
     <String, dynamic>{
       'yields': instance.yields.toJson(
         (value) => value,
@@ -280,9 +285,9 @@ Map<String, dynamic> _$$_HelloFreshModelYieldToJson(
       'ingredients': instance.ingredients,
     };
 
-_$_HelloFreshModelStep _$$_HelloFreshModelStepFromJson(
+_$HelloFreshModelStepImpl _$$HelloFreshModelStepImplFromJson(
         Map<String, dynamic> json) =>
-    _$_HelloFreshModelStep(
+    _$HelloFreshModelStepImpl(
       index: json['index'] as int,
       instructionsMarkdown: json['instructionsMarkdown'] as String,
       ingredients: (json['ingredients'] as List<dynamic>)
@@ -294,8 +299,8 @@ _$_HelloFreshModelStep _$$_HelloFreshModelStepFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$$_HelloFreshModelStepToJson(
-        _$_HelloFreshModelStep instance) =>
+Map<String, dynamic> _$$HelloFreshModelStepImplToJson(
+        _$HelloFreshModelStepImpl instance) =>
     <String, dynamic>{
       'index': instance.index,
       'instructionsMarkdown': instance.instructionsMarkdown,
@@ -303,30 +308,30 @@ Map<String, dynamic> _$$_HelloFreshModelStepToJson(
       'images': instance.images,
     };
 
-_$_HelloFreshModelStepImage _$$_HelloFreshModelStepImageFromJson(
+_$HelloFreshModelStepImageImpl _$$HelloFreshModelStepImageImplFromJson(
         Map<String, dynamic> json) =>
-    _$_HelloFreshModelStepImage(
+    _$HelloFreshModelStepImageImpl(
       path: json['path'] as String,
       caption: json['caption'] as String,
     );
 
-Map<String, dynamic> _$$_HelloFreshModelStepImageToJson(
-        _$_HelloFreshModelStepImage instance) =>
+Map<String, dynamic> _$$HelloFreshModelStepImageImplToJson(
+        _$HelloFreshModelStepImageImpl instance) =>
     <String, dynamic>{
       'path': instance.path,
       'caption': instance.caption,
     };
 
-_$_HelloFreshModelYieldIngredient _$$_HelloFreshModelYieldIngredientFromJson(
-        Map<String, dynamic> json) =>
-    _$_HelloFreshModelYieldIngredient(
-      id: json['id'] as String,
-      amount: Option<num>.fromJson(json['amount']),
-      unit: Option<String>.fromJson(json['unit']),
-    );
+_$HelloFreshModelYieldIngredientImpl
+    _$$HelloFreshModelYieldIngredientImplFromJson(Map<String, dynamic> json) =>
+        _$HelloFreshModelYieldIngredientImpl(
+          id: json['id'] as String,
+          amount: Option<num>.fromJson(json['amount']),
+          unit: Option<String>.fromJson(json['unit']),
+        );
 
-Map<String, dynamic> _$$_HelloFreshModelYieldIngredientToJson(
-        _$_HelloFreshModelYieldIngredient instance) =>
+Map<String, dynamic> _$$HelloFreshModelYieldIngredientImplToJson(
+        _$HelloFreshModelYieldIngredientImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'amount': instance.amount.toJson(
@@ -337,9 +342,9 @@ Map<String, dynamic> _$$_HelloFreshModelYieldIngredientToJson(
       ),
     };
 
-_$_HelloFreshModelTag _$$_HelloFreshModelTagFromJson(
+_$HelloFreshModelTagImpl _$$HelloFreshModelTagImplFromJson(
         Map<String, dynamic> json) =>
-    _$_HelloFreshModelTag(
+    _$HelloFreshModelTagImpl(
       id: json['id'] as String,
       name: json['name'] as String,
       type: json['type'] as String,
@@ -347,8 +352,8 @@ _$_HelloFreshModelTag _$$_HelloFreshModelTagFromJson(
           Map<String, int>.from(json['numberOfRecipesByCountry'] as Map),
     );
 
-Map<String, dynamic> _$$_HelloFreshModelTagToJson(
-        _$_HelloFreshModelTag instance) =>
+Map<String, dynamic> _$$HelloFreshModelTagImplToJson(
+        _$HelloFreshModelTagImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
@@ -356,18 +361,18 @@ Map<String, dynamic> _$$_HelloFreshModelTagToJson(
       'numberOfRecipesByCountry': instance.numberOfRecipesByCountry,
     };
 
-_$_HelloFreshModelIngredientFamily _$$_HelloFreshModelIngredientFamilyFromJson(
-        Map<String, dynamic> json) =>
-    _$_HelloFreshModelIngredientFamily(
-      id: json['id'] as String,
-      type: json['type'] as String,
-      iconPath: Option<String>.fromJson(json['iconPath']),
-      name: json['name'] as String,
-      slug: json['slug'] as String,
-    );
+_$HelloFreshModelIngredientFamilyImpl
+    _$$HelloFreshModelIngredientFamilyImplFromJson(Map<String, dynamic> json) =>
+        _$HelloFreshModelIngredientFamilyImpl(
+          id: json['id'] as String,
+          type: json['type'] as String,
+          iconPath: Option<String>.fromJson(json['iconPath']),
+          name: json['name'] as String,
+          slug: json['slug'] as String,
+        );
 
-Map<String, dynamic> _$$_HelloFreshModelIngredientFamilyToJson(
-        _$_HelloFreshModelIngredientFamily instance) =>
+Map<String, dynamic> _$$HelloFreshModelIngredientFamilyImplToJson(
+        _$HelloFreshModelIngredientFamilyImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'type': instance.type,

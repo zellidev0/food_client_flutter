@@ -1,6 +1,6 @@
 import 'dart:core';
 
-import 'package:console/hello_fresh_model.dart';
+import 'package:console/hello_fresh/hello_fresh_model.dart';
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:retrofit/retrofit.dart';
@@ -48,17 +48,26 @@ abstract class RestClient {
 }
 
 class HelloFreshFetcher {
-  static const String apiBaseUrl1 = 'https://www.hellofresh.de/gw/api';
-  static const Map<String, String> headers = <String, String>{
-    'Authorization':
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzE4MzgwNDIsImlhdCI6MTY2OTIwODI5OSwiaXNzIjoic2VuZiIsImp0aSI6ImM0ZDRmNDU5LTIyMzEtNGIzMi1iOTkxLTkzZjA3NWQ1ZmE2ZSJ9.XZh7xVvZ6HRyNkUYcXIyiD14msT9WR2dZ57kCcMa0ZE',
-  };
-  final RestClient client = RestClient(
-    Dio(BaseOptions(headers: headers)),
-    baseUrl: apiBaseUrl1,
-  );
+  final String apiBaseUrl;
+  final String bearerToken;
+  final RestClient client;
 
-  TaskEither<Exception, HelloFreshModelRecipeApiRecipeResponse> fetchRecipes({
+  HelloFreshFetcher({
+    this.apiBaseUrl = 'https://www.hellofresh.de/gw/api',
+    required this.bearerToken,
+  }) : client = RestClient(
+          Dio(
+            BaseOptions(
+              headers: <String, String>{
+                'Authorization': 'Bearer $bearerToken',
+              },
+            ),
+          ),
+          baseUrl: apiBaseUrl,
+        );
+
+  TaskEither<Exception,
+      HelloFreshModelRecipeApiRecipeResponse> fetchRecipesWithEverything({
     required final String country,
     required final int take,
     required final int skip,
