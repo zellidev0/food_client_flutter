@@ -123,7 +123,8 @@ Future<QueryResult<Object?>> writeAllToHasura(
         (final HelloFreshModelRecipeTag tag) => Input$tags_insert_input(
           id: tag.id,
           name: tag.name,
-          numberOfRecipesByCountry: jsonEncode(tag.numberOfRecipesByCountry),
+          numberOfRecipesByCountry:
+              jsonEncode(tag.numberOfRecipesByCountry.toNullable()),
           slug: tag.slug,
           type: tag.type,
         ),
