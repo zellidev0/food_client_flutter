@@ -5,8 +5,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:food_client/commons/error.dart';
 import 'package:food_client/commons/view_state.dart';
 import 'package:food_client/services/logging_service/logging_service.dart';
-import 'package:food_client/services/navigation_service/navigation_service.dart'
-    hide navigationService;
 import 'package:food_client/ui/single_recipe/services/single_recipe_navigation_service.dart';
 import 'package:food_client/ui/single_recipe/services/single_recipe_persistence_service.dart';
 import 'package:food_client/ui/single_recipe/services/single_recipe_web_client_service.dart';

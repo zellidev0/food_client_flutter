@@ -189,7 +189,7 @@ void main() {
               .tr(namedArgs: <String, String>{'unitTitle': unit.title}),
           actions: anyNamed('actions'),
         ),
-      ).thenAnswer((_) => Future.value());
+      ).thenAnswer((_) => Future<void>.value());
       when(persistenceService.deleteUnit(unitId: unit.id))
           .thenAnswer((_) => TaskEither<Exception, void>.left(error));
       controller.showDeleteUnitDialog(unit: unit);
