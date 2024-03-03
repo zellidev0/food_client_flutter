@@ -1,9 +1,8 @@
+import 'package:bloc/bloc.dart';
 import 'package:food_client/commons/error.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:logger/logger.dart' as nice_logger;
 import 'package:logging/logging.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-part 'logging_service.g.dart';
 
 abstract class LoggingService {
   void info({required final String message});
@@ -11,20 +10,15 @@ abstract class LoggingService {
   void error(final MyError error);
 }
 
-@riverpod
-LoggingService loggingService(
-  final LoggingServiceRef ref, {
-  required final String loggerName,
-}) =>
-    LoggingServiceImplementation(loggerName: loggerName);
-
-class LoggingServiceImplementation implements LoggingService {
+class LoggingServiceImplementation extends Cubit<Unit>
+    implements LoggingService {
   final Logger _logger;
   final nice_logger.Logger niceLogger = nice_logger.Logger();
 
   LoggingServiceImplementation({
     required final String loggerName,
-  }) : _logger = Logger(loggerName) {
+  })  : _logger = Logger(loggerName),
+        super(unit) {
     Logger.root.level = Level.ALL;
     Logger.root.onRecord.listen(
       (LogRecord record) => switch (record.level) {

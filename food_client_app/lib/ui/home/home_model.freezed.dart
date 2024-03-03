@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomeModel {
-  PagingController<int, HomeModelRecipe> get pagingController =>
+  PagingController<int, HomeModelRecipe> get paginationController =>
       throw _privateConstructorUsedError;
   ViewState<List<HomeModelFilter>> get availableFilters =>
       throw _privateConstructorUsedError;
@@ -33,7 +33,7 @@ abstract class $HomeModelCopyWith<$Res> {
       _$HomeModelCopyWithImpl<$Res, HomeModel>;
   @useResult
   $Res call(
-      {PagingController<int, HomeModelRecipe> pagingController,
+      {PagingController<int, HomeModelRecipe> paginationController,
       ViewState<List<HomeModelFilter>> availableFilters,
       List<Locale> recipeLocales});
 
@@ -53,14 +53,14 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? pagingController = null,
+    Object? paginationController = null,
     Object? availableFilters = null,
     Object? recipeLocales = null,
   }) {
     return _then(_value.copyWith(
-      pagingController: null == pagingController
-          ? _value.pagingController
-          : pagingController // ignore: cast_nullable_to_non_nullable
+      paginationController: null == paginationController
+          ? _value.paginationController
+          : paginationController // ignore: cast_nullable_to_non_nullable
               as PagingController<int, HomeModelRecipe>,
       availableFilters: null == availableFilters
           ? _value.availableFilters
@@ -91,7 +91,7 @@ abstract class _$$_HomeModelCopyWith<$Res> implements $HomeModelCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {PagingController<int, HomeModelRecipe> pagingController,
+      {PagingController<int, HomeModelRecipe> paginationController,
       ViewState<List<HomeModelFilter>> availableFilters,
       List<Locale> recipeLocales});
 
@@ -110,14 +110,14 @@ class __$$_HomeModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? pagingController = null,
+    Object? paginationController = null,
     Object? availableFilters = null,
     Object? recipeLocales = null,
   }) {
     return _then(_$_HomeModel(
-      pagingController: null == pagingController
-          ? _value.pagingController
-          : pagingController // ignore: cast_nullable_to_non_nullable
+      paginationController: null == paginationController
+          ? _value.paginationController
+          : paginationController // ignore: cast_nullable_to_non_nullable
               as PagingController<int, HomeModelRecipe>,
       availableFilters: null == availableFilters
           ? _value.availableFilters
@@ -135,13 +135,13 @@ class __$$_HomeModelCopyWithImpl<$Res>
 
 class _$_HomeModel implements _HomeModel {
   const _$_HomeModel(
-      {required this.pagingController,
+      {required this.paginationController,
       required this.availableFilters,
       required final List<Locale> recipeLocales})
       : _recipeLocales = recipeLocales;
 
   @override
-  final PagingController<int, HomeModelRecipe> pagingController;
+  final PagingController<int, HomeModelRecipe> paginationController;
   @override
   final ViewState<List<HomeModelFilter>> availableFilters;
   final List<Locale> _recipeLocales;
@@ -154,7 +154,7 @@ class _$_HomeModel implements _HomeModel {
 
   @override
   String toString() {
-    return 'HomeModel(pagingController: $pagingController, availableFilters: $availableFilters, recipeLocales: $recipeLocales)';
+    return 'HomeModel(paginationController: $paginationController, availableFilters: $availableFilters, recipeLocales: $recipeLocales)';
   }
 
   @override
@@ -162,8 +162,8 @@ class _$_HomeModel implements _HomeModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_HomeModel &&
-            (identical(other.pagingController, pagingController) ||
-                other.pagingController == pagingController) &&
+            (identical(other.paginationController, paginationController) ||
+                other.paginationController == paginationController) &&
             (identical(other.availableFilters, availableFilters) ||
                 other.availableFilters == availableFilters) &&
             const DeepCollectionEquality()
@@ -171,7 +171,7 @@ class _$_HomeModel implements _HomeModel {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, pagingController,
+  int get hashCode => Object.hash(runtimeType, paginationController,
       availableFilters, const DeepCollectionEquality().hash(_recipeLocales));
 
   @JsonKey(ignore: true)
@@ -183,12 +183,13 @@ class _$_HomeModel implements _HomeModel {
 
 abstract class _HomeModel implements HomeModel {
   const factory _HomeModel(
-      {required final PagingController<int, HomeModelRecipe> pagingController,
+      {required final PagingController<int, HomeModelRecipe>
+          paginationController,
       required final ViewState<List<HomeModelFilter>> availableFilters,
       required final List<Locale> recipeLocales}) = _$_HomeModel;
 
   @override
-  PagingController<int, HomeModelRecipe> get pagingController;
+  PagingController<int, HomeModelRecipe> get paginationController;
   @override
   ViewState<List<HomeModelFilter>> get availableFilters;
   @override

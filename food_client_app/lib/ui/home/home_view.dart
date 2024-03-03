@@ -11,11 +11,13 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 final PageStorageBucket pageStorageBucket = PageStorageBucket();
 
-class HomeView extends MvcView<HomeController, HomeModel> {
+class HomeView extends StatelessWidget {
+  final HomeController controller;
+  final HomeModel model;
   const HomeView({
-    required super.controller,
-    required super.model,
     super.key,
+    required this.controller,
+    required this.model,
   });
 
   @override
@@ -158,7 +160,7 @@ class HomeView extends MvcView<HomeController, HomeModel> {
         child: PagedListView<int, HomeModelRecipe>(
           padding: EdgeInsets.zero,
           key: const PageStorageKey<String>('recipes'),
-          pagingController: model.pagingController,
+          pagingController: model.paginationController,
           builderDelegate: PagedChildBuilderDelegate<HomeModelRecipe>(
             itemBuilder: (
               final BuildContext context,

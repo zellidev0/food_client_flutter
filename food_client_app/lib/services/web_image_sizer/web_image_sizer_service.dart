@@ -1,12 +1,10 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_client/ui/cart/services/cart_web_image_sizer_service.dart';
 import 'package:food_client/ui/home/services/home_web_image_sizer_service.dart';
 
 import 'package:food_client/ui/ingredients_sorting/services/ingredients_sorting_web_image_sizer_service.dart';
 import 'package:food_client/ui/single_recipe/services/single_recipe_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-part 'web_image_sizer_service.g.dart';
 
 abstract class WebImageSizerServiceAggregator
     implements
@@ -15,13 +13,17 @@ abstract class WebImageSizerServiceAggregator
         CartWebImageSizerService,
         IngredientsSortingWebImageSizerService {}
 
-@riverpod
-WebImageSizerServiceAggregator webImageSizerService(
-  final WebImageSizerServiceRef ref,
-) =>
-    WebImageSizerService();
+abstract class WebImageSizerService extends Cubit<Unit>
+    implements WebImageSizerServiceAggregator {
+  WebImageSizerService(super.state);
+}
 
-class WebImageSizerService implements WebImageSizerServiceAggregator {
+class WebImageSizerServiceImplementation extends WebImageSizerService {
+  WebImageSizerServiceImplementation._() : super(unit);
+
+  factory WebImageSizerServiceImplementation.instance() =>
+      WebImageSizerServiceImplementation._();
+
   @override
   Either<Exception, Uri> getUrl({
     required final Uri filePath,

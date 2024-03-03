@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:bloc/bloc.dart';
 import 'package:food_client/commons/error.dart';
 import 'package:food_client/commons/utils.dart';
 import 'package:food_client/services/persistence_service/persistence_service_model.dart';
@@ -11,9 +12,6 @@ import 'package:food_client/ui/single_recipe/services/single_recipe_persistence_
 
 import 'package:fpdart/fpdart.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-part 'persistence_service.g.dart';
 
 const String ingredientsBoxName = 'ingredientsBox';
 const String sortingUnitsBoxName = 'sortingUnitsBox';
@@ -29,21 +27,29 @@ abstract class PersistenceServiceAggregator
         HistoryPersistenceService,
         HomePersistenceService {}
 
-@riverpod
-class PersistenceService extends _$PersistenceService
+abstract class PersistenceService extends Cubit<PersistenceServiceModel>
     implements PersistenceServiceAggregator {
+  PersistenceService(super.initialState);
+}
+
+class HivePersistenceService extends PersistenceService {
   late Box<PersistenceServiceModelShoppingListRecipe> shoppingListBox;
   late Box<PersistenceServiceModelSortingUnit> sortingUnits;
   late Box<PersistenceServiceModelActiveSorting> activeShoppingListSortingBox;
   late Box<PersistenceServiceModelHistoryRecipe> historyRecipeBox;
+  static final HivePersistenceService _instance = HivePersistenceService._();
 
-  @override
-  PersistenceServiceModel build() {
+  HivePersistenceService._()
+      : super(
+          const PersistenceServiceModel(
+            recipes: <PersistenceServiceModelShoppingListRecipe>[],
+          ),
+        ) {
     shoppingListBox = Hive.box<PersistenceServiceModelShoppingListRecipe>(
       ingredientsBoxName,
     );
     shoppingListBox.listenable().addListener(() {
-      state = state.copyWith(recipes: shoppingListBox.values.toList());
+      emit(state.copyWith(recipes: shoppingListBox.values.toList()));
     });
     sortingUnits = Hive.box<PersistenceServiceModelSortingUnit>(
       sortingUnitsBoxName,
@@ -55,10 +61,9 @@ class PersistenceService extends _$PersistenceService
     historyRecipeBox = Hive.box<PersistenceServiceModelHistoryRecipe>(
       historyRecipeBoxName,
     );
-    return const PersistenceServiceModel(
-      recipes: <PersistenceServiceModelShoppingListRecipe>[],
-    );
   }
+
+  factory HivePersistenceService.instance() => _instance;
 
   @override
   List<CartPersistenceServiceModelRecipe> getShoppingCardRecipes() =>

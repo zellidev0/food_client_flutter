@@ -11,12 +11,13 @@ import 'package:food_client/mvc.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_model.dart';
 import 'package:fpdart/fpdart.dart';
 
-class SingleRecipeView
-    extends MvcView<SingleRecipeController, SingleRecipeModel> {
+class SingleRecipeView extends StatelessWidget {
+  final SingleRecipeController controller;
+  final SingleRecipeModel model;
   const SingleRecipeView({
-    required super.controller,
-    required super.model,
     super.key,
+    required this.controller,
+    required this.model,
   });
 
   @override

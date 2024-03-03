@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart' hide AsyncData;
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_client/services/app_settings_service/app_settings_service.dart';
 import 'package:food_client/services/logging_service/logging_service.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
@@ -8,23 +8,27 @@ import 'package:food_client/services/persistence_service/persistence_service.dar
 import 'package:food_client/services/web_client/web_client_service.dart';
 import 'package:food_client/services/web_image_sizer/web_image_sizer_service.dart';
 import 'package:food_client/ui/account/account_controller.dart';
+import 'package:food_client/ui/account/account_model.dart';
 import 'package:food_client/ui/account/account_view.dart';
 import 'package:food_client/ui/cart/cart_controller_implementation.dart';
+import 'package:food_client/ui/cart/cart_model.dart';
 import 'package:food_client/ui/cart/cart_view.dart';
 import 'package:food_client/ui/history/history_controller.dart';
+import 'package:food_client/ui/history/history_model.dart';
 import 'package:food_client/ui/history/history_view.dart';
 import 'package:food_client/ui/home/home_controller.dart';
+import 'package:food_client/ui/home/home_model.dart';
 import 'package:food_client/ui/home/home_view.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_controller.dart';
+import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_model.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_view.dart';
 import 'package:food_client/ui/main/main_controller.dart';
+import 'package:food_client/ui/main/main_model.dart';
 import 'package:food_client/ui/main/main_view.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_controller.dart';
+import 'package:food_client/ui/single_recipe/single_recipe_model.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_view.dart';
 import 'package:go_router/go_router.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart' hide AsyncData;
-
-part 'go_router.g.dart';
 
 const String dailyPulseDailyPulseIdPathParameter = 'dailyPulseId';
 
@@ -34,43 +38,48 @@ final GlobalKey<NavigatorState> rootNavigatorKey =
 final GlobalKey<NavigatorState> shellNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'shell');
 
-@riverpod
-GoRouter goRouter(final GoRouterRef ref) => GoRouter(
+GoRouter goRouter() => GoRouter(
       debugLogDiagnostics: kDebugMode,
       initialLocation: NavigationServiceUris.homeRouteUri.toString(),
       navigatorKey: rootNavigatorKey,
       routes: <RouteBase>[
         StatefulShellRoute.indexedStack(
-          builder: (_, __, Widget child) => Consumer(
-            builder: (_, WidgetRef ref, __) {
-              final MainControllerImplementationProvider provider =
-                  mainControllerImplementationProvider(
-                navigationService: ref.watch(navigationServiceProvider),
-              );
-              return Consumer(
-                builder: (_, WidgetRef ref, ___) => MainView(
-                  controller: ref.watch(provider.notifier),
-                  model: ref.watch(provider),
-                  child: child,
+          builder: (_, __, Widget child) =>
+              BlocProvider<MainControllerImplementation>(
+            create: (BuildContext context) => MainControllerImplementation(
+              navigationService: context.read<NavigationService>(),
+            ),
+            child: BlocBuilder<MainControllerImplementation, MainModel>(
+              builder: (BuildContext context, MainModel model) => MainView(
+                controller: BlocProvider.of<MainControllerImplementation>(
+                  context,
                 ),
-              );
-            },
+                model: model,
+                child: child,
+              ),
+            ),
           ),
           branches: <StatefulShellBranch>[
             StatefulShellBranch(
               routes: <RouteBase>[
                 GoRoute(
-                  builder: (_, GoRouterState state) => Consumer(
-                    builder: (_, WidgetRef ref, ___) {
-                      final AccountControllerImplementationProvider provider =
-                          accountControllerImplementationProvider(
-                        navigationService: ref.watch(navigationServiceProvider),
-                      );
-                      return AccountView(
-                        model: ref.watch(provider),
-                        controller: ref.watch(provider.notifier),
-                      );
-                    },
+                  builder: (_, GoRouterState state) =>
+                      BlocProvider<AccountControllerImplementation>(
+                    create: (BuildContext context) =>
+                        AccountControllerImplementation(
+                      navigationService: context.read<NavigationService>(),
+                    ),
+                    child: BlocBuilder<AccountControllerImplementation,
+                        AccountModel>(
+                      builder: (BuildContext context, AccountModel model) =>
+                          AccountView(
+                        model: model,
+                        controller:
+                            BlocProvider.of<AccountControllerImplementation>(
+                          context,
+                        ),
+                      ),
+                    ),
                   ),
                   path: NavigationServiceUris.accountRouteUri.toString(),
                 ),
@@ -79,32 +88,31 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
             StatefulShellBranch(
               routes: <RouteBase>[
                 GoRoute(
-                  builder: (_, GoRouterState state) => Consumer(
-                    builder: (_, WidgetRef ref, ___) {
-                      final CartControllerImplementationProvider provider =
-                          cartControllerImplementationProvider(
-                        navigationService: ref.watch(navigationServiceProvider),
-                        combinedIngredients: ref
-                            .watch(appSettingsServiceProvider)
-                            .combineIngredients,
-                        imageSizerService:
-                            ref.read(webImageSizerServiceProvider),
-                        persistenceService:
-                            ref.watch(persistenceServiceProvider.notifier),
-                        logger: ref.watch(
-                          loggingServiceProvider(
-                            loggerName: 'CartController',
-                          ),
+                  builder: (_, GoRouterState state) =>
+                      BlocProvider<CartControllerImplementation>(
+                    create: (BuildContext context) =>
+                        CartControllerImplementation(
+                      combinedIngredients: context
+                          .read<AppSettingsService>()
+                          .state
+                          .combineIngredients,
+                      imageSizerService: context.read<WebImageSizerService>(),
+                      navigationService: context.read<NavigationService>(),
+                      persistenceService: context.read<PersistenceService>(),
+                      logger: LoggingServiceImplementation(
+                        loggerName: 'CartController',
+                      ),
+                    ),
+                    child: BlocBuilder<CartControllerImplementation, CartModel>(
+                      builder: (BuildContext context, CartModel model) =>
+                          CartView(
+                        model: model,
+                        controller:
+                            BlocProvider.of<CartControllerImplementation>(
+                          context,
                         ),
-                      );
-                      ref.listen(persistenceServiceProvider, (_, __) {
-                        ref.invalidate(cartControllerImplementationProvider);
-                      });
-                      return CartView(
-                        model: ref.watch(provider),
-                        controller: ref.watch(provider.notifier),
-                      );
-                    },
+                      ),
+                    ),
                   ),
                   path: NavigationServiceUris.cartRouteUri.toString(),
                 ),
@@ -113,29 +121,33 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
             StatefulShellBranch(
               routes: <RouteBase>[
                 GoRoute(
-                  builder: (_, GoRouterState state) => Consumer(
-                    builder: (_, WidgetRef ref, ___) {
-                      final HomeControllerImplementationProvider provider =
-                          homeControllerImplementationProvider(
-                        recipeLocales:
-                            ref.watch(appSettingsServiceProvider).recipeLocales,
-                        globalNavigationService:
-                            ref.read(navigationServiceProvider),
-                        webClientService: ref.watch(webClientServiceProvider),
-                        webImageSizerService:
-                            ref.watch(webImageSizerServiceProvider),
-                        logger: ref.watch(
-                          loggingServiceProvider(loggerName: 'HomeController'),
+                  builder: (_, GoRouterState state) =>
+                      BlocProvider<HomeControllerImplementation>(
+                    create: (BuildContext context) =>
+                        HomeControllerImplementation(
+                      recipeLocales: context
+                          .read<AppSettingsService>()
+                          .state
+                          .recipeLocales,
+                      navigationService: context.read<NavigationService>(),
+                      webClientService: context.read<WebClientService>(),
+                      webImageSizerService:
+                          context.read<WebImageSizerService>(),
+                      persistenceService: context.read<PersistenceService>(),
+                      logger: LoggingServiceImplementation(
+                        loggerName: 'HomeController',
+                      ),
+                    ),
+                    child: BlocBuilder<HomeControllerImplementation, HomeModel>(
+                      builder: (BuildContext context1, HomeModel model) =>
+                          HomeView(
+                        model: model,
+                        controller:
+                            BlocProvider.of<HomeControllerImplementation>(
+                          context1,
                         ),
-                        persistenceService: ref.watch(
-                          persistenceServiceProvider.notifier,
-                        ),
-                      );
-                      return HomeView(
-                        model: ref.watch(provider),
-                        controller: ref.watch(provider.notifier),
-                      );
-                    },
+                      ),
+                    ),
                   ),
                   path: NavigationServiceUris.homeRouteUri.toString(),
                 ),
@@ -144,75 +156,82 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
           ],
         ),
         GoRoute(
-          builder: (_, GoRouterState state) => Consumer(
-            builder: (_, WidgetRef ref, ___) {
-              final IngredientsSortingControllerImplementationProvider
-                  provider = IngredientsSortingControllerImplementationProvider(
-                webClientService: ref.read(webClientServiceProvider),
-                webImageSizerService: ref.read(webImageSizerServiceProvider),
-                logger: ref.read(
-                  loggingServiceProvider(
-                    loggerName: 'IngredientsSortingController',
-                  ),
+          builder: (_, GoRouterState state) =>
+              BlocProvider<IngredientsSortingControllerImplementation>(
+            create: (BuildContext context) =>
+                IngredientsSortingControllerImplementation(
+              webClientService: context.read<WebClientService>(),
+              webImageSizerService: context.read<WebImageSizerService>(),
+              logger: LoggingServiceImplementation(
+                loggerName: 'IngredientsSortingController',
+              ),
+              navigationService: context.read<NavigationService>(),
+              persistenceService: context.read<PersistenceService>(),
+            ),
+            child: BlocBuilder<IngredientsSortingControllerImplementation,
+                IngredientsSortingModel>(
+              builder: (BuildContext context, IngredientsSortingModel model) =>
+                  IngredientsSortingView(
+                model: model,
+                controller:
+                    BlocProvider.of<IngredientsSortingControllerImplementation>(
+                  context,
                 ),
-                navigationService: ref.read(navigationServiceProvider),
-                persistenceService:
-                    ref.watch(persistenceServiceProvider.notifier),
-              );
-              return IngredientsSortingView(
-                model: ref.watch(provider),
-                controller: ref.watch(provider.notifier),
-              );
-            },
+              ),
+            ),
           ),
           parentNavigatorKey: rootNavigatorKey,
           path: NavigationServiceUris.ingredientsSortingRouteUri.toString(),
         ),
         GoRoute(
-          builder: (_, GoRouterState state) => Consumer(
-            builder: (_, WidgetRef ref, ___) {
-              final HistoryControllerImplementationProvider provider =
-                  historyControllerImplementationProvider(
-                logger: ref.watch(
-                  loggingServiceProvider(loggerName: 'SingleRecipe'),
-                ),
-                navigationService: ref.watch(navigationServiceProvider),
-                persistenceService:
-                    ref.watch(persistenceServiceProvider.notifier),
-              );
-              return HistoryView(
-                model: ref.watch(provider),
-                controller: ref.watch(provider.notifier),
-              );
-            },
+          builder: (_, GoRouterState state) =>
+              BlocProvider<HistoryControllerImplementation>(
+            create: (BuildContext context) => HistoryControllerImplementation(
+              logger: LoggingServiceImplementation(
+                loggerName: 'HistoryController',
+              ),
+              navigationService: context.read<NavigationService>(),
+              persistenceService: context.read<PersistenceService>(),
+            ),
+            child: BlocBuilder<HistoryControllerImplementation, HistoryModel>(
+              builder: (BuildContext context, HistoryModel model) =>
+                  HistoryView(
+                model: model,
+                controller:
+                    BlocProvider.of<HistoryControllerImplementation>(context),
+              ),
+            ),
           ),
           parentNavigatorKey: rootNavigatorKey,
           path: NavigationServiceUris.historyRouteUri.toString(),
         ),
         GoRoute(
-          builder: (_, GoRouterState state) => Consumer(
-            builder: (_, WidgetRef ref, ___) {
-              final String recipeId = state.pathParameters[
+          builder: (_, GoRouterState state) =>
+              BlocProvider<SingleRecipeControllerImplementation>(
+            create: (BuildContext context) =>
+                SingleRecipeControllerImplementation(
+              recipeId: state.pathParameters[
                       NavigationServiceUris.singleRecipeIdKey] ??
-                  ''; // TODO(julian): handle error
-              final SingleRecipeControllerImplementationProvider provider =
-                  singleRecipeControllerImplementationProvider(
-                recipeId: recipeId,
-                navigationService: ref.read(navigationServiceProvider),
-                webClientService: ref.read(webClientServiceProvider),
-                webImageSizerService: ref.read(webImageSizerServiceProvider),
-                persistenceService: ref.watch(
-                  persistenceServiceProvider.notifier,
+                  '',
+              navigationService: context.read<NavigationService>(),
+              webClientService: context.read<WebClientService>(),
+              webImageSizerService: context.read<WebImageSizerService>(),
+              persistenceService: context.read<PersistenceService>(),
+              logger: LoggingServiceImplementation(
+                loggerName: 'SingleRecipe',
+              ),
+            ),
+            child: BlocBuilder<SingleRecipeControllerImplementation,
+                SingleRecipeModel>(
+              builder: (BuildContext context, SingleRecipeModel model) =>
+                  SingleRecipeView(
+                model: model,
+                controller:
+                    BlocProvider.of<SingleRecipeControllerImplementation>(
+                  context,
                 ),
-                logger: ref.watch(
-                  loggingServiceProvider(loggerName: 'SingleRecipe'),
-                ),
-              );
-              return SingleRecipeView(
-                model: ref.watch(provider),
-                controller: ref.watch(provider.notifier),
-              );
-            },
+              ),
+            ),
           ),
           parentNavigatorKey: rootNavigatorKey,
           path: NavigationServiceUris.singleRecipe(
@@ -221,7 +240,3 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
         ),
       ],
     );
-
-abstract class GoRouterNavigationService {
-  void openUri({required final Uri uri});
-}

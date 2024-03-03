@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/material.dart';
-import 'package:food_client/services/navigation_service/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_client/ui/account/account_navigation_service.dart';
 import 'package:food_client/ui/cart/services/cart_navigation_service.dart';
 import 'package:food_client/ui/history/services/history_navigation_service.dart';
@@ -14,10 +14,8 @@ import 'package:food_client/ui/single_recipe/services/single_recipe_navigation_s
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:go_router/go_router.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'navigation_service.freezed.dart';
-part 'navigation_service.g.dart';
 
 abstract class NavigationServiceAggregator
     implements
@@ -28,6 +26,11 @@ abstract class NavigationServiceAggregator
         AccountNavigationService,
         IngredientsSortingNavigationService,
         HistoryNavigationService {}
+
+abstract class NavigationService extends Cubit<Unit>
+    implements NavigationServiceAggregator {
+  NavigationService(super.initialState);
+}
 
 class NavigationServiceUris {
   NavigationServiceUris._();
@@ -50,16 +53,21 @@ class NavigationServiceDialogAction with _$NavigationServiceDialogAction {
   }) = _NavigationServiceDialogAction;
 }
 
-@riverpod
-NavigationServiceAggregator navigationService(final NavigationServiceRef ref) =>
-    GoRouterNavigationService(goRouter: ref.watch(goRouterProvider));
-
-class GoRouterNavigationService implements NavigationServiceAggregator {
+class GoRouterNavigationService extends NavigationService {
   final GoRouter _goRouter;
 
-  GoRouterNavigationService({
+  GoRouterNavigationService._(
+    super.initialState, {
     required final GoRouter goRouter,
   }) : _goRouter = goRouter;
+
+  factory GoRouterNavigationService.instance({
+    required final GoRouter goRouter,
+  }) =>
+      GoRouterNavigationService._(
+        unit,
+        goRouter: goRouter,
+      );
 
   @override
   void closeDialog<T>({final T? data}) => _goRouter.pop(data);

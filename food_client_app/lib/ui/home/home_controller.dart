@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:bloc/bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:food_client/commons/error.dart';
@@ -14,44 +15,43 @@ import 'package:food_client/ui/home/services/home_web_client_service.dart';
 import 'package:food_client/ui/home/services/home_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-part 'home_controller.g.dart';
 
 const int widthPixels = 600;
 const int recipesPerPage = 16;
 
-@riverpod
-class HomeControllerImplementation extends _$HomeControllerImplementation
+class HomeControllerImplementation extends Cubit<HomeModel>
     implements HomeController {
-  @override
-  HomeModel build({
-    required final HomeWebClientService webClientService,
-    required final HomePersistenceService persistenceService,
-    required final HomeWebImageSizerService webImageSizerService,
-    required final HomeNavigationService globalNavigationService,
-    required final LoggingService logger,
-    required final List<Locale> recipeLocales,
-  }) {
-    final PagingController<int, HomeModelRecipe> paginationController =
-        PagingController<int, HomeModelRecipe>(
-      firstPageKey: 0,
-    );
+  final HomeWebClientService webClientService;
+  final HomePersistenceService persistenceService;
+  final HomeWebImageSizerService webImageSizerService;
+  final HomeNavigationService navigationService;
+  final LoggingService logger;
+  final List<Locale> recipeLocales;
+
+  HomeControllerImplementation({
+    required this.webClientService,
+    required this.persistenceService,
+    required this.webImageSizerService,
+    required this.navigationService,
+    required this.logger,
+    required this.recipeLocales,
+  }) : super(
+          HomeModel(
+            paginationController:
+                PagingController<int, HomeModelRecipe>(firstPageKey: 0),
+            availableFilters: const ViewState<List<HomeModelFilter>>.loading(),
+            recipeLocales: recipeLocales,
+          ),
+        ) {
     scheduleMicrotask(
       () => unawaited(
         Task.sequenceList(<Task<void>>[
           _fetchFiltersAndSetState(),
           _listenToPaginationController(
-            paginationController: paginationController,
+            paginationController: state.paginationController,
           ),
         ]).run(),
       ),
-    );
-
-    return HomeModel(
-      availableFilters: const ViewState<List<HomeModelFilter>>.loading(),
-      pagingController: paginationController,
-      recipeLocales: recipeLocales,
     );
   }
 
@@ -75,7 +75,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
                 originalError: error,
               ),
             );
-            globalNavigationService.showSnackBar(
+            navigationService.showSnackBar(
               message:
                   LocaleKeys.ui_home_view_error_states_fetching_recipes.tr(),
             );
@@ -98,11 +98,11 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
             orElse: () {
               logger.error(MyError(message: 'Error fetching with filters'));
 
-              // globalNavigationService.showSnackBar(
-              //   message: LocaleKeys
-              //       .ui_home_view_error_states_fetching_recipes_for_filter
-              //       .tr(),
-              // );
+              navigationService.showSnackBar(
+                message: LocaleKeys
+                    .ui_home_view_error_states_fetching_recipes_for_filter
+                    .tr(),
+              );
               return null;
             },
           );
@@ -135,20 +135,22 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
                 ),
               );
 
-              globalNavigationService.showSnackBar(
+              navigationService.showSnackBar(
                 message: LocaleKeys
                     .ui_home_view_error_states_fetching_recipes_for_filter
                     .tr(),
               );
             },
             (final List<HomeModelRecipe> recipes) {
-              state = state.copyWith(
-                availableFilters: state.availableFilters.mapData(
-                  (List<HomeModelFilter> filters) => replaceWIthId(
-                    data: filters,
-                    filterId: filterId,
-                    isSelected: isSelected,
-                  ).toList(),
+              emit(
+                state.copyWith(
+                  availableFilters: state.availableFilters.mapData(
+                    (List<HomeModelFilter> filters) => replaceWIthId(
+                      data: filters,
+                      filterId: filterId,
+                      isSelected: isSelected,
+                    ).toList(),
+                  ),
                 ),
               );
               _setRecipesInPageController(
@@ -162,7 +164,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
         orElse: () {
           logger.error(MyError(message: 'Error setting filters'));
 
-          globalNavigationService.showSnackBar(
+          navigationService.showSnackBar(
             message: LocaleKeys
                 .ui_home_view_error_states_fetching_recipes_for_filter
                 .tr(),
@@ -191,7 +193,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
             )
             .andThen(
               () => Task<void>.of(
-                globalNavigationService.navigateToNamed(
+                navigationService.navigateToNamed(
                   uri: NavigationServiceUris.singleRecipe(recipeId: recipeId),
                 ),
               ),
@@ -200,7 +202,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
       );
 
   @override
-  void goToHistoryView() => globalNavigationService.navigateToNamed(
+  void goToHistoryView() => navigationService.navigateToNamed(
         uri: NavigationServiceUris.historyRouteUri,
       );
 
@@ -220,11 +222,11 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
   Future<void> openDialog({
     required final Widget child,
   }) async =>
-      await globalNavigationService.showModalBottomSheet(child: child);
+      await navigationService.showModalBottomSheet(child: child);
 
   @override
   Future<void> retryLastRecipeFetching() async {
-    state.pagingController.retryLastFailedRequest();
+    state.paginationController.retryLastFailedRequest();
   }
 
   void _setRecipesInPageController({
@@ -234,18 +236,19 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
   }) {
     final bool isLastPage = newRecipes.length < recipesPerPage;
     if (replaceRecipes) {
-      state.pagingController.value = PagingState<int, HomeModelRecipe>(
-        itemList: newRecipes,
-        error: null,
-        nextPageKey: 0,
-      );
-      state.pagingController.refresh();
+      state.paginationController
+        ..value = PagingState<int, HomeModelRecipe>(
+          itemList: newRecipes,
+          error: null,
+          nextPageKey: 0,
+        )
+        ..refresh();
     } else {
       if (isLastPage) {
-        state.pagingController.appendLastPage(newRecipes);
+        state.paginationController.appendLastPage(newRecipes);
       } else {
         final int nextPageKey = pageKey + newRecipes.length;
-        state.pagingController.appendPage(newRecipes, nextPageKey);
+        state.paginationController.appendPage(newRecipes, nextPageKey);
       }
     }
   }
@@ -302,16 +305,16 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
             ),
           );
 
-          globalNavigationService.showSnackBar(
+          navigationService.showSnackBar(
             message: LocaleKeys.ui_home_view_error_states_fetching_filters.tr(),
           );
-          state = state.copyWith(availableFilters: error.toViewStateError());
+          emit(state.copyWith(availableFilters: error.toViewStateError()));
         },
         (final HomeModel newState) {
           logger.info(
             message: 'Fetched filters: ${newState.availableFilters}',
           );
-          state = newState;
+          emit(newState);
         },
       );
 

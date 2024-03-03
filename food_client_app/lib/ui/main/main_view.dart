@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:food_client/mvc.dart';
 import 'package:food_client/ui/main/main_model.dart';
 
-class MainView extends MvcView<MainController, MainModel> {
+class MainView extends StatelessWidget {
   final Widget _child;
+  final MainController controller;
+  final MainModel model;
 
   const MainView({
     required final Widget child,
-    required super.controller,
-    required super.model,
+    required this.controller,
+    required this.model,
     super.key,
   }) : _child = child;
 

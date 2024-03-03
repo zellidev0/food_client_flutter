@@ -1,0 +1,68 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "commons_graphql",
+            "cwd": "commons_graphql",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "commons_graphql (profile mode)",
+            "cwd": "commons_graphql",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "commons_graphql (release mode)",
+            "cwd": "commons_graphql",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "food_client_app",
+            "cwd": "food_client_app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "food_client_app (profile mode)",
+            "cwd": "food_client_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "food_client_app (release mode)",
+            "cwd": "food_client_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "console",
+            "cwd": "fetcher_scripts/console",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "console (profile mode)",
+            "cwd": "fetcher_scripts/console",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "console (release mode)",
+            "cwd": "fetcher_scripts/console",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
