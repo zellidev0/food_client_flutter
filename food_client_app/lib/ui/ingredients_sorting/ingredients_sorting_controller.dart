@@ -39,7 +39,11 @@ class IngredientsSortingControllerImplementation
     required this.webImageSizerService,
     required this.persistenceService,
     required this.logger,
-  }) : super(const IngredientsSortingModel(units: [])) {
+  }) : super(
+          const IngredientsSortingModel(
+            units: <IngredientsSortingModelUnit>[],
+          ),
+        ) {
     emit(
       IngredientsSortingModel(
         units: _fetchPersistenceServiceUnits(),

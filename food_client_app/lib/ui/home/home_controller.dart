@@ -265,7 +265,7 @@ class HomeControllerImplementation extends Cubit<HomeModel>
             take: recipesPerPage,
             tagIds: some(tagIds),
             cuisineId: cuisineIds
-                .firstOption, // TODO(julian): handle this when the backend suports more than one cusine
+                .firstOption, // TODO(julian): handle this when the backend supports more than one cuisine
           )
           .map(
             (final HomeWebClientModelRecipeResponse recipeResponse) =>
