@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_client/mvc.dart';
 import 'package:food_client/ui/account/account_model.dart';
 
 class AccountView extends StatelessWidget {
@@ -39,6 +38,6 @@ class AccountView extends StatelessWidget {
       );
 }
 
-abstract class AccountController implements MvcController {
+abstract class AccountController {
   void goToIngredientsSorting();
 }

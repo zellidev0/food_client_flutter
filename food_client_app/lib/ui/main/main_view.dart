@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_client/mvc.dart';
 import 'package:food_client/ui/main/main_model.dart';
 
 class MainView extends StatelessWidget {
@@ -47,7 +46,7 @@ class MainView extends StatelessWidget {
       );
 }
 
-abstract class MainController implements MvcController {
+abstract class MainController {
   void updateSelectedBottomTabIndex({required final int index});
   bool goBack();
 }

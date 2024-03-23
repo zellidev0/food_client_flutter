@@ -4,17 +4,19 @@ import 'package:food_client/commons/empty_view_content.dart';
 import 'package:food_client/commons/view_state.dart';
 import 'package:food_client/commons/widgets.dart';
 import 'package:food_client/generated/locale_keys.g.dart';
-import 'package:food_client/mvc.dart';
+
 import 'package:food_client/my_scaffold.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_model.dart';
 import 'package:food_client/ui/ingredients_sorting/widgets/ingredients_sorting_card_item.dart';
 import 'package:fpdart/fpdart.dart';
 
-class IngredientsSortingView
-    extends MvcView<IngredientsSortingController, IngredientsSortingModel> {
+class IngredientsSortingView extends StatelessWidget {
+  final IngredientsSortingController controller;
+  final IngredientsSortingModel model;
+
   const IngredientsSortingView({
-    required super.controller,
-    required super.model,
+    required this.controller,
+    required this.model,
     super.key,
   });
 
@@ -118,7 +120,7 @@ class IngredientsSortingView
       );
 }
 
-abstract class IngredientsSortingController implements MvcController {
+abstract class IngredientsSortingController {
   void goBack();
   void createSortingUnit({required final String name});
   void showDeleteUnitDialog({required final IngredientsSortingModelUnit unit});

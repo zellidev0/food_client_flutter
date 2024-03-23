@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:food_client/mvc.dart';
 import 'package:food_client/ui/cart/cart_model.dart';
 
-abstract class CartController extends MvcController {
+abstract class CartController {
   void tickOff({
     required final String ingredientId,
     required final List<String> recipeIds,

@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:food_client/commons/empty_view_content.dart';
 import 'package:food_client/generated/locale_keys.g.dart';
-import 'package:food_client/mvc.dart';
 import 'package:food_client/my_scaffold.dart';
 import 'package:food_client/ui/cart/cart_controller.dart';
 import 'package:food_client/ui/cart/cart_model.dart';
@@ -12,10 +11,13 @@ import 'package:food_client/ui/cart/widgets/cart_view_sorting_card.dart';
 import 'package:food_client/ui/cart/widgets/cart_view_star_icon.dart';
 import 'package:food_client/ui/cart/widgets/cart_view_tab_bar.dart';
 
-class CartView extends MvcView<CartController, CartModel> {
+class CartView extends StatelessWidget {
+  final CartController controller;
+  final CartModel model;
+
   const CartView({
-    required super.controller,
-    required super.model,
+    required this.controller,
+    required this.model,
     super.key,
   });
 

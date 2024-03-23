@@ -4,7 +4,6 @@ import 'package:food_client/commons/empty_view_content.dart';
 import 'package:food_client/commons/view_state.dart';
 import 'package:food_client/commons/widgets.dart';
 import 'package:food_client/generated/locale_keys.g.dart';
-import 'package:food_client/mvc.dart';
 import 'package:food_client/ui/home/home_model.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -413,7 +412,7 @@ Widget buildDialog({
       ),
     );
 
-abstract class HomeController implements MvcController {
+abstract class HomeController {
   void retryLastRecipeFetching();
   void setFiltersSelected({
     required final String filterId,
