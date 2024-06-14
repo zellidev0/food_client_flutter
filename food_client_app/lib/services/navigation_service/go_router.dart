@@ -13,7 +13,7 @@ import 'package:food_client/ui/cart/cart_controller_implementation.dart';
 import 'package:food_client/ui/cart/cart_view.dart';
 import 'package:food_client/ui/history/history_controller.dart';
 import 'package:food_client/ui/history/history_view.dart';
-import 'package:food_client/ui/home/home_controller.dart';
+import 'package:food_client/ui/home/home_controller_implementation.dart';
 import 'package:food_client/ui/home/home_view.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_controller.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_view.dart';

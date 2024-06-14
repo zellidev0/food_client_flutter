@@ -52,6 +52,12 @@ class ViewState<T> with _$ViewState<T> {
           ),
         ),
       );
+
+  T? toNullable<R>() => when(
+        data: (final T data) => data,
+        error: (final Object error) => null,
+        loading: () => null,
+      );
 }
 
 extension ViewStateExtension<T extends Object> on T {
