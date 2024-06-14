@@ -51,7 +51,6 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
     return HomeModel(
       availableFilters: const ViewState<List<HomeModelFilter>>.loading(),
       pagingController: paginationController,
-      recipeLocales: recipeLocales,
     );
   }
 
@@ -97,12 +96,6 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
                 unawaited(fetchRecipesTask(data.data, pageKey).run()),
             orElse: () {
               logger.error(MyError(message: 'Error fetching with filters'));
-
-              // globalNavigationService.showSnackBar(
-              //   message: LocaleKeys
-              //       .ui_home_view_error_states_fetching_recipes_for_filter
-              //       .tr(),
-              // );
               return null;
             },
           );
@@ -257,7 +250,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
   }) =>
       webClientService
           .fetchRecipes(
-            recipeLocales: state.recipeLocales,
+            recipeLocales: recipeLocales,
             skip: paginationSkip,
             take: recipesPerPage,
             tagIds: some(tagIds),
@@ -275,12 +268,12 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
   Task<void> _fetchFiltersAndSetState() => webClientService
           .fetchTags(
             take: some(100),
-            recipeLocales: state.recipeLocales,
+            recipeLocales: recipeLocales,
           )
           .map2(
             webClientService.fetchCuisines(
               take: some(1000),
-              recipeLocales: state.recipeLocales,
+              recipeLocales: recipeLocales,
             ),
             (
               List<HomeWebClientModelTag> tags,

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:food_client/commons/view_state.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -11,7 +10,6 @@ class HomeModel with _$HomeModel {
   const factory HomeModel({
     required final PagingController<int, HomeModelRecipe> pagingController,
     required final ViewState<List<HomeModelFilter>> availableFilters,
-    required final List<Locale> recipeLocales,
   }) = _HomeModel;
 }
 
