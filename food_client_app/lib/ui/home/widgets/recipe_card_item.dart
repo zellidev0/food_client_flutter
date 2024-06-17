@@ -34,7 +34,7 @@ class _RecipeCardItemState extends State<RecipeCardItem> {
               widget.recipe.cuisineIds.contains(element.id),
         )
         .map<Widget>(
-          (final HomeModelFilterCuisine tag) => RecipeCardTag(
+          (final HomeModelFilterCuisine tag) => RecipeCardChip(
             displayedName: tag.displayedName,
           ),
         )

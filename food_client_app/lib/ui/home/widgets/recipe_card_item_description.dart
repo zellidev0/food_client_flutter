@@ -29,7 +29,7 @@ class _RecipeCardItemDescriptionState extends State<RecipeCardItemDescription> {
               widget.recipe.tagIds.contains(element.id),
         )
         .map(
-          (final HomeModelFilterTag tag) => RecipeCardTag(
+          (final HomeModelFilterTag tag) => RecipeCardChip(
             displayedName: tag.displayedName,
           ),
         )

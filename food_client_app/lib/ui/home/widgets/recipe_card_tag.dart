@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class RecipeCardTag extends StatelessWidget {
+class RecipeCardChip extends StatelessWidget {
   final String displayedName;
-  const RecipeCardTag({
+  const RecipeCardChip({
     super.key,
     required this.displayedName,
   });
