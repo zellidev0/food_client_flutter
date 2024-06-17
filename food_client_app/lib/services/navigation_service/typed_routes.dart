@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/services/app_settings_service/app_settings_service.dart';
@@ -15,7 +16,6 @@ import 'package:food_client/ui/history/history_view.dart';
 import 'package:food_client/ui/home/home_view.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_controller.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_view.dart';
-import 'package:food_client/ui/main/main_controller.dart';
 import 'package:food_client/ui/main/main_view.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_controller.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_view.dart';
@@ -29,33 +29,70 @@ final GlobalKey<NavigatorState> shellNavigatorKey =
 final GlobalKey<NavigatorState> rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
 
-@TypedShellRoute<ShellPageRoute>(
-  routes: <TypedRoute<RouteData>>[
-    TypedGoRoute<HomePageRoute>(path: NavigationServiceUris.homeRoute),
-    TypedGoRoute<CartPageRoute>(path: NavigationServiceUris.cartRoute),
-    TypedGoRoute<AccountPageRoute>(path: NavigationServiceUris.accountRoute),
+const String restorationScope = 'restorationScopeId';
+
+@TypedStatefulShellRoute<ShellRouteData>(
+  branches: <TypedStatefulShellBranch<StatefulShellBranchData>>[
+    TypedStatefulShellBranch<HomePageBranchData>(
+      routes: <TypedRoute<RouteData>>[
+        TypedGoRoute<HomePageRoute>(path: NavigationServiceUris.homeRoute),
+      ],
+    ),
+    TypedStatefulShellBranch<CartPageBranchData>(
+      routes: <TypedRoute<RouteData>>[
+        TypedGoRoute<CartPageRoute>(path: NavigationServiceUris.cartRoute),
+      ],
+    ),
+    TypedStatefulShellBranch<AccountPageBranchData>(
+      routes: <TypedRoute<RouteData>>[
+        TypedGoRoute<AccountPageRoute>(
+          path: NavigationServiceUris.accountRoute,
+        ),
+      ],
+    ),
   ],
 )
 @immutable
-class ShellPageRoute extends ShellRouteData {
+class ShellRouteData extends StatefulShellRouteData {
+  const ShellRouteData();
+
   static final GlobalKey<NavigatorState> $navigatorKey = shellNavigatorKey;
+
   @override
-  Widget builder(BuildContext context, GoRouterState state, Widget navigator) =>
-      Consumer(
-        builder: (_, WidgetRef ref, __) {
-          final MainControllerImplementationProvider provider =
-              mainControllerImplementationProvider(
-            navigationService: ref.watch(navigationServiceProvider),
-          );
-          return Consumer(
-            builder: (_, WidgetRef ref, ___) => MainView(
-              controller: ref.watch(provider.notifier),
-              model: ref.watch(provider),
-              child: navigator,
-            ),
-          );
-        },
+  Widget builder(
+    BuildContext context,
+    GoRouterState state,
+    Widget navigationShell,
+  ) =>
+      navigationShell;
+
+  static const String $restorationScopeId = restorationScope;
+
+  static Widget $navigatorContainerBuilder(
+    BuildContext context,
+    StatefulNavigationShell navigationShell,
+    List<Widget> children,
+  ) =>
+      MainView(
+        bottomNavigationDestinations: navigationShell.route.branches
+            .map((StatefulShellBranch branch) => branch.defaultRoute?.path)
+            .whereNotNull()
+            .toList(),
+        navigationShell: navigationShell,
+        children: children,
       );
+}
+
+class HomePageBranchData extends StatefulShellBranchData {
+  static const String $restorationScopeId = restorationScope;
+}
+
+class CartPageBranchData extends StatefulShellBranchData {
+  static const String $restorationScopeId = restorationScope;
+}
+
+class AccountPageBranchData extends StatefulShellBranchData {
+  static const String $restorationScopeId = restorationScope;
 }
 
 @immutable

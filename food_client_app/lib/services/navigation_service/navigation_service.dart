@@ -78,6 +78,8 @@ NavigationServiceAggregator navigationService(final NavigationServiceRef ref) =>
 class GoRouterNavigationService implements NavigationServiceAggregator {
   final GoRouter _goRouter;
 
+  StatefulNavigationShell? navigationShell;
+
   GoRouterNavigationService({
     required final GoRouter goRouter,
   }) : _goRouter = goRouter;
@@ -179,5 +181,21 @@ class GoRouterNavigationService implements NavigationServiceAggregator {
   @override
   void goTo(String location) {
     _goRouter.routerDelegate.navigatorKey.currentContext!.go(location);
+  }
+
+  @override
+  void navigateToBottomTab({
+    required int index,
+    required final bool initialLocation,
+  }) {
+    navigationShell?.goBranch(
+      index,
+      initialLocation: initialLocation,
+    );
+  }
+
+  @override
+  void setNavigationShell(StatefulNavigationShell navigationShell) {
+    this.navigationShell = navigationShell;
   }
 }

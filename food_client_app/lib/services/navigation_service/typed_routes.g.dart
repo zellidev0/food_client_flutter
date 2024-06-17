@@ -7,31 +7,48 @@ part of 'typed_routes.dart';
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
-      $shellPageRoute,
+      $shellRouteData,
       $singleRecipePageRoute,
     ];
 
-RouteBase get $shellPageRoute => ShellRouteData.$route(
-      navigatorKey: ShellPageRoute.$navigatorKey,
-      factory: $ShellPageRouteExtension._fromState,
-      routes: [
-        GoRouteData.$route(
-          path: '/home',
-          factory: $HomePageRouteExtension._fromState,
+RouteBase get $shellRouteData => StatefulShellRouteData.$route(
+      restorationScopeId: ShellRouteData.$restorationScopeId,
+      navigatorContainerBuilder: ShellRouteData.$navigatorContainerBuilder,
+      factory: $ShellRouteDataExtension._fromState,
+      branches: [
+        StatefulShellBranchData.$branch(
+          restorationScopeId: HomePageBranchData.$restorationScopeId,
+          routes: [
+            GoRouteData.$route(
+              path: '/home',
+              factory: $HomePageRouteExtension._fromState,
+            ),
+          ],
         ),
-        GoRouteData.$route(
-          path: '/cart',
-          factory: $CartPageRouteExtension._fromState,
+        StatefulShellBranchData.$branch(
+          restorationScopeId: CartPageBranchData.$restorationScopeId,
+          routes: [
+            GoRouteData.$route(
+              path: '/cart',
+              factory: $CartPageRouteExtension._fromState,
+            ),
+          ],
         ),
-        GoRouteData.$route(
-          path: '/account',
-          factory: $AccountPageRouteExtension._fromState,
+        StatefulShellBranchData.$branch(
+          restorationScopeId: AccountPageBranchData.$restorationScopeId,
+          routes: [
+            GoRouteData.$route(
+              path: '/account',
+              factory: $AccountPageRouteExtension._fromState,
+            ),
+          ],
         ),
       ],
     );
 
-extension $ShellPageRouteExtension on ShellPageRoute {
-  static ShellPageRoute _fromState(GoRouterState state) => ShellPageRoute();
+extension $ShellRouteDataExtension on ShellRouteData {
+  static ShellRouteData _fromState(GoRouterState state) =>
+      const ShellRouteData();
 }
 
 extension $HomePageRouteExtension on HomePageRoute {
