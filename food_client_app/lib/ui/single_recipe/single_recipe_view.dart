@@ -110,7 +110,7 @@ class SingleRecipeView
                             child: Text(
                               recipe.displayedAttributes.name,
                               style: Theme.of(context).textTheme.titleMedium,
-                              textScaleFactor: 1.3,
+                              textScaler: const TextScaler.linear(1.3),
                             ),
                           ),
                         ),
