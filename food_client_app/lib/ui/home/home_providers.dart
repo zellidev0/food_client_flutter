@@ -9,6 +9,7 @@ import 'package:food_client/services/web_image_sizer/web_image_sizer_service.dar
 import 'package:food_client/ui/home/home_controller.dart';
 import 'package:food_client/ui/home/home_controller_implementation.dart';
 import 'package:food_client/ui/home/home_model.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'home_providers.g.dart';
@@ -30,6 +31,15 @@ ViewState<List<HomeModelRecipe>> homeModelRecipes(
 ) =>
     ref.watch(
       _homeControllerProvider(ref).select((HomeModel value) => value.recipes),
+    );
+
+@riverpod
+PagingController<int, HomeModelRecipe> homeModelPagingController(
+  HomeModelPagingControllerRef ref,
+) =>
+    ref.watch(
+      _homeControllerProvider(ref)
+          .select((HomeModel value) => value.pagingController),
     );
 
 @riverpod

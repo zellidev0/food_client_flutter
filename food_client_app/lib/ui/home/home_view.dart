@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:food_client/mvc.dart';
-import 'package:food_client/ui/home/home_controller.dart';
-import 'package:food_client/ui/home/home_model.dart';
 import 'package:food_client/ui/home/widgets/recipe_header.dart';
 import 'package:food_client/ui/home/widgets/recipes_list.dart';
 
 final PageStorageBucket pageStorageBucket = PageStorageBucket();
 
-class HomeView extends MvcView<HomeController, HomeModel> {
+class HomeView extends StatelessWidget {
   const HomeView({
-    required super.controller,
-    required super.model,
     super.key,
   });
 
@@ -20,7 +15,7 @@ class HomeView extends MvcView<HomeController, HomeModel> {
           padding: const EdgeInsets.all(16).copyWith(bottom: 0),
           child: NestedScrollView(
             headerSliverBuilder: (final _, final __) => <Widget>[
-              SliverAppBar(
+              const SliverAppBar(
                 floating: true,
                 pinned: true,
                 backgroundColor: Colors.transparent,
@@ -28,14 +23,11 @@ class HomeView extends MvcView<HomeController, HomeModel> {
                 flexibleSpace: FlexibleSpaceBar(
                   titlePadding: EdgeInsets.zero,
                   centerTitle: true,
-                  title: RecipeHeader(controller: controller),
+                  title: RecipeHeader(),
                 ),
               ),
             ],
-            body: RecipesList(
-              controller: controller,
-              model: model,
-            ),
+            body: const RecipesList(),
           ),
         ),
       );

@@ -13,7 +13,6 @@ import 'package:food_client/ui/cart/cart_controller_implementation.dart';
 import 'package:food_client/ui/cart/cart_view.dart';
 import 'package:food_client/ui/history/history_controller.dart';
 import 'package:food_client/ui/history/history_view.dart';
-import 'package:food_client/ui/home/home_controller_implementation.dart';
 import 'package:food_client/ui/home/home_view.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_controller.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_view.dart';
@@ -113,30 +112,7 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
             StatefulShellBranch(
               routes: <RouteBase>[
                 GoRoute(
-                  builder: (_, GoRouterState state) => Consumer(
-                    builder: (_, WidgetRef ref, ___) {
-                      final HomeControllerImplementationProvider provider =
-                          homeControllerImplementationProvider(
-                        recipeLocales:
-                            ref.watch(appSettingsServiceProvider).recipeLocales,
-                        globalNavigationService:
-                            ref.read(navigationServiceProvider),
-                        webClientService: ref.watch(webClientServiceProvider),
-                        webImageSizerService:
-                            ref.watch(webImageSizerServiceProvider),
-                        logger: ref.watch(
-                          loggingServiceProvider(loggerName: 'HomeController'),
-                        ),
-                        persistenceService: ref.watch(
-                          persistenceServiceProvider.notifier,
-                        ),
-                      );
-                      return HomeView(
-                        model: ref.watch(provider),
-                        controller: ref.watch(provider.notifier),
-                      );
-                    },
-                  ),
+                  builder: (_, GoRouterState state) => const HomeView(),
                   path: NavigationServiceUris.homeRouteUri.toString(),
                 ),
               ],
@@ -192,9 +168,8 @@ GoRouter goRouter(final GoRouterRef ref) => GoRouter(
         GoRoute(
           builder: (_, GoRouterState state) => Consumer(
             builder: (_, WidgetRef ref, ___) {
-              final String recipeId = state.pathParameters[
-                      NavigationServiceUris.singleRecipeIdKey] ??
-                  ''; // TODO(julian): handle error
+              final String recipeId = state
+                  .pathParameters[NavigationServiceUris.singleRecipeIdKey]!;
               final SingleRecipeControllerImplementationProvider provider =
                   singleRecipeControllerImplementationProvider(
                 recipeId: recipeId,

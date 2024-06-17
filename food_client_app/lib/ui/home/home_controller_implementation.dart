@@ -255,8 +255,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
             skip: paginationSkip,
             take: recipesPerPage,
             tagIds: some(tagIds),
-            cuisineId: cuisineIds
-                .firstOption, // TODO(julian): handle this when the backend suports more than one cusine
+            cuisineId: cuisineIds.firstOption,
           )
           .map(
             (final HomeWebClientModelRecipeResponse recipeResponse) =>

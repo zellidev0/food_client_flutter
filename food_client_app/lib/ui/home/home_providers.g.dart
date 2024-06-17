@@ -40,6 +40,24 @@ final homeModelRecipesProvider =
 
 typedef HomeModelRecipesRef
     = AutoDisposeProviderRef<ViewState<List<HomeModelRecipe>>>;
+String _$homeModelPagingControllerHash() =>
+    r'026e712d3d76aa719f6b48a5a186c12d2f570d55';
+
+/// See also [homeModelPagingController].
+@ProviderFor(homeModelPagingController)
+final homeModelPagingControllerProvider =
+    AutoDisposeProvider<PagingController<int, HomeModelRecipe>>.internal(
+  homeModelPagingController,
+  name: r'homeModelPagingControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$homeModelPagingControllerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef HomeModelPagingControllerRef
+    = AutoDisposeProviderRef<PagingController<int, HomeModelRecipe>>;
 String _$homeControllerHash() => r'fd41d538990f8fcac804d172d1c1cbfb4a745335';
 
 /// See also [homeController].

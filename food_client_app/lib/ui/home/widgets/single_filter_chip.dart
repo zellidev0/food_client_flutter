@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/commons/view_state.dart';
 import 'package:food_client/generated/locale_keys.g.dart';
-import 'package:food_client/ui/home/home_controller.dart';
 import 'package:food_client/ui/home/home_model.dart';
 import 'package:food_client/ui/home/home_providers.dart';
 import 'package:food_client/ui/home/widgets/filter_dialog.dart';
@@ -12,11 +11,9 @@ class SingleFilterChip<T extends HomeModelFilter> extends ConsumerWidget {
   const SingleFilterChip({
     super.key,
     required this.label,
-    required this.controller,
   });
 
   final String label;
-  final HomeController controller;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) =>
@@ -38,12 +35,13 @@ class SingleFilterChip<T extends HomeModelFilter> extends ConsumerWidget {
                         ),
                 ),
                 selected: filters.isNotEmpty,
-                onSelected: (_) => controller.openDialog(
-                  child: FilterDialog(
-                    onTap: controller.setFiltersSelected,
-                    allFilters: value.data.whereType<T>().toList(),
-                  ),
-                ),
+                onSelected: (_) => ref.read(homeControllerProvider).openDialog(
+                      child: FilterDialog(
+                        onTap:
+                            ref.read(homeControllerProvider).setFiltersSelected,
+                        allFilters: value.data.whereType<T>().toList(),
+                      ),
+                    ),
               );
             },
             error: (_) => const SizedBox.shrink(),

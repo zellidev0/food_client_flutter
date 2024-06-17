@@ -1,46 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/commons/widgets.dart';
 import 'package:food_client/ui/home/home_model.dart';
+import 'package:food_client/ui/home/home_providers.dart';
 import 'package:food_client/ui/home/widgets/recipe_card_item_description.dart';
 import 'package:food_client/ui/home/widgets/recipe_card_tag.dart';
 
-class RecipeCardItem extends StatefulWidget {
+class RecipeCardItem extends ConsumerStatefulWidget {
   final HomeModelRecipe recipe;
-  final List<HomeModelFilter> availableFilters;
-  final List<HomeModelFilterCuisine> allCuisines;
   final VoidCallback onTap;
 
   const RecipeCardItem({
     super.key,
     required this.recipe,
-    required this.availableFilters,
-    required this.allCuisines,
     required this.onTap,
   });
 
   @override
-  State<RecipeCardItem> createState() => _RecipeCardItemState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _RecipeCardItemState();
 }
 
-class _RecipeCardItemState extends State<RecipeCardItem> {
-  late List<Widget> cuisines;
-
-  @override
-  void initState() {
-    super.initState();
-    cuisines = widget.allCuisines
-        .where(
-          (final HomeModelFilterCuisine element) =>
-              widget.recipe.cuisineIds.contains(element.id),
-        )
-        .map<Widget>(
-          (final HomeModelFilterCuisine tag) => RecipeCardChip(
-            displayedName: tag.displayedName,
-          ),
-        )
-        .toList();
-  }
-
+class _RecipeCardItemState extends ConsumerState<RecipeCardItem> {
   @override
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
@@ -66,7 +46,13 @@ class _RecipeCardItemState extends State<RecipeCardItem> {
                       ),
                       RecipeCardItemDescription(
                         recipe: widget.recipe,
-                        initialTags: widget.availableFilters
+                        initialTags: ref
+                            .watch(homeModelFiltersProvider)
+                            .map(
+                              data: (_) => _.data,
+                              error: (_) => <HomeModelFilter>[],
+                              loading: (_) => <HomeModelFilter>[],
+                            )
                             .whereType<HomeModelFilterTag>()
                             .toList(),
                       ),
@@ -80,7 +66,25 @@ class _RecipeCardItemState extends State<RecipeCardItem> {
               child: Padding(
                 padding: const EdgeInsets.all(22),
                 child: Wrap(
-                  children: cuisines,
+                  children: ref
+                      .watch(homeModelFiltersProvider)
+                      .map(
+                        data: (_) => _.data,
+                        error: (_) => <HomeModelFilter>[],
+                        loading: (_) => <HomeModelFilter>[],
+                      )
+                      .whereType<HomeModelFilterCuisine>()
+                      .toList()
+                      .where(
+                        (final HomeModelFilterCuisine element) =>
+                            widget.recipe.cuisineIds.contains(element.id),
+                      )
+                      .map<Widget>(
+                        (final HomeModelFilterCuisine tag) => RecipeCardChip(
+                          displayedName: tag.displayedName,
+                        ),
+                      )
+                      .toList(),
                 ),
               ),
             ),
