@@ -49,7 +49,8 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
     );
 
     return HomeModel(
-      availableFilters: const ViewState<List<HomeModelFilter>>.loading(),
+      filters: const ViewState<List<HomeModelFilter>>.loading(),
+      recipes: const ViewState<List<HomeModelRecipe>>.loading(),
       pagingController: paginationController,
     );
   }
@@ -91,7 +92,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
     return Task<void>(
       () async => paginationController.addPageRequestListener(
         (final int pageKey) {
-          state.availableFilters.maybeMap(
+          state.filters.maybeMap(
             data: (ViewStateData<List<HomeModelFilter>> data) =>
                 unawaited(fetchRecipesTask(data.data, pageKey).run()),
             orElse: () {
@@ -109,7 +110,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
     required final String filterId,
     required final bool isSelected,
   }) =>
-      state.availableFilters.maybeMap(
+      state.filters.maybeMap(
         data: (ViewStateData<List<HomeModelFilter>> data) => unawaited(
           _fetchRecipes(
             paginationSkip: 0,
@@ -136,7 +137,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
             },
             (final List<HomeModelRecipe> recipes) {
               state = state.copyWith(
-                availableFilters: state.availableFilters.mapData(
+                filters: state.filters.mapData(
                   (List<HomeModelFilter> filters) => replaceWIthId(
                     data: filters,
                     filterId: filterId,
@@ -280,7 +281,7 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
               List<HomeWebClientModelCuisine> cuisines,
             ) =>
                 state.copyWith(
-              availableFilters: <HomeModelFilter>[
+              filters: <HomeModelFilter>[
                 ...tags.map(_mapToTag),
                 ...cuisines.map(_mapToCuisine),
               ].toViewStateData(),
@@ -298,11 +299,11 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
           globalNavigationService.showSnackBar(
             message: LocaleKeys.ui_home_view_error_states_fetching_filters.tr(),
           );
-          state = state.copyWith(availableFilters: error.toViewStateError());
+          state = state.copyWith(filters: error.toViewStateError());
         },
         (final HomeModel newState) {
           logger.info(
-            message: 'Fetched filters: ${newState.availableFilters}',
+            message: 'Fetched filters: ${newState.filters}',
           );
           state = newState;
         },

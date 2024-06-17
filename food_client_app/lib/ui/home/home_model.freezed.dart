@@ -18,7 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$HomeModel {
   PagingController<int, HomeModelRecipe> get pagingController =>
       throw _privateConstructorUsedError;
-  ViewState<List<HomeModelFilter>> get availableFilters =>
+  ViewState<List<HomeModelRecipe>> get recipes =>
+      throw _privateConstructorUsedError;
+  ViewState<List<HomeModelFilter>> get filters =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -33,9 +35,11 @@ abstract class $HomeModelCopyWith<$Res> {
   @useResult
   $Res call(
       {PagingController<int, HomeModelRecipe> pagingController,
-      ViewState<List<HomeModelFilter>> availableFilters});
+      ViewState<List<HomeModelRecipe>> recipes,
+      ViewState<List<HomeModelFilter>> filters});
 
-  $ViewStateCopyWith<List<HomeModelFilter>, $Res> get availableFilters;
+  $ViewStateCopyWith<List<HomeModelRecipe>, $Res> get recipes;
+  $ViewStateCopyWith<List<HomeModelFilter>, $Res> get filters;
 }
 
 /// @nodoc
@@ -52,26 +56,40 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
   @override
   $Res call({
     Object? pagingController = null,
-    Object? availableFilters = null,
+    Object? recipes = null,
+    Object? filters = null,
   }) {
     return _then(_value.copyWith(
       pagingController: null == pagingController
           ? _value.pagingController
           : pagingController // ignore: cast_nullable_to_non_nullable
               as PagingController<int, HomeModelRecipe>,
-      availableFilters: null == availableFilters
-          ? _value.availableFilters
-          : availableFilters // ignore: cast_nullable_to_non_nullable
+      recipes: null == recipes
+          ? _value.recipes
+          : recipes // ignore: cast_nullable_to_non_nullable
+              as ViewState<List<HomeModelRecipe>>,
+      filters: null == filters
+          ? _value.filters
+          : filters // ignore: cast_nullable_to_non_nullable
               as ViewState<List<HomeModelFilter>>,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ViewStateCopyWith<List<HomeModelFilter>, $Res> get availableFilters {
-    return $ViewStateCopyWith<List<HomeModelFilter>, $Res>(
-        _value.availableFilters, (value) {
-      return _then(_value.copyWith(availableFilters: value) as $Val);
+  $ViewStateCopyWith<List<HomeModelRecipe>, $Res> get recipes {
+    return $ViewStateCopyWith<List<HomeModelRecipe>, $Res>(_value.recipes,
+        (value) {
+      return _then(_value.copyWith(recipes: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ViewStateCopyWith<List<HomeModelFilter>, $Res> get filters {
+    return $ViewStateCopyWith<List<HomeModelFilter>, $Res>(_value.filters,
+        (value) {
+      return _then(_value.copyWith(filters: value) as $Val);
     });
   }
 }
@@ -85,10 +103,13 @@ abstract class _$$_HomeModelCopyWith<$Res> implements $HomeModelCopyWith<$Res> {
   @useResult
   $Res call(
       {PagingController<int, HomeModelRecipe> pagingController,
-      ViewState<List<HomeModelFilter>> availableFilters});
+      ViewState<List<HomeModelRecipe>> recipes,
+      ViewState<List<HomeModelFilter>> filters});
 
   @override
-  $ViewStateCopyWith<List<HomeModelFilter>, $Res> get availableFilters;
+  $ViewStateCopyWith<List<HomeModelRecipe>, $Res> get recipes;
+  @override
+  $ViewStateCopyWith<List<HomeModelFilter>, $Res> get filters;
 }
 
 /// @nodoc
@@ -103,16 +124,21 @@ class __$$_HomeModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? pagingController = null,
-    Object? availableFilters = null,
+    Object? recipes = null,
+    Object? filters = null,
   }) {
     return _then(_$_HomeModel(
       pagingController: null == pagingController
           ? _value.pagingController
           : pagingController // ignore: cast_nullable_to_non_nullable
               as PagingController<int, HomeModelRecipe>,
-      availableFilters: null == availableFilters
-          ? _value.availableFilters
-          : availableFilters // ignore: cast_nullable_to_non_nullable
+      recipes: null == recipes
+          ? _value.recipes
+          : recipes // ignore: cast_nullable_to_non_nullable
+              as ViewState<List<HomeModelRecipe>>,
+      filters: null == filters
+          ? _value.filters
+          : filters // ignore: cast_nullable_to_non_nullable
               as ViewState<List<HomeModelFilter>>,
     ));
   }
@@ -122,16 +148,20 @@ class __$$_HomeModelCopyWithImpl<$Res>
 
 class _$_HomeModel implements _HomeModel {
   const _$_HomeModel(
-      {required this.pagingController, required this.availableFilters});
+      {required this.pagingController,
+      required this.recipes,
+      required this.filters});
 
   @override
   final PagingController<int, HomeModelRecipe> pagingController;
   @override
-  final ViewState<List<HomeModelFilter>> availableFilters;
+  final ViewState<List<HomeModelRecipe>> recipes;
+  @override
+  final ViewState<List<HomeModelFilter>> filters;
 
   @override
   String toString() {
-    return 'HomeModel(pagingController: $pagingController, availableFilters: $availableFilters)';
+    return 'HomeModel(pagingController: $pagingController, recipes: $recipes, filters: $filters)';
   }
 
   @override
@@ -141,13 +171,13 @@ class _$_HomeModel implements _HomeModel {
             other is _$_HomeModel &&
             (identical(other.pagingController, pagingController) ||
                 other.pagingController == pagingController) &&
-            (identical(other.availableFilters, availableFilters) ||
-                other.availableFilters == availableFilters));
+            (identical(other.recipes, recipes) || other.recipes == recipes) &&
+            (identical(other.filters, filters) || other.filters == filters));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, pagingController, availableFilters);
+      Object.hash(runtimeType, pagingController, recipes, filters);
 
   @JsonKey(ignore: true)
   @override
@@ -159,13 +189,15 @@ class _$_HomeModel implements _HomeModel {
 abstract class _HomeModel implements HomeModel {
   const factory _HomeModel(
       {required final PagingController<int, HomeModelRecipe> pagingController,
-      required final ViewState<List<HomeModelFilter>>
-          availableFilters}) = _$_HomeModel;
+      required final ViewState<List<HomeModelRecipe>> recipes,
+      required final ViewState<List<HomeModelFilter>> filters}) = _$_HomeModel;
 
   @override
   PagingController<int, HomeModelRecipe> get pagingController;
   @override
-  ViewState<List<HomeModelFilter>> get availableFilters;
+  ViewState<List<HomeModelRecipe>> get recipes;
+  @override
+  ViewState<List<HomeModelFilter>> get filters;
   @override
   @JsonKey(ignore: true)
   _$$_HomeModelCopyWith<_$_HomeModel> get copyWith =>

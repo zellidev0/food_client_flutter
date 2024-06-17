@@ -28,11 +28,7 @@ class HomeView extends MvcView<HomeController, HomeModel> {
                 flexibleSpace: FlexibleSpaceBar(
                   titlePadding: EdgeInsets.zero,
                   centerTitle: true,
-                  title: RecipeHeader(
-                    controller: controller,
-                    filters: model.availableFilters.toNullable() ??
-                        <HomeModelFilter>[],
-                  ),
+                  title: RecipeHeader(controller: controller),
                 ),
               ),
             ],
