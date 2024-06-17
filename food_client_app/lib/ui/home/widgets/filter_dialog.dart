@@ -21,6 +21,7 @@ class FilterDialog extends StatefulWidget {
 
 class _FilterDialogState extends State<FilterDialog> {
   late List<HomeModelFilter> filters;
+
   @override
   void initState() {
     super.initState();

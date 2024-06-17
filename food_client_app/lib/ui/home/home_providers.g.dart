@@ -6,7 +6,7 @@ part of 'home_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$homeModelFiltersHash() => r'ab82bbbb0cf3a6accce4f0a1b30dd6ed6767aad5';
+String _$homeModelFiltersHash() => r'8649e1d28d8a53bce641af936ba12058b22f23d0';
 
 /// See also [homeModelFilters].
 @ProviderFor(homeModelFilters)
@@ -23,7 +23,7 @@ final homeModelFiltersProvider =
 
 typedef HomeModelFiltersRef
     = AutoDisposeProviderRef<ViewState<List<HomeModelFilter>>>;
-String _$homeModelRecipesHash() => r'e6a4fc2e68462ffce1b7ed8c5b8fd52173a3b3dc';
+String _$homeModelRecipesHash() => r'f9479c064306bd7ab10311d07ffcc28c182cc9c9';
 
 /// See also [homeModelRecipes].
 @ProviderFor(homeModelRecipes)
@@ -40,7 +40,7 @@ final homeModelRecipesProvider =
 
 typedef HomeModelRecipesRef
     = AutoDisposeProviderRef<ViewState<List<HomeModelRecipe>>>;
-String _$homeControllerHash() => r'7f33e94a73c3f3c0e30b0d59406dc82546dcbff8';
+String _$homeControllerHash() => r'fd41d538990f8fcac804d172d1c1cbfb4a745335';
 
 /// See also [homeController].
 @ProviderFor(homeController)
