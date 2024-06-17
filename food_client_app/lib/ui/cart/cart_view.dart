@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:food_client/commons/empty_view_content.dart';
 import 'package:food_client/generated/locale_keys.g.dart';
 import 'package:food_client/my_scaffold.dart';
+import 'package:food_client/pages/common/empty_view_content.dart';
 import 'package:food_client/ui/cart/cart_controller.dart';
 import 'package:food_client/ui/cart/cart_model.dart';
 import 'package:food_client/ui/cart/widgets/cart_view_recipe_list_delegate.dart';

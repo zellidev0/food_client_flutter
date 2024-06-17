@@ -12,7 +12,7 @@ part of 'persistence_service_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$PersistenceServiceModel {
@@ -59,23 +59,25 @@ class _$PersistenceServiceModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_PersistenceServiceModelCopyWith<$Res>
+abstract class _$$PersistenceServiceModelImplCopyWith<$Res>
     implements $PersistenceServiceModelCopyWith<$Res> {
-  factory _$$_PersistenceServiceModelCopyWith(_$_PersistenceServiceModel value,
-          $Res Function(_$_PersistenceServiceModel) then) =
-      __$$_PersistenceServiceModelCopyWithImpl<$Res>;
+  factory _$$PersistenceServiceModelImplCopyWith(
+          _$PersistenceServiceModelImpl value,
+          $Res Function(_$PersistenceServiceModelImpl) then) =
+      __$$PersistenceServiceModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<PersistenceServiceModelShoppingListRecipe> recipes});
 }
 
 /// @nodoc
-class __$$_PersistenceServiceModelCopyWithImpl<$Res>
+class __$$PersistenceServiceModelImplCopyWithImpl<$Res>
     extends _$PersistenceServiceModelCopyWithImpl<$Res,
-        _$_PersistenceServiceModel>
-    implements _$$_PersistenceServiceModelCopyWith<$Res> {
-  __$$_PersistenceServiceModelCopyWithImpl(_$_PersistenceServiceModel _value,
-      $Res Function(_$_PersistenceServiceModel) _then)
+        _$PersistenceServiceModelImpl>
+    implements _$$PersistenceServiceModelImplCopyWith<$Res> {
+  __$$PersistenceServiceModelImplCopyWithImpl(
+      _$PersistenceServiceModelImpl _value,
+      $Res Function(_$PersistenceServiceModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -83,7 +85,7 @@ class __$$_PersistenceServiceModelCopyWithImpl<$Res>
   $Res call({
     Object? recipes = null,
   }) {
-    return _then(_$_PersistenceServiceModel(
+    return _then(_$PersistenceServiceModelImpl(
       recipes: null == recipes
           ? _value._recipes
           : recipes // ignore: cast_nullable_to_non_nullable
@@ -94,8 +96,8 @@ class __$$_PersistenceServiceModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PersistenceServiceModel implements _PersistenceServiceModel {
-  const _$_PersistenceServiceModel(
+class _$PersistenceServiceModelImpl implements _PersistenceServiceModel {
+  const _$PersistenceServiceModelImpl(
       {required final List<PersistenceServiceModelShoppingListRecipe> recipes})
       : _recipes = recipes;
 
@@ -113,10 +115,10 @@ class _$_PersistenceServiceModel implements _PersistenceServiceModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PersistenceServiceModel &&
+            other is _$PersistenceServiceModelImpl &&
             const DeepCollectionEquality().equals(other._recipes, _recipes));
   }
 
@@ -127,22 +129,21 @@ class _$_PersistenceServiceModel implements _PersistenceServiceModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PersistenceServiceModelCopyWith<_$_PersistenceServiceModel>
-      get copyWith =>
-          __$$_PersistenceServiceModelCopyWithImpl<_$_PersistenceServiceModel>(
-              this, _$identity);
+  _$$PersistenceServiceModelImplCopyWith<_$PersistenceServiceModelImpl>
+      get copyWith => __$$PersistenceServiceModelImplCopyWithImpl<
+          _$PersistenceServiceModelImpl>(this, _$identity);
 }
 
 abstract class _PersistenceServiceModel implements PersistenceServiceModel {
   const factory _PersistenceServiceModel(
       {required final List<PersistenceServiceModelShoppingListRecipe>
-          recipes}) = _$_PersistenceServiceModel;
+          recipes}) = _$PersistenceServiceModelImpl;
 
   @override
   List<PersistenceServiceModelShoppingListRecipe> get recipes;
   @override
   @JsonKey(ignore: true)
-  _$$_PersistenceServiceModelCopyWith<_$_PersistenceServiceModel>
+  _$$PersistenceServiceModelImplCopyWith<_$PersistenceServiceModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -237,12 +238,12 @@ class _$PersistenceServiceModelShoppingListRecipeCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_PersistenceServiceModelShoppingListRecipeCopyWith<$Res>
+abstract class _$$PersistenceServiceModelShoppingListRecipeImplCopyWith<$Res>
     implements $PersistenceServiceModelShoppingListRecipeCopyWith<$Res> {
-  factory _$$_PersistenceServiceModelShoppingListRecipeCopyWith(
-          _$_PersistenceServiceModelShoppingListRecipe value,
-          $Res Function(_$_PersistenceServiceModelShoppingListRecipe) then) =
-      __$$_PersistenceServiceModelShoppingListRecipeCopyWithImpl<$Res>;
+  factory _$$PersistenceServiceModelShoppingListRecipeImplCopyWith(
+          _$PersistenceServiceModelShoppingListRecipeImpl value,
+          $Res Function(_$PersistenceServiceModelShoppingListRecipeImpl) then) =
+      __$$PersistenceServiceModelShoppingListRecipeImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -255,13 +256,13 @@ abstract class _$$_PersistenceServiceModelShoppingListRecipeCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PersistenceServiceModelShoppingListRecipeCopyWithImpl<$Res>
+class __$$PersistenceServiceModelShoppingListRecipeImplCopyWithImpl<$Res>
     extends _$PersistenceServiceModelShoppingListRecipeCopyWithImpl<$Res,
-        _$_PersistenceServiceModelShoppingListRecipe>
-    implements _$$_PersistenceServiceModelShoppingListRecipeCopyWith<$Res> {
-  __$$_PersistenceServiceModelShoppingListRecipeCopyWithImpl(
-      _$_PersistenceServiceModelShoppingListRecipe _value,
-      $Res Function(_$_PersistenceServiceModelShoppingListRecipe) _then)
+        _$PersistenceServiceModelShoppingListRecipeImpl>
+    implements _$$PersistenceServiceModelShoppingListRecipeImplCopyWith<$Res> {
+  __$$PersistenceServiceModelShoppingListRecipeImplCopyWithImpl(
+      _$PersistenceServiceModelShoppingListRecipeImpl _value,
+      $Res Function(_$PersistenceServiceModelShoppingListRecipeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -273,7 +274,7 @@ class __$$_PersistenceServiceModelShoppingListRecipeCopyWithImpl<$Res>
     Object? servings = null,
     Object? recipeId = null,
   }) {
-    return _then(_$_PersistenceServiceModelShoppingListRecipe(
+    return _then(_$PersistenceServiceModelShoppingListRecipeImpl(
       ingredients: null == ingredients
           ? _value._ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
@@ -302,9 +303,9 @@ class __$$_PersistenceServiceModelShoppingListRecipeCopyWithImpl<$Res>
 @JsonSerializable()
 @HiveType(
     typeId: 1, adapterName: 'PersistenceServiceModelShoppingListRecipeAdapter')
-class _$_PersistenceServiceModelShoppingListRecipe
+class _$PersistenceServiceModelShoppingListRecipeImpl
     implements _PersistenceServiceModelShoppingListRecipe {
-  const _$_PersistenceServiceModelShoppingListRecipe(
+  const _$PersistenceServiceModelShoppingListRecipeImpl(
       {@HiveField(0)
       required final List<PersistenceServiceModelShoppingListIngredient>
           ingredients,
@@ -314,9 +315,9 @@ class _$_PersistenceServiceModelShoppingListRecipe
       @HiveField(4) required this.recipeId})
       : _ingredients = ingredients;
 
-  factory _$_PersistenceServiceModelShoppingListRecipe.fromJson(
+  factory _$PersistenceServiceModelShoppingListRecipeImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$_PersistenceServiceModelShoppingListRecipeFromJson(json);
+      _$$PersistenceServiceModelShoppingListRecipeImplFromJson(json);
 
   final List<PersistenceServiceModelShoppingListIngredient> _ingredients;
   @override
@@ -346,10 +347,10 @@ class _$_PersistenceServiceModelShoppingListRecipe
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PersistenceServiceModelShoppingListRecipe &&
+            other is _$PersistenceServiceModelShoppingListRecipeImpl &&
             const DeepCollectionEquality()
                 .equals(other._ingredients, _ingredients) &&
             (identical(other.title, title) || other.title == title) &&
@@ -374,15 +375,16 @@ class _$_PersistenceServiceModelShoppingListRecipe
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PersistenceServiceModelShoppingListRecipeCopyWith<
-          _$_PersistenceServiceModelShoppingListRecipe>
+  _$$PersistenceServiceModelShoppingListRecipeImplCopyWith<
+          _$PersistenceServiceModelShoppingListRecipeImpl>
       get copyWith =>
-          __$$_PersistenceServiceModelShoppingListRecipeCopyWithImpl<
-              _$_PersistenceServiceModelShoppingListRecipe>(this, _$identity);
+          __$$PersistenceServiceModelShoppingListRecipeImplCopyWithImpl<
+                  _$PersistenceServiceModelShoppingListRecipeImpl>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PersistenceServiceModelShoppingListRecipeToJson(
+    return _$$PersistenceServiceModelShoppingListRecipeImplToJson(
       this,
     );
   }
@@ -398,11 +400,11 @@ abstract class _PersistenceServiceModelShoppingListRecipe
           @HiveField(2) required final Option<Uri> imagePath,
           @HiveField(3) required final int servings,
           @HiveField(4) required final String recipeId}) =
-      _$_PersistenceServiceModelShoppingListRecipe;
+      _$PersistenceServiceModelShoppingListRecipeImpl;
 
   factory _PersistenceServiceModelShoppingListRecipe.fromJson(
           Map<String, dynamic> json) =
-      _$_PersistenceServiceModelShoppingListRecipe.fromJson;
+      _$PersistenceServiceModelShoppingListRecipeImpl.fromJson;
 
   @override
   @HiveField(0)
@@ -421,8 +423,8 @@ abstract class _PersistenceServiceModelShoppingListRecipe
   String get recipeId;
   @override
   @JsonKey(ignore: true)
-  _$$_PersistenceServiceModelShoppingListRecipeCopyWith<
-          _$_PersistenceServiceModelShoppingListRecipe>
+  _$$PersistenceServiceModelShoppingListRecipeImplCopyWith<
+          _$PersistenceServiceModelShoppingListRecipeImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -541,13 +543,14 @@ class _$PersistenceServiceModelShoppingListIngredientCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_PersistenceServiceModelShoppingListIngredientCopyWith<$Res>
+abstract class _$$PersistenceServiceModelShoppingListIngredientImplCopyWith<
+        $Res>
     implements $PersistenceServiceModelShoppingListIngredientCopyWith<$Res> {
-  factory _$$_PersistenceServiceModelShoppingListIngredientCopyWith(
-          _$_PersistenceServiceModelShoppingListIngredient value,
-          $Res Function(_$_PersistenceServiceModelShoppingListIngredient)
+  factory _$$PersistenceServiceModelShoppingListIngredientImplCopyWith(
+          _$PersistenceServiceModelShoppingListIngredientImpl value,
+          $Res Function(_$PersistenceServiceModelShoppingListIngredientImpl)
               then) =
-      __$$_PersistenceServiceModelShoppingListIngredientCopyWithImpl<$Res>;
+      __$$PersistenceServiceModelShoppingListIngredientImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -563,13 +566,14 @@ abstract class _$$_PersistenceServiceModelShoppingListIngredientCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PersistenceServiceModelShoppingListIngredientCopyWithImpl<$Res>
+class __$$PersistenceServiceModelShoppingListIngredientImplCopyWithImpl<$Res>
     extends _$PersistenceServiceModelShoppingListIngredientCopyWithImpl<$Res,
-        _$_PersistenceServiceModelShoppingListIngredient>
-    implements _$$_PersistenceServiceModelShoppingListIngredientCopyWith<$Res> {
-  __$$_PersistenceServiceModelShoppingListIngredientCopyWithImpl(
-      _$_PersistenceServiceModelShoppingListIngredient _value,
-      $Res Function(_$_PersistenceServiceModelShoppingListIngredient) _then)
+        _$PersistenceServiceModelShoppingListIngredientImpl>
+    implements
+        _$$PersistenceServiceModelShoppingListIngredientImplCopyWith<$Res> {
+  __$$PersistenceServiceModelShoppingListIngredientImplCopyWithImpl(
+      _$PersistenceServiceModelShoppingListIngredientImpl _value,
+      $Res Function(_$PersistenceServiceModelShoppingListIngredientImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -584,7 +588,7 @@ class __$$_PersistenceServiceModelShoppingListIngredientCopyWithImpl<$Res>
     Object? unit = null,
     Object? family = null,
   }) {
-    return _then(_$_PersistenceServiceModelShoppingListIngredient(
+    return _then(_$PersistenceServiceModelShoppingListIngredientImpl(
       ingredientId: null == ingredientId
           ? _value.ingredientId
           : ingredientId // ignore: cast_nullable_to_non_nullable
@@ -626,9 +630,9 @@ class __$$_PersistenceServiceModelShoppingListIngredientCopyWithImpl<$Res>
 @HiveType(
     typeId: 0,
     adapterName: 'PersistenceServiceModelShoppingListIngredientAdapter')
-class _$_PersistenceServiceModelShoppingListIngredient
+class _$PersistenceServiceModelShoppingListIngredientImpl
     implements _PersistenceServiceModelShoppingListIngredient {
-  const _$_PersistenceServiceModelShoppingListIngredient(
+  const _$PersistenceServiceModelShoppingListIngredientImpl(
       {@HiveField(0) required this.ingredientId,
       @HiveField(1) required this.isTickedOff,
       @HiveField(3) required this.imageUrl,
@@ -638,9 +642,9 @@ class _$_PersistenceServiceModelShoppingListIngredient
       @HiveField(7) required this.unit,
       @HiveField(8) required this.family});
 
-  factory _$_PersistenceServiceModelShoppingListIngredient.fromJson(
+  factory _$PersistenceServiceModelShoppingListIngredientImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$_PersistenceServiceModelShoppingListIngredientFromJson(json);
+      _$$PersistenceServiceModelShoppingListIngredientImplFromJson(json);
 
   @override
   @HiveField(0)
@@ -673,10 +677,10 @@ class _$_PersistenceServiceModelShoppingListIngredient
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PersistenceServiceModelShoppingListIngredient &&
+            other is _$PersistenceServiceModelShoppingListIngredientImpl &&
             (identical(other.ingredientId, ingredientId) ||
                 other.ingredientId == ingredientId) &&
             (identical(other.isTickedOff, isTickedOff) ||
@@ -699,16 +703,16 @@ class _$_PersistenceServiceModelShoppingListIngredient
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PersistenceServiceModelShoppingListIngredientCopyWith<
-          _$_PersistenceServiceModelShoppingListIngredient>
+  _$$PersistenceServiceModelShoppingListIngredientImplCopyWith<
+          _$PersistenceServiceModelShoppingListIngredientImpl>
       get copyWith =>
-          __$$_PersistenceServiceModelShoppingListIngredientCopyWithImpl<
-                  _$_PersistenceServiceModelShoppingListIngredient>(
+          __$$PersistenceServiceModelShoppingListIngredientImplCopyWithImpl<
+                  _$PersistenceServiceModelShoppingListIngredientImpl>(
               this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PersistenceServiceModelShoppingListIngredientToJson(
+    return _$$PersistenceServiceModelShoppingListIngredientImplToJson(
       this,
     );
   }
@@ -726,11 +730,11 @@ abstract class _PersistenceServiceModelShoppingListIngredient
       @HiveField(7) required final Option<String> unit,
       @HiveField(8)
       required final Option<PersistenceServiceModelShoppingListIngredientFamily>
-          family}) = _$_PersistenceServiceModelShoppingListIngredient;
+          family}) = _$PersistenceServiceModelShoppingListIngredientImpl;
 
   factory _PersistenceServiceModelShoppingListIngredient.fromJson(
           Map<String, dynamic> json) =
-      _$_PersistenceServiceModelShoppingListIngredient.fromJson;
+      _$PersistenceServiceModelShoppingListIngredientImpl.fromJson;
 
   @override
   @HiveField(0)
@@ -758,8 +762,8 @@ abstract class _PersistenceServiceModelShoppingListIngredient
   Option<PersistenceServiceModelShoppingListIngredientFamily> get family;
   @override
   @JsonKey(ignore: true)
-  _$$_PersistenceServiceModelShoppingListIngredientCopyWith<
-          _$_PersistenceServiceModelShoppingListIngredient>
+  _$$PersistenceServiceModelShoppingListIngredientImplCopyWith<
+          _$PersistenceServiceModelShoppingListIngredientImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -855,15 +859,16 @@ class _$PersistenceServiceModelShoppingListIngredientFamilyCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_PersistenceServiceModelShoppingListIngredientFamilyCopyWith<
+abstract class _$$PersistenceServiceModelShoppingListIngredientFamilyImplCopyWith<
         $Res>
     implements
         $PersistenceServiceModelShoppingListIngredientFamilyCopyWith<$Res> {
-  factory _$$_PersistenceServiceModelShoppingListIngredientFamilyCopyWith(
-          _$_PersistenceServiceModelShoppingListIngredientFamily value,
-          $Res Function(_$_PersistenceServiceModelShoppingListIngredientFamily)
+  factory _$$PersistenceServiceModelShoppingListIngredientFamilyImplCopyWith(
+          _$PersistenceServiceModelShoppingListIngredientFamilyImpl value,
+          $Res Function(
+                  _$PersistenceServiceModelShoppingListIngredientFamilyImpl)
               then) =
-      __$$_PersistenceServiceModelShoppingListIngredientFamilyCopyWithImpl<
+      __$$PersistenceServiceModelShoppingListIngredientFamilyImplCopyWithImpl<
           $Res>;
   @override
   @useResult
@@ -876,14 +881,16 @@ abstract class _$$_PersistenceServiceModelShoppingListIngredientFamilyCopyWith<
 }
 
 /// @nodoc
-class __$$_PersistenceServiceModelShoppingListIngredientFamilyCopyWithImpl<$Res>
+class __$$PersistenceServiceModelShoppingListIngredientFamilyImplCopyWithImpl<
+        $Res>
     extends _$PersistenceServiceModelShoppingListIngredientFamilyCopyWithImpl<
-        $Res, _$_PersistenceServiceModelShoppingListIngredientFamily>
+        $Res, _$PersistenceServiceModelShoppingListIngredientFamilyImpl>
     implements
-        _$$_PersistenceServiceModelShoppingListIngredientFamilyCopyWith<$Res> {
-  __$$_PersistenceServiceModelShoppingListIngredientFamilyCopyWithImpl(
-      _$_PersistenceServiceModelShoppingListIngredientFamily _value,
-      $Res Function(_$_PersistenceServiceModelShoppingListIngredientFamily)
+        _$$PersistenceServiceModelShoppingListIngredientFamilyImplCopyWith<
+            $Res> {
+  __$$PersistenceServiceModelShoppingListIngredientFamilyImplCopyWithImpl(
+      _$PersistenceServiceModelShoppingListIngredientFamilyImpl _value,
+      $Res Function(_$PersistenceServiceModelShoppingListIngredientFamilyImpl)
           _then)
       : super(_value, _then);
 
@@ -896,7 +903,7 @@ class __$$_PersistenceServiceModelShoppingListIngredientFamilyCopyWithImpl<$Res>
     Object? name = null,
     Object? slug = null,
   }) {
-    return _then(_$_PersistenceServiceModelShoppingListIngredientFamily(
+    return _then(_$PersistenceServiceModelShoppingListIngredientFamilyImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -926,18 +933,18 @@ class __$$_PersistenceServiceModelShoppingListIngredientFamilyCopyWithImpl<$Res>
 @HiveType(
     typeId: 2,
     adapterName: 'PersistenceServiceModelShoppingListIngredientFamilyAdapter')
-class _$_PersistenceServiceModelShoppingListIngredientFamily
+class _$PersistenceServiceModelShoppingListIngredientFamilyImpl
     implements _PersistenceServiceModelShoppingListIngredientFamily {
-  const _$_PersistenceServiceModelShoppingListIngredientFamily(
+  const _$PersistenceServiceModelShoppingListIngredientFamilyImpl(
       {@HiveField(0) required this.id,
       @HiveField(1) required this.type,
       @HiveField(2) required this.iconPath,
       @HiveField(3) required this.name,
       @HiveField(4) required this.slug});
 
-  factory _$_PersistenceServiceModelShoppingListIngredientFamily.fromJson(
+  factory _$PersistenceServiceModelShoppingListIngredientFamilyImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$_PersistenceServiceModelShoppingListIngredientFamilyFromJson(json);
+      _$$PersistenceServiceModelShoppingListIngredientFamilyImplFromJson(json);
 
   @override
   @HiveField(0)
@@ -961,10 +968,11 @@ class _$_PersistenceServiceModelShoppingListIngredientFamily
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PersistenceServiceModelShoppingListIngredientFamily &&
+            other
+                is _$PersistenceServiceModelShoppingListIngredientFamilyImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.iconPath, iconPath) ||
@@ -980,16 +988,16 @@ class _$_PersistenceServiceModelShoppingListIngredientFamily
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PersistenceServiceModelShoppingListIngredientFamilyCopyWith<
-          _$_PersistenceServiceModelShoppingListIngredientFamily>
+  _$$PersistenceServiceModelShoppingListIngredientFamilyImplCopyWith<
+          _$PersistenceServiceModelShoppingListIngredientFamilyImpl>
       get copyWith =>
-          __$$_PersistenceServiceModelShoppingListIngredientFamilyCopyWithImpl<
-                  _$_PersistenceServiceModelShoppingListIngredientFamily>(
+          __$$PersistenceServiceModelShoppingListIngredientFamilyImplCopyWithImpl<
+                  _$PersistenceServiceModelShoppingListIngredientFamilyImpl>(
               this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PersistenceServiceModelShoppingListIngredientFamilyToJson(
+    return _$$PersistenceServiceModelShoppingListIngredientFamilyImplToJson(
       this,
     );
   }
@@ -1003,11 +1011,11 @@ abstract class _PersistenceServiceModelShoppingListIngredientFamily
           @HiveField(2) required final Option<String> iconPath,
           @HiveField(3) required final String name,
           @HiveField(4) required final String slug}) =
-      _$_PersistenceServiceModelShoppingListIngredientFamily;
+      _$PersistenceServiceModelShoppingListIngredientFamilyImpl;
 
   factory _PersistenceServiceModelShoppingListIngredientFamily.fromJson(
           Map<String, dynamic> json) =
-      _$_PersistenceServiceModelShoppingListIngredientFamily.fromJson;
+      _$PersistenceServiceModelShoppingListIngredientFamilyImpl.fromJson;
 
   @override
   @HiveField(0)
@@ -1026,8 +1034,8 @@ abstract class _PersistenceServiceModelShoppingListIngredientFamily
   String get slug;
   @override
   @JsonKey(ignore: true)
-  _$$_PersistenceServiceModelShoppingListIngredientFamilyCopyWith<
-          _$_PersistenceServiceModelShoppingListIngredientFamily>
+  _$$PersistenceServiceModelShoppingListIngredientFamilyImplCopyWith<
+          _$PersistenceServiceModelShoppingListIngredientFamilyImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1103,12 +1111,12 @@ class _$PersistenceServiceModelSortingUnitCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_PersistenceServiceModelSortingUnitCopyWith<$Res>
+abstract class _$$PersistenceServiceModelSortingUnitImplCopyWith<$Res>
     implements $PersistenceServiceModelSortingUnitCopyWith<$Res> {
-  factory _$$_PersistenceServiceModelSortingUnitCopyWith(
-          _$_PersistenceServiceModelSortingUnit value,
-          $Res Function(_$_PersistenceServiceModelSortingUnit) then) =
-      __$$_PersistenceServiceModelSortingUnitCopyWithImpl<$Res>;
+  factory _$$PersistenceServiceModelSortingUnitImplCopyWith(
+          _$PersistenceServiceModelSortingUnitImpl value,
+          $Res Function(_$PersistenceServiceModelSortingUnitImpl) then) =
+      __$$PersistenceServiceModelSortingUnitImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1118,13 +1126,13 @@ abstract class _$$_PersistenceServiceModelSortingUnitCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PersistenceServiceModelSortingUnitCopyWithImpl<$Res>
+class __$$PersistenceServiceModelSortingUnitImplCopyWithImpl<$Res>
     extends _$PersistenceServiceModelSortingUnitCopyWithImpl<$Res,
-        _$_PersistenceServiceModelSortingUnit>
-    implements _$$_PersistenceServiceModelSortingUnitCopyWith<$Res> {
-  __$$_PersistenceServiceModelSortingUnitCopyWithImpl(
-      _$_PersistenceServiceModelSortingUnit _value,
-      $Res Function(_$_PersistenceServiceModelSortingUnit) _then)
+        _$PersistenceServiceModelSortingUnitImpl>
+    implements _$$PersistenceServiceModelSortingUnitImplCopyWith<$Res> {
+  __$$PersistenceServiceModelSortingUnitImplCopyWithImpl(
+      _$PersistenceServiceModelSortingUnitImpl _value,
+      $Res Function(_$PersistenceServiceModelSortingUnitImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1134,7 +1142,7 @@ class __$$_PersistenceServiceModelSortingUnitCopyWithImpl<$Res>
     Object? name = null,
     Object? sorting = null,
   }) {
-    return _then(_$_PersistenceServiceModelSortingUnit(
+    return _then(_$PersistenceServiceModelSortingUnitImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1154,18 +1162,18 @@ class __$$_PersistenceServiceModelSortingUnitCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 @HiveType(typeId: 3, adapterName: 'PersistenceServiceModelSortingUnitAdapter')
-class _$_PersistenceServiceModelSortingUnit
+class _$PersistenceServiceModelSortingUnitImpl
     implements _PersistenceServiceModelSortingUnit {
-  const _$_PersistenceServiceModelSortingUnit(
+  const _$PersistenceServiceModelSortingUnitImpl(
       {@HiveField(0) required this.id,
       @HiveField(1) required this.name,
       @HiveField(2)
       required final List<PersistenceServiceModelSorting> sorting})
       : _sorting = sorting;
 
-  factory _$_PersistenceServiceModelSortingUnit.fromJson(
+  factory _$PersistenceServiceModelSortingUnitImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$_PersistenceServiceModelSortingUnitFromJson(json);
+      _$$PersistenceServiceModelSortingUnitImplFromJson(json);
 
   @override
   @HiveField(0)
@@ -1188,10 +1196,10 @@ class _$_PersistenceServiceModelSortingUnit
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PersistenceServiceModelSortingUnit &&
+            other is _$PersistenceServiceModelSortingUnitImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality().equals(other._sorting, _sorting));
@@ -1205,14 +1213,14 @@ class _$_PersistenceServiceModelSortingUnit
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PersistenceServiceModelSortingUnitCopyWith<
-          _$_PersistenceServiceModelSortingUnit>
-      get copyWith => __$$_PersistenceServiceModelSortingUnitCopyWithImpl<
-          _$_PersistenceServiceModelSortingUnit>(this, _$identity);
+  _$$PersistenceServiceModelSortingUnitImplCopyWith<
+          _$PersistenceServiceModelSortingUnitImpl>
+      get copyWith => __$$PersistenceServiceModelSortingUnitImplCopyWithImpl<
+          _$PersistenceServiceModelSortingUnitImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PersistenceServiceModelSortingUnitToJson(
+    return _$$PersistenceServiceModelSortingUnitImplToJson(
       this,
     );
   }
@@ -1225,11 +1233,11 @@ abstract class _PersistenceServiceModelSortingUnit
           @HiveField(1) required final String name,
           @HiveField(2)
           required final List<PersistenceServiceModelSorting> sorting}) =
-      _$_PersistenceServiceModelSortingUnit;
+      _$PersistenceServiceModelSortingUnitImpl;
 
   factory _PersistenceServiceModelSortingUnit.fromJson(
           Map<String, dynamic> json) =
-      _$_PersistenceServiceModelSortingUnit.fromJson;
+      _$PersistenceServiceModelSortingUnitImpl.fromJson;
 
   @override
   @HiveField(0)
@@ -1242,8 +1250,8 @@ abstract class _PersistenceServiceModelSortingUnit
   List<PersistenceServiceModelSorting> get sorting;
   @override
   @JsonKey(ignore: true)
-  _$$_PersistenceServiceModelSortingUnitCopyWith<
-          _$_PersistenceServiceModelSortingUnit>
+  _$$PersistenceServiceModelSortingUnitImplCopyWith<
+          _$PersistenceServiceModelSortingUnitImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1327,12 +1335,12 @@ class _$PersistenceServiceModelSortingCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_PersistenceServiceModelSortingCopyWith<$Res>
+abstract class _$$PersistenceServiceModelSortingImplCopyWith<$Res>
     implements $PersistenceServiceModelSortingCopyWith<$Res> {
-  factory _$$_PersistenceServiceModelSortingCopyWith(
-          _$_PersistenceServiceModelSorting value,
-          $Res Function(_$_PersistenceServiceModelSorting) then) =
-      __$$_PersistenceServiceModelSortingCopyWithImpl<$Res>;
+  factory _$$PersistenceServiceModelSortingImplCopyWith(
+          _$PersistenceServiceModelSortingImpl value,
+          $Res Function(_$PersistenceServiceModelSortingImpl) then) =
+      __$$PersistenceServiceModelSortingImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1344,13 +1352,13 @@ abstract class _$$_PersistenceServiceModelSortingCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PersistenceServiceModelSortingCopyWithImpl<$Res>
+class __$$PersistenceServiceModelSortingImplCopyWithImpl<$Res>
     extends _$PersistenceServiceModelSortingCopyWithImpl<$Res,
-        _$_PersistenceServiceModelSorting>
-    implements _$$_PersistenceServiceModelSortingCopyWith<$Res> {
-  __$$_PersistenceServiceModelSortingCopyWithImpl(
-      _$_PersistenceServiceModelSorting _value,
-      $Res Function(_$_PersistenceServiceModelSorting) _then)
+        _$PersistenceServiceModelSortingImpl>
+    implements _$$PersistenceServiceModelSortingImplCopyWith<$Res> {
+  __$$PersistenceServiceModelSortingImplCopyWithImpl(
+      _$PersistenceServiceModelSortingImpl _value,
+      $Res Function(_$PersistenceServiceModelSortingImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1361,7 +1369,7 @@ class __$$_PersistenceServiceModelSortingCopyWithImpl<$Res>
     Object? iconPathAsString = null,
     Object? name = null,
   }) {
-    return _then(_$_PersistenceServiceModelSorting(
+    return _then(_$PersistenceServiceModelSortingImpl(
       ingredientFamilies: null == ingredientFamilies
           ? _value._ingredientFamilies
           : ingredientFamilies // ignore: cast_nullable_to_non_nullable
@@ -1385,9 +1393,9 @@ class __$$_PersistenceServiceModelSortingCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 @HiveType(typeId: 4, adapterName: 'PersistenceServiceModelSortingAdapter')
-class _$_PersistenceServiceModelSorting
+class _$PersistenceServiceModelSortingImpl
     implements _PersistenceServiceModelSorting {
-  const _$_PersistenceServiceModelSorting(
+  const _$PersistenceServiceModelSortingImpl(
       {@HiveField(0)
       required final List<PersistenceServiceModelIngredientFamily>
           ingredientFamilies,
@@ -1396,9 +1404,9 @@ class _$_PersistenceServiceModelSorting
       @HiveField(3) required this.name})
       : _ingredientFamilies = ingredientFamilies;
 
-  factory _$_PersistenceServiceModelSorting.fromJson(
+  factory _$PersistenceServiceModelSortingImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$_PersistenceServiceModelSortingFromJson(json);
+      _$$PersistenceServiceModelSortingImplFromJson(json);
 
   final List<PersistenceServiceModelIngredientFamily> _ingredientFamilies;
   @override
@@ -1426,10 +1434,10 @@ class _$_PersistenceServiceModelSorting
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PersistenceServiceModelSorting &&
+            other is _$PersistenceServiceModelSortingImpl &&
             const DeepCollectionEquality()
                 .equals(other._ingredientFamilies, _ingredientFamilies) &&
             (identical(other.type, type) || other.type == type) &&
@@ -1450,13 +1458,14 @@ class _$_PersistenceServiceModelSorting
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PersistenceServiceModelSortingCopyWith<_$_PersistenceServiceModelSorting>
-      get copyWith => __$$_PersistenceServiceModelSortingCopyWithImpl<
-          _$_PersistenceServiceModelSorting>(this, _$identity);
+  _$$PersistenceServiceModelSortingImplCopyWith<
+          _$PersistenceServiceModelSortingImpl>
+      get copyWith => __$$PersistenceServiceModelSortingImplCopyWithImpl<
+          _$PersistenceServiceModelSortingImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PersistenceServiceModelSortingToJson(
+    return _$$PersistenceServiceModelSortingImplToJson(
       this,
     );
   }
@@ -1471,10 +1480,10 @@ abstract class _PersistenceServiceModelSorting
           @HiveField(1) required final String type,
           @HiveField(2) required final Option<String> iconPathAsString,
           @HiveField(3) required final String name}) =
-      _$_PersistenceServiceModelSorting;
+      _$PersistenceServiceModelSortingImpl;
 
   factory _PersistenceServiceModelSorting.fromJson(Map<String, dynamic> json) =
-      _$_PersistenceServiceModelSorting.fromJson;
+      _$PersistenceServiceModelSortingImpl.fromJson;
 
   @override
   @HiveField(0)
@@ -1490,7 +1499,8 @@ abstract class _PersistenceServiceModelSorting
   String get name;
   @override
   @JsonKey(ignore: true)
-  _$$_PersistenceServiceModelSortingCopyWith<_$_PersistenceServiceModelSorting>
+  _$$PersistenceServiceModelSortingImplCopyWith<
+          _$PersistenceServiceModelSortingImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1586,27 +1596,30 @@ class _$PersistenceServiceModelIngredientFamilyCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$PersistenceServiceModelIngredientFamilyHellofreshCopyWith<
+abstract class _$$PersistenceServiceModelIngredientFamilyHellofreshImplCopyWith<
     $Res> implements $PersistenceServiceModelIngredientFamilyCopyWith<$Res> {
-  factory _$$PersistenceServiceModelIngredientFamilyHellofreshCopyWith(
-          _$PersistenceServiceModelIngredientFamilyHellofresh value,
-          $Res Function(_$PersistenceServiceModelIngredientFamilyHellofresh)
+  factory _$$PersistenceServiceModelIngredientFamilyHellofreshImplCopyWith(
+          _$PersistenceServiceModelIngredientFamilyHellofreshImpl value,
+          $Res Function(_$PersistenceServiceModelIngredientFamilyHellofreshImpl)
               then) =
-      __$$PersistenceServiceModelIngredientFamilyHellofreshCopyWithImpl<$Res>;
+      __$$PersistenceServiceModelIngredientFamilyHellofreshImplCopyWithImpl<
+          $Res>;
   @override
   @useResult
   $Res call({@HiveField(0) String helloFreshFamilyId});
 }
 
 /// @nodoc
-class __$$PersistenceServiceModelIngredientFamilyHellofreshCopyWithImpl<$Res>
+class __$$PersistenceServiceModelIngredientFamilyHellofreshImplCopyWithImpl<
+        $Res>
     extends _$PersistenceServiceModelIngredientFamilyCopyWithImpl<$Res,
-        _$PersistenceServiceModelIngredientFamilyHellofresh>
+        _$PersistenceServiceModelIngredientFamilyHellofreshImpl>
     implements
-        _$$PersistenceServiceModelIngredientFamilyHellofreshCopyWith<$Res> {
-  __$$PersistenceServiceModelIngredientFamilyHellofreshCopyWithImpl(
-      _$PersistenceServiceModelIngredientFamilyHellofresh _value,
-      $Res Function(_$PersistenceServiceModelIngredientFamilyHellofresh) _then)
+        _$$PersistenceServiceModelIngredientFamilyHellofreshImplCopyWith<$Res> {
+  __$$PersistenceServiceModelIngredientFamilyHellofreshImplCopyWithImpl(
+      _$PersistenceServiceModelIngredientFamilyHellofreshImpl _value,
+      $Res Function(_$PersistenceServiceModelIngredientFamilyHellofreshImpl)
+          _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1614,7 +1627,7 @@ class __$$PersistenceServiceModelIngredientFamilyHellofreshCopyWithImpl<$Res>
   $Res call({
     Object? helloFreshFamilyId = null,
   }) {
-    return _then(_$PersistenceServiceModelIngredientFamilyHellofresh(
+    return _then(_$PersistenceServiceModelIngredientFamilyHellofreshImpl(
       helloFreshFamilyId: null == helloFreshFamilyId
           ? _value.helloFreshFamilyId
           : helloFreshFamilyId // ignore: cast_nullable_to_non_nullable
@@ -1628,14 +1641,14 @@ class __$$PersistenceServiceModelIngredientFamilyHellofreshCopyWithImpl<$Res>
 @HiveType(
     typeId: 7,
     adapterName: 'PersistenceServiceModelIngredientFamilyHelloFreshAdapter')
-class _$PersistenceServiceModelIngredientFamilyHellofresh
+class _$PersistenceServiceModelIngredientFamilyHellofreshImpl
     implements PersistenceServiceModelIngredientFamilyHellofresh {
-  const _$PersistenceServiceModelIngredientFamilyHellofresh(
+  const _$PersistenceServiceModelIngredientFamilyHellofreshImpl(
       {@HiveField(0) required this.helloFreshFamilyId});
 
-  factory _$PersistenceServiceModelIngredientFamilyHellofresh.fromJson(
+  factory _$PersistenceServiceModelIngredientFamilyHellofreshImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$PersistenceServiceModelIngredientFamilyHellofreshFromJson(json);
+      _$$PersistenceServiceModelIngredientFamilyHellofreshImplFromJson(json);
 
   @override
   @HiveField(0)
@@ -1647,10 +1660,10 @@ class _$PersistenceServiceModelIngredientFamilyHellofresh
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PersistenceServiceModelIngredientFamilyHellofresh &&
+            other is _$PersistenceServiceModelIngredientFamilyHellofreshImpl &&
             (identical(other.helloFreshFamilyId, helloFreshFamilyId) ||
                 other.helloFreshFamilyId == helloFreshFamilyId));
   }
@@ -1662,11 +1675,11 @@ class _$PersistenceServiceModelIngredientFamilyHellofresh
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$PersistenceServiceModelIngredientFamilyHellofreshCopyWith<
-          _$PersistenceServiceModelIngredientFamilyHellofresh>
+  _$$PersistenceServiceModelIngredientFamilyHellofreshImplCopyWith<
+          _$PersistenceServiceModelIngredientFamilyHellofreshImpl>
       get copyWith =>
-          __$$PersistenceServiceModelIngredientFamilyHellofreshCopyWithImpl<
-                  _$PersistenceServiceModelIngredientFamilyHellofresh>(
+          __$$PersistenceServiceModelIngredientFamilyHellofreshImplCopyWithImpl<
+                  _$PersistenceServiceModelIngredientFamilyHellofreshImpl>(
               this, _$identity);
 
   @override
@@ -1732,7 +1745,7 @@ class _$PersistenceServiceModelIngredientFamilyHellofresh
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PersistenceServiceModelIngredientFamilyHellofreshToJson(
+    return _$$PersistenceServiceModelIngredientFamilyHellofreshImplToJson(
       this,
     );
   }
@@ -1742,19 +1755,19 @@ abstract class PersistenceServiceModelIngredientFamilyHellofresh
     implements PersistenceServiceModelIngredientFamily {
   const factory PersistenceServiceModelIngredientFamilyHellofresh(
           {@HiveField(0) required final String helloFreshFamilyId}) =
-      _$PersistenceServiceModelIngredientFamilyHellofresh;
+      _$PersistenceServiceModelIngredientFamilyHellofreshImpl;
 
   factory PersistenceServiceModelIngredientFamilyHellofresh.fromJson(
           Map<String, dynamic> json) =
-      _$PersistenceServiceModelIngredientFamilyHellofresh.fromJson;
+      _$PersistenceServiceModelIngredientFamilyHellofreshImpl.fromJson;
 
   @override
   @HiveField(0)
   String get helloFreshFamilyId;
   @override
   @JsonKey(ignore: true)
-  _$$PersistenceServiceModelIngredientFamilyHellofreshCopyWith<
-          _$PersistenceServiceModelIngredientFamilyHellofresh>
+  _$$PersistenceServiceModelIngredientFamilyHellofreshImplCopyWith<
+          _$PersistenceServiceModelIngredientFamilyHellofreshImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1874,12 +1887,12 @@ class _$PersistenceServiceModelActiveSortingCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$PersistenceServiceModelActiveSortingUnitCopyWith<$Res>
+abstract class _$$PersistenceServiceModelActiveSortingUnitImplCopyWith<$Res>
     implements $PersistenceServiceModelActiveSortingCopyWith<$Res> {
-  factory _$$PersistenceServiceModelActiveSortingUnitCopyWith(
-          _$PersistenceServiceModelActiveSortingUnit value,
-          $Res Function(_$PersistenceServiceModelActiveSortingUnit) then) =
-      __$$PersistenceServiceModelActiveSortingUnitCopyWithImpl<$Res>;
+  factory _$$PersistenceServiceModelActiveSortingUnitImplCopyWith(
+          _$PersistenceServiceModelActiveSortingUnitImpl value,
+          $Res Function(_$PersistenceServiceModelActiveSortingUnitImpl) then) =
+      __$$PersistenceServiceModelActiveSortingUnitImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1888,13 +1901,13 @@ abstract class _$$PersistenceServiceModelActiveSortingUnitCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$PersistenceServiceModelActiveSortingUnitCopyWithImpl<$Res>
+class __$$PersistenceServiceModelActiveSortingUnitImplCopyWithImpl<$Res>
     extends _$PersistenceServiceModelActiveSortingCopyWithImpl<$Res,
-        _$PersistenceServiceModelActiveSortingUnit>
-    implements _$$PersistenceServiceModelActiveSortingUnitCopyWith<$Res> {
-  __$$PersistenceServiceModelActiveSortingUnitCopyWithImpl(
-      _$PersistenceServiceModelActiveSortingUnit _value,
-      $Res Function(_$PersistenceServiceModelActiveSortingUnit) _then)
+        _$PersistenceServiceModelActiveSortingUnitImpl>
+    implements _$$PersistenceServiceModelActiveSortingUnitImplCopyWith<$Res> {
+  __$$PersistenceServiceModelActiveSortingUnitImplCopyWithImpl(
+      _$PersistenceServiceModelActiveSortingUnitImpl _value,
+      $Res Function(_$PersistenceServiceModelActiveSortingUnitImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1903,7 +1916,7 @@ class __$$PersistenceServiceModelActiveSortingUnitCopyWithImpl<$Res>
     Object? activeSortingUnitId = null,
     Object? customSortingIngredientIds = null,
   }) {
-    return _then(_$PersistenceServiceModelActiveSortingUnit(
+    return _then(_$PersistenceServiceModelActiveSortingUnitImpl(
       activeSortingUnitId: null == activeSortingUnitId
           ? _value.activeSortingUnitId
           : activeSortingUnitId // ignore: cast_nullable_to_non_nullable
@@ -1920,18 +1933,18 @@ class __$$PersistenceServiceModelActiveSortingUnitCopyWithImpl<$Res>
 @JsonSerializable()
 @HiveType(
     typeId: 5, adapterName: 'PersistenceServiceModelActiveSortingUnitAdapter')
-class _$PersistenceServiceModelActiveSortingUnit
+class _$PersistenceServiceModelActiveSortingUnitImpl
     implements PersistenceServiceModelActiveSortingUnit {
-  const _$PersistenceServiceModelActiveSortingUnit(
+  const _$PersistenceServiceModelActiveSortingUnitImpl(
       {@HiveField(0) required this.activeSortingUnitId,
       @HiveField(1) required final List<String> customSortingIngredientIds,
       final String? $type})
       : _customSortingIngredientIds = customSortingIngredientIds,
         $type = $type ?? 'unit';
 
-  factory _$PersistenceServiceModelActiveSortingUnit.fromJson(
+  factory _$PersistenceServiceModelActiveSortingUnitImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$PersistenceServiceModelActiveSortingUnitFromJson(json);
+      _$$PersistenceServiceModelActiveSortingUnitImplFromJson(json);
 
   @override
   @HiveField(0)
@@ -1955,10 +1968,10 @@ class _$PersistenceServiceModelActiveSortingUnit
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PersistenceServiceModelActiveSortingUnit &&
+            other is _$PersistenceServiceModelActiveSortingUnitImpl &&
             (identical(other.activeSortingUnitId, activeSortingUnitId) ||
                 other.activeSortingUnitId == activeSortingUnitId) &&
             const DeepCollectionEquality().equals(
@@ -1974,10 +1987,11 @@ class _$PersistenceServiceModelActiveSortingUnit
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$PersistenceServiceModelActiveSortingUnitCopyWith<
-          _$PersistenceServiceModelActiveSortingUnit>
-      get copyWith => __$$PersistenceServiceModelActiveSortingUnitCopyWithImpl<
-          _$PersistenceServiceModelActiveSortingUnit>(this, _$identity);
+  _$$PersistenceServiceModelActiveSortingUnitImplCopyWith<
+          _$PersistenceServiceModelActiveSortingUnitImpl>
+      get copyWith =>
+          __$$PersistenceServiceModelActiveSortingUnitImplCopyWithImpl<
+              _$PersistenceServiceModelActiveSortingUnitImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2055,7 +2069,7 @@ class _$PersistenceServiceModelActiveSortingUnit
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PersistenceServiceModelActiveSortingUnitToJson(
+    return _$$PersistenceServiceModelActiveSortingUnitImplToJson(
       this,
     );
   }
@@ -2067,11 +2081,11 @@ abstract class PersistenceServiceModelActiveSortingUnit
           {@HiveField(0) required final String activeSortingUnitId,
           @HiveField(1)
           required final List<String> customSortingIngredientIds}) =
-      _$PersistenceServiceModelActiveSortingUnit;
+      _$PersistenceServiceModelActiveSortingUnitImpl;
 
   factory PersistenceServiceModelActiveSortingUnit.fromJson(
           Map<String, dynamic> json) =
-      _$PersistenceServiceModelActiveSortingUnit.fromJson;
+      _$PersistenceServiceModelActiveSortingUnitImpl.fromJson;
 
   @HiveField(0)
   String get activeSortingUnitId;
@@ -2080,31 +2094,32 @@ abstract class PersistenceServiceModelActiveSortingUnit
   List<String> get customSortingIngredientIds;
   @override
   @JsonKey(ignore: true)
-  _$$PersistenceServiceModelActiveSortingUnitCopyWith<
-          _$PersistenceServiceModelActiveSortingUnit>
+  _$$PersistenceServiceModelActiveSortingUnitImplCopyWith<
+          _$PersistenceServiceModelActiveSortingUnitImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$PersistenceServiceModelActiveSortingCustomCopyWith<$Res>
+abstract class _$$PersistenceServiceModelActiveSortingCustomImplCopyWith<$Res>
     implements $PersistenceServiceModelActiveSortingCopyWith<$Res> {
-  factory _$$PersistenceServiceModelActiveSortingCustomCopyWith(
-          _$PersistenceServiceModelActiveSortingCustom value,
-          $Res Function(_$PersistenceServiceModelActiveSortingCustom) then) =
-      __$$PersistenceServiceModelActiveSortingCustomCopyWithImpl<$Res>;
+  factory _$$PersistenceServiceModelActiveSortingCustomImplCopyWith(
+          _$PersistenceServiceModelActiveSortingCustomImpl value,
+          $Res Function(_$PersistenceServiceModelActiveSortingCustomImpl)
+              then) =
+      __$$PersistenceServiceModelActiveSortingCustomImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({@HiveField(0) List<String> customSortingIngredientIds});
 }
 
 /// @nodoc
-class __$$PersistenceServiceModelActiveSortingCustomCopyWithImpl<$Res>
+class __$$PersistenceServiceModelActiveSortingCustomImplCopyWithImpl<$Res>
     extends _$PersistenceServiceModelActiveSortingCopyWithImpl<$Res,
-        _$PersistenceServiceModelActiveSortingCustom>
-    implements _$$PersistenceServiceModelActiveSortingCustomCopyWith<$Res> {
-  __$$PersistenceServiceModelActiveSortingCustomCopyWithImpl(
-      _$PersistenceServiceModelActiveSortingCustom _value,
-      $Res Function(_$PersistenceServiceModelActiveSortingCustom) _then)
+        _$PersistenceServiceModelActiveSortingCustomImpl>
+    implements _$$PersistenceServiceModelActiveSortingCustomImplCopyWith<$Res> {
+  __$$PersistenceServiceModelActiveSortingCustomImplCopyWithImpl(
+      _$PersistenceServiceModelActiveSortingCustomImpl _value,
+      $Res Function(_$PersistenceServiceModelActiveSortingCustomImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2112,7 +2127,7 @@ class __$$PersistenceServiceModelActiveSortingCustomCopyWithImpl<$Res>
   $Res call({
     Object? customSortingIngredientIds = null,
   }) {
-    return _then(_$PersistenceServiceModelActiveSortingCustom(
+    return _then(_$PersistenceServiceModelActiveSortingCustomImpl(
       customSortingIngredientIds: null == customSortingIngredientIds
           ? _value._customSortingIngredientIds
           : customSortingIngredientIds // ignore: cast_nullable_to_non_nullable
@@ -2125,17 +2140,17 @@ class __$$PersistenceServiceModelActiveSortingCustomCopyWithImpl<$Res>
 @JsonSerializable()
 @HiveType(
     typeId: 6, adapterName: 'PersistenceServiceModelActiveSortingCustomAdapter')
-class _$PersistenceServiceModelActiveSortingCustom
+class _$PersistenceServiceModelActiveSortingCustomImpl
     implements PersistenceServiceModelActiveSortingCustom {
-  const _$PersistenceServiceModelActiveSortingCustom(
+  const _$PersistenceServiceModelActiveSortingCustomImpl(
       {@HiveField(0) required final List<String> customSortingIngredientIds,
       final String? $type})
       : _customSortingIngredientIds = customSortingIngredientIds,
         $type = $type ?? 'custom';
 
-  factory _$PersistenceServiceModelActiveSortingCustom.fromJson(
+  factory _$PersistenceServiceModelActiveSortingCustomImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$PersistenceServiceModelActiveSortingCustomFromJson(json);
+      _$$PersistenceServiceModelActiveSortingCustomImplFromJson(json);
 
   final List<String> _customSortingIngredientIds;
   @override
@@ -2156,10 +2171,10 @@ class _$PersistenceServiceModelActiveSortingCustom
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PersistenceServiceModelActiveSortingCustom &&
+            other is _$PersistenceServiceModelActiveSortingCustomImpl &&
             const DeepCollectionEquality().equals(
                 other._customSortingIngredientIds,
                 _customSortingIngredientIds));
@@ -2173,11 +2188,12 @@ class _$PersistenceServiceModelActiveSortingCustom
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$PersistenceServiceModelActiveSortingCustomCopyWith<
-          _$PersistenceServiceModelActiveSortingCustom>
+  _$$PersistenceServiceModelActiveSortingCustomImplCopyWith<
+          _$PersistenceServiceModelActiveSortingCustomImpl>
       get copyWith =>
-          __$$PersistenceServiceModelActiveSortingCustomCopyWithImpl<
-              _$PersistenceServiceModelActiveSortingCustom>(this, _$identity);
+          __$$PersistenceServiceModelActiveSortingCustomImplCopyWithImpl<
+                  _$PersistenceServiceModelActiveSortingCustomImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2255,7 +2271,7 @@ class _$PersistenceServiceModelActiveSortingCustom
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PersistenceServiceModelActiveSortingCustomToJson(
+    return _$$PersistenceServiceModelActiveSortingCustomImplToJson(
       this,
     );
   }
@@ -2266,19 +2282,19 @@ abstract class PersistenceServiceModelActiveSortingCustom
   const factory PersistenceServiceModelActiveSortingCustom(
           {@HiveField(0)
           required final List<String> customSortingIngredientIds}) =
-      _$PersistenceServiceModelActiveSortingCustom;
+      _$PersistenceServiceModelActiveSortingCustomImpl;
 
   factory PersistenceServiceModelActiveSortingCustom.fromJson(
           Map<String, dynamic> json) =
-      _$PersistenceServiceModelActiveSortingCustom.fromJson;
+      _$PersistenceServiceModelActiveSortingCustomImpl.fromJson;
 
   @override
   @HiveField(0)
   List<String> get customSortingIngredientIds;
   @override
   @JsonKey(ignore: true)
-  _$$PersistenceServiceModelActiveSortingCustomCopyWith<
-          _$PersistenceServiceModelActiveSortingCustom>
+  _$$PersistenceServiceModelActiveSortingCustomImplCopyWith<
+          _$PersistenceServiceModelActiveSortingCustomImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -2363,12 +2379,12 @@ class _$PersistenceServiceModelHistoryRecipeCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_PersistenceServiceModelHistoryRecipeCopyWith<$Res>
+abstract class _$$PersistenceServiceModelHistoryRecipeImplCopyWith<$Res>
     implements $PersistenceServiceModelHistoryRecipeCopyWith<$Res> {
-  factory _$$_PersistenceServiceModelHistoryRecipeCopyWith(
-          _$_PersistenceServiceModelHistoryRecipe value,
-          $Res Function(_$_PersistenceServiceModelHistoryRecipe) then) =
-      __$$_PersistenceServiceModelHistoryRecipeCopyWithImpl<$Res>;
+  factory _$$PersistenceServiceModelHistoryRecipeImplCopyWith(
+          _$PersistenceServiceModelHistoryRecipeImpl value,
+          $Res Function(_$PersistenceServiceModelHistoryRecipeImpl) then) =
+      __$$PersistenceServiceModelHistoryRecipeImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -2380,13 +2396,13 @@ abstract class _$$_PersistenceServiceModelHistoryRecipeCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PersistenceServiceModelHistoryRecipeCopyWithImpl<$Res>
+class __$$PersistenceServiceModelHistoryRecipeImplCopyWithImpl<$Res>
     extends _$PersistenceServiceModelHistoryRecipeCopyWithImpl<$Res,
-        _$_PersistenceServiceModelHistoryRecipe>
-    implements _$$_PersistenceServiceModelHistoryRecipeCopyWith<$Res> {
-  __$$_PersistenceServiceModelHistoryRecipeCopyWithImpl(
-      _$_PersistenceServiceModelHistoryRecipe _value,
-      $Res Function(_$_PersistenceServiceModelHistoryRecipe) _then)
+        _$PersistenceServiceModelHistoryRecipeImpl>
+    implements _$$PersistenceServiceModelHistoryRecipeImplCopyWith<$Res> {
+  __$$PersistenceServiceModelHistoryRecipeImplCopyWithImpl(
+      _$PersistenceServiceModelHistoryRecipeImpl _value,
+      $Res Function(_$PersistenceServiceModelHistoryRecipeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2398,7 +2414,7 @@ class __$$_PersistenceServiceModelHistoryRecipeCopyWithImpl<$Res>
     Object? origin = null,
     Object? createdAt = null,
   }) {
-    return _then(_$_PersistenceServiceModelHistoryRecipe(
+    return _then(_$PersistenceServiceModelHistoryRecipeImpl(
       recipeId: null == recipeId
           ? _value.recipeId
           : recipeId // ignore: cast_nullable_to_non_nullable
@@ -2426,9 +2442,9 @@ class __$$_PersistenceServiceModelHistoryRecipeCopyWithImpl<$Res>
 /// @nodoc
 
 @HiveType(typeId: 8, adapterName: 'PersistenceServiceModelHistoryRecipeAdapter')
-class _$_PersistenceServiceModelHistoryRecipe
+class _$PersistenceServiceModelHistoryRecipeImpl
     implements _PersistenceServiceModelHistoryRecipe {
-  const _$_PersistenceServiceModelHistoryRecipe(
+  const _$PersistenceServiceModelHistoryRecipeImpl(
       {@HiveField(0) required this.recipeId,
       @HiveField(1) required this.title,
       @HiveField(2) required this.imagePath,
@@ -2457,10 +2473,10 @@ class _$_PersistenceServiceModelHistoryRecipe
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PersistenceServiceModelHistoryRecipe &&
+            other is _$PersistenceServiceModelHistoryRecipeImpl &&
             (identical(other.recipeId, recipeId) ||
                 other.recipeId == recipeId) &&
             (identical(other.title, title) || other.title == title) &&
@@ -2478,10 +2494,10 @@ class _$_PersistenceServiceModelHistoryRecipe
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PersistenceServiceModelHistoryRecipeCopyWith<
-          _$_PersistenceServiceModelHistoryRecipe>
-      get copyWith => __$$_PersistenceServiceModelHistoryRecipeCopyWithImpl<
-          _$_PersistenceServiceModelHistoryRecipe>(this, _$identity);
+  _$$PersistenceServiceModelHistoryRecipeImplCopyWith<
+          _$PersistenceServiceModelHistoryRecipeImpl>
+      get copyWith => __$$PersistenceServiceModelHistoryRecipeImplCopyWithImpl<
+          _$PersistenceServiceModelHistoryRecipeImpl>(this, _$identity);
 }
 
 abstract class _PersistenceServiceModelHistoryRecipe
@@ -2492,7 +2508,7 @@ abstract class _PersistenceServiceModelHistoryRecipe
           @HiveField(2) required final Option<Uri> imagePath,
           @HiveField(3) required final String origin,
           @HiveField(4) required final String createdAt}) =
-      _$_PersistenceServiceModelHistoryRecipe;
+      _$PersistenceServiceModelHistoryRecipeImpl;
 
   @override
   @HiveField(0)
@@ -2511,8 +2527,8 @@ abstract class _PersistenceServiceModelHistoryRecipe
   String get createdAt;
   @override
   @JsonKey(ignore: true)
-  _$$_PersistenceServiceModelHistoryRecipeCopyWith<
-          _$_PersistenceServiceModelHistoryRecipe>
+  _$$PersistenceServiceModelHistoryRecipeImplCopyWith<
+          _$PersistenceServiceModelHistoryRecipeImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -2586,24 +2602,27 @@ class _$PersistenceServiceModelHistoryRecipeOriginCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$PersistenceServiceModelHistoryRecipeOriginClickedCopyWith<
+abstract class _$$PersistenceServiceModelHistoryRecipeOriginClickedImplCopyWith<
     $Res> {
-  factory _$$PersistenceServiceModelHistoryRecipeOriginClickedCopyWith(
-          _$PersistenceServiceModelHistoryRecipeOriginClicked value,
-          $Res Function(_$PersistenceServiceModelHistoryRecipeOriginClicked)
+  factory _$$PersistenceServiceModelHistoryRecipeOriginClickedImplCopyWith(
+          _$PersistenceServiceModelHistoryRecipeOriginClickedImpl value,
+          $Res Function(_$PersistenceServiceModelHistoryRecipeOriginClickedImpl)
               then) =
-      __$$PersistenceServiceModelHistoryRecipeOriginClickedCopyWithImpl<$Res>;
+      __$$PersistenceServiceModelHistoryRecipeOriginClickedImplCopyWithImpl<
+          $Res>;
 }
 
 /// @nodoc
-class __$$PersistenceServiceModelHistoryRecipeOriginClickedCopyWithImpl<$Res>
+class __$$PersistenceServiceModelHistoryRecipeOriginClickedImplCopyWithImpl<
+        $Res>
     extends _$PersistenceServiceModelHistoryRecipeOriginCopyWithImpl<$Res,
-        _$PersistenceServiceModelHistoryRecipeOriginClicked>
+        _$PersistenceServiceModelHistoryRecipeOriginClickedImpl>
     implements
-        _$$PersistenceServiceModelHistoryRecipeOriginClickedCopyWith<$Res> {
-  __$$PersistenceServiceModelHistoryRecipeOriginClickedCopyWithImpl(
-      _$PersistenceServiceModelHistoryRecipeOriginClicked _value,
-      $Res Function(_$PersistenceServiceModelHistoryRecipeOriginClicked) _then)
+        _$$PersistenceServiceModelHistoryRecipeOriginClickedImplCopyWith<$Res> {
+  __$$PersistenceServiceModelHistoryRecipeOriginClickedImplCopyWithImpl(
+      _$PersistenceServiceModelHistoryRecipeOriginClickedImpl _value,
+      $Res Function(_$PersistenceServiceModelHistoryRecipeOriginClickedImpl)
+          _then)
       : super(_value, _then);
 }
 
@@ -2612,13 +2631,13 @@ class __$$PersistenceServiceModelHistoryRecipeOriginClickedCopyWithImpl<$Res>
 @HiveType(
     typeId: 9,
     adapterName: 'PersistenceServiceModelHistoryRecipeOriginClickedAdapter')
-class _$PersistenceServiceModelHistoryRecipeOriginClicked
+class _$PersistenceServiceModelHistoryRecipeOriginClickedImpl
     implements PersistenceServiceModelHistoryRecipeOriginClicked {
-  const _$PersistenceServiceModelHistoryRecipeOriginClicked();
+  const _$PersistenceServiceModelHistoryRecipeOriginClickedImpl();
 
-  factory _$PersistenceServiceModelHistoryRecipeOriginClicked.fromJson(
+  factory _$PersistenceServiceModelHistoryRecipeOriginClickedImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$PersistenceServiceModelHistoryRecipeOriginClickedFromJson(json);
+      _$$PersistenceServiceModelHistoryRecipeOriginClickedImplFromJson(json);
 
   @override
   String toString() {
@@ -2626,10 +2645,10 @@ class _$PersistenceServiceModelHistoryRecipeOriginClicked
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PersistenceServiceModelHistoryRecipeOriginClicked);
+            other is _$PersistenceServiceModelHistoryRecipeOriginClickedImpl);
   }
 
   @JsonKey(ignore: true)
@@ -2698,7 +2717,7 @@ class _$PersistenceServiceModelHistoryRecipeOriginClicked
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PersistenceServiceModelHistoryRecipeOriginClickedToJson(
+    return _$$PersistenceServiceModelHistoryRecipeOriginClickedImplToJson(
       this,
     );
   }
@@ -2707,9 +2726,9 @@ class _$PersistenceServiceModelHistoryRecipeOriginClicked
 abstract class PersistenceServiceModelHistoryRecipeOriginClicked
     implements PersistenceServiceModelHistoryRecipeOrigin {
   const factory PersistenceServiceModelHistoryRecipeOriginClicked() =
-      _$PersistenceServiceModelHistoryRecipeOriginClicked;
+      _$PersistenceServiceModelHistoryRecipeOriginClickedImpl;
 
   factory PersistenceServiceModelHistoryRecipeOriginClicked.fromJson(
           Map<String, dynamic> json) =
-      _$PersistenceServiceModelHistoryRecipeOriginClicked.fromJson;
+      _$PersistenceServiceModelHistoryRecipeOriginClickedImpl.fromJson;
 }

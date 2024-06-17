@@ -12,7 +12,7 @@ part of 'home_web_client_service.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$HomeWebClientModelRecipeResponse {
@@ -81,12 +81,12 @@ class _$HomeWebClientModelRecipeResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_HomeWebClientModelRecipeResponseCopyWith<$Res>
+abstract class _$$HomeWebClientModelRecipeResponseImplCopyWith<$Res>
     implements $HomeWebClientModelRecipeResponseCopyWith<$Res> {
-  factory _$$_HomeWebClientModelRecipeResponseCopyWith(
-          _$_HomeWebClientModelRecipeResponse value,
-          $Res Function(_$_HomeWebClientModelRecipeResponse) then) =
-      __$$_HomeWebClientModelRecipeResponseCopyWithImpl<$Res>;
+  factory _$$HomeWebClientModelRecipeResponseImplCopyWith(
+          _$HomeWebClientModelRecipeResponseImpl value,
+          $Res Function(_$HomeWebClientModelRecipeResponseImpl) then) =
+      __$$HomeWebClientModelRecipeResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -98,13 +98,13 @@ abstract class _$$_HomeWebClientModelRecipeResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_HomeWebClientModelRecipeResponseCopyWithImpl<$Res>
+class __$$HomeWebClientModelRecipeResponseImplCopyWithImpl<$Res>
     extends _$HomeWebClientModelRecipeResponseCopyWithImpl<$Res,
-        _$_HomeWebClientModelRecipeResponse>
-    implements _$$_HomeWebClientModelRecipeResponseCopyWith<$Res> {
-  __$$_HomeWebClientModelRecipeResponseCopyWithImpl(
-      _$_HomeWebClientModelRecipeResponse _value,
-      $Res Function(_$_HomeWebClientModelRecipeResponse) _then)
+        _$HomeWebClientModelRecipeResponseImpl>
+    implements _$$HomeWebClientModelRecipeResponseImplCopyWith<$Res> {
+  __$$HomeWebClientModelRecipeResponseImplCopyWithImpl(
+      _$HomeWebClientModelRecipeResponseImpl _value,
+      $Res Function(_$HomeWebClientModelRecipeResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -113,7 +113,7 @@ class __$$_HomeWebClientModelRecipeResponseCopyWithImpl<$Res>
     Object? pagination = null,
     Object? recipes = null,
   }) {
-    return _then(_$_HomeWebClientModelRecipeResponse(
+    return _then(_$HomeWebClientModelRecipeResponseImpl(
       pagination: null == pagination
           ? _value.pagination
           : pagination // ignore: cast_nullable_to_non_nullable
@@ -128,9 +128,9 @@ class __$$_HomeWebClientModelRecipeResponseCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HomeWebClientModelRecipeResponse
+class _$HomeWebClientModelRecipeResponseImpl
     implements _HomeWebClientModelRecipeResponse {
-  const _$_HomeWebClientModelRecipeResponse(
+  const _$HomeWebClientModelRecipeResponseImpl(
       {required this.pagination,
       required final List<HomeWebClientModelRecipe> recipes})
       : _recipes = recipes;
@@ -151,10 +151,10 @@ class _$_HomeWebClientModelRecipeResponse
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HomeWebClientModelRecipeResponse &&
+            other is _$HomeWebClientModelRecipeResponseImpl &&
             (identical(other.pagination, pagination) ||
                 other.pagination == pagination) &&
             const DeepCollectionEquality().equals(other._recipes, _recipes));
@@ -167,10 +167,10 @@ class _$_HomeWebClientModelRecipeResponse
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HomeWebClientModelRecipeResponseCopyWith<
-          _$_HomeWebClientModelRecipeResponse>
-      get copyWith => __$$_HomeWebClientModelRecipeResponseCopyWithImpl<
-          _$_HomeWebClientModelRecipeResponse>(this, _$identity);
+  _$$HomeWebClientModelRecipeResponseImplCopyWith<
+          _$HomeWebClientModelRecipeResponseImpl>
+      get copyWith => __$$HomeWebClientModelRecipeResponseImplCopyWithImpl<
+          _$HomeWebClientModelRecipeResponseImpl>(this, _$identity);
 }
 
 abstract class _HomeWebClientModelRecipeResponse
@@ -178,7 +178,7 @@ abstract class _HomeWebClientModelRecipeResponse
   const factory _HomeWebClientModelRecipeResponse(
           {required final HomeWebClientModelRecipePagination pagination,
           required final List<HomeWebClientModelRecipe> recipes}) =
-      _$_HomeWebClientModelRecipeResponse;
+      _$HomeWebClientModelRecipeResponseImpl;
 
   @override
   HomeWebClientModelRecipePagination get pagination;
@@ -186,8 +186,8 @@ abstract class _HomeWebClientModelRecipeResponse
   List<HomeWebClientModelRecipe> get recipes;
   @override
   @JsonKey(ignore: true)
-  _$$_HomeWebClientModelRecipeResponseCopyWith<
-          _$_HomeWebClientModelRecipeResponse>
+  _$$HomeWebClientModelRecipeResponseImplCopyWith<
+          _$HomeWebClientModelRecipeResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -250,25 +250,25 @@ class _$HomeWebClientModelRecipePaginationCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_HomeWebClientModelRecipePaginationCopyWith<$Res>
+abstract class _$$HomeWebClientModelRecipePaginationImplCopyWith<$Res>
     implements $HomeWebClientModelRecipePaginationCopyWith<$Res> {
-  factory _$$_HomeWebClientModelRecipePaginationCopyWith(
-          _$_HomeWebClientModelRecipePagination value,
-          $Res Function(_$_HomeWebClientModelRecipePagination) then) =
-      __$$_HomeWebClientModelRecipePaginationCopyWithImpl<$Res>;
+  factory _$$HomeWebClientModelRecipePaginationImplCopyWith(
+          _$HomeWebClientModelRecipePaginationImpl value,
+          $Res Function(_$HomeWebClientModelRecipePaginationImpl) then) =
+      __$$HomeWebClientModelRecipePaginationImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int skip, int take, Option<int> total});
 }
 
 /// @nodoc
-class __$$_HomeWebClientModelRecipePaginationCopyWithImpl<$Res>
+class __$$HomeWebClientModelRecipePaginationImplCopyWithImpl<$Res>
     extends _$HomeWebClientModelRecipePaginationCopyWithImpl<$Res,
-        _$_HomeWebClientModelRecipePagination>
-    implements _$$_HomeWebClientModelRecipePaginationCopyWith<$Res> {
-  __$$_HomeWebClientModelRecipePaginationCopyWithImpl(
-      _$_HomeWebClientModelRecipePagination _value,
-      $Res Function(_$_HomeWebClientModelRecipePagination) _then)
+        _$HomeWebClientModelRecipePaginationImpl>
+    implements _$$HomeWebClientModelRecipePaginationImplCopyWith<$Res> {
+  __$$HomeWebClientModelRecipePaginationImplCopyWithImpl(
+      _$HomeWebClientModelRecipePaginationImpl _value,
+      $Res Function(_$HomeWebClientModelRecipePaginationImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -278,7 +278,7 @@ class __$$_HomeWebClientModelRecipePaginationCopyWithImpl<$Res>
     Object? take = null,
     Object? total = null,
   }) {
-    return _then(_$_HomeWebClientModelRecipePagination(
+    return _then(_$HomeWebClientModelRecipePaginationImpl(
       skip: null == skip
           ? _value.skip
           : skip // ignore: cast_nullable_to_non_nullable
@@ -297,9 +297,9 @@ class __$$_HomeWebClientModelRecipePaginationCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HomeWebClientModelRecipePagination
+class _$HomeWebClientModelRecipePaginationImpl
     implements _HomeWebClientModelRecipePagination {
-  const _$_HomeWebClientModelRecipePagination(
+  const _$HomeWebClientModelRecipePaginationImpl(
       {required this.skip, required this.take, required this.total});
 
   @override
@@ -315,10 +315,10 @@ class _$_HomeWebClientModelRecipePagination
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HomeWebClientModelRecipePagination &&
+            other is _$HomeWebClientModelRecipePaginationImpl &&
             (identical(other.skip, skip) || other.skip == skip) &&
             (identical(other.take, take) || other.take == take) &&
             (identical(other.total, total) || other.total == total));
@@ -330,10 +330,10 @@ class _$_HomeWebClientModelRecipePagination
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HomeWebClientModelRecipePaginationCopyWith<
-          _$_HomeWebClientModelRecipePagination>
-      get copyWith => __$$_HomeWebClientModelRecipePaginationCopyWithImpl<
-          _$_HomeWebClientModelRecipePagination>(this, _$identity);
+  _$$HomeWebClientModelRecipePaginationImplCopyWith<
+          _$HomeWebClientModelRecipePaginationImpl>
+      get copyWith => __$$HomeWebClientModelRecipePaginationImplCopyWithImpl<
+          _$HomeWebClientModelRecipePaginationImpl>(this, _$identity);
 }
 
 abstract class _HomeWebClientModelRecipePagination
@@ -342,7 +342,7 @@ abstract class _HomeWebClientModelRecipePagination
           {required final int skip,
           required final int take,
           required final Option<int> total}) =
-      _$_HomeWebClientModelRecipePagination;
+      _$HomeWebClientModelRecipePaginationImpl;
 
   @override
   int get skip;
@@ -352,8 +352,8 @@ abstract class _HomeWebClientModelRecipePagination
   Option<int> get total;
   @override
   @JsonKey(ignore: true)
-  _$$_HomeWebClientModelRecipePaginationCopyWith<
-          _$_HomeWebClientModelRecipePagination>
+  _$$HomeWebClientModelRecipePaginationImplCopyWith<
+          _$HomeWebClientModelRecipePaginationImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -465,12 +465,12 @@ class _$HomeWebClientModelRecipeCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_HomeWebClientModelRecipeCopyWith<$Res>
+abstract class _$$HomeWebClientModelRecipeImplCopyWith<$Res>
     implements $HomeWebClientModelRecipeCopyWith<$Res> {
-  factory _$$_HomeWebClientModelRecipeCopyWith(
-          _$_HomeWebClientModelRecipe value,
-          $Res Function(_$_HomeWebClientModelRecipe) then) =
-      __$$_HomeWebClientModelRecipeCopyWithImpl<$Res>;
+  factory _$$HomeWebClientModelRecipeImplCopyWith(
+          _$HomeWebClientModelRecipeImpl value,
+          $Res Function(_$HomeWebClientModelRecipeImpl) then) =
+      __$$HomeWebClientModelRecipeImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -488,12 +488,13 @@ abstract class _$$_HomeWebClientModelRecipeCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_HomeWebClientModelRecipeCopyWithImpl<$Res>
+class __$$HomeWebClientModelRecipeImplCopyWithImpl<$Res>
     extends _$HomeWebClientModelRecipeCopyWithImpl<$Res,
-        _$_HomeWebClientModelRecipe>
-    implements _$$_HomeWebClientModelRecipeCopyWith<$Res> {
-  __$$_HomeWebClientModelRecipeCopyWithImpl(_$_HomeWebClientModelRecipe _value,
-      $Res Function(_$_HomeWebClientModelRecipe) _then)
+        _$HomeWebClientModelRecipeImpl>
+    implements _$$HomeWebClientModelRecipeImplCopyWith<$Res> {
+  __$$HomeWebClientModelRecipeImplCopyWithImpl(
+      _$HomeWebClientModelRecipeImpl _value,
+      $Res Function(_$HomeWebClientModelRecipeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -508,7 +509,7 @@ class __$$_HomeWebClientModelRecipeCopyWithImpl<$Res>
     Object? cuisineIds = null,
     Object? imagePath = null,
   }) {
-    return _then(_$_HomeWebClientModelRecipe(
+    return _then(_$HomeWebClientModelRecipeImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -547,8 +548,8 @@ class __$$_HomeWebClientModelRecipeCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HomeWebClientModelRecipe implements _HomeWebClientModelRecipe {
-  const _$_HomeWebClientModelRecipe(
+class _$HomeWebClientModelRecipeImpl implements _HomeWebClientModelRecipe {
+  const _$HomeWebClientModelRecipeImpl(
       {required this.id,
       required this.displayedAttributes,
       required this.difficulty,
@@ -609,10 +610,10 @@ class _$_HomeWebClientModelRecipe implements _HomeWebClientModelRecipe {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HomeWebClientModelRecipe &&
+            other is _$HomeWebClientModelRecipeImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.displayedAttributes, displayedAttributes) ||
                 other.displayedAttributes == displayedAttributes) &&
@@ -643,9 +644,9 @@ class _$_HomeWebClientModelRecipe implements _HomeWebClientModelRecipe {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HomeWebClientModelRecipeCopyWith<_$_HomeWebClientModelRecipe>
-      get copyWith => __$$_HomeWebClientModelRecipeCopyWithImpl<
-          _$_HomeWebClientModelRecipe>(this, _$identity);
+  _$$HomeWebClientModelRecipeImplCopyWith<_$HomeWebClientModelRecipeImpl>
+      get copyWith => __$$HomeWebClientModelRecipeImplCopyWithImpl<
+          _$HomeWebClientModelRecipeImpl>(this, _$identity);
 }
 
 abstract class _HomeWebClientModelRecipe implements HomeWebClientModelRecipe {
@@ -657,7 +658,7 @@ abstract class _HomeWebClientModelRecipe implements HomeWebClientModelRecipe {
       required final List<HomeWebClientModelYield> yields,
       required final List<String> tagIds,
       required final List<String> cuisineIds,
-      required final Option<Uri> imagePath}) = _$_HomeWebClientModelRecipe;
+      required final Option<Uri> imagePath}) = _$HomeWebClientModelRecipeImpl;
 
   @override
   String get id;
@@ -677,7 +678,7 @@ abstract class _HomeWebClientModelRecipe implements HomeWebClientModelRecipe {
   Option<Uri> get imagePath;
   @override
   @JsonKey(ignore: true)
-  _$$_HomeWebClientModelRecipeCopyWith<_$_HomeWebClientModelRecipe>
+  _$$HomeWebClientModelRecipeImplCopyWith<_$HomeWebClientModelRecipeImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -750,12 +751,12 @@ class _$HomeWebClientModelDisplayedAttributesCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_HomeWebClientModelDisplayedAttributesCopyWith<$Res>
+abstract class _$$HomeWebClientModelDisplayedAttributesImplCopyWith<$Res>
     implements $HomeWebClientModelDisplayedAttributesCopyWith<$Res> {
-  factory _$$_HomeWebClientModelDisplayedAttributesCopyWith(
-          _$_HomeWebClientModelDisplayedAttributes value,
-          $Res Function(_$_HomeWebClientModelDisplayedAttributes) then) =
-      __$$_HomeWebClientModelDisplayedAttributesCopyWithImpl<$Res>;
+  factory _$$HomeWebClientModelDisplayedAttributesImplCopyWith(
+          _$HomeWebClientModelDisplayedAttributesImpl value,
+          $Res Function(_$HomeWebClientModelDisplayedAttributesImpl) then) =
+      __$$HomeWebClientModelDisplayedAttributesImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -766,13 +767,13 @@ abstract class _$$_HomeWebClientModelDisplayedAttributesCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_HomeWebClientModelDisplayedAttributesCopyWithImpl<$Res>
+class __$$HomeWebClientModelDisplayedAttributesImplCopyWithImpl<$Res>
     extends _$HomeWebClientModelDisplayedAttributesCopyWithImpl<$Res,
-        _$_HomeWebClientModelDisplayedAttributes>
-    implements _$$_HomeWebClientModelDisplayedAttributesCopyWith<$Res> {
-  __$$_HomeWebClientModelDisplayedAttributesCopyWithImpl(
-      _$_HomeWebClientModelDisplayedAttributes _value,
-      $Res Function(_$_HomeWebClientModelDisplayedAttributes) _then)
+        _$HomeWebClientModelDisplayedAttributesImpl>
+    implements _$$HomeWebClientModelDisplayedAttributesImplCopyWith<$Res> {
+  __$$HomeWebClientModelDisplayedAttributesImplCopyWithImpl(
+      _$HomeWebClientModelDisplayedAttributesImpl _value,
+      $Res Function(_$HomeWebClientModelDisplayedAttributesImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -783,7 +784,7 @@ class __$$_HomeWebClientModelDisplayedAttributesCopyWithImpl<$Res>
     Object? description = null,
     Object? descriptionMarkdown = null,
   }) {
-    return _then(_$_HomeWebClientModelDisplayedAttributes(
+    return _then(_$HomeWebClientModelDisplayedAttributesImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -806,9 +807,9 @@ class __$$_HomeWebClientModelDisplayedAttributesCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HomeWebClientModelDisplayedAttributes
+class _$HomeWebClientModelDisplayedAttributesImpl
     implements _HomeWebClientModelDisplayedAttributes {
-  const _$_HomeWebClientModelDisplayedAttributes(
+  const _$HomeWebClientModelDisplayedAttributesImpl(
       {required this.name,
       required this.headline,
       required this.description,
@@ -829,10 +830,10 @@ class _$_HomeWebClientModelDisplayedAttributes
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HomeWebClientModelDisplayedAttributes &&
+            other is _$HomeWebClientModelDisplayedAttributesImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.headline, headline) ||
                 other.headline == headline) &&
@@ -849,10 +850,10 @@ class _$_HomeWebClientModelDisplayedAttributes
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HomeWebClientModelDisplayedAttributesCopyWith<
-          _$_HomeWebClientModelDisplayedAttributes>
-      get copyWith => __$$_HomeWebClientModelDisplayedAttributesCopyWithImpl<
-          _$_HomeWebClientModelDisplayedAttributes>(this, _$identity);
+  _$$HomeWebClientModelDisplayedAttributesImplCopyWith<
+          _$HomeWebClientModelDisplayedAttributesImpl>
+      get copyWith => __$$HomeWebClientModelDisplayedAttributesImplCopyWithImpl<
+          _$HomeWebClientModelDisplayedAttributesImpl>(this, _$identity);
 }
 
 abstract class _HomeWebClientModelDisplayedAttributes
@@ -862,7 +863,7 @@ abstract class _HomeWebClientModelDisplayedAttributes
           required final String headline,
           required final String description,
           required final Option<String> descriptionMarkdown}) =
-      _$_HomeWebClientModelDisplayedAttributes;
+      _$HomeWebClientModelDisplayedAttributesImpl;
 
   @override
   String get name;
@@ -874,8 +875,8 @@ abstract class _HomeWebClientModelDisplayedAttributes
   Option<String> get descriptionMarkdown;
   @override
   @JsonKey(ignore: true)
-  _$$_HomeWebClientModelDisplayedAttributesCopyWith<
-          _$_HomeWebClientModelDisplayedAttributes>
+  _$$HomeWebClientModelDisplayedAttributesImplCopyWith<
+          _$HomeWebClientModelDisplayedAttributesImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -937,25 +938,25 @@ class _$HomeWebClientModelIngredientCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_HomeWebClientModelIngredientCopyWith<$Res>
+abstract class _$$HomeWebClientModelIngredientImplCopyWith<$Res>
     implements $HomeWebClientModelIngredientCopyWith<$Res> {
-  factory _$$_HomeWebClientModelIngredientCopyWith(
-          _$_HomeWebClientModelIngredient value,
-          $Res Function(_$_HomeWebClientModelIngredient) then) =
-      __$$_HomeWebClientModelIngredientCopyWithImpl<$Res>;
+  factory _$$HomeWebClientModelIngredientImplCopyWith(
+          _$HomeWebClientModelIngredientImpl value,
+          $Res Function(_$HomeWebClientModelIngredientImpl) then) =
+      __$$HomeWebClientModelIngredientImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, String slug, String displayedName});
 }
 
 /// @nodoc
-class __$$_HomeWebClientModelIngredientCopyWithImpl<$Res>
+class __$$HomeWebClientModelIngredientImplCopyWithImpl<$Res>
     extends _$HomeWebClientModelIngredientCopyWithImpl<$Res,
-        _$_HomeWebClientModelIngredient>
-    implements _$$_HomeWebClientModelIngredientCopyWith<$Res> {
-  __$$_HomeWebClientModelIngredientCopyWithImpl(
-      _$_HomeWebClientModelIngredient _value,
-      $Res Function(_$_HomeWebClientModelIngredient) _then)
+        _$HomeWebClientModelIngredientImpl>
+    implements _$$HomeWebClientModelIngredientImplCopyWith<$Res> {
+  __$$HomeWebClientModelIngredientImplCopyWithImpl(
+      _$HomeWebClientModelIngredientImpl _value,
+      $Res Function(_$HomeWebClientModelIngredientImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -965,7 +966,7 @@ class __$$_HomeWebClientModelIngredientCopyWithImpl<$Res>
     Object? slug = null,
     Object? displayedName = null,
   }) {
-    return _then(_$_HomeWebClientModelIngredient(
+    return _then(_$HomeWebClientModelIngredientImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -984,8 +985,9 @@ class __$$_HomeWebClientModelIngredientCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HomeWebClientModelIngredient implements _HomeWebClientModelIngredient {
-  const _$_HomeWebClientModelIngredient(
+class _$HomeWebClientModelIngredientImpl
+    implements _HomeWebClientModelIngredient {
+  const _$HomeWebClientModelIngredientImpl(
       {required this.id, required this.slug, required this.displayedName});
 
   @override
@@ -1001,10 +1003,10 @@ class _$_HomeWebClientModelIngredient implements _HomeWebClientModelIngredient {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HomeWebClientModelIngredient &&
+            other is _$HomeWebClientModelIngredientImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.slug, slug) || other.slug == slug) &&
             (identical(other.displayedName, displayedName) ||
@@ -1017,17 +1019,19 @@ class _$_HomeWebClientModelIngredient implements _HomeWebClientModelIngredient {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HomeWebClientModelIngredientCopyWith<_$_HomeWebClientModelIngredient>
-      get copyWith => __$$_HomeWebClientModelIngredientCopyWithImpl<
-          _$_HomeWebClientModelIngredient>(this, _$identity);
+  _$$HomeWebClientModelIngredientImplCopyWith<
+          _$HomeWebClientModelIngredientImpl>
+      get copyWith => __$$HomeWebClientModelIngredientImplCopyWithImpl<
+          _$HomeWebClientModelIngredientImpl>(this, _$identity);
 }
 
 abstract class _HomeWebClientModelIngredient
     implements HomeWebClientModelIngredient {
   const factory _HomeWebClientModelIngredient(
-      {required final String id,
-      required final String slug,
-      required final String displayedName}) = _$_HomeWebClientModelIngredient;
+          {required final String id,
+          required final String slug,
+          required final String displayedName}) =
+      _$HomeWebClientModelIngredientImpl;
 
   @override
   String get id;
@@ -1037,7 +1041,8 @@ abstract class _HomeWebClientModelIngredient
   String get displayedName;
   @override
   @JsonKey(ignore: true)
-  _$$_HomeWebClientModelIngredientCopyWith<_$_HomeWebClientModelIngredient>
+  _$$HomeWebClientModelIngredientImplCopyWith<
+          _$HomeWebClientModelIngredientImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1087,25 +1092,25 @@ class _$HomeWebClientModelPaginationCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_HomeWebClientModelPaginationCopyWith<$Res>
+abstract class _$$HomeWebClientModelPaginationImplCopyWith<$Res>
     implements $HomeWebClientModelPaginationCopyWith<$Res> {
-  factory _$$_HomeWebClientModelPaginationCopyWith(
-          _$_HomeWebClientModelPagination value,
-          $Res Function(_$_HomeWebClientModelPagination) then) =
-      __$$_HomeWebClientModelPaginationCopyWithImpl<$Res>;
+  factory _$$HomeWebClientModelPaginationImplCopyWith(
+          _$HomeWebClientModelPaginationImpl value,
+          $Res Function(_$HomeWebClientModelPaginationImpl) then) =
+      __$$HomeWebClientModelPaginationImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int total});
 }
 
 /// @nodoc
-class __$$_HomeWebClientModelPaginationCopyWithImpl<$Res>
+class __$$HomeWebClientModelPaginationImplCopyWithImpl<$Res>
     extends _$HomeWebClientModelPaginationCopyWithImpl<$Res,
-        _$_HomeWebClientModelPagination>
-    implements _$$_HomeWebClientModelPaginationCopyWith<$Res> {
-  __$$_HomeWebClientModelPaginationCopyWithImpl(
-      _$_HomeWebClientModelPagination _value,
-      $Res Function(_$_HomeWebClientModelPagination) _then)
+        _$HomeWebClientModelPaginationImpl>
+    implements _$$HomeWebClientModelPaginationImplCopyWith<$Res> {
+  __$$HomeWebClientModelPaginationImplCopyWithImpl(
+      _$HomeWebClientModelPaginationImpl _value,
+      $Res Function(_$HomeWebClientModelPaginationImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1113,7 +1118,7 @@ class __$$_HomeWebClientModelPaginationCopyWithImpl<$Res>
   $Res call({
     Object? total = null,
   }) {
-    return _then(_$_HomeWebClientModelPagination(
+    return _then(_$HomeWebClientModelPaginationImpl(
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
@@ -1124,8 +1129,9 @@ class __$$_HomeWebClientModelPaginationCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HomeWebClientModelPagination implements _HomeWebClientModelPagination {
-  const _$_HomeWebClientModelPagination({required this.total});
+class _$HomeWebClientModelPaginationImpl
+    implements _HomeWebClientModelPagination {
+  const _$HomeWebClientModelPaginationImpl({required this.total});
 
   @override
   final int total;
@@ -1136,10 +1142,10 @@ class _$_HomeWebClientModelPagination implements _HomeWebClientModelPagination {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HomeWebClientModelPagination &&
+            other is _$HomeWebClientModelPaginationImpl &&
             (identical(other.total, total) || other.total == total));
   }
 
@@ -1149,21 +1155,23 @@ class _$_HomeWebClientModelPagination implements _HomeWebClientModelPagination {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HomeWebClientModelPaginationCopyWith<_$_HomeWebClientModelPagination>
-      get copyWith => __$$_HomeWebClientModelPaginationCopyWithImpl<
-          _$_HomeWebClientModelPagination>(this, _$identity);
+  _$$HomeWebClientModelPaginationImplCopyWith<
+          _$HomeWebClientModelPaginationImpl>
+      get copyWith => __$$HomeWebClientModelPaginationImplCopyWithImpl<
+          _$HomeWebClientModelPaginationImpl>(this, _$identity);
 }
 
 abstract class _HomeWebClientModelPagination
     implements HomeWebClientModelPagination {
   const factory _HomeWebClientModelPagination({required final int total}) =
-      _$_HomeWebClientModelPagination;
+      _$HomeWebClientModelPaginationImpl;
 
   @override
   int get total;
   @override
   @JsonKey(ignore: true)
-  _$$_HomeWebClientModelPaginationCopyWith<_$_HomeWebClientModelPagination>
+  _$$HomeWebClientModelPaginationImplCopyWith<
+          _$HomeWebClientModelPaginationImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1233,11 +1241,12 @@ class _$HomeWebClientModelTagCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_HomeWebClientModelTagCopyWith<$Res>
+abstract class _$$HomeWebClientModelTagImplCopyWith<$Res>
     implements $HomeWebClientModelTagCopyWith<$Res> {
-  factory _$$_HomeWebClientModelTagCopyWith(_$_HomeWebClientModelTag value,
-          $Res Function(_$_HomeWebClientModelTag) then) =
-      __$$_HomeWebClientModelTagCopyWithImpl<$Res>;
+  factory _$$HomeWebClientModelTagImplCopyWith(
+          _$HomeWebClientModelTagImpl value,
+          $Res Function(_$HomeWebClientModelTagImpl) then) =
+      __$$HomeWebClientModelTagImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1248,11 +1257,12 @@ abstract class _$$_HomeWebClientModelTagCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_HomeWebClientModelTagCopyWithImpl<$Res>
-    extends _$HomeWebClientModelTagCopyWithImpl<$Res, _$_HomeWebClientModelTag>
-    implements _$$_HomeWebClientModelTagCopyWith<$Res> {
-  __$$_HomeWebClientModelTagCopyWithImpl(_$_HomeWebClientModelTag _value,
-      $Res Function(_$_HomeWebClientModelTag) _then)
+class __$$HomeWebClientModelTagImplCopyWithImpl<$Res>
+    extends _$HomeWebClientModelTagCopyWithImpl<$Res,
+        _$HomeWebClientModelTagImpl>
+    implements _$$HomeWebClientModelTagImplCopyWith<$Res> {
+  __$$HomeWebClientModelTagImplCopyWithImpl(_$HomeWebClientModelTagImpl _value,
+      $Res Function(_$HomeWebClientModelTagImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1263,7 +1273,7 @@ class __$$_HomeWebClientModelTagCopyWithImpl<$Res>
     Object? displayedName = null,
     Object? numberOfRecipes = null,
   }) {
-    return _then(_$_HomeWebClientModelTag(
+    return _then(_$HomeWebClientModelTagImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1286,8 +1296,8 @@ class __$$_HomeWebClientModelTagCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HomeWebClientModelTag implements _HomeWebClientModelTag {
-  const _$_HomeWebClientModelTag(
+class _$HomeWebClientModelTagImpl implements _HomeWebClientModelTag {
+  const _$HomeWebClientModelTagImpl(
       {required this.id,
       required this.type,
       required this.displayedName,
@@ -1308,10 +1318,10 @@ class _$_HomeWebClientModelTag implements _HomeWebClientModelTag {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HomeWebClientModelTag &&
+            other is _$HomeWebClientModelTagImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.displayedName, displayedName) ||
@@ -1327,17 +1337,18 @@ class _$_HomeWebClientModelTag implements _HomeWebClientModelTag {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HomeWebClientModelTagCopyWith<_$_HomeWebClientModelTag> get copyWith =>
-      __$$_HomeWebClientModelTagCopyWithImpl<_$_HomeWebClientModelTag>(
-          this, _$identity);
+  _$$HomeWebClientModelTagImplCopyWith<_$HomeWebClientModelTagImpl>
+      get copyWith => __$$HomeWebClientModelTagImplCopyWithImpl<
+          _$HomeWebClientModelTagImpl>(this, _$identity);
 }
 
 abstract class _HomeWebClientModelTag implements HomeWebClientModelTag {
   const factory _HomeWebClientModelTag(
-      {required final String id,
-      required final String type,
-      required final String displayedName,
-      required final Option<int> numberOfRecipes}) = _$_HomeWebClientModelTag;
+          {required final String id,
+          required final String type,
+          required final String displayedName,
+          required final Option<int> numberOfRecipes}) =
+      _$HomeWebClientModelTagImpl;
 
   @override
   String get id;
@@ -1349,8 +1360,8 @@ abstract class _HomeWebClientModelTag implements HomeWebClientModelTag {
   Option<int> get numberOfRecipes;
   @override
   @JsonKey(ignore: true)
-  _$$_HomeWebClientModelTagCopyWith<_$_HomeWebClientModelTag> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$HomeWebClientModelTagImplCopyWith<_$HomeWebClientModelTagImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1433,12 +1444,12 @@ class _$HomeWebClientModelCuisineCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_HomeWebClientModelCuisineCopyWith<$Res>
+abstract class _$$HomeWebClientModelCuisineImplCopyWith<$Res>
     implements $HomeWebClientModelCuisineCopyWith<$Res> {
-  factory _$$_HomeWebClientModelCuisineCopyWith(
-          _$_HomeWebClientModelCuisine value,
-          $Res Function(_$_HomeWebClientModelCuisine) then) =
-      __$$_HomeWebClientModelCuisineCopyWithImpl<$Res>;
+  factory _$$HomeWebClientModelCuisineImplCopyWith(
+          _$HomeWebClientModelCuisineImpl value,
+          $Res Function(_$HomeWebClientModelCuisineImpl) then) =
+      __$$HomeWebClientModelCuisineImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1451,13 +1462,13 @@ abstract class _$$_HomeWebClientModelCuisineCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_HomeWebClientModelCuisineCopyWithImpl<$Res>
+class __$$HomeWebClientModelCuisineImplCopyWithImpl<$Res>
     extends _$HomeWebClientModelCuisineCopyWithImpl<$Res,
-        _$_HomeWebClientModelCuisine>
-    implements _$$_HomeWebClientModelCuisineCopyWith<$Res> {
-  __$$_HomeWebClientModelCuisineCopyWithImpl(
-      _$_HomeWebClientModelCuisine _value,
-      $Res Function(_$_HomeWebClientModelCuisine) _then)
+        _$HomeWebClientModelCuisineImpl>
+    implements _$$HomeWebClientModelCuisineImplCopyWith<$Res> {
+  __$$HomeWebClientModelCuisineImplCopyWithImpl(
+      _$HomeWebClientModelCuisineImpl _value,
+      $Res Function(_$HomeWebClientModelCuisineImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1470,7 +1481,7 @@ class __$$_HomeWebClientModelCuisineCopyWithImpl<$Res>
     Object? slug = null,
     Object? numberOfRecipes = null,
   }) {
-    return _then(_$_HomeWebClientModelCuisine(
+    return _then(_$HomeWebClientModelCuisineImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1501,8 +1512,8 @@ class __$$_HomeWebClientModelCuisineCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HomeWebClientModelCuisine implements _HomeWebClientModelCuisine {
-  const _$_HomeWebClientModelCuisine(
+class _$HomeWebClientModelCuisineImpl implements _HomeWebClientModelCuisine {
+  const _$HomeWebClientModelCuisineImpl(
       {required this.id,
       required this.iconPath,
       required this.displayedName,
@@ -1529,10 +1540,10 @@ class _$_HomeWebClientModelCuisine implements _HomeWebClientModelCuisine {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HomeWebClientModelCuisine &&
+            other is _$HomeWebClientModelCuisineImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.iconPath, iconPath) ||
                 other.iconPath == iconPath) &&
@@ -1552,9 +1563,9 @@ class _$_HomeWebClientModelCuisine implements _HomeWebClientModelCuisine {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HomeWebClientModelCuisineCopyWith<_$_HomeWebClientModelCuisine>
-      get copyWith => __$$_HomeWebClientModelCuisineCopyWithImpl<
-          _$_HomeWebClientModelCuisine>(this, _$identity);
+  _$$HomeWebClientModelCuisineImplCopyWith<_$HomeWebClientModelCuisineImpl>
+      get copyWith => __$$HomeWebClientModelCuisineImplCopyWithImpl<
+          _$HomeWebClientModelCuisineImpl>(this, _$identity);
 }
 
 abstract class _HomeWebClientModelCuisine implements HomeWebClientModelCuisine {
@@ -1565,7 +1576,7 @@ abstract class _HomeWebClientModelCuisine implements HomeWebClientModelCuisine {
           required final Option<String> countryCode,
           required final String slug,
           required final Option<int> numberOfRecipes}) =
-      _$_HomeWebClientModelCuisine;
+      _$HomeWebClientModelCuisineImpl;
 
   @override
   String get id;
@@ -1581,7 +1592,7 @@ abstract class _HomeWebClientModelCuisine implements HomeWebClientModelCuisine {
   Option<int> get numberOfRecipes;
   @override
   @JsonKey(ignore: true)
-  _$$_HomeWebClientModelCuisineCopyWith<_$_HomeWebClientModelCuisine>
+  _$$HomeWebClientModelCuisineImplCopyWith<_$HomeWebClientModelCuisineImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1637,11 +1648,12 @@ class _$HomeWebClientModelYieldCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_HomeWebClientModelYieldCopyWith<$Res>
+abstract class _$$HomeWebClientModelYieldImplCopyWith<$Res>
     implements $HomeWebClientModelYieldCopyWith<$Res> {
-  factory _$$_HomeWebClientModelYieldCopyWith(_$_HomeWebClientModelYield value,
-          $Res Function(_$_HomeWebClientModelYield) then) =
-      __$$_HomeWebClientModelYieldCopyWithImpl<$Res>;
+  factory _$$HomeWebClientModelYieldImplCopyWith(
+          _$HomeWebClientModelYieldImpl value,
+          $Res Function(_$HomeWebClientModelYieldImpl) then) =
+      __$$HomeWebClientModelYieldImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1649,12 +1661,13 @@ abstract class _$$_HomeWebClientModelYieldCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_HomeWebClientModelYieldCopyWithImpl<$Res>
+class __$$HomeWebClientModelYieldImplCopyWithImpl<$Res>
     extends _$HomeWebClientModelYieldCopyWithImpl<$Res,
-        _$_HomeWebClientModelYield>
-    implements _$$_HomeWebClientModelYieldCopyWith<$Res> {
-  __$$_HomeWebClientModelYieldCopyWithImpl(_$_HomeWebClientModelYield _value,
-      $Res Function(_$_HomeWebClientModelYield) _then)
+        _$HomeWebClientModelYieldImpl>
+    implements _$$HomeWebClientModelYieldImplCopyWith<$Res> {
+  __$$HomeWebClientModelYieldImplCopyWithImpl(
+      _$HomeWebClientModelYieldImpl _value,
+      $Res Function(_$HomeWebClientModelYieldImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1663,7 +1676,7 @@ class __$$_HomeWebClientModelYieldCopyWithImpl<$Res>
     Object? yield = null,
     Object? yieldIngredient = null,
   }) {
-    return _then(_$_HomeWebClientModelYield(
+    return _then(_$HomeWebClientModelYieldImpl(
       yield: null == yield
           ? _value.yield
           : yield // ignore: cast_nullable_to_non_nullable
@@ -1678,8 +1691,8 @@ class __$$_HomeWebClientModelYieldCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HomeWebClientModelYield implements _HomeWebClientModelYield {
-  const _$_HomeWebClientModelYield(
+class _$HomeWebClientModelYieldImpl implements _HomeWebClientModelYield {
+  const _$HomeWebClientModelYieldImpl(
       {required this.yield,
       required final List<HomeWebClientModelYieldIngredient> yieldIngredient})
       : _yieldIngredient = yieldIngredient;
@@ -1700,10 +1713,10 @@ class _$_HomeWebClientModelYield implements _HomeWebClientModelYield {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HomeWebClientModelYield &&
+            other is _$HomeWebClientModelYieldImpl &&
             (identical(other.yield, yield) || other.yield == yield) &&
             const DeepCollectionEquality()
                 .equals(other._yieldIngredient, _yieldIngredient));
@@ -1716,17 +1729,16 @@ class _$_HomeWebClientModelYield implements _HomeWebClientModelYield {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HomeWebClientModelYieldCopyWith<_$_HomeWebClientModelYield>
-      get copyWith =>
-          __$$_HomeWebClientModelYieldCopyWithImpl<_$_HomeWebClientModelYield>(
-              this, _$identity);
+  _$$HomeWebClientModelYieldImplCopyWith<_$HomeWebClientModelYieldImpl>
+      get copyWith => __$$HomeWebClientModelYieldImplCopyWithImpl<
+          _$HomeWebClientModelYieldImpl>(this, _$identity);
 }
 
 abstract class _HomeWebClientModelYield implements HomeWebClientModelYield {
   const factory _HomeWebClientModelYield(
       {required final int yield,
       required final List<HomeWebClientModelYieldIngredient>
-          yieldIngredient}) = _$_HomeWebClientModelYield;
+          yieldIngredient}) = _$HomeWebClientModelYieldImpl;
 
   @override
   int get yield;
@@ -1734,7 +1746,7 @@ abstract class _HomeWebClientModelYield implements HomeWebClientModelYield {
   List<HomeWebClientModelYieldIngredient> get yieldIngredient;
   @override
   @JsonKey(ignore: true)
-  _$$_HomeWebClientModelYieldCopyWith<_$_HomeWebClientModelYield>
+  _$$HomeWebClientModelYieldImplCopyWith<_$HomeWebClientModelYieldImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1796,25 +1808,25 @@ class _$HomeWebClientModelYieldIngredientCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_HomeWebClientModelYieldIngredientCopyWith<$Res>
+abstract class _$$HomeWebClientModelYieldIngredientImplCopyWith<$Res>
     implements $HomeWebClientModelYieldIngredientCopyWith<$Res> {
-  factory _$$_HomeWebClientModelYieldIngredientCopyWith(
-          _$_HomeWebClientModelYieldIngredient value,
-          $Res Function(_$_HomeWebClientModelYieldIngredient) then) =
-      __$$_HomeWebClientModelYieldIngredientCopyWithImpl<$Res>;
+  factory _$$HomeWebClientModelYieldIngredientImplCopyWith(
+          _$HomeWebClientModelYieldIngredientImpl value,
+          $Res Function(_$HomeWebClientModelYieldIngredientImpl) then) =
+      __$$HomeWebClientModelYieldIngredientImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, Option<double> amount, Option<String> unit});
 }
 
 /// @nodoc
-class __$$_HomeWebClientModelYieldIngredientCopyWithImpl<$Res>
+class __$$HomeWebClientModelYieldIngredientImplCopyWithImpl<$Res>
     extends _$HomeWebClientModelYieldIngredientCopyWithImpl<$Res,
-        _$_HomeWebClientModelYieldIngredient>
-    implements _$$_HomeWebClientModelYieldIngredientCopyWith<$Res> {
-  __$$_HomeWebClientModelYieldIngredientCopyWithImpl(
-      _$_HomeWebClientModelYieldIngredient _value,
-      $Res Function(_$_HomeWebClientModelYieldIngredient) _then)
+        _$HomeWebClientModelYieldIngredientImpl>
+    implements _$$HomeWebClientModelYieldIngredientImplCopyWith<$Res> {
+  __$$HomeWebClientModelYieldIngredientImplCopyWithImpl(
+      _$HomeWebClientModelYieldIngredientImpl _value,
+      $Res Function(_$HomeWebClientModelYieldIngredientImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1824,7 +1836,7 @@ class __$$_HomeWebClientModelYieldIngredientCopyWithImpl<$Res>
     Object? amount = null,
     Object? unit = null,
   }) {
-    return _then(_$_HomeWebClientModelYieldIngredient(
+    return _then(_$HomeWebClientModelYieldIngredientImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1843,9 +1855,9 @@ class __$$_HomeWebClientModelYieldIngredientCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HomeWebClientModelYieldIngredient
+class _$HomeWebClientModelYieldIngredientImpl
     implements _HomeWebClientModelYieldIngredient {
-  const _$_HomeWebClientModelYieldIngredient(
+  const _$HomeWebClientModelYieldIngredientImpl(
       {required this.id, required this.amount, required this.unit});
 
   @override
@@ -1861,10 +1873,10 @@ class _$_HomeWebClientModelYieldIngredient
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HomeWebClientModelYieldIngredient &&
+            other is _$HomeWebClientModelYieldIngredientImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.unit, unit) || other.unit == unit));
@@ -1876,10 +1888,10 @@ class _$_HomeWebClientModelYieldIngredient
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HomeWebClientModelYieldIngredientCopyWith<
-          _$_HomeWebClientModelYieldIngredient>
-      get copyWith => __$$_HomeWebClientModelYieldIngredientCopyWithImpl<
-          _$_HomeWebClientModelYieldIngredient>(this, _$identity);
+  _$$HomeWebClientModelYieldIngredientImplCopyWith<
+          _$HomeWebClientModelYieldIngredientImpl>
+      get copyWith => __$$HomeWebClientModelYieldIngredientImplCopyWithImpl<
+          _$HomeWebClientModelYieldIngredientImpl>(this, _$identity);
 }
 
 abstract class _HomeWebClientModelYieldIngredient
@@ -1888,7 +1900,7 @@ abstract class _HomeWebClientModelYieldIngredient
           {required final String id,
           required final Option<double> amount,
           required final Option<String> unit}) =
-      _$_HomeWebClientModelYieldIngredient;
+      _$HomeWebClientModelYieldIngredientImpl;
 
   @override
   String get id;
@@ -1898,7 +1910,7 @@ abstract class _HomeWebClientModelYieldIngredient
   Option<String> get unit;
   @override
   @JsonKey(ignore: true)
-  _$$_HomeWebClientModelYieldIngredientCopyWith<
-          _$_HomeWebClientModelYieldIngredient>
+  _$$HomeWebClientModelYieldIngredientImplCopyWith<
+          _$HomeWebClientModelYieldIngredientImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

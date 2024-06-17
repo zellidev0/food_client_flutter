@@ -12,7 +12,7 @@ part of 'history_persistence_service.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$HistoryPersistenceServiceModelRecipe {
@@ -102,12 +102,12 @@ class _$HistoryPersistenceServiceModelRecipeCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_HistoryPersistenceServiceModelRecipeCopyWith<$Res>
+abstract class _$$HistoryPersistenceServiceModelRecipeImplCopyWith<$Res>
     implements $HistoryPersistenceServiceModelRecipeCopyWith<$Res> {
-  factory _$$_HistoryPersistenceServiceModelRecipeCopyWith(
-          _$_HistoryPersistenceServiceModelRecipe value,
-          $Res Function(_$_HistoryPersistenceServiceModelRecipe) then) =
-      __$$_HistoryPersistenceServiceModelRecipeCopyWithImpl<$Res>;
+  factory _$$HistoryPersistenceServiceModelRecipeImplCopyWith(
+          _$HistoryPersistenceServiceModelRecipeImpl value,
+          $Res Function(_$HistoryPersistenceServiceModelRecipeImpl) then) =
+      __$$HistoryPersistenceServiceModelRecipeImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -122,13 +122,13 @@ abstract class _$$_HistoryPersistenceServiceModelRecipeCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_HistoryPersistenceServiceModelRecipeCopyWithImpl<$Res>
+class __$$HistoryPersistenceServiceModelRecipeImplCopyWithImpl<$Res>
     extends _$HistoryPersistenceServiceModelRecipeCopyWithImpl<$Res,
-        _$_HistoryPersistenceServiceModelRecipe>
-    implements _$$_HistoryPersistenceServiceModelRecipeCopyWith<$Res> {
-  __$$_HistoryPersistenceServiceModelRecipeCopyWithImpl(
-      _$_HistoryPersistenceServiceModelRecipe _value,
-      $Res Function(_$_HistoryPersistenceServiceModelRecipe) _then)
+        _$HistoryPersistenceServiceModelRecipeImpl>
+    implements _$$HistoryPersistenceServiceModelRecipeImplCopyWith<$Res> {
+  __$$HistoryPersistenceServiceModelRecipeImplCopyWithImpl(
+      _$HistoryPersistenceServiceModelRecipeImpl _value,
+      $Res Function(_$HistoryPersistenceServiceModelRecipeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -140,7 +140,7 @@ class __$$_HistoryPersistenceServiceModelRecipeCopyWithImpl<$Res>
     Object? origin = null,
     Object? createdAt = null,
   }) {
-    return _then(_$_HistoryPersistenceServiceModelRecipe(
+    return _then(_$HistoryPersistenceServiceModelRecipeImpl(
       recipeId: null == recipeId
           ? _value.recipeId
           : recipeId // ignore: cast_nullable_to_non_nullable
@@ -167,9 +167,9 @@ class __$$_HistoryPersistenceServiceModelRecipeCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HistoryPersistenceServiceModelRecipe
+class _$HistoryPersistenceServiceModelRecipeImpl
     implements _HistoryPersistenceServiceModelRecipe {
-  const _$_HistoryPersistenceServiceModelRecipe(
+  const _$HistoryPersistenceServiceModelRecipeImpl(
       {required this.recipeId,
       required this.title,
       required this.imagePath,
@@ -193,10 +193,10 @@ class _$_HistoryPersistenceServiceModelRecipe
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HistoryPersistenceServiceModelRecipe &&
+            other is _$HistoryPersistenceServiceModelRecipeImpl &&
             (identical(other.recipeId, recipeId) ||
                 other.recipeId == recipeId) &&
             (identical(other.title, title) || other.title == title) &&
@@ -214,10 +214,10 @@ class _$_HistoryPersistenceServiceModelRecipe
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HistoryPersistenceServiceModelRecipeCopyWith<
-          _$_HistoryPersistenceServiceModelRecipe>
-      get copyWith => __$$_HistoryPersistenceServiceModelRecipeCopyWithImpl<
-          _$_HistoryPersistenceServiceModelRecipe>(this, _$identity);
+  _$$HistoryPersistenceServiceModelRecipeImplCopyWith<
+          _$HistoryPersistenceServiceModelRecipeImpl>
+      get copyWith => __$$HistoryPersistenceServiceModelRecipeImplCopyWithImpl<
+          _$HistoryPersistenceServiceModelRecipeImpl>(this, _$identity);
 }
 
 abstract class _HistoryPersistenceServiceModelRecipe
@@ -228,7 +228,7 @@ abstract class _HistoryPersistenceServiceModelRecipe
           required final Option<Uri> imagePath,
           required final HistoryPersistenceServiceModelOrigin origin,
           required final DateTime createdAt}) =
-      _$_HistoryPersistenceServiceModelRecipe;
+      _$HistoryPersistenceServiceModelRecipeImpl;
 
   @override
   String get recipeId;
@@ -242,8 +242,8 @@ abstract class _HistoryPersistenceServiceModelRecipe
   DateTime get createdAt;
   @override
   @JsonKey(ignore: true)
-  _$$_HistoryPersistenceServiceModelRecipeCopyWith<
-          _$_HistoryPersistenceServiceModelRecipe>
+  _$$HistoryPersistenceServiceModelRecipeImplCopyWith<
+          _$HistoryPersistenceServiceModelRecipeImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -308,29 +308,32 @@ class _$HistoryPersistenceServiceModelOriginCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$HistoryPersistenceServiceModelOriginClickedCopyWith<$Res> {
-  factory _$$HistoryPersistenceServiceModelOriginClickedCopyWith(
-          _$HistoryPersistenceServiceModelOriginClicked value,
-          $Res Function(_$HistoryPersistenceServiceModelOriginClicked) then) =
-      __$$HistoryPersistenceServiceModelOriginClickedCopyWithImpl<$Res>;
+abstract class _$$HistoryPersistenceServiceModelOriginClickedImplCopyWith<
+    $Res> {
+  factory _$$HistoryPersistenceServiceModelOriginClickedImplCopyWith(
+          _$HistoryPersistenceServiceModelOriginClickedImpl value,
+          $Res Function(_$HistoryPersistenceServiceModelOriginClickedImpl)
+              then) =
+      __$$HistoryPersistenceServiceModelOriginClickedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$HistoryPersistenceServiceModelOriginClickedCopyWithImpl<$Res>
+class __$$HistoryPersistenceServiceModelOriginClickedImplCopyWithImpl<$Res>
     extends _$HistoryPersistenceServiceModelOriginCopyWithImpl<$Res,
-        _$HistoryPersistenceServiceModelOriginClicked>
-    implements _$$HistoryPersistenceServiceModelOriginClickedCopyWith<$Res> {
-  __$$HistoryPersistenceServiceModelOriginClickedCopyWithImpl(
-      _$HistoryPersistenceServiceModelOriginClicked _value,
-      $Res Function(_$HistoryPersistenceServiceModelOriginClicked) _then)
+        _$HistoryPersistenceServiceModelOriginClickedImpl>
+    implements
+        _$$HistoryPersistenceServiceModelOriginClickedImplCopyWith<$Res> {
+  __$$HistoryPersistenceServiceModelOriginClickedImplCopyWithImpl(
+      _$HistoryPersistenceServiceModelOriginClickedImpl _value,
+      $Res Function(_$HistoryPersistenceServiceModelOriginClickedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$HistoryPersistenceServiceModelOriginClicked
+class _$HistoryPersistenceServiceModelOriginClickedImpl
     implements HistoryPersistenceServiceModelOriginClicked {
-  const _$HistoryPersistenceServiceModelOriginClicked();
+  const _$HistoryPersistenceServiceModelOriginClickedImpl();
 
   @override
   String toString() {
@@ -338,10 +341,10 @@ class _$HistoryPersistenceServiceModelOriginClicked
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HistoryPersistenceServiceModelOriginClicked);
+            other is _$HistoryPersistenceServiceModelOriginClickedImpl);
   }
 
   @override
@@ -410,5 +413,5 @@ class _$HistoryPersistenceServiceModelOriginClicked
 abstract class HistoryPersistenceServiceModelOriginClicked
     implements HistoryPersistenceServiceModelOrigin {
   const factory HistoryPersistenceServiceModelOriginClicked() =
-      _$HistoryPersistenceServiceModelOriginClicked;
+      _$HistoryPersistenceServiceModelOriginClickedImpl;
 }

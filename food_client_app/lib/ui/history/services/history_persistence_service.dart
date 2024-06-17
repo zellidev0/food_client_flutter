@@ -1,4 +1,4 @@
-import 'package:food_client/commons/error.dart';
+import 'package:food_client/pages/common/error.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

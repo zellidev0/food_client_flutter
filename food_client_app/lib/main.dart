@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:food_client/commons/type_adapters.dart';
+import 'package:food_client/pages/common/type_adapters.dart';
 import 'package:food_client/services/app_settings_service/app_settings_service.dart';
 import 'package:food_client/services/app_settings_service/in_memory_app_settings_service.dart';
 import 'package:food_client/services/navigation_service/go_router.dart';

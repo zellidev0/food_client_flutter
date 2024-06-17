@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_client/commons/view_state.dart';
+import 'package:food_client/pages/common/view_state.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';

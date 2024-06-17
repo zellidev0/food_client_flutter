@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:food_client/commons/empty_view_content.dart';
+import 'package:food_client/pages/common/empty_view_content.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_model.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_view.dart';
 import 'package:food_client/ui/ingredients_sorting/widgets/ingredients_sorting_card_item.dart';

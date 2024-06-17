@@ -12,7 +12,7 @@ part of 'navigation_service.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$NavigationServiceDialogAction {
@@ -66,25 +66,25 @@ class _$NavigationServiceDialogActionCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_NavigationServiceDialogActionCopyWith<$Res>
+abstract class _$$NavigationServiceDialogActionImplCopyWith<$Res>
     implements $NavigationServiceDialogActionCopyWith<$Res> {
-  factory _$$_NavigationServiceDialogActionCopyWith(
-          _$_NavigationServiceDialogAction value,
-          $Res Function(_$_NavigationServiceDialogAction) then) =
-      __$$_NavigationServiceDialogActionCopyWithImpl<$Res>;
+  factory _$$NavigationServiceDialogActionImplCopyWith(
+          _$NavigationServiceDialogActionImpl value,
+          $Res Function(_$NavigationServiceDialogActionImpl) then) =
+      __$$NavigationServiceDialogActionImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String text, void Function() onPressed});
 }
 
 /// @nodoc
-class __$$_NavigationServiceDialogActionCopyWithImpl<$Res>
+class __$$NavigationServiceDialogActionImplCopyWithImpl<$Res>
     extends _$NavigationServiceDialogActionCopyWithImpl<$Res,
-        _$_NavigationServiceDialogAction>
-    implements _$$_NavigationServiceDialogActionCopyWith<$Res> {
-  __$$_NavigationServiceDialogActionCopyWithImpl(
-      _$_NavigationServiceDialogAction _value,
-      $Res Function(_$_NavigationServiceDialogAction) _then)
+        _$NavigationServiceDialogActionImpl>
+    implements _$$NavigationServiceDialogActionImplCopyWith<$Res> {
+  __$$NavigationServiceDialogActionImplCopyWithImpl(
+      _$NavigationServiceDialogActionImpl _value,
+      $Res Function(_$NavigationServiceDialogActionImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -93,7 +93,7 @@ class __$$_NavigationServiceDialogActionCopyWithImpl<$Res>
     Object? text = null,
     Object? onPressed = null,
   }) {
-    return _then(_$_NavigationServiceDialogAction(
+    return _then(_$NavigationServiceDialogActionImpl(
       text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -108,9 +108,9 @@ class __$$_NavigationServiceDialogActionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_NavigationServiceDialogAction
+class _$NavigationServiceDialogActionImpl
     implements _NavigationServiceDialogAction {
-  const _$_NavigationServiceDialogAction(
+  const _$NavigationServiceDialogActionImpl(
       {required this.text, required this.onPressed});
 
   @override
@@ -124,10 +124,10 @@ class _$_NavigationServiceDialogAction
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_NavigationServiceDialogAction &&
+            other is _$NavigationServiceDialogActionImpl &&
             (identical(other.text, text) || other.text == text) &&
             (identical(other.onPressed, onPressed) ||
                 other.onPressed == onPressed));
@@ -139,9 +139,10 @@ class _$_NavigationServiceDialogAction
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_NavigationServiceDialogActionCopyWith<_$_NavigationServiceDialogAction>
-      get copyWith => __$$_NavigationServiceDialogActionCopyWithImpl<
-          _$_NavigationServiceDialogAction>(this, _$identity);
+  _$$NavigationServiceDialogActionImplCopyWith<
+          _$NavigationServiceDialogActionImpl>
+      get copyWith => __$$NavigationServiceDialogActionImplCopyWithImpl<
+          _$NavigationServiceDialogActionImpl>(this, _$identity);
 }
 
 abstract class _NavigationServiceDialogAction
@@ -149,7 +150,7 @@ abstract class _NavigationServiceDialogAction
   const factory _NavigationServiceDialogAction(
           {required final String text,
           required final void Function() onPressed}) =
-      _$_NavigationServiceDialogAction;
+      _$NavigationServiceDialogActionImpl;
 
   @override
   String get text;
@@ -157,6 +158,7 @@ abstract class _NavigationServiceDialogAction
   void Function() get onPressed;
   @override
   @JsonKey(ignore: true)
-  _$$_NavigationServiceDialogActionCopyWith<_$_NavigationServiceDialogAction>
+  _$$NavigationServiceDialogActionImplCopyWith<
+          _$NavigationServiceDialogActionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

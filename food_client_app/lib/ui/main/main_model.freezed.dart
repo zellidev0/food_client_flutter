@@ -12,7 +12,7 @@ part of 'main_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$MainModel {
@@ -62,21 +62,22 @@ class _$MainModelCopyWithImpl<$Res, $Val extends MainModel>
 }
 
 /// @nodoc
-abstract class _$$_MainModelCopyWith<$Res> implements $MainModelCopyWith<$Res> {
-  factory _$$_MainModelCopyWith(
-          _$_MainModel value, $Res Function(_$_MainModel) then) =
-      __$$_MainModelCopyWithImpl<$Res>;
+abstract class _$$MainModelImplCopyWith<$Res>
+    implements $MainModelCopyWith<$Res> {
+  factory _$$MainModelImplCopyWith(
+          _$MainModelImpl value, $Res Function(_$MainModelImpl) then) =
+      __$$MainModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<MainBottomTab> bottomTabs, int bottomNavigationBarIndex});
 }
 
 /// @nodoc
-class __$$_MainModelCopyWithImpl<$Res>
-    extends _$MainModelCopyWithImpl<$Res, _$_MainModel>
-    implements _$$_MainModelCopyWith<$Res> {
-  __$$_MainModelCopyWithImpl(
-      _$_MainModel _value, $Res Function(_$_MainModel) _then)
+class __$$MainModelImplCopyWithImpl<$Res>
+    extends _$MainModelCopyWithImpl<$Res, _$MainModelImpl>
+    implements _$$MainModelImplCopyWith<$Res> {
+  __$$MainModelImplCopyWithImpl(
+      _$MainModelImpl _value, $Res Function(_$MainModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -85,7 +86,7 @@ class __$$_MainModelCopyWithImpl<$Res>
     Object? bottomTabs = null,
     Object? bottomNavigationBarIndex = null,
   }) {
-    return _then(_$_MainModel(
+    return _then(_$MainModelImpl(
       bottomTabs: null == bottomTabs
           ? _value._bottomTabs
           : bottomTabs // ignore: cast_nullable_to_non_nullable
@@ -100,8 +101,8 @@ class __$$_MainModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_MainModel implements _MainModel {
-  const _$_MainModel(
+class _$MainModelImpl implements _MainModel {
+  const _$MainModelImpl(
       {required final List<MainBottomTab> bottomTabs,
       required this.bottomNavigationBarIndex})
       : _bottomTabs = bottomTabs;
@@ -123,10 +124,10 @@ class _$_MainModel implements _MainModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MainModel &&
+            other is _$MainModelImpl &&
             const DeepCollectionEquality()
                 .equals(other._bottomTabs, _bottomTabs) &&
             (identical(
@@ -143,14 +144,14 @@ class _$_MainModel implements _MainModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MainModelCopyWith<_$_MainModel> get copyWith =>
-      __$$_MainModelCopyWithImpl<_$_MainModel>(this, _$identity);
+  _$$MainModelImplCopyWith<_$MainModelImpl> get copyWith =>
+      __$$MainModelImplCopyWithImpl<_$MainModelImpl>(this, _$identity);
 }
 
 abstract class _MainModel implements MainModel {
   const factory _MainModel(
       {required final List<MainBottomTab> bottomTabs,
-      required final int bottomNavigationBarIndex}) = _$_MainModel;
+      required final int bottomNavigationBarIndex}) = _$MainModelImpl;
 
   @override
   List<MainBottomTab> get bottomTabs;
@@ -158,7 +159,7 @@ abstract class _MainModel implements MainModel {
   int get bottomNavigationBarIndex;
   @override
   @JsonKey(ignore: true)
-  _$$_MainModelCopyWith<_$_MainModel> get copyWith =>
+  _$$MainModelImplCopyWith<_$MainModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -224,11 +225,11 @@ class _$MainBottomTabCopyWithImpl<$Res, $Val extends MainBottomTab>
 }
 
 /// @nodoc
-abstract class _$$_MainBottomTabCopyWith<$Res>
+abstract class _$$MainBottomTabImplCopyWith<$Res>
     implements $MainBottomTabCopyWith<$Res> {
-  factory _$$_MainBottomTabCopyWith(
-          _$_MainBottomTab value, $Res Function(_$_MainBottomTab) then) =
-      __$$_MainBottomTabCopyWithImpl<$Res>;
+  factory _$$MainBottomTabImplCopyWith(
+          _$MainBottomTabImpl value, $Res Function(_$MainBottomTabImpl) then) =
+      __$$MainBottomTabImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -236,11 +237,11 @@ abstract class _$$_MainBottomTabCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_MainBottomTabCopyWithImpl<$Res>
-    extends _$MainBottomTabCopyWithImpl<$Res, _$_MainBottomTab>
-    implements _$$_MainBottomTabCopyWith<$Res> {
-  __$$_MainBottomTabCopyWithImpl(
-      _$_MainBottomTab _value, $Res Function(_$_MainBottomTab) _then)
+class __$$MainBottomTabImplCopyWithImpl<$Res>
+    extends _$MainBottomTabCopyWithImpl<$Res, _$MainBottomTabImpl>
+    implements _$$MainBottomTabImplCopyWith<$Res> {
+  __$$MainBottomTabImplCopyWithImpl(
+      _$MainBottomTabImpl _value, $Res Function(_$MainBottomTabImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -251,7 +252,7 @@ class __$$_MainBottomTabCopyWithImpl<$Res>
     Object? selectedIcon = null,
     Object? unselectedIcon = null,
   }) {
-    return _then(_$_MainBottomTab(
+    return _then(_$MainBottomTabImpl(
       label: null == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
@@ -274,8 +275,8 @@ class __$$_MainBottomTabCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_MainBottomTab implements _MainBottomTab {
-  const _$_MainBottomTab(
+class _$MainBottomTabImpl implements _MainBottomTab {
+  const _$MainBottomTabImpl(
       {required this.label,
       required this.route,
       required this.selectedIcon,
@@ -296,10 +297,10 @@ class _$_MainBottomTab implements _MainBottomTab {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MainBottomTab &&
+            other is _$MainBottomTabImpl &&
             (identical(other.label, label) || other.label == label) &&
             (identical(other.route, route) || other.route == route) &&
             (identical(other.selectedIcon, selectedIcon) ||
@@ -315,8 +316,8 @@ class _$_MainBottomTab implements _MainBottomTab {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MainBottomTabCopyWith<_$_MainBottomTab> get copyWith =>
-      __$$_MainBottomTabCopyWithImpl<_$_MainBottomTab>(this, _$identity);
+  _$$MainBottomTabImplCopyWith<_$MainBottomTabImpl> get copyWith =>
+      __$$MainBottomTabImplCopyWithImpl<_$MainBottomTabImpl>(this, _$identity);
 }
 
 abstract class _MainBottomTab implements MainBottomTab {
@@ -324,7 +325,7 @@ abstract class _MainBottomTab implements MainBottomTab {
       {required final String label,
       required final Uri route,
       required final Widget selectedIcon,
-      required final Widget unselectedIcon}) = _$_MainBottomTab;
+      required final Widget unselectedIcon}) = _$MainBottomTabImpl;
 
   @override
   String get label;
@@ -336,6 +337,6 @@ abstract class _MainBottomTab implements MainBottomTab {
   Widget get unselectedIcon;
   @override
   @JsonKey(ignore: true)
-  _$$_MainBottomTabCopyWith<_$_MainBottomTab> get copyWith =>
+  _$$MainBottomTabImplCopyWith<_$MainBottomTabImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

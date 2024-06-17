@@ -12,7 +12,7 @@ part of 'cart_persistence_service.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$CartPersistenceServiceModelRecipe {
@@ -90,12 +90,12 @@ class _$CartPersistenceServiceModelRecipeCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_CartPersistenceServiceModelRecipeCopyWith<$Res>
+abstract class _$$CartPersistenceServiceModelRecipeImplCopyWith<$Res>
     implements $CartPersistenceServiceModelRecipeCopyWith<$Res> {
-  factory _$$_CartPersistenceServiceModelRecipeCopyWith(
-          _$_CartPersistenceServiceModelRecipe value,
-          $Res Function(_$_CartPersistenceServiceModelRecipe) then) =
-      __$$_CartPersistenceServiceModelRecipeCopyWithImpl<$Res>;
+  factory _$$CartPersistenceServiceModelRecipeImplCopyWith(
+          _$CartPersistenceServiceModelRecipeImpl value,
+          $Res Function(_$CartPersistenceServiceModelRecipeImpl) then) =
+      __$$CartPersistenceServiceModelRecipeImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -107,13 +107,13 @@ abstract class _$$_CartPersistenceServiceModelRecipeCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_CartPersistenceServiceModelRecipeCopyWithImpl<$Res>
+class __$$CartPersistenceServiceModelRecipeImplCopyWithImpl<$Res>
     extends _$CartPersistenceServiceModelRecipeCopyWithImpl<$Res,
-        _$_CartPersistenceServiceModelRecipe>
-    implements _$$_CartPersistenceServiceModelRecipeCopyWith<$Res> {
-  __$$_CartPersistenceServiceModelRecipeCopyWithImpl(
-      _$_CartPersistenceServiceModelRecipe _value,
-      $Res Function(_$_CartPersistenceServiceModelRecipe) _then)
+        _$CartPersistenceServiceModelRecipeImpl>
+    implements _$$CartPersistenceServiceModelRecipeImplCopyWith<$Res> {
+  __$$CartPersistenceServiceModelRecipeImplCopyWithImpl(
+      _$CartPersistenceServiceModelRecipeImpl _value,
+      $Res Function(_$CartPersistenceServiceModelRecipeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -125,7 +125,7 @@ class __$$_CartPersistenceServiceModelRecipeCopyWithImpl<$Res>
     Object? imagePath = null,
     Object? ingredients = null,
   }) {
-    return _then(_$_CartPersistenceServiceModelRecipe(
+    return _then(_$CartPersistenceServiceModelRecipeImpl(
       recipeId: null == recipeId
           ? _value.recipeId
           : recipeId // ignore: cast_nullable_to_non_nullable
@@ -152,9 +152,9 @@ class __$$_CartPersistenceServiceModelRecipeCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CartPersistenceServiceModelRecipe
+class _$CartPersistenceServiceModelRecipeImpl
     implements _CartPersistenceServiceModelRecipe {
-  const _$_CartPersistenceServiceModelRecipe(
+  const _$CartPersistenceServiceModelRecipeImpl(
       {required this.recipeId,
       required this.title,
       required this.serving,
@@ -184,10 +184,10 @@ class _$_CartPersistenceServiceModelRecipe
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CartPersistenceServiceModelRecipe &&
+            other is _$CartPersistenceServiceModelRecipeImpl &&
             (identical(other.recipeId, recipeId) ||
                 other.recipeId == recipeId) &&
             (identical(other.title, title) || other.title == title) &&
@@ -205,10 +205,10 @@ class _$_CartPersistenceServiceModelRecipe
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CartPersistenceServiceModelRecipeCopyWith<
-          _$_CartPersistenceServiceModelRecipe>
-      get copyWith => __$$_CartPersistenceServiceModelRecipeCopyWithImpl<
-          _$_CartPersistenceServiceModelRecipe>(this, _$identity);
+  _$$CartPersistenceServiceModelRecipeImplCopyWith<
+          _$CartPersistenceServiceModelRecipeImpl>
+      get copyWith => __$$CartPersistenceServiceModelRecipeImplCopyWithImpl<
+          _$CartPersistenceServiceModelRecipeImpl>(this, _$identity);
 }
 
 abstract class _CartPersistenceServiceModelRecipe
@@ -219,7 +219,7 @@ abstract class _CartPersistenceServiceModelRecipe
       required final int serving,
       required final Option<Uri> imagePath,
       required final List<CartPersistenceServiceModelIngredient>
-          ingredients}) = _$_CartPersistenceServiceModelRecipe;
+          ingredients}) = _$CartPersistenceServiceModelRecipeImpl;
 
   @override
   String get recipeId;
@@ -233,8 +233,8 @@ abstract class _CartPersistenceServiceModelRecipe
   List<CartPersistenceServiceModelIngredient> get ingredients;
   @override
   @JsonKey(ignore: true)
-  _$$_CartPersistenceServiceModelRecipeCopyWith<
-          _$_CartPersistenceServiceModelRecipe>
+  _$$CartPersistenceServiceModelRecipeImplCopyWith<
+          _$CartPersistenceServiceModelRecipeImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -336,12 +336,12 @@ class _$CartPersistenceServiceModelIngredientCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_CartPersistenceServiceModelIngredientCopyWith<$Res>
+abstract class _$$CartPersistenceServiceModelIngredientImplCopyWith<$Res>
     implements $CartPersistenceServiceModelIngredientCopyWith<$Res> {
-  factory _$$_CartPersistenceServiceModelIngredientCopyWith(
-          _$_CartPersistenceServiceModelIngredient value,
-          $Res Function(_$_CartPersistenceServiceModelIngredient) then) =
-      __$$_CartPersistenceServiceModelIngredientCopyWithImpl<$Res>;
+  factory _$$CartPersistenceServiceModelIngredientImplCopyWith(
+          _$CartPersistenceServiceModelIngredientImpl value,
+          $Res Function(_$CartPersistenceServiceModelIngredientImpl) then) =
+      __$$CartPersistenceServiceModelIngredientImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -356,13 +356,13 @@ abstract class _$$_CartPersistenceServiceModelIngredientCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_CartPersistenceServiceModelIngredientCopyWithImpl<$Res>
+class __$$CartPersistenceServiceModelIngredientImplCopyWithImpl<$Res>
     extends _$CartPersistenceServiceModelIngredientCopyWithImpl<$Res,
-        _$_CartPersistenceServiceModelIngredient>
-    implements _$$_CartPersistenceServiceModelIngredientCopyWith<$Res> {
-  __$$_CartPersistenceServiceModelIngredientCopyWithImpl(
-      _$_CartPersistenceServiceModelIngredient _value,
-      $Res Function(_$_CartPersistenceServiceModelIngredient) _then)
+        _$CartPersistenceServiceModelIngredientImpl>
+    implements _$$CartPersistenceServiceModelIngredientImplCopyWith<$Res> {
+  __$$CartPersistenceServiceModelIngredientImplCopyWithImpl(
+      _$CartPersistenceServiceModelIngredientImpl _value,
+      $Res Function(_$CartPersistenceServiceModelIngredientImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -377,7 +377,7 @@ class __$$_CartPersistenceServiceModelIngredientCopyWithImpl<$Res>
     Object? unit = null,
     Object? family = null,
   }) {
-    return _then(_$_CartPersistenceServiceModelIngredient(
+    return _then(_$CartPersistenceServiceModelIngredientImpl(
       isTickedOff: null == isTickedOff
           ? _value.isTickedOff
           : isTickedOff // ignore: cast_nullable_to_non_nullable
@@ -416,9 +416,9 @@ class __$$_CartPersistenceServiceModelIngredientCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CartPersistenceServiceModelIngredient
+class _$CartPersistenceServiceModelIngredientImpl
     implements _CartPersistenceServiceModelIngredient {
-  const _$_CartPersistenceServiceModelIngredient(
+  const _$CartPersistenceServiceModelIngredientImpl(
       {required this.isTickedOff,
       required this.imageUrl,
       required this.ingredientId,
@@ -451,10 +451,10 @@ class _$_CartPersistenceServiceModelIngredient
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CartPersistenceServiceModelIngredient &&
+            other is _$CartPersistenceServiceModelIngredientImpl &&
             (identical(other.isTickedOff, isTickedOff) ||
                 other.isTickedOff == isTickedOff) &&
             (identical(other.imageUrl, imageUrl) ||
@@ -476,10 +476,10 @@ class _$_CartPersistenceServiceModelIngredient
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CartPersistenceServiceModelIngredientCopyWith<
-          _$_CartPersistenceServiceModelIngredient>
-      get copyWith => __$$_CartPersistenceServiceModelIngredientCopyWithImpl<
-          _$_CartPersistenceServiceModelIngredient>(this, _$identity);
+  _$$CartPersistenceServiceModelIngredientImplCopyWith<
+          _$CartPersistenceServiceModelIngredientImpl>
+      get copyWith => __$$CartPersistenceServiceModelIngredientImplCopyWithImpl<
+          _$CartPersistenceServiceModelIngredientImpl>(this, _$identity);
 }
 
 abstract class _CartPersistenceServiceModelIngredient
@@ -493,7 +493,7 @@ abstract class _CartPersistenceServiceModelIngredient
       required final Option<double> amount,
       required final Option<String> unit,
       required final Option<CartPersistenceServiceModelIngredientFamilyFamily>
-          family}) = _$_CartPersistenceServiceModelIngredient;
+          family}) = _$CartPersistenceServiceModelIngredientImpl;
 
   @override
   bool get isTickedOff;
@@ -513,8 +513,8 @@ abstract class _CartPersistenceServiceModelIngredient
   Option<CartPersistenceServiceModelIngredientFamilyFamily> get family;
   @override
   @JsonKey(ignore: true)
-  _$$_CartPersistenceServiceModelIngredientCopyWith<
-          _$_CartPersistenceServiceModelIngredient>
+  _$$CartPersistenceServiceModelIngredientImplCopyWith<
+          _$CartPersistenceServiceModelIngredientImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -598,15 +598,16 @@ class _$CartPersistenceServiceModelIngredientFamilyFamilyCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_CartPersistenceServiceModelIngredientFamilyFamilyCopyWith<
+abstract class _$$CartPersistenceServiceModelIngredientFamilyFamilyImplCopyWith<
         $Res>
     implements
         $CartPersistenceServiceModelIngredientFamilyFamilyCopyWith<$Res> {
-  factory _$$_CartPersistenceServiceModelIngredientFamilyFamilyCopyWith(
-          _$_CartPersistenceServiceModelIngredientFamilyFamily value,
-          $Res Function(_$_CartPersistenceServiceModelIngredientFamilyFamily)
+  factory _$$CartPersistenceServiceModelIngredientFamilyFamilyImplCopyWith(
+          _$CartPersistenceServiceModelIngredientFamilyFamilyImpl value,
+          $Res Function(_$CartPersistenceServiceModelIngredientFamilyFamilyImpl)
               then) =
-      __$$_CartPersistenceServiceModelIngredientFamilyFamilyCopyWithImpl<$Res>;
+      __$$CartPersistenceServiceModelIngredientFamilyFamilyImplCopyWithImpl<
+          $Res>;
   @override
   @useResult
   $Res call(
@@ -618,14 +619,16 @@ abstract class _$$_CartPersistenceServiceModelIngredientFamilyFamilyCopyWith<
 }
 
 /// @nodoc
-class __$$_CartPersistenceServiceModelIngredientFamilyFamilyCopyWithImpl<$Res>
+class __$$CartPersistenceServiceModelIngredientFamilyFamilyImplCopyWithImpl<
+        $Res>
     extends _$CartPersistenceServiceModelIngredientFamilyFamilyCopyWithImpl<
-        $Res, _$_CartPersistenceServiceModelIngredientFamilyFamily>
+        $Res, _$CartPersistenceServiceModelIngredientFamilyFamilyImpl>
     implements
-        _$$_CartPersistenceServiceModelIngredientFamilyFamilyCopyWith<$Res> {
-  __$$_CartPersistenceServiceModelIngredientFamilyFamilyCopyWithImpl(
-      _$_CartPersistenceServiceModelIngredientFamilyFamily _value,
-      $Res Function(_$_CartPersistenceServiceModelIngredientFamilyFamily) _then)
+        _$$CartPersistenceServiceModelIngredientFamilyFamilyImplCopyWith<$Res> {
+  __$$CartPersistenceServiceModelIngredientFamilyFamilyImplCopyWithImpl(
+      _$CartPersistenceServiceModelIngredientFamilyFamilyImpl _value,
+      $Res Function(_$CartPersistenceServiceModelIngredientFamilyFamilyImpl)
+          _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -637,7 +640,7 @@ class __$$_CartPersistenceServiceModelIngredientFamilyFamilyCopyWithImpl<$Res>
     Object? name = null,
     Object? slug = null,
   }) {
-    return _then(_$_CartPersistenceServiceModelIngredientFamilyFamily(
+    return _then(_$CartPersistenceServiceModelIngredientFamilyFamilyImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -664,9 +667,9 @@ class __$$_CartPersistenceServiceModelIngredientFamilyFamilyCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CartPersistenceServiceModelIngredientFamilyFamily
+class _$CartPersistenceServiceModelIngredientFamilyFamilyImpl
     implements _CartPersistenceServiceModelIngredientFamilyFamily {
-  const _$_CartPersistenceServiceModelIngredientFamilyFamily(
+  const _$CartPersistenceServiceModelIngredientFamilyFamilyImpl(
       {required this.id,
       required this.type,
       required this.iconPath,
@@ -690,10 +693,10 @@ class _$_CartPersistenceServiceModelIngredientFamilyFamily
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CartPersistenceServiceModelIngredientFamilyFamily &&
+            other is _$CartPersistenceServiceModelIngredientFamilyFamilyImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.iconPath, iconPath) ||
@@ -708,11 +711,11 @@ class _$_CartPersistenceServiceModelIngredientFamilyFamily
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CartPersistenceServiceModelIngredientFamilyFamilyCopyWith<
-          _$_CartPersistenceServiceModelIngredientFamilyFamily>
+  _$$CartPersistenceServiceModelIngredientFamilyFamilyImplCopyWith<
+          _$CartPersistenceServiceModelIngredientFamilyFamilyImpl>
       get copyWith =>
-          __$$_CartPersistenceServiceModelIngredientFamilyFamilyCopyWithImpl<
-                  _$_CartPersistenceServiceModelIngredientFamilyFamily>(
+          __$$CartPersistenceServiceModelIngredientFamilyFamilyImplCopyWithImpl<
+                  _$CartPersistenceServiceModelIngredientFamilyFamilyImpl>(
               this, _$identity);
 }
 
@@ -724,7 +727,7 @@ abstract class _CartPersistenceServiceModelIngredientFamilyFamily
           required final Option<String> iconPath,
           required final String name,
           required final String slug}) =
-      _$_CartPersistenceServiceModelIngredientFamilyFamily;
+      _$CartPersistenceServiceModelIngredientFamilyFamilyImpl;
 
   @override
   String get id;
@@ -738,8 +741,8 @@ abstract class _CartPersistenceServiceModelIngredientFamilyFamily
   String get slug;
   @override
   @JsonKey(ignore: true)
-  _$$_CartPersistenceServiceModelIngredientFamilyFamilyCopyWith<
-          _$_CartPersistenceServiceModelIngredientFamilyFamily>
+  _$$CartPersistenceServiceModelIngredientFamilyFamilyImplCopyWith<
+          _$CartPersistenceServiceModelIngredientFamilyFamilyImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -806,12 +809,12 @@ class _$CartPersistenceServiceModelSortingUnitCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_CartPersistenceServiceModelSortingUnitCopyWith<$Res>
+abstract class _$$CartPersistenceServiceModelSortingUnitImplCopyWith<$Res>
     implements $CartPersistenceServiceModelSortingUnitCopyWith<$Res> {
-  factory _$$_CartPersistenceServiceModelSortingUnitCopyWith(
-          _$_CartPersistenceServiceModelSortingUnit value,
-          $Res Function(_$_CartPersistenceServiceModelSortingUnit) then) =
-      __$$_CartPersistenceServiceModelSortingUnitCopyWithImpl<$Res>;
+  factory _$$CartPersistenceServiceModelSortingUnitImplCopyWith(
+          _$CartPersistenceServiceModelSortingUnitImpl value,
+          $Res Function(_$CartPersistenceServiceModelSortingUnitImpl) then) =
+      __$$CartPersistenceServiceModelSortingUnitImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -821,13 +824,13 @@ abstract class _$$_CartPersistenceServiceModelSortingUnitCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_CartPersistenceServiceModelSortingUnitCopyWithImpl<$Res>
+class __$$CartPersistenceServiceModelSortingUnitImplCopyWithImpl<$Res>
     extends _$CartPersistenceServiceModelSortingUnitCopyWithImpl<$Res,
-        _$_CartPersistenceServiceModelSortingUnit>
-    implements _$$_CartPersistenceServiceModelSortingUnitCopyWith<$Res> {
-  __$$_CartPersistenceServiceModelSortingUnitCopyWithImpl(
-      _$_CartPersistenceServiceModelSortingUnit _value,
-      $Res Function(_$_CartPersistenceServiceModelSortingUnit) _then)
+        _$CartPersistenceServiceModelSortingUnitImpl>
+    implements _$$CartPersistenceServiceModelSortingUnitImplCopyWith<$Res> {
+  __$$CartPersistenceServiceModelSortingUnitImplCopyWithImpl(
+      _$CartPersistenceServiceModelSortingUnitImpl _value,
+      $Res Function(_$CartPersistenceServiceModelSortingUnitImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -837,7 +840,7 @@ class __$$_CartPersistenceServiceModelSortingUnitCopyWithImpl<$Res>
     Object? name = null,
     Object? ingredientFamilies = null,
   }) {
-    return _then(_$_CartPersistenceServiceModelSortingUnit(
+    return _then(_$CartPersistenceServiceModelSortingUnitImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -856,9 +859,9 @@ class __$$_CartPersistenceServiceModelSortingUnitCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CartPersistenceServiceModelSortingUnit
+class _$CartPersistenceServiceModelSortingUnitImpl
     implements _CartPersistenceServiceModelSortingUnit {
-  const _$_CartPersistenceServiceModelSortingUnit(
+  const _$CartPersistenceServiceModelSortingUnitImpl(
       {required this.id,
       required this.name,
       required final List<CartPersistenceServiceModelSortingUnitFamily>
@@ -884,10 +887,10 @@ class _$_CartPersistenceServiceModelSortingUnit
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CartPersistenceServiceModelSortingUnit &&
+            other is _$CartPersistenceServiceModelSortingUnitImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality()
@@ -901,10 +904,11 @@ class _$_CartPersistenceServiceModelSortingUnit
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CartPersistenceServiceModelSortingUnitCopyWith<
-          _$_CartPersistenceServiceModelSortingUnit>
-      get copyWith => __$$_CartPersistenceServiceModelSortingUnitCopyWithImpl<
-          _$_CartPersistenceServiceModelSortingUnit>(this, _$identity);
+  _$$CartPersistenceServiceModelSortingUnitImplCopyWith<
+          _$CartPersistenceServiceModelSortingUnitImpl>
+      get copyWith =>
+          __$$CartPersistenceServiceModelSortingUnitImplCopyWithImpl<
+              _$CartPersistenceServiceModelSortingUnitImpl>(this, _$identity);
 }
 
 abstract class _CartPersistenceServiceModelSortingUnit
@@ -913,7 +917,7 @@ abstract class _CartPersistenceServiceModelSortingUnit
       {required final String id,
       required final String name,
       required final List<CartPersistenceServiceModelSortingUnitFamily>
-          ingredientFamilies}) = _$_CartPersistenceServiceModelSortingUnit;
+          ingredientFamilies}) = _$CartPersistenceServiceModelSortingUnitImpl;
 
   @override
   String get id;
@@ -923,8 +927,8 @@ abstract class _CartPersistenceServiceModelSortingUnit
   List<CartPersistenceServiceModelSortingUnitFamily> get ingredientFamilies;
   @override
   @JsonKey(ignore: true)
-  _$$_CartPersistenceServiceModelSortingUnitCopyWith<
-          _$_CartPersistenceServiceModelSortingUnit>
+  _$$CartPersistenceServiceModelSortingUnitImplCopyWith<
+          _$CartPersistenceServiceModelSortingUnitImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1028,13 +1032,14 @@ class _$CartPersistenceServiceModelActiveSortingCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$CartPersistenceServiceModelActiveSortingSelectedUnitCopyWith<
+abstract class _$$CartPersistenceServiceModelActiveSortingSelectedUnitImplCopyWith<
     $Res> implements $CartPersistenceServiceModelActiveSortingCopyWith<$Res> {
-  factory _$$CartPersistenceServiceModelActiveSortingSelectedUnitCopyWith(
-          _$CartPersistenceServiceModelActiveSortingSelectedUnit value,
-          $Res Function(_$CartPersistenceServiceModelActiveSortingSelectedUnit)
+  factory _$$CartPersistenceServiceModelActiveSortingSelectedUnitImplCopyWith(
+          _$CartPersistenceServiceModelActiveSortingSelectedUnitImpl value,
+          $Res Function(
+                  _$CartPersistenceServiceModelActiveSortingSelectedUnitImpl)
               then) =
-      __$$CartPersistenceServiceModelActiveSortingSelectedUnitCopyWithImpl<
+      __$$CartPersistenceServiceModelActiveSortingSelectedUnitImplCopyWithImpl<
           $Res>;
   @override
   @useResult
@@ -1042,14 +1047,16 @@ abstract class _$$CartPersistenceServiceModelActiveSortingSelectedUnitCopyWith<
 }
 
 /// @nodoc
-class __$$CartPersistenceServiceModelActiveSortingSelectedUnitCopyWithImpl<$Res>
+class __$$CartPersistenceServiceModelActiveSortingSelectedUnitImplCopyWithImpl<
+        $Res>
     extends _$CartPersistenceServiceModelActiveSortingCopyWithImpl<$Res,
-        _$CartPersistenceServiceModelActiveSortingSelectedUnit>
+        _$CartPersistenceServiceModelActiveSortingSelectedUnitImpl>
     implements
-        _$$CartPersistenceServiceModelActiveSortingSelectedUnitCopyWith<$Res> {
-  __$$CartPersistenceServiceModelActiveSortingSelectedUnitCopyWithImpl(
-      _$CartPersistenceServiceModelActiveSortingSelectedUnit _value,
-      $Res Function(_$CartPersistenceServiceModelActiveSortingSelectedUnit)
+        _$$CartPersistenceServiceModelActiveSortingSelectedUnitImplCopyWith<
+            $Res> {
+  __$$CartPersistenceServiceModelActiveSortingSelectedUnitImplCopyWithImpl(
+      _$CartPersistenceServiceModelActiveSortingSelectedUnitImpl _value,
+      $Res Function(_$CartPersistenceServiceModelActiveSortingSelectedUnitImpl)
           _then)
       : super(_value, _then);
 
@@ -1059,7 +1066,7 @@ class __$$CartPersistenceServiceModelActiveSortingSelectedUnitCopyWithImpl<$Res>
     Object? activeSortingUnitId = null,
     Object? ingredientIds = null,
   }) {
-    return _then(_$CartPersistenceServiceModelActiveSortingSelectedUnit(
+    return _then(_$CartPersistenceServiceModelActiveSortingSelectedUnitImpl(
       activeSortingUnitId: null == activeSortingUnitId
           ? _value.activeSortingUnitId
           : activeSortingUnitId // ignore: cast_nullable_to_non_nullable
@@ -1074,9 +1081,9 @@ class __$$CartPersistenceServiceModelActiveSortingSelectedUnitCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CartPersistenceServiceModelActiveSortingSelectedUnit
+class _$CartPersistenceServiceModelActiveSortingSelectedUnitImpl
     implements CartPersistenceServiceModelActiveSortingSelectedUnit {
-  const _$CartPersistenceServiceModelActiveSortingSelectedUnit(
+  const _$CartPersistenceServiceModelActiveSortingSelectedUnitImpl(
       {required this.activeSortingUnitId,
       required final List<String> ingredientIds})
       : _ingredientIds = ingredientIds;
@@ -1097,10 +1104,11 @@ class _$CartPersistenceServiceModelActiveSortingSelectedUnit
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CartPersistenceServiceModelActiveSortingSelectedUnit &&
+            other
+                is _$CartPersistenceServiceModelActiveSortingSelectedUnitImpl &&
             (identical(other.activeSortingUnitId, activeSortingUnitId) ||
                 other.activeSortingUnitId == activeSortingUnitId) &&
             const DeepCollectionEquality()
@@ -1114,11 +1122,11 @@ class _$CartPersistenceServiceModelActiveSortingSelectedUnit
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CartPersistenceServiceModelActiveSortingSelectedUnitCopyWith<
-          _$CartPersistenceServiceModelActiveSortingSelectedUnit>
+  _$$CartPersistenceServiceModelActiveSortingSelectedUnitImplCopyWith<
+          _$CartPersistenceServiceModelActiveSortingSelectedUnitImpl>
       get copyWith =>
-          __$$CartPersistenceServiceModelActiveSortingSelectedUnitCopyWithImpl<
-                  _$CartPersistenceServiceModelActiveSortingSelectedUnit>(
+          __$$CartPersistenceServiceModelActiveSortingSelectedUnitImplCopyWithImpl<
+                  _$CartPersistenceServiceModelActiveSortingSelectedUnitImpl>(
               this, _$identity);
 
   @override
@@ -1203,39 +1211,40 @@ abstract class CartPersistenceServiceModelActiveSortingSelectedUnit
   const factory CartPersistenceServiceModelActiveSortingSelectedUnit(
           {required final String activeSortingUnitId,
           required final List<String> ingredientIds}) =
-      _$CartPersistenceServiceModelActiveSortingSelectedUnit;
+      _$CartPersistenceServiceModelActiveSortingSelectedUnitImpl;
 
   String get activeSortingUnitId;
   @override
   List<String> get ingredientIds;
   @override
   @JsonKey(ignore: true)
-  _$$CartPersistenceServiceModelActiveSortingSelectedUnitCopyWith<
-          _$CartPersistenceServiceModelActiveSortingSelectedUnit>
+  _$$CartPersistenceServiceModelActiveSortingSelectedUnitImplCopyWith<
+          _$CartPersistenceServiceModelActiveSortingSelectedUnitImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$CartPersistenceServiceModelActiveSortingCustomCopyWith<$Res>
-    implements $CartPersistenceServiceModelActiveSortingCopyWith<$Res> {
-  factory _$$CartPersistenceServiceModelActiveSortingCustomCopyWith(
-          _$CartPersistenceServiceModelActiveSortingCustom value,
-          $Res Function(_$CartPersistenceServiceModelActiveSortingCustom)
+abstract class _$$CartPersistenceServiceModelActiveSortingCustomImplCopyWith<
+    $Res> implements $CartPersistenceServiceModelActiveSortingCopyWith<$Res> {
+  factory _$$CartPersistenceServiceModelActiveSortingCustomImplCopyWith(
+          _$CartPersistenceServiceModelActiveSortingCustomImpl value,
+          $Res Function(_$CartPersistenceServiceModelActiveSortingCustomImpl)
               then) =
-      __$$CartPersistenceServiceModelActiveSortingCustomCopyWithImpl<$Res>;
+      __$$CartPersistenceServiceModelActiveSortingCustomImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<String> ingredientIds});
 }
 
 /// @nodoc
-class __$$CartPersistenceServiceModelActiveSortingCustomCopyWithImpl<$Res>
+class __$$CartPersistenceServiceModelActiveSortingCustomImplCopyWithImpl<$Res>
     extends _$CartPersistenceServiceModelActiveSortingCopyWithImpl<$Res,
-        _$CartPersistenceServiceModelActiveSortingCustom>
-    implements _$$CartPersistenceServiceModelActiveSortingCustomCopyWith<$Res> {
-  __$$CartPersistenceServiceModelActiveSortingCustomCopyWithImpl(
-      _$CartPersistenceServiceModelActiveSortingCustom _value,
-      $Res Function(_$CartPersistenceServiceModelActiveSortingCustom) _then)
+        _$CartPersistenceServiceModelActiveSortingCustomImpl>
+    implements
+        _$$CartPersistenceServiceModelActiveSortingCustomImplCopyWith<$Res> {
+  __$$CartPersistenceServiceModelActiveSortingCustomImplCopyWithImpl(
+      _$CartPersistenceServiceModelActiveSortingCustomImpl _value,
+      $Res Function(_$CartPersistenceServiceModelActiveSortingCustomImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1243,7 +1252,7 @@ class __$$CartPersistenceServiceModelActiveSortingCustomCopyWithImpl<$Res>
   $Res call({
     Object? ingredientIds = null,
   }) {
-    return _then(_$CartPersistenceServiceModelActiveSortingCustom(
+    return _then(_$CartPersistenceServiceModelActiveSortingCustomImpl(
       ingredientIds: null == ingredientIds
           ? _value._ingredientIds
           : ingredientIds // ignore: cast_nullable_to_non_nullable
@@ -1254,9 +1263,9 @@ class __$$CartPersistenceServiceModelActiveSortingCustomCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CartPersistenceServiceModelActiveSortingCustom
+class _$CartPersistenceServiceModelActiveSortingCustomImpl
     implements CartPersistenceServiceModelActiveSortingCustom {
-  const _$CartPersistenceServiceModelActiveSortingCustom(
+  const _$CartPersistenceServiceModelActiveSortingCustomImpl(
       {required final List<String> ingredientIds})
       : _ingredientIds = ingredientIds;
 
@@ -1274,10 +1283,10 @@ class _$CartPersistenceServiceModelActiveSortingCustom
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CartPersistenceServiceModelActiveSortingCustom &&
+            other is _$CartPersistenceServiceModelActiveSortingCustomImpl &&
             const DeepCollectionEquality()
                 .equals(other._ingredientIds, _ingredientIds));
   }
@@ -1289,11 +1298,11 @@ class _$CartPersistenceServiceModelActiveSortingCustom
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CartPersistenceServiceModelActiveSortingCustomCopyWith<
-          _$CartPersistenceServiceModelActiveSortingCustom>
+  _$$CartPersistenceServiceModelActiveSortingCustomImplCopyWith<
+          _$CartPersistenceServiceModelActiveSortingCustomImpl>
       get copyWith =>
-          __$$CartPersistenceServiceModelActiveSortingCustomCopyWithImpl<
-                  _$CartPersistenceServiceModelActiveSortingCustom>(
+          __$$CartPersistenceServiceModelActiveSortingCustomImplCopyWithImpl<
+                  _$CartPersistenceServiceModelActiveSortingCustomImpl>(
               this, _$identity);
 
   @override
@@ -1377,14 +1386,14 @@ abstract class CartPersistenceServiceModelActiveSortingCustom
     implements CartPersistenceServiceModelActiveSorting {
   const factory CartPersistenceServiceModelActiveSortingCustom(
           {required final List<String> ingredientIds}) =
-      _$CartPersistenceServiceModelActiveSortingCustom;
+      _$CartPersistenceServiceModelActiveSortingCustomImpl;
 
   @override
   List<String> get ingredientIds;
   @override
   @JsonKey(ignore: true)
-  _$$CartPersistenceServiceModelActiveSortingCustomCopyWith<
-          _$CartPersistenceServiceModelActiveSortingCustom>
+  _$$CartPersistenceServiceModelActiveSortingCustomImplCopyWith<
+          _$CartPersistenceServiceModelActiveSortingCustomImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1442,25 +1451,27 @@ class _$CartPersistenceServiceModelSortingUnitFamilyCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_CartPersistenceServiceModelSortingUnitFamilyCopyWith<$Res>
+abstract class _$$CartPersistenceServiceModelSortingUnitFamilyImplCopyWith<$Res>
     implements $CartPersistenceServiceModelSortingUnitFamilyCopyWith<$Res> {
-  factory _$$_CartPersistenceServiceModelSortingUnitFamilyCopyWith(
-          _$_CartPersistenceServiceModelSortingUnitFamily value,
-          $Res Function(_$_CartPersistenceServiceModelSortingUnitFamily) then) =
-      __$$_CartPersistenceServiceModelSortingUnitFamilyCopyWithImpl<$Res>;
+  factory _$$CartPersistenceServiceModelSortingUnitFamilyImplCopyWith(
+          _$CartPersistenceServiceModelSortingUnitFamilyImpl value,
+          $Res Function(_$CartPersistenceServiceModelSortingUnitFamilyImpl)
+              then) =
+      __$$CartPersistenceServiceModelSortingUnitFamilyImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<String> familyIds, String name});
 }
 
 /// @nodoc
-class __$$_CartPersistenceServiceModelSortingUnitFamilyCopyWithImpl<$Res>
+class __$$CartPersistenceServiceModelSortingUnitFamilyImplCopyWithImpl<$Res>
     extends _$CartPersistenceServiceModelSortingUnitFamilyCopyWithImpl<$Res,
-        _$_CartPersistenceServiceModelSortingUnitFamily>
-    implements _$$_CartPersistenceServiceModelSortingUnitFamilyCopyWith<$Res> {
-  __$$_CartPersistenceServiceModelSortingUnitFamilyCopyWithImpl(
-      _$_CartPersistenceServiceModelSortingUnitFamily _value,
-      $Res Function(_$_CartPersistenceServiceModelSortingUnitFamily) _then)
+        _$CartPersistenceServiceModelSortingUnitFamilyImpl>
+    implements
+        _$$CartPersistenceServiceModelSortingUnitFamilyImplCopyWith<$Res> {
+  __$$CartPersistenceServiceModelSortingUnitFamilyImplCopyWithImpl(
+      _$CartPersistenceServiceModelSortingUnitFamilyImpl _value,
+      $Res Function(_$CartPersistenceServiceModelSortingUnitFamilyImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1469,7 +1480,7 @@ class __$$_CartPersistenceServiceModelSortingUnitFamilyCopyWithImpl<$Res>
     Object? familyIds = null,
     Object? name = null,
   }) {
-    return _then(_$_CartPersistenceServiceModelSortingUnitFamily(
+    return _then(_$CartPersistenceServiceModelSortingUnitFamilyImpl(
       familyIds: null == familyIds
           ? _value._familyIds
           : familyIds // ignore: cast_nullable_to_non_nullable
@@ -1484,9 +1495,9 @@ class __$$_CartPersistenceServiceModelSortingUnitFamilyCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CartPersistenceServiceModelSortingUnitFamily
+class _$CartPersistenceServiceModelSortingUnitFamilyImpl
     implements _CartPersistenceServiceModelSortingUnitFamily {
-  const _$_CartPersistenceServiceModelSortingUnitFamily(
+  const _$CartPersistenceServiceModelSortingUnitFamilyImpl(
       {required final List<String> familyIds, required this.name})
       : _familyIds = familyIds;
 
@@ -1507,10 +1518,10 @@ class _$_CartPersistenceServiceModelSortingUnitFamily
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CartPersistenceServiceModelSortingUnitFamily &&
+            other is _$CartPersistenceServiceModelSortingUnitFamilyImpl &&
             const DeepCollectionEquality()
                 .equals(other._familyIds, _familyIds) &&
             (identical(other.name, name) || other.name == name));
@@ -1523,11 +1534,11 @@ class _$_CartPersistenceServiceModelSortingUnitFamily
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CartPersistenceServiceModelSortingUnitFamilyCopyWith<
-          _$_CartPersistenceServiceModelSortingUnitFamily>
+  _$$CartPersistenceServiceModelSortingUnitFamilyImplCopyWith<
+          _$CartPersistenceServiceModelSortingUnitFamilyImpl>
       get copyWith =>
-          __$$_CartPersistenceServiceModelSortingUnitFamilyCopyWithImpl<
-                  _$_CartPersistenceServiceModelSortingUnitFamily>(
+          __$$CartPersistenceServiceModelSortingUnitFamilyImplCopyWithImpl<
+                  _$CartPersistenceServiceModelSortingUnitFamilyImpl>(
               this, _$identity);
 }
 
@@ -1535,7 +1546,7 @@ abstract class _CartPersistenceServiceModelSortingUnitFamily
     implements CartPersistenceServiceModelSortingUnitFamily {
   const factory _CartPersistenceServiceModelSortingUnitFamily(
           {required final List<String> familyIds, required final String name}) =
-      _$_CartPersistenceServiceModelSortingUnitFamily;
+      _$CartPersistenceServiceModelSortingUnitFamilyImpl;
 
   @override
   List<String> get familyIds;
@@ -1543,7 +1554,7 @@ abstract class _CartPersistenceServiceModelSortingUnitFamily
   String get name;
   @override
   @JsonKey(ignore: true)
-  _$$_CartPersistenceServiceModelSortingUnitFamilyCopyWith<
-          _$_CartPersistenceServiceModelSortingUnitFamily>
+  _$$CartPersistenceServiceModelSortingUnitFamilyImplCopyWith<
+          _$CartPersistenceServiceModelSortingUnitFamilyImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

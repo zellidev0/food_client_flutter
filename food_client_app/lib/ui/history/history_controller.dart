@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_client/commons/constants.dart';
-import 'package:food_client/commons/error.dart';
-import 'package:food_client/commons/view_state.dart';
+import 'package:food_client/pages/common/error.dart';
+import 'package:food_client/pages/common/view_state.dart';
 import 'package:food_client/services/logging_service/logging_service.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
 

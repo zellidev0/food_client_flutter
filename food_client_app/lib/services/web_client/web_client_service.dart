@@ -5,30 +5,17 @@ import 'package:collection/collection.dart';
 import 'package:commons_graphql/commons_graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_client/commons/error.dart';
+import 'package:food_client/pages/common/error.dart';
+import 'package:food_client/pages/features/ingredients_sorting/services/web_service/ingredients_sorting_web_client_service.dart';
+import 'package:food_client/pages/features/single_recipe/services/web_service/single_recipe_web_client_service.dart';
+import 'package:food_client/services/web_client/mixins/single_recipe_web_client_service_mixin.dart';
 import 'package:food_client/services/web_client/web_client_model.dart';
 import 'package:food_client/ui/home/services/home_web_client_service.dart';
-import 'package:food_client/ui/ingredients_sorting/services/ingredients_sorting_web_client_service.dart';
-import 'package:food_client/ui/single_recipe/services/single_recipe_web_client_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 const String hasuraSecretHeader =
     '479mMb5g4g5zESHV2Xp2xGEixaD0X7YdeOFMFdRcz0ADeRrRrW0nc1mQbb1haeE5';
-
-List<SingleRecipeWebClientModelTag> mapBridgeRecipeTags({
-  required final List<Query$SingleRecipe$recipes_by_pk$bridge_recipes_tags>
-      bridgeRecipesTags,
-}) =>
-    bridgeRecipesTags
-        .map(
-          (final Query$SingleRecipe$recipes_by_pk$bridge_recipes_tags tags) =>
-              optionOf(tags.tags)
-                  .map(mapToSingleRecipeWebClientModelTag)
-                  .toNullable(),
-        )
-        .whereNotNull()
-        .toList();
 
 TaskEither<MyError, List<IngredientsSortingWebClientModelIngredientSorting>>
     mapIngredientsSortingResponse(
@@ -91,97 +78,6 @@ List<HomeWebClientModelYield> mapRecipeYields({
               .toList(),
         )
         .getOrElse(() => <HomeWebClientModelYield>[]);
-
-List<SingleRecipeWebClientModelYield> mapRecipeYields2({
-  required final String yieldsJson,
-  required final List<WebClientModelIngredient> ingredients,
-}) =>
-    Option<List<Map<String, Object?>>>.tryCatch(
-      () => (jsonDecode(yieldsJson) as List<Object?>)
-          .map((final Object? payload) => payload as Map<String, Object?>?)
-          .whereNotNull()
-          .toList(),
-    )
-        .map(
-          (final List<Map<String, Object?>> yields) =>
-              yields.map(WebClientModelYield.fromJson),
-        )
-        .map(
-          (final Iterable<WebClientModelYield> yields) => yields
-              .map(
-                (final WebClientModelYield yield) => yield.yields
-                    .map(
-                      (final int servings) =>
-                          mapSingleRecipeWebClientModelYield(
-                        servings: servings,
-                        yield: yield,
-                        ingredients: ingredients,
-                      ),
-                    )
-                    .toNullable(),
-              )
-              .whereNotNull()
-              .toList(),
-        )
-        .getOrElse(() => <SingleRecipeWebClientModelYield>[]);
-
-SingleRecipeWebClientModelIngredient mapSingleRecipeWebClientModelIngredient({
-  required final Option<num> amount,
-  required final Option<String> unit,
-  required final WebClientModelIngredient ingredient,
-}) =>
-    SingleRecipeWebClientModelIngredient(
-      ingredientId: ingredient.id,
-      amount: amount.map((final num number) => number.toDouble()),
-      unit: unit,
-      imagePath: ingredient.imagePath.map(Uri.parse),
-      slug: ingredient.slug,
-      displayedName: ingredient.name,
-      family: ingredient.family.map(
-        mapSingleRecipeWebClientModelIngredientFamily,
-      ),
-    );
-
-SingleRecipeWebClientModelIngredientFamily
-    mapSingleRecipeWebClientModelIngredientFamily(
-  final WebClientModelIngredientFamily family,
-) =>
-        SingleRecipeWebClientModelIngredientFamily(
-          id: family.id,
-          slug: family.slug,
-          type: family.type,
-          iconPath: family.iconPath,
-          name: family.name,
-        );
-
-SingleRecipeWebClientModelYield mapSingleRecipeWebClientModelYield({
-  required final int servings,
-  required final WebClientModelYield yield,
-  required final List<WebClientModelIngredient> ingredients,
-}) =>
-    SingleRecipeWebClientModelYield(
-      servings: servings,
-      ingredients: yield.ingredients
-          .map(
-            (final WebClientModelYieldIngredient yieldIngredient) => optionOf(
-              ingredients.firstWhereOrNull(
-                (final WebClientModelIngredient ingredient) =>
-                    ingredient.id == yieldIngredient.id,
-              ),
-            )
-                .map(
-                  (final WebClientModelIngredient otherIngredient) =>
-                      mapSingleRecipeWebClientModelIngredient(
-                    amount: yieldIngredient.amount,
-                    unit: yieldIngredient.unit,
-                    ingredient: otherIngredient,
-                  ),
-                )
-                .toNullable(),
-          )
-          .whereNotNull()
-          .toList(),
-    );
 
 HomeWebClientModelCuisine mapToHomeWebClientModelCuisine(
   final Query$GetCuisines$cuisines cuisine,
@@ -262,64 +158,6 @@ HomeWebClientModelYieldIngredient mapToHomeWebClientModelYieldIngredient(
       unit: ingredient.unit,
     );
 
-SingleRecipeWebClientModelDisplayedAttributes
-    mapToSingleRecipeWebClientModelDisplayedAttributes(
-  final Query$SingleRecipe$recipes_by_pk recipe,
-) =>
-        SingleRecipeWebClientModelDisplayedAttributes(
-          name: recipe.name,
-          headline: recipe.headline,
-          description: recipe.description,
-          descriptionMarkdown: optionOf(recipe.descriptionMarkdown),
-        );
-
-SingleRecipeWebClientModelStep mapToSingleRecipeWebClientModelStep(
-  final WebClientModelStep step,
-) =>
-    SingleRecipeWebClientModelStep(
-      instructionMarkdown: step.instructionsMarkdown,
-      imagePath: optionOf(step.images.firstOrNull).map(
-        (final WebClientModelStepImage image) => Uri.parse(image.path),
-      ),
-    );
-
-SingleRecipeWebClientModelTag mapToSingleRecipeWebClientModelTag(
-  final Query$SingleRecipe$recipes_by_pk$bridge_recipes_tags$tags tag,
-) =>
-    SingleRecipeWebClientModelTag(
-      id: tag.id,
-      slug: tag.slug,
-      displayedName: tag.name,
-    );
-
-WebClientModelIngredient mapToWebClientModelIngredient(
-  final Query$SingleRecipe$recipes_by_pk$bridge_recipes_ingredients$ingredients
-      ingredients,
-) =>
-    WebClientModelIngredient(
-      id: ingredients.id,
-      country: ingredients.country,
-      slug: ingredients.slug,
-      name: ingredients.name,
-      type: ingredients.type,
-      imagePath: optionOf(ingredients.imagePath),
-      family: optionOf(ingredients.family).map(
-        mapToWebClientModelIngredientFamily,
-      ),
-    );
-
-WebClientModelIngredientFamily mapToWebClientModelIngredientFamily(
-  final Query$SingleRecipe$recipes_by_pk$bridge_recipes_ingredients$ingredients$family
-      family,
-) =>
-    WebClientModelIngredientFamily(
-      id: family.id,
-      type: family.type,
-      iconPath: optionOf(family.iconPath),
-      name: family.name,
-      slug: family.slug,
-    );
-
 List<HomeWebClientModelRecipe> _mapToHomeWebClientModelRecipe({
   required final List<Query$Recipes$recipes> recipesResponse,
   required final List<Locale> recipeLocales,
@@ -382,72 +220,16 @@ List<HomeWebClientModelRecipe> _mapToHomeWebClientModelRecipe({
         )
         .toList();
 
-SingleRecipeWebClientModelRecipe _mapToSingleRecipeWebClientModelRecipe({
-  required final Query$SingleRecipe$recipes_by_pk recipe,
-}) =>
-    SingleRecipeWebClientModelRecipe(
-      id: recipe.id,
-      displayedAttributes:
-          mapToSingleRecipeWebClientModelDisplayedAttributes(recipe),
-      difficulty: recipe.difficulty,
-      yields: mapRecipeYields2(
-        yieldsJson: recipe.yields_json,
-        ingredients: recipe.bridge_recipes_ingredients
-            .map(
-              (
-                final Query$SingleRecipe$recipes_by_pk$bridge_recipes_ingredients
-                    ingredients,
-              ) =>
-                  optionOf(ingredients.ingredients)
-                      .map(mapToWebClientModelIngredient)
-                      .toNullable(),
-            )
-            .whereNotNull()
-            .toList(),
-      ),
-      tags: mapBridgeRecipeTags(bridgeRecipesTags: recipe.bridge_recipes_tags),
-      imagePath: optionOf(recipe.imagePath).map(Uri.parse),
-      steps: optionOf(recipe.steps)
-          .flatMap(
-            (final String stepsJson) =>
-                Option<List<WebClientModelStep>>.tryCatch(
-              () => (jsonDecode(stepsJson) as List<Object?>)
-                  .map(
-                    (final Object? json) => json is Map<String, Object?>
-                        ? WebClientModelStep.fromJson(json)
-                        : null,
-                  )
-                  .whereNotNull()
-                  .toList(),
-            ),
-          )
-          .map(
-            (final List<WebClientModelStep> steps) =>
-                steps.map(mapToSingleRecipeWebClientModelStep).toList(),
-          )
-          .getOrElse(() => <SingleRecipeWebClientModelStep>[]),
-      totalCookingTime: Option<Option<Duration>>.tryCatch(
-        () => optionOf(recipe.prepTime).map2(
-          optionOf(recipe.totalTime),
-          (final String prepTime, final String totalTime) => Duration(
-            minutes: int.parse(prepTime.replaceAll(RegExp(r'\D'), '')) +
-                int.parse(totalTime.replaceAll(RegExp(r'\D'), '')),
-          ),
-        ),
-      ).flatMap((final Option<Duration> optional) => optional),
-      slug: recipe.slug,
-    );
-
 abstract class WebClientService extends Cubit<Unit>
     implements WebClientServiceAggregator {
   WebClientService(super.initialState);
 }
 
-class WebClientServiceImplementation extends WebClientService {
-  final GraphQLClient _client;
-
+class WebClientServiceImplementation extends WebClientService
+    with SingleRecipeWebClientServiceMixin {
+  final GraphQLClient client;
   WebClientServiceImplementation._()
-      : _client = GraphQLClient(
+      : client = GraphQLClient(
           defaultPolicies: DefaultPolicies(
             query: Policies(fetch: FetchPolicy.networkOnly),
           ),
@@ -484,7 +266,7 @@ class WebClientServiceImplementation extends WebClientService {
     final Option<int> take = const None<int>(),
   }) =>
       TaskEither<Exception, QueryResult<Query$GetCuisines>>.tryCatch(
-        () async => await _client.query(
+        () async => await client.query(
           QueryOptions<Query$GetCuisines>(
             parserFn: Query$GetCuisines.fromJson,
             document: documentNodeQueryGetCuisines,
@@ -512,7 +294,7 @@ class WebClientServiceImplementation extends WebClientService {
     required final List<Locale> recipeLocales,
   }) =>
       TaskEither<Exception, QueryResult<Query$GetTags>>.tryCatch(
-        () async => await _client.query(
+        () async => await client.query(
           QueryOptions<Query$GetTags>(
             parserFn: Query$GetTags.fromJson,
             document: documentNodeQueryGetTags,
@@ -536,7 +318,7 @@ class WebClientServiceImplementation extends WebClientService {
   TaskEither<MyError, List<IngredientsSortingWebClientModelIngredientSorting>>
       fetchIngredientsSorting() => TaskEither<MyError,
               QueryResult<Query$GetIngredientSortings>>.tryCatch(
-            () async => await _client.query(
+            () async => await client.query(
               QueryOptions<Query$GetIngredientSortings>(
                 parserFn: Query$GetIngredientSortings.fromJson,
                 document: documentNodeQueryGetIngredientSortings,
@@ -556,7 +338,7 @@ class WebClientServiceImplementation extends WebClientService {
     final Option<String> searchTerm = const None<String>(),
   }) =>
       TaskEither<Exception, QueryResult<Query$Recipes>>.tryCatch(
-        () async => await _client.query(
+        () async => await client.query(
           QueryOptions<Query$Recipes>(
             parserFn: Query$Recipes.fromJson,
             document: documentNodeQueryRecipes,
@@ -631,37 +413,6 @@ class WebClientServiceImplementation extends WebClientService {
                 .toEither(
                   () => Exception('Failed to fetch recipes: $response'),
                 )
-                .toTaskEither(),
-      );
-
-  @override
-  TaskEither<Exception, SingleRecipeWebClientModelRecipe> fetchSingleRecipe({
-    required final String recipeId,
-  }) =>
-      TaskEither<Exception, QueryResult<Query$SingleRecipe>>.tryCatch(
-        () async => await _client.query(
-          QueryOptions<Query$SingleRecipe>(
-            parserFn: Query$SingleRecipe.fromJson,
-            document: documentNodeQuerySingleRecipe,
-            variables: <String, Object>{'id': recipeId},
-          ),
-        ),
-        (final Object error, final StackTrace stacktrace) => Exception(
-          'Failed to fetch single recipe: $error, $stacktrace',
-        ),
-      ).flatMap(
-        (final QueryResult<Query$SingleRecipe> response) =>
-            optionOf(response.parsedData)
-                .flatMap(
-                  (final Query$SingleRecipe parsedData) =>
-                      optionOf(parsedData.recipes_by_pk).map(
-                    (Query$SingleRecipe$recipes_by_pk recipe) =>
-                        _mapToSingleRecipeWebClientModelRecipe(
-                      recipe: recipe,
-                    ),
-                  ),
-                )
-                .toEither(() => Exception('Failed to fetch recipes: $response'))
                 .toTaskEither(),
       );
 }

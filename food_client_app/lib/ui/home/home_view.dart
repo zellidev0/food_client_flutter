@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:food_client/commons/empty_view_content.dart';
-import 'package:food_client/commons/view_state.dart';
-import 'package:food_client/commons/widgets.dart';
 import 'package:food_client/generated/locale_keys.g.dart';
+import 'package:food_client/pages/common/empty_view_content.dart';
+import 'package:food_client/pages/common/view_state.dart';
+import 'package:food_client/pages/common/widgets.dart';
 import 'package:food_client/ui/home/home_model.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
