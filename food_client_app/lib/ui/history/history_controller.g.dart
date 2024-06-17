@@ -7,7 +7,7 @@ part of 'history_controller.dart';
 // **************************************************************************
 
 String _$historyControllerImplementationHash() =>
-    r'83e2d221893bd11dab29f5ff7ee701f73312cd8d';
+    r'65deb9054f695478cb7456eb6ae59e84f4d09ee2';
 
 /// Copied from Dart SDK
 class _SystemHash {

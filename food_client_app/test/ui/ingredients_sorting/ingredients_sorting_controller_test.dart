@@ -63,14 +63,14 @@ void main() {
       );
       when(persistenceService.saveUnit(unit: anyNamed('unit')))
           .thenAnswer((_) => TaskEither<MyError, void>.of(null));
-      when(navigationService.pop()).thenAnswer((_) => Future<void>.value());
+      when(navigationService.goBack()).thenAnswer((_) => Future<void>.value());
 
       controller.createSortingUnit(name: 'name');
 
       await Future<void>.delayed(Duration.zero);
       verify(webClientService.fetchIngredientsSorting()).called(1);
       verify(persistenceService.saveUnit(unit: anyNamed('unit'))).called(1);
-      verify(navigationService.pop()).called(1);
+      verify(navigationService.goBack()).called(1);
     });
 
     test('createSortingUnit should call logger.error if an exception is thrown',

@@ -15,7 +15,7 @@ class MainModel with _$MainModel {
 class MainBottomTab with _$MainBottomTab {
   const factory MainBottomTab({
     required final String label,
-    required final Uri route,
+    required final String routeLocation,
     required final Widget selectedIcon,
     required final Widget unselectedIcon,
   }) = _MainBottomTab;

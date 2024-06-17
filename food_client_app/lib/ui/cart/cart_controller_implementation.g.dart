@@ -7,7 +7,7 @@ part of 'cart_controller_implementation.dart';
 // **************************************************************************
 
 String _$cartControllerImplementationHash() =>
-    r'e1e9733a4f72f3be24e74bdaf4aa8a980fbd1ad7';
+    r'428290e4b42f6bb46657097cfe047c0444ca92e2';
 
 /// Copied from Dart SDK
 class _SystemHash {

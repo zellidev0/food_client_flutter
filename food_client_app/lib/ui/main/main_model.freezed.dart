@@ -165,7 +165,7 @@ abstract class _MainModel implements MainModel {
 /// @nodoc
 mixin _$MainBottomTab {
   String get label => throw _privateConstructorUsedError;
-  Uri get route => throw _privateConstructorUsedError;
+  String get routeLocation => throw _privateConstructorUsedError;
   Widget get selectedIcon => throw _privateConstructorUsedError;
   Widget get unselectedIcon => throw _privateConstructorUsedError;
 
@@ -181,7 +181,10 @@ abstract class $MainBottomTabCopyWith<$Res> {
       _$MainBottomTabCopyWithImpl<$Res, MainBottomTab>;
   @useResult
   $Res call(
-      {String label, Uri route, Widget selectedIcon, Widget unselectedIcon});
+      {String label,
+      String routeLocation,
+      Widget selectedIcon,
+      Widget unselectedIcon});
 }
 
 /// @nodoc
@@ -198,7 +201,7 @@ class _$MainBottomTabCopyWithImpl<$Res, $Val extends MainBottomTab>
   @override
   $Res call({
     Object? label = null,
-    Object? route = null,
+    Object? routeLocation = null,
     Object? selectedIcon = null,
     Object? unselectedIcon = null,
   }) {
@@ -207,10 +210,10 @@ class _$MainBottomTabCopyWithImpl<$Res, $Val extends MainBottomTab>
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
               as String,
-      route: null == route
-          ? _value.route
-          : route // ignore: cast_nullable_to_non_nullable
-              as Uri,
+      routeLocation: null == routeLocation
+          ? _value.routeLocation
+          : routeLocation // ignore: cast_nullable_to_non_nullable
+              as String,
       selectedIcon: null == selectedIcon
           ? _value.selectedIcon
           : selectedIcon // ignore: cast_nullable_to_non_nullable
@@ -232,7 +235,10 @@ abstract class _$$_MainBottomTabCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String label, Uri route, Widget selectedIcon, Widget unselectedIcon});
+      {String label,
+      String routeLocation,
+      Widget selectedIcon,
+      Widget unselectedIcon});
 }
 
 /// @nodoc
@@ -247,7 +253,7 @@ class __$$_MainBottomTabCopyWithImpl<$Res>
   @override
   $Res call({
     Object? label = null,
-    Object? route = null,
+    Object? routeLocation = null,
     Object? selectedIcon = null,
     Object? unselectedIcon = null,
   }) {
@@ -256,10 +262,10 @@ class __$$_MainBottomTabCopyWithImpl<$Res>
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
               as String,
-      route: null == route
-          ? _value.route
-          : route // ignore: cast_nullable_to_non_nullable
-              as Uri,
+      routeLocation: null == routeLocation
+          ? _value.routeLocation
+          : routeLocation // ignore: cast_nullable_to_non_nullable
+              as String,
       selectedIcon: null == selectedIcon
           ? _value.selectedIcon
           : selectedIcon // ignore: cast_nullable_to_non_nullable
@@ -277,14 +283,14 @@ class __$$_MainBottomTabCopyWithImpl<$Res>
 class _$_MainBottomTab implements _MainBottomTab {
   const _$_MainBottomTab(
       {required this.label,
-      required this.route,
+      required this.routeLocation,
       required this.selectedIcon,
       required this.unselectedIcon});
 
   @override
   final String label;
   @override
-  final Uri route;
+  final String routeLocation;
   @override
   final Widget selectedIcon;
   @override
@@ -292,7 +298,7 @@ class _$_MainBottomTab implements _MainBottomTab {
 
   @override
   String toString() {
-    return 'MainBottomTab(label: $label, route: $route, selectedIcon: $selectedIcon, unselectedIcon: $unselectedIcon)';
+    return 'MainBottomTab(label: $label, routeLocation: $routeLocation, selectedIcon: $selectedIcon, unselectedIcon: $unselectedIcon)';
   }
 
   @override
@@ -301,7 +307,8 @@ class _$_MainBottomTab implements _MainBottomTab {
         (other.runtimeType == runtimeType &&
             other is _$_MainBottomTab &&
             (identical(other.label, label) || other.label == label) &&
-            (identical(other.route, route) || other.route == route) &&
+            (identical(other.routeLocation, routeLocation) ||
+                other.routeLocation == routeLocation) &&
             (identical(other.selectedIcon, selectedIcon) ||
                 other.selectedIcon == selectedIcon) &&
             (identical(other.unselectedIcon, unselectedIcon) ||
@@ -309,8 +316,8 @@ class _$_MainBottomTab implements _MainBottomTab {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, label, route, selectedIcon, unselectedIcon);
+  int get hashCode => Object.hash(
+      runtimeType, label, routeLocation, selectedIcon, unselectedIcon);
 
   @JsonKey(ignore: true)
   @override
@@ -322,14 +329,14 @@ class _$_MainBottomTab implements _MainBottomTab {
 abstract class _MainBottomTab implements MainBottomTab {
   const factory _MainBottomTab(
       {required final String label,
-      required final Uri route,
+      required final String routeLocation,
       required final Widget selectedIcon,
       required final Widget unselectedIcon}) = _$_MainBottomTab;
 
   @override
   String get label;
   @override
-  Uri get route;
+  String get routeLocation;
   @override
   Widget get selectedIcon;
   @override

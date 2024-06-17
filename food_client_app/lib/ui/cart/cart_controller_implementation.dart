@@ -7,6 +7,7 @@ import 'package:food_client/commons/view_state.dart';
 import 'package:food_client/services/logging_service/logging_service.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart'
     hide navigationService;
+import 'package:food_client/services/navigation_service/typed_routes.dart';
 import 'package:food_client/ui/cart/cart_controller.dart';
 import 'package:food_client/ui/cart/cart_model.dart';
 import 'package:food_client/ui/cart/services/cart_navigation_service.dart';
@@ -52,8 +53,8 @@ class CartControllerImplementation extends _$CartControllerImplementation
 
   @override
   void openSingleRecipe({required final String recipeId}) =>
-      navigationService.navigateToNamed(
-        uri: NavigationServiceUris.singleRecipe(recipeId: recipeId),
+      navigationService.goTo(
+        SingleRecipePageRoute(recipeId: recipeId).location,
       );
 
   @override

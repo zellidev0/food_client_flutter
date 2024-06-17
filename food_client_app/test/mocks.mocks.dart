@@ -186,11 +186,11 @@ class MockIngredientsSortingNavigationService extends _i1.Mock
   }
 
   @override
-  void goBack({Uri? fallbackUri}) => super.noSuchMethod(
+  void goBack({String? fallbackLocation}) => super.noSuchMethod(
         Invocation.method(
           #goBack,
           [],
-          {#fallbackUri: fallbackUri},
+          {#fallbackLocation: fallbackLocation},
         ),
         returnValueForMissingStub: null,
       );
@@ -216,21 +216,20 @@ class MockIngredientsSortingNavigationService extends _i1.Mock
       );
 
   @override
-  void showSnackBar({required String? message}) => super.noSuchMethod(
+  void goTo(String? location) => super.noSuchMethod(
         Invocation.method(
-          #showSnackBar,
-          [],
-          {#message: message},
+          #goTo,
+          [location],
         ),
         returnValueForMissingStub: null,
       );
 
   @override
-  void pop<T>({T? data}) => super.noSuchMethod(
+  void showSnackBar({required String? message}) => super.noSuchMethod(
         Invocation.method(
-          #pop,
+          #showSnackBar,
           [],
-          {#data: data},
+          {#message: message},
         ),
         returnValueForMissingStub: null,
       );
@@ -267,6 +266,46 @@ class MockIngredientsSortingNavigationService extends _i1.Mock
         returnValue: _i9.Future<void>.value(),
         returnValueForMissingStub: _i9.Future<void>.value(),
       ) as _i9.Future<void>);
+
+  @override
+  void closeDialog<T>({T? data}) => super.noSuchMethod(
+        Invocation.method(
+          #closeDialog,
+          [],
+          {#data: data},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void push({required Uri? uri}) => super.noSuchMethod(
+        Invocation.method(
+          #push,
+          [],
+          {#uri: uri},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void replaceWith({required Uri? uri}) => super.noSuchMethod(
+        Invocation.method(
+          #replaceWith,
+          [],
+          {#uri: uri},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void reset({required String? routeLocation}) => super.noSuchMethod(
+        Invocation.method(
+          #reset,
+          [],
+          {#routeLocation: routeLocation},
+        ),
+        returnValueForMissingStub: null,
+      );
 }
 
 /// A class which mocks [IngredientsSortingWebImageSizerService].
@@ -521,11 +560,11 @@ class MockHomeNavigationService extends _i1.Mock
   }
 
   @override
-  void goBack({Uri? fallbackUri}) => super.noSuchMethod(
+  void goBack({String? fallbackLocation}) => super.noSuchMethod(
         Invocation.method(
           #goBack,
           [],
-          {#fallbackUri: fallbackUri},
+          {#fallbackLocation: fallbackLocation},
         ),
         returnValueForMissingStub: null,
       );
@@ -546,6 +585,15 @@ class MockHomeNavigationService extends _i1.Mock
           #navigateToNamed,
           [],
           {#uri: uri},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void goTo(String? location) => super.noSuchMethod(
+        Invocation.method(
+          #goTo,
+          [location],
         ),
         returnValueForMissingStub: null,
       );
@@ -599,6 +647,36 @@ class MockHomeNavigationService extends _i1.Mock
           #closeDialog,
           [],
           {#data: data},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void push({required Uri? uri}) => super.noSuchMethod(
+        Invocation.method(
+          #push,
+          [],
+          {#uri: uri},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void replaceWith({required Uri? uri}) => super.noSuchMethod(
+        Invocation.method(
+          #replaceWith,
+          [],
+          {#uri: uri},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void reset({required String? routeLocation}) => super.noSuchMethod(
+        Invocation.method(
+          #reset,
+          [],
+          {#routeLocation: routeLocation},
         ),
         returnValueForMissingStub: null,
       );

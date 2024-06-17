@@ -5,8 +5,7 @@ import 'package:food_client/commons/constants.dart';
 import 'package:food_client/commons/error.dart';
 import 'package:food_client/commons/view_state.dart';
 import 'package:food_client/services/logging_service/logging_service.dart';
-import 'package:food_client/services/navigation_service/navigation_service.dart'
-    hide navigationService;
+import 'package:food_client/services/navigation_service/typed_routes.dart';
 
 import 'package:food_client/ui/history/history_model.dart';
 import 'package:food_client/ui/history/history_view.dart';
@@ -65,10 +64,11 @@ class HistoryControllerImplementation extends _$HistoryControllerImplementation
       );
 
   @override
-  void goToSingleRecipeView({required String recipeId}) =>
-      navigationService.navigateToNamed(
-        uri: NavigationServiceUris.singleRecipe(recipeId: recipeId),
-      );
+  void goToSingleRecipeView({required String recipeId}) {
+    navigationService.goTo(
+      SingleRecipePageRoute(recipeId: recipeId).location,
+    );
+  }
 
   @override
   void goBack() => navigationService.goBack();

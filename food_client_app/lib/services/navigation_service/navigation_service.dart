@@ -19,8 +19,28 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'navigation_service.freezed.dart';
 part 'navigation_service.g.dart';
 
+mixin GeneralNavigationService {
+  void goBack({final String? fallbackLocation});
+  void replaceWithNamed({required final Uri uri});
+  void navigateToNamed({required final Uri uri});
+  void goTo(final String location);
+  void showSnackBar({required final String message});
+  Future<void> showModalBottomSheet({required final Widget child});
+  Future<void> showDialog({
+    final Option<List<NavigationServiceDialogAction>> actions =
+        const None<List<NavigationServiceDialogAction>>(),
+    required final String content,
+    required final String title,
+  });
+  void closeDialog<T>({final T? data});
+  void push({required final Uri uri});
+  void replaceWith({required final Uri uri});
+  void reset({required final String routeLocation});
+}
+
 abstract class NavigationServiceAggregator
     implements
+        GeneralNavigationService,
         HomeNavigationService,
         SingleRecipeNavigationService,
         MainNavigationService,
@@ -30,14 +50,15 @@ abstract class NavigationServiceAggregator
         HistoryNavigationService {}
 
 class NavigationServiceUris {
+  static const String shellRoute = '/';
+
   NavigationServiceUris._();
 
-  static Uri singleRecipe({required final String recipeId}) =>
-      Uri.parse('/recipe/$recipeId');
-  static String singleRecipeIdKey = 'recipeId';
-  static Uri homeRouteUri = Uri.parse('/home');
-  static Uri accountRouteUri = Uri.parse('/account');
-  static Uri cartRouteUri = Uri.parse('/cart');
+  static const String singleRecipeRoute = '/recipe/:recipeId';
+  static const String singleRecipeIdKey = 'recipeId';
+  static const String homeRoute = '/home';
+  static const String accountRoute = '/account';
+  static const String cartRoute = '/cart';
   static Uri ingredientsSortingRouteUri = Uri.parse('/ingredients-sorting');
   static Uri historyRouteUri = Uri.parse('/history');
 }
@@ -65,21 +86,18 @@ class GoRouterNavigationService implements NavigationServiceAggregator {
   void closeDialog<T>({final T? data}) => _goRouter.pop(data);
 
   @override
-  void goBack({final Uri? fallbackUri}) {
+  void goBack({final String? fallbackLocation}) {
     if (_goRouter.canPop()) {
       _goRouter.pop();
     } else {
-      if (fallbackUri != null) {
-        reset(uri: fallbackUri);
+      if (fallbackLocation != null) {
+        reset(routeLocation: fallbackLocation);
       }
     }
   }
 
   @override
   void navigateToNamed({required final Uri uri}) => push(uri: uri);
-
-  @override
-  void pop<T>({final T? data}) => _goRouter.pop(data);
 
   @override
   void push({required final Uri uri}) =>
@@ -96,7 +114,8 @@ class GoRouterNavigationService implements NavigationServiceAggregator {
       );
 
   @override
-  void reset({required final Uri uri}) => _goRouter.go(uri.toString());
+  void reset({required final String routeLocation}) =>
+      _goRouter.go(routeLocation);
 
   @override
   Future<void> showDialog({
@@ -155,5 +174,10 @@ class GoRouterNavigationService implements NavigationServiceAggregator {
           .routerDelegate.navigatorKey.currentContext!, //TODOO: fix this
       builder: (final _) => child,
     );
+  }
+
+  @override
+  void goTo(String location) {
+    _goRouter.routerDelegate.navigatorKey.currentContext!.go(location);
   }
 }

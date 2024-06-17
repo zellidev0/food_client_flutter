@@ -67,7 +67,7 @@ class IngredientsSortingControllerImplementation
                 units: _fetchPersistenceServiceUnits(),
               ),
             )
-            .andThen(IO<void>(navigationService.pop).toTask)
+            .andThen(IO<void>(navigationService.goBack).toTask)
             .run(),
       );
 

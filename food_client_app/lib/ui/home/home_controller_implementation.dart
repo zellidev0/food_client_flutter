@@ -6,6 +6,7 @@ import 'package:food_client/commons/view_state.dart';
 import 'package:food_client/generated/locale_keys.g.dart';
 import 'package:food_client/services/logging_service/logging_service.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
+import 'package:food_client/services/navigation_service/typed_routes.dart';
 import 'package:food_client/ui/home/home_controller.dart';
 import 'package:food_client/ui/home/home_model.dart';
 import 'package:food_client/ui/home/services/home_navigation_service.dart';
@@ -185,8 +186,8 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
             )
             .andThen(
               () => Task<void>.of(
-                globalNavigationService.navigateToNamed(
-                  uri: NavigationServiceUris.singleRecipe(recipeId: recipeId),
+                globalNavigationService.goTo(
+                  SingleRecipePageRoute(recipeId: recipeId).location,
                 ),
               ),
             )
