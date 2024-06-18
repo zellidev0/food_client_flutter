@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:food_client/cubits/features/ingredients_sorting/ingredients_sorting_state.dart';
 import 'package:food_client/pages/common/widgets.dart';
+import 'package:food_client/pages/features/ingredients_sorting/cubit/ingredients_sorting_state.dart';
 
 class IngredientsListWidget extends StatelessWidget {
   final void Function({

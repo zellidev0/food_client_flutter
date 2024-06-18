@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_client/cubits/features/single_recipe/single_recipe_cubit.dart';
-import 'package:food_client/cubits/features/single_recipe/single_recipe_state.dart';
+import 'package:food_client/pages/features/single_recipe/cubit/single_recipe_cubit.dart';
+import 'package:food_client/pages/features/single_recipe/cubit/single_recipe_state.dart';
 import 'package:fpdart/fpdart.dart';
 
 class TabIngredientsWidget extends StatelessWidget {

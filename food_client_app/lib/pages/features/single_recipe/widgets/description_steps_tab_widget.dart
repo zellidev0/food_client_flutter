@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:food_client/cubits/features/single_recipe/single_recipe_state.dart';
+import 'package:food_client/pages/features/single_recipe/cubit/single_recipe_state.dart';
 import 'package:food_client/pages/features/single_recipe/widgets/single_description_widget.dart';
 
 class DescriptionStepsTabWidget extends StatelessWidget {

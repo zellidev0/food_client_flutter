@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_client/cubits/features/account/account_cubit.dart';
+import 'package:food_client/pages/features/account/cubit/account_cubit.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:fpdart/fpdart.dart';
 

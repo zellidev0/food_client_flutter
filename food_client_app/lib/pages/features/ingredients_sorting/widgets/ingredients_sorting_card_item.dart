@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_client/cubits/features/ingredients_sorting/ingredients_sorting_cubit.dart';
-import 'package:food_client/cubits/features/ingredients_sorting/ingredients_sorting_state.dart';
+import 'package:food_client/pages/features/ingredients_sorting/cubit/ingredients_sorting_cubit.dart';
+import 'package:food_client/pages/features/ingredients_sorting/cubit/ingredients_sorting_state.dart';
 import 'package:food_client/pages/features/ingredients_sorting/widgets/add_unit_modal_dialog.dart';
 import 'package:fpdart/fpdart.dart';
 

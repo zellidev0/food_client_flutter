@@ -2,10 +2,10 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_client/commons/utils.dart';
-import 'package:food_client/cubits/features/cart/cart_cubit.dart';
-import 'package:food_client/cubits/features/cart/cart_state.dart';
 import 'package:food_client/pages/common/view_state.dart';
 import 'package:food_client/pages/common/widgets.dart';
+import 'package:food_client/pages/features/cart/cubit/cart_cubit.dart';
+import 'package:food_client/pages/features/cart/cubit/cart_state.dart';
 import 'package:fpdart/fpdart.dart';
 
 class CardElementWidget extends StatelessWidget {

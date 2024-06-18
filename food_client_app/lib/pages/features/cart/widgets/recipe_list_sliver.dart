@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_client/cubits/features/cart/cart_cubit.dart';
-import 'package:food_client/cubits/features/cart/cart_state.dart';
 import 'package:food_client/generated/locale_keys.g.dart';
 import 'package:food_client/pages/common/view_state.dart';
+import 'package:food_client/pages/features/cart/cubit/cart_cubit.dart';
+import 'package:food_client/pages/features/cart/cubit/cart_state.dart';
 import 'package:food_client/pages/features/cart/widgets/cart_view_recipe_list_delegate.dart';
 import 'package:food_client/pages/features/cart/widgets/cart_view_single_ingredient_item.dart';
 import 'package:food_client/pages/features/cart/widgets/cart_view_sorting_card.dart';

@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:food_client/cubits/features/single_recipe/single_recipe_state.dart';
+import 'package:food_client/pages/features/single_recipe/cubit/single_recipe_state.dart';
 import 'package:food_client/pages/features/single_recipe/widgets/tab_ingredients_widget.dart';
 import 'package:fpdart/fpdart.dart';
 

@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_client/cubits/features/ingredients_sorting/ingredients_sorting_cubit.dart';
-import 'package:food_client/cubits/features/ingredients_sorting/ingredients_sorting_state.dart';
 import 'package:food_client/generated/locale_keys.g.dart';
 import 'package:food_client/pages/common/empty_view_content.dart';
 import 'package:food_client/pages/common/view_state.dart';
+import 'package:food_client/pages/features/ingredients_sorting/cubit/ingredients_sorting_cubit.dart';
+import 'package:food_client/pages/features/ingredients_sorting/cubit/ingredients_sorting_state.dart';
 import 'package:food_client/pages/features/ingredients_sorting/widgets/ingredients_list_widget.dart';
 import 'package:food_client/pages/features/ingredients_sorting/widgets/ingredients_sorting_card_item.dart';
 import 'package:fpdart/fpdart.dart';

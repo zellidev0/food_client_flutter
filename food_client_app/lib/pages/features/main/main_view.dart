@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_client/cubits/features/main/main_cubit.dart';
-import 'package:food_client/cubits/features/main/main_state.dart';
+import 'package:food_client/pages/features/main/cubit/main_cubit.dart';
+import 'package:food_client/pages/features/main/cubit/main_state.dart';
 
 class MainView extends StatelessWidget {
   final Widget _child;

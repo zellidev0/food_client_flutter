@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_client/cubits/features/main/main_state.dart';
+import 'package:food_client/pages/features/main/cubit/main_state.dart';
 import 'package:food_client/pages/features/main/services/main_navigation_service.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:fpdart/fpdart.dart';

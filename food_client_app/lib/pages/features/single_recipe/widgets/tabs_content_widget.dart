@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_client/cubits/features/single_recipe/single_recipe_state.dart';
+import 'package:food_client/pages/features/single_recipe/cubit/single_recipe_state.dart';
 import 'package:food_client/pages/features/single_recipe/widgets/description_steps_tab_widget.dart';
 import 'package:food_client/pages/features/single_recipe/widgets/ingredients_widget.dart';
 import 'package:fpdart/fpdart.dart';

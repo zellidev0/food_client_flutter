@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_client/cubits/features/cart/cart_state.dart';
+import 'package:food_client/pages/features/cart/cubit/cart_state.dart';
 
 class CartViewStarIcon extends StatelessWidget {
   final CartStateSorting sorting;

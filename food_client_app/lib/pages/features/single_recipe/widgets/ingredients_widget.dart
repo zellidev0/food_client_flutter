@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:food_client/cubits/features/single_recipe/single_recipe_state.dart';
 import 'package:food_client/pages/common/widgets.dart';
+import 'package:food_client/pages/features/single_recipe/cubit/single_recipe_state.dart';
 import 'package:fpdart/fpdart.dart';
 
 class IngredientsWidget extends StatelessWidget {
