@@ -1,9 +1,11 @@
+import 'package:food_client/services/persistence_service/general_persisnence_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'single_recipe_persistence_service.freezed.dart';
 
-abstract class SingleRecipePersistenceService {
+abstract class SingleRecipePersistenceService
+    extends GeneralPersistenceService {
   bool isInShoppingCart({
     required final String recipeId,
     required final int servings,

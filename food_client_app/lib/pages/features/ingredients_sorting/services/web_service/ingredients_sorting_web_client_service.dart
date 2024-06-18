@@ -1,11 +1,13 @@
 import 'package:food_client/pages/common/error.dart';
+import 'package:food_client/services/web_client/general_web_client_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'ingredients_sorting_web_client_service.freezed.dart';
 part 'ingredients_sorting_web_client_service.g.dart';
 
-abstract class IngredientsSortingWebClientService {
+abstract class IngredientsSortingWebClientService
+    extends GeneralWebClientService {
   TaskEither<MyError, List<IngredientsSortingWebClientModelIngredientSorting>>
       fetchIngredientsSorting();
 }

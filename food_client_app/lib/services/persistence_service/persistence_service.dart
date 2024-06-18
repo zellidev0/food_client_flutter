@@ -6,6 +6,7 @@ import 'package:food_client/pages/common/error.dart';
 import 'package:food_client/pages/features/cart/services/cart_persistence_service.dart';
 import 'package:food_client/pages/features/ingredients_sorting/services/persistance_service/ingredients_sorting_persistence_service.dart';
 import 'package:food_client/pages/features/single_recipe/services/persistance_service/single_recipe_persistence_service.dart';
+import 'package:food_client/services/persistence_service/general_persisnence_service.dart';
 import 'package:food_client/services/persistence_service/mixins/cart_persistence_service_mixin.dart';
 import 'package:food_client/services/persistence_service/mixins/single_recipe_persistence_service_mixin.dart';
 import 'package:food_client/services/persistence_service/persistence_service_model.dart';
@@ -22,6 +23,7 @@ const String historyRecipeBoxName = 'historyRecipeBox';
 
 abstract class PersistenceServiceAggregator
     implements
+        GeneralPersistenceService,
         CartPersistenceService,
         SingleRecipePersistenceService,
         IngredientsSortingPersistenceService,
