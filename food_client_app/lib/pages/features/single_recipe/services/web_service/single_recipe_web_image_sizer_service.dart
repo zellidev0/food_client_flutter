@@ -1,8 +1,4 @@
-import 'package:fpdart/fpdart.dart';
+import 'package:food_client/services/web_image_sizer/general_web_image_sizer_service.dart';
 
-abstract class SingleRecipeWebImageSizerService {
-  Either<Exception, Uri> getUrl({
-    required final Uri filePath,
-    required final int widthPixels,
-  });
-}
+abstract class SingleRecipeWebImageSizerService
+    extends GeneralWebImageSizerService {}
