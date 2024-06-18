@@ -17,7 +17,7 @@ class RecipeHeader extends ConsumerWidget {
         children: <Widget>[
           IconButton(
             icon: const Icon(Icons.history),
-            onPressed: ref.read(homeControllerProvider).goToHistoryView,
+            onPressed: () => ref.read(homeControllerProvider).goToHistoryView(),
           ),
           Expanded(child: Container()),
           SingleFilterChip<HomeModelFilterTag>(
