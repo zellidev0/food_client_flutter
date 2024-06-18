@@ -1,10 +1,11 @@
 import 'package:food_client/pages/common/error.dart';
+import 'package:food_client/services/persistence_service/general_persisnence_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'cart_persistence_service.freezed.dart';
 
-abstract class CartPersistenceService {
+abstract class CartPersistenceService extends GeneralPersistenceService {
   List<CartPersistenceServiceModelRecipe> getShoppingCardRecipes();
   List<CartPersistenceServiceModelSortingUnit> getSortingUnits();
   TaskEither<MyError, void> saveSorting({
