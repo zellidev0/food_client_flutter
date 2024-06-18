@@ -1,19 +1,17 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_client/cubits/features/main/main_state.dart';
+import 'package:food_client/pages/features/main/services/main_navigation_service.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
-import 'package:food_client/ui/main/main_model.dart';
-import 'package:food_client/ui/main/main_navigation_service.dart';
-import 'package:food_client/ui/main/main_view.dart';
 import 'package:fpdart/fpdart.dart';
 
-class MainControllerImplementation extends Cubit<MainModel>
-    implements MainController {
-  final MainNavigationService navigationService;
-  MainControllerImplementation({
-    required this.navigationService,
-  }) : super(
-          MainModel(
+class MainCubit extends Cubit<MainState> {
+  final MainNavigationService _navigationService;
+  MainCubit({required final MainNavigationService navigationService})
+      : _navigationService = navigationService,
+        super(
+          MainState(
             bottomTabs: <MainBottomTab>[
               MainBottomTab(
                 label:
@@ -42,27 +40,9 @@ class MainControllerImplementation extends Cubit<MainModel>
           ),
         );
 
-  @override
-  bool goBack() {
-    final int todayIndex = state.bottomTabs.toList().indexWhere(
-          (MainBottomTab tab) =>
-              tab.route == NavigationServiceUris.homeRouteUri,
-        );
-    if (todayIndex == -1) {
-      return false;
-    } else if (todayIndex != state.bottomNavigationBarIndex) {
-      emit(state.copyWith(bottomNavigationBarIndex: todayIndex));
-      navigationService.reset(uri: NavigationServiceUris.homeRouteUri);
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  @override
   void updateSelectedBottomTabIndex({required final int index}) {
     emit(state.copyWith(bottomNavigationBarIndex: index));
-    navigationService.reset(
+    _navigationService.reset(
       uri: optionOf(state.bottomTabs.elementAtOrNull(index))
           .getOrElse(() => state.bottomTabs.elementAt(0))
           .route,

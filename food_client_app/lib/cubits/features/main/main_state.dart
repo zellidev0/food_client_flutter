@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'main_model.freezed.dart';
+part 'main_state.freezed.dart';
 
 @freezed
-class MainModel with _$MainModel {
-  const factory MainModel({
+class MainState with _$MainState {
+  const factory MainState({
     required final List<MainBottomTab> bottomTabs,
     required final int bottomNavigationBarIndex,
-  }) = _MainModel;
+  }) = _MainState;
 }
 
 @freezed
