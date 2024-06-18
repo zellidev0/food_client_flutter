@@ -3,7 +3,7 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i7;
+import 'dart:async' as _i6;
 import 'dart:ui' as _i12;
 
 import 'package:flutter/material.dart' as _i8;
@@ -19,7 +19,7 @@ import 'package:food_client/pages/features/ingredients_sorting/services/web_serv
 import 'package:food_client/services/logging_service/logging_service.dart'
     as _i15;
 import 'package:food_client/services/navigation_service/navigation_service.dart'
-    as _i6;
+    as _i7;
 import 'package:food_client/ui/home/services/home_navigation_service.dart'
     as _i14;
 import 'package:food_client/ui/home/services/home_web_client_service.dart'
@@ -191,13 +191,13 @@ class MockIngredientsSortingNavigationService extends _i1.Mock
       );
 
   @override
-  void showDialog({
-    _i2.Option<List<_i6.NavigationServiceDialogAction>>? actions =
+  _i6.Future<void> showDialog({
+    _i2.Option<List<_i7.NavigationServiceDialogAction>>? actions =
         const _i2.None(),
     required String? title,
     required String? content,
   }) =>
-      super.noSuchMethod(
+      (super.noSuchMethod(
         Invocation.method(
           #showDialog,
           [],
@@ -207,20 +207,21 @@ class MockIngredientsSortingNavigationService extends _i1.Mock
             #content: content,
           },
         ),
-        returnValueForMissingStub: null,
-      );
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
 
   @override
-  _i7.Future<void> showModalBottomSheet({required _i8.Widget? child}) =>
+  _i6.Future<void> showModalBottomSheet({required _i8.Widget? child}) =>
       (super.noSuchMethod(
         Invocation.method(
           #showModalBottomSheet,
           [],
           {#child: child},
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
 }
 
 /// A class which mocks [IngredientsSortingWebImageSizerService].
@@ -515,20 +516,20 @@ class MockHomeNavigationService extends _i1.Mock
       );
 
   @override
-  _i7.Future<void> showModalBottomSheet({required _i8.Widget? child}) =>
+  _i6.Future<void> showModalBottomSheet({required _i8.Widget? child}) =>
       (super.noSuchMethod(
         Invocation.method(
           #showModalBottomSheet,
           [],
           {#child: child},
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
 
   @override
-  _i7.Future<void> showDialog({
-    _i2.Option<List<_i6.NavigationServiceDialogAction>>? actions =
+  _i6.Future<void> showDialog({
+    _i2.Option<List<_i7.NavigationServiceDialogAction>>? actions =
         const _i2.None(),
     required String? content,
     required String? title,
@@ -543,9 +544,9 @@ class MockHomeNavigationService extends _i1.Mock
             #title: title,
           },
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
 
   @override
   void closeDialog<T>({T? data}) => super.noSuchMethod(

@@ -38,7 +38,7 @@ class SingleRecipeCubit extends Cubit<SingleRecipeState> {
         super(
           SingleRecipeState(
             recipeId: recipeId,
-            recipe: const ViewState<SingleRecipeModel>.loading(),
+            recipe: const ViewState<SingleRecipeStateRecipe>.loading(),
             selectedYield: selectedYield,
           ),
         ) {
@@ -49,7 +49,7 @@ class SingleRecipeCubit extends Cubit<SingleRecipeState> {
           .fetchSingleRecipe(recipeId: state.recipeId)
           .map(
             (final SingleRecipeWebClientModelRecipe recipe) =>
-                mapToSingleRecipeModelRecipe(
+                mapToSingleRecipeStateRecipe(
               recipe: recipe,
               imageResizerService: _webImageSizerService,
               persistenceService: _persistenceService,
@@ -66,24 +66,24 @@ class SingleRecipeCubit extends Cubit<SingleRecipeState> {
 
           emit(state.copyWith(recipe: error.toViewStateError()));
         },
-        (SingleRecipeModel recipe) {
+        (SingleRecipeStateRecipe recipe) {
           emit(
             state.copyWith(
               recipe: recipe.toViewStateData(),
               selectedYield: recipe.yields.firstOption.map(
-                (final SingleRecipeModelYield yield) => yield.servings,
+                (final SingleRecipeStateYield yield) => yield.servings,
               ),
             ),
           );
         },
       );
 
-  void shareRecipe({required final SingleRecipeModel recipe}) {
+  void shareRecipe({required final SingleRecipeStateRecipe recipe}) {
     unawaited(_shareRecipe(recipe: recipe));
   }
 
   Future<void> _shareRecipe({
-    required final SingleRecipeModel recipe,
+    required final SingleRecipeStateRecipe recipe,
   }) async {
     (await _webClientService
             .buildShareUrl(recipeId: recipe.id, recipeSlug: recipe.slug)
@@ -101,7 +101,7 @@ class SingleRecipeCubit extends Cubit<SingleRecipeState> {
   }
 
   void openAddToShoppingCartDialog({
-    required final SingleRecipeModel recipe,
+    required final SingleRecipeStateRecipe recipe,
     required final String recipeId,
   }) {
     unawaited(
@@ -109,18 +109,18 @@ class SingleRecipeCubit extends Cubit<SingleRecipeState> {
           .flatMap(
             (int servings) => optionOf(
               recipe.yields.firstWhereOrNull(
-                (final SingleRecipeModelYield yield) =>
+                (final SingleRecipeStateYield yield) =>
                     yield.servings == servings,
               ),
             ),
           )
           .map(
-            (SingleRecipeModelYield yield) => _persistenceService.addRecipe(
+            (SingleRecipeStateYield yield) => _persistenceService.addRecipe(
               recipe: SingleRecipePersistenceServiceRecipe(
                 ingredients: yield.ingredients
                     .map(
                       (
-                        final SingleRecipeModelIngredient ingredient,
+                        final SingleRecipeStateIngredient ingredient,
                       ) =>
                           _mapToSingleRecipePersistenceServiceIngredient(
                         ingredient: ingredient,

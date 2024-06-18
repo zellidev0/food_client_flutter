@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:food_client/ui/cart/cart_model.dart';
+import 'package:food_client/cubits/features/cart/cart_state.dart';
 
 class CartViewSortingCard extends StatelessWidget {
-  final CartModelSorting sorting;
+  final CartStateSorting sorting;
   final VoidCallback onTap;
 
   const CartViewSortingCard({
@@ -28,9 +28,9 @@ class CartViewSortingCard extends StatelessWidget {
                 ),
                 Text(
                   sorting.map(
-                    unit: (final CartModelSortingSelectedUnit unit) =>
+                    unit: (final CartStateSortingSelectedUnit unit) =>
                         unit.active.name,
-                    custom: (final CartModelSortingCustom custom) => 'Custom',
+                    custom: (final CartStateSortingCustom custom) => 'Custom',
                   ),
                 ),
               ],

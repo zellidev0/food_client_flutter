@@ -1,9 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_client/cubits/features/cart/cart_cubit.dart';
+import 'package:food_client/cubits/features/cart/cart_state.dart';
 import 'package:food_client/cubits/features/ingredients_sorting/ingredients_sorting_cubit.dart';
 import 'package:food_client/cubits/features/single_recipe/single_recipe_cubit.dart';
 import 'package:food_client/pages/features/account/account_view.dart';
+import 'package:food_client/pages/features/cart/cart_view.dart';
 import 'package:food_client/pages/features/ingredients_sorting/ingredients_sorting_view.dart';
 import 'package:food_client/pages/features/single_recipe/single_recipe_view.dart';
 import 'package:food_client/services/app_settings_service/app_settings_service.dart';
@@ -12,9 +15,6 @@ import 'package:food_client/services/navigation_service/navigation_service.dart'
 import 'package:food_client/services/persistence_service/persistence_service.dart';
 import 'package:food_client/services/web_client/web_client_service.dart';
 import 'package:food_client/services/web_image_sizer/web_image_sizer_service.dart';
-import 'package:food_client/ui/cart/cart_controller_implementation.dart';
-import 'package:food_client/ui/cart/cart_model.dart';
-import 'package:food_client/ui/cart/cart_view.dart';
 import 'package:food_client/ui/history/history_controller.dart';
 import 'package:food_client/ui/history/history_model.dart';
 import 'package:food_client/ui/history/history_view.dart';
@@ -69,10 +69,8 @@ GoRouter goRouter() => GoRouter(
             StatefulShellBranch(
               routes: <RouteBase>[
                 GoRoute(
-                  builder: (_, GoRouterState state) =>
-                      BlocProvider<CartControllerImplementation>(
-                    create: (BuildContext context) =>
-                        CartControllerImplementation(
+                  builder: (_, GoRouterState state) => BlocProvider<CartCubit>(
+                    create: (BuildContext context) => CartCubit(
                       combinedIngredients: context
                           .read<AppSettingsService>()
                           .state
@@ -84,15 +82,9 @@ GoRouter goRouter() => GoRouter(
                         loggerName: 'CartController',
                       ),
                     ),
-                    child: BlocBuilder<CartControllerImplementation, CartModel>(
-                      builder: (BuildContext context, CartModel model) =>
-                          CartView(
-                        model: model,
-                        controller:
-                            BlocProvider.of<CartControllerImplementation>(
-                          context,
-                        ),
-                      ),
+                    child: BlocBuilder<CartCubit, CartState>(
+                      builder: (BuildContext context, CartState model) =>
+                          const CartView(),
                     ),
                   ),
                   path: NavigationServiceUris.cartRouteUri.toString(),

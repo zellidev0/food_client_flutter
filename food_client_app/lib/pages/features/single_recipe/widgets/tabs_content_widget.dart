@@ -5,7 +5,7 @@ import 'package:food_client/pages/features/single_recipe/widgets/ingredients_wid
 import 'package:fpdart/fpdart.dart';
 
 class TabsContentWidget extends StatelessWidget {
-  final SingleRecipeModel recipe;
+  final SingleRecipeStateRecipe recipe;
   final Option<int> selectedYield;
 
   const TabsContentWidget({

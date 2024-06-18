@@ -8,13 +8,13 @@ import 'package:fpdart/fpdart.dart';
 final BorderRadius borderRadius = BorderRadius.circular(24);
 
 class IngredientsSortingCardItem extends StatelessWidget {
-  final Option<IngredientsSortingModelUnit> unit;
-  final void Function({required IngredientsSortingModelUnit unit})
+  final Option<IngredientsSortingStateUnit> unit;
+  final void Function({required IngredientsSortingStateUnit unit})
       setUnitSelected;
 
   const IngredientsSortingCardItem({
     super.key,
-    this.unit = const None<IngredientsSortingModelUnit>(),
+    this.unit = const None<IngredientsSortingStateUnit>(),
     required this.setUnitSelected,
   });
 
@@ -25,7 +25,7 @@ class IngredientsSortingCardItem extends StatelessWidget {
           builder: (final BuildContext context) => Card(
             color: unit.fold(
               () => Theme.of(context).colorScheme.surface,
-              (final IngredientsSortingModelUnit unit) => unit.selected
+              (final IngredientsSortingStateUnit unit) => unit.selected
                   ? Theme.of(context).colorScheme.primaryContainer
                   : Theme.of(context).colorScheme.surface,
             ),
@@ -42,12 +42,12 @@ class IngredientsSortingCardItem extends StatelessWidget {
                             .createSortingUnit(name: title),
                       ),
                     ),
-                (final IngredientsSortingModelUnit card) =>
+                (final IngredientsSortingStateUnit card) =>
                     () => setUnitSelected(unit: card),
               ),
               onLongPress: unit
                   .map(
-                    (final IngredientsSortingModelUnit card) => () => context
+                    (final IngredientsSortingStateUnit card) => () => context
                         .read<IngredientsSortingCubit>()
                         .showDeleteUnitDialog(unit: card),
                   )
@@ -59,7 +59,7 @@ class IngredientsSortingCardItem extends StatelessWidget {
                   children: <Widget>[
                     unit.fold(
                       () => const Icon(Icons.plus_one),
-                      (final IngredientsSortingModelUnit card) =>
+                      (final IngredientsSortingStateUnit card) =>
                           Text(card.title),
                     ),
                   ],

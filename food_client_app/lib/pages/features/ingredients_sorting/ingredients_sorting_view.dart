@@ -32,7 +32,7 @@ class IngredientsSortingView extends StatelessWidget {
           builder: (BuildContext context, IngredientsSortingState state) =>
               state.units.map(
             data: (
-              ViewStateData<List<IngredientsSortingModelUnit>> data,
+              ViewStateData<List<IngredientsSortingStateUnit>> data,
             ) =>
                 Column(
               children: <Widget>[
@@ -52,11 +52,11 @@ class IngredientsSortingView extends StatelessWidget {
                           children: <Widget>[
                             ...state.units.map(
                               data: (
-                                ViewStateData<List<IngredientsSortingModelUnit>>
+                                ViewStateData<List<IngredientsSortingStateUnit>>
                                     data,
                               ) =>
                                   data.data.map(
-                                (final IngredientsSortingModelUnit unit) =>
+                                (final IngredientsSortingStateUnit unit) =>
                                     IngredientsSortingCardItem(
                                   unit: some(unit),
                                   setUnitSelected: context
@@ -83,7 +83,7 @@ class IngredientsSortingView extends StatelessWidget {
                       (BuildContext context, IngredientsSortingState state) =>
                           state.units.map(
                     data: (
-                      ViewStateData<List<IngredientsSortingModelUnit>> data,
+                      ViewStateData<List<IngredientsSortingStateUnit>> data,
                     ) {
                       if (data.data.isEmpty) {
                         return Padding(
@@ -100,7 +100,7 @@ class IngredientsSortingView extends StatelessWidget {
                               .read<IngredientsSortingCubit>()
                               .reorderIngredientFamily,
                           unit: data.data.firstWhere(
-                            (final IngredientsSortingModelUnit unit) =>
+                            (final IngredientsSortingStateUnit unit) =>
                                 unit.selected,
                           ),
                         );

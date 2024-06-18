@@ -24,7 +24,7 @@ class SingleRecipeView extends StatelessWidget {
             previous.recipe.runtimeType != current.recipe.runtimeType,
         builder: (BuildContext context, SingleRecipeState state) =>
             state.recipe.map(
-          data: (ViewStateData<SingleRecipeModel> data) => Stack(
+          data: (ViewStateData<SingleRecipeStateRecipe> data) => Stack(
             children: <Widget>[
               DefaultTabController(
                 length: 2,
@@ -48,17 +48,11 @@ class SingleRecipeView extends StatelessWidget {
                         onPressed: context.read<SingleRecipeCubit>().goBack,
                       ),
                       actions: <Widget>[
-                        BlocBuilder<SingleRecipeCubit, SingleRecipeState>(
-                          builder: (
-                            BuildContext context,
-                            SingleRecipeState state,
-                          ) =>
-                              IconButton(
-                            icon: const Icon(Icons.share),
-                            onPressed: () => context
-                                .read<SingleRecipeCubit>()
-                                .shareRecipe(recipe: data.data),
-                          ),
+                        IconButton(
+                          icon: const Icon(Icons.share),
+                          onPressed: () => context
+                              .read<SingleRecipeCubit>()
+                              .shareRecipe(recipe: data.data),
                         ),
                       ],
                       backgroundColor:
@@ -75,15 +69,8 @@ class SingleRecipeView extends StatelessWidget {
                             SizedBox(
                               width: MediaQuery.of(context).size.width,
                               height: double.infinity,
-                              child: BlocBuilder<SingleRecipeCubit,
-                                  SingleRecipeState>(
-                                builder: (
-                                  BuildContext context,
-                                  SingleRecipeState state,
-                                ) =>
-                                    TopImageWidget(
-                                  recipe: data.data,
-                                ),
+                              child: TopImageWidget(
+                                recipe: data.data,
                               ),
                             ),
                             Align(
@@ -97,20 +84,13 @@ class SingleRecipeView extends StatelessWidget {
                                       sigmaX: 10,
                                       sigmaY: 10,
                                     ),
-                                    child: BlocBuilder<SingleRecipeCubit,
-                                        SingleRecipeState>(
-                                      builder: (
-                                        BuildContext context,
-                                        SingleRecipeState state,
-                                      ) =>
-                                          Text(
-                                        data.data.displayedAttributes.name,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium,
-                                        // ignore: deprecated_member_use
-                                        textScaleFactor: 1.3,
-                                      ),
+                                    child: Text(
+                                      data.data.displayedAttributes.name,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium,
+                                      // ignore: deprecated_member_use
+                                      textScaleFactor: 1.3,
                                     ),
                                   ),
                                 ),
@@ -196,7 +176,8 @@ class SingleRecipeView extends StatelessWidget {
           loading: (_) => const Center(
             child: CircularProgressIndicator(),
           ),
-          error: (final ViewStateError<SingleRecipeModel> error) => Center(
+          error: (final ViewStateError<SingleRecipeStateRecipe> error) =>
+              Center(
             child: Text(error.toString()),
           ),
         ),

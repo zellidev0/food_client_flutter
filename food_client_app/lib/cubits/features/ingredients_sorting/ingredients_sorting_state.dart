@@ -7,37 +7,37 @@ part 'ingredients_sorting_state.freezed.dart';
 @freezed
 class IngredientsSortingState with _$IngredientsSortingState {
   const factory IngredientsSortingState({
-    required final ViewState<List<IngredientsSortingModelUnit>> units,
+    required final ViewState<List<IngredientsSortingStateUnit>> units,
   }) = _IngredientsSortingState;
 }
 
 @freezed
-class IngredientsSortingModelUnit with _$IngredientsSortingModelUnit {
-  const factory IngredientsSortingModelUnit({
+class IngredientsSortingStateUnit with _$IngredientsSortingStateUnit {
+  const factory IngredientsSortingStateUnit({
     required final String id,
     required final String title,
     required final bool selected,
-    required final List<IngredientsSortingModelSorting> sorting,
-  }) = _IngredientsSortingModelUnit;
+    required final List<IngredientsSortingStateSorting> sorting,
+  }) = _IngredientsSortingStateUnit;
 }
 
 @freezed
-class IngredientsSortingModelSorting with _$IngredientsSortingModelSorting {
-  const factory IngredientsSortingModelSorting({
+class IngredientsSortingStateSorting with _$IngredientsSortingStateSorting {
+  const factory IngredientsSortingStateSorting({
     required final String id,
     required final String type,
     required final Option<Uri> iconUrl,
     required final Option<Uri> iconPath,
     required final String name,
-    required final List<IngredientsSortingModelIngredientFamily>
+    required final List<IngredientsSortingStateIngredientFamily>
         ingredientFamilies,
-  }) = _IngredientsSortingModelSorting;
+  }) = _IngredientsSortingStateSorting;
 }
 
 @freezed
-class IngredientsSortingModelIngredientFamily
-    with _$IngredientsSortingModelIngredientFamily {
-  const factory IngredientsSortingModelIngredientFamily.helloFresh({
+class IngredientsSortingStateIngredientFamily
+    with _$IngredientsSortingStateIngredientFamily {
+  const factory IngredientsSortingStateIngredientFamily.helloFresh({
     required final String helloFreshFamilyId,
-  }) = IngredientsSortingModelIngredientFamilyHelloFresh;
+  }) = IngredientsSortingStateIngredientFamilyHelloFresh;
 }

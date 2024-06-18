@@ -5,7 +5,7 @@ const int widthPixelsIngredientThumbNail = 256;
 
 SingleRecipePersistenceServiceIngredient
     _mapToSingleRecipePersistenceServiceIngredient({
-  required final SingleRecipeModelIngredient ingredient,
+  required final SingleRecipeStateIngredient ingredient,
 }) =>
         SingleRecipePersistenceServiceIngredient(
           isTickedOff: false,
@@ -16,7 +16,7 @@ SingleRecipePersistenceServiceIngredient
           amount: ingredient.amount,
           unit: ingredient.unit,
           family: ingredient.family.map(
-            (final SingleRecipeModelIngredientFamily family) =>
+            (final SingleRecipeStateIngredientFamily family) =>
                 SingleRecipePersistenceServiceIngredientFamily(
               id: family.id,
               type: family.type,
@@ -27,12 +27,12 @@ SingleRecipePersistenceServiceIngredient
           ),
         );
 
-SingleRecipeModel mapToSingleRecipeModelRecipe({
+SingleRecipeStateRecipe mapToSingleRecipeStateRecipe({
   required final SingleRecipeWebClientModelRecipe recipe,
   required final SingleRecipeWebImageSizerService imageResizerService,
   required final SingleRecipePersistenceService persistenceService,
 }) =>
-    SingleRecipeModel(
+    SingleRecipeStateRecipe(
       id: recipe.id,
       displayedAttributes: _mapDisplayedAttributes(
         displayedAttributes: recipe.displayedAttributes,
@@ -62,23 +62,23 @@ SingleRecipeModel mapToSingleRecipeModelRecipe({
       slug: recipe.slug,
     );
 
-SingleRecipeModelDisplayedAttributes _mapDisplayedAttributes({
+SingleRecipeStateDisplayedAttributes _mapDisplayedAttributes({
   required final SingleRecipeWebClientModelDisplayedAttributes
       displayedAttributes,
 }) =>
-    SingleRecipeModelDisplayedAttributes(
+    SingleRecipeStateDisplayedAttributes(
       name: displayedAttributes.name,
       headline: displayedAttributes.headline,
       description: displayedAttributes.description,
       descriptionMarkdown: displayedAttributes.descriptionMarkdown,
     );
 
-List<SingleRecipeModelTag> _mapTags({
+List<SingleRecipeStateTag> _mapTags({
   required final List<SingleRecipeWebClientModelTag> tags,
 }) =>
     tags
         .map(
-          (final SingleRecipeWebClientModelTag tag) => SingleRecipeModelTag(
+          (final SingleRecipeWebClientModelTag tag) => SingleRecipeStateTag(
             id: tag.id,
             slug: tag.slug,
             displayedName: tag.displayedName,
@@ -86,13 +86,13 @@ List<SingleRecipeModelTag> _mapTags({
         )
         .toList();
 
-List<SingleRecipeModelStep> _mapSteps({
+List<SingleRecipeStateStep> _mapSteps({
   required final List<SingleRecipeWebClientModelStep> steps,
   required final SingleRecipeWebImageSizerService imageResizerService,
 }) =>
     steps
         .map(
-          (final SingleRecipeWebClientModelStep step) => SingleRecipeModelStep(
+          (final SingleRecipeWebClientModelStep step) => SingleRecipeStateStep(
             instructionMarkdown: step.instructionMarkdown,
             imageUrl: step.imagePath.flatMap(
               (final Uri imagePath) => imageResizerService
@@ -106,7 +106,7 @@ List<SingleRecipeModelStep> _mapSteps({
         )
         .toList();
 
-List<SingleRecipeModelYield> _mapYields({
+List<SingleRecipeStateYield> _mapYields({
   required final List<SingleRecipeWebClientModelYield> yields,
   required final SingleRecipeWebImageSizerService imageResizerService,
   required final SingleRecipePersistenceService persistenceService,
@@ -115,14 +115,14 @@ List<SingleRecipeModelYield> _mapYields({
     yields
         .map(
           (final SingleRecipeWebClientModelYield yield) =>
-              SingleRecipeModelYield(
+              SingleRecipeStateYield(
             servings: yield.servings,
             ingredients: yield.ingredients
                 .map(
                   (
                     final SingleRecipeWebClientModelIngredient ingredient,
                   ) =>
-                      SingleRecipeModelIngredient(
+                      SingleRecipeStateIngredient(
                     ingredientId: ingredient.ingredientId,
                     slug: ingredient.slug,
                     displayedName: ingredient.displayedName,
@@ -140,7 +140,7 @@ List<SingleRecipeModelYield> _mapYields({
                       (
                         final SingleRecipeWebClientModelIngredientFamily family,
                       ) =>
-                          SingleRecipeModelIngredientFamily(
+                          SingleRecipeStateIngredientFamily(
                         id: family.id,
                         type: family.type,
                         iconPath: family.iconPath,

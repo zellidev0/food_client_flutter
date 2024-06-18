@@ -8,7 +8,7 @@ class TopImageWidget extends StatelessWidget {
     required this.recipe,
   });
 
-  final SingleRecipeModel recipe;
+  final SingleRecipeStateRecipe recipe;
 
   @override
   Widget build(BuildContext context) => recipe.imageUrl

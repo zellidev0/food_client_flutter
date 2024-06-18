@@ -8,7 +8,7 @@ class CookingDetailsWidget extends StatelessWidget {
   final int difficulty;
   final Option<Duration> totalCookingTime;
   final Option<int> selectedYield;
-  final List<SingleRecipeModelYield> yields;
+  final List<SingleRecipeStateYield> yields;
   final String recipeId;
 
   const CookingDetailsWidget({

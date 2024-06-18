@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_client/ui/cart/widgets/cart_view_recipe_list_delegate.dart';
+import 'package:food_client/pages/features/cart/widgets/cart_view_recipe_list_delegate.dart';
 
 class MyTabBarSliver extends StatelessWidget {
   const MyTabBarSliver({super.key});

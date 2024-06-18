@@ -6,9 +6,9 @@ class IngredientsListWidget extends StatelessWidget {
   final void Function({
     required int newIndex,
     required int oldIndex,
-    required IngredientsSortingModelUnit unit,
+    required IngredientsSortingStateUnit unit,
   }) reorder;
-  final IngredientsSortingModelUnit unit;
+  final IngredientsSortingStateUnit unit;
   const IngredientsListWidget({
     super.key,
     required this.reorder,

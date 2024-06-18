@@ -17,7 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SingleRecipeState {
   String get recipeId => throw _privateConstructorUsedError;
-  ViewState<SingleRecipeModel> get recipe => throw _privateConstructorUsedError;
+  ViewState<SingleRecipeStateRecipe> get recipe =>
+      throw _privateConstructorUsedError;
   Option<int> get selectedYield => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -33,10 +34,10 @@ abstract class $SingleRecipeStateCopyWith<$Res> {
   @useResult
   $Res call(
       {String recipeId,
-      ViewState<SingleRecipeModel> recipe,
+      ViewState<SingleRecipeStateRecipe> recipe,
       Option<int> selectedYield});
 
-  $ViewStateCopyWith<SingleRecipeModel, $Res> get recipe;
+  $ViewStateCopyWith<SingleRecipeStateRecipe, $Res> get recipe;
 }
 
 /// @nodoc
@@ -64,7 +65,7 @@ class _$SingleRecipeStateCopyWithImpl<$Res, $Val extends SingleRecipeState>
       recipe: null == recipe
           ? _value.recipe
           : recipe // ignore: cast_nullable_to_non_nullable
-              as ViewState<SingleRecipeModel>,
+              as ViewState<SingleRecipeStateRecipe>,
       selectedYield: null == selectedYield
           ? _value.selectedYield
           : selectedYield // ignore: cast_nullable_to_non_nullable
@@ -74,8 +75,9 @@ class _$SingleRecipeStateCopyWithImpl<$Res, $Val extends SingleRecipeState>
 
   @override
   @pragma('vm:prefer-inline')
-  $ViewStateCopyWith<SingleRecipeModel, $Res> get recipe {
-    return $ViewStateCopyWith<SingleRecipeModel, $Res>(_value.recipe, (value) {
+  $ViewStateCopyWith<SingleRecipeStateRecipe, $Res> get recipe {
+    return $ViewStateCopyWith<SingleRecipeStateRecipe, $Res>(_value.recipe,
+        (value) {
       return _then(_value.copyWith(recipe: value) as $Val);
     });
   }
@@ -91,11 +93,11 @@ abstract class _$$SingleRecipeStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {String recipeId,
-      ViewState<SingleRecipeModel> recipe,
+      ViewState<SingleRecipeStateRecipe> recipe,
       Option<int> selectedYield});
 
   @override
-  $ViewStateCopyWith<SingleRecipeModel, $Res> get recipe;
+  $ViewStateCopyWith<SingleRecipeStateRecipe, $Res> get recipe;
 }
 
 /// @nodoc
@@ -121,7 +123,7 @@ class __$$SingleRecipeStateImplCopyWithImpl<$Res>
       recipe: null == recipe
           ? _value.recipe
           : recipe // ignore: cast_nullable_to_non_nullable
-              as ViewState<SingleRecipeModel>,
+              as ViewState<SingleRecipeStateRecipe>,
       selectedYield: null == selectedYield
           ? _value.selectedYield
           : selectedYield // ignore: cast_nullable_to_non_nullable
@@ -141,7 +143,7 @@ class _$SingleRecipeStateImpl implements _SingleRecipeState {
   @override
   final String recipeId;
   @override
-  final ViewState<SingleRecipeModel> recipe;
+  final ViewState<SingleRecipeStateRecipe> recipe;
   @override
   final Option<int> selectedYield;
 
@@ -176,13 +178,13 @@ class _$SingleRecipeStateImpl implements _SingleRecipeState {
 abstract class _SingleRecipeState implements SingleRecipeState {
   const factory _SingleRecipeState(
       {required final String recipeId,
-      required final ViewState<SingleRecipeModel> recipe,
+      required final ViewState<SingleRecipeStateRecipe> recipe,
       required final Option<int> selectedYield}) = _$SingleRecipeStateImpl;
 
   @override
   String get recipeId;
   @override
-  ViewState<SingleRecipeModel> get recipe;
+  ViewState<SingleRecipeStateRecipe> get recipe;
   @override
   Option<int> get selectedYield;
   @override
@@ -192,49 +194,50 @@ abstract class _SingleRecipeState implements SingleRecipeState {
 }
 
 /// @nodoc
-mixin _$SingleRecipeModel {
+mixin _$SingleRecipeStateRecipe {
   String get id => throw _privateConstructorUsedError;
   String get slug => throw _privateConstructorUsedError;
-  SingleRecipeModelDisplayedAttributes get displayedAttributes =>
+  SingleRecipeStateDisplayedAttributes get displayedAttributes =>
       throw _privateConstructorUsedError;
   int get difficulty => throw _privateConstructorUsedError;
   Option<Duration> get totalCookingTime => throw _privateConstructorUsedError;
-  List<SingleRecipeModelYield> get yields => throw _privateConstructorUsedError;
-  List<SingleRecipeModelTag> get tags => throw _privateConstructorUsedError;
-  List<SingleRecipeModelStep> get steps => throw _privateConstructorUsedError;
+  List<SingleRecipeStateYield> get yields => throw _privateConstructorUsedError;
+  List<SingleRecipeStateTag> get tags => throw _privateConstructorUsedError;
+  List<SingleRecipeStateStep> get steps => throw _privateConstructorUsedError;
   Option<Uri> get imageUrl => throw _privateConstructorUsedError;
   Option<Uri> get imagePath => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SingleRecipeModelCopyWith<SingleRecipeModel> get copyWith =>
+  $SingleRecipeStateRecipeCopyWith<SingleRecipeStateRecipe> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SingleRecipeModelCopyWith<$Res> {
-  factory $SingleRecipeModelCopyWith(
-          SingleRecipeModel value, $Res Function(SingleRecipeModel) then) =
-      _$SingleRecipeModelCopyWithImpl<$Res, SingleRecipeModel>;
+abstract class $SingleRecipeStateRecipeCopyWith<$Res> {
+  factory $SingleRecipeStateRecipeCopyWith(SingleRecipeStateRecipe value,
+          $Res Function(SingleRecipeStateRecipe) then) =
+      _$SingleRecipeStateRecipeCopyWithImpl<$Res, SingleRecipeStateRecipe>;
   @useResult
   $Res call(
       {String id,
       String slug,
-      SingleRecipeModelDisplayedAttributes displayedAttributes,
+      SingleRecipeStateDisplayedAttributes displayedAttributes,
       int difficulty,
       Option<Duration> totalCookingTime,
-      List<SingleRecipeModelYield> yields,
-      List<SingleRecipeModelTag> tags,
-      List<SingleRecipeModelStep> steps,
+      List<SingleRecipeStateYield> yields,
+      List<SingleRecipeStateTag> tags,
+      List<SingleRecipeStateStep> steps,
       Option<Uri> imageUrl,
       Option<Uri> imagePath});
 
-  $SingleRecipeModelDisplayedAttributesCopyWith<$Res> get displayedAttributes;
+  $SingleRecipeStateDisplayedAttributesCopyWith<$Res> get displayedAttributes;
 }
 
 /// @nodoc
-class _$SingleRecipeModelCopyWithImpl<$Res, $Val extends SingleRecipeModel>
-    implements $SingleRecipeModelCopyWith<$Res> {
-  _$SingleRecipeModelCopyWithImpl(this._value, this._then);
+class _$SingleRecipeStateRecipeCopyWithImpl<$Res,
+        $Val extends SingleRecipeStateRecipe>
+    implements $SingleRecipeStateRecipeCopyWith<$Res> {
+  _$SingleRecipeStateRecipeCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -267,7 +270,7 @@ class _$SingleRecipeModelCopyWithImpl<$Res, $Val extends SingleRecipeModel>
       displayedAttributes: null == displayedAttributes
           ? _value.displayedAttributes
           : displayedAttributes // ignore: cast_nullable_to_non_nullable
-              as SingleRecipeModelDisplayedAttributes,
+              as SingleRecipeStateDisplayedAttributes,
       difficulty: null == difficulty
           ? _value.difficulty
           : difficulty // ignore: cast_nullable_to_non_nullable
@@ -279,15 +282,15 @@ class _$SingleRecipeModelCopyWithImpl<$Res, $Val extends SingleRecipeModel>
       yields: null == yields
           ? _value.yields
           : yields // ignore: cast_nullable_to_non_nullable
-              as List<SingleRecipeModelYield>,
+              as List<SingleRecipeStateYield>,
       tags: null == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as List<SingleRecipeModelTag>,
+              as List<SingleRecipeStateTag>,
       steps: null == steps
           ? _value.steps
           : steps // ignore: cast_nullable_to_non_nullable
-              as List<SingleRecipeModelStep>,
+              as List<SingleRecipeStateStep>,
       imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -301,8 +304,8 @@ class _$SingleRecipeModelCopyWithImpl<$Res, $Val extends SingleRecipeModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $SingleRecipeModelDisplayedAttributesCopyWith<$Res> get displayedAttributes {
-    return $SingleRecipeModelDisplayedAttributesCopyWith<$Res>(
+  $SingleRecipeStateDisplayedAttributesCopyWith<$Res> get displayedAttributes {
+    return $SingleRecipeStateDisplayedAttributesCopyWith<$Res>(
         _value.displayedAttributes, (value) {
       return _then(_value.copyWith(displayedAttributes: value) as $Val);
     });
@@ -310,35 +313,38 @@ class _$SingleRecipeModelCopyWithImpl<$Res, $Val extends SingleRecipeModel>
 }
 
 /// @nodoc
-abstract class _$$SingleRecipeModelImplCopyWith<$Res>
-    implements $SingleRecipeModelCopyWith<$Res> {
-  factory _$$SingleRecipeModelImplCopyWith(_$SingleRecipeModelImpl value,
-          $Res Function(_$SingleRecipeModelImpl) then) =
-      __$$SingleRecipeModelImplCopyWithImpl<$Res>;
+abstract class _$$SingleRecipeStateRecipeImplCopyWith<$Res>
+    implements $SingleRecipeStateRecipeCopyWith<$Res> {
+  factory _$$SingleRecipeStateRecipeImplCopyWith(
+          _$SingleRecipeStateRecipeImpl value,
+          $Res Function(_$SingleRecipeStateRecipeImpl) then) =
+      __$$SingleRecipeStateRecipeImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {String id,
       String slug,
-      SingleRecipeModelDisplayedAttributes displayedAttributes,
+      SingleRecipeStateDisplayedAttributes displayedAttributes,
       int difficulty,
       Option<Duration> totalCookingTime,
-      List<SingleRecipeModelYield> yields,
-      List<SingleRecipeModelTag> tags,
-      List<SingleRecipeModelStep> steps,
+      List<SingleRecipeStateYield> yields,
+      List<SingleRecipeStateTag> tags,
+      List<SingleRecipeStateStep> steps,
       Option<Uri> imageUrl,
       Option<Uri> imagePath});
 
   @override
-  $SingleRecipeModelDisplayedAttributesCopyWith<$Res> get displayedAttributes;
+  $SingleRecipeStateDisplayedAttributesCopyWith<$Res> get displayedAttributes;
 }
 
 /// @nodoc
-class __$$SingleRecipeModelImplCopyWithImpl<$Res>
-    extends _$SingleRecipeModelCopyWithImpl<$Res, _$SingleRecipeModelImpl>
-    implements _$$SingleRecipeModelImplCopyWith<$Res> {
-  __$$SingleRecipeModelImplCopyWithImpl(_$SingleRecipeModelImpl _value,
-      $Res Function(_$SingleRecipeModelImpl) _then)
+class __$$SingleRecipeStateRecipeImplCopyWithImpl<$Res>
+    extends _$SingleRecipeStateRecipeCopyWithImpl<$Res,
+        _$SingleRecipeStateRecipeImpl>
+    implements _$$SingleRecipeStateRecipeImplCopyWith<$Res> {
+  __$$SingleRecipeStateRecipeImplCopyWithImpl(
+      _$SingleRecipeStateRecipeImpl _value,
+      $Res Function(_$SingleRecipeStateRecipeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -355,7 +361,7 @@ class __$$SingleRecipeModelImplCopyWithImpl<$Res>
     Object? imageUrl = null,
     Object? imagePath = null,
   }) {
-    return _then(_$SingleRecipeModelImpl(
+    return _then(_$SingleRecipeStateRecipeImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -367,7 +373,7 @@ class __$$SingleRecipeModelImplCopyWithImpl<$Res>
       displayedAttributes: null == displayedAttributes
           ? _value.displayedAttributes
           : displayedAttributes // ignore: cast_nullable_to_non_nullable
-              as SingleRecipeModelDisplayedAttributes,
+              as SingleRecipeStateDisplayedAttributes,
       difficulty: null == difficulty
           ? _value.difficulty
           : difficulty // ignore: cast_nullable_to_non_nullable
@@ -379,15 +385,15 @@ class __$$SingleRecipeModelImplCopyWithImpl<$Res>
       yields: null == yields
           ? _value._yields
           : yields // ignore: cast_nullable_to_non_nullable
-              as List<SingleRecipeModelYield>,
+              as List<SingleRecipeStateYield>,
       tags: null == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as List<SingleRecipeModelTag>,
+              as List<SingleRecipeStateTag>,
       steps: null == steps
           ? _value._steps
           : steps // ignore: cast_nullable_to_non_nullable
-              as List<SingleRecipeModelStep>,
+              as List<SingleRecipeStateStep>,
       imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -402,16 +408,16 @@ class __$$SingleRecipeModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SingleRecipeModelImpl implements _SingleRecipeModel {
-  const _$SingleRecipeModelImpl(
+class _$SingleRecipeStateRecipeImpl implements _SingleRecipeStateRecipe {
+  const _$SingleRecipeStateRecipeImpl(
       {required this.id,
       required this.slug,
       required this.displayedAttributes,
       required this.difficulty,
       required this.totalCookingTime,
-      required final List<SingleRecipeModelYield> yields,
-      required final List<SingleRecipeModelTag> tags,
-      required final List<SingleRecipeModelStep> steps,
+      required final List<SingleRecipeStateYield> yields,
+      required final List<SingleRecipeStateTag> tags,
+      required final List<SingleRecipeStateStep> steps,
       required this.imageUrl,
       required this.imagePath})
       : _yields = yields,
@@ -423,30 +429,30 @@ class _$SingleRecipeModelImpl implements _SingleRecipeModel {
   @override
   final String slug;
   @override
-  final SingleRecipeModelDisplayedAttributes displayedAttributes;
+  final SingleRecipeStateDisplayedAttributes displayedAttributes;
   @override
   final int difficulty;
   @override
   final Option<Duration> totalCookingTime;
-  final List<SingleRecipeModelYield> _yields;
+  final List<SingleRecipeStateYield> _yields;
   @override
-  List<SingleRecipeModelYield> get yields {
+  List<SingleRecipeStateYield> get yields {
     if (_yields is EqualUnmodifiableListView) return _yields;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_yields);
   }
 
-  final List<SingleRecipeModelTag> _tags;
+  final List<SingleRecipeStateTag> _tags;
   @override
-  List<SingleRecipeModelTag> get tags {
+  List<SingleRecipeStateTag> get tags {
     if (_tags is EqualUnmodifiableListView) return _tags;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_tags);
   }
 
-  final List<SingleRecipeModelStep> _steps;
+  final List<SingleRecipeStateStep> _steps;
   @override
-  List<SingleRecipeModelStep> get steps {
+  List<SingleRecipeStateStep> get steps {
     if (_steps is EqualUnmodifiableListView) return _steps;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_steps);
@@ -459,14 +465,14 @@ class _$SingleRecipeModelImpl implements _SingleRecipeModel {
 
   @override
   String toString() {
-    return 'SingleRecipeModel(id: $id, slug: $slug, displayedAttributes: $displayedAttributes, difficulty: $difficulty, totalCookingTime: $totalCookingTime, yields: $yields, tags: $tags, steps: $steps, imageUrl: $imageUrl, imagePath: $imagePath)';
+    return 'SingleRecipeStateRecipe(id: $id, slug: $slug, displayedAttributes: $displayedAttributes, difficulty: $difficulty, totalCookingTime: $totalCookingTime, yields: $yields, tags: $tags, steps: $steps, imageUrl: $imageUrl, imagePath: $imagePath)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SingleRecipeModelImpl &&
+            other is _$SingleRecipeStateRecipeImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.slug, slug) || other.slug == slug) &&
             (identical(other.displayedAttributes, displayedAttributes) ||
@@ -501,70 +507,70 @@ class _$SingleRecipeModelImpl implements _SingleRecipeModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SingleRecipeModelImplCopyWith<_$SingleRecipeModelImpl> get copyWith =>
-      __$$SingleRecipeModelImplCopyWithImpl<_$SingleRecipeModelImpl>(
-          this, _$identity);
+  _$$SingleRecipeStateRecipeImplCopyWith<_$SingleRecipeStateRecipeImpl>
+      get copyWith => __$$SingleRecipeStateRecipeImplCopyWithImpl<
+          _$SingleRecipeStateRecipeImpl>(this, _$identity);
 }
 
-abstract class _SingleRecipeModel implements SingleRecipeModel {
-  const factory _SingleRecipeModel(
+abstract class _SingleRecipeStateRecipe implements SingleRecipeStateRecipe {
+  const factory _SingleRecipeStateRecipe(
       {required final String id,
       required final String slug,
-      required final SingleRecipeModelDisplayedAttributes displayedAttributes,
+      required final SingleRecipeStateDisplayedAttributes displayedAttributes,
       required final int difficulty,
       required final Option<Duration> totalCookingTime,
-      required final List<SingleRecipeModelYield> yields,
-      required final List<SingleRecipeModelTag> tags,
-      required final List<SingleRecipeModelStep> steps,
+      required final List<SingleRecipeStateYield> yields,
+      required final List<SingleRecipeStateTag> tags,
+      required final List<SingleRecipeStateStep> steps,
       required final Option<Uri> imageUrl,
-      required final Option<Uri> imagePath}) = _$SingleRecipeModelImpl;
+      required final Option<Uri> imagePath}) = _$SingleRecipeStateRecipeImpl;
 
   @override
   String get id;
   @override
   String get slug;
   @override
-  SingleRecipeModelDisplayedAttributes get displayedAttributes;
+  SingleRecipeStateDisplayedAttributes get displayedAttributes;
   @override
   int get difficulty;
   @override
   Option<Duration> get totalCookingTime;
   @override
-  List<SingleRecipeModelYield> get yields;
+  List<SingleRecipeStateYield> get yields;
   @override
-  List<SingleRecipeModelTag> get tags;
+  List<SingleRecipeStateTag> get tags;
   @override
-  List<SingleRecipeModelStep> get steps;
+  List<SingleRecipeStateStep> get steps;
   @override
   Option<Uri> get imageUrl;
   @override
   Option<Uri> get imagePath;
   @override
   @JsonKey(ignore: true)
-  _$$SingleRecipeModelImplCopyWith<_$SingleRecipeModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$SingleRecipeStateRecipeImplCopyWith<_$SingleRecipeStateRecipeImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$SingleRecipeModelDisplayedAttributes {
+mixin _$SingleRecipeStateDisplayedAttributes {
   String get name => throw _privateConstructorUsedError;
   String get headline => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   Option<String> get descriptionMarkdown => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SingleRecipeModelDisplayedAttributesCopyWith<
-          SingleRecipeModelDisplayedAttributes>
+  $SingleRecipeStateDisplayedAttributesCopyWith<
+          SingleRecipeStateDisplayedAttributes>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SingleRecipeModelDisplayedAttributesCopyWith<$Res> {
-  factory $SingleRecipeModelDisplayedAttributesCopyWith(
-          SingleRecipeModelDisplayedAttributes value,
-          $Res Function(SingleRecipeModelDisplayedAttributes) then) =
-      _$SingleRecipeModelDisplayedAttributesCopyWithImpl<$Res,
-          SingleRecipeModelDisplayedAttributes>;
+abstract class $SingleRecipeStateDisplayedAttributesCopyWith<$Res> {
+  factory $SingleRecipeStateDisplayedAttributesCopyWith(
+          SingleRecipeStateDisplayedAttributes value,
+          $Res Function(SingleRecipeStateDisplayedAttributes) then) =
+      _$SingleRecipeStateDisplayedAttributesCopyWithImpl<$Res,
+          SingleRecipeStateDisplayedAttributes>;
   @useResult
   $Res call(
       {String name,
@@ -574,10 +580,10 @@ abstract class $SingleRecipeModelDisplayedAttributesCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SingleRecipeModelDisplayedAttributesCopyWithImpl<$Res,
-        $Val extends SingleRecipeModelDisplayedAttributes>
-    implements $SingleRecipeModelDisplayedAttributesCopyWith<$Res> {
-  _$SingleRecipeModelDisplayedAttributesCopyWithImpl(this._value, this._then);
+class _$SingleRecipeStateDisplayedAttributesCopyWithImpl<$Res,
+        $Val extends SingleRecipeStateDisplayedAttributes>
+    implements $SingleRecipeStateDisplayedAttributesCopyWith<$Res> {
+  _$SingleRecipeStateDisplayedAttributesCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -614,12 +620,12 @@ class _$SingleRecipeModelDisplayedAttributesCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$SingleRecipeModelDisplayedAttributesImplCopyWith<$Res>
-    implements $SingleRecipeModelDisplayedAttributesCopyWith<$Res> {
-  factory _$$SingleRecipeModelDisplayedAttributesImplCopyWith(
-          _$SingleRecipeModelDisplayedAttributesImpl value,
-          $Res Function(_$SingleRecipeModelDisplayedAttributesImpl) then) =
-      __$$SingleRecipeModelDisplayedAttributesImplCopyWithImpl<$Res>;
+abstract class _$$SingleRecipeStateDisplayedAttributesImplCopyWith<$Res>
+    implements $SingleRecipeStateDisplayedAttributesCopyWith<$Res> {
+  factory _$$SingleRecipeStateDisplayedAttributesImplCopyWith(
+          _$SingleRecipeStateDisplayedAttributesImpl value,
+          $Res Function(_$SingleRecipeStateDisplayedAttributesImpl) then) =
+      __$$SingleRecipeStateDisplayedAttributesImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -630,13 +636,13 @@ abstract class _$$SingleRecipeModelDisplayedAttributesImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$SingleRecipeModelDisplayedAttributesImplCopyWithImpl<$Res>
-    extends _$SingleRecipeModelDisplayedAttributesCopyWithImpl<$Res,
-        _$SingleRecipeModelDisplayedAttributesImpl>
-    implements _$$SingleRecipeModelDisplayedAttributesImplCopyWith<$Res> {
-  __$$SingleRecipeModelDisplayedAttributesImplCopyWithImpl(
-      _$SingleRecipeModelDisplayedAttributesImpl _value,
-      $Res Function(_$SingleRecipeModelDisplayedAttributesImpl) _then)
+class __$$SingleRecipeStateDisplayedAttributesImplCopyWithImpl<$Res>
+    extends _$SingleRecipeStateDisplayedAttributesCopyWithImpl<$Res,
+        _$SingleRecipeStateDisplayedAttributesImpl>
+    implements _$$SingleRecipeStateDisplayedAttributesImplCopyWith<$Res> {
+  __$$SingleRecipeStateDisplayedAttributesImplCopyWithImpl(
+      _$SingleRecipeStateDisplayedAttributesImpl _value,
+      $Res Function(_$SingleRecipeStateDisplayedAttributesImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -647,7 +653,7 @@ class __$$SingleRecipeModelDisplayedAttributesImplCopyWithImpl<$Res>
     Object? description = null,
     Object? descriptionMarkdown = null,
   }) {
-    return _then(_$SingleRecipeModelDisplayedAttributesImpl(
+    return _then(_$SingleRecipeStateDisplayedAttributesImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -670,9 +676,9 @@ class __$$SingleRecipeModelDisplayedAttributesImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SingleRecipeModelDisplayedAttributesImpl
-    implements _SingleRecipeModelDisplayedAttributes {
-  const _$SingleRecipeModelDisplayedAttributesImpl(
+class _$SingleRecipeStateDisplayedAttributesImpl
+    implements _SingleRecipeStateDisplayedAttributes {
+  const _$SingleRecipeStateDisplayedAttributesImpl(
       {required this.name,
       required this.headline,
       required this.description,
@@ -689,14 +695,14 @@ class _$SingleRecipeModelDisplayedAttributesImpl
 
   @override
   String toString() {
-    return 'SingleRecipeModelDisplayedAttributes(name: $name, headline: $headline, description: $description, descriptionMarkdown: $descriptionMarkdown)';
+    return 'SingleRecipeStateDisplayedAttributes(name: $name, headline: $headline, description: $description, descriptionMarkdown: $descriptionMarkdown)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SingleRecipeModelDisplayedAttributesImpl &&
+            other is _$SingleRecipeStateDisplayedAttributesImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.headline, headline) ||
                 other.headline == headline) &&
@@ -713,20 +719,20 @@ class _$SingleRecipeModelDisplayedAttributesImpl
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SingleRecipeModelDisplayedAttributesImplCopyWith<
-          _$SingleRecipeModelDisplayedAttributesImpl>
-      get copyWith => __$$SingleRecipeModelDisplayedAttributesImplCopyWithImpl<
-          _$SingleRecipeModelDisplayedAttributesImpl>(this, _$identity);
+  _$$SingleRecipeStateDisplayedAttributesImplCopyWith<
+          _$SingleRecipeStateDisplayedAttributesImpl>
+      get copyWith => __$$SingleRecipeStateDisplayedAttributesImplCopyWithImpl<
+          _$SingleRecipeStateDisplayedAttributesImpl>(this, _$identity);
 }
 
-abstract class _SingleRecipeModelDisplayedAttributes
-    implements SingleRecipeModelDisplayedAttributes {
-  const factory _SingleRecipeModelDisplayedAttributes(
+abstract class _SingleRecipeStateDisplayedAttributes
+    implements SingleRecipeStateDisplayedAttributes {
+  const factory _SingleRecipeStateDisplayedAttributes(
           {required final String name,
           required final String headline,
           required final String description,
           required final Option<String> descriptionMarkdown}) =
-      _$SingleRecipeModelDisplayedAttributesImpl;
+      _$SingleRecipeStateDisplayedAttributesImpl;
 
   @override
   String get name;
@@ -738,35 +744,35 @@ abstract class _SingleRecipeModelDisplayedAttributes
   Option<String> get descriptionMarkdown;
   @override
   @JsonKey(ignore: true)
-  _$$SingleRecipeModelDisplayedAttributesImplCopyWith<
-          _$SingleRecipeModelDisplayedAttributesImpl>
+  _$$SingleRecipeStateDisplayedAttributesImplCopyWith<
+          _$SingleRecipeStateDisplayedAttributesImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$SingleRecipeModelStep {
+mixin _$SingleRecipeStateStep {
   String get instructionMarkdown => throw _privateConstructorUsedError;
   Option<Uri> get imageUrl => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SingleRecipeModelStepCopyWith<SingleRecipeModelStep> get copyWith =>
+  $SingleRecipeStateStepCopyWith<SingleRecipeStateStep> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SingleRecipeModelStepCopyWith<$Res> {
-  factory $SingleRecipeModelStepCopyWith(SingleRecipeModelStep value,
-          $Res Function(SingleRecipeModelStep) then) =
-      _$SingleRecipeModelStepCopyWithImpl<$Res, SingleRecipeModelStep>;
+abstract class $SingleRecipeStateStepCopyWith<$Res> {
+  factory $SingleRecipeStateStepCopyWith(SingleRecipeStateStep value,
+          $Res Function(SingleRecipeStateStep) then) =
+      _$SingleRecipeStateStepCopyWithImpl<$Res, SingleRecipeStateStep>;
   @useResult
   $Res call({String instructionMarkdown, Option<Uri> imageUrl});
 }
 
 /// @nodoc
-class _$SingleRecipeModelStepCopyWithImpl<$Res,
-        $Val extends SingleRecipeModelStep>
-    implements $SingleRecipeModelStepCopyWith<$Res> {
-  _$SingleRecipeModelStepCopyWithImpl(this._value, this._then);
+class _$SingleRecipeStateStepCopyWithImpl<$Res,
+        $Val extends SingleRecipeStateStep>
+    implements $SingleRecipeStateStepCopyWith<$Res> {
+  _$SingleRecipeStateStepCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -793,24 +799,24 @@ class _$SingleRecipeModelStepCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$SingleRecipeModelStepImplCopyWith<$Res>
-    implements $SingleRecipeModelStepCopyWith<$Res> {
-  factory _$$SingleRecipeModelStepImplCopyWith(
-          _$SingleRecipeModelStepImpl value,
-          $Res Function(_$SingleRecipeModelStepImpl) then) =
-      __$$SingleRecipeModelStepImplCopyWithImpl<$Res>;
+abstract class _$$SingleRecipeStateStepImplCopyWith<$Res>
+    implements $SingleRecipeStateStepCopyWith<$Res> {
+  factory _$$SingleRecipeStateStepImplCopyWith(
+          _$SingleRecipeStateStepImpl value,
+          $Res Function(_$SingleRecipeStateStepImpl) then) =
+      __$$SingleRecipeStateStepImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String instructionMarkdown, Option<Uri> imageUrl});
 }
 
 /// @nodoc
-class __$$SingleRecipeModelStepImplCopyWithImpl<$Res>
-    extends _$SingleRecipeModelStepCopyWithImpl<$Res,
-        _$SingleRecipeModelStepImpl>
-    implements _$$SingleRecipeModelStepImplCopyWith<$Res> {
-  __$$SingleRecipeModelStepImplCopyWithImpl(_$SingleRecipeModelStepImpl _value,
-      $Res Function(_$SingleRecipeModelStepImpl) _then)
+class __$$SingleRecipeStateStepImplCopyWithImpl<$Res>
+    extends _$SingleRecipeStateStepCopyWithImpl<$Res,
+        _$SingleRecipeStateStepImpl>
+    implements _$$SingleRecipeStateStepImplCopyWith<$Res> {
+  __$$SingleRecipeStateStepImplCopyWithImpl(_$SingleRecipeStateStepImpl _value,
+      $Res Function(_$SingleRecipeStateStepImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -819,7 +825,7 @@ class __$$SingleRecipeModelStepImplCopyWithImpl<$Res>
     Object? instructionMarkdown = null,
     Object? imageUrl = null,
   }) {
-    return _then(_$SingleRecipeModelStepImpl(
+    return _then(_$SingleRecipeStateStepImpl(
       instructionMarkdown: null == instructionMarkdown
           ? _value.instructionMarkdown
           : instructionMarkdown // ignore: cast_nullable_to_non_nullable
@@ -834,8 +840,8 @@ class __$$SingleRecipeModelStepImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SingleRecipeModelStepImpl implements _SingleRecipeModelStep {
-  const _$SingleRecipeModelStepImpl(
+class _$SingleRecipeStateStepImpl implements _SingleRecipeStateStep {
+  const _$SingleRecipeStateStepImpl(
       {required this.instructionMarkdown, required this.imageUrl});
 
   @override
@@ -845,14 +851,14 @@ class _$SingleRecipeModelStepImpl implements _SingleRecipeModelStep {
 
   @override
   String toString() {
-    return 'SingleRecipeModelStep(instructionMarkdown: $instructionMarkdown, imageUrl: $imageUrl)';
+    return 'SingleRecipeStateStep(instructionMarkdown: $instructionMarkdown, imageUrl: $imageUrl)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SingleRecipeModelStepImpl &&
+            other is _$SingleRecipeStateStepImpl &&
             (identical(other.instructionMarkdown, instructionMarkdown) ||
                 other.instructionMarkdown == instructionMarkdown) &&
             (identical(other.imageUrl, imageUrl) ||
@@ -865,15 +871,15 @@ class _$SingleRecipeModelStepImpl implements _SingleRecipeModelStep {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SingleRecipeModelStepImplCopyWith<_$SingleRecipeModelStepImpl>
-      get copyWith => __$$SingleRecipeModelStepImplCopyWithImpl<
-          _$SingleRecipeModelStepImpl>(this, _$identity);
+  _$$SingleRecipeStateStepImplCopyWith<_$SingleRecipeStateStepImpl>
+      get copyWith => __$$SingleRecipeStateStepImplCopyWithImpl<
+          _$SingleRecipeStateStepImpl>(this, _$identity);
 }
 
-abstract class _SingleRecipeModelStep implements SingleRecipeModelStep {
-  const factory _SingleRecipeModelStep(
+abstract class _SingleRecipeStateStep implements SingleRecipeStateStep {
+  const factory _SingleRecipeStateStep(
       {required final String instructionMarkdown,
-      required final Option<Uri> imageUrl}) = _$SingleRecipeModelStepImpl;
+      required final Option<Uri> imageUrl}) = _$SingleRecipeStateStepImpl;
 
   @override
   String get instructionMarkdown;
@@ -881,39 +887,39 @@ abstract class _SingleRecipeModelStep implements SingleRecipeModelStep {
   Option<Uri> get imageUrl;
   @override
   @JsonKey(ignore: true)
-  _$$SingleRecipeModelStepImplCopyWith<_$SingleRecipeModelStepImpl>
+  _$$SingleRecipeStateStepImplCopyWith<_$SingleRecipeStateStepImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$SingleRecipeModelYield {
+mixin _$SingleRecipeStateYield {
   bool get isInShoppingCart => throw _privateConstructorUsedError;
   int get servings => throw _privateConstructorUsedError;
-  List<SingleRecipeModelIngredient> get ingredients =>
+  List<SingleRecipeStateIngredient> get ingredients =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SingleRecipeModelYieldCopyWith<SingleRecipeModelYield> get copyWith =>
+  $SingleRecipeStateYieldCopyWith<SingleRecipeStateYield> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SingleRecipeModelYieldCopyWith<$Res> {
-  factory $SingleRecipeModelYieldCopyWith(SingleRecipeModelYield value,
-          $Res Function(SingleRecipeModelYield) then) =
-      _$SingleRecipeModelYieldCopyWithImpl<$Res, SingleRecipeModelYield>;
+abstract class $SingleRecipeStateYieldCopyWith<$Res> {
+  factory $SingleRecipeStateYieldCopyWith(SingleRecipeStateYield value,
+          $Res Function(SingleRecipeStateYield) then) =
+      _$SingleRecipeStateYieldCopyWithImpl<$Res, SingleRecipeStateYield>;
   @useResult
   $Res call(
       {bool isInShoppingCart,
       int servings,
-      List<SingleRecipeModelIngredient> ingredients});
+      List<SingleRecipeStateIngredient> ingredients});
 }
 
 /// @nodoc
-class _$SingleRecipeModelYieldCopyWithImpl<$Res,
-        $Val extends SingleRecipeModelYield>
-    implements $SingleRecipeModelYieldCopyWith<$Res> {
-  _$SingleRecipeModelYieldCopyWithImpl(this._value, this._then);
+class _$SingleRecipeStateYieldCopyWithImpl<$Res,
+        $Val extends SingleRecipeStateYield>
+    implements $SingleRecipeStateYieldCopyWith<$Res> {
+  _$SingleRecipeStateYieldCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -939,34 +945,34 @@ class _$SingleRecipeModelYieldCopyWithImpl<$Res,
       ingredients: null == ingredients
           ? _value.ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
-              as List<SingleRecipeModelIngredient>,
+              as List<SingleRecipeStateIngredient>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$SingleRecipeModelYieldImplCopyWith<$Res>
-    implements $SingleRecipeModelYieldCopyWith<$Res> {
-  factory _$$SingleRecipeModelYieldImplCopyWith(
-          _$SingleRecipeModelYieldImpl value,
-          $Res Function(_$SingleRecipeModelYieldImpl) then) =
-      __$$SingleRecipeModelYieldImplCopyWithImpl<$Res>;
+abstract class _$$SingleRecipeStateYieldImplCopyWith<$Res>
+    implements $SingleRecipeStateYieldCopyWith<$Res> {
+  factory _$$SingleRecipeStateYieldImplCopyWith(
+          _$SingleRecipeStateYieldImpl value,
+          $Res Function(_$SingleRecipeStateYieldImpl) then) =
+      __$$SingleRecipeStateYieldImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {bool isInShoppingCart,
       int servings,
-      List<SingleRecipeModelIngredient> ingredients});
+      List<SingleRecipeStateIngredient> ingredients});
 }
 
 /// @nodoc
-class __$$SingleRecipeModelYieldImplCopyWithImpl<$Res>
-    extends _$SingleRecipeModelYieldCopyWithImpl<$Res,
-        _$SingleRecipeModelYieldImpl>
-    implements _$$SingleRecipeModelYieldImplCopyWith<$Res> {
-  __$$SingleRecipeModelYieldImplCopyWithImpl(
-      _$SingleRecipeModelYieldImpl _value,
-      $Res Function(_$SingleRecipeModelYieldImpl) _then)
+class __$$SingleRecipeStateYieldImplCopyWithImpl<$Res>
+    extends _$SingleRecipeStateYieldCopyWithImpl<$Res,
+        _$SingleRecipeStateYieldImpl>
+    implements _$$SingleRecipeStateYieldImplCopyWith<$Res> {
+  __$$SingleRecipeStateYieldImplCopyWithImpl(
+      _$SingleRecipeStateYieldImpl _value,
+      $Res Function(_$SingleRecipeStateYieldImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -976,7 +982,7 @@ class __$$SingleRecipeModelYieldImplCopyWithImpl<$Res>
     Object? servings = null,
     Object? ingredients = null,
   }) {
-    return _then(_$SingleRecipeModelYieldImpl(
+    return _then(_$SingleRecipeStateYieldImpl(
       isInShoppingCart: null == isInShoppingCart
           ? _value.isInShoppingCart
           : isInShoppingCart // ignore: cast_nullable_to_non_nullable
@@ -988,27 +994,27 @@ class __$$SingleRecipeModelYieldImplCopyWithImpl<$Res>
       ingredients: null == ingredients
           ? _value._ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
-              as List<SingleRecipeModelIngredient>,
+              as List<SingleRecipeStateIngredient>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$SingleRecipeModelYieldImpl implements _SingleRecipeModelYield {
-  const _$SingleRecipeModelYieldImpl(
+class _$SingleRecipeStateYieldImpl implements _SingleRecipeStateYield {
+  const _$SingleRecipeStateYieldImpl(
       {required this.isInShoppingCart,
       required this.servings,
-      required final List<SingleRecipeModelIngredient> ingredients})
+      required final List<SingleRecipeStateIngredient> ingredients})
       : _ingredients = ingredients;
 
   @override
   final bool isInShoppingCart;
   @override
   final int servings;
-  final List<SingleRecipeModelIngredient> _ingredients;
+  final List<SingleRecipeStateIngredient> _ingredients;
   @override
-  List<SingleRecipeModelIngredient> get ingredients {
+  List<SingleRecipeStateIngredient> get ingredients {
     if (_ingredients is EqualUnmodifiableListView) return _ingredients;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_ingredients);
@@ -1016,14 +1022,14 @@ class _$SingleRecipeModelYieldImpl implements _SingleRecipeModelYield {
 
   @override
   String toString() {
-    return 'SingleRecipeModelYield(isInShoppingCart: $isInShoppingCart, servings: $servings, ingredients: $ingredients)';
+    return 'SingleRecipeStateYield(isInShoppingCart: $isInShoppingCart, servings: $servings, ingredients: $ingredients)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SingleRecipeModelYieldImpl &&
+            other is _$SingleRecipeStateYieldImpl &&
             (identical(other.isInShoppingCart, isInShoppingCart) ||
                 other.isInShoppingCart == isInShoppingCart) &&
             (identical(other.servings, servings) ||
@@ -1039,55 +1045,55 @@ class _$SingleRecipeModelYieldImpl implements _SingleRecipeModelYield {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SingleRecipeModelYieldImplCopyWith<_$SingleRecipeModelYieldImpl>
-      get copyWith => __$$SingleRecipeModelYieldImplCopyWithImpl<
-          _$SingleRecipeModelYieldImpl>(this, _$identity);
+  _$$SingleRecipeStateYieldImplCopyWith<_$SingleRecipeStateYieldImpl>
+      get copyWith => __$$SingleRecipeStateYieldImplCopyWithImpl<
+          _$SingleRecipeStateYieldImpl>(this, _$identity);
 }
 
-abstract class _SingleRecipeModelYield implements SingleRecipeModelYield {
-  const factory _SingleRecipeModelYield(
+abstract class _SingleRecipeStateYield implements SingleRecipeStateYield {
+  const factory _SingleRecipeStateYield(
           {required final bool isInShoppingCart,
           required final int servings,
-          required final List<SingleRecipeModelIngredient> ingredients}) =
-      _$SingleRecipeModelYieldImpl;
+          required final List<SingleRecipeStateIngredient> ingredients}) =
+      _$SingleRecipeStateYieldImpl;
 
   @override
   bool get isInShoppingCart;
   @override
   int get servings;
   @override
-  List<SingleRecipeModelIngredient> get ingredients;
+  List<SingleRecipeStateIngredient> get ingredients;
   @override
   @JsonKey(ignore: true)
-  _$$SingleRecipeModelYieldImplCopyWith<_$SingleRecipeModelYieldImpl>
+  _$$SingleRecipeStateYieldImplCopyWith<_$SingleRecipeStateYieldImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$SingleRecipeModelTag {
+mixin _$SingleRecipeStateTag {
   String get id => throw _privateConstructorUsedError;
   String get slug => throw _privateConstructorUsedError;
   String get displayedName => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SingleRecipeModelTagCopyWith<SingleRecipeModelTag> get copyWith =>
+  $SingleRecipeStateTagCopyWith<SingleRecipeStateTag> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SingleRecipeModelTagCopyWith<$Res> {
-  factory $SingleRecipeModelTagCopyWith(SingleRecipeModelTag value,
-          $Res Function(SingleRecipeModelTag) then) =
-      _$SingleRecipeModelTagCopyWithImpl<$Res, SingleRecipeModelTag>;
+abstract class $SingleRecipeStateTagCopyWith<$Res> {
+  factory $SingleRecipeStateTagCopyWith(SingleRecipeStateTag value,
+          $Res Function(SingleRecipeStateTag) then) =
+      _$SingleRecipeStateTagCopyWithImpl<$Res, SingleRecipeStateTag>;
   @useResult
   $Res call({String id, String slug, String displayedName});
 }
 
 /// @nodoc
-class _$SingleRecipeModelTagCopyWithImpl<$Res,
-        $Val extends SingleRecipeModelTag>
-    implements $SingleRecipeModelTagCopyWith<$Res> {
-  _$SingleRecipeModelTagCopyWithImpl(this._value, this._then);
+class _$SingleRecipeStateTagCopyWithImpl<$Res,
+        $Val extends SingleRecipeStateTag>
+    implements $SingleRecipeStateTagCopyWith<$Res> {
+  _$SingleRecipeStateTagCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -1119,22 +1125,22 @@ class _$SingleRecipeModelTagCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$SingleRecipeModelTagImplCopyWith<$Res>
-    implements $SingleRecipeModelTagCopyWith<$Res> {
-  factory _$$SingleRecipeModelTagImplCopyWith(_$SingleRecipeModelTagImpl value,
-          $Res Function(_$SingleRecipeModelTagImpl) then) =
-      __$$SingleRecipeModelTagImplCopyWithImpl<$Res>;
+abstract class _$$SingleRecipeStateTagImplCopyWith<$Res>
+    implements $SingleRecipeStateTagCopyWith<$Res> {
+  factory _$$SingleRecipeStateTagImplCopyWith(_$SingleRecipeStateTagImpl value,
+          $Res Function(_$SingleRecipeStateTagImpl) then) =
+      __$$SingleRecipeStateTagImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, String slug, String displayedName});
 }
 
 /// @nodoc
-class __$$SingleRecipeModelTagImplCopyWithImpl<$Res>
-    extends _$SingleRecipeModelTagCopyWithImpl<$Res, _$SingleRecipeModelTagImpl>
-    implements _$$SingleRecipeModelTagImplCopyWith<$Res> {
-  __$$SingleRecipeModelTagImplCopyWithImpl(_$SingleRecipeModelTagImpl _value,
-      $Res Function(_$SingleRecipeModelTagImpl) _then)
+class __$$SingleRecipeStateTagImplCopyWithImpl<$Res>
+    extends _$SingleRecipeStateTagCopyWithImpl<$Res, _$SingleRecipeStateTagImpl>
+    implements _$$SingleRecipeStateTagImplCopyWith<$Res> {
+  __$$SingleRecipeStateTagImplCopyWithImpl(_$SingleRecipeStateTagImpl _value,
+      $Res Function(_$SingleRecipeStateTagImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1144,7 +1150,7 @@ class __$$SingleRecipeModelTagImplCopyWithImpl<$Res>
     Object? slug = null,
     Object? displayedName = null,
   }) {
-    return _then(_$SingleRecipeModelTagImpl(
+    return _then(_$SingleRecipeStateTagImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1163,8 +1169,8 @@ class __$$SingleRecipeModelTagImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SingleRecipeModelTagImpl implements _SingleRecipeModelTag {
-  const _$SingleRecipeModelTagImpl(
+class _$SingleRecipeStateTagImpl implements _SingleRecipeStateTag {
+  const _$SingleRecipeStateTagImpl(
       {required this.id, required this.slug, required this.displayedName});
 
   @override
@@ -1176,14 +1182,14 @@ class _$SingleRecipeModelTagImpl implements _SingleRecipeModelTag {
 
   @override
   String toString() {
-    return 'SingleRecipeModelTag(id: $id, slug: $slug, displayedName: $displayedName)';
+    return 'SingleRecipeStateTag(id: $id, slug: $slug, displayedName: $displayedName)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SingleRecipeModelTagImpl &&
+            other is _$SingleRecipeStateTagImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.slug, slug) || other.slug == slug) &&
             (identical(other.displayedName, displayedName) ||
@@ -1196,17 +1202,17 @@ class _$SingleRecipeModelTagImpl implements _SingleRecipeModelTag {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SingleRecipeModelTagImplCopyWith<_$SingleRecipeModelTagImpl>
+  _$$SingleRecipeStateTagImplCopyWith<_$SingleRecipeStateTagImpl>
       get copyWith =>
-          __$$SingleRecipeModelTagImplCopyWithImpl<_$SingleRecipeModelTagImpl>(
+          __$$SingleRecipeStateTagImplCopyWithImpl<_$SingleRecipeStateTagImpl>(
               this, _$identity);
 }
 
-abstract class _SingleRecipeModelTag implements SingleRecipeModelTag {
-  const factory _SingleRecipeModelTag(
+abstract class _SingleRecipeStateTag implements SingleRecipeStateTag {
+  const factory _SingleRecipeStateTag(
       {required final String id,
       required final String slug,
-      required final String displayedName}) = _$SingleRecipeModelTagImpl;
+      required final String displayedName}) = _$SingleRecipeStateTagImpl;
 
   @override
   String get id;
@@ -1216,33 +1222,33 @@ abstract class _SingleRecipeModelTag implements SingleRecipeModelTag {
   String get displayedName;
   @override
   @JsonKey(ignore: true)
-  _$$SingleRecipeModelTagImplCopyWith<_$SingleRecipeModelTagImpl>
+  _$$SingleRecipeStateTagImplCopyWith<_$SingleRecipeStateTagImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$SingleRecipeModelIngredient {
+mixin _$SingleRecipeStateIngredient {
   Option<Uri> get imageUrl => throw _privateConstructorUsedError;
   String get ingredientId => throw _privateConstructorUsedError;
   String get slug => throw _privateConstructorUsedError;
   String get displayedName => throw _privateConstructorUsedError;
   Option<double> get amount => throw _privateConstructorUsedError;
   Option<String> get unit => throw _privateConstructorUsedError;
-  Option<SingleRecipeModelIngredientFamily> get family =>
+  Option<SingleRecipeStateIngredientFamily> get family =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SingleRecipeModelIngredientCopyWith<SingleRecipeModelIngredient>
+  $SingleRecipeStateIngredientCopyWith<SingleRecipeStateIngredient>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SingleRecipeModelIngredientCopyWith<$Res> {
-  factory $SingleRecipeModelIngredientCopyWith(
-          SingleRecipeModelIngredient value,
-          $Res Function(SingleRecipeModelIngredient) then) =
-      _$SingleRecipeModelIngredientCopyWithImpl<$Res,
-          SingleRecipeModelIngredient>;
+abstract class $SingleRecipeStateIngredientCopyWith<$Res> {
+  factory $SingleRecipeStateIngredientCopyWith(
+          SingleRecipeStateIngredient value,
+          $Res Function(SingleRecipeStateIngredient) then) =
+      _$SingleRecipeStateIngredientCopyWithImpl<$Res,
+          SingleRecipeStateIngredient>;
   @useResult
   $Res call(
       {Option<Uri> imageUrl,
@@ -1251,14 +1257,14 @@ abstract class $SingleRecipeModelIngredientCopyWith<$Res> {
       String displayedName,
       Option<double> amount,
       Option<String> unit,
-      Option<SingleRecipeModelIngredientFamily> family});
+      Option<SingleRecipeStateIngredientFamily> family});
 }
 
 /// @nodoc
-class _$SingleRecipeModelIngredientCopyWithImpl<$Res,
-        $Val extends SingleRecipeModelIngredient>
-    implements $SingleRecipeModelIngredientCopyWith<$Res> {
-  _$SingleRecipeModelIngredientCopyWithImpl(this._value, this._then);
+class _$SingleRecipeStateIngredientCopyWithImpl<$Res,
+        $Val extends SingleRecipeStateIngredient>
+    implements $SingleRecipeStateIngredientCopyWith<$Res> {
+  _$SingleRecipeStateIngredientCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -1304,18 +1310,18 @@ class _$SingleRecipeModelIngredientCopyWithImpl<$Res,
       family: null == family
           ? _value.family
           : family // ignore: cast_nullable_to_non_nullable
-              as Option<SingleRecipeModelIngredientFamily>,
+              as Option<SingleRecipeStateIngredientFamily>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$SingleRecipeModelIngredientImplCopyWith<$Res>
-    implements $SingleRecipeModelIngredientCopyWith<$Res> {
-  factory _$$SingleRecipeModelIngredientImplCopyWith(
-          _$SingleRecipeModelIngredientImpl value,
-          $Res Function(_$SingleRecipeModelIngredientImpl) then) =
-      __$$SingleRecipeModelIngredientImplCopyWithImpl<$Res>;
+abstract class _$$SingleRecipeStateIngredientImplCopyWith<$Res>
+    implements $SingleRecipeStateIngredientCopyWith<$Res> {
+  factory _$$SingleRecipeStateIngredientImplCopyWith(
+          _$SingleRecipeStateIngredientImpl value,
+          $Res Function(_$SingleRecipeStateIngredientImpl) then) =
+      __$$SingleRecipeStateIngredientImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1325,17 +1331,17 @@ abstract class _$$SingleRecipeModelIngredientImplCopyWith<$Res>
       String displayedName,
       Option<double> amount,
       Option<String> unit,
-      Option<SingleRecipeModelIngredientFamily> family});
+      Option<SingleRecipeStateIngredientFamily> family});
 }
 
 /// @nodoc
-class __$$SingleRecipeModelIngredientImplCopyWithImpl<$Res>
-    extends _$SingleRecipeModelIngredientCopyWithImpl<$Res,
-        _$SingleRecipeModelIngredientImpl>
-    implements _$$SingleRecipeModelIngredientImplCopyWith<$Res> {
-  __$$SingleRecipeModelIngredientImplCopyWithImpl(
-      _$SingleRecipeModelIngredientImpl _value,
-      $Res Function(_$SingleRecipeModelIngredientImpl) _then)
+class __$$SingleRecipeStateIngredientImplCopyWithImpl<$Res>
+    extends _$SingleRecipeStateIngredientCopyWithImpl<$Res,
+        _$SingleRecipeStateIngredientImpl>
+    implements _$$SingleRecipeStateIngredientImplCopyWith<$Res> {
+  __$$SingleRecipeStateIngredientImplCopyWithImpl(
+      _$SingleRecipeStateIngredientImpl _value,
+      $Res Function(_$SingleRecipeStateIngredientImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1349,7 +1355,7 @@ class __$$SingleRecipeModelIngredientImplCopyWithImpl<$Res>
     Object? unit = null,
     Object? family = null,
   }) {
-    return _then(_$SingleRecipeModelIngredientImpl(
+    return _then(_$SingleRecipeStateIngredientImpl(
       imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -1377,16 +1383,16 @@ class __$$SingleRecipeModelIngredientImplCopyWithImpl<$Res>
       family: null == family
           ? _value.family
           : family // ignore: cast_nullable_to_non_nullable
-              as Option<SingleRecipeModelIngredientFamily>,
+              as Option<SingleRecipeStateIngredientFamily>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$SingleRecipeModelIngredientImpl
-    implements _SingleRecipeModelIngredient {
-  const _$SingleRecipeModelIngredientImpl(
+class _$SingleRecipeStateIngredientImpl
+    implements _SingleRecipeStateIngredient {
+  const _$SingleRecipeStateIngredientImpl(
       {required this.imageUrl,
       required this.ingredientId,
       required this.slug,
@@ -1408,18 +1414,18 @@ class _$SingleRecipeModelIngredientImpl
   @override
   final Option<String> unit;
   @override
-  final Option<SingleRecipeModelIngredientFamily> family;
+  final Option<SingleRecipeStateIngredientFamily> family;
 
   @override
   String toString() {
-    return 'SingleRecipeModelIngredient(imageUrl: $imageUrl, ingredientId: $ingredientId, slug: $slug, displayedName: $displayedName, amount: $amount, unit: $unit, family: $family)';
+    return 'SingleRecipeStateIngredient(imageUrl: $imageUrl, ingredientId: $ingredientId, slug: $slug, displayedName: $displayedName, amount: $amount, unit: $unit, family: $family)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SingleRecipeModelIngredientImpl &&
+            other is _$SingleRecipeStateIngredientImpl &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
             (identical(other.ingredientId, ingredientId) ||
@@ -1439,22 +1445,22 @@ class _$SingleRecipeModelIngredientImpl
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SingleRecipeModelIngredientImplCopyWith<_$SingleRecipeModelIngredientImpl>
-      get copyWith => __$$SingleRecipeModelIngredientImplCopyWithImpl<
-          _$SingleRecipeModelIngredientImpl>(this, _$identity);
+  _$$SingleRecipeStateIngredientImplCopyWith<_$SingleRecipeStateIngredientImpl>
+      get copyWith => __$$SingleRecipeStateIngredientImplCopyWithImpl<
+          _$SingleRecipeStateIngredientImpl>(this, _$identity);
 }
 
-abstract class _SingleRecipeModelIngredient
-    implements SingleRecipeModelIngredient {
-  const factory _SingleRecipeModelIngredient(
+abstract class _SingleRecipeStateIngredient
+    implements SingleRecipeStateIngredient {
+  const factory _SingleRecipeStateIngredient(
           {required final Option<Uri> imageUrl,
           required final String ingredientId,
           required final String slug,
           required final String displayedName,
           required final Option<double> amount,
           required final Option<String> unit,
-          required final Option<SingleRecipeModelIngredientFamily> family}) =
-      _$SingleRecipeModelIngredientImpl;
+          required final Option<SingleRecipeStateIngredientFamily> family}) =
+      _$SingleRecipeStateIngredientImpl;
 
   @override
   Option<Uri> get imageUrl;
@@ -1469,15 +1475,15 @@ abstract class _SingleRecipeModelIngredient
   @override
   Option<String> get unit;
   @override
-  Option<SingleRecipeModelIngredientFamily> get family;
+  Option<SingleRecipeStateIngredientFamily> get family;
   @override
   @JsonKey(ignore: true)
-  _$$SingleRecipeModelIngredientImplCopyWith<_$SingleRecipeModelIngredientImpl>
+  _$$SingleRecipeStateIngredientImplCopyWith<_$SingleRecipeStateIngredientImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$SingleRecipeModelIngredientFamily {
+mixin _$SingleRecipeStateIngredientFamily {
   String get id => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   Option<String> get iconPath => throw _privateConstructorUsedError;
@@ -1485,17 +1491,17 @@ mixin _$SingleRecipeModelIngredientFamily {
   String get slug => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SingleRecipeModelIngredientFamilyCopyWith<SingleRecipeModelIngredientFamily>
+  $SingleRecipeStateIngredientFamilyCopyWith<SingleRecipeStateIngredientFamily>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SingleRecipeModelIngredientFamilyCopyWith<$Res> {
-  factory $SingleRecipeModelIngredientFamilyCopyWith(
-          SingleRecipeModelIngredientFamily value,
-          $Res Function(SingleRecipeModelIngredientFamily) then) =
-      _$SingleRecipeModelIngredientFamilyCopyWithImpl<$Res,
-          SingleRecipeModelIngredientFamily>;
+abstract class $SingleRecipeStateIngredientFamilyCopyWith<$Res> {
+  factory $SingleRecipeStateIngredientFamilyCopyWith(
+          SingleRecipeStateIngredientFamily value,
+          $Res Function(SingleRecipeStateIngredientFamily) then) =
+      _$SingleRecipeStateIngredientFamilyCopyWithImpl<$Res,
+          SingleRecipeStateIngredientFamily>;
   @useResult
   $Res call(
       {String id,
@@ -1506,10 +1512,10 @@ abstract class $SingleRecipeModelIngredientFamilyCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SingleRecipeModelIngredientFamilyCopyWithImpl<$Res,
-        $Val extends SingleRecipeModelIngredientFamily>
-    implements $SingleRecipeModelIngredientFamilyCopyWith<$Res> {
-  _$SingleRecipeModelIngredientFamilyCopyWithImpl(this._value, this._then);
+class _$SingleRecipeStateIngredientFamilyCopyWithImpl<$Res,
+        $Val extends SingleRecipeStateIngredientFamily>
+    implements $SingleRecipeStateIngredientFamilyCopyWith<$Res> {
+  _$SingleRecipeStateIngredientFamilyCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -1551,12 +1557,12 @@ class _$SingleRecipeModelIngredientFamilyCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$SingleRecipeModelIngredientFamilyImplCopyWith<$Res>
-    implements $SingleRecipeModelIngredientFamilyCopyWith<$Res> {
-  factory _$$SingleRecipeModelIngredientFamilyImplCopyWith(
-          _$SingleRecipeModelIngredientFamilyImpl value,
-          $Res Function(_$SingleRecipeModelIngredientFamilyImpl) then) =
-      __$$SingleRecipeModelIngredientFamilyImplCopyWithImpl<$Res>;
+abstract class _$$SingleRecipeStateIngredientFamilyImplCopyWith<$Res>
+    implements $SingleRecipeStateIngredientFamilyCopyWith<$Res> {
+  factory _$$SingleRecipeStateIngredientFamilyImplCopyWith(
+          _$SingleRecipeStateIngredientFamilyImpl value,
+          $Res Function(_$SingleRecipeStateIngredientFamilyImpl) then) =
+      __$$SingleRecipeStateIngredientFamilyImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1568,13 +1574,13 @@ abstract class _$$SingleRecipeModelIngredientFamilyImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$SingleRecipeModelIngredientFamilyImplCopyWithImpl<$Res>
-    extends _$SingleRecipeModelIngredientFamilyCopyWithImpl<$Res,
-        _$SingleRecipeModelIngredientFamilyImpl>
-    implements _$$SingleRecipeModelIngredientFamilyImplCopyWith<$Res> {
-  __$$SingleRecipeModelIngredientFamilyImplCopyWithImpl(
-      _$SingleRecipeModelIngredientFamilyImpl _value,
-      $Res Function(_$SingleRecipeModelIngredientFamilyImpl) _then)
+class __$$SingleRecipeStateIngredientFamilyImplCopyWithImpl<$Res>
+    extends _$SingleRecipeStateIngredientFamilyCopyWithImpl<$Res,
+        _$SingleRecipeStateIngredientFamilyImpl>
+    implements _$$SingleRecipeStateIngredientFamilyImplCopyWith<$Res> {
+  __$$SingleRecipeStateIngredientFamilyImplCopyWithImpl(
+      _$SingleRecipeStateIngredientFamilyImpl _value,
+      $Res Function(_$SingleRecipeStateIngredientFamilyImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1586,7 +1592,7 @@ class __$$SingleRecipeModelIngredientFamilyImplCopyWithImpl<$Res>
     Object? name = null,
     Object? slug = null,
   }) {
-    return _then(_$SingleRecipeModelIngredientFamilyImpl(
+    return _then(_$SingleRecipeStateIngredientFamilyImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1613,9 +1619,9 @@ class __$$SingleRecipeModelIngredientFamilyImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SingleRecipeModelIngredientFamilyImpl
-    implements _SingleRecipeModelIngredientFamily {
-  const _$SingleRecipeModelIngredientFamilyImpl(
+class _$SingleRecipeStateIngredientFamilyImpl
+    implements _SingleRecipeStateIngredientFamily {
+  const _$SingleRecipeStateIngredientFamilyImpl(
       {required this.id,
       required this.type,
       required this.iconPath,
@@ -1635,14 +1641,14 @@ class _$SingleRecipeModelIngredientFamilyImpl
 
   @override
   String toString() {
-    return 'SingleRecipeModelIngredientFamily(id: $id, type: $type, iconPath: $iconPath, name: $name, slug: $slug)';
+    return 'SingleRecipeStateIngredientFamily(id: $id, type: $type, iconPath: $iconPath, name: $name, slug: $slug)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SingleRecipeModelIngredientFamilyImpl &&
+            other is _$SingleRecipeStateIngredientFamilyImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.iconPath, iconPath) ||
@@ -1657,20 +1663,20 @@ class _$SingleRecipeModelIngredientFamilyImpl
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SingleRecipeModelIngredientFamilyImplCopyWith<
-          _$SingleRecipeModelIngredientFamilyImpl>
-      get copyWith => __$$SingleRecipeModelIngredientFamilyImplCopyWithImpl<
-          _$SingleRecipeModelIngredientFamilyImpl>(this, _$identity);
+  _$$SingleRecipeStateIngredientFamilyImplCopyWith<
+          _$SingleRecipeStateIngredientFamilyImpl>
+      get copyWith => __$$SingleRecipeStateIngredientFamilyImplCopyWithImpl<
+          _$SingleRecipeStateIngredientFamilyImpl>(this, _$identity);
 }
 
-abstract class _SingleRecipeModelIngredientFamily
-    implements SingleRecipeModelIngredientFamily {
-  const factory _SingleRecipeModelIngredientFamily(
+abstract class _SingleRecipeStateIngredientFamily
+    implements SingleRecipeStateIngredientFamily {
+  const factory _SingleRecipeStateIngredientFamily(
       {required final String id,
       required final String type,
       required final Option<String> iconPath,
       required final String name,
-      required final String slug}) = _$SingleRecipeModelIngredientFamilyImpl;
+      required final String slug}) = _$SingleRecipeStateIngredientFamilyImpl;
 
   @override
   String get id;
@@ -1684,7 +1690,7 @@ abstract class _SingleRecipeModelIngredientFamily
   String get slug;
   @override
   @JsonKey(ignore: true)
-  _$$SingleRecipeModelIngredientFamilyImplCopyWith<
-          _$SingleRecipeModelIngredientFamilyImpl>
+  _$$SingleRecipeStateIngredientFamilyImplCopyWith<
+          _$SingleRecipeStateIngredientFamilyImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

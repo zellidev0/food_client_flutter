@@ -19,9 +19,9 @@ import 'package:uuid/uuid.dart';
 
 typedef WebClientSorting = IngredientsSortingWebClientModelIngredientSorting;
 typedef PersistenceSorting = IngredientsSortingPersistenceModelSorting;
-typedef Unit = IngredientsSortingModelUnit;
+typedef Unit = IngredientsSortingStateUnit;
 typedef PersistenceFamily = IngredientsSortingPersistenceModelIngredientFamily;
-typedef Family1 = IngredientsSortingModelIngredientFamily;
+typedef Family1 = IngredientsSortingStateIngredientFamily;
 
 const int takeSize = 250;
 const int _widthPixels = 256;
@@ -46,12 +46,12 @@ class IngredientsSortingCubit extends Cubit<IngredientsSortingState> {
         _webImageSizerService = webImageSizerService,
         super(
           const IngredientsSortingState(
-            units: ViewState<List<IngredientsSortingModelUnit>>.loading(),
+            units: ViewState<List<IngredientsSortingStateUnit>>.loading(),
           ),
         ) {
     emit(
       IngredientsSortingState(
-        units: ViewStateData<List<IngredientsSortingModelUnit>>(
+        units: ViewStateData<List<IngredientsSortingStateUnit>>(
           _fetchPersistenceServiceUnits(),
         ),
       ),
@@ -90,7 +90,7 @@ class IngredientsSortingCubit extends Cubit<IngredientsSortingState> {
                       (final _) => emit(
                         state.copyWith(
                           units:
-                              ViewStateData<List<IngredientsSortingModelUnit>>(
+                              ViewStateData<List<IngredientsSortingStateUnit>>(
                             _fetchPersistenceServiceUnits(),
                           ),
                         ),
@@ -125,7 +125,7 @@ class IngredientsSortingCubit extends Cubit<IngredientsSortingState> {
               _logger.error,
               (_) => emit(
                 state.copyWith(
-                  units: ViewStateData<List<IngredientsSortingModelUnit>>(
+                  units: ViewStateData<List<IngredientsSortingStateUnit>>(
                     _fetchPersistenceServiceUnits(),
                   ),
                 ),
@@ -151,54 +151,54 @@ class IngredientsSortingCubit extends Cubit<IngredientsSortingState> {
             .toList(),
       );
 
-  void setUnitSelected({required final IngredientsSortingModelUnit unit}) =>
+  void setUnitSelected({required final IngredientsSortingStateUnit unit}) =>
       emit(
         state.copyWith(
           units: state.units.map(
             data: (
-              final ViewStateData<List<IngredientsSortingModelUnit>> value,
+              final ViewStateData<List<IngredientsSortingStateUnit>> value,
             ) =>
                 value.copyWith(
               data: value.data
-                  .map((IngredientsSortingModelUnit element) =>
+                  .map((IngredientsSortingStateUnit element) =>
                       element.id == unit.id
                           ? element.copyWith(selected: true)
                           : element.copyWith(selected: false))
                   .toList(),
             ),
             loading:
-                (ViewStateLoading<List<IngredientsSortingModelUnit>> value) =>
+                (ViewStateLoading<List<IngredientsSortingStateUnit>> value) =>
                     value,
-            error: (ViewStateError<List<IngredientsSortingModelUnit>> value) =>
+            error: (ViewStateError<List<IngredientsSortingStateUnit>> value) =>
                 value,
           ),
         ),
       );
   void reorderIngredientFamily({
-    required final IngredientsSortingModelUnit unit,
+    required final IngredientsSortingStateUnit unit,
     required final int oldIndex,
     required final int newIndex,
   }) {
-    final List<IngredientsSortingModelSorting> sortings =
-        List<IngredientsSortingModelSorting>.from(unit.sorting);
-    final IngredientsSortingModelSorting sorting = sortings.removeAt(oldIndex);
+    final List<IngredientsSortingStateSorting> sortings =
+        List<IngredientsSortingStateSorting>.from(unit.sorting);
+    final IngredientsSortingStateSorting sorting = sortings.removeAt(oldIndex);
     sortings.insert(newIndex, sorting);
     emit(
       state.copyWith(
         units: state.units.map(
-          data: (ViewStateData<List<IngredientsSortingModelUnit>> value) =>
+          data: (ViewStateData<List<IngredientsSortingStateUnit>> value) =>
               value.copyWith(
             data: value.data
                 .map(
-                  (final IngredientsSortingModelUnit u) =>
+                  (final IngredientsSortingStateUnit u) =>
                       u.id == unit.id ? unit.copyWith(sorting: sortings) : u,
                 )
                 .toList(),
           ),
           loading:
-              (ViewStateLoading<List<IngredientsSortingModelUnit>> value) =>
+              (ViewStateLoading<List<IngredientsSortingStateUnit>> value) =>
                   value,
-          error: (ViewStateError<List<IngredientsSortingModelUnit>> value) =>
+          error: (ViewStateError<List<IngredientsSortingStateUnit>> value) =>
               value,
         ),
       ),
@@ -211,7 +211,7 @@ class IngredientsSortingCubit extends Cubit<IngredientsSortingState> {
               name: unit.title,
               sortings: sortings
                   .map(
-                    (final IngredientsSortingModelSorting currentSorting) =>
+                    (final IngredientsSortingStateSorting currentSorting) =>
                         PersistenceSorting(
                       type: currentSorting.type,
                       iconPath: currentSorting.iconPath,
@@ -263,7 +263,7 @@ class IngredientsSortingCubit extends Cubit<IngredientsSortingState> {
         sorting: unit.sortings
             .map(
               (final PersistenceSorting sorting) =>
-                  IngredientsSortingModelSorting(
+                  IngredientsSortingStateSorting(
                 type: sorting.type,
                 iconUrl: getImageUrl(
                   iconPath: sorting.iconPath,

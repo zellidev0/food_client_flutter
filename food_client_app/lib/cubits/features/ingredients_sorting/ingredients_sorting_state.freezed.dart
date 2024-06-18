@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$IngredientsSortingState {
-  ViewState<List<IngredientsSortingModelUnit>> get units =>
+  ViewState<List<IngredientsSortingStateUnit>> get units =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,9 +30,9 @@ abstract class $IngredientsSortingStateCopyWith<$Res> {
           $Res Function(IngredientsSortingState) then) =
       _$IngredientsSortingStateCopyWithImpl<$Res, IngredientsSortingState>;
   @useResult
-  $Res call({ViewState<List<IngredientsSortingModelUnit>> units});
+  $Res call({ViewState<List<IngredientsSortingStateUnit>> units});
 
-  $ViewStateCopyWith<List<IngredientsSortingModelUnit>, $Res> get units;
+  $ViewStateCopyWith<List<IngredientsSortingStateUnit>, $Res> get units;
 }
 
 /// @nodoc
@@ -55,14 +55,14 @@ class _$IngredientsSortingStateCopyWithImpl<$Res,
       units: null == units
           ? _value.units
           : units // ignore: cast_nullable_to_non_nullable
-              as ViewState<List<IngredientsSortingModelUnit>>,
+              as ViewState<List<IngredientsSortingStateUnit>>,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ViewStateCopyWith<List<IngredientsSortingModelUnit>, $Res> get units {
-    return $ViewStateCopyWith<List<IngredientsSortingModelUnit>, $Res>(
+  $ViewStateCopyWith<List<IngredientsSortingStateUnit>, $Res> get units {
+    return $ViewStateCopyWith<List<IngredientsSortingStateUnit>, $Res>(
         _value.units, (value) {
       return _then(_value.copyWith(units: value) as $Val);
     });
@@ -78,10 +78,10 @@ abstract class _$$IngredientsSortingStateImplCopyWith<$Res>
       __$$IngredientsSortingStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ViewState<List<IngredientsSortingModelUnit>> units});
+  $Res call({ViewState<List<IngredientsSortingStateUnit>> units});
 
   @override
-  $ViewStateCopyWith<List<IngredientsSortingModelUnit>, $Res> get units;
+  $ViewStateCopyWith<List<IngredientsSortingStateUnit>, $Res> get units;
 }
 
 /// @nodoc
@@ -103,7 +103,7 @@ class __$$IngredientsSortingStateImplCopyWithImpl<$Res>
       units: null == units
           ? _value.units
           : units // ignore: cast_nullable_to_non_nullable
-              as ViewState<List<IngredientsSortingModelUnit>>,
+              as ViewState<List<IngredientsSortingStateUnit>>,
     ));
   }
 }
@@ -114,7 +114,7 @@ class _$IngredientsSortingStateImpl implements _IngredientsSortingState {
   const _$IngredientsSortingStateImpl({required this.units});
 
   @override
-  final ViewState<List<IngredientsSortingModelUnit>> units;
+  final ViewState<List<IngredientsSortingStateUnit>> units;
 
   @override
   String toString() {
@@ -142,11 +142,11 @@ class _$IngredientsSortingStateImpl implements _IngredientsSortingState {
 
 abstract class _IngredientsSortingState implements IngredientsSortingState {
   const factory _IngredientsSortingState(
-          {required final ViewState<List<IngredientsSortingModelUnit>> units}) =
+          {required final ViewState<List<IngredientsSortingStateUnit>> units}) =
       _$IngredientsSortingStateImpl;
 
   @override
-  ViewState<List<IngredientsSortingModelUnit>> get units;
+  ViewState<List<IngredientsSortingStateUnit>> get units;
   @override
   @JsonKey(ignore: true)
   _$$IngredientsSortingStateImplCopyWith<_$IngredientsSortingStateImpl>
@@ -154,38 +154,38 @@ abstract class _IngredientsSortingState implements IngredientsSortingState {
 }
 
 /// @nodoc
-mixin _$IngredientsSortingModelUnit {
+mixin _$IngredientsSortingStateUnit {
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   bool get selected => throw _privateConstructorUsedError;
-  List<IngredientsSortingModelSorting> get sorting =>
+  List<IngredientsSortingStateSorting> get sorting =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $IngredientsSortingModelUnitCopyWith<IngredientsSortingModelUnit>
+  $IngredientsSortingStateUnitCopyWith<IngredientsSortingStateUnit>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $IngredientsSortingModelUnitCopyWith<$Res> {
-  factory $IngredientsSortingModelUnitCopyWith(
-          IngredientsSortingModelUnit value,
-          $Res Function(IngredientsSortingModelUnit) then) =
-      _$IngredientsSortingModelUnitCopyWithImpl<$Res,
-          IngredientsSortingModelUnit>;
+abstract class $IngredientsSortingStateUnitCopyWith<$Res> {
+  factory $IngredientsSortingStateUnitCopyWith(
+          IngredientsSortingStateUnit value,
+          $Res Function(IngredientsSortingStateUnit) then) =
+      _$IngredientsSortingStateUnitCopyWithImpl<$Res,
+          IngredientsSortingStateUnit>;
   @useResult
   $Res call(
       {String id,
       String title,
       bool selected,
-      List<IngredientsSortingModelSorting> sorting});
+      List<IngredientsSortingStateSorting> sorting});
 }
 
 /// @nodoc
-class _$IngredientsSortingModelUnitCopyWithImpl<$Res,
-        $Val extends IngredientsSortingModelUnit>
-    implements $IngredientsSortingModelUnitCopyWith<$Res> {
-  _$IngredientsSortingModelUnitCopyWithImpl(this._value, this._then);
+class _$IngredientsSortingStateUnitCopyWithImpl<$Res,
+        $Val extends IngredientsSortingStateUnit>
+    implements $IngredientsSortingStateUnitCopyWith<$Res> {
+  _$IngredientsSortingStateUnitCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -216,35 +216,35 @@ class _$IngredientsSortingModelUnitCopyWithImpl<$Res,
       sorting: null == sorting
           ? _value.sorting
           : sorting // ignore: cast_nullable_to_non_nullable
-              as List<IngredientsSortingModelSorting>,
+              as List<IngredientsSortingStateSorting>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$IngredientsSortingModelUnitImplCopyWith<$Res>
-    implements $IngredientsSortingModelUnitCopyWith<$Res> {
-  factory _$$IngredientsSortingModelUnitImplCopyWith(
-          _$IngredientsSortingModelUnitImpl value,
-          $Res Function(_$IngredientsSortingModelUnitImpl) then) =
-      __$$IngredientsSortingModelUnitImplCopyWithImpl<$Res>;
+abstract class _$$IngredientsSortingStateUnitImplCopyWith<$Res>
+    implements $IngredientsSortingStateUnitCopyWith<$Res> {
+  factory _$$IngredientsSortingStateUnitImplCopyWith(
+          _$IngredientsSortingStateUnitImpl value,
+          $Res Function(_$IngredientsSortingStateUnitImpl) then) =
+      __$$IngredientsSortingStateUnitImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {String id,
       String title,
       bool selected,
-      List<IngredientsSortingModelSorting> sorting});
+      List<IngredientsSortingStateSorting> sorting});
 }
 
 /// @nodoc
-class __$$IngredientsSortingModelUnitImplCopyWithImpl<$Res>
-    extends _$IngredientsSortingModelUnitCopyWithImpl<$Res,
-        _$IngredientsSortingModelUnitImpl>
-    implements _$$IngredientsSortingModelUnitImplCopyWith<$Res> {
-  __$$IngredientsSortingModelUnitImplCopyWithImpl(
-      _$IngredientsSortingModelUnitImpl _value,
-      $Res Function(_$IngredientsSortingModelUnitImpl) _then)
+class __$$IngredientsSortingStateUnitImplCopyWithImpl<$Res>
+    extends _$IngredientsSortingStateUnitCopyWithImpl<$Res,
+        _$IngredientsSortingStateUnitImpl>
+    implements _$$IngredientsSortingStateUnitImplCopyWith<$Res> {
+  __$$IngredientsSortingStateUnitImplCopyWithImpl(
+      _$IngredientsSortingStateUnitImpl _value,
+      $Res Function(_$IngredientsSortingStateUnitImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -255,7 +255,7 @@ class __$$IngredientsSortingModelUnitImplCopyWithImpl<$Res>
     Object? selected = null,
     Object? sorting = null,
   }) {
-    return _then(_$IngredientsSortingModelUnitImpl(
+    return _then(_$IngredientsSortingStateUnitImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -271,20 +271,20 @@ class __$$IngredientsSortingModelUnitImplCopyWithImpl<$Res>
       sorting: null == sorting
           ? _value._sorting
           : sorting // ignore: cast_nullable_to_non_nullable
-              as List<IngredientsSortingModelSorting>,
+              as List<IngredientsSortingStateSorting>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$IngredientsSortingModelUnitImpl
-    implements _IngredientsSortingModelUnit {
-  const _$IngredientsSortingModelUnitImpl(
+class _$IngredientsSortingStateUnitImpl
+    implements _IngredientsSortingStateUnit {
+  const _$IngredientsSortingStateUnitImpl(
       {required this.id,
       required this.title,
       required this.selected,
-      required final List<IngredientsSortingModelSorting> sorting})
+      required final List<IngredientsSortingStateSorting> sorting})
       : _sorting = sorting;
 
   @override
@@ -293,9 +293,9 @@ class _$IngredientsSortingModelUnitImpl
   final String title;
   @override
   final bool selected;
-  final List<IngredientsSortingModelSorting> _sorting;
+  final List<IngredientsSortingStateSorting> _sorting;
   @override
-  List<IngredientsSortingModelSorting> get sorting {
+  List<IngredientsSortingStateSorting> get sorting {
     if (_sorting is EqualUnmodifiableListView) return _sorting;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_sorting);
@@ -303,14 +303,14 @@ class _$IngredientsSortingModelUnitImpl
 
   @override
   String toString() {
-    return 'IngredientsSortingModelUnit(id: $id, title: $title, selected: $selected, sorting: $sorting)';
+    return 'IngredientsSortingStateUnit(id: $id, title: $title, selected: $selected, sorting: $sorting)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$IngredientsSortingModelUnitImpl &&
+            other is _$IngredientsSortingStateUnitImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.selected, selected) ||
@@ -325,19 +325,19 @@ class _$IngredientsSortingModelUnitImpl
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$IngredientsSortingModelUnitImplCopyWith<_$IngredientsSortingModelUnitImpl>
-      get copyWith => __$$IngredientsSortingModelUnitImplCopyWithImpl<
-          _$IngredientsSortingModelUnitImpl>(this, _$identity);
+  _$$IngredientsSortingStateUnitImplCopyWith<_$IngredientsSortingStateUnitImpl>
+      get copyWith => __$$IngredientsSortingStateUnitImplCopyWithImpl<
+          _$IngredientsSortingStateUnitImpl>(this, _$identity);
 }
 
-abstract class _IngredientsSortingModelUnit
-    implements IngredientsSortingModelUnit {
-  const factory _IngredientsSortingModelUnit(
+abstract class _IngredientsSortingStateUnit
+    implements IngredientsSortingStateUnit {
+  const factory _IngredientsSortingStateUnit(
           {required final String id,
           required final String title,
           required final bool selected,
-          required final List<IngredientsSortingModelSorting> sorting}) =
-      _$IngredientsSortingModelUnitImpl;
+          required final List<IngredientsSortingStateSorting> sorting}) =
+      _$IngredientsSortingStateUnitImpl;
 
   @override
   String get id;
@@ -346,35 +346,35 @@ abstract class _IngredientsSortingModelUnit
   @override
   bool get selected;
   @override
-  List<IngredientsSortingModelSorting> get sorting;
+  List<IngredientsSortingStateSorting> get sorting;
   @override
   @JsonKey(ignore: true)
-  _$$IngredientsSortingModelUnitImplCopyWith<_$IngredientsSortingModelUnitImpl>
+  _$$IngredientsSortingStateUnitImplCopyWith<_$IngredientsSortingStateUnitImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$IngredientsSortingModelSorting {
+mixin _$IngredientsSortingStateSorting {
   String get id => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   Option<Uri> get iconUrl => throw _privateConstructorUsedError;
   Option<Uri> get iconPath => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  List<IngredientsSortingModelIngredientFamily> get ingredientFamilies =>
+  List<IngredientsSortingStateIngredientFamily> get ingredientFamilies =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $IngredientsSortingModelSortingCopyWith<IngredientsSortingModelSorting>
+  $IngredientsSortingStateSortingCopyWith<IngredientsSortingStateSorting>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $IngredientsSortingModelSortingCopyWith<$Res> {
-  factory $IngredientsSortingModelSortingCopyWith(
-          IngredientsSortingModelSorting value,
-          $Res Function(IngredientsSortingModelSorting) then) =
-      _$IngredientsSortingModelSortingCopyWithImpl<$Res,
-          IngredientsSortingModelSorting>;
+abstract class $IngredientsSortingStateSortingCopyWith<$Res> {
+  factory $IngredientsSortingStateSortingCopyWith(
+          IngredientsSortingStateSorting value,
+          $Res Function(IngredientsSortingStateSorting) then) =
+      _$IngredientsSortingStateSortingCopyWithImpl<$Res,
+          IngredientsSortingStateSorting>;
   @useResult
   $Res call(
       {String id,
@@ -382,14 +382,14 @@ abstract class $IngredientsSortingModelSortingCopyWith<$Res> {
       Option<Uri> iconUrl,
       Option<Uri> iconPath,
       String name,
-      List<IngredientsSortingModelIngredientFamily> ingredientFamilies});
+      List<IngredientsSortingStateIngredientFamily> ingredientFamilies});
 }
 
 /// @nodoc
-class _$IngredientsSortingModelSortingCopyWithImpl<$Res,
-        $Val extends IngredientsSortingModelSorting>
-    implements $IngredientsSortingModelSortingCopyWith<$Res> {
-  _$IngredientsSortingModelSortingCopyWithImpl(this._value, this._then);
+class _$IngredientsSortingStateSortingCopyWithImpl<$Res,
+        $Val extends IngredientsSortingStateSorting>
+    implements $IngredientsSortingStateSortingCopyWith<$Res> {
+  _$IngredientsSortingStateSortingCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -430,18 +430,18 @@ class _$IngredientsSortingModelSortingCopyWithImpl<$Res,
       ingredientFamilies: null == ingredientFamilies
           ? _value.ingredientFamilies
           : ingredientFamilies // ignore: cast_nullable_to_non_nullable
-              as List<IngredientsSortingModelIngredientFamily>,
+              as List<IngredientsSortingStateIngredientFamily>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$IngredientsSortingModelSortingImplCopyWith<$Res>
-    implements $IngredientsSortingModelSortingCopyWith<$Res> {
-  factory _$$IngredientsSortingModelSortingImplCopyWith(
-          _$IngredientsSortingModelSortingImpl value,
-          $Res Function(_$IngredientsSortingModelSortingImpl) then) =
-      __$$IngredientsSortingModelSortingImplCopyWithImpl<$Res>;
+abstract class _$$IngredientsSortingStateSortingImplCopyWith<$Res>
+    implements $IngredientsSortingStateSortingCopyWith<$Res> {
+  factory _$$IngredientsSortingStateSortingImplCopyWith(
+          _$IngredientsSortingStateSortingImpl value,
+          $Res Function(_$IngredientsSortingStateSortingImpl) then) =
+      __$$IngredientsSortingStateSortingImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -450,17 +450,17 @@ abstract class _$$IngredientsSortingModelSortingImplCopyWith<$Res>
       Option<Uri> iconUrl,
       Option<Uri> iconPath,
       String name,
-      List<IngredientsSortingModelIngredientFamily> ingredientFamilies});
+      List<IngredientsSortingStateIngredientFamily> ingredientFamilies});
 }
 
 /// @nodoc
-class __$$IngredientsSortingModelSortingImplCopyWithImpl<$Res>
-    extends _$IngredientsSortingModelSortingCopyWithImpl<$Res,
-        _$IngredientsSortingModelSortingImpl>
-    implements _$$IngredientsSortingModelSortingImplCopyWith<$Res> {
-  __$$IngredientsSortingModelSortingImplCopyWithImpl(
-      _$IngredientsSortingModelSortingImpl _value,
-      $Res Function(_$IngredientsSortingModelSortingImpl) _then)
+class __$$IngredientsSortingStateSortingImplCopyWithImpl<$Res>
+    extends _$IngredientsSortingStateSortingCopyWithImpl<$Res,
+        _$IngredientsSortingStateSortingImpl>
+    implements _$$IngredientsSortingStateSortingImplCopyWith<$Res> {
+  __$$IngredientsSortingStateSortingImplCopyWithImpl(
+      _$IngredientsSortingStateSortingImpl _value,
+      $Res Function(_$IngredientsSortingStateSortingImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -473,7 +473,7 @@ class __$$IngredientsSortingModelSortingImplCopyWithImpl<$Res>
     Object? name = null,
     Object? ingredientFamilies = null,
   }) {
-    return _then(_$IngredientsSortingModelSortingImpl(
+    return _then(_$IngredientsSortingStateSortingImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -497,22 +497,22 @@ class __$$IngredientsSortingModelSortingImplCopyWithImpl<$Res>
       ingredientFamilies: null == ingredientFamilies
           ? _value._ingredientFamilies
           : ingredientFamilies // ignore: cast_nullable_to_non_nullable
-              as List<IngredientsSortingModelIngredientFamily>,
+              as List<IngredientsSortingStateIngredientFamily>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$IngredientsSortingModelSortingImpl
-    implements _IngredientsSortingModelSorting {
-  const _$IngredientsSortingModelSortingImpl(
+class _$IngredientsSortingStateSortingImpl
+    implements _IngredientsSortingStateSorting {
+  const _$IngredientsSortingStateSortingImpl(
       {required this.id,
       required this.type,
       required this.iconUrl,
       required this.iconPath,
       required this.name,
-      required final List<IngredientsSortingModelIngredientFamily>
+      required final List<IngredientsSortingStateIngredientFamily>
           ingredientFamilies})
       : _ingredientFamilies = ingredientFamilies;
 
@@ -526,9 +526,9 @@ class _$IngredientsSortingModelSortingImpl
   final Option<Uri> iconPath;
   @override
   final String name;
-  final List<IngredientsSortingModelIngredientFamily> _ingredientFamilies;
+  final List<IngredientsSortingStateIngredientFamily> _ingredientFamilies;
   @override
-  List<IngredientsSortingModelIngredientFamily> get ingredientFamilies {
+  List<IngredientsSortingStateIngredientFamily> get ingredientFamilies {
     if (_ingredientFamilies is EqualUnmodifiableListView)
       return _ingredientFamilies;
     // ignore: implicit_dynamic_type
@@ -537,14 +537,14 @@ class _$IngredientsSortingModelSortingImpl
 
   @override
   String toString() {
-    return 'IngredientsSortingModelSorting(id: $id, type: $type, iconUrl: $iconUrl, iconPath: $iconPath, name: $name, ingredientFamilies: $ingredientFamilies)';
+    return 'IngredientsSortingStateSorting(id: $id, type: $type, iconUrl: $iconUrl, iconPath: $iconPath, name: $name, ingredientFamilies: $ingredientFamilies)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$IngredientsSortingModelSortingImpl &&
+            other is _$IngredientsSortingStateSortingImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.iconUrl, iconUrl) || other.iconUrl == iconUrl) &&
@@ -562,22 +562,22 @@ class _$IngredientsSortingModelSortingImpl
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$IngredientsSortingModelSortingImplCopyWith<
-          _$IngredientsSortingModelSortingImpl>
-      get copyWith => __$$IngredientsSortingModelSortingImplCopyWithImpl<
-          _$IngredientsSortingModelSortingImpl>(this, _$identity);
+  _$$IngredientsSortingStateSortingImplCopyWith<
+          _$IngredientsSortingStateSortingImpl>
+      get copyWith => __$$IngredientsSortingStateSortingImplCopyWithImpl<
+          _$IngredientsSortingStateSortingImpl>(this, _$identity);
 }
 
-abstract class _IngredientsSortingModelSorting
-    implements IngredientsSortingModelSorting {
-  const factory _IngredientsSortingModelSorting(
+abstract class _IngredientsSortingStateSorting
+    implements IngredientsSortingStateSorting {
+  const factory _IngredientsSortingStateSorting(
       {required final String id,
       required final String type,
       required final Option<Uri> iconUrl,
       required final Option<Uri> iconPath,
       required final String name,
-      required final List<IngredientsSortingModelIngredientFamily>
-          ingredientFamilies}) = _$IngredientsSortingModelSortingImpl;
+      required final List<IngredientsSortingStateIngredientFamily>
+          ingredientFamilies}) = _$IngredientsSortingStateSortingImpl;
 
   @override
   String get id;
@@ -590,16 +590,16 @@ abstract class _IngredientsSortingModelSorting
   @override
   String get name;
   @override
-  List<IngredientsSortingModelIngredientFamily> get ingredientFamilies;
+  List<IngredientsSortingStateIngredientFamily> get ingredientFamilies;
   @override
   @JsonKey(ignore: true)
-  _$$IngredientsSortingModelSortingImplCopyWith<
-          _$IngredientsSortingModelSortingImpl>
+  _$$IngredientsSortingStateSortingImplCopyWith<
+          _$IngredientsSortingStateSortingImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$IngredientsSortingModelIngredientFamily {
+mixin _$IngredientsSortingStateIngredientFamily {
   String get helloFreshFamilyId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -620,46 +620,46 @@ mixin _$IngredientsSortingModelIngredientFamily {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(
-            IngredientsSortingModelIngredientFamilyHelloFresh value)
+            IngredientsSortingStateIngredientFamilyHelloFresh value)
         helloFresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(IngredientsSortingModelIngredientFamilyHelloFresh value)?
+    TResult? Function(IngredientsSortingStateIngredientFamilyHelloFresh value)?
         helloFresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(IngredientsSortingModelIngredientFamilyHelloFresh value)?
+    TResult Function(IngredientsSortingStateIngredientFamilyHelloFresh value)?
         helloFresh,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $IngredientsSortingModelIngredientFamilyCopyWith<
-          IngredientsSortingModelIngredientFamily>
+  $IngredientsSortingStateIngredientFamilyCopyWith<
+          IngredientsSortingStateIngredientFamily>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $IngredientsSortingModelIngredientFamilyCopyWith<$Res> {
-  factory $IngredientsSortingModelIngredientFamilyCopyWith(
-          IngredientsSortingModelIngredientFamily value,
-          $Res Function(IngredientsSortingModelIngredientFamily) then) =
-      _$IngredientsSortingModelIngredientFamilyCopyWithImpl<$Res,
-          IngredientsSortingModelIngredientFamily>;
+abstract class $IngredientsSortingStateIngredientFamilyCopyWith<$Res> {
+  factory $IngredientsSortingStateIngredientFamilyCopyWith(
+          IngredientsSortingStateIngredientFamily value,
+          $Res Function(IngredientsSortingStateIngredientFamily) then) =
+      _$IngredientsSortingStateIngredientFamilyCopyWithImpl<$Res,
+          IngredientsSortingStateIngredientFamily>;
   @useResult
   $Res call({String helloFreshFamilyId});
 }
 
 /// @nodoc
-class _$IngredientsSortingModelIngredientFamilyCopyWithImpl<$Res,
-        $Val extends IngredientsSortingModelIngredientFamily>
-    implements $IngredientsSortingModelIngredientFamilyCopyWith<$Res> {
-  _$IngredientsSortingModelIngredientFamilyCopyWithImpl(
+class _$IngredientsSortingStateIngredientFamilyCopyWithImpl<$Res,
+        $Val extends IngredientsSortingStateIngredientFamily>
+    implements $IngredientsSortingStateIngredientFamilyCopyWith<$Res> {
+  _$IngredientsSortingStateIngredientFamilyCopyWithImpl(
       this._value, this._then);
 
   // ignore: unused_field
@@ -682,13 +682,13 @@ class _$IngredientsSortingModelIngredientFamilyCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$IngredientsSortingModelIngredientFamilyHelloFreshImplCopyWith<
-    $Res> implements $IngredientsSortingModelIngredientFamilyCopyWith<$Res> {
-  factory _$$IngredientsSortingModelIngredientFamilyHelloFreshImplCopyWith(
-          _$IngredientsSortingModelIngredientFamilyHelloFreshImpl value,
-          $Res Function(_$IngredientsSortingModelIngredientFamilyHelloFreshImpl)
+abstract class _$$IngredientsSortingStateIngredientFamilyHelloFreshImplCopyWith<
+    $Res> implements $IngredientsSortingStateIngredientFamilyCopyWith<$Res> {
+  factory _$$IngredientsSortingStateIngredientFamilyHelloFreshImplCopyWith(
+          _$IngredientsSortingStateIngredientFamilyHelloFreshImpl value,
+          $Res Function(_$IngredientsSortingStateIngredientFamilyHelloFreshImpl)
               then) =
-      __$$IngredientsSortingModelIngredientFamilyHelloFreshImplCopyWithImpl<
+      __$$IngredientsSortingStateIngredientFamilyHelloFreshImplCopyWithImpl<
           $Res>;
   @override
   @useResult
@@ -696,15 +696,15 @@ abstract class _$$IngredientsSortingModelIngredientFamilyHelloFreshImplCopyWith<
 }
 
 /// @nodoc
-class __$$IngredientsSortingModelIngredientFamilyHelloFreshImplCopyWithImpl<
+class __$$IngredientsSortingStateIngredientFamilyHelloFreshImplCopyWithImpl<
         $Res>
-    extends _$IngredientsSortingModelIngredientFamilyCopyWithImpl<$Res,
-        _$IngredientsSortingModelIngredientFamilyHelloFreshImpl>
+    extends _$IngredientsSortingStateIngredientFamilyCopyWithImpl<$Res,
+        _$IngredientsSortingStateIngredientFamilyHelloFreshImpl>
     implements
-        _$$IngredientsSortingModelIngredientFamilyHelloFreshImplCopyWith<$Res> {
-  __$$IngredientsSortingModelIngredientFamilyHelloFreshImplCopyWithImpl(
-      _$IngredientsSortingModelIngredientFamilyHelloFreshImpl _value,
-      $Res Function(_$IngredientsSortingModelIngredientFamilyHelloFreshImpl)
+        _$$IngredientsSortingStateIngredientFamilyHelloFreshImplCopyWith<$Res> {
+  __$$IngredientsSortingStateIngredientFamilyHelloFreshImplCopyWithImpl(
+      _$IngredientsSortingStateIngredientFamilyHelloFreshImpl _value,
+      $Res Function(_$IngredientsSortingStateIngredientFamilyHelloFreshImpl)
           _then)
       : super(_value, _then);
 
@@ -713,7 +713,7 @@ class __$$IngredientsSortingModelIngredientFamilyHelloFreshImplCopyWithImpl<
   $Res call({
     Object? helloFreshFamilyId = null,
   }) {
-    return _then(_$IngredientsSortingModelIngredientFamilyHelloFreshImpl(
+    return _then(_$IngredientsSortingStateIngredientFamilyHelloFreshImpl(
       helloFreshFamilyId: null == helloFreshFamilyId
           ? _value.helloFreshFamilyId
           : helloFreshFamilyId // ignore: cast_nullable_to_non_nullable
@@ -724,9 +724,9 @@ class __$$IngredientsSortingModelIngredientFamilyHelloFreshImplCopyWithImpl<
 
 /// @nodoc
 
-class _$IngredientsSortingModelIngredientFamilyHelloFreshImpl
-    implements IngredientsSortingModelIngredientFamilyHelloFresh {
-  const _$IngredientsSortingModelIngredientFamilyHelloFreshImpl(
+class _$IngredientsSortingStateIngredientFamilyHelloFreshImpl
+    implements IngredientsSortingStateIngredientFamilyHelloFresh {
+  const _$IngredientsSortingStateIngredientFamilyHelloFreshImpl(
       {required this.helloFreshFamilyId});
 
   @override
@@ -734,14 +734,14 @@ class _$IngredientsSortingModelIngredientFamilyHelloFreshImpl
 
   @override
   String toString() {
-    return 'IngredientsSortingModelIngredientFamily.helloFresh(helloFreshFamilyId: $helloFreshFamilyId)';
+    return 'IngredientsSortingStateIngredientFamily.helloFresh(helloFreshFamilyId: $helloFreshFamilyId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$IngredientsSortingModelIngredientFamilyHelloFreshImpl &&
+            other is _$IngredientsSortingStateIngredientFamilyHelloFreshImpl &&
             (identical(other.helloFreshFamilyId, helloFreshFamilyId) ||
                 other.helloFreshFamilyId == helloFreshFamilyId));
   }
@@ -752,11 +752,11 @@ class _$IngredientsSortingModelIngredientFamilyHelloFreshImpl
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$IngredientsSortingModelIngredientFamilyHelloFreshImplCopyWith<
-          _$IngredientsSortingModelIngredientFamilyHelloFreshImpl>
+  _$$IngredientsSortingStateIngredientFamilyHelloFreshImplCopyWith<
+          _$IngredientsSortingStateIngredientFamilyHelloFreshImpl>
       get copyWith =>
-          __$$IngredientsSortingModelIngredientFamilyHelloFreshImplCopyWithImpl<
-                  _$IngredientsSortingModelIngredientFamilyHelloFreshImpl>(
+          __$$IngredientsSortingStateIngredientFamilyHelloFreshImplCopyWithImpl<
+                  _$IngredientsSortingStateIngredientFamilyHelloFreshImpl>(
               this, _$identity);
 
   @override
@@ -791,7 +791,7 @@ class _$IngredientsSortingModelIngredientFamilyHelloFreshImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(
-            IngredientsSortingModelIngredientFamilyHelloFresh value)
+            IngredientsSortingStateIngredientFamilyHelloFresh value)
         helloFresh,
   }) {
     return helloFresh(this);
@@ -800,7 +800,7 @@ class _$IngredientsSortingModelIngredientFamilyHelloFreshImpl
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(IngredientsSortingModelIngredientFamilyHelloFresh value)?
+    TResult? Function(IngredientsSortingStateIngredientFamilyHelloFresh value)?
         helloFresh,
   }) {
     return helloFresh?.call(this);
@@ -809,7 +809,7 @@ class _$IngredientsSortingModelIngredientFamilyHelloFreshImpl
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(IngredientsSortingModelIngredientFamilyHelloFresh value)?
+    TResult Function(IngredientsSortingStateIngredientFamilyHelloFresh value)?
         helloFresh,
     required TResult orElse(),
   }) {
@@ -820,17 +820,17 @@ class _$IngredientsSortingModelIngredientFamilyHelloFreshImpl
   }
 }
 
-abstract class IngredientsSortingModelIngredientFamilyHelloFresh
-    implements IngredientsSortingModelIngredientFamily {
-  const factory IngredientsSortingModelIngredientFamilyHelloFresh(
+abstract class IngredientsSortingStateIngredientFamilyHelloFresh
+    implements IngredientsSortingStateIngredientFamily {
+  const factory IngredientsSortingStateIngredientFamilyHelloFresh(
           {required final String helloFreshFamilyId}) =
-      _$IngredientsSortingModelIngredientFamilyHelloFreshImpl;
+      _$IngredientsSortingStateIngredientFamilyHelloFreshImpl;
 
   @override
   String get helloFreshFamilyId;
   @override
   @JsonKey(ignore: true)
-  _$$IngredientsSortingModelIngredientFamilyHelloFreshImplCopyWith<
-          _$IngredientsSortingModelIngredientFamilyHelloFreshImpl>
+  _$$IngredientsSortingStateIngredientFamilyHelloFreshImplCopyWith<
+          _$IngredientsSortingStateIngredientFamilyHelloFreshImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

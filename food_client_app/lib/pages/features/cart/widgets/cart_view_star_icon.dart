@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:food_client/ui/cart/cart_model.dart';
+import 'package:food_client/cubits/features/cart/cart_state.dart';
 
 class CartViewStarIcon extends StatelessWidget {
-  final CartModelSorting sorting;
+  final CartStateSorting sorting;
 
   const CartViewStarIcon({super.key, required this.sorting});
 
@@ -16,11 +16,11 @@ class CartViewStarIcon extends StatelessWidget {
               builder: (final BuildContext context) => Icon(
                 Icons.star,
                 color: sorting.map(
-                  unit: (final CartModelSortingSelectedUnit selectedUnit) =>
+                  unit: (final CartStateSortingSelectedUnit selectedUnit) =>
                       sorting.map(
-                    unit: (final CartModelSortingSelectedUnit unit) =>
+                    unit: (final CartStateSortingSelectedUnit unit) =>
                         unit.active.id == selectedUnit.active.id,
-                    custom: (final CartModelSortingCustom custom) => false,
+                    custom: (final CartStateSortingCustom custom) => false,
                   ),
                   custom: (final _) => sorting.map(
                     unit: (final _) => false,

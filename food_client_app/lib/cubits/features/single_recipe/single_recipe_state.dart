@@ -8,85 +8,85 @@ part 'single_recipe_state.freezed.dart';
 class SingleRecipeState with _$SingleRecipeState {
   const factory SingleRecipeState({
     required final String recipeId,
-    required final ViewState<SingleRecipeModel> recipe,
+    required final ViewState<SingleRecipeStateRecipe> recipe,
     required final Option<int> selectedYield,
   }) = _SingleRecipeState;
 }
 
 @freezed
-class SingleRecipeModel with _$SingleRecipeModel {
-  const factory SingleRecipeModel({
+class SingleRecipeStateRecipe with _$SingleRecipeStateRecipe {
+  const factory SingleRecipeStateRecipe({
     required final String id,
     required final String slug,
-    required final SingleRecipeModelDisplayedAttributes displayedAttributes,
+    required final SingleRecipeStateDisplayedAttributes displayedAttributes,
     required final int difficulty,
     required final Option<Duration> totalCookingTime,
-    required final List<SingleRecipeModelYield> yields,
-    required final List<SingleRecipeModelTag> tags,
-    required final List<SingleRecipeModelStep> steps,
+    required final List<SingleRecipeStateYield> yields,
+    required final List<SingleRecipeStateTag> tags,
+    required final List<SingleRecipeStateStep> steps,
     required final Option<Uri> imageUrl,
     required final Option<Uri> imagePath,
-  }) = _SingleRecipeModel;
+  }) = _SingleRecipeStateRecipe;
 }
 
 @freezed
-class SingleRecipeModelDisplayedAttributes
-    with _$SingleRecipeModelDisplayedAttributes {
-  const factory SingleRecipeModelDisplayedAttributes({
+class SingleRecipeStateDisplayedAttributes
+    with _$SingleRecipeStateDisplayedAttributes {
+  const factory SingleRecipeStateDisplayedAttributes({
     required final String name,
     required final String headline,
     required final String description,
     required final Option<String> descriptionMarkdown,
-  }) = _SingleRecipeModelDisplayedAttributes;
+  }) = _SingleRecipeStateDisplayedAttributes;
 }
 
 @freezed
-class SingleRecipeModelStep with _$SingleRecipeModelStep {
-  const factory SingleRecipeModelStep({
+class SingleRecipeStateStep with _$SingleRecipeStateStep {
+  const factory SingleRecipeStateStep({
     required final String instructionMarkdown,
     required final Option<Uri> imageUrl,
-  }) = _SingleRecipeModelStep;
+  }) = _SingleRecipeStateStep;
 }
 
 @freezed
-class SingleRecipeModelYield with _$SingleRecipeModelYield {
-  const factory SingleRecipeModelYield({
+class SingleRecipeStateYield with _$SingleRecipeStateYield {
+  const factory SingleRecipeStateYield({
     required final bool isInShoppingCart,
     required final int servings,
-    required final List<SingleRecipeModelIngredient> ingredients,
-  }) = _SingleRecipeModelYield;
+    required final List<SingleRecipeStateIngredient> ingredients,
+  }) = _SingleRecipeStateYield;
 }
 
 @freezed
-class SingleRecipeModelTag with _$SingleRecipeModelTag {
-  const factory SingleRecipeModelTag({
+class SingleRecipeStateTag with _$SingleRecipeStateTag {
+  const factory SingleRecipeStateTag({
     required final String id,
     required final String slug,
     required final String displayedName,
-  }) = _SingleRecipeModelTag;
+  }) = _SingleRecipeStateTag;
 }
 
 @freezed
-class SingleRecipeModelIngredient with _$SingleRecipeModelIngredient {
-  const factory SingleRecipeModelIngredient({
+class SingleRecipeStateIngredient with _$SingleRecipeStateIngredient {
+  const factory SingleRecipeStateIngredient({
     required final Option<Uri> imageUrl,
     required final String ingredientId,
     required final String slug,
     required final String displayedName,
     required final Option<double> amount,
     required final Option<String> unit,
-    required final Option<SingleRecipeModelIngredientFamily> family,
-  }) = _SingleRecipeModelIngredient;
+    required final Option<SingleRecipeStateIngredientFamily> family,
+  }) = _SingleRecipeStateIngredient;
 }
 
 @freezed
-class SingleRecipeModelIngredientFamily
-    with _$SingleRecipeModelIngredientFamily {
-  const factory SingleRecipeModelIngredientFamily({
+class SingleRecipeStateIngredientFamily
+    with _$SingleRecipeStateIngredientFamily {
+  const factory SingleRecipeStateIngredientFamily({
     required final String id,
     required final String type,
     required final Option<String> iconPath,
     required final String name,
     required final String slug,
-  }) = _SingleRecipeModelIngredientFamily;
+  }) = _SingleRecipeStateIngredientFamily;
 }

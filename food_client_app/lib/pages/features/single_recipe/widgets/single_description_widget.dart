@@ -4,7 +4,7 @@ import 'package:food_client/cubits/features/single_recipe/single_recipe_state.da
 import 'package:food_client/pages/common/widgets.dart';
 
 class SingleDescriptionWidget extends StatelessWidget {
-  final SingleRecipeModelStep step;
+  final SingleRecipeStateStep step;
   final int index;
   const SingleDescriptionWidget({
     super.key,

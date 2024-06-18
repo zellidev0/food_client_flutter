@@ -6,7 +6,7 @@ import 'package:fpdart/fpdart.dart';
 
 class TabIngredientsWidget extends StatelessWidget {
   final Option<int> selectedYield;
-  final List<SingleRecipeModelYield> yields;
+  final List<SingleRecipeStateYield> yields;
   final String recipeId;
   const TabIngredientsWidget({
     super.key,
@@ -18,7 +18,7 @@ class TabIngredientsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final int index = (yields.indexWhere(
-              (final SingleRecipeModelYield yield) =>
+              (final SingleRecipeStateYield yield) =>
                   some(yield.servings) == selectedYield,
             ) +
             1) %
@@ -34,7 +34,7 @@ class TabIngredientsWidget extends StatelessWidget {
               context.read<SingleRecipeCubit>().setSelectedYield(
                     yield: yields
                         .map(
-                          (final SingleRecipeModelYield yield) =>
+                          (final SingleRecipeStateYield yield) =>
                               yield.servings,
                         )
                         .toList()[index],
