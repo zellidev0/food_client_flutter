@@ -71,8 +71,7 @@ GoRouter goRouter() => GoRouter(
                           .read<AppSettingsService>()
                           .state
                           .combineIngredients,
-                      imageSizerService:
-                          context.read<CartWebImageSizerService>(),
+                      imageSizerService: context.read<WebImageSizerService>(),
                       navigationService: context.read<NavigationService>(),
                       persistenceService: context.read<PersistenceService>(),
                       logger: LoggingServiceImplementation(

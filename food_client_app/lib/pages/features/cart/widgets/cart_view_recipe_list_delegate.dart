@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:food_client/pages/features/cart/widgets/card_element_widget.dart';
+import 'package:food_client/pages/features/cart/widgets/cart_recipe_widget.dart';
 
 class RecipesListDelegate extends SliverPersistentHeaderDelegate {
   final double extendedHeight;
@@ -29,7 +29,7 @@ class RecipesListDelegate extends SliverPersistentHeaderDelegate {
     return ListView.separated(
       padding: const EdgeInsets.all(16).copyWith(bottom: 12),
       scrollDirection: Axis.horizontal,
-      itemBuilder: (final _, final int index) => CardElementWidget(
+      itemBuilder: (final _, final int index) => CartRecipeWidget(
         height: height,
         index: index,
       ),

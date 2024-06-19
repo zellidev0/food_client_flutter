@@ -8,11 +8,11 @@ import 'package:food_client/pages/features/cart/cubit/cart_cubit.dart';
 import 'package:food_client/pages/features/cart/cubit/cart_state.dart';
 import 'package:fpdart/fpdart.dart';
 
-class CardElementWidget extends StatelessWidget {
+class CartRecipeWidget extends StatelessWidget {
   final double height;
   final int index;
 
-  const CardElementWidget({
+  const CartRecipeWidget({
     super.key,
     required this.height,
     required this.index,
