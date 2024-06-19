@@ -28,7 +28,7 @@ class RecipesListWidget extends StatelessWidget {
               final _,
             ) =>
                 BlocBuilder<HomeCubit, HomeState>(
-              buildWhen: (previous, current) =>
+              buildWhen: (HomeState previous, HomeState current) =>
                   previous.availableFilters != current.availableFilters,
               builder: (BuildContext context, HomeState state) =>
                   state.availableFilters.map(
@@ -43,7 +43,7 @@ class RecipesListWidget extends StatelessWidget {
                   ),
                 ),
                 error: (_) => const SizedBox.shrink(),
-                loading: (_) => const CircularProgressIndicator(),
+                loading: (_) => const SizedBox.shrink(),
               ),
             ),
             noItemsFoundIndicatorBuilder: (final _) => EmptyViewContent(

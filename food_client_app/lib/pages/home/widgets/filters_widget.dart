@@ -139,7 +139,7 @@ class FiltersWidget extends StatelessWidget {
             ],
           ),
           error: (_) => const SizedBox.shrink(),
-          loading: (_) => const Center(child: CircularProgressIndicator()),
+          loading: (_) => const SizedBox.shrink(),
         ),
       );
 }
