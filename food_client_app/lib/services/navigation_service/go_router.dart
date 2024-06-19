@@ -5,7 +5,9 @@ import 'package:food_client/pages/features/account/account_view.dart';
 import 'package:food_client/pages/features/cart/cart_view.dart';
 import 'package:food_client/pages/features/cart/cubit/cart_cubit.dart';
 import 'package:food_client/pages/features/cart/cubit/cart_state.dart';
-import 'package:food_client/pages/features/cart/services/cart_web_image_sizer_service.dart';
+import 'package:food_client/pages/features/history/cubit/history_cubit.dart';
+import 'package:food_client/pages/features/history/cubit/history_state.dart';
+import 'package:food_client/pages/features/history/history_view.dart';
 import 'package:food_client/pages/features/ingredients_sorting/cubit/ingredients_sorting_cubit.dart';
 import 'package:food_client/pages/features/ingredients_sorting/ingredients_sorting_view.dart';
 import 'package:food_client/pages/features/main/cubit/main_cubit.dart';
@@ -22,9 +24,6 @@ import 'package:food_client/services/navigation_service/navigation_service.dart'
 import 'package:food_client/services/persistence_service/persistence_service.dart';
 import 'package:food_client/services/web_client/web_client_service.dart';
 import 'package:food_client/services/web_image_sizer/web_image_sizer_service.dart';
-import 'package:food_client/ui/history/history_controller.dart';
-import 'package:food_client/ui/history/history_model.dart';
-import 'package:food_client/ui/history/history_view.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nested/nested.dart';
@@ -137,22 +136,17 @@ GoRouter goRouter() => GoRouter(
           path: NavigationServiceUris.ingredientsSortingRouteUri.toString(),
         ),
         GoRoute(
-          builder: (_, GoRouterState state) =>
-              BlocProvider<HistoryControllerImplementation>(
-            create: (BuildContext context) => HistoryControllerImplementation(
+          builder: (_, GoRouterState state) => BlocProvider<HistoryCubit>(
+            create: (BuildContext context) => HistoryCubit(
               logger: LoggingServiceImplementation(
                 loggerName: 'HistoryController',
               ),
               navigationService: context.read<NavigationService>(),
               persistenceService: context.read<PersistenceService>(),
             ),
-            child: BlocBuilder<HistoryControllerImplementation, HistoryModel>(
-              builder: (BuildContext context, HistoryModel model) =>
-                  HistoryView(
-                model: model,
-                controller:
-                    BlocProvider.of<HistoryControllerImplementation>(context),
-              ),
+            child: BlocBuilder<HistoryCubit, HistoryState>(
+              builder: (BuildContext context, HistoryState model) =>
+                  const HistoryView(),
             ),
           ),
           parentNavigatorKey: rootNavigatorKey,

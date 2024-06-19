@@ -4,7 +4,7 @@
       "empty_states": {
         "no_units": "No existing location yet!"
       },
-      "dialogs":{
+      "dialogs": {
         "delete_dialog": {
           "title": "Supermarkt löschen?",
           "content": "Sicher dass du {unitTitle} löschen willst?",
@@ -74,11 +74,14 @@
         "try_again": "Nochmal versuchen"
       }
     },
+    "history_view": {
+      "error": "Fehler beim Laden der Historie!"
+    },
     "cart_view": {
       "empty_states": {
         "empty_cart": "Es sind bisher keine\n Rezepte im Einkaufswagen"
       },
-      "error_states":{
+      "error_states": {
         "general_error": "Fehler beim Laden der Einkaufsliste!"
       },
       "dialogs": {

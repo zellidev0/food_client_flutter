@@ -16,16 +16,16 @@ import 'package:food_client/pages/features/ingredients_sorting/services/web_serv
     as _i3;
 import 'package:food_client/pages/features/ingredients_sorting/services/web_service/ingredients_sorting_web_image_sizer_service.dart'
     as _i9;
-import 'package:food_client/services/logging_service/logging_service.dart'
-    as _i15;
-import 'package:food_client/services/navigation_service/navigation_service.dart'
-    as _i7;
 import 'package:food_client/pages/home/services/home_navigation_service.dart'
     as _i14;
 import 'package:food_client/pages/home/services/home_web_client_service.dart'
     as _i11;
 import 'package:food_client/pages/home/services/home_web_image_sizer_service.dart'
     as _i13;
+import 'package:food_client/services/logging_service/logging_service.dart'
+    as _i15;
+import 'package:food_client/services/navigation_service/navigation_service.dart'
+    as _i7;
 import 'package:fpdart/fpdart.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -372,33 +372,33 @@ class MockHomeWebClientService extends _i1.Mock
       ) as _i2.TaskEither<Exception, _i11.HomeWebClientModelRecipeResponse>);
 
   @override
-  _i2.TaskEither<Exception,
-      List<_i11.HomeWebClientModelCuisine>> fetchCuisines({
+  _i2.TaskEither<Exception, List<_i11.HomeWebClientModelCuisine>>
+      fetchCuisines({
     required List<_i12.Locale>? recipeLocales,
     _i2.Option<int>? take = const _i2.None(),
   }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #fetchCuisines,
-          [],
-          {
-            #recipeLocales: recipeLocales,
-            #take: take,
-          },
-        ),
-        returnValue:
-            _FakeTaskEither_0<Exception, List<_i11.HomeWebClientModelCuisine>>(
-          this,
-          Invocation.method(
-            #fetchCuisines,
-            [],
-            {
-              #recipeLocales: recipeLocales,
-              #take: take,
-            },
-          ),
-        ),
-      ) as _i2.TaskEither<Exception, List<_i11.HomeWebClientModelCuisine>>);
+          (super.noSuchMethod(
+            Invocation.method(
+              #fetchCuisines,
+              [],
+              {
+                #recipeLocales: recipeLocales,
+                #take: take,
+              },
+            ),
+            returnValue: _FakeTaskEither_0<Exception,
+                List<_i11.HomeWebClientModelCuisine>>(
+              this,
+              Invocation.method(
+                #fetchCuisines,
+                [],
+                {
+                  #recipeLocales: recipeLocales,
+                  #take: take,
+                },
+              ),
+            ),
+          ) as _i2.TaskEither<Exception, List<_i11.HomeWebClientModelCuisine>>);
 
   @override
   _i2.TaskEither<Exception, List<_i11.HomeWebClientModelTag>> fetchTags({
@@ -476,31 +476,20 @@ class MockHomeNavigationService extends _i1.Mock
   }
 
   @override
-  void goBack({Uri? fallbackUri}) => super.noSuchMethod(
-        Invocation.method(
-          #goBack,
-          [],
-          {#fallbackUri: fallbackUri},
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void replaceWithNamed({required Uri? uri}) => super.noSuchMethod(
-        Invocation.method(
-          #replaceWithNamed,
-          [],
-          {#uri: uri},
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
   void navigateToNamed({required Uri? uri}) => super.noSuchMethod(
         Invocation.method(
           #navigateToNamed,
           [],
           {#uri: uri},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void goBack() => super.noSuchMethod(
+        Invocation.method(
+          #goBack,
+          [],
         ),
         returnValueForMissingStub: null,
       );
@@ -516,6 +505,87 @@ class MockHomeNavigationService extends _i1.Mock
       );
 
   @override
+  void closeDialog<T>({T? data}) => super.noSuchMethod(
+        Invocation.method(
+          #closeDialog,
+          [],
+          {#data: data},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void pop<T>({T? data}) => super.noSuchMethod(
+        Invocation.method(
+          #pop,
+          [],
+          {#data: data},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void push({required Uri? uri}) => super.noSuchMethod(
+        Invocation.method(
+          #push,
+          [],
+          {#uri: uri},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void replaceWith({required Uri? uri}) => super.noSuchMethod(
+        Invocation.method(
+          #replaceWith,
+          [],
+          {#uri: uri},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void replaceWithNamed({required Uri? uri}) => super.noSuchMethod(
+        Invocation.method(
+          #replaceWithNamed,
+          [],
+          {#uri: uri},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void reset({required Uri? uri}) => super.noSuchMethod(
+        Invocation.method(
+          #reset,
+          [],
+          {#uri: uri},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i6.Future<void> showDialog({
+    _i2.Option<List<_i7.NavigationServiceDialogAction>>? actions =
+        const _i2.None(),
+    required String? title,
+    required String? content,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #showDialog,
+          [],
+          {
+            #actions: actions,
+            #title: title,
+            #content: content,
+          },
+        ),
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
+
+  @override
   _i6.Future<void> showModalBottomSheet({required _i8.Widget? child}) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -526,37 +596,6 @@ class MockHomeNavigationService extends _i1.Mock
         returnValue: _i6.Future<void>.value(),
         returnValueForMissingStub: _i6.Future<void>.value(),
       ) as _i6.Future<void>);
-
-  @override
-  _i6.Future<void> showDialog({
-    _i2.Option<List<_i7.NavigationServiceDialogAction>>? actions =
-        const _i2.None(),
-    required String? content,
-    required String? title,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #showDialog,
-          [],
-          {
-            #actions: actions,
-            #content: content,
-            #title: title,
-          },
-        ),
-        returnValue: _i6.Future<void>.value(),
-        returnValueForMissingStub: _i6.Future<void>.value(),
-      ) as _i6.Future<void>);
-
-  @override
-  void closeDialog<T>({T? data}) => super.noSuchMethod(
-        Invocation.method(
-          #closeDialog,
-          [],
-          {#data: data},
-        ),
-        returnValueForMissingStub: null,
-      );
 }
 
 /// A class which mocks [LoggingService].

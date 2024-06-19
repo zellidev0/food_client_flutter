@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'history_model.dart';
+part of 'history_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,30 +15,30 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$HistoryModel {
-  ViewState<List<HistoryModelRecipe>> get recipes =>
+mixin _$HistoryState {
+  ViewState<List<HistoryStateRecipe>> get recipes =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $HistoryModelCopyWith<HistoryModel> get copyWith =>
+  $HistoryStateCopyWith<HistoryState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HistoryModelCopyWith<$Res> {
-  factory $HistoryModelCopyWith(
-          HistoryModel value, $Res Function(HistoryModel) then) =
-      _$HistoryModelCopyWithImpl<$Res, HistoryModel>;
+abstract class $HistoryStateCopyWith<$Res> {
+  factory $HistoryStateCopyWith(
+          HistoryState value, $Res Function(HistoryState) then) =
+      _$HistoryStateCopyWithImpl<$Res, HistoryState>;
   @useResult
-  $Res call({ViewState<List<HistoryModelRecipe>> recipes});
+  $Res call({ViewState<List<HistoryStateRecipe>> recipes});
 
-  $ViewStateCopyWith<List<HistoryModelRecipe>, $Res> get recipes;
+  $ViewStateCopyWith<List<HistoryStateRecipe>, $Res> get recipes;
 }
 
 /// @nodoc
-class _$HistoryModelCopyWithImpl<$Res, $Val extends HistoryModel>
-    implements $HistoryModelCopyWith<$Res> {
-  _$HistoryModelCopyWithImpl(this._value, this._then);
+class _$HistoryStateCopyWithImpl<$Res, $Val extends HistoryState>
+    implements $HistoryStateCopyWith<$Res> {
+  _$HistoryStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -54,14 +54,14 @@ class _$HistoryModelCopyWithImpl<$Res, $Val extends HistoryModel>
       recipes: null == recipes
           ? _value.recipes
           : recipes // ignore: cast_nullable_to_non_nullable
-              as ViewState<List<HistoryModelRecipe>>,
+              as ViewState<List<HistoryStateRecipe>>,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ViewStateCopyWith<List<HistoryModelRecipe>, $Res> get recipes {
-    return $ViewStateCopyWith<List<HistoryModelRecipe>, $Res>(_value.recipes,
+  $ViewStateCopyWith<List<HistoryStateRecipe>, $Res> get recipes {
+    return $ViewStateCopyWith<List<HistoryStateRecipe>, $Res>(_value.recipes,
         (value) {
       return _then(_value.copyWith(recipes: value) as $Val);
     });
@@ -69,25 +69,25 @@ class _$HistoryModelCopyWithImpl<$Res, $Val extends HistoryModel>
 }
 
 /// @nodoc
-abstract class _$$HistoryModelImplCopyWith<$Res>
-    implements $HistoryModelCopyWith<$Res> {
-  factory _$$HistoryModelImplCopyWith(
-          _$HistoryModelImpl value, $Res Function(_$HistoryModelImpl) then) =
-      __$$HistoryModelImplCopyWithImpl<$Res>;
+abstract class _$$HistoryStateImplCopyWith<$Res>
+    implements $HistoryStateCopyWith<$Res> {
+  factory _$$HistoryStateImplCopyWith(
+          _$HistoryStateImpl value, $Res Function(_$HistoryStateImpl) then) =
+      __$$HistoryStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ViewState<List<HistoryModelRecipe>> recipes});
+  $Res call({ViewState<List<HistoryStateRecipe>> recipes});
 
   @override
-  $ViewStateCopyWith<List<HistoryModelRecipe>, $Res> get recipes;
+  $ViewStateCopyWith<List<HistoryStateRecipe>, $Res> get recipes;
 }
 
 /// @nodoc
-class __$$HistoryModelImplCopyWithImpl<$Res>
-    extends _$HistoryModelCopyWithImpl<$Res, _$HistoryModelImpl>
-    implements _$$HistoryModelImplCopyWith<$Res> {
-  __$$HistoryModelImplCopyWithImpl(
-      _$HistoryModelImpl _value, $Res Function(_$HistoryModelImpl) _then)
+class __$$HistoryStateImplCopyWithImpl<$Res>
+    extends _$HistoryStateCopyWithImpl<$Res, _$HistoryStateImpl>
+    implements _$$HistoryStateImplCopyWith<$Res> {
+  __$$HistoryStateImplCopyWithImpl(
+      _$HistoryStateImpl _value, $Res Function(_$HistoryStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -95,33 +95,33 @@ class __$$HistoryModelImplCopyWithImpl<$Res>
   $Res call({
     Object? recipes = null,
   }) {
-    return _then(_$HistoryModelImpl(
+    return _then(_$HistoryStateImpl(
       recipes: null == recipes
           ? _value.recipes
           : recipes // ignore: cast_nullable_to_non_nullable
-              as ViewState<List<HistoryModelRecipe>>,
+              as ViewState<List<HistoryStateRecipe>>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$HistoryModelImpl implements _HistoryModel {
-  const _$HistoryModelImpl({required this.recipes});
+class _$HistoryStateImpl implements _HistoryState {
+  const _$HistoryStateImpl({required this.recipes});
 
   @override
-  final ViewState<List<HistoryModelRecipe>> recipes;
+  final ViewState<List<HistoryStateRecipe>> recipes;
 
   @override
   String toString() {
-    return 'HistoryModel(recipes: $recipes)';
+    return 'HistoryState(recipes: $recipes)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HistoryModelImpl &&
+            other is _$HistoryStateImpl &&
             (identical(other.recipes, recipes) || other.recipes == recipes));
   }
 
@@ -131,48 +131,48 @@ class _$HistoryModelImpl implements _HistoryModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$HistoryModelImplCopyWith<_$HistoryModelImpl> get copyWith =>
-      __$$HistoryModelImplCopyWithImpl<_$HistoryModelImpl>(this, _$identity);
+  _$$HistoryStateImplCopyWith<_$HistoryStateImpl> get copyWith =>
+      __$$HistoryStateImplCopyWithImpl<_$HistoryStateImpl>(this, _$identity);
 }
 
-abstract class _HistoryModel implements HistoryModel {
-  const factory _HistoryModel(
-          {required final ViewState<List<HistoryModelRecipe>> recipes}) =
-      _$HistoryModelImpl;
+abstract class _HistoryState implements HistoryState {
+  const factory _HistoryState(
+          {required final ViewState<List<HistoryStateRecipe>> recipes}) =
+      _$HistoryStateImpl;
 
   @override
-  ViewState<List<HistoryModelRecipe>> get recipes;
+  ViewState<List<HistoryStateRecipe>> get recipes;
   @override
   @JsonKey(ignore: true)
-  _$$HistoryModelImplCopyWith<_$HistoryModelImpl> get copyWith =>
+  _$$HistoryStateImplCopyWith<_$HistoryStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$HistoryModelRecipe {
+mixin _$HistoryStateRecipe {
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   Option<Uri> get imageUri => throw _privateConstructorUsedError;
   String get createdAt => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $HistoryModelRecipeCopyWith<HistoryModelRecipe> get copyWith =>
+  $HistoryStateRecipeCopyWith<HistoryStateRecipe> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HistoryModelRecipeCopyWith<$Res> {
-  factory $HistoryModelRecipeCopyWith(
-          HistoryModelRecipe value, $Res Function(HistoryModelRecipe) then) =
-      _$HistoryModelRecipeCopyWithImpl<$Res, HistoryModelRecipe>;
+abstract class $HistoryStateRecipeCopyWith<$Res> {
+  factory $HistoryStateRecipeCopyWith(
+          HistoryStateRecipe value, $Res Function(HistoryStateRecipe) then) =
+      _$HistoryStateRecipeCopyWithImpl<$Res, HistoryStateRecipe>;
   @useResult
   $Res call({String id, String title, Option<Uri> imageUri, String createdAt});
 }
 
 /// @nodoc
-class _$HistoryModelRecipeCopyWithImpl<$Res, $Val extends HistoryModelRecipe>
-    implements $HistoryModelRecipeCopyWith<$Res> {
-  _$HistoryModelRecipeCopyWithImpl(this._value, this._then);
+class _$HistoryStateRecipeCopyWithImpl<$Res, $Val extends HistoryStateRecipe>
+    implements $HistoryStateRecipeCopyWith<$Res> {
+  _$HistoryStateRecipeCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -209,22 +209,22 @@ class _$HistoryModelRecipeCopyWithImpl<$Res, $Val extends HistoryModelRecipe>
 }
 
 /// @nodoc
-abstract class _$$HistoryModelRecipeImplCopyWith<$Res>
-    implements $HistoryModelRecipeCopyWith<$Res> {
-  factory _$$HistoryModelRecipeImplCopyWith(_$HistoryModelRecipeImpl value,
-          $Res Function(_$HistoryModelRecipeImpl) then) =
-      __$$HistoryModelRecipeImplCopyWithImpl<$Res>;
+abstract class _$$HistoryStateRecipeImplCopyWith<$Res>
+    implements $HistoryStateRecipeCopyWith<$Res> {
+  factory _$$HistoryStateRecipeImplCopyWith(_$HistoryStateRecipeImpl value,
+          $Res Function(_$HistoryStateRecipeImpl) then) =
+      __$$HistoryStateRecipeImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, String title, Option<Uri> imageUri, String createdAt});
 }
 
 /// @nodoc
-class __$$HistoryModelRecipeImplCopyWithImpl<$Res>
-    extends _$HistoryModelRecipeCopyWithImpl<$Res, _$HistoryModelRecipeImpl>
-    implements _$$HistoryModelRecipeImplCopyWith<$Res> {
-  __$$HistoryModelRecipeImplCopyWithImpl(_$HistoryModelRecipeImpl _value,
-      $Res Function(_$HistoryModelRecipeImpl) _then)
+class __$$HistoryStateRecipeImplCopyWithImpl<$Res>
+    extends _$HistoryStateRecipeCopyWithImpl<$Res, _$HistoryStateRecipeImpl>
+    implements _$$HistoryStateRecipeImplCopyWith<$Res> {
+  __$$HistoryStateRecipeImplCopyWithImpl(_$HistoryStateRecipeImpl _value,
+      $Res Function(_$HistoryStateRecipeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -235,7 +235,7 @@ class __$$HistoryModelRecipeImplCopyWithImpl<$Res>
     Object? imageUri = null,
     Object? createdAt = null,
   }) {
-    return _then(_$HistoryModelRecipeImpl(
+    return _then(_$HistoryStateRecipeImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -258,8 +258,8 @@ class __$$HistoryModelRecipeImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$HistoryModelRecipeImpl implements _HistoryModelRecipe {
-  const _$HistoryModelRecipeImpl(
+class _$HistoryStateRecipeImpl implements _HistoryStateRecipe {
+  const _$HistoryStateRecipeImpl(
       {required this.id,
       required this.title,
       required this.imageUri,
@@ -276,14 +276,14 @@ class _$HistoryModelRecipeImpl implements _HistoryModelRecipe {
 
   @override
   String toString() {
-    return 'HistoryModelRecipe(id: $id, title: $title, imageUri: $imageUri, createdAt: $createdAt)';
+    return 'HistoryStateRecipe(id: $id, title: $title, imageUri: $imageUri, createdAt: $createdAt)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HistoryModelRecipeImpl &&
+            other is _$HistoryStateRecipeImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.imageUri, imageUri) ||
@@ -298,17 +298,17 @@ class _$HistoryModelRecipeImpl implements _HistoryModelRecipe {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$HistoryModelRecipeImplCopyWith<_$HistoryModelRecipeImpl> get copyWith =>
-      __$$HistoryModelRecipeImplCopyWithImpl<_$HistoryModelRecipeImpl>(
+  _$$HistoryStateRecipeImplCopyWith<_$HistoryStateRecipeImpl> get copyWith =>
+      __$$HistoryStateRecipeImplCopyWithImpl<_$HistoryStateRecipeImpl>(
           this, _$identity);
 }
 
-abstract class _HistoryModelRecipe implements HistoryModelRecipe {
-  const factory _HistoryModelRecipe(
+abstract class _HistoryStateRecipe implements HistoryStateRecipe {
+  const factory _HistoryStateRecipe(
       {required final String id,
       required final String title,
       required final Option<Uri> imageUri,
-      required final String createdAt}) = _$HistoryModelRecipeImpl;
+      required final String createdAt}) = _$HistoryStateRecipeImpl;
 
   @override
   String get id;
@@ -320,6 +320,6 @@ abstract class _HistoryModelRecipe implements HistoryModelRecipe {
   String get createdAt;
   @override
   @JsonKey(ignore: true)
-  _$$HistoryModelRecipeImplCopyWith<_$HistoryModelRecipeImpl> get copyWith =>
+  _$$HistoryStateRecipeImplCopyWith<_$HistoryStateRecipeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
