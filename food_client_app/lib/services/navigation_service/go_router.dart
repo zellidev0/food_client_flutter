@@ -5,40 +5,26 @@ import 'package:food_client/pages/features/account/account_view.dart';
 import 'package:food_client/pages/features/cart/cart_view.dart';
 import 'package:food_client/pages/features/cart/cubit/cart_cubit.dart';
 import 'package:food_client/pages/features/cart/cubit/cart_state.dart';
-import 'package:food_client/pages/features/cart/services/cart_navigation_service.dart';
-import 'package:food_client/pages/features/cart/services/cart_persistence_service.dart';
 import 'package:food_client/pages/features/cart/services/cart_web_image_sizer_service.dart';
 import 'package:food_client/pages/features/ingredients_sorting/cubit/ingredients_sorting_cubit.dart';
 import 'package:food_client/pages/features/ingredients_sorting/ingredients_sorting_view.dart';
-import 'package:food_client/pages/features/ingredients_sorting/services/ingredients_sorting_navigation_service.dart';
-import 'package:food_client/pages/features/ingredients_sorting/services/persistance_service/ingredients_sorting_persistence_service.dart';
-import 'package:food_client/pages/features/ingredients_sorting/services/web_service/ingredients_sorting_web_client_service.dart';
-import 'package:food_client/pages/features/ingredients_sorting/services/web_service/ingredients_sorting_web_image_sizer_service.dart';
 import 'package:food_client/pages/features/main/cubit/main_cubit.dart';
 import 'package:food_client/pages/features/main/cubit/main_state.dart';
 import 'package:food_client/pages/features/main/main_view.dart';
-import 'package:food_client/pages/features/main/services/main_navigation_service.dart';
 import 'package:food_client/pages/features/single_recipe/cubit/single_recipe_cubit.dart';
-import 'package:food_client/pages/features/single_recipe/services/persistance_service/single_recipe_persistence_service.dart';
-import 'package:food_client/pages/features/single_recipe/services/single_recipe_navigation_service.dart';
-import 'package:food_client/pages/features/single_recipe/services/web_service/single_recipe_web_client_service.dart';
-import 'package:food_client/pages/features/single_recipe/services/web_service/single_recipe_web_image_sizer_service.dart';
 import 'package:food_client/pages/features/single_recipe/single_recipe_view.dart';
+import 'package:food_client/pages/home/cubit/home_cubit.dart';
+import 'package:food_client/pages/home/cubit/home_state.dart';
+import 'package:food_client/pages/home/home_view.dart';
 import 'package:food_client/services/app_settings_service/app_settings_service.dart';
 import 'package:food_client/services/logging_service/logging_service.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
+import 'package:food_client/services/persistence_service/persistence_service.dart';
+import 'package:food_client/services/web_client/web_client_service.dart';
 import 'package:food_client/services/web_image_sizer/web_image_sizer_service.dart';
 import 'package:food_client/ui/history/history_controller.dart';
 import 'package:food_client/ui/history/history_model.dart';
 import 'package:food_client/ui/history/history_view.dart';
-import 'package:food_client/ui/history/services/history_navigation_service.dart';
-import 'package:food_client/ui/history/services/history_persistence_service.dart';
-import 'package:food_client/ui/home/home_controller.dart';
-import 'package:food_client/ui/home/home_model.dart';
-import 'package:food_client/ui/home/home_view.dart';
-import 'package:food_client/ui/home/services/home_navigation_service.dart';
-import 'package:food_client/ui/home/services/home_persistence_service.dart';
-import 'package:food_client/ui/home/services/home_web_client_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nested/nested.dart';
@@ -59,7 +45,7 @@ GoRouter goRouter() => GoRouter(
         StatefulShellRoute.indexedStack(
           builder: (_, __, Widget child) => BlocProvider<MainCubit>(
             create: (BuildContext context) => MainCubit(
-              navigationService: context.read<MainNavigationService>(),
+              navigationService: context.read<NavigationService>(),
             ),
             child: BlocBuilder<MainCubit, MainState>(
               builder: (BuildContext context, MainState model) => MainView(
@@ -87,9 +73,8 @@ GoRouter goRouter() => GoRouter(
                           .combineIngredients,
                       imageSizerService:
                           context.read<CartWebImageSizerService>(),
-                      navigationService: context.read<CartNavigationService>(),
-                      persistenceService:
-                          context.read<CartPersistenceService>(),
+                      navigationService: context.read<NavigationService>(),
+                      persistenceService: context.read<PersistenceService>(),
                       logger: LoggingServiceImplementation(
                         loggerName: 'CartController',
                       ),
@@ -106,33 +91,24 @@ GoRouter goRouter() => GoRouter(
             StatefulShellBranch(
               routes: <RouteBase>[
                 GoRoute(
-                  builder: (_, GoRouterState state) =>
-                      BlocProvider<HomeControllerImplementation>(
-                    create: (BuildContext context) =>
-                        HomeControllerImplementation(
+                  builder: (_, GoRouterState state) => BlocProvider<HomeCubit>(
+                    create: (BuildContext context) => HomeCubit(
                       recipeLocales: context
                           .read<AppSettingsService>()
                           .state
                           .recipeLocales,
-                      navigationService: context.read<HomeNavigationService>(),
-                      webClientService: context.read<HomeWebClientService>(),
+                      navigationService: context.read<NavigationService>(),
+                      webClientService: context.read<WebClientService>(),
                       webImageSizerService:
                           context.read<WebImageSizerService>(),
-                      persistenceService:
-                          context.read<HomePersistenceService>(),
+                      persistenceService: context.read<PersistenceService>(),
                       logger: LoggingServiceImplementation(
                         loggerName: 'HomeController',
                       ),
                     ),
-                    child: BlocBuilder<HomeControllerImplementation, HomeModel>(
-                      builder: (BuildContext context1, HomeModel model) =>
-                          HomeView(
-                        model: model,
-                        controller:
-                            BlocProvider.of<HomeControllerImplementation>(
-                          context1,
-                        ),
-                      ),
+                    child: BlocBuilder<HomeCubit, HomeState>(
+                      builder: (BuildContext context1, HomeState model) =>
+                          const HomeView(),
                     ),
                   ),
                   path: NavigationServiceUris.homeRouteUri.toString(),
@@ -149,14 +125,10 @@ GoRouter goRouter() => GoRouter(
                   loggingService: LoggingServiceImplementation(
                     loggerName: 'IngredientsSortingController',
                   ),
-                  navigationService:
-                      context.read<IngredientsSortingNavigationService>(),
-                  persistenceService:
-                      context.read<IngredientsSortingPersistenceService>(),
-                  webClientService:
-                      context.read<IngredientsSortingWebClientService>(),
-                  webImageSizerService:
-                      context.read<IngredientsSortingWebImageSizerService>(),
+                  navigationService: context.read<NavigationService>(),
+                  persistenceService: context.read<PersistenceService>(),
+                  webClientService: context.read<WebClientService>(),
+                  webImageSizerService: context.read<WebImageSizerService>(),
                 ),
               ),
             ],
@@ -172,8 +144,8 @@ GoRouter goRouter() => GoRouter(
               logger: LoggingServiceImplementation(
                 loggerName: 'HistoryController',
               ),
-              navigationService: context.read<HistoryNavigationService>(),
-              persistenceService: context.read<HistoryPersistenceService>(),
+              navigationService: context.read<NavigationService>(),
+              persistenceService: context.read<PersistenceService>(),
             ),
             child: BlocBuilder<HistoryControllerImplementation, HistoryModel>(
               builder: (BuildContext context, HistoryModel model) =>
@@ -192,20 +164,17 @@ GoRouter goRouter() => GoRouter(
             extendBodyBehindAppBar: true,
             body: BlocProvider<SingleRecipeCubit>(
               create: (BuildContext context) => SingleRecipeCubit(
-                navigationService:
-                    context.read<SingleRecipeNavigationService>(),
+                navigationService: context.read<NavigationService>(),
+                persistenceService: context.read<PersistenceService>(),
+                webClientService: context.read<WebClientService>(),
+                webImageSizerService: context.read<WebImageSizerService>(),
+                logger: LoggingServiceImplementation(
+                  loggerName: 'SingleRecipeCubit',
+                ),
                 selectedYield: const None<int>(),
                 recipeId: state.pathParameters[
                         NavigationServiceUris.singleRecipeIdKey] ??
                     '',
-                persistenceService:
-                    context.read<SingleRecipePersistenceService>(),
-                webClientService: context.read<SingleRecipeWebClientService>(),
-                webImageSizerService:
-                    context.read<SingleRecipeWebImageSizerService>(),
-                logger: LoggingServiceImplementation(
-                  loggerName: 'SingleRecipeCubit',
-                ),
               ),
               child: const SingleRecipeView(),
             ),

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'home_model.dart';
+part of 'home_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,35 +15,35 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$HomeModel {
-  PagingController<int, HomeModelRecipe> get paginationController =>
+mixin _$HomeState {
+  PagingController<int, HomeStateRecipe> get paginationController =>
       throw _privateConstructorUsedError;
-  ViewState<List<HomeModelFilter>> get availableFilters =>
+  ViewState<List<HomeStateFilter>> get availableFilters =>
       throw _privateConstructorUsedError;
   List<Locale> get recipeLocales => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $HomeModelCopyWith<HomeModel> get copyWith =>
+  $HomeStateCopyWith<HomeState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HomeModelCopyWith<$Res> {
-  factory $HomeModelCopyWith(HomeModel value, $Res Function(HomeModel) then) =
-      _$HomeModelCopyWithImpl<$Res, HomeModel>;
+abstract class $HomeStateCopyWith<$Res> {
+  factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
+      _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
   $Res call(
-      {PagingController<int, HomeModelRecipe> paginationController,
-      ViewState<List<HomeModelFilter>> availableFilters,
+      {PagingController<int, HomeStateRecipe> paginationController,
+      ViewState<List<HomeStateFilter>> availableFilters,
       List<Locale> recipeLocales});
 
-  $ViewStateCopyWith<List<HomeModelFilter>, $Res> get availableFilters;
+  $ViewStateCopyWith<List<HomeStateFilter>, $Res> get availableFilters;
 }
 
 /// @nodoc
-class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
-    implements $HomeModelCopyWith<$Res> {
-  _$HomeModelCopyWithImpl(this._value, this._then);
+class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
+    implements $HomeStateCopyWith<$Res> {
+  _$HomeStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -61,11 +61,11 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
       paginationController: null == paginationController
           ? _value.paginationController
           : paginationController // ignore: cast_nullable_to_non_nullable
-              as PagingController<int, HomeModelRecipe>,
+              as PagingController<int, HomeStateRecipe>,
       availableFilters: null == availableFilters
           ? _value.availableFilters
           : availableFilters // ignore: cast_nullable_to_non_nullable
-              as ViewState<List<HomeModelFilter>>,
+              as ViewState<List<HomeStateFilter>>,
       recipeLocales: null == recipeLocales
           ? _value.recipeLocales
           : recipeLocales // ignore: cast_nullable_to_non_nullable
@@ -75,8 +75,8 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $ViewStateCopyWith<List<HomeModelFilter>, $Res> get availableFilters {
-    return $ViewStateCopyWith<List<HomeModelFilter>, $Res>(
+  $ViewStateCopyWith<List<HomeStateFilter>, $Res> get availableFilters {
+    return $ViewStateCopyWith<List<HomeStateFilter>, $Res>(
         _value.availableFilters, (value) {
       return _then(_value.copyWith(availableFilters: value) as $Val);
     });
@@ -84,28 +84,28 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
 }
 
 /// @nodoc
-abstract class _$$HomeModelImplCopyWith<$Res>
-    implements $HomeModelCopyWith<$Res> {
-  factory _$$HomeModelImplCopyWith(
-          _$HomeModelImpl value, $Res Function(_$HomeModelImpl) then) =
-      __$$HomeModelImplCopyWithImpl<$Res>;
+abstract class _$$HomeStateImplCopyWith<$Res>
+    implements $HomeStateCopyWith<$Res> {
+  factory _$$HomeStateImplCopyWith(
+          _$HomeStateImpl value, $Res Function(_$HomeStateImpl) then) =
+      __$$HomeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {PagingController<int, HomeModelRecipe> paginationController,
-      ViewState<List<HomeModelFilter>> availableFilters,
+      {PagingController<int, HomeStateRecipe> paginationController,
+      ViewState<List<HomeStateFilter>> availableFilters,
       List<Locale> recipeLocales});
 
   @override
-  $ViewStateCopyWith<List<HomeModelFilter>, $Res> get availableFilters;
+  $ViewStateCopyWith<List<HomeStateFilter>, $Res> get availableFilters;
 }
 
 /// @nodoc
-class __$$HomeModelImplCopyWithImpl<$Res>
-    extends _$HomeModelCopyWithImpl<$Res, _$HomeModelImpl>
-    implements _$$HomeModelImplCopyWith<$Res> {
-  __$$HomeModelImplCopyWithImpl(
-      _$HomeModelImpl _value, $Res Function(_$HomeModelImpl) _then)
+class __$$HomeStateImplCopyWithImpl<$Res>
+    extends _$HomeStateCopyWithImpl<$Res, _$HomeStateImpl>
+    implements _$$HomeStateImplCopyWith<$Res> {
+  __$$HomeStateImplCopyWithImpl(
+      _$HomeStateImpl _value, $Res Function(_$HomeStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -115,15 +115,15 @@ class __$$HomeModelImplCopyWithImpl<$Res>
     Object? availableFilters = null,
     Object? recipeLocales = null,
   }) {
-    return _then(_$HomeModelImpl(
+    return _then(_$HomeStateImpl(
       paginationController: null == paginationController
           ? _value.paginationController
           : paginationController // ignore: cast_nullable_to_non_nullable
-              as PagingController<int, HomeModelRecipe>,
+              as PagingController<int, HomeStateRecipe>,
       availableFilters: null == availableFilters
           ? _value.availableFilters
           : availableFilters // ignore: cast_nullable_to_non_nullable
-              as ViewState<List<HomeModelFilter>>,
+              as ViewState<List<HomeStateFilter>>,
       recipeLocales: null == recipeLocales
           ? _value._recipeLocales
           : recipeLocales // ignore: cast_nullable_to_non_nullable
@@ -134,17 +134,17 @@ class __$$HomeModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$HomeModelImpl implements _HomeModel {
-  const _$HomeModelImpl(
+class _$HomeStateImpl implements _HomeState {
+  const _$HomeStateImpl(
       {required this.paginationController,
       required this.availableFilters,
       required final List<Locale> recipeLocales})
       : _recipeLocales = recipeLocales;
 
   @override
-  final PagingController<int, HomeModelRecipe> paginationController;
+  final PagingController<int, HomeStateRecipe> paginationController;
   @override
-  final ViewState<List<HomeModelFilter>> availableFilters;
+  final ViewState<List<HomeStateFilter>> availableFilters;
   final List<Locale> _recipeLocales;
   @override
   List<Locale> get recipeLocales {
@@ -155,14 +155,14 @@ class _$HomeModelImpl implements _HomeModel {
 
   @override
   String toString() {
-    return 'HomeModel(paginationController: $paginationController, availableFilters: $availableFilters, recipeLocales: $recipeLocales)';
+    return 'HomeState(paginationController: $paginationController, availableFilters: $availableFilters, recipeLocales: $recipeLocales)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HomeModelImpl &&
+            other is _$HomeStateImpl &&
             (identical(other.paginationController, paginationController) ||
                 other.paginationController == paginationController) &&
             (identical(other.availableFilters, availableFilters) ||
@@ -178,53 +178,53 @@ class _$HomeModelImpl implements _HomeModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$HomeModelImplCopyWith<_$HomeModelImpl> get copyWith =>
-      __$$HomeModelImplCopyWithImpl<_$HomeModelImpl>(this, _$identity);
+  _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
+      __$$HomeStateImplCopyWithImpl<_$HomeStateImpl>(this, _$identity);
 }
 
-abstract class _HomeModel implements HomeModel {
-  const factory _HomeModel(
-      {required final PagingController<int, HomeModelRecipe>
+abstract class _HomeState implements HomeState {
+  const factory _HomeState(
+      {required final PagingController<int, HomeStateRecipe>
           paginationController,
-      required final ViewState<List<HomeModelFilter>> availableFilters,
-      required final List<Locale> recipeLocales}) = _$HomeModelImpl;
+      required final ViewState<List<HomeStateFilter>> availableFilters,
+      required final List<Locale> recipeLocales}) = _$HomeStateImpl;
 
   @override
-  PagingController<int, HomeModelRecipe> get paginationController;
+  PagingController<int, HomeStateRecipe> get paginationController;
   @override
-  ViewState<List<HomeModelFilter>> get availableFilters;
+  ViewState<List<HomeStateFilter>> get availableFilters;
   @override
   List<Locale> get recipeLocales;
   @override
   @JsonKey(ignore: true)
-  _$$HomeModelImplCopyWith<_$HomeModelImpl> get copyWith =>
+  _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$HomeModelPagination {
+mixin _$HomeStatePagination {
   bool get isCurrentlyFetching => throw _privateConstructorUsedError;
   int get skip => throw _privateConstructorUsedError;
   int get totalAmountOfRecipes => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $HomeModelPaginationCopyWith<HomeModelPagination> get copyWith =>
+  $HomeStatePaginationCopyWith<HomeStatePagination> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HomeModelPaginationCopyWith<$Res> {
-  factory $HomeModelPaginationCopyWith(
-          HomeModelPagination value, $Res Function(HomeModelPagination) then) =
-      _$HomeModelPaginationCopyWithImpl<$Res, HomeModelPagination>;
+abstract class $HomeStatePaginationCopyWith<$Res> {
+  factory $HomeStatePaginationCopyWith(
+          HomeStatePagination value, $Res Function(HomeStatePagination) then) =
+      _$HomeStatePaginationCopyWithImpl<$Res, HomeStatePagination>;
   @useResult
   $Res call({bool isCurrentlyFetching, int skip, int totalAmountOfRecipes});
 }
 
 /// @nodoc
-class _$HomeModelPaginationCopyWithImpl<$Res, $Val extends HomeModelPagination>
-    implements $HomeModelPaginationCopyWith<$Res> {
-  _$HomeModelPaginationCopyWithImpl(this._value, this._then);
+class _$HomeStatePaginationCopyWithImpl<$Res, $Val extends HomeStatePagination>
+    implements $HomeStatePaginationCopyWith<$Res> {
+  _$HomeStatePaginationCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -256,22 +256,22 @@ class _$HomeModelPaginationCopyWithImpl<$Res, $Val extends HomeModelPagination>
 }
 
 /// @nodoc
-abstract class _$$HomeModelPaginationImplCopyWith<$Res>
-    implements $HomeModelPaginationCopyWith<$Res> {
-  factory _$$HomeModelPaginationImplCopyWith(_$HomeModelPaginationImpl value,
-          $Res Function(_$HomeModelPaginationImpl) then) =
-      __$$HomeModelPaginationImplCopyWithImpl<$Res>;
+abstract class _$$HomeStatePaginationImplCopyWith<$Res>
+    implements $HomeStatePaginationCopyWith<$Res> {
+  factory _$$HomeStatePaginationImplCopyWith(_$HomeStatePaginationImpl value,
+          $Res Function(_$HomeStatePaginationImpl) then) =
+      __$$HomeStatePaginationImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool isCurrentlyFetching, int skip, int totalAmountOfRecipes});
 }
 
 /// @nodoc
-class __$$HomeModelPaginationImplCopyWithImpl<$Res>
-    extends _$HomeModelPaginationCopyWithImpl<$Res, _$HomeModelPaginationImpl>
-    implements _$$HomeModelPaginationImplCopyWith<$Res> {
-  __$$HomeModelPaginationImplCopyWithImpl(_$HomeModelPaginationImpl _value,
-      $Res Function(_$HomeModelPaginationImpl) _then)
+class __$$HomeStatePaginationImplCopyWithImpl<$Res>
+    extends _$HomeStatePaginationCopyWithImpl<$Res, _$HomeStatePaginationImpl>
+    implements _$$HomeStatePaginationImplCopyWith<$Res> {
+  __$$HomeStatePaginationImplCopyWithImpl(_$HomeStatePaginationImpl _value,
+      $Res Function(_$HomeStatePaginationImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -281,7 +281,7 @@ class __$$HomeModelPaginationImplCopyWithImpl<$Res>
     Object? skip = null,
     Object? totalAmountOfRecipes = null,
   }) {
-    return _then(_$HomeModelPaginationImpl(
+    return _then(_$HomeStatePaginationImpl(
       isCurrentlyFetching: null == isCurrentlyFetching
           ? _value.isCurrentlyFetching
           : isCurrentlyFetching // ignore: cast_nullable_to_non_nullable
@@ -300,8 +300,8 @@ class __$$HomeModelPaginationImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$HomeModelPaginationImpl implements _HomeModelPagination {
-  const _$HomeModelPaginationImpl(
+class _$HomeStatePaginationImpl implements _HomeStatePagination {
+  const _$HomeStatePaginationImpl(
       {required this.isCurrentlyFetching,
       required this.skip,
       required this.totalAmountOfRecipes});
@@ -315,14 +315,14 @@ class _$HomeModelPaginationImpl implements _HomeModelPagination {
 
   @override
   String toString() {
-    return 'HomeModelPagination(isCurrentlyFetching: $isCurrentlyFetching, skip: $skip, totalAmountOfRecipes: $totalAmountOfRecipes)';
+    return 'HomeStatePagination(isCurrentlyFetching: $isCurrentlyFetching, skip: $skip, totalAmountOfRecipes: $totalAmountOfRecipes)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HomeModelPaginationImpl &&
+            other is _$HomeStatePaginationImpl &&
             (identical(other.isCurrentlyFetching, isCurrentlyFetching) ||
                 other.isCurrentlyFetching == isCurrentlyFetching) &&
             (identical(other.skip, skip) || other.skip == skip) &&
@@ -337,16 +337,16 @@ class _$HomeModelPaginationImpl implements _HomeModelPagination {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$HomeModelPaginationImplCopyWith<_$HomeModelPaginationImpl> get copyWith =>
-      __$$HomeModelPaginationImplCopyWithImpl<_$HomeModelPaginationImpl>(
+  _$$HomeStatePaginationImplCopyWith<_$HomeStatePaginationImpl> get copyWith =>
+      __$$HomeStatePaginationImplCopyWithImpl<_$HomeStatePaginationImpl>(
           this, _$identity);
 }
 
-abstract class _HomeModelPagination implements HomeModelPagination {
-  const factory _HomeModelPagination(
+abstract class _HomeStatePagination implements HomeStatePagination {
+  const factory _HomeStatePagination(
       {required final bool isCurrentlyFetching,
       required final int skip,
-      required final int totalAmountOfRecipes}) = _$HomeModelPaginationImpl;
+      required final int totalAmountOfRecipes}) = _$HomeStatePaginationImpl;
 
   @override
   bool get isCurrentlyFetching;
@@ -356,51 +356,51 @@ abstract class _HomeModelPagination implements HomeModelPagination {
   int get totalAmountOfRecipes;
   @override
   @JsonKey(ignore: true)
-  _$$HomeModelPaginationImplCopyWith<_$HomeModelPaginationImpl> get copyWith =>
+  _$$HomeStatePaginationImplCopyWith<_$HomeStatePaginationImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$HomeModelRecipe {
+mixin _$HomeStateRecipe {
   String get id => throw _privateConstructorUsedError;
-  HomeModelDisplayedAttributes get displayedAttributes =>
+  HomeStateDisplayedAttributes get displayedAttributes =>
       throw _privateConstructorUsedError;
   int get difficulty => throw _privateConstructorUsedError;
-  List<HomeModelIngredient> get ingredients =>
+  List<HomeStateIngredient> get ingredients =>
       throw _privateConstructorUsedError;
-  List<HomeModelYield> get yields => throw _privateConstructorUsedError;
+  List<HomeStateYield> get yields => throw _privateConstructorUsedError;
   List<String> get tagIds => throw _privateConstructorUsedError;
   List<String> get cuisineIds => throw _privateConstructorUsedError;
   Uri get imageUri => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $HomeModelRecipeCopyWith<HomeModelRecipe> get copyWith =>
+  $HomeStateRecipeCopyWith<HomeStateRecipe> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HomeModelRecipeCopyWith<$Res> {
-  factory $HomeModelRecipeCopyWith(
-          HomeModelRecipe value, $Res Function(HomeModelRecipe) then) =
-      _$HomeModelRecipeCopyWithImpl<$Res, HomeModelRecipe>;
+abstract class $HomeStateRecipeCopyWith<$Res> {
+  factory $HomeStateRecipeCopyWith(
+          HomeStateRecipe value, $Res Function(HomeStateRecipe) then) =
+      _$HomeStateRecipeCopyWithImpl<$Res, HomeStateRecipe>;
   @useResult
   $Res call(
       {String id,
-      HomeModelDisplayedAttributes displayedAttributes,
+      HomeStateDisplayedAttributes displayedAttributes,
       int difficulty,
-      List<HomeModelIngredient> ingredients,
-      List<HomeModelYield> yields,
+      List<HomeStateIngredient> ingredients,
+      List<HomeStateYield> yields,
       List<String> tagIds,
       List<String> cuisineIds,
       Uri imageUri});
 
-  $HomeModelDisplayedAttributesCopyWith<$Res> get displayedAttributes;
+  $HomeStateDisplayedAttributesCopyWith<$Res> get displayedAttributes;
 }
 
 /// @nodoc
-class _$HomeModelRecipeCopyWithImpl<$Res, $Val extends HomeModelRecipe>
-    implements $HomeModelRecipeCopyWith<$Res> {
-  _$HomeModelRecipeCopyWithImpl(this._value, this._then);
+class _$HomeStateRecipeCopyWithImpl<$Res, $Val extends HomeStateRecipe>
+    implements $HomeStateRecipeCopyWith<$Res> {
+  _$HomeStateRecipeCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -427,7 +427,7 @@ class _$HomeModelRecipeCopyWithImpl<$Res, $Val extends HomeModelRecipe>
       displayedAttributes: null == displayedAttributes
           ? _value.displayedAttributes
           : displayedAttributes // ignore: cast_nullable_to_non_nullable
-              as HomeModelDisplayedAttributes,
+              as HomeStateDisplayedAttributes,
       difficulty: null == difficulty
           ? _value.difficulty
           : difficulty // ignore: cast_nullable_to_non_nullable
@@ -435,11 +435,11 @@ class _$HomeModelRecipeCopyWithImpl<$Res, $Val extends HomeModelRecipe>
       ingredients: null == ingredients
           ? _value.ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
-              as List<HomeModelIngredient>,
+              as List<HomeStateIngredient>,
       yields: null == yields
           ? _value.yields
           : yields // ignore: cast_nullable_to_non_nullable
-              as List<HomeModelYield>,
+              as List<HomeStateYield>,
       tagIds: null == tagIds
           ? _value.tagIds
           : tagIds // ignore: cast_nullable_to_non_nullable
@@ -457,8 +457,8 @@ class _$HomeModelRecipeCopyWithImpl<$Res, $Val extends HomeModelRecipe>
 
   @override
   @pragma('vm:prefer-inline')
-  $HomeModelDisplayedAttributesCopyWith<$Res> get displayedAttributes {
-    return $HomeModelDisplayedAttributesCopyWith<$Res>(
+  $HomeStateDisplayedAttributesCopyWith<$Res> get displayedAttributes {
+    return $HomeStateDisplayedAttributesCopyWith<$Res>(
         _value.displayedAttributes, (value) {
       return _then(_value.copyWith(displayedAttributes: value) as $Val);
     });
@@ -466,33 +466,33 @@ class _$HomeModelRecipeCopyWithImpl<$Res, $Val extends HomeModelRecipe>
 }
 
 /// @nodoc
-abstract class _$$HomeModelRecipeImplCopyWith<$Res>
-    implements $HomeModelRecipeCopyWith<$Res> {
-  factory _$$HomeModelRecipeImplCopyWith(_$HomeModelRecipeImpl value,
-          $Res Function(_$HomeModelRecipeImpl) then) =
-      __$$HomeModelRecipeImplCopyWithImpl<$Res>;
+abstract class _$$HomeStateRecipeImplCopyWith<$Res>
+    implements $HomeStateRecipeCopyWith<$Res> {
+  factory _$$HomeStateRecipeImplCopyWith(_$HomeStateRecipeImpl value,
+          $Res Function(_$HomeStateRecipeImpl) then) =
+      __$$HomeStateRecipeImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {String id,
-      HomeModelDisplayedAttributes displayedAttributes,
+      HomeStateDisplayedAttributes displayedAttributes,
       int difficulty,
-      List<HomeModelIngredient> ingredients,
-      List<HomeModelYield> yields,
+      List<HomeStateIngredient> ingredients,
+      List<HomeStateYield> yields,
       List<String> tagIds,
       List<String> cuisineIds,
       Uri imageUri});
 
   @override
-  $HomeModelDisplayedAttributesCopyWith<$Res> get displayedAttributes;
+  $HomeStateDisplayedAttributesCopyWith<$Res> get displayedAttributes;
 }
 
 /// @nodoc
-class __$$HomeModelRecipeImplCopyWithImpl<$Res>
-    extends _$HomeModelRecipeCopyWithImpl<$Res, _$HomeModelRecipeImpl>
-    implements _$$HomeModelRecipeImplCopyWith<$Res> {
-  __$$HomeModelRecipeImplCopyWithImpl(
-      _$HomeModelRecipeImpl _value, $Res Function(_$HomeModelRecipeImpl) _then)
+class __$$HomeStateRecipeImplCopyWithImpl<$Res>
+    extends _$HomeStateRecipeCopyWithImpl<$Res, _$HomeStateRecipeImpl>
+    implements _$$HomeStateRecipeImplCopyWith<$Res> {
+  __$$HomeStateRecipeImplCopyWithImpl(
+      _$HomeStateRecipeImpl _value, $Res Function(_$HomeStateRecipeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -507,7 +507,7 @@ class __$$HomeModelRecipeImplCopyWithImpl<$Res>
     Object? cuisineIds = null,
     Object? imageUri = null,
   }) {
-    return _then(_$HomeModelRecipeImpl(
+    return _then(_$HomeStateRecipeImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -515,7 +515,7 @@ class __$$HomeModelRecipeImplCopyWithImpl<$Res>
       displayedAttributes: null == displayedAttributes
           ? _value.displayedAttributes
           : displayedAttributes // ignore: cast_nullable_to_non_nullable
-              as HomeModelDisplayedAttributes,
+              as HomeStateDisplayedAttributes,
       difficulty: null == difficulty
           ? _value.difficulty
           : difficulty // ignore: cast_nullable_to_non_nullable
@@ -523,11 +523,11 @@ class __$$HomeModelRecipeImplCopyWithImpl<$Res>
       ingredients: null == ingredients
           ? _value._ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
-              as List<HomeModelIngredient>,
+              as List<HomeStateIngredient>,
       yields: null == yields
           ? _value._yields
           : yields // ignore: cast_nullable_to_non_nullable
-              as List<HomeModelYield>,
+              as List<HomeStateYield>,
       tagIds: null == tagIds
           ? _value._tagIds
           : tagIds // ignore: cast_nullable_to_non_nullable
@@ -546,13 +546,13 @@ class __$$HomeModelRecipeImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$HomeModelRecipeImpl implements _HomeModelRecipe {
-  const _$HomeModelRecipeImpl(
+class _$HomeStateRecipeImpl implements _HomeStateRecipe {
+  const _$HomeStateRecipeImpl(
       {required this.id,
       required this.displayedAttributes,
       required this.difficulty,
-      required final List<HomeModelIngredient> ingredients,
-      required final List<HomeModelYield> yields,
+      required final List<HomeStateIngredient> ingredients,
+      required final List<HomeStateYield> yields,
       required final List<String> tagIds,
       required final List<String> cuisineIds,
       required this.imageUri})
@@ -564,20 +564,20 @@ class _$HomeModelRecipeImpl implements _HomeModelRecipe {
   @override
   final String id;
   @override
-  final HomeModelDisplayedAttributes displayedAttributes;
+  final HomeStateDisplayedAttributes displayedAttributes;
   @override
   final int difficulty;
-  final List<HomeModelIngredient> _ingredients;
+  final List<HomeStateIngredient> _ingredients;
   @override
-  List<HomeModelIngredient> get ingredients {
+  List<HomeStateIngredient> get ingredients {
     if (_ingredients is EqualUnmodifiableListView) return _ingredients;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_ingredients);
   }
 
-  final List<HomeModelYield> _yields;
+  final List<HomeStateYield> _yields;
   @override
-  List<HomeModelYield> get yields {
+  List<HomeStateYield> get yields {
     if (_yields is EqualUnmodifiableListView) return _yields;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_yields);
@@ -604,14 +604,14 @@ class _$HomeModelRecipeImpl implements _HomeModelRecipe {
 
   @override
   String toString() {
-    return 'HomeModelRecipe(id: $id, displayedAttributes: $displayedAttributes, difficulty: $difficulty, ingredients: $ingredients, yields: $yields, tagIds: $tagIds, cuisineIds: $cuisineIds, imageUri: $imageUri)';
+    return 'HomeStateRecipe(id: $id, displayedAttributes: $displayedAttributes, difficulty: $difficulty, ingredients: $ingredients, yields: $yields, tagIds: $tagIds, cuisineIds: $cuisineIds, imageUri: $imageUri)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HomeModelRecipeImpl &&
+            other is _$HomeStateRecipeImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.displayedAttributes, displayedAttributes) ||
                 other.displayedAttributes == displayedAttributes) &&
@@ -642,32 +642,32 @@ class _$HomeModelRecipeImpl implements _HomeModelRecipe {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$HomeModelRecipeImplCopyWith<_$HomeModelRecipeImpl> get copyWith =>
-      __$$HomeModelRecipeImplCopyWithImpl<_$HomeModelRecipeImpl>(
+  _$$HomeStateRecipeImplCopyWith<_$HomeStateRecipeImpl> get copyWith =>
+      __$$HomeStateRecipeImplCopyWithImpl<_$HomeStateRecipeImpl>(
           this, _$identity);
 }
 
-abstract class _HomeModelRecipe implements HomeModelRecipe {
-  const factory _HomeModelRecipe(
+abstract class _HomeStateRecipe implements HomeStateRecipe {
+  const factory _HomeStateRecipe(
       {required final String id,
-      required final HomeModelDisplayedAttributes displayedAttributes,
+      required final HomeStateDisplayedAttributes displayedAttributes,
       required final int difficulty,
-      required final List<HomeModelIngredient> ingredients,
-      required final List<HomeModelYield> yields,
+      required final List<HomeStateIngredient> ingredients,
+      required final List<HomeStateYield> yields,
       required final List<String> tagIds,
       required final List<String> cuisineIds,
-      required final Uri imageUri}) = _$HomeModelRecipeImpl;
+      required final Uri imageUri}) = _$HomeStateRecipeImpl;
 
   @override
   String get id;
   @override
-  HomeModelDisplayedAttributes get displayedAttributes;
+  HomeStateDisplayedAttributes get displayedAttributes;
   @override
   int get difficulty;
   @override
-  List<HomeModelIngredient> get ingredients;
+  List<HomeStateIngredient> get ingredients;
   @override
-  List<HomeModelYield> get yields;
+  List<HomeStateYield> get yields;
   @override
   List<String> get tagIds;
   @override
@@ -676,29 +676,29 @@ abstract class _HomeModelRecipe implements HomeModelRecipe {
   Uri get imageUri;
   @override
   @JsonKey(ignore: true)
-  _$$HomeModelRecipeImplCopyWith<_$HomeModelRecipeImpl> get copyWith =>
+  _$$HomeStateRecipeImplCopyWith<_$HomeStateRecipeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$HomeModelDisplayedAttributes {
+mixin _$HomeStateDisplayedAttributes {
   String get name => throw _privateConstructorUsedError;
   String get headline => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   Option<String> get descriptionMarkdown => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $HomeModelDisplayedAttributesCopyWith<HomeModelDisplayedAttributes>
+  $HomeStateDisplayedAttributesCopyWith<HomeStateDisplayedAttributes>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HomeModelDisplayedAttributesCopyWith<$Res> {
-  factory $HomeModelDisplayedAttributesCopyWith(
-          HomeModelDisplayedAttributes value,
-          $Res Function(HomeModelDisplayedAttributes) then) =
-      _$HomeModelDisplayedAttributesCopyWithImpl<$Res,
-          HomeModelDisplayedAttributes>;
+abstract class $HomeStateDisplayedAttributesCopyWith<$Res> {
+  factory $HomeStateDisplayedAttributesCopyWith(
+          HomeStateDisplayedAttributes value,
+          $Res Function(HomeStateDisplayedAttributes) then) =
+      _$HomeStateDisplayedAttributesCopyWithImpl<$Res,
+          HomeStateDisplayedAttributes>;
   @useResult
   $Res call(
       {String name,
@@ -708,10 +708,10 @@ abstract class $HomeModelDisplayedAttributesCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$HomeModelDisplayedAttributesCopyWithImpl<$Res,
-        $Val extends HomeModelDisplayedAttributes>
-    implements $HomeModelDisplayedAttributesCopyWith<$Res> {
-  _$HomeModelDisplayedAttributesCopyWithImpl(this._value, this._then);
+class _$HomeStateDisplayedAttributesCopyWithImpl<$Res,
+        $Val extends HomeStateDisplayedAttributes>
+    implements $HomeStateDisplayedAttributesCopyWith<$Res> {
+  _$HomeStateDisplayedAttributesCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -748,12 +748,12 @@ class _$HomeModelDisplayedAttributesCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$HomeModelDisplayedAttributesImplCopyWith<$Res>
-    implements $HomeModelDisplayedAttributesCopyWith<$Res> {
-  factory _$$HomeModelDisplayedAttributesImplCopyWith(
-          _$HomeModelDisplayedAttributesImpl value,
-          $Res Function(_$HomeModelDisplayedAttributesImpl) then) =
-      __$$HomeModelDisplayedAttributesImplCopyWithImpl<$Res>;
+abstract class _$$HomeStateDisplayedAttributesImplCopyWith<$Res>
+    implements $HomeStateDisplayedAttributesCopyWith<$Res> {
+  factory _$$HomeStateDisplayedAttributesImplCopyWith(
+          _$HomeStateDisplayedAttributesImpl value,
+          $Res Function(_$HomeStateDisplayedAttributesImpl) then) =
+      __$$HomeStateDisplayedAttributesImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -764,13 +764,13 @@ abstract class _$$HomeModelDisplayedAttributesImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$HomeModelDisplayedAttributesImplCopyWithImpl<$Res>
-    extends _$HomeModelDisplayedAttributesCopyWithImpl<$Res,
-        _$HomeModelDisplayedAttributesImpl>
-    implements _$$HomeModelDisplayedAttributesImplCopyWith<$Res> {
-  __$$HomeModelDisplayedAttributesImplCopyWithImpl(
-      _$HomeModelDisplayedAttributesImpl _value,
-      $Res Function(_$HomeModelDisplayedAttributesImpl) _then)
+class __$$HomeStateDisplayedAttributesImplCopyWithImpl<$Res>
+    extends _$HomeStateDisplayedAttributesCopyWithImpl<$Res,
+        _$HomeStateDisplayedAttributesImpl>
+    implements _$$HomeStateDisplayedAttributesImplCopyWith<$Res> {
+  __$$HomeStateDisplayedAttributesImplCopyWithImpl(
+      _$HomeStateDisplayedAttributesImpl _value,
+      $Res Function(_$HomeStateDisplayedAttributesImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -781,7 +781,7 @@ class __$$HomeModelDisplayedAttributesImplCopyWithImpl<$Res>
     Object? description = null,
     Object? descriptionMarkdown = null,
   }) {
-    return _then(_$HomeModelDisplayedAttributesImpl(
+    return _then(_$HomeStateDisplayedAttributesImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -804,9 +804,9 @@ class __$$HomeModelDisplayedAttributesImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$HomeModelDisplayedAttributesImpl
-    implements _HomeModelDisplayedAttributes {
-  const _$HomeModelDisplayedAttributesImpl(
+class _$HomeStateDisplayedAttributesImpl
+    implements _HomeStateDisplayedAttributes {
+  const _$HomeStateDisplayedAttributesImpl(
       {required this.name,
       required this.headline,
       required this.description,
@@ -823,14 +823,14 @@ class _$HomeModelDisplayedAttributesImpl
 
   @override
   String toString() {
-    return 'HomeModelDisplayedAttributes(name: $name, headline: $headline, description: $description, descriptionMarkdown: $descriptionMarkdown)';
+    return 'HomeStateDisplayedAttributes(name: $name, headline: $headline, description: $description, descriptionMarkdown: $descriptionMarkdown)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HomeModelDisplayedAttributesImpl &&
+            other is _$HomeStateDisplayedAttributesImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.headline, headline) ||
                 other.headline == headline) &&
@@ -847,20 +847,20 @@ class _$HomeModelDisplayedAttributesImpl
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$HomeModelDisplayedAttributesImplCopyWith<
-          _$HomeModelDisplayedAttributesImpl>
-      get copyWith => __$$HomeModelDisplayedAttributesImplCopyWithImpl<
-          _$HomeModelDisplayedAttributesImpl>(this, _$identity);
+  _$$HomeStateDisplayedAttributesImplCopyWith<
+          _$HomeStateDisplayedAttributesImpl>
+      get copyWith => __$$HomeStateDisplayedAttributesImplCopyWithImpl<
+          _$HomeStateDisplayedAttributesImpl>(this, _$identity);
 }
 
-abstract class _HomeModelDisplayedAttributes
-    implements HomeModelDisplayedAttributes {
-  const factory _HomeModelDisplayedAttributes(
+abstract class _HomeStateDisplayedAttributes
+    implements HomeStateDisplayedAttributes {
+  const factory _HomeStateDisplayedAttributes(
           {required final String name,
           required final String headline,
           required final String description,
           required final Option<String> descriptionMarkdown}) =
-      _$HomeModelDisplayedAttributesImpl;
+      _$HomeStateDisplayedAttributesImpl;
 
   @override
   String get name;
@@ -872,35 +872,35 @@ abstract class _HomeModelDisplayedAttributes
   Option<String> get descriptionMarkdown;
   @override
   @JsonKey(ignore: true)
-  _$$HomeModelDisplayedAttributesImplCopyWith<
-          _$HomeModelDisplayedAttributesImpl>
+  _$$HomeStateDisplayedAttributesImplCopyWith<
+          _$HomeStateDisplayedAttributesImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$HomeModelIngredient {
+mixin _$HomeStateIngredient {
   String get id => throw _privateConstructorUsedError;
   String get slug => throw _privateConstructorUsedError;
   String get displayedName => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $HomeModelIngredientCopyWith<HomeModelIngredient> get copyWith =>
+  $HomeStateIngredientCopyWith<HomeStateIngredient> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HomeModelIngredientCopyWith<$Res> {
-  factory $HomeModelIngredientCopyWith(
-          HomeModelIngredient value, $Res Function(HomeModelIngredient) then) =
-      _$HomeModelIngredientCopyWithImpl<$Res, HomeModelIngredient>;
+abstract class $HomeStateIngredientCopyWith<$Res> {
+  factory $HomeStateIngredientCopyWith(
+          HomeStateIngredient value, $Res Function(HomeStateIngredient) then) =
+      _$HomeStateIngredientCopyWithImpl<$Res, HomeStateIngredient>;
   @useResult
   $Res call({String id, String slug, String displayedName});
 }
 
 /// @nodoc
-class _$HomeModelIngredientCopyWithImpl<$Res, $Val extends HomeModelIngredient>
-    implements $HomeModelIngredientCopyWith<$Res> {
-  _$HomeModelIngredientCopyWithImpl(this._value, this._then);
+class _$HomeStateIngredientCopyWithImpl<$Res, $Val extends HomeStateIngredient>
+    implements $HomeStateIngredientCopyWith<$Res> {
+  _$HomeStateIngredientCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -932,22 +932,22 @@ class _$HomeModelIngredientCopyWithImpl<$Res, $Val extends HomeModelIngredient>
 }
 
 /// @nodoc
-abstract class _$$HomeModelIngredientImplCopyWith<$Res>
-    implements $HomeModelIngredientCopyWith<$Res> {
-  factory _$$HomeModelIngredientImplCopyWith(_$HomeModelIngredientImpl value,
-          $Res Function(_$HomeModelIngredientImpl) then) =
-      __$$HomeModelIngredientImplCopyWithImpl<$Res>;
+abstract class _$$HomeStateIngredientImplCopyWith<$Res>
+    implements $HomeStateIngredientCopyWith<$Res> {
+  factory _$$HomeStateIngredientImplCopyWith(_$HomeStateIngredientImpl value,
+          $Res Function(_$HomeStateIngredientImpl) then) =
+      __$$HomeStateIngredientImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, String slug, String displayedName});
 }
 
 /// @nodoc
-class __$$HomeModelIngredientImplCopyWithImpl<$Res>
-    extends _$HomeModelIngredientCopyWithImpl<$Res, _$HomeModelIngredientImpl>
-    implements _$$HomeModelIngredientImplCopyWith<$Res> {
-  __$$HomeModelIngredientImplCopyWithImpl(_$HomeModelIngredientImpl _value,
-      $Res Function(_$HomeModelIngredientImpl) _then)
+class __$$HomeStateIngredientImplCopyWithImpl<$Res>
+    extends _$HomeStateIngredientCopyWithImpl<$Res, _$HomeStateIngredientImpl>
+    implements _$$HomeStateIngredientImplCopyWith<$Res> {
+  __$$HomeStateIngredientImplCopyWithImpl(_$HomeStateIngredientImpl _value,
+      $Res Function(_$HomeStateIngredientImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -957,7 +957,7 @@ class __$$HomeModelIngredientImplCopyWithImpl<$Res>
     Object? slug = null,
     Object? displayedName = null,
   }) {
-    return _then(_$HomeModelIngredientImpl(
+    return _then(_$HomeStateIngredientImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -976,8 +976,8 @@ class __$$HomeModelIngredientImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$HomeModelIngredientImpl implements _HomeModelIngredient {
-  const _$HomeModelIngredientImpl(
+class _$HomeStateIngredientImpl implements _HomeStateIngredient {
+  const _$HomeStateIngredientImpl(
       {required this.id, required this.slug, required this.displayedName});
 
   @override
@@ -989,14 +989,14 @@ class _$HomeModelIngredientImpl implements _HomeModelIngredient {
 
   @override
   String toString() {
-    return 'HomeModelIngredient(id: $id, slug: $slug, displayedName: $displayedName)';
+    return 'HomeStateIngredient(id: $id, slug: $slug, displayedName: $displayedName)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HomeModelIngredientImpl &&
+            other is _$HomeStateIngredientImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.slug, slug) || other.slug == slug) &&
             (identical(other.displayedName, displayedName) ||
@@ -1009,16 +1009,16 @@ class _$HomeModelIngredientImpl implements _HomeModelIngredient {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$HomeModelIngredientImplCopyWith<_$HomeModelIngredientImpl> get copyWith =>
-      __$$HomeModelIngredientImplCopyWithImpl<_$HomeModelIngredientImpl>(
+  _$$HomeStateIngredientImplCopyWith<_$HomeStateIngredientImpl> get copyWith =>
+      __$$HomeStateIngredientImplCopyWithImpl<_$HomeStateIngredientImpl>(
           this, _$identity);
 }
 
-abstract class _HomeModelIngredient implements HomeModelIngredient {
-  const factory _HomeModelIngredient(
+abstract class _HomeStateIngredient implements HomeStateIngredient {
+  const factory _HomeStateIngredient(
       {required final String id,
       required final String slug,
-      required final String displayedName}) = _$HomeModelIngredientImpl;
+      required final String displayedName}) = _$HomeStateIngredientImpl;
 
   @override
   String get id;
@@ -1028,12 +1028,12 @@ abstract class _HomeModelIngredient implements HomeModelIngredient {
   String get displayedName;
   @override
   @JsonKey(ignore: true)
-  _$$HomeModelIngredientImplCopyWith<_$HomeModelIngredientImpl> get copyWith =>
+  _$$HomeStateIngredientImplCopyWith<_$HomeStateIngredientImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$HomeModelFilter {
+mixin _$HomeStateFilter {
   String get id => throw _privateConstructorUsedError;
   String get displayedName => throw _privateConstructorUsedError;
   bool get isSelected => throw _privateConstructorUsedError;
@@ -1086,34 +1086,34 @@ mixin _$HomeModelFilter {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(HomeModelFilterTag value) tag,
-    required TResult Function(HomeModelFilterCuisine value) cuisine,
+    required TResult Function(HomeStateFilterTag value) tag,
+    required TResult Function(HomeStateFilterCuisine value) cuisine,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(HomeModelFilterTag value)? tag,
-    TResult? Function(HomeModelFilterCuisine value)? cuisine,
+    TResult? Function(HomeStateFilterTag value)? tag,
+    TResult? Function(HomeStateFilterCuisine value)? cuisine,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(HomeModelFilterTag value)? tag,
-    TResult Function(HomeModelFilterCuisine value)? cuisine,
+    TResult Function(HomeStateFilterTag value)? tag,
+    TResult Function(HomeStateFilterCuisine value)? cuisine,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $HomeModelFilterCopyWith<HomeModelFilter> get copyWith =>
+  $HomeStateFilterCopyWith<HomeStateFilter> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HomeModelFilterCopyWith<$Res> {
-  factory $HomeModelFilterCopyWith(
-          HomeModelFilter value, $Res Function(HomeModelFilter) then) =
-      _$HomeModelFilterCopyWithImpl<$Res, HomeModelFilter>;
+abstract class $HomeStateFilterCopyWith<$Res> {
+  factory $HomeStateFilterCopyWith(
+          HomeStateFilter value, $Res Function(HomeStateFilter) then) =
+      _$HomeStateFilterCopyWithImpl<$Res, HomeStateFilter>;
   @useResult
   $Res call(
       {String id,
@@ -1123,9 +1123,9 @@ abstract class $HomeModelFilterCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$HomeModelFilterCopyWithImpl<$Res, $Val extends HomeModelFilter>
-    implements $HomeModelFilterCopyWith<$Res> {
-  _$HomeModelFilterCopyWithImpl(this._value, this._then);
+class _$HomeStateFilterCopyWithImpl<$Res, $Val extends HomeStateFilter>
+    implements $HomeStateFilterCopyWith<$Res> {
+  _$HomeStateFilterCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -1162,11 +1162,11 @@ class _$HomeModelFilterCopyWithImpl<$Res, $Val extends HomeModelFilter>
 }
 
 /// @nodoc
-abstract class _$$HomeModelFilterTagImplCopyWith<$Res>
-    implements $HomeModelFilterCopyWith<$Res> {
-  factory _$$HomeModelFilterTagImplCopyWith(_$HomeModelFilterTagImpl value,
-          $Res Function(_$HomeModelFilterTagImpl) then) =
-      __$$HomeModelFilterTagImplCopyWithImpl<$Res>;
+abstract class _$$HomeStateFilterTagImplCopyWith<$Res>
+    implements $HomeStateFilterCopyWith<$Res> {
+  factory _$$HomeStateFilterTagImplCopyWith(_$HomeStateFilterTagImpl value,
+          $Res Function(_$HomeStateFilterTagImpl) then) =
+      __$$HomeStateFilterTagImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1178,11 +1178,11 @@ abstract class _$$HomeModelFilterTagImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$HomeModelFilterTagImplCopyWithImpl<$Res>
-    extends _$HomeModelFilterCopyWithImpl<$Res, _$HomeModelFilterTagImpl>
-    implements _$$HomeModelFilterTagImplCopyWith<$Res> {
-  __$$HomeModelFilterTagImplCopyWithImpl(_$HomeModelFilterTagImpl _value,
-      $Res Function(_$HomeModelFilterTagImpl) _then)
+class __$$HomeStateFilterTagImplCopyWithImpl<$Res>
+    extends _$HomeStateFilterCopyWithImpl<$Res, _$HomeStateFilterTagImpl>
+    implements _$$HomeStateFilterTagImplCopyWith<$Res> {
+  __$$HomeStateFilterTagImplCopyWithImpl(_$HomeStateFilterTagImpl _value,
+      $Res Function(_$HomeStateFilterTagImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1194,7 +1194,7 @@ class __$$HomeModelFilterTagImplCopyWithImpl<$Res>
     Object? isSelected = null,
     Object? numberOfRecipes = null,
   }) {
-    return _then(_$HomeModelFilterTagImpl(
+    return _then(_$HomeStateFilterTagImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1221,8 +1221,8 @@ class __$$HomeModelFilterTagImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$HomeModelFilterTagImpl implements HomeModelFilterTag {
-  const _$HomeModelFilterTagImpl(
+class _$HomeStateFilterTagImpl implements HomeStateFilterTag {
+  const _$HomeStateFilterTagImpl(
       {required this.id,
       required this.displayedName,
       required this.type,
@@ -1242,14 +1242,14 @@ class _$HomeModelFilterTagImpl implements HomeModelFilterTag {
 
   @override
   String toString() {
-    return 'HomeModelFilter.tag(id: $id, displayedName: $displayedName, type: $type, isSelected: $isSelected, numberOfRecipes: $numberOfRecipes)';
+    return 'HomeStateFilter.tag(id: $id, displayedName: $displayedName, type: $type, isSelected: $isSelected, numberOfRecipes: $numberOfRecipes)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HomeModelFilterTagImpl &&
+            other is _$HomeStateFilterTagImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.displayedName, displayedName) ||
                 other.displayedName == displayedName) &&
@@ -1267,8 +1267,8 @@ class _$HomeModelFilterTagImpl implements HomeModelFilterTag {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$HomeModelFilterTagImplCopyWith<_$HomeModelFilterTagImpl> get copyWith =>
-      __$$HomeModelFilterTagImplCopyWithImpl<_$HomeModelFilterTagImpl>(
+  _$$HomeStateFilterTagImplCopyWith<_$HomeStateFilterTagImpl> get copyWith =>
+      __$$HomeStateFilterTagImplCopyWithImpl<_$HomeStateFilterTagImpl>(
           this, _$identity);
 
   @override
@@ -1332,8 +1332,8 @@ class _$HomeModelFilterTagImpl implements HomeModelFilterTag {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(HomeModelFilterTag value) tag,
-    required TResult Function(HomeModelFilterCuisine value) cuisine,
+    required TResult Function(HomeStateFilterTag value) tag,
+    required TResult Function(HomeStateFilterCuisine value) cuisine,
   }) {
     return tag(this);
   }
@@ -1341,8 +1341,8 @@ class _$HomeModelFilterTagImpl implements HomeModelFilterTag {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(HomeModelFilterTag value)? tag,
-    TResult? Function(HomeModelFilterCuisine value)? cuisine,
+    TResult? Function(HomeStateFilterTag value)? tag,
+    TResult? Function(HomeStateFilterCuisine value)? cuisine,
   }) {
     return tag?.call(this);
   }
@@ -1350,8 +1350,8 @@ class _$HomeModelFilterTagImpl implements HomeModelFilterTag {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(HomeModelFilterTag value)? tag,
-    TResult Function(HomeModelFilterCuisine value)? cuisine,
+    TResult Function(HomeStateFilterTag value)? tag,
+    TResult Function(HomeStateFilterCuisine value)? cuisine,
     required TResult orElse(),
   }) {
     if (tag != null) {
@@ -1361,13 +1361,13 @@ class _$HomeModelFilterTagImpl implements HomeModelFilterTag {
   }
 }
 
-abstract class HomeModelFilterTag implements HomeModelFilter {
-  const factory HomeModelFilterTag(
+abstract class HomeStateFilterTag implements HomeStateFilter {
+  const factory HomeStateFilterTag(
       {required final String id,
       required final String displayedName,
       required final String type,
       required final bool isSelected,
-      required final Option<int> numberOfRecipes}) = _$HomeModelFilterTagImpl;
+      required final Option<int> numberOfRecipes}) = _$HomeStateFilterTagImpl;
 
   @override
   String get id;
@@ -1380,17 +1380,17 @@ abstract class HomeModelFilterTag implements HomeModelFilter {
   Option<int> get numberOfRecipes;
   @override
   @JsonKey(ignore: true)
-  _$$HomeModelFilterTagImplCopyWith<_$HomeModelFilterTagImpl> get copyWith =>
+  _$$HomeStateFilterTagImplCopyWith<_$HomeStateFilterTagImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$HomeModelFilterCuisineImplCopyWith<$Res>
-    implements $HomeModelFilterCopyWith<$Res> {
-  factory _$$HomeModelFilterCuisineImplCopyWith(
-          _$HomeModelFilterCuisineImpl value,
-          $Res Function(_$HomeModelFilterCuisineImpl) then) =
-      __$$HomeModelFilterCuisineImplCopyWithImpl<$Res>;
+abstract class _$$HomeStateFilterCuisineImplCopyWith<$Res>
+    implements $HomeStateFilterCopyWith<$Res> {
+  factory _$$HomeStateFilterCuisineImplCopyWith(
+          _$HomeStateFilterCuisineImpl value,
+          $Res Function(_$HomeStateFilterCuisineImpl) then) =
+      __$$HomeStateFilterCuisineImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1403,12 +1403,12 @@ abstract class _$$HomeModelFilterCuisineImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$HomeModelFilterCuisineImplCopyWithImpl<$Res>
-    extends _$HomeModelFilterCopyWithImpl<$Res, _$HomeModelFilterCuisineImpl>
-    implements _$$HomeModelFilterCuisineImplCopyWith<$Res> {
-  __$$HomeModelFilterCuisineImplCopyWithImpl(
-      _$HomeModelFilterCuisineImpl _value,
-      $Res Function(_$HomeModelFilterCuisineImpl) _then)
+class __$$HomeStateFilterCuisineImplCopyWithImpl<$Res>
+    extends _$HomeStateFilterCopyWithImpl<$Res, _$HomeStateFilterCuisineImpl>
+    implements _$$HomeStateFilterCuisineImplCopyWith<$Res> {
+  __$$HomeStateFilterCuisineImplCopyWithImpl(
+      _$HomeStateFilterCuisineImpl _value,
+      $Res Function(_$HomeStateFilterCuisineImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1421,7 +1421,7 @@ class __$$HomeModelFilterCuisineImplCopyWithImpl<$Res>
     Object? isSelected = null,
     Object? numberOfRecipes = null,
   }) {
-    return _then(_$HomeModelFilterCuisineImpl(
+    return _then(_$HomeStateFilterCuisineImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1452,8 +1452,8 @@ class __$$HomeModelFilterCuisineImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$HomeModelFilterCuisineImpl implements HomeModelFilterCuisine {
-  const _$HomeModelFilterCuisineImpl(
+class _$HomeStateFilterCuisineImpl implements HomeStateFilterCuisine {
+  const _$HomeStateFilterCuisineImpl(
       {required this.id,
       required this.displayedName,
       required this.slug,
@@ -1476,14 +1476,14 @@ class _$HomeModelFilterCuisineImpl implements HomeModelFilterCuisine {
 
   @override
   String toString() {
-    return 'HomeModelFilter.cuisine(id: $id, displayedName: $displayedName, slug: $slug, countryCode: $countryCode, isSelected: $isSelected, numberOfRecipes: $numberOfRecipes)';
+    return 'HomeStateFilter.cuisine(id: $id, displayedName: $displayedName, slug: $slug, countryCode: $countryCode, isSelected: $isSelected, numberOfRecipes: $numberOfRecipes)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HomeModelFilterCuisineImpl &&
+            other is _$HomeStateFilterCuisineImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.displayedName, displayedName) ||
                 other.displayedName == displayedName) &&
@@ -1503,9 +1503,9 @@ class _$HomeModelFilterCuisineImpl implements HomeModelFilterCuisine {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$HomeModelFilterCuisineImplCopyWith<_$HomeModelFilterCuisineImpl>
-      get copyWith => __$$HomeModelFilterCuisineImplCopyWithImpl<
-          _$HomeModelFilterCuisineImpl>(this, _$identity);
+  _$$HomeStateFilterCuisineImplCopyWith<_$HomeStateFilterCuisineImpl>
+      get copyWith => __$$HomeStateFilterCuisineImplCopyWithImpl<
+          _$HomeStateFilterCuisineImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1571,8 +1571,8 @@ class _$HomeModelFilterCuisineImpl implements HomeModelFilterCuisine {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(HomeModelFilterTag value) tag,
-    required TResult Function(HomeModelFilterCuisine value) cuisine,
+    required TResult Function(HomeStateFilterTag value) tag,
+    required TResult Function(HomeStateFilterCuisine value) cuisine,
   }) {
     return cuisine(this);
   }
@@ -1580,8 +1580,8 @@ class _$HomeModelFilterCuisineImpl implements HomeModelFilterCuisine {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(HomeModelFilterTag value)? tag,
-    TResult? Function(HomeModelFilterCuisine value)? cuisine,
+    TResult? Function(HomeStateFilterTag value)? tag,
+    TResult? Function(HomeStateFilterCuisine value)? cuisine,
   }) {
     return cuisine?.call(this);
   }
@@ -1589,8 +1589,8 @@ class _$HomeModelFilterCuisineImpl implements HomeModelFilterCuisine {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(HomeModelFilterTag value)? tag,
-    TResult Function(HomeModelFilterCuisine value)? cuisine,
+    TResult Function(HomeStateFilterTag value)? tag,
+    TResult Function(HomeStateFilterCuisine value)? cuisine,
     required TResult orElse(),
   }) {
     if (cuisine != null) {
@@ -1600,15 +1600,15 @@ class _$HomeModelFilterCuisineImpl implements HomeModelFilterCuisine {
   }
 }
 
-abstract class HomeModelFilterCuisine implements HomeModelFilter {
-  const factory HomeModelFilterCuisine(
+abstract class HomeStateFilterCuisine implements HomeStateFilter {
+  const factory HomeStateFilterCuisine(
           {required final String id,
           required final String displayedName,
           required final String slug,
           required final Option<String> countryCode,
           required final bool isSelected,
           required final Option<int> numberOfRecipes}) =
-      _$HomeModelFilterCuisineImpl;
+      _$HomeStateFilterCuisineImpl;
 
   @override
   String get id;
@@ -1622,34 +1622,34 @@ abstract class HomeModelFilterCuisine implements HomeModelFilter {
   Option<int> get numberOfRecipes;
   @override
   @JsonKey(ignore: true)
-  _$$HomeModelFilterCuisineImplCopyWith<_$HomeModelFilterCuisineImpl>
+  _$$HomeStateFilterCuisineImplCopyWith<_$HomeStateFilterCuisineImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$HomeModelYield {
+mixin _$HomeStateYield {
   int get yield => throw _privateConstructorUsedError;
-  List<HomeModelYieldIngredient> get yieldIngredient =>
+  List<HomeStateYieldIngredient> get yieldIngredient =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $HomeModelYieldCopyWith<HomeModelYield> get copyWith =>
+  $HomeStateYieldCopyWith<HomeStateYield> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HomeModelYieldCopyWith<$Res> {
-  factory $HomeModelYieldCopyWith(
-          HomeModelYield value, $Res Function(HomeModelYield) then) =
-      _$HomeModelYieldCopyWithImpl<$Res, HomeModelYield>;
+abstract class $HomeStateYieldCopyWith<$Res> {
+  factory $HomeStateYieldCopyWith(
+          HomeStateYield value, $Res Function(HomeStateYield) then) =
+      _$HomeStateYieldCopyWithImpl<$Res, HomeStateYield>;
   @useResult
-  $Res call({int yield, List<HomeModelYieldIngredient> yieldIngredient});
+  $Res call({int yield, List<HomeStateYieldIngredient> yieldIngredient});
 }
 
 /// @nodoc
-class _$HomeModelYieldCopyWithImpl<$Res, $Val extends HomeModelYield>
-    implements $HomeModelYieldCopyWith<$Res> {
-  _$HomeModelYieldCopyWithImpl(this._value, this._then);
+class _$HomeStateYieldCopyWithImpl<$Res, $Val extends HomeStateYield>
+    implements $HomeStateYieldCopyWith<$Res> {
+  _$HomeStateYieldCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -1670,28 +1670,28 @@ class _$HomeModelYieldCopyWithImpl<$Res, $Val extends HomeModelYield>
       yieldIngredient: null == yieldIngredient
           ? _value.yieldIngredient
           : yieldIngredient // ignore: cast_nullable_to_non_nullable
-              as List<HomeModelYieldIngredient>,
+              as List<HomeStateYieldIngredient>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$HomeModelYieldImplCopyWith<$Res>
-    implements $HomeModelYieldCopyWith<$Res> {
-  factory _$$HomeModelYieldImplCopyWith(_$HomeModelYieldImpl value,
-          $Res Function(_$HomeModelYieldImpl) then) =
-      __$$HomeModelYieldImplCopyWithImpl<$Res>;
+abstract class _$$HomeStateYieldImplCopyWith<$Res>
+    implements $HomeStateYieldCopyWith<$Res> {
+  factory _$$HomeStateYieldImplCopyWith(_$HomeStateYieldImpl value,
+          $Res Function(_$HomeStateYieldImpl) then) =
+      __$$HomeStateYieldImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int yield, List<HomeModelYieldIngredient> yieldIngredient});
+  $Res call({int yield, List<HomeStateYieldIngredient> yieldIngredient});
 }
 
 /// @nodoc
-class __$$HomeModelYieldImplCopyWithImpl<$Res>
-    extends _$HomeModelYieldCopyWithImpl<$Res, _$HomeModelYieldImpl>
-    implements _$$HomeModelYieldImplCopyWith<$Res> {
-  __$$HomeModelYieldImplCopyWithImpl(
-      _$HomeModelYieldImpl _value, $Res Function(_$HomeModelYieldImpl) _then)
+class __$$HomeStateYieldImplCopyWithImpl<$Res>
+    extends _$HomeStateYieldCopyWithImpl<$Res, _$HomeStateYieldImpl>
+    implements _$$HomeStateYieldImplCopyWith<$Res> {
+  __$$HomeStateYieldImplCopyWithImpl(
+      _$HomeStateYieldImpl _value, $Res Function(_$HomeStateYieldImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1700,7 +1700,7 @@ class __$$HomeModelYieldImplCopyWithImpl<$Res>
     Object? yield = null,
     Object? yieldIngredient = null,
   }) {
-    return _then(_$HomeModelYieldImpl(
+    return _then(_$HomeStateYieldImpl(
       yield: null == yield
           ? _value.yield
           : yield // ignore: cast_nullable_to_non_nullable
@@ -1708,24 +1708,24 @@ class __$$HomeModelYieldImplCopyWithImpl<$Res>
       yieldIngredient: null == yieldIngredient
           ? _value._yieldIngredient
           : yieldIngredient // ignore: cast_nullable_to_non_nullable
-              as List<HomeModelYieldIngredient>,
+              as List<HomeStateYieldIngredient>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$HomeModelYieldImpl implements _HomeModelYield {
-  const _$HomeModelYieldImpl(
+class _$HomeStateYieldImpl implements _HomeStateYield {
+  const _$HomeStateYieldImpl(
       {required this.yield,
-      required final List<HomeModelYieldIngredient> yieldIngredient})
+      required final List<HomeStateYieldIngredient> yieldIngredient})
       : _yieldIngredient = yieldIngredient;
 
   @override
   final int yield;
-  final List<HomeModelYieldIngredient> _yieldIngredient;
+  final List<HomeStateYieldIngredient> _yieldIngredient;
   @override
-  List<HomeModelYieldIngredient> get yieldIngredient {
+  List<HomeStateYieldIngredient> get yieldIngredient {
     if (_yieldIngredient is EqualUnmodifiableListView) return _yieldIngredient;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_yieldIngredient);
@@ -1733,14 +1733,14 @@ class _$HomeModelYieldImpl implements _HomeModelYield {
 
   @override
   String toString() {
-    return 'HomeModelYield(yield: $yield, yieldIngredient: $yieldIngredient)';
+    return 'HomeStateYield(yield: $yield, yieldIngredient: $yieldIngredient)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HomeModelYieldImpl &&
+            other is _$HomeStateYieldImpl &&
             (identical(other.yield, yield) || other.yield == yield) &&
             const DeepCollectionEquality()
                 .equals(other._yieldIngredient, _yieldIngredient));
@@ -1753,52 +1753,52 @@ class _$HomeModelYieldImpl implements _HomeModelYield {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$HomeModelYieldImplCopyWith<_$HomeModelYieldImpl> get copyWith =>
-      __$$HomeModelYieldImplCopyWithImpl<_$HomeModelYieldImpl>(
+  _$$HomeStateYieldImplCopyWith<_$HomeStateYieldImpl> get copyWith =>
+      __$$HomeStateYieldImplCopyWithImpl<_$HomeStateYieldImpl>(
           this, _$identity);
 }
 
-abstract class _HomeModelYield implements HomeModelYield {
-  const factory _HomeModelYield(
+abstract class _HomeStateYield implements HomeStateYield {
+  const factory _HomeStateYield(
           {required final int yield,
-          required final List<HomeModelYieldIngredient> yieldIngredient}) =
-      _$HomeModelYieldImpl;
+          required final List<HomeStateYieldIngredient> yieldIngredient}) =
+      _$HomeStateYieldImpl;
 
   @override
   int get yield;
   @override
-  List<HomeModelYieldIngredient> get yieldIngredient;
+  List<HomeStateYieldIngredient> get yieldIngredient;
   @override
   @JsonKey(ignore: true)
-  _$$HomeModelYieldImplCopyWith<_$HomeModelYieldImpl> get copyWith =>
+  _$$HomeStateYieldImplCopyWith<_$HomeStateYieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$HomeModelYieldIngredient {
+mixin _$HomeStateYieldIngredient {
   String get id => throw _privateConstructorUsedError;
   Option<double> get amount => throw _privateConstructorUsedError;
   Option<String> get unit => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $HomeModelYieldIngredientCopyWith<HomeModelYieldIngredient> get copyWith =>
+  $HomeStateYieldIngredientCopyWith<HomeStateYieldIngredient> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HomeModelYieldIngredientCopyWith<$Res> {
-  factory $HomeModelYieldIngredientCopyWith(HomeModelYieldIngredient value,
-          $Res Function(HomeModelYieldIngredient) then) =
-      _$HomeModelYieldIngredientCopyWithImpl<$Res, HomeModelYieldIngredient>;
+abstract class $HomeStateYieldIngredientCopyWith<$Res> {
+  factory $HomeStateYieldIngredientCopyWith(HomeStateYieldIngredient value,
+          $Res Function(HomeStateYieldIngredient) then) =
+      _$HomeStateYieldIngredientCopyWithImpl<$Res, HomeStateYieldIngredient>;
   @useResult
   $Res call({String id, Option<double> amount, Option<String> unit});
 }
 
 /// @nodoc
-class _$HomeModelYieldIngredientCopyWithImpl<$Res,
-        $Val extends HomeModelYieldIngredient>
-    implements $HomeModelYieldIngredientCopyWith<$Res> {
-  _$HomeModelYieldIngredientCopyWithImpl(this._value, this._then);
+class _$HomeStateYieldIngredientCopyWithImpl<$Res,
+        $Val extends HomeStateYieldIngredient>
+    implements $HomeStateYieldIngredientCopyWith<$Res> {
+  _$HomeStateYieldIngredientCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -1830,25 +1830,25 @@ class _$HomeModelYieldIngredientCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$HomeModelYieldIngredientImplCopyWith<$Res>
-    implements $HomeModelYieldIngredientCopyWith<$Res> {
-  factory _$$HomeModelYieldIngredientImplCopyWith(
-          _$HomeModelYieldIngredientImpl value,
-          $Res Function(_$HomeModelYieldIngredientImpl) then) =
-      __$$HomeModelYieldIngredientImplCopyWithImpl<$Res>;
+abstract class _$$HomeStateYieldIngredientImplCopyWith<$Res>
+    implements $HomeStateYieldIngredientCopyWith<$Res> {
+  factory _$$HomeStateYieldIngredientImplCopyWith(
+          _$HomeStateYieldIngredientImpl value,
+          $Res Function(_$HomeStateYieldIngredientImpl) then) =
+      __$$HomeStateYieldIngredientImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, Option<double> amount, Option<String> unit});
 }
 
 /// @nodoc
-class __$$HomeModelYieldIngredientImplCopyWithImpl<$Res>
-    extends _$HomeModelYieldIngredientCopyWithImpl<$Res,
-        _$HomeModelYieldIngredientImpl>
-    implements _$$HomeModelYieldIngredientImplCopyWith<$Res> {
-  __$$HomeModelYieldIngredientImplCopyWithImpl(
-      _$HomeModelYieldIngredientImpl _value,
-      $Res Function(_$HomeModelYieldIngredientImpl) _then)
+class __$$HomeStateYieldIngredientImplCopyWithImpl<$Res>
+    extends _$HomeStateYieldIngredientCopyWithImpl<$Res,
+        _$HomeStateYieldIngredientImpl>
+    implements _$$HomeStateYieldIngredientImplCopyWith<$Res> {
+  __$$HomeStateYieldIngredientImplCopyWithImpl(
+      _$HomeStateYieldIngredientImpl _value,
+      $Res Function(_$HomeStateYieldIngredientImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1858,7 +1858,7 @@ class __$$HomeModelYieldIngredientImplCopyWithImpl<$Res>
     Object? amount = null,
     Object? unit = null,
   }) {
-    return _then(_$HomeModelYieldIngredientImpl(
+    return _then(_$HomeStateYieldIngredientImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1877,8 +1877,8 @@ class __$$HomeModelYieldIngredientImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$HomeModelYieldIngredientImpl implements _HomeModelYieldIngredient {
-  const _$HomeModelYieldIngredientImpl(
+class _$HomeStateYieldIngredientImpl implements _HomeStateYieldIngredient {
+  const _$HomeStateYieldIngredientImpl(
       {required this.id, required this.amount, required this.unit});
 
   @override
@@ -1890,14 +1890,14 @@ class _$HomeModelYieldIngredientImpl implements _HomeModelYieldIngredient {
 
   @override
   String toString() {
-    return 'HomeModelYieldIngredient(id: $id, amount: $amount, unit: $unit)';
+    return 'HomeStateYieldIngredient(id: $id, amount: $amount, unit: $unit)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HomeModelYieldIngredientImpl &&
+            other is _$HomeStateYieldIngredientImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.unit, unit) || other.unit == unit));
@@ -1909,16 +1909,16 @@ class _$HomeModelYieldIngredientImpl implements _HomeModelYieldIngredient {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$HomeModelYieldIngredientImplCopyWith<_$HomeModelYieldIngredientImpl>
-      get copyWith => __$$HomeModelYieldIngredientImplCopyWithImpl<
-          _$HomeModelYieldIngredientImpl>(this, _$identity);
+  _$$HomeStateYieldIngredientImplCopyWith<_$HomeStateYieldIngredientImpl>
+      get copyWith => __$$HomeStateYieldIngredientImplCopyWithImpl<
+          _$HomeStateYieldIngredientImpl>(this, _$identity);
 }
 
-abstract class _HomeModelYieldIngredient implements HomeModelYieldIngredient {
-  const factory _HomeModelYieldIngredient(
+abstract class _HomeStateYieldIngredient implements HomeStateYieldIngredient {
+  const factory _HomeStateYieldIngredient(
       {required final String id,
       required final Option<double> amount,
-      required final Option<String> unit}) = _$HomeModelYieldIngredientImpl;
+      required final Option<String> unit}) = _$HomeStateYieldIngredientImpl;
 
   @override
   String get id;
@@ -1928,6 +1928,6 @@ abstract class _HomeModelYieldIngredient implements HomeModelYieldIngredient {
   Option<String> get unit;
   @override
   @JsonKey(ignore: true)
-  _$$HomeModelYieldIngredientImplCopyWith<_$HomeModelYieldIngredientImpl>
+  _$$HomeStateYieldIngredientImplCopyWith<_$HomeStateYieldIngredientImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

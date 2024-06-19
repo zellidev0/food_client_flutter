@@ -3,7 +3,7 @@ import 'package:food_client/pages/features/cart/services/cart_web_image_sizer_se
 import 'package:food_client/pages/features/ingredients_sorting/services/web_service/ingredients_sorting_web_image_sizer_service.dart';
 import 'package:food_client/pages/features/single_recipe/services/web_service/single_recipe_web_image_sizer_service.dart';
 import 'package:food_client/services/web_image_sizer/general_web_image_sizer_service.dart';
-import 'package:food_client/ui/home/services/home_web_image_sizer_service.dart';
+import 'package:food_client/pages/home/services/home_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
 
 abstract class WebImageSizerServiceAggregator

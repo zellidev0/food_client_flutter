@@ -4,92 +4,92 @@ import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
-part 'home_model.freezed.dart';
+part 'home_state.freezed.dart';
 
 @freezed
-class HomeModel with _$HomeModel {
-  const factory HomeModel({
-    required final PagingController<int, HomeModelRecipe> paginationController,
-    required final ViewState<List<HomeModelFilter>> availableFilters,
+class HomeState with _$HomeState {
+  const factory HomeState({
+    required final PagingController<int, HomeStateRecipe> paginationController,
+    required final ViewState<List<HomeStateFilter>> availableFilters,
     required final List<Locale> recipeLocales,
-  }) = _HomeModel;
+  }) = _HomeState;
 }
 
 @freezed
-class HomeModelPagination with _$HomeModelPagination {
-  const factory HomeModelPagination({
+class HomeStatePagination with _$HomeStatePagination {
+  const factory HomeStatePagination({
     required final bool isCurrentlyFetching,
     required final int skip,
     required final int totalAmountOfRecipes,
-  }) = _HomeModelPagination;
+  }) = _HomeStatePagination;
 }
 
 @freezed
-class HomeModelRecipe with _$HomeModelRecipe {
-  const factory HomeModelRecipe({
+class HomeStateRecipe with _$HomeStateRecipe {
+  const factory HomeStateRecipe({
     required final String id,
-    required final HomeModelDisplayedAttributes displayedAttributes,
+    required final HomeStateDisplayedAttributes displayedAttributes,
     required final int difficulty,
-    required final List<HomeModelIngredient> ingredients,
-    required final List<HomeModelYield> yields,
+    required final List<HomeStateIngredient> ingredients,
+    required final List<HomeStateYield> yields,
     required final List<String> tagIds,
     required final List<String> cuisineIds,
     required final Uri imageUri,
-  }) = _HomeModelRecipe;
+  }) = _HomeStateRecipe;
 }
 
 @freezed
-class HomeModelDisplayedAttributes with _$HomeModelDisplayedAttributes {
-  const factory HomeModelDisplayedAttributes({
+class HomeStateDisplayedAttributes with _$HomeStateDisplayedAttributes {
+  const factory HomeStateDisplayedAttributes({
     required final String name,
     required final String headline,
     required final String description,
     required final Option<String> descriptionMarkdown,
-  }) = _HomeModelDisplayedAttributes;
+  }) = _HomeStateDisplayedAttributes;
 }
 
 @freezed
-class HomeModelIngredient with _$HomeModelIngredient {
-  const factory HomeModelIngredient({
+class HomeStateIngredient with _$HomeStateIngredient {
+  const factory HomeStateIngredient({
     required final String id,
     required final String slug,
     required final String displayedName,
-  }) = _HomeModelIngredient;
+  }) = _HomeStateIngredient;
 }
 
 @freezed
-class HomeModelFilter with _$HomeModelFilter {
-  const factory HomeModelFilter.tag({
+class HomeStateFilter with _$HomeStateFilter {
+  const factory HomeStateFilter.tag({
     required final String id,
     required final String displayedName,
     required final String type,
     required final bool isSelected,
     required final Option<int> numberOfRecipes,
-  }) = HomeModelFilterTag;
+  }) = HomeStateFilterTag;
 
-  const factory HomeModelFilter.cuisine({
+  const factory HomeStateFilter.cuisine({
     required final String id,
     required final String displayedName,
     required final String slug,
     required final Option<String> countryCode,
     required final bool isSelected,
     required final Option<int> numberOfRecipes,
-  }) = HomeModelFilterCuisine;
+  }) = HomeStateFilterCuisine;
 }
 
 @freezed
-class HomeModelYield with _$HomeModelYield {
-  const factory HomeModelYield({
+class HomeStateYield with _$HomeStateYield {
+  const factory HomeStateYield({
     required final int yield,
-    required final List<HomeModelYieldIngredient> yieldIngredient,
-  }) = _HomeModelYield;
+    required final List<HomeStateYieldIngredient> yieldIngredient,
+  }) = _HomeStateYield;
 }
 
 @freezed
-class HomeModelYieldIngredient with _$HomeModelYieldIngredient {
-  const factory HomeModelYieldIngredient({
+class HomeStateYieldIngredient with _$HomeStateYieldIngredient {
+  const factory HomeStateYieldIngredient({
     required final String id,
     required final Option<double> amount,
     required final Option<String> unit,
-  }) = _HomeModelYieldIngredient;
+  }) = _HomeStateYieldIngredient;
 }

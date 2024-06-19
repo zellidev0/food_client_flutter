@@ -6,9 +6,9 @@ import 'package:food_client/pages/features/ingredients_sorting/services/persista
 import 'package:food_client/pages/features/ingredients_sorting/services/web_service/ingredients_sorting_web_client_service.dart';
 import 'package:food_client/pages/features/ingredients_sorting/services/web_service/ingredients_sorting_web_image_sizer_service.dart';
 import 'package:food_client/services/logging_service/logging_service.dart';
-import 'package:food_client/ui/home/services/home_navigation_service.dart';
-import 'package:food_client/ui/home/services/home_web_client_service.dart';
-import 'package:food_client/ui/home/services/home_web_image_sizer_service.dart';
+import 'package:food_client/pages/home/services/home_navigation_service.dart';
+import 'package:food_client/pages/home/services/home_web_client_service.dart';
+import 'package:food_client/pages/home/services/home_web_image_sizer_service.dart';
 import 'package:mockito/annotations.dart';
 
 @GenerateMocks(

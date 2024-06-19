@@ -11,7 +11,7 @@ import 'package:food_client/services/persistence_service/mixins/cart_persistence
 import 'package:food_client/services/persistence_service/mixins/single_recipe_persistence_service_mixin.dart';
 import 'package:food_client/services/persistence_service/persistence_service_model.dart';
 import 'package:food_client/ui/history/services/history_persistence_service.dart';
-import 'package:food_client/ui/home/services/home_persistence_service.dart';
+import 'package:food_client/pages/home/services/home_persistence_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 

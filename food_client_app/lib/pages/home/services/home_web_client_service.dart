@@ -1,11 +1,12 @@
 import 'dart:ui';
 
+import 'package:food_client/services/web_client/general_web_client_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'home_web_client_service.freezed.dart';
 
-abstract class HomeWebClientService {
+abstract class HomeWebClientService extends GeneralWebClientService {
   TaskEither<Exception, HomeWebClientModelRecipeResponse> fetchRecipes({
     required final int take,
     required final int skip,
