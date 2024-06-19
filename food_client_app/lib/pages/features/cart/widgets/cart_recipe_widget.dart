@@ -2,7 +2,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_client/commons/utils.dart';
-import 'package:food_client/pages/common/view_state.dart';
 import 'package:food_client/pages/common/widgets.dart';
 import 'package:food_client/pages/features/cart/cubit/cart_cubit.dart';
 import 'package:food_client/pages/features/cart/cubit/cart_state.dart';
@@ -10,70 +9,43 @@ import 'package:fpdart/fpdart.dart';
 
 class CartRecipeWidget extends StatelessWidget {
   final double height;
-  final int index;
+  final CartStateRecipe recipe;
 
   const CartRecipeWidget({
     super.key,
     required this.height,
-    required this.index,
+    required this.recipe,
   });
   @override
-  Widget build(BuildContext context) => BlocBuilder<CartCubit, CartState>(
-        builder: (BuildContext context, CartState state) => SizedBox(
-          width: height * 0.75,
-          child: Card(
-            color: generateRandomPastelColor(
-              seed: (state.data as ViewStateData<CartStateData>)
-                  .data
-                  .recipes[index]
-                  .recipeId
-                  .hashCode,
-              brightness: Theme.of(context).brightness,
-            ),
-            child: ClipRRect(
+  Widget build(BuildContext context) => SizedBox(
+        width: height * 0.75,
+        child: Card(
+          color: generateRandomPastelColor(
+            seed: recipe.recipeId.hashCode,
+            brightness: Theme.of(context).brightness,
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: InkWell(
               borderRadius: BorderRadius.circular(12),
-              child: InkWell(
-                borderRadius: BorderRadius.circular(12),
-                onTap: () => context.read<CartCubit>().openSingleRecipe(
-                      recipeId: (state.data as ViewStateData<CartStateData>)
-                          .data
-                          .recipes[index]
-                          .recipeId,
-                    ),
-                onLongPress: () =>
-                    context.read<CartCubit>().showDeleteRecipeDialog(
-                          recipeId: (state.data as ViewStateData<CartStateData>)
-                              .data
-                              .recipes[index]
-                              .recipeId,
-                        ),
-                child: Stack(
-                  children: <Widget>[
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        _CardImage(
-                          imageUrl: (state.data as ViewStateData<CartStateData>)
-                              .data
-                              .recipes[index]
-                              .imageUrl,
-                        ),
-                        _Cardtext(
-                          title: (state.data as ViewStateData<CartStateData>)
-                              .data
-                              .recipes[index]
-                              .title,
-                        ),
-                      ],
-                    ),
-                    _ServingsChip(
-                      serving: (state.data as ViewStateData<CartStateData>)
-                          .data
-                          .recipes[index]
-                          .serving,
-                    ),
-                  ],
-                ),
+              onTap: () => context.read<CartCubit>().openSingleRecipe(
+                    recipeId: recipe.recipeId,
+                  ),
+              onLongPress: () =>
+                  context.read<CartCubit>().showDeleteRecipeDialog(
+                        recipeId: recipe.recipeId,
+                      ),
+              child: Stack(
+                children: <Widget>[
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      _CardImage(imageUrl: recipe.imageUrl),
+                      _Cardtext(title: recipe.title),
+                    ],
+                  ),
+                  _ServingsChip(serving: recipe.serving),
+                ],
               ),
             ),
           ),
