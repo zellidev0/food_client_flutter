@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_client/commons/utils.dart';
+import 'package:food_client/pages/common/ingredients_list.dart';
 import 'package:food_client/pages/features/cart/cubit/cart_cubit.dart';
 import 'package:food_client/pages/features/cart/cubit/cart_state.dart';
 import 'package:food_client/pages/features/cart/widgets/cart_view_single_ingredient_item.dart';
@@ -23,13 +25,10 @@ class IngredientsListWidget extends StatelessWidget {
         ),
         child: BlocBuilder<CartCubit, CartState>(
           builder: (BuildContext cartCubitContext, CartState state) =>
-              ReorderableListView.builder(
-            key: PageStorageKey<String>(
-              'cart_view-ingredients-list-$keyId',
-            ),
-            itemCount: ingredients.length,
-            buildDefaultDragHandles: false,
-            onReorder: (final int oldIndex, final int newIndex) =>
+              IngredientsList(
+            keyId: 'cart_view-ingredients-list-$keyId',
+            length: ingredients.length,
+            reorderIngredients: (int oldIndex, int newIndex) =>
                 cartCubitContext.read<CartCubit>().reorderIngredients(
                       ingredients: ingredients,
                       sorting: sorting,
@@ -46,6 +45,16 @@ class IngredientsListWidget extends StatelessWidget {
                 unit: (final _) => false,
                 custom: (final _) => true,
               ),
+              pastelColors: ingredients[index]
+                  .ingredient
+                  .recipeIds
+                  .map(
+                    (final String recipeId) => generateRandomPastelColor(
+                      seed: recipeId.hashCode,
+                      brightness: Theme.of(context).brightness,
+                    ),
+                  )
+                  .toList(),
             ),
           ),
         ),

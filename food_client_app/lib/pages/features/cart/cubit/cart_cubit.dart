@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_client/pages/common/error.dart';
 import 'package:food_client/pages/common/view_state.dart';
 import 'package:food_client/pages/features/cart/cubit/cart_state.dart';
 import 'package:food_client/pages/features/cart/services/cart_navigation_service.dart';
@@ -42,26 +43,28 @@ class CartCubit extends Cubit<CartState> with CartCubitUtils {
         _navigationService = navigationService,
         _logger = logger,
         super(const CartState(data: ViewState<CartStateData>.loading())) {
-    emit(
-      state.copyWith(
-        data: ViewState<CartStateData>.data(
-          CartStateData(
-            sorting: const CartStateSorting.custom(ingredientIds: <String>[]),
-            recipes: <CartStateRecipe>[],
-            ingredients: <CartStateIngredient>[],
-            sortingUnits: _persistenceService
-                .getSortingUnits()
-                .map(_mapSortingUnit)
-                .toList(),
-            combineIngredients: combinedIngredients,
-          ),
-        ).mapData(
-          (CartStateData data) => data.copyWith(
-            sorting: _readActiveSorting(),
-            recipes: _readStoredRecipes(),
-            ingredients: _getAllIngredientsSorted(
+    scheduleMicrotask(
+      () => emit(
+        state.copyWith(
+          data: ViewState<CartStateData>.data(
+            CartStateData(
+              sorting: const CartStateSorting.custom(ingredientIds: <String>[]),
+              recipes: <CartStateRecipe>[],
+              ingredients: <CartStateIngredient>[],
+              sortingUnits: _persistenceService
+                  .getSortingUnits()
+                  .map(_mapSortingUnit)
+                  .toList(),
               combineIngredients: combinedIngredients,
+            ),
+          ).mapData(
+            (CartStateData data) => data.copyWith(
               sorting: _readActiveSorting(),
+              recipes: _readStoredRecipes(),
+              ingredients: _getAllIngredientsSorted(
+                combineIngredients: combinedIngredients,
+                sorting: _readActiveSorting(),
+              ),
             ),
           ),
         ),
@@ -69,7 +72,7 @@ class CartCubit extends Cubit<CartState> with CartCubitUtils {
     );
   }
 
-  void openModalBottomSheet({
+  Future<void> openModalBottomSheet({
     required final Widget child,
   }) async =>
       await _navigationService.showModalBottomSheet(child: child);
@@ -239,10 +242,15 @@ class CartCubit extends Cubit<CartState> with CartCubitUtils {
 
   void reorderIngredients({
     required final int oldIndex,
-    required final int newIndex,
+    required int newIndex,
     required final List<CartStateIngredient> ingredients,
     required final CartStateSorting sorting,
   }) {
+    if (oldIndex < newIndex) {
+      newIndex -= 1;
+    }
+    final CartStateSorting oldSorting = sorting;
+    final List<CartStateIngredient> oldIngredients = ingredients;
     sorting.map(
       unit: (final _) {},
       custom: (final CartStateSortingCustom custom) {
@@ -256,6 +264,16 @@ class CartCubit extends Cubit<CartState> with CartCubitUtils {
                   ingredient.ingredient.ingredientId,
             )
             .toList();
+        emit(
+          state.copyWith(
+            data: state.data.mapData(
+              (CartStateData data) => data.copyWith(
+                ingredients: ingredients2,
+                sorting: custom.copyWith(ingredientIds: ingredientIds),
+              ),
+            ),
+          ),
+        );
         unawaited(
           _persistenceService
               .saveSorting(
@@ -264,17 +282,17 @@ class CartCubit extends Cubit<CartState> with CartCubitUtils {
                 ),
               )
               .match(
-                _logger.error,
-                (_) => emit(
+                (MyError error) => emit(
                   state.copyWith(
                     data: state.data.mapData(
                       (CartStateData data) => data.copyWith(
-                        ingredients: ingredients2,
-                        sorting: custom.copyWith(ingredientIds: ingredientIds),
+                        ingredients: oldIngredients,
+                        sorting: oldSorting,
                       ),
                     ),
                   ),
                 ),
+                (_) {},
               )
               .run(),
         );

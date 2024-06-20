@@ -6,8 +6,8 @@ import 'package:food_client/pages/common/empty_view_content.dart';
 import 'package:food_client/pages/common/view_state.dart';
 import 'package:food_client/pages/features/ingredients_sorting/cubit/ingredients_sorting_cubit.dart';
 import 'package:food_client/pages/features/ingredients_sorting/cubit/ingredients_sorting_state.dart';
-import 'package:food_client/pages/features/ingredients_sorting/widgets/ingredients_list_widget.dart';
 import 'package:food_client/pages/features/ingredients_sorting/widgets/ingredients_sorting_card_item.dart';
+import 'package:food_client/pages/features/ingredients_sorting/widgets/ingredients_sorting_ingredients_list_widget.dart';
 import 'package:fpdart/fpdart.dart';
 
 class IngredientsSortingView extends StatelessWidget {
@@ -20,7 +20,7 @@ class IngredientsSortingView extends StatelessWidget {
           scrolledUnderElevation: 0,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
-            onPressed: context.read<IngredientsSortingCubit>().goBack,
+            onPressed: () => context.read<IngredientsSortingCubit>().goBack(),
           ),
         ),
         body: BlocBuilder<IngredientsSortingCubit, IngredientsSortingState>(
@@ -59,18 +59,25 @@ class IngredientsSortingView extends StatelessWidget {
                                 (final IngredientsSortingStateUnit unit) =>
                                     IngredientsSortingCardItem(
                                   unit: some(unit),
-                                  setUnitSelected: context
-                                      .read<IngredientsSortingCubit>()
-                                      .setUnitSelected,
+                                  setUnitSelected: ({
+                                    required final IngredientsSortingStateUnit
+                                        unit,
+                                  }) =>
+                                      context
+                                          .read<IngredientsSortingCubit>()
+                                          .setUnitSelected(unit: unit),
                                 ),
                               ),
                               loading: (_) => <Widget>[],
                               error: (_) => <Widget>[],
                             ),
                             IngredientsSortingCardItem(
-                              setUnitSelected: context
-                                  .read<IngredientsSortingCubit>()
-                                  .setUnitSelected,
+                              setUnitSelected: ({
+                                required final IngredientsSortingStateUnit unit,
+                              }) =>
+                                  context
+                                      .read<IngredientsSortingCubit>()
+                                      .setUnitSelected(unit: unit),
                             ),
                           ],
                         ),
@@ -95,7 +102,7 @@ class IngredientsSortingView extends StatelessWidget {
                           ),
                         );
                       } else {
-                        return IngredientsListWidget(
+                        return IngredientsSortingIngredientsListWidget(
                           reorder: context
                               .read<IngredientsSortingCubit>()
                               .reorderIngredientFamily,
@@ -103,6 +110,10 @@ class IngredientsSortingView extends StatelessWidget {
                             (final IngredientsSortingStateUnit unit) =>
                                 unit.selected,
                           ),
+                          keyId: 'unit-${data.data.firstWhere(
+                                (final IngredientsSortingStateUnit unit) =>
+                                    unit.selected,
+                              ).id}',
                         );
                       }
                     },

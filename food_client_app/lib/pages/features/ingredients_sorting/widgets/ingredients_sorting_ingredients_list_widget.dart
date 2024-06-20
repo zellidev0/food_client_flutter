@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:food_client/pages/common/ingredients_list.dart';
 import 'package:food_client/pages/common/widgets.dart';
 import 'package:food_client/pages/features/ingredients_sorting/cubit/ingredients_sorting_state.dart';
 
-class IngredientsListWidget extends StatelessWidget {
+class IngredientsSortingIngredientsListWidget extends StatelessWidget {
   final void Function({
     required int newIndex,
     required int oldIndex,
     required IngredientsSortingStateUnit unit,
   }) reorder;
+  final String keyId;
   final IngredientsSortingStateUnit unit;
-  const IngredientsListWidget({
+  const IngredientsSortingIngredientsListWidget({
     super.key,
     required this.reorder,
+    required this.keyId,
     required this.unit,
   });
 
@@ -19,16 +22,11 @@ class IngredientsListWidget extends StatelessWidget {
   Widget build(BuildContext context) => Expanded(
         child: Padding(
           padding: const EdgeInsets.all(8),
-          child: ReorderableListView.builder(
-            itemCount: unit.sorting.length,
-            buildDefaultDragHandles: true,
-            onReorder: (final int oldIndex, final int newIndex) {
-              reorder(
-                unit: unit,
-                oldIndex: oldIndex,
-                newIndex: newIndex,
-              );
-            },
+          child: IngredientsList(
+            keyId: 'ingredients-sorting-view-ingredients-list-$keyId',
+            length: unit.sorting.length,
+            reorderIngredients: (int oldIndex, int newIndex) =>
+                reorder(newIndex: newIndex, oldIndex: oldIndex, unit: unit),
             itemBuilder: (final BuildContext context, final int index) =>
                 ListTile(
               key: Key(unit.sorting[index].id),

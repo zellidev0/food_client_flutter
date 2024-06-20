@@ -49,10 +49,12 @@ class IngredientsSortingCubit extends Cubit<IngredientsSortingState> {
             units: ViewState<List<IngredientsSortingStateUnit>>.loading(),
           ),
         ) {
-    emit(
-      IngredientsSortingState(
-        units: ViewStateData<List<IngredientsSortingStateUnit>>(
-          _fetchPersistenceServiceUnits(),
+    scheduleMicrotask(
+      () => emit(
+        IngredientsSortingState(
+          units: ViewStateData<List<IngredientsSortingStateUnit>>(
+            _fetchPersistenceServiceUnits(),
+          ),
         ),
       ),
     );
@@ -177,8 +179,11 @@ class IngredientsSortingCubit extends Cubit<IngredientsSortingState> {
   void reorderIngredientFamily({
     required final IngredientsSortingStateUnit unit,
     required final int oldIndex,
-    required final int newIndex,
+    required int newIndex,
   }) {
+    if (oldIndex < newIndex) {
+      newIndex -= 1;
+    }
     final List<IngredientsSortingStateSorting> sortings =
         List<IngredientsSortingStateSorting>.from(unit.sorting);
     final IngredientsSortingStateSorting sorting = sortings.removeAt(oldIndex);

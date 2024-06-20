@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_client/commons/utils.dart';
 import 'package:food_client/pages/common/widgets.dart';
 import 'package:food_client/pages/features/cart/cubit/cart_cubit.dart';
 import 'package:food_client/pages/features/cart/cubit/cart_state.dart';
 
 class CartViewSingleIngredientItem extends StatelessWidget {
+  final List<Color> pastelColors;
   final List<String> recipeIds;
   final int listIndex;
   final bool showDragHandle;
@@ -17,6 +17,7 @@ class CartViewSingleIngredientItem extends StatelessWidget {
     required this.listIndex,
     required this.showDragHandle,
     required this.ingredient,
+    required this.pastelColors,
   });
 
   @override
@@ -34,10 +35,7 @@ class CartViewSingleIngredientItem extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 color: !ingredient.isTickedOff && recipeIds.length == 1
-                    ? generateRandomPastelColor(
-                        seed: recipeIds.first.hashCode,
-                        brightness: Theme.of(context).brightness,
-                      )
+                    ? pastelColors.first
                     : null,
                 gradient: !ingredient.isTickedOff && recipeIds.length > 1
                     ? LinearGradient(
@@ -46,10 +44,7 @@ class CartViewSingleIngredientItem extends StatelessWidget {
                         colors: recipeIds
                             .map(
                               (final String recipeId) =>
-                                  generateRandomPastelColor(
-                                seed: recipeId.hashCode,
-                                brightness: Theme.of(context).brightness,
-                              ),
+                                  pastelColors[recipeIds.indexOf(recipeId)],
                             )
                             .toList(),
                       )
