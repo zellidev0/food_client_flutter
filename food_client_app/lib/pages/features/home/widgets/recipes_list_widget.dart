@@ -4,10 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_client/generated/locale_keys.g.dart';
 import 'package:food_client/pages/common/empty_view_content.dart';
 import 'package:food_client/pages/common/view_state.dart';
-import 'package:food_client/pages/home/cubit/home_cubit.dart';
-import 'package:food_client/pages/home/cubit/home_state.dart';
-import 'package:food_client/pages/home/home_view.dart';
-import 'package:food_client/pages/home/widgets/recipe_card_item_widget.dart';
+import 'package:food_client/pages/features/home/cubit/home_cubit.dart';
+import 'package:food_client/pages/features/home/cubit/home_state.dart';
+import 'package:food_client/pages/features/home/home_view.dart';
+import 'package:food_client/pages/features/home/widgets/recipe_card_item_widget.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class RecipesListWidget extends StatelessWidget {

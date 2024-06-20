@@ -11,7 +11,7 @@ import 'package:food_client/pages/features/single_recipe/services/web_service/si
 import 'package:food_client/services/web_client/general_web_client_service.dart';
 import 'package:food_client/services/web_client/mixins/single_recipe_web_client_service_mixin.dart';
 import 'package:food_client/services/web_client/web_client_model.dart';
-import 'package:food_client/pages/home/services/home_web_client_service.dart';
+import 'package:food_client/pages/features/home/services/home_web_client_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 

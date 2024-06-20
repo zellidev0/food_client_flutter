@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:food_client/pages/home/widgets/filters_widget.dart';
-import 'package:food_client/pages/home/widgets/recipes_list_widget.dart';
+import 'package:food_client/pages/features/home/widgets/filters_widget.dart';
+import 'package:food_client/pages/features/home/widgets/recipes_list_widget.dart';
 
 final PageStorageBucket pageStorageBucket = PageStorageBucket();
 

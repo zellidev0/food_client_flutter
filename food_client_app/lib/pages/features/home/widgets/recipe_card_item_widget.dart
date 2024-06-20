@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_client/pages/common/view_state.dart';
 import 'package:food_client/pages/common/widgets.dart';
-import 'package:food_client/pages/home/cubit/home_cubit.dart';
-import 'package:food_client/pages/home/cubit/home_state.dart';
-import 'package:food_client/pages/home/widgets/recipe_card_item_description_widget.dart';
+import 'package:food_client/pages/features/home/cubit/home_cubit.dart';
+import 'package:food_client/pages/features/home/cubit/home_state.dart';
+import 'package:food_client/pages/features/home/widgets/recipe_card_item_description_widget.dart';
 import 'package:fpdart/fpdart.dart';
 
 class RecipeCardItemWidget extends StatelessWidget {

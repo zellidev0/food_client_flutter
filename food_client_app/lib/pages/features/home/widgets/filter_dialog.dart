@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_client/pages/home/cubit/home_state.dart';
+import 'package:food_client/pages/features/home/cubit/home_state.dart';
 import 'package:fpdart/fpdart.dart' hide State;
 
 class FilterDialog extends StatefulWidget {

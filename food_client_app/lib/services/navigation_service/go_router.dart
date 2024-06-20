@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_client/pages/features/account/account_view.dart';
+import 'package:food_client/pages/features/account/cubit/account_cubit.dart';
 import 'package:food_client/pages/features/cart/cart_view.dart';
 import 'package:food_client/pages/features/cart/cubit/cart_cubit.dart';
 import 'package:food_client/pages/features/cart/cubit/cart_state.dart';
@@ -15,9 +16,9 @@ import 'package:food_client/pages/features/main/cubit/main_state.dart';
 import 'package:food_client/pages/features/main/main_view.dart';
 import 'package:food_client/pages/features/single_recipe/cubit/single_recipe_cubit.dart';
 import 'package:food_client/pages/features/single_recipe/single_recipe_view.dart';
-import 'package:food_client/pages/home/cubit/home_cubit.dart';
-import 'package:food_client/pages/home/cubit/home_state.dart';
-import 'package:food_client/pages/home/home_view.dart';
+import 'package:food_client/pages/features/home/cubit/home_cubit.dart';
+import 'package:food_client/pages/features/home/cubit/home_state.dart';
+import 'package:food_client/pages/features/home/home_view.dart';
 import 'package:food_client/services/app_settings_service/app_settings_service.dart';
 import 'package:food_client/services/logging_service/logging_service.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
@@ -56,7 +57,13 @@ GoRouter goRouter() => GoRouter(
             StatefulShellBranch(
               routes: <RouteBase>[
                 GoRoute(
-                  builder: (_, GoRouterState state) => const AccountView(),
+                  builder: (_, GoRouterState state) =>
+                      BlocProvider<AccountCubit>(
+                    create: (BuildContext context) => AccountCubit(
+                      navigationService: context.read<NavigationService>(),
+                    ),
+                    child: const AccountView(),
+                  ),
                   path: NavigationServiceUris.accountRouteUri.toString(),
                 ),
               ],

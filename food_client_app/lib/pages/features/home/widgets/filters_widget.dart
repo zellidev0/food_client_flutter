@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_client/generated/locale_keys.g.dart';
 import 'package:food_client/pages/common/view_state.dart';
-import 'package:food_client/pages/home/cubit/home_cubit.dart';
-import 'package:food_client/pages/home/cubit/home_state.dart';
-import 'package:food_client/pages/home/widgets/filter_dialog.dart';
+import 'package:food_client/pages/features/home/cubit/home_cubit.dart';
+import 'package:food_client/pages/features/home/cubit/home_state.dart';
+import 'package:food_client/pages/features/home/widgets/filter_dialog.dart';
 import 'package:fpdart/fpdart.dart';
 
 class FiltersWidget extends StatelessWidget {

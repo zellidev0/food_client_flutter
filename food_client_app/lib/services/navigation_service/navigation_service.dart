@@ -9,7 +9,7 @@ import 'package:food_client/pages/features/history/services/history_navigation_s
 import 'package:food_client/pages/features/ingredients_sorting/services/ingredients_sorting_navigation_service.dart';
 import 'package:food_client/pages/features/main/services/main_navigation_service.dart';
 import 'package:food_client/pages/features/single_recipe/services/single_recipe_navigation_service.dart';
-import 'package:food_client/pages/home/services/home_navigation_service.dart';
+import 'package:food_client/pages/features/home/services/home_navigation_service.dart';
 import 'package:food_client/services/navigation_service/general_navigation_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
