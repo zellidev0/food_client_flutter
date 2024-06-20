@@ -160,12 +160,14 @@ class SingleRecipeView extends StatelessWidget {
                       SingleRecipeState state,
                     ) =>
                         FloatingActionButton(
-                      onPressed: () => context
-                          .read<SingleRecipeCubit>()
-                          .openAddToShoppingCartDialog(
-                            recipe: data.data,
-                            recipeId: state.recipeId,
-                          ),
+                      onPressed: () {
+                        final SingleRecipeCubit cubit =
+                            context.read<SingleRecipeCubit>();
+                        cubit.openAddToShoppingCartDialog(
+                          recipe: data.data,
+                          recipeId: cubit.recipeId,
+                        );
+                      },
                       child: const Icon(Icons.add_shopping_cart),
                     ),
                   ),
