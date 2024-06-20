@@ -304,4 +304,82 @@ class HomeCubit extends Cubit<HomeState> {
   Future<void> retryLastRecipeFetching() async {
     state.paginationController.retryLastFailedRequest();
   }
+
+  void clearFilters({required final Type type}) =>
+      state.availableFilters.maybeMap(
+        data: (ViewStateData<List<HomeStateFilter>> data) => unawaited(
+          _fetchRecipes(
+            paginationSkip: 0,
+            tagIds: type == HomeStateFilterTag
+                ? <String>[]
+                : _selectedFilterIds(
+                    type: data.data.whereType<HomeStateFilterTag>().toList(),
+                  ),
+            cuisineIds: type == HomeStateFilterCuisine
+                ? <String>[]
+                : _selectedFilterIds(
+                    type:
+                        data.data.whereType<HomeStateFilterCuisine>().toList(),
+                  ),
+          ).match(
+            (final Exception error) {
+              _logger.error(
+                MyError(
+                  message: 'Error fetching recipes for filter',
+                  originalError: error,
+                ),
+              );
+
+              _navigationService.showSnackBar(
+                message: LocaleKeys
+                    .ui_home_view_error_states_fetching_recipes_for_filter
+                    .tr(),
+              );
+            },
+            (final List<HomeStateRecipe> recipes) {
+              emit(
+                state.copyWith(
+                  availableFilters: state.availableFilters
+                      .mapData((List<HomeStateFilter> filters) {
+                    if (type == HomeStateFilterTag) {
+                      return filters
+                          .map(
+                            (HomeStateFilter filter) =>
+                                filter is HomeStateFilterTag
+                                    ? filter.copyWith(isSelected: false)
+                                    : filter,
+                          )
+                          .toList();
+                    } else {
+                      return filters
+                          .map(
+                            (HomeStateFilter filter) =>
+                                filter is HomeStateFilterCuisine
+                                    ? filter.copyWith(isSelected: false)
+                                    : filter,
+                          )
+                          .toList();
+                    }
+                  }),
+                ),
+              );
+              _setRecipesInPageController(
+                pageKey: 0,
+                newRecipes: recipes,
+                replaceRecipes: true,
+              );
+            },
+          ).run(),
+        ),
+        orElse: () {
+          _logger.error(MyError(message: 'Error setting filters'));
+
+          _navigationService.showSnackBar(
+            message: LocaleKeys
+                .ui_home_view_error_states_fetching_recipes_for_filter
+                .tr(),
+          );
+          return null;
+        },
+      );
 }

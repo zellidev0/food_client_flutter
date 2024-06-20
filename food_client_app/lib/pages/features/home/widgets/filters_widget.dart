@@ -67,6 +67,9 @@ class FiltersWidget extends StatelessWidget {
                                         filterId: filterId,
                                         isSelected: isSelected,
                                       ),
+                              clearFilters: () => context
+                                  .read<HomeCubit>()
+                                  .clearFilters(type: HomeStateFilterTag),
                             ),
                           ),
                           orElse: () => const None<Widget>(),
@@ -123,6 +126,9 @@ class FiltersWidget extends StatelessWidget {
                                         filterId: filterId,
                                         isSelected: isSelected,
                                       ),
+                              clearFilters: () => context
+                                  .read<HomeCubit>()
+                                  .clearFilters(type: HomeStateFilterCuisine),
                             ),
                           ),
                           orElse: () => const None<Widget>(),
