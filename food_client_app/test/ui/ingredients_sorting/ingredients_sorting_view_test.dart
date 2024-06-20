@@ -7,7 +7,6 @@ import 'package:food_client/ui/ingredients_sorting/widgets/ingredients_sorting_c
 import 'package:fpdart/fpdart.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../mocks.mocks.dart';
 
 void main() {
   late MockIngredientsSortingController controller;

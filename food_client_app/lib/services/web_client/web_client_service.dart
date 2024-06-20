@@ -6,12 +6,12 @@ import 'package:commons_graphql/commons_graphql.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_client/pages/common/error.dart';
+import 'package:food_client/pages/features/home/services/home_web_client_service.dart';
 import 'package:food_client/pages/features/ingredients_sorting/services/web_service/ingredients_sorting_web_client_service.dart';
 import 'package:food_client/pages/features/single_recipe/services/web_service/single_recipe_web_client_service.dart';
 import 'package:food_client/services/web_client/general_web_client_service.dart';
 import 'package:food_client/services/web_client/mixins/single_recipe_web_client_service_mixin.dart';
 import 'package:food_client/services/web_client/web_client_model.dart';
-import 'package:food_client/pages/features/home/services/home_web_client_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
@@ -228,6 +228,7 @@ abstract class WebClientService extends Cubit<Unit>
 
 class WebClientServiceImplementation extends WebClientService
     with SingleRecipeWebClientServiceMixin {
+  @override
   final GraphQLClient client;
   WebClientServiceImplementation._()
       : client = GraphQLClient(

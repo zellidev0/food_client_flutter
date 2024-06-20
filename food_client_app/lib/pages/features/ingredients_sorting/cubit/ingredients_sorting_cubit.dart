@@ -165,7 +165,7 @@ class IngredientsSortingCubit extends Cubit<IngredientsSortingState> {
                   .map((IngredientsSortingStateUnit element) =>
                       element.id == unit.id
                           ? element.copyWith(selected: true)
-                          : element.copyWith(selected: false))
+                          : element.copyWith(selected: false),)
                   .toList(),
             ),
             loading:
