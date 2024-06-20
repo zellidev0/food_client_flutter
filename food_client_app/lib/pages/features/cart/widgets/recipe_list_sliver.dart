@@ -38,7 +38,7 @@ class RecipeListSliver extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       TextButton.icon(
-                        onPressed: () => context
+                        onPressed: () async => context
                             .read<CartCubit>()
                             .openModalBottomSheet(
                               child: SortingModalBottomSheet(

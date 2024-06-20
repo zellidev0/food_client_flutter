@@ -117,36 +117,34 @@ class SingleRecipeView extends StatelessWidget {
                       ),
                     ),
                   ],
-                  body: Column(
-                    children: <Widget>[
-                      BlocBuilder<SingleRecipeCubit, SingleRecipeState>(
-                        builder: (
-                          BuildContext context,
-                          SingleRecipeState state,
-                        ) =>
-                            CookingDetailsWidget(
+                  body: BlocBuilder<SingleRecipeCubit, SingleRecipeState>(
+                    buildWhen: (
+                      SingleRecipeState previous,
+                      SingleRecipeState current,
+                    ) =>
+                        previous.selectedYield != current.selectedYield,
+                    builder: (
+                      BuildContext context,
+                      SingleRecipeState state,
+                    ) =>
+                        Column(
+                      children: <Widget>[
+                        CookingDetailsWidget(
                           difficulty: data.data.difficulty,
                           totalCookingTime: data.data.totalCookingTime,
                           selectedYield: state.selectedYield,
                           yields: data.data.yields,
                           recipeId: data.data.id,
                         ),
-                      ),
-                      const SizedBox(height: 8),
-                      Expanded(
-                        child:
-                            BlocBuilder<SingleRecipeCubit, SingleRecipeState>(
-                          builder: (
-                            BuildContext context,
-                            SingleRecipeState state,
-                          ) =>
-                              TabsContentWidget(
+                        const SizedBox(height: 8),
+                        Expanded(
+                          child: TabsContentWidget(
                             recipe: data.data,
                             selectedYield: state.selectedYield,
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -154,22 +152,16 @@ class SingleRecipeView extends StatelessWidget {
                 padding: const EdgeInsets.all(16),
                 child: Align(
                   alignment: Alignment.bottomRight,
-                  child: BlocBuilder<SingleRecipeCubit, SingleRecipeState>(
-                    builder: (
-                      BuildContext context,
-                      SingleRecipeState state,
-                    ) =>
-                        FloatingActionButton(
-                      onPressed: () {
-                        final SingleRecipeCubit cubit =
-                            context.read<SingleRecipeCubit>();
-                        cubit.openAddToShoppingCartDialog(
-                          recipe: data.data,
-                          recipeId: cubit.recipeId,
-                        );
-                      },
-                      child: const Icon(Icons.add_shopping_cart),
-                    ),
+                  child: FloatingActionButton(
+                    onPressed: () {
+                      final SingleRecipeCubit cubit =
+                          context.read<SingleRecipeCubit>();
+                      cubit.openAddToShoppingCartDialog(
+                        recipe: data.data,
+                        recipeId: cubit.recipeId,
+                      );
+                    },
+                    child: const Icon(Icons.add_shopping_cart),
                   ),
                 ),
               ),
