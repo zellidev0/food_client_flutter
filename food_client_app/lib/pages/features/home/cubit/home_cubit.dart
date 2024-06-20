@@ -46,12 +46,14 @@ class HomeCubit extends Cubit<HomeState> {
         ) {
     scheduleMicrotask(
       () => unawaited(
-        Task.sequenceList(<Task<void>>[
-          _fetchFiltersAndSetState(),
-          _listenToPaginationController(
-            paginationController: state.paginationController,
-          ),
-        ]).run(),
+        Task.sequenceListSeq(
+          <Task<void>>[
+            _fetchFiltersAndSetState(),
+            _listenToPaginationController(
+              paginationController: state.paginationController,
+            ),
+          ],
+        ).run(),
       ),
     );
   }
