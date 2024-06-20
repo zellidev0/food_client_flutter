@@ -113,7 +113,7 @@ class FiltersWidget extends StatelessWidget {
                           data: (List<HomeStateFilter> filters) => some(
                             FilterDialog(
                               filters: filters
-                                  .whereType<HomeStateFilterTag>()
+                                  .whereType<HomeStateFilterCuisine>()
                                   .toList(),
                               setFiltersSelected: ({
                                 required String filterId,
