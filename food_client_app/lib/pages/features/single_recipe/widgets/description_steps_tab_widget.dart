@@ -15,6 +15,7 @@ class DescriptionStepsTabWidget extends StatelessWidget {
         itemCount: steps.length,
         itemBuilder: (final BuildContext context, final int index) =>
             SingleDescriptionWidget(
+          key: ValueKey<String>(steps[index].hashCode.toString()),
           index: index,
           step: steps[index],
         ),

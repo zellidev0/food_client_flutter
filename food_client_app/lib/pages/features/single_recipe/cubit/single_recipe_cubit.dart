@@ -22,6 +22,7 @@ class SingleRecipeCubit extends Cubit<SingleRecipeState> {
   final SingleRecipeWebClientService _webClientService;
   final SingleRecipeWebImageSizerService _webImageSizerService;
   final LoggingService _logger;
+  final String recipeId;
   SingleRecipeCubit({
     required final SingleRecipeNavigationService navigationService,
     required final SingleRecipePersistenceService persistenceService,
@@ -29,7 +30,7 @@ class SingleRecipeCubit extends Cubit<SingleRecipeState> {
     required final SingleRecipeWebImageSizerService webImageSizerService,
     required final LoggingService logger,
     required final Option<int> selectedYield,
-    required final String recipeId,
+    required this.recipeId,
   })  : _navigationService = navigationService,
         _persistenceService = persistenceService,
         _webClientService = webClientService,
@@ -37,7 +38,6 @@ class SingleRecipeCubit extends Cubit<SingleRecipeState> {
         _logger = logger,
         super(
           SingleRecipeState(
-            recipeId: recipeId,
             recipe: const ViewState<SingleRecipeStateRecipe>.loading(),
             selectedYield: selectedYield,
           ),
@@ -46,7 +46,7 @@ class SingleRecipeCubit extends Cubit<SingleRecipeState> {
   }
 
   Task<void> fetchSingleRecipe() => _webClientService
-          .fetchSingleRecipe(recipeId: state.recipeId)
+          .fetchSingleRecipe(recipeId: recipeId)
           .map(
             (final SingleRecipeWebClientModelRecipe recipe) =>
                 mapToSingleRecipeStateRecipe(
@@ -59,7 +59,7 @@ class SingleRecipeCubit extends Cubit<SingleRecipeState> {
         (Exception error) {
           _logger.error(
             MyError(
-              message: 'Failed to fetch recipe with id ${state.recipeId}',
+              message: 'Failed to fetch recipe with id $recipeId',
               originalError: error,
             ),
           );
