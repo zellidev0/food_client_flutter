@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_client/pages/features/account/cubit/account_cubit.dart';
-import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:fpdart/fpdart.dart';
 
 class AccountView extends StatelessWidget {
@@ -24,18 +23,13 @@ class AccountView extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 const Divider(),
-                BlocProvider<AccountCubit>(
-                  create: (final BuildContext context) => AccountCubit(
-                    navigationService: context.read<NavigationService>(),
-                  ),
-                  child: BlocBuilder<AccountCubit, Unit>(
-                    builder: (final BuildContext builderContext, final __) =>
-                        ListTile(
-                      title: const Text('Ingredients Sorting'),
-                      onTap: () => builderContext
-                          .read<AccountCubit>()
-                          .goToIngredientsSorting(),
-                    ),
+                BlocBuilder<AccountCubit, Unit>(
+                  builder: (final BuildContext builderContext, final __) =>
+                      ListTile(
+                    title: const Text('Ingredients Sorting'),
+                    onTap: () => builderContext
+                        .read<AccountCubit>()
+                        .goToIngredientsSorting(),
                   ),
                 ),
                 const Divider(),
