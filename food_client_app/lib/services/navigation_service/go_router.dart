@@ -47,10 +47,8 @@ GoRouter goRouter() => GoRouter(
             create: (BuildContext context) => MainCubit(
               navigationService: context.read<NavigationService>(),
             ),
-            child: BlocBuilder<MainCubit, MainState>(
-              builder: (BuildContext context, MainState model) => MainView(
-                child: child,
-              ),
+            child: MainView(
+              child: child,
             ),
           ),
           branches: <StatefulShellBranch>[
@@ -84,10 +82,7 @@ GoRouter goRouter() => GoRouter(
                         loggerName: 'CartController',
                       ),
                     ),
-                    child: BlocBuilder<CartCubit, CartState>(
-                      builder: (BuildContext context, CartState model) =>
-                          const CartView(),
-                    ),
+                    child: const CartView(),
                   ),
                   path: NavigationServiceUris.cartRouteUri.toString(),
                 ),
@@ -111,10 +106,7 @@ GoRouter goRouter() => GoRouter(
                         loggerName: 'HomeController',
                       ),
                     ),
-                    child: BlocBuilder<HomeCubit, HomeState>(
-                      builder: (BuildContext context1, HomeState model) =>
-                          const HomeView(),
-                    ),
+                    child: const HomeView(),
                   ),
                   path: NavigationServiceUris.homeRouteUri.toString(),
                 ),
@@ -151,10 +143,7 @@ GoRouter goRouter() => GoRouter(
               navigationService: context.read<NavigationService>(),
               persistenceService: context.read<PersistenceService>(),
             ),
-            child: BlocBuilder<HistoryCubit, HistoryState>(
-              builder: (BuildContext context, HistoryState model) =>
-                  const HistoryView(),
-            ),
+            child: const HistoryView(),
           ),
           parentNavigatorKey: rootNavigatorKey,
           path: NavigationServiceUris.historyRouteUri.toString(),
