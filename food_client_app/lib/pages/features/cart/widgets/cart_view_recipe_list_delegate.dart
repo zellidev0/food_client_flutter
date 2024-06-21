@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +31,16 @@ class RecipesListDelegate extends SliverPersistentHeaderDelegate {
     }
     return BlocBuilder<CartCubit, CartState>(
       buildWhen: (CartState previous, CartState current) =>
-          previous.runtimeType != current.runtimeType,
+          previous.runtimeType != current.runtimeType ||
+          !current.data.maybeWhen(
+            data: (CartStateData data) => data.recipes.equals(
+              previous.data.maybeWhen(
+                data: (CartStateData data) => data.recipes,
+                orElse: () => <CartStateRecipe>[],
+              ),
+            ),
+            orElse: () => false,
+          ),
       builder: (BuildContext context, CartState state) => state.data.map(
         data: (ViewStateData<CartStateData> data) => ListView.separated(
           padding: const EdgeInsets.all(16).copyWith(bottom: 12),

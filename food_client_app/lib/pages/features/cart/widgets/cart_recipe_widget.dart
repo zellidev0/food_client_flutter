@@ -5,7 +5,7 @@ import 'package:food_client/pages/features/cart/cubit/cart_cubit.dart';
 import 'package:food_client/pages/features/cart/cubit/cart_state.dart';
 import 'package:food_client/pages/features/cart/widgets/card_image.dart';
 import 'package:food_client/pages/features/cart/widgets/card_text.dart';
-import 'package:food_client/pages/features/cart/widgets/servicngs_chip.dart';
+import 'package:food_client/pages/features/cart/widgets/servings_chip.dart';
 
 class CartRecipeWidget extends StatelessWidget {
   final double height;

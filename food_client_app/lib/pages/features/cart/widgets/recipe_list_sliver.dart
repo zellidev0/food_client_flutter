@@ -14,30 +14,27 @@ class RecipeListSliver extends StatelessWidget {
   const RecipeListSliver({super.key});
 
   @override
-  Widget build(BuildContext context) => BlocBuilder<CartCubit, CartState>(
-        buildWhen: (CartState previous, CartState current) =>
-            previous.runtimeType != current.runtimeType,
-        builder: (BuildContext context, CartState state) => NestedScrollView(
-          headerSliverBuilder: (_, __) => state.data.map(
-            data: (ViewStateData<CartStateData> data) => <Widget>[
-              if (data.data.ingredients.isEmpty)
-                const SliverToBoxAdapter()
-              else
-                SliverPersistentHeader(
-                  floating: false,
-                  pinned: true,
-                  delegate: RecipesListDelegate(
-                    extendedHeight: MediaQuery.of(context).size.height * 0.24,
-                    collapsedHeight: MediaQuery.of(context).size.height * 0.16,
-                  ),
-                ),
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      TextButton.icon(
+  Widget build(BuildContext context) => NestedScrollView(
+        headerSliverBuilder: (_, __) => <Widget>[
+          SliverPersistentHeader(
+            floating: false,
+            pinned: true,
+            delegate: RecipesListDelegate(
+              extendedHeight: MediaQuery.of(context).size.height * 0.24,
+              collapsedHeight: MediaQuery.of(context).size.height * 0.16,
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  BlocBuilder<CartCubit, CartState>(
+                    builder: (BuildContext context, CartState state) =>
+                        state.data.maybeMap(
+                      data: (ViewStateData<CartStateData> data) =>
+                          TextButton.icon(
                         onPressed: () async => context
                             .read<CartCubit>()
                             .openModalBottomSheet(
@@ -58,53 +55,45 @@ class RecipeListSliver extends StatelessWidget {
                               .ui_cart_view_modals_sorting_modal_button_text,
                         ).tr(),
                       ),
-                    ],
+                      orElse: () => const SizedBox.shrink(),
+                    ),
                   ),
-                ),
+                ],
               ),
-              const MyTabBarSliver(),
-            ],
-            error: (_) => const <Widget>[],
-            loading: (_) =>
-                const <Widget>[Center(child: CircularProgressIndicator())],
+            ),
           ),
-          body: state.data.map(
-            data: (ViewStateData<CartStateData> data) =>
-                BlocBuilder<CartCubit, CartState>(
-              builder: (BuildContext context, CartState state) =>
-                  state.data.map(
-                data: (ViewStateData<CartStateData> data) => TabBarView(
-                  children: <Widget>[
-                    IngredientsListWidget(
-                      ingredients: data.data.ingredients,
-                      keyId: 'total',
-                      sorting: data.data.sorting,
-                    ),
-                    IngredientsListWidget(
-                      ingredients: data.data.ingredients
-                          .where(
-                            (final CartStateIngredient element) =>
-                                !element.isTickedOff,
-                          )
-                          .toList(),
-                      keyId: 'missing',
-                      sorting: data.data.sorting,
-                    ),
-                    IngredientsListWidget(
-                      ingredients: data.data.ingredients
-                          .where(
-                            (final CartStateIngredient element) =>
-                                element.isTickedOff,
-                          )
-                          .toList(),
-                      keyId: 'ticked-off',
-                      sorting: data.data.sorting,
-                    ),
-                  ],
+          const MyTabBarSliver(),
+        ],
+        body: BlocBuilder<CartCubit, CartState>(
+          builder: (BuildContext context, CartState state) => state.data.map(
+            data: (ViewStateData<CartStateData> data) => TabBarView(
+              children: <Widget>[
+                IngredientsListWidget(
+                  ingredients: data.data.ingredients,
+                  keyId: 'total',
+                  sorting: data.data.sorting,
                 ),
-                error: (_) => const SizedBox.shrink(),
-                loading: (_) => const SizedBox.shrink(),
-              ),
+                IngredientsListWidget(
+                  ingredients: data.data.ingredients
+                      .where(
+                        (final CartStateIngredient element) =>
+                            !element.isTickedOff,
+                      )
+                      .toList(),
+                  keyId: 'missing',
+                  sorting: data.data.sorting,
+                ),
+                IngredientsListWidget(
+                  ingredients: data.data.ingredients
+                      .where(
+                        (final CartStateIngredient element) =>
+                            element.isTickedOff,
+                      )
+                      .toList(),
+                  keyId: 'ticked-off',
+                  sorting: data.data.sorting,
+                ),
+              ],
             ),
             error: (_) => const SizedBox.shrink(),
             loading: (_) => const SizedBox.shrink(),
