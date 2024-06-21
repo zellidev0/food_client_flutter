@@ -32,15 +32,14 @@ class RecipeListSliver extends StatelessWidget {
                 children: <Widget>[
                   BlocBuilder<CartCubit, CartState>(
                     builder: (BuildContext context, CartState state) =>
-                        state.data.maybeMap(
-                      data: (ViewStateData<CartStateData> data) =>
-                          TextButton.icon(
+                        state.data.maybeWhen(
+                      data: (CartStateData data) => TextButton.icon(
                         onPressed: () async => context
                             .read<CartCubit>()
                             .openModalBottomSheet(
                               child: SortingModalBottomSheet(
-                                sortingUnits: data.data.sortingUnits,
-                                sorting: data.data.sorting,
+                                sortingUnits: data.sortingUnits,
+                                sorting: data.sorting,
                                 setActiveSorting: ({
                                   required final CartStateSorting sorting,
                                 }) =>

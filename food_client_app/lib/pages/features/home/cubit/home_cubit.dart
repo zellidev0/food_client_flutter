@@ -138,9 +138,9 @@ class HomeCubit extends Cubit<HomeState> {
     return Task<void>(
       () async => paginationController.addPageRequestListener(
         (final int pageKey) {
-          state.availableFilters.maybeMap(
-            data: (ViewStateData<List<HomeStateFilter>> data) =>
-                unawaited(fetchRecipesTask(data.data, pageKey).run()),
+          state.availableFilters.maybeWhen(
+            data: (List<HomeStateFilter> data) =>
+                unawaited(fetchRecipesTask(data, pageKey).run()),
             orElse: () {
               _logger.error(MyError(message: 'Error fetching with filters'));
 
@@ -165,15 +165,15 @@ class HomeCubit extends Cubit<HomeState> {
     required final String filterId,
     required final bool isSelected,
   }) =>
-      state.availableFilters.maybeMap(
-        data: (ViewStateData<List<HomeStateFilter>> data) => unawaited(
+      state.availableFilters.maybeWhen(
+        data: (List<HomeStateFilter> data) => unawaited(
           _fetchRecipes(
             paginationSkip: 0,
             tagIds: _selectedFilterIds(
-              type: data.data.whereType<HomeStateFilterTag>().toList(),
+              type: data.whereType<HomeStateFilterTag>().toList(),
             ),
             cuisineIds: _selectedFilterIds(
-              type: data.data.whereType<HomeStateFilterCuisine>().toList(),
+              type: data.whereType<HomeStateFilterCuisine>().toList(),
             ),
           ).match(
             (final Exception error) {
@@ -306,20 +306,19 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   void clearFilters({required final Type type}) =>
-      state.availableFilters.maybeMap(
-        data: (ViewStateData<List<HomeStateFilter>> data) => unawaited(
+      state.availableFilters.maybeWhen(
+        data: (List<HomeStateFilter> data) => unawaited(
           _fetchRecipes(
             paginationSkip: 0,
             tagIds: type == HomeStateFilterTag
                 ? <String>[]
                 : _selectedFilterIds(
-                    type: data.data.whereType<HomeStateFilterTag>().toList(),
+                    type: data.whereType<HomeStateFilterTag>().toList(),
                   ),
             cuisineIds: type == HomeStateFilterCuisine
                 ? <String>[]
                 : _selectedFilterIds(
-                    type:
-                        data.data.whereType<HomeStateFilterCuisine>().toList(),
+                    type: data.whereType<HomeStateFilterCuisine>().toList(),
                   ),
           ).match(
             (final Exception error) {
