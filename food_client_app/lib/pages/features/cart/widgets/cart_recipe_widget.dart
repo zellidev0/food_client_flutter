@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_client/commons/utils.dart';
 import 'package:food_client/pages/features/cart/cubit/cart_cubit.dart';
 import 'package:food_client/pages/features/cart/cubit/cart_state.dart';
-import 'package:food_client/pages/features/cart/widgets/card_image.dart';
-import 'package:food_client/pages/features/cart/widgets/card_text.dart';
+import 'package:food_client/pages/features/cart/widgets/cart_image.dart';
+import 'package:food_client/pages/features/cart/widgets/cart_text.dart';
 import 'package:food_client/pages/features/cart/widgets/servings_chip.dart';
 
 class CartRecipeWidget extends StatelessWidget {
@@ -40,8 +40,8 @@ class CartRecipeWidget extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      CardImage(imageUrl: recipe.imageUrl),
-                      Cardtext(title: recipe.title),
+                      CartImage(imageUrl: recipe.imageUrl),
+                      Carttext(title: recipe.title),
                     ],
                   ),
                   ServingsChip(serving: recipe.serving),

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:food_client/pages/common/widgets.dart';
 import 'package:fpdart/fpdart.dart';
 
-class CardImage extends StatelessWidget {
+class CartImage extends StatelessWidget {
   final Option<Uri> imageUrl;
 
-  const CardImage({super.key, required this.imageUrl});
+  const CartImage({super.key, required this.imageUrl});
   @override
   Widget build(BuildContext context) => AspectRatio(
         aspectRatio: 1.5 / 1,
