@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_client/ui/account/account_navigation_service.dart';
-import 'package:food_client/ui/cart/services/cart_navigation_service.dart';
-import 'package:food_client/ui/history/services/history_navigation_service.dart';
-import 'package:food_client/ui/home/services/home_navigation_service.dart';
-import 'package:food_client/ui/ingredients_sorting/services/ingredients_sorting_navigation_service.dart';
-import 'package:food_client/ui/main/main_navigation_service.dart';
-import 'package:food_client/ui/single_recipe/services/single_recipe_navigation_service.dart';
-
+import 'package:food_client/pages/features/account/services/account_navigation_service.dart';
+import 'package:food_client/pages/features/cart/services/cart_navigation_service.dart';
+import 'package:food_client/pages/features/history/services/history_navigation_service.dart';
+import 'package:food_client/pages/features/home/services/home_navigation_service.dart';
+import 'package:food_client/pages/features/ingredients_sorting/services/ingredients_sorting_navigation_service.dart';
+import 'package:food_client/pages/features/main/services/main_navigation_service.dart';
+import 'package:food_client/pages/features/single_recipe/services/single_recipe_navigation_service.dart';
+import 'package:food_client/services/navigation_service/general_navigation_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:go_router/go_router.dart';
@@ -19,18 +19,14 @@ part 'navigation_service.freezed.dart';
 
 abstract class NavigationServiceAggregator
     implements
-        HomeNavigationService,
+        AccountNavigationService,
+        GeneralNavigationService,
         SingleRecipeNavigationService,
         MainNavigationService,
-        CartNavigationService,
-        AccountNavigationService,
+        HomeNavigationService,
         IngredientsSortingNavigationService,
+        CartNavigationService,
         HistoryNavigationService {}
-
-abstract class NavigationService extends Cubit<Unit>
-    implements NavigationServiceAggregator {
-  NavigationService(super.initialState);
-}
 
 class NavigationServiceUris {
   NavigationServiceUris._();
@@ -53,7 +49,13 @@ class NavigationServiceDialogAction with _$NavigationServiceDialogAction {
   }) = _NavigationServiceDialogAction;
 }
 
-class GoRouterNavigationService extends NavigationService {
+abstract class NavigationService extends Cubit<Unit>
+    implements NavigationServiceAggregator {
+  NavigationService(super.initialState);
+}
+
+class GoRouterNavigationService extends NavigationService
+    implements NavigationServiceAggregator {
   final GoRouter _goRouter;
 
   GoRouterNavigationService._(

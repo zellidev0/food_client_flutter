@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:food_client/commons/error.dart';
+import 'package:food_client/pages/common/error.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:logger/logger.dart' as nice_logger;
 import 'package:logging/logging.dart';

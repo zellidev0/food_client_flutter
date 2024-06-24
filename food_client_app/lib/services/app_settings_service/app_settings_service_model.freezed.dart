@@ -12,7 +12,7 @@ part of 'app_settings_service_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$AppSettingsServiceModel {
@@ -64,23 +64,25 @@ class _$AppSettingsServiceModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_AppSettingsServiceModelCopyWith<$Res>
+abstract class _$$AppSettingsServiceModelImplCopyWith<$Res>
     implements $AppSettingsServiceModelCopyWith<$Res> {
-  factory _$$_AppSettingsServiceModelCopyWith(_$_AppSettingsServiceModel value,
-          $Res Function(_$_AppSettingsServiceModel) then) =
-      __$$_AppSettingsServiceModelCopyWithImpl<$Res>;
+  factory _$$AppSettingsServiceModelImplCopyWith(
+          _$AppSettingsServiceModelImpl value,
+          $Res Function(_$AppSettingsServiceModelImpl) then) =
+      __$$AppSettingsServiceModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Locale> recipeLocales, bool combineIngredients});
 }
 
 /// @nodoc
-class __$$_AppSettingsServiceModelCopyWithImpl<$Res>
+class __$$AppSettingsServiceModelImplCopyWithImpl<$Res>
     extends _$AppSettingsServiceModelCopyWithImpl<$Res,
-        _$_AppSettingsServiceModel>
-    implements _$$_AppSettingsServiceModelCopyWith<$Res> {
-  __$$_AppSettingsServiceModelCopyWithImpl(_$_AppSettingsServiceModel _value,
-      $Res Function(_$_AppSettingsServiceModel) _then)
+        _$AppSettingsServiceModelImpl>
+    implements _$$AppSettingsServiceModelImplCopyWith<$Res> {
+  __$$AppSettingsServiceModelImplCopyWithImpl(
+      _$AppSettingsServiceModelImpl _value,
+      $Res Function(_$AppSettingsServiceModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -89,7 +91,7 @@ class __$$_AppSettingsServiceModelCopyWithImpl<$Res>
     Object? recipeLocales = null,
     Object? combineIngredients = null,
   }) {
-    return _then(_$_AppSettingsServiceModel(
+    return _then(_$AppSettingsServiceModelImpl(
       recipeLocales: null == recipeLocales
           ? _value._recipeLocales
           : recipeLocales // ignore: cast_nullable_to_non_nullable
@@ -104,8 +106,8 @@ class __$$_AppSettingsServiceModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AppSettingsServiceModel implements _AppSettingsServiceModel {
-  const _$_AppSettingsServiceModel(
+class _$AppSettingsServiceModelImpl implements _AppSettingsServiceModel {
+  const _$AppSettingsServiceModelImpl(
       {required final List<Locale> recipeLocales,
       required this.combineIngredients})
       : _recipeLocales = recipeLocales;
@@ -127,10 +129,10 @@ class _$_AppSettingsServiceModel implements _AppSettingsServiceModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AppSettingsServiceModel &&
+            other is _$AppSettingsServiceModelImpl &&
             const DeepCollectionEquality()
                 .equals(other._recipeLocales, _recipeLocales) &&
             (identical(other.combineIngredients, combineIngredients) ||
@@ -144,16 +146,15 @@ class _$_AppSettingsServiceModel implements _AppSettingsServiceModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AppSettingsServiceModelCopyWith<_$_AppSettingsServiceModel>
-      get copyWith =>
-          __$$_AppSettingsServiceModelCopyWithImpl<_$_AppSettingsServiceModel>(
-              this, _$identity);
+  _$$AppSettingsServiceModelImplCopyWith<_$AppSettingsServiceModelImpl>
+      get copyWith => __$$AppSettingsServiceModelImplCopyWithImpl<
+          _$AppSettingsServiceModelImpl>(this, _$identity);
 }
 
 abstract class _AppSettingsServiceModel implements AppSettingsServiceModel {
   const factory _AppSettingsServiceModel(
       {required final List<Locale> recipeLocales,
-      required final bool combineIngredients}) = _$_AppSettingsServiceModel;
+      required final bool combineIngredients}) = _$AppSettingsServiceModelImpl;
 
   @override
   List<Locale> get recipeLocales;
@@ -161,6 +162,6 @@ abstract class _AppSettingsServiceModel implements AppSettingsServiceModel {
   bool get combineIngredients;
   @override
   @JsonKey(ignore: true)
-  _$$_AppSettingsServiceModelCopyWith<_$_AppSettingsServiceModel>
+  _$$AppSettingsServiceModelImplCopyWith<_$AppSettingsServiceModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

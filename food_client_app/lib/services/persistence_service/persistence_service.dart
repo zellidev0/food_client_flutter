@@ -1,15 +1,17 @@
 import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
-import 'package:food_client/commons/error.dart';
 import 'package:food_client/commons/utils.dart';
+import 'package:food_client/pages/common/error.dart';
+import 'package:food_client/pages/features/cart/services/cart_persistence_service.dart';
+import 'package:food_client/pages/features/history/services/history_persistence_service.dart';
+import 'package:food_client/pages/features/home/services/home_persistence_service.dart';
+import 'package:food_client/pages/features/ingredients_sorting/services/persistance_service/ingredients_sorting_persistence_service.dart';
+import 'package:food_client/pages/features/single_recipe/services/persistance_service/single_recipe_persistence_service.dart';
+import 'package:food_client/services/persistence_service/general_persisnence_service.dart';
+import 'package:food_client/services/persistence_service/mixins/cart_persistence_service_mixin.dart';
+import 'package:food_client/services/persistence_service/mixins/single_recipe_persistence_service_mixin.dart';
 import 'package:food_client/services/persistence_service/persistence_service_model.dart';
-import 'package:food_client/ui/cart/services/cart_persistence_service.dart';
-import 'package:food_client/ui/history/services/history_persistence_service.dart';
-import 'package:food_client/ui/home/services/home_persistence_service.dart';
-import 'package:food_client/ui/ingredients_sorting/services/ingredients_sorting_persistence_service.dart';
-import 'package:food_client/ui/single_recipe/services/single_recipe_persistence_service.dart';
-
 import 'package:fpdart/fpdart.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -21,6 +23,7 @@ const String historyRecipeBoxName = 'historyRecipeBox';
 
 abstract class PersistenceServiceAggregator
     implements
+        GeneralPersistenceService,
         CartPersistenceService,
         SingleRecipePersistenceService,
         IngredientsSortingPersistenceService,
@@ -32,10 +35,8 @@ abstract class PersistenceService extends Cubit<PersistenceServiceModel>
   PersistenceService(super.initialState);
 }
 
-class HivePersistenceService extends PersistenceService {
-  late Box<PersistenceServiceModelShoppingListRecipe> shoppingListBox;
-  late Box<PersistenceServiceModelSortingUnit> sortingUnits;
-  late Box<PersistenceServiceModelActiveSorting> activeShoppingListSortingBox;
+class HivePersistenceService extends PersistenceService
+    with SingleRecipePersistenceServiceMixin, CartPersistenceServiceMixin {
   late Box<PersistenceServiceModelHistoryRecipe> historyRecipeBox;
   static final HivePersistenceService _instance = HivePersistenceService._();
 
@@ -64,182 +65,6 @@ class HivePersistenceService extends PersistenceService {
   }
 
   factory HivePersistenceService.instance() => _instance;
-
-  @override
-  List<CartPersistenceServiceModelRecipe> getShoppingCardRecipes() =>
-      _readAllShoppingCardIngredientsAndSetState()
-          .map(mapToCartPersistenceServiceModelRecipe)
-          .toList();
-
-  @override
-  Task<void> addRecipe({
-    required final SingleRecipePersistenceServiceRecipe recipe,
-  }) =>
-      Task<void>(
-        () async => await shoppingListBox.put(
-          recipe.recipeId,
-          PersistenceServiceModelShoppingListRecipe(
-            ingredients: recipe.ingredients
-                .map(
-                  (final SingleRecipePersistenceServiceIngredient ingredient) =>
-                      PersistenceServiceModelShoppingListIngredient(
-                    ingredientId: ingredient.ingredientId,
-                    imageUrl: ingredient.imageUrl,
-                    slug: ingredient.slug,
-                    isTickedOff: ingredient.isTickedOff,
-                    displayedName: ingredient.displayedName,
-                    amount: ingredient.amount,
-                    unit: ingredient.unit,
-                    family: ingredient.family.map(
-                      (
-                        final SingleRecipePersistenceServiceIngredientFamily
-                            family,
-                      ) =>
-                          PersistenceServiceModelShoppingListIngredientFamily(
-                        id: family.id,
-                        type: family.type,
-                        iconPath: family.iconPath,
-                        name: family.name,
-                        slug: family.slug,
-                      ),
-                    ),
-                  ),
-                )
-                .toList(),
-            recipeId: recipe.recipeId,
-            servings: recipe.servings,
-            imagePath: recipe.imagePath,
-            title: recipe.title,
-          ),
-        ),
-      );
-
-  @override
-  bool isInShoppingCart({
-    required final int servings,
-    required final String recipeId,
-  }) =>
-      optionOf(shoppingListBox.get(recipeId)).fold(
-        () => false,
-        (final PersistenceServiceModelShoppingListRecipe t) =>
-            t.servings == servings,
-      );
-
-  List<PersistenceServiceModelShoppingListRecipe>
-      _readAllShoppingCardIngredientsAndSetState() =>
-          shoppingListBox.values.toList();
-
-  @override
-  TaskEither<MyError, void> updateIngredients({
-    required final bool isTickedOff,
-    required final String ingredientId,
-    required final List<String> recipeIds,
-  }) =>
-      recipeIds.traverseTaskEither(
-        (String id) => optionOf(shoppingListBox.get(id))
-            .map(
-              (final PersistenceServiceModelShoppingListRecipe recipe) =>
-                  recipe.copyWith(
-                ingredients: recipe.ingredients
-                    .map(
-                      (
-                        final PersistenceServiceModelShoppingListIngredient ing,
-                      ) =>
-                          ing.ingredientId == ingredientId
-                              ? ing.copyWith(isTickedOff: isTickedOff)
-                              : ing,
-                    )
-                    .toList(),
-              ),
-            )
-            .toEither<MyError>(
-              () => MyError(
-                message:
-                    'Shopping list box does not contain recipe with id $recipeIds',
-              ),
-            )
-            .toTaskEither()
-            .flatMap(
-              (final PersistenceServiceModelShoppingListRecipe recipe) =>
-                  TaskEither<MyError, void>.tryCatch(
-                () async => await shoppingListBox.put(recipe.recipeId, recipe),
-                (Object error, StackTrace stackTrace) => MyError(
-                  stackTrace: stackTrace,
-                  originalError: error,
-                  message: 'message',
-                ),
-              ),
-            ),
-      );
-
-  @override
-  Task<void> deleteIngredients({
-    required final List<String> ingredientKeys,
-    required final String recipeId,
-  }) =>
-      optionOf(shoppingListBox.get(recipeId))
-          .map(
-            (final PersistenceServiceModelShoppingListRecipe recipe) =>
-                recipe.copyWith(
-              ingredients: recipe.ingredients
-                  .filter(
-                    (
-                      final PersistenceServiceModelShoppingListIngredient
-                          ingredient,
-                    ) =>
-                        !ingredientKeys.contains(ingredient.ingredientId),
-                  )
-                  .toList(),
-            ),
-          )
-          .fold(
-            () => Task<void>(() async {}),
-            (final PersistenceServiceModelShoppingListRecipe recipe) =>
-                Task<void>(
-              () async => await shoppingListBox.put(recipeId, recipe),
-            ),
-          );
-
-  @override
-  TaskEither<MyError, void> deleteTicketOffIngredientsOfRecipe({
-    required final String recipeId,
-  }) =>
-      optionOf(shoppingListBox.get(recipeId))
-          .map(
-            (final PersistenceServiceModelShoppingListRecipe recipe) =>
-                recipe.copyWith(
-              ingredients: recipe.ingredients
-                  .filter(
-                    (
-                      final PersistenceServiceModelShoppingListIngredient
-                          ingredient,
-                    ) =>
-                        !ingredient.isTickedOff,
-                  )
-                  .toList(),
-            ),
-          )
-          .toEither<MyError>(
-            () => MyError(
-              message:
-                  'Shopping list box does not contain recipe with id $recipeId',
-            ),
-          )
-          .toTaskEither()
-          .flatMap(
-            (PersistenceServiceModelShoppingListRecipe recipe) =>
-                TaskEither<MyError, void>.tryCatch(
-              () async => await shoppingListBox.put(recipeId, recipe),
-              MyError.fromErrorAndStackTrace,
-            ),
-          );
-
-  @override
-  TaskEither<MyError, void> deleteRecipe({required final String recipeId}) =>
-      TaskEither<MyError, void>.tryCatch(
-        () async => await shoppingListBox.delete(recipeId),
-        MyError.fromErrorAndStackTrace,
-      );
 
   @override
   List<IngredientsSortingPersistenceModelUnit> getUnits() => sortingUnits.values
@@ -318,83 +143,6 @@ class HivePersistenceService extends PersistenceService {
       TaskEither<Exception, void>.tryCatch(
         () async => await sortingUnits.delete(unitId),
         buildException,
-      );
-
-  @override
-  List<CartPersistenceServiceModelSortingUnit> getSortingUnits() => sortingUnits
-      .values
-      .map(
-        (final PersistenceServiceModelSortingUnit unit) =>
-            CartPersistenceServiceModelSortingUnit(
-          id: unit.id,
-          name: unit.name,
-          ingredientFamilies: unit.sorting
-              .map(
-                (
-                  final PersistenceServiceModelSorting sorting,
-                ) =>
-                    CartPersistenceServiceModelSortingUnitFamily(
-                  familyIds: sorting.ingredientFamilies
-                      .map(
-                        (
-                          final PersistenceServiceModelIngredientFamily family,
-                        ) =>
-                            family.helloFreshFamilyId,
-                      )
-                      .toList(),
-                  name: sorting.name,
-                ),
-              )
-              .toList(),
-        ),
-      )
-      .toList();
-
-  @override
-  TaskEither<MyError, void> saveSorting({
-    required final CartPersistenceServiceModelActiveSorting sorting,
-  }) =>
-      TaskEither<MyError, void>.tryCatch(
-        () async => await activeShoppingListSortingBox.put(
-          activeShoppingListSortingKey,
-          sorting.map(
-            selectedUnit: (
-              final CartPersistenceServiceModelActiveSortingSelectedUnit
-                  selectedUnit,
-            ) =>
-                PersistenceServiceModelActiveSorting.unit(
-              activeSortingUnitId: selectedUnit.activeSortingUnitId,
-              customSortingIngredientIds: selectedUnit.ingredientIds,
-            ),
-            custom:
-                (final CartPersistenceServiceModelActiveSortingCustom custom) =>
-                    PersistenceServiceModelActiveSorting.custom(
-              customSortingIngredientIds: custom.ingredientIds,
-            ),
-          ),
-        ),
-        MyError.fromErrorAndStackTrace,
-      );
-
-  @override
-  Option<CartPersistenceServiceModelActiveSorting> getActiveSorting() =>
-      optionOf(
-        activeShoppingListSortingBox.get(
-          activeShoppingListSortingKey,
-        ),
-      ).map(
-        (final PersistenceServiceModelActiveSorting activeSorting) =>
-            activeSorting.map(
-          unit: (final PersistenceServiceModelActiveSortingUnit unit) =>
-              CartPersistenceServiceModelActiveSorting.selectedUnit(
-            activeSortingUnitId: unit.activeSortingUnitId,
-            ingredientIds: unit.customSortingIngredientIds,
-          ),
-          custom: (final PersistenceServiceModelActiveSortingCustom custom) =>
-              CartPersistenceServiceModelActiveSorting.custom(
-            ingredientIds: custom.customSortingIngredientIds,
-          ),
-        ),
       );
 
   @override

@@ -7,17 +7,17 @@ part of 'persistence_service_model.dart';
 // **************************************************************************
 
 class PersistenceServiceModelShoppingListRecipeAdapter
-    extends TypeAdapter<_$_PersistenceServiceModelShoppingListRecipe> {
+    extends TypeAdapter<_$PersistenceServiceModelShoppingListRecipeImpl> {
   @override
   final int typeId = 1;
 
   @override
-  _$_PersistenceServiceModelShoppingListRecipe read(BinaryReader reader) {
+  _$PersistenceServiceModelShoppingListRecipeImpl read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return _$_PersistenceServiceModelShoppingListRecipe(
+    return _$PersistenceServiceModelShoppingListRecipeImpl(
       ingredients: (fields[0] as List)
           .cast<PersistenceServiceModelShoppingListIngredient>(),
       title: fields[1] as String,
@@ -28,8 +28,8 @@ class PersistenceServiceModelShoppingListRecipeAdapter
   }
 
   @override
-  void write(
-      BinaryWriter writer, _$_PersistenceServiceModelShoppingListRecipe obj) {
+  void write(BinaryWriter writer,
+      _$PersistenceServiceModelShoppingListRecipeImpl obj) {
     writer
       ..writeByte(5)
       ..writeByte(1)
@@ -56,17 +56,18 @@ class PersistenceServiceModelShoppingListRecipeAdapter
 }
 
 class PersistenceServiceModelShoppingListIngredientAdapter
-    extends TypeAdapter<_$_PersistenceServiceModelShoppingListIngredient> {
+    extends TypeAdapter<_$PersistenceServiceModelShoppingListIngredientImpl> {
   @override
   final int typeId = 0;
 
   @override
-  _$_PersistenceServiceModelShoppingListIngredient read(BinaryReader reader) {
+  _$PersistenceServiceModelShoppingListIngredientImpl read(
+      BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return _$_PersistenceServiceModelShoppingListIngredient(
+    return _$PersistenceServiceModelShoppingListIngredientImpl(
       ingredientId: fields[0] as String,
       isTickedOff: fields[1] as bool,
       imageUrl: fields[3] as Option<Uri>,
@@ -81,7 +82,7 @@ class PersistenceServiceModelShoppingListIngredientAdapter
 
   @override
   void write(BinaryWriter writer,
-      _$_PersistenceServiceModelShoppingListIngredient obj) {
+      _$PersistenceServiceModelShoppingListIngredientImpl obj) {
     writer
       ..writeByte(8)
       ..writeByte(0)
@@ -115,18 +116,18 @@ class PersistenceServiceModelShoppingListIngredientAdapter
 
 class PersistenceServiceModelShoppingListIngredientFamilyAdapter
     extends TypeAdapter<
-        _$_PersistenceServiceModelShoppingListIngredientFamily> {
+        _$PersistenceServiceModelShoppingListIngredientFamilyImpl> {
   @override
   final int typeId = 2;
 
   @override
-  _$_PersistenceServiceModelShoppingListIngredientFamily read(
+  _$PersistenceServiceModelShoppingListIngredientFamilyImpl read(
       BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return _$_PersistenceServiceModelShoppingListIngredientFamily(
+    return _$PersistenceServiceModelShoppingListIngredientFamilyImpl(
       id: fields[0] as String,
       type: fields[1] as String,
       iconPath: fields[2] as Option<String>,
@@ -137,7 +138,7 @@ class PersistenceServiceModelShoppingListIngredientFamilyAdapter
 
   @override
   void write(BinaryWriter writer,
-      _$_PersistenceServiceModelShoppingListIngredientFamily obj) {
+      _$PersistenceServiceModelShoppingListIngredientFamilyImpl obj) {
     writer
       ..writeByte(5)
       ..writeByte(0)
@@ -164,17 +165,17 @@ class PersistenceServiceModelShoppingListIngredientFamilyAdapter
 }
 
 class PersistenceServiceModelSortingUnitAdapter
-    extends TypeAdapter<_$_PersistenceServiceModelSortingUnit> {
+    extends TypeAdapter<_$PersistenceServiceModelSortingUnitImpl> {
   @override
   final int typeId = 3;
 
   @override
-  _$_PersistenceServiceModelSortingUnit read(BinaryReader reader) {
+  _$PersistenceServiceModelSortingUnitImpl read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return _$_PersistenceServiceModelSortingUnit(
+    return _$PersistenceServiceModelSortingUnitImpl(
       id: fields[0] as String,
       name: fields[1] as String,
       sorting: (fields[2] as List).cast<PersistenceServiceModelSorting>(),
@@ -182,7 +183,8 @@ class PersistenceServiceModelSortingUnitAdapter
   }
 
   @override
-  void write(BinaryWriter writer, _$_PersistenceServiceModelSortingUnit obj) {
+  void write(
+      BinaryWriter writer, _$PersistenceServiceModelSortingUnitImpl obj) {
     writer
       ..writeByte(3)
       ..writeByte(0)
@@ -205,17 +207,17 @@ class PersistenceServiceModelSortingUnitAdapter
 }
 
 class PersistenceServiceModelSortingAdapter
-    extends TypeAdapter<_$_PersistenceServiceModelSorting> {
+    extends TypeAdapter<_$PersistenceServiceModelSortingImpl> {
   @override
   final int typeId = 4;
 
   @override
-  _$_PersistenceServiceModelSorting read(BinaryReader reader) {
+  _$PersistenceServiceModelSortingImpl read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return _$_PersistenceServiceModelSorting(
+    return _$PersistenceServiceModelSortingImpl(
       ingredientFamilies:
           (fields[0] as List).cast<PersistenceServiceModelIngredientFamily>(),
       type: fields[1] as String,
@@ -225,7 +227,7 @@ class PersistenceServiceModelSortingAdapter
   }
 
   @override
-  void write(BinaryWriter writer, _$_PersistenceServiceModelSorting obj) {
+  void write(BinaryWriter writer, _$PersistenceServiceModelSortingImpl obj) {
     writer
       ..writeByte(4)
       ..writeByte(1)
@@ -250,25 +252,26 @@ class PersistenceServiceModelSortingAdapter
 }
 
 class PersistenceServiceModelIngredientFamilyHelloFreshAdapter
-    extends TypeAdapter<_$PersistenceServiceModelIngredientFamilyHellofresh> {
+    extends TypeAdapter<
+        _$PersistenceServiceModelIngredientFamilyHellofreshImpl> {
   @override
   final int typeId = 7;
 
   @override
-  _$PersistenceServiceModelIngredientFamilyHellofresh read(
+  _$PersistenceServiceModelIngredientFamilyHellofreshImpl read(
       BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return _$PersistenceServiceModelIngredientFamilyHellofresh(
+    return _$PersistenceServiceModelIngredientFamilyHellofreshImpl(
       helloFreshFamilyId: fields[0] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer,
-      _$PersistenceServiceModelIngredientFamilyHellofresh obj) {
+      _$PersistenceServiceModelIngredientFamilyHellofreshImpl obj) {
     writer
       ..writeByte(1)
       ..writeByte(0)
@@ -287,17 +290,17 @@ class PersistenceServiceModelIngredientFamilyHelloFreshAdapter
 }
 
 class PersistenceServiceModelActiveSortingUnitAdapter
-    extends TypeAdapter<_$PersistenceServiceModelActiveSortingUnit> {
+    extends TypeAdapter<_$PersistenceServiceModelActiveSortingUnitImpl> {
   @override
   final int typeId = 5;
 
   @override
-  _$PersistenceServiceModelActiveSortingUnit read(BinaryReader reader) {
+  _$PersistenceServiceModelActiveSortingUnitImpl read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return _$PersistenceServiceModelActiveSortingUnit(
+    return _$PersistenceServiceModelActiveSortingUnitImpl(
       activeSortingUnitId: fields[0] as String,
       customSortingIngredientIds: (fields[1] as List).cast<String>(),
     );
@@ -305,7 +308,7 @@ class PersistenceServiceModelActiveSortingUnitAdapter
 
   @override
   void write(
-      BinaryWriter writer, _$PersistenceServiceModelActiveSortingUnit obj) {
+      BinaryWriter writer, _$PersistenceServiceModelActiveSortingUnitImpl obj) {
     writer
       ..writeByte(2)
       ..writeByte(0)
@@ -326,24 +329,24 @@ class PersistenceServiceModelActiveSortingUnitAdapter
 }
 
 class PersistenceServiceModelActiveSortingCustomAdapter
-    extends TypeAdapter<_$PersistenceServiceModelActiveSortingCustom> {
+    extends TypeAdapter<_$PersistenceServiceModelActiveSortingCustomImpl> {
   @override
   final int typeId = 6;
 
   @override
-  _$PersistenceServiceModelActiveSortingCustom read(BinaryReader reader) {
+  _$PersistenceServiceModelActiveSortingCustomImpl read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return _$PersistenceServiceModelActiveSortingCustom(
+    return _$PersistenceServiceModelActiveSortingCustomImpl(
       customSortingIngredientIds: (fields[0] as List).cast<String>(),
     );
   }
 
   @override
-  void write(
-      BinaryWriter writer, _$PersistenceServiceModelActiveSortingCustom obj) {
+  void write(BinaryWriter writer,
+      _$PersistenceServiceModelActiveSortingCustomImpl obj) {
     writer
       ..writeByte(1)
       ..writeByte(0)
@@ -362,17 +365,17 @@ class PersistenceServiceModelActiveSortingCustomAdapter
 }
 
 class PersistenceServiceModelHistoryRecipeAdapter
-    extends TypeAdapter<_$_PersistenceServiceModelHistoryRecipe> {
+    extends TypeAdapter<_$PersistenceServiceModelHistoryRecipeImpl> {
   @override
   final int typeId = 8;
 
   @override
-  _$_PersistenceServiceModelHistoryRecipe read(BinaryReader reader) {
+  _$PersistenceServiceModelHistoryRecipeImpl read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return _$_PersistenceServiceModelHistoryRecipe(
+    return _$PersistenceServiceModelHistoryRecipeImpl(
       recipeId: fields[0] as String,
       title: fields[1] as String,
       imagePath: fields[2] as Option<Uri>,
@@ -382,7 +385,8 @@ class PersistenceServiceModelHistoryRecipeAdapter
   }
 
   @override
-  void write(BinaryWriter writer, _$_PersistenceServiceModelHistoryRecipe obj) {
+  void write(
+      BinaryWriter writer, _$PersistenceServiceModelHistoryRecipeImpl obj) {
     writer
       ..writeByte(5)
       ..writeByte(0)
@@ -409,19 +413,20 @@ class PersistenceServiceModelHistoryRecipeAdapter
 }
 
 class PersistenceServiceModelHistoryRecipeOriginClickedAdapter
-    extends TypeAdapter<_$PersistenceServiceModelHistoryRecipeOriginClicked> {
+    extends TypeAdapter<
+        _$PersistenceServiceModelHistoryRecipeOriginClickedImpl> {
   @override
   final int typeId = 9;
 
   @override
-  _$PersistenceServiceModelHistoryRecipeOriginClicked read(
+  _$PersistenceServiceModelHistoryRecipeOriginClickedImpl read(
       BinaryReader reader) {
-    return _$PersistenceServiceModelHistoryRecipeOriginClicked();
+    return _$PersistenceServiceModelHistoryRecipeOriginClickedImpl();
   }
 
   @override
   void write(BinaryWriter writer,
-      _$PersistenceServiceModelHistoryRecipeOriginClicked obj) {
+      _$PersistenceServiceModelHistoryRecipeOriginClickedImpl obj) {
     writer.writeByte(0);
   }
 
@@ -440,10 +445,10 @@ class PersistenceServiceModelHistoryRecipeOriginClickedAdapter
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PersistenceServiceModelShoppingListRecipe
-    _$$_PersistenceServiceModelShoppingListRecipeFromJson(
+_$PersistenceServiceModelShoppingListRecipeImpl
+    _$$PersistenceServiceModelShoppingListRecipeImplFromJson(
             Map<String, dynamic> json) =>
-        _$_PersistenceServiceModelShoppingListRecipe(
+        _$PersistenceServiceModelShoppingListRecipeImpl(
           ingredients: (json['ingredients'] as List<dynamic>)
               .map((e) =>
                   PersistenceServiceModelShoppingListIngredient.fromJson(
@@ -451,12 +456,12 @@ _$_PersistenceServiceModelShoppingListRecipe
               .toList(),
           title: json['title'] as String,
           imagePath: Option<Uri>.fromJson(json['imagePath']),
-          servings: json['servings'] as int,
+          servings: (json['servings'] as num).toInt(),
           recipeId: json['recipeId'] as String,
         );
 
-Map<String, dynamic> _$$_PersistenceServiceModelShoppingListRecipeToJson(
-        _$_PersistenceServiceModelShoppingListRecipe instance) =>
+Map<String, dynamic> _$$PersistenceServiceModelShoppingListRecipeImplToJson(
+        _$PersistenceServiceModelShoppingListRecipeImpl instance) =>
     <String, dynamic>{
       'ingredients': instance.ingredients,
       'title': instance.title,
@@ -467,10 +472,10 @@ Map<String, dynamic> _$$_PersistenceServiceModelShoppingListRecipeToJson(
       'recipeId': instance.recipeId,
     };
 
-_$_PersistenceServiceModelShoppingListIngredient
-    _$$_PersistenceServiceModelShoppingListIngredientFromJson(
+_$PersistenceServiceModelShoppingListIngredientImpl
+    _$$PersistenceServiceModelShoppingListIngredientImplFromJson(
             Map<String, dynamic> json) =>
-        _$_PersistenceServiceModelShoppingListIngredient(
+        _$PersistenceServiceModelShoppingListIngredientImpl(
           ingredientId: json['ingredientId'] as String,
           isTickedOff: json['isTickedOff'] as bool,
           imageUrl: Option<Uri>.fromJson(json['imageUrl']),
@@ -483,8 +488,8 @@ _$_PersistenceServiceModelShoppingListIngredient
               json['family']),
         );
 
-Map<String, dynamic> _$$_PersistenceServiceModelShoppingListIngredientToJson(
-        _$_PersistenceServiceModelShoppingListIngredient instance) =>
+Map<String, dynamic> _$$PersistenceServiceModelShoppingListIngredientImplToJson(
+        _$PersistenceServiceModelShoppingListIngredientImpl instance) =>
     <String, dynamic>{
       'ingredientId': instance.ingredientId,
       'isTickedOff': instance.isTickedOff,
@@ -504,10 +509,10 @@ Map<String, dynamic> _$$_PersistenceServiceModelShoppingListIngredientToJson(
       ),
     };
 
-_$_PersistenceServiceModelShoppingListIngredientFamily
-    _$$_PersistenceServiceModelShoppingListIngredientFamilyFromJson(
+_$PersistenceServiceModelShoppingListIngredientFamilyImpl
+    _$$PersistenceServiceModelShoppingListIngredientFamilyImplFromJson(
             Map<String, dynamic> json) =>
-        _$_PersistenceServiceModelShoppingListIngredientFamily(
+        _$PersistenceServiceModelShoppingListIngredientFamilyImpl(
           id: json['id'] as String,
           type: json['type'] as String,
           iconPath: Option<String>.fromJson(json['iconPath']),
@@ -515,22 +520,23 @@ _$_PersistenceServiceModelShoppingListIngredientFamily
           slug: json['slug'] as String,
         );
 
-Map<String, dynamic>
-    _$$_PersistenceServiceModelShoppingListIngredientFamilyToJson(
-            _$_PersistenceServiceModelShoppingListIngredientFamily instance) =>
-        <String, dynamic>{
-          'id': instance.id,
-          'type': instance.type,
-          'iconPath': instance.iconPath.toJson(
-            (value) => value,
-          ),
-          'name': instance.name,
-          'slug': instance.slug,
-        };
+Map<String,
+    dynamic> _$$PersistenceServiceModelShoppingListIngredientFamilyImplToJson(
+        _$PersistenceServiceModelShoppingListIngredientFamilyImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'type': instance.type,
+      'iconPath': instance.iconPath.toJson(
+        (value) => value,
+      ),
+      'name': instance.name,
+      'slug': instance.slug,
+    };
 
-_$_PersistenceServiceModelSortingUnit
-    _$$_PersistenceServiceModelSortingUnitFromJson(Map<String, dynamic> json) =>
-        _$_PersistenceServiceModelSortingUnit(
+_$PersistenceServiceModelSortingUnitImpl
+    _$$PersistenceServiceModelSortingUnitImplFromJson(
+            Map<String, dynamic> json) =>
+        _$PersistenceServiceModelSortingUnitImpl(
           id: json['id'] as String,
           name: json['name'] as String,
           sorting: (json['sorting'] as List<dynamic>)
@@ -539,28 +545,28 @@ _$_PersistenceServiceModelSortingUnit
               .toList(),
         );
 
-Map<String, dynamic> _$$_PersistenceServiceModelSortingUnitToJson(
-        _$_PersistenceServiceModelSortingUnit instance) =>
+Map<String, dynamic> _$$PersistenceServiceModelSortingUnitImplToJson(
+        _$PersistenceServiceModelSortingUnitImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'sorting': instance.sorting,
     };
 
-_$_PersistenceServiceModelSorting _$$_PersistenceServiceModelSortingFromJson(
-        Map<String, dynamic> json) =>
-    _$_PersistenceServiceModelSorting(
-      ingredientFamilies: (json['ingredientFamilies'] as List<dynamic>)
-          .map((e) => PersistenceServiceModelIngredientFamily.fromJson(
-              e as Map<String, dynamic>))
-          .toList(),
-      type: json['type'] as String,
-      iconPathAsString: Option<String>.fromJson(json['iconPathAsString']),
-      name: json['name'] as String,
-    );
+_$PersistenceServiceModelSortingImpl
+    _$$PersistenceServiceModelSortingImplFromJson(Map<String, dynamic> json) =>
+        _$PersistenceServiceModelSortingImpl(
+          ingredientFamilies: (json['ingredientFamilies'] as List<dynamic>)
+              .map((e) => PersistenceServiceModelIngredientFamily.fromJson(
+                  e as Map<String, dynamic>))
+              .toList(),
+          type: json['type'] as String,
+          iconPathAsString: Option<String>.fromJson(json['iconPathAsString']),
+          name: json['name'] as String,
+        );
 
-Map<String, dynamic> _$$_PersistenceServiceModelSortingToJson(
-        _$_PersistenceServiceModelSorting instance) =>
+Map<String, dynamic> _$$PersistenceServiceModelSortingImplToJson(
+        _$PersistenceServiceModelSortingImpl instance) =>
     <String, dynamic>{
       'ingredientFamilies': instance.ingredientFamilies,
       'type': instance.type,
@@ -570,23 +576,24 @@ Map<String, dynamic> _$$_PersistenceServiceModelSortingToJson(
       'name': instance.name,
     };
 
-_$PersistenceServiceModelIngredientFamilyHellofresh
-    _$$PersistenceServiceModelIngredientFamilyHellofreshFromJson(
+_$PersistenceServiceModelIngredientFamilyHellofreshImpl
+    _$$PersistenceServiceModelIngredientFamilyHellofreshImplFromJson(
             Map<String, dynamic> json) =>
-        _$PersistenceServiceModelIngredientFamilyHellofresh(
+        _$PersistenceServiceModelIngredientFamilyHellofreshImpl(
           helloFreshFamilyId: json['helloFreshFamilyId'] as String,
         );
 
-Map<String, dynamic> _$$PersistenceServiceModelIngredientFamilyHellofreshToJson(
-        _$PersistenceServiceModelIngredientFamilyHellofresh instance) =>
-    <String, dynamic>{
-      'helloFreshFamilyId': instance.helloFreshFamilyId,
-    };
+Map<String, dynamic>
+    _$$PersistenceServiceModelIngredientFamilyHellofreshImplToJson(
+            _$PersistenceServiceModelIngredientFamilyHellofreshImpl instance) =>
+        <String, dynamic>{
+          'helloFreshFamilyId': instance.helloFreshFamilyId,
+        };
 
-_$PersistenceServiceModelActiveSortingUnit
-    _$$PersistenceServiceModelActiveSortingUnitFromJson(
+_$PersistenceServiceModelActiveSortingUnitImpl
+    _$$PersistenceServiceModelActiveSortingUnitImplFromJson(
             Map<String, dynamic> json) =>
-        _$PersistenceServiceModelActiveSortingUnit(
+        _$PersistenceServiceModelActiveSortingUnitImpl(
           activeSortingUnitId: json['activeSortingUnitId'] as String,
           customSortingIngredientIds:
               (json['customSortingIngredientIds'] as List<dynamic>)
@@ -595,18 +602,18 @@ _$PersistenceServiceModelActiveSortingUnit
           $type: json['runtimeType'] as String?,
         );
 
-Map<String, dynamic> _$$PersistenceServiceModelActiveSortingUnitToJson(
-        _$PersistenceServiceModelActiveSortingUnit instance) =>
+Map<String, dynamic> _$$PersistenceServiceModelActiveSortingUnitImplToJson(
+        _$PersistenceServiceModelActiveSortingUnitImpl instance) =>
     <String, dynamic>{
       'activeSortingUnitId': instance.activeSortingUnitId,
       'customSortingIngredientIds': instance.customSortingIngredientIds,
       'runtimeType': instance.$type,
     };
 
-_$PersistenceServiceModelActiveSortingCustom
-    _$$PersistenceServiceModelActiveSortingCustomFromJson(
+_$PersistenceServiceModelActiveSortingCustomImpl
+    _$$PersistenceServiceModelActiveSortingCustomImplFromJson(
             Map<String, dynamic> json) =>
-        _$PersistenceServiceModelActiveSortingCustom(
+        _$PersistenceServiceModelActiveSortingCustomImpl(
           customSortingIngredientIds:
               (json['customSortingIngredientIds'] as List<dynamic>)
                   .map((e) => e as String)
@@ -614,18 +621,19 @@ _$PersistenceServiceModelActiveSortingCustom
           $type: json['runtimeType'] as String?,
         );
 
-Map<String, dynamic> _$$PersistenceServiceModelActiveSortingCustomToJson(
-        _$PersistenceServiceModelActiveSortingCustom instance) =>
+Map<String, dynamic> _$$PersistenceServiceModelActiveSortingCustomImplToJson(
+        _$PersistenceServiceModelActiveSortingCustomImpl instance) =>
     <String, dynamic>{
       'customSortingIngredientIds': instance.customSortingIngredientIds,
       'runtimeType': instance.$type,
     };
 
-_$PersistenceServiceModelHistoryRecipeOriginClicked
-    _$$PersistenceServiceModelHistoryRecipeOriginClickedFromJson(
+_$PersistenceServiceModelHistoryRecipeOriginClickedImpl
+    _$$PersistenceServiceModelHistoryRecipeOriginClickedImplFromJson(
             Map<String, dynamic> json) =>
-        _$PersistenceServiceModelHistoryRecipeOriginClicked();
+        _$PersistenceServiceModelHistoryRecipeOriginClickedImpl();
 
-Map<String, dynamic> _$$PersistenceServiceModelHistoryRecipeOriginClickedToJson(
-        _$PersistenceServiceModelHistoryRecipeOriginClicked instance) =>
-    <String, dynamic>{};
+Map<String, dynamic>
+    _$$PersistenceServiceModelHistoryRecipeOriginClickedImplToJson(
+            _$PersistenceServiceModelHistoryRecipeOriginClickedImpl instance) =>
+        <String, dynamic>{};
