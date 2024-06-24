@@ -26,28 +26,23 @@ class TabIngredientsWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        BlocBuilder<SingleRecipeCubit, SingleRecipeState>(
-          buildWhen: (final _, final __) => false,
-          builder: (BuildContext context, SingleRecipeState state) =>
-              ElevatedButton.icon(
-            onPressed: () {
-              context.read<SingleRecipeCubit>().setSelectedYield(
-                    yield: yields
-                        .map(
-                          (final SingleRecipeStateYield yield) =>
-                              yield.servings,
-                        )
-                        .toList()[index],
-                    recipeId: recipeId,
-                  );
-            },
-            icon: yields.toList().length < 2
-                ? const Icon(Icons.group)
-                : (yields.toList().length - index != yields.toList().length
-                    ? const Icon(Icons.group_add)
-                    : const Icon(Icons.group_remove)),
-            label: Text('${selectedYield.getOrElse(() => 1)}'),
-          ),
+        ElevatedButton.icon(
+          onPressed: () {
+            context.read<SingleRecipeCubit>().setSelectedYield(
+                  yield: yields
+                      .map(
+                        (final SingleRecipeStateYield yield) => yield.servings,
+                      )
+                      .toList()[index],
+                  recipeId: recipeId,
+                );
+          },
+          icon: yields.toList().length < 2
+              ? const Icon(Icons.group)
+              : (yields.toList().length - index != yields.toList().length
+                  ? const Icon(Icons.group_add)
+                  : const Icon(Icons.group_remove)),
+          label: Text('${selectedYield.getOrElse(() => 1)}'),
         ),
       ],
     );
