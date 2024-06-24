@@ -24,11 +24,6 @@ class IngredientsSortingView extends StatelessWidget {
           ),
         ),
         body: BlocBuilder<IngredientsSortingCubit, IngredientsSortingState>(
-          buildWhen: (
-            IngredientsSortingState previous,
-            IngredientsSortingState current,
-          ) =>
-              previous.units.runtimeType != current.units.runtimeType,
           builder: (BuildContext context, IngredientsSortingState state) =>
               state.units.map(
             data: (
@@ -36,91 +31,59 @@ class IngredientsSortingView extends StatelessWidget {
             ) =>
                 Column(
               children: <Widget>[
-                Builder(
-                  builder: (final BuildContext context) => SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.15,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: BlocBuilder<IngredientsSortingCubit,
-                          IngredientsSortingState>(
-                        builder: (
-                          BuildContext context,
-                          IngredientsSortingState state,
-                        ) =>
-                            ListView(
-                          scrollDirection: Axis.horizontal,
-                          children: <Widget>[
-                            ...state.units.map(
-                              data: (
-                                ViewStateData<List<IngredientsSortingStateUnit>>
-                                    data,
-                              ) =>
-                                  data.data.map(
-                                (final IngredientsSortingStateUnit unit) =>
-                                    IngredientsSortingCardItem(
-                                  unit: some(unit),
-                                  setUnitSelected: ({
-                                    required final IngredientsSortingStateUnit
-                                        unit,
-                                  }) =>
-                                      context
-                                          .read<IngredientsSortingCubit>()
-                                          .setUnitSelected(unit: unit),
-                                ),
-                              ),
-                              loading: (_) => <Widget>[],
-                              error: (_) => <Widget>[],
-                            ),
-                            IngredientsSortingCardItem(
-                              setUnitSelected: ({
-                                required final IngredientsSortingStateUnit unit,
-                              }) =>
-                                  context
-                                      .read<IngredientsSortingCubit>()
-                                      .setUnitSelected(unit: unit),
-                            ),
-                          ],
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.15,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: <Widget>[
+                        ...data.data.map(
+                          (final IngredientsSortingStateUnit unit) =>
+                              IngredientsSortingCardItem(
+                            unit: some(unit),
+                            setUnitSelected: ({
+                              required final IngredientsSortingStateUnit unit,
+                            }) =>
+                                context
+                                    .read<IngredientsSortingCubit>()
+                                    .setUnitSelected(unit: unit),
+                          ),
                         ),
-                      ),
+                        IngredientsSortingCardItem(
+                          setUnitSelected: ({
+                            required final IngredientsSortingStateUnit unit,
+                          }) =>
+                              context
+                                  .read<IngredientsSortingCubit>()
+                                  .setUnitSelected(unit: unit),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                BlocBuilder<IngredientsSortingCubit, IngredientsSortingState>(
-                  builder:
-                      (BuildContext context, IngredientsSortingState state) =>
-                          state.units.map(
-                    data: (
-                      ViewStateData<List<IngredientsSortingStateUnit>> data,
-                    ) {
-                      if (data.data.isEmpty) {
-                        return Padding(
-                          padding: const EdgeInsets.all(64),
-                          child: EmptyViewContent(
-                            message: LocaleKeys
-                                .ui_ingredients_sorting_view_empty_states_no_units
-                                .tr(),
-                          ),
-                        );
-                      } else {
-                        return IngredientsSortingIngredientsListWidget(
-                          reorder: context
-                              .read<IngredientsSortingCubit>()
-                              .reorderIngredientFamily,
-                          unit: data.data.firstWhere(
-                            (final IngredientsSortingStateUnit unit) =>
-                                unit.selected,
-                          ),
-                          keyId: 'unit-${data.data.firstWhere(
-                                (final IngredientsSortingStateUnit unit) =>
-                                    unit.selected,
-                              ).id}',
-                        );
-                      }
-                    },
-                    error: (_) => const SizedBox.shrink(),
-                    loading: (_) => const SizedBox.shrink(),
+                if (data.data.isEmpty)
+                  Padding(
+                    padding: const EdgeInsets.all(64),
+                    child: EmptyViewContent(
+                      message: LocaleKeys
+                          .ui_ingredients_sorting_view_empty_states_no_units
+                          .tr(),
+                    ),
+                  )
+                else
+                  IngredientsSortingIngredientsListWidget(
+                    reorder: context
+                        .read<IngredientsSortingCubit>()
+                        .reorderIngredientFamily,
+                    unit: data.data.firstWhere(
+                      (final IngredientsSortingStateUnit unit) => unit.selected,
+                    ),
+                    keyId: 'unit-${data.data.firstWhere(
+                          (final IngredientsSortingStateUnit unit) =>
+                              unit.selected,
+                        ).id}',
                   ),
-                ),
               ],
             ),
             error: (_) => const Center(
