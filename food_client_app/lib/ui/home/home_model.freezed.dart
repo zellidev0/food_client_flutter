@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomeModel {
-  PagingController<int, HomeModelRecipe> get pagingController =>
+  PagingController<int, HomeModelRecipe> get paginationController =>
       throw _privateConstructorUsedError;
   ViewState<List<HomeModelRecipe>> get recipes =>
       throw _privateConstructorUsedError;
@@ -60,9 +60,9 @@ class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
     Object? filters = null,
   }) {
     return _then(_value.copyWith(
-      pagingController: null == pagingController
-          ? _value.pagingController
-          : pagingController // ignore: cast_nullable_to_non_nullable
+      paginationController: null == paginationController
+          ? _value.paginationController
+          : paginationController // ignore: cast_nullable_to_non_nullable
               as PagingController<int, HomeModelRecipe>,
       recipes: null == recipes
           ? _value.recipes
@@ -128,9 +128,9 @@ class __$$_HomeModelCopyWithImpl<$Res>
     Object? filters = null,
   }) {
     return _then(_$_HomeModel(
-      pagingController: null == pagingController
-          ? _value.pagingController
-          : pagingController // ignore: cast_nullable_to_non_nullable
+      paginationController: null == paginationController
+          ? _value.paginationController
+          : paginationController // ignore: cast_nullable_to_non_nullable
               as PagingController<int, HomeModelRecipe>,
       recipes: null == recipes
           ? _value.recipes
@@ -153,7 +153,7 @@ class _$_HomeModel implements _HomeModel {
       required this.filters});
 
   @override
-  final PagingController<int, HomeModelRecipe> pagingController;
+  final PagingController<int, HomeModelRecipe> paginationController;
   @override
   final ViewState<List<HomeModelRecipe>> recipes;
   @override
@@ -193,7 +193,7 @@ abstract class _HomeModel implements HomeModel {
       required final ViewState<List<HomeModelFilter>> filters}) = _$_HomeModel;
 
   @override
-  PagingController<int, HomeModelRecipe> get pagingController;
+  PagingController<int, HomeModelRecipe> get paginationController;
   @override
   ViewState<List<HomeModelRecipe>> get recipes;
   @override

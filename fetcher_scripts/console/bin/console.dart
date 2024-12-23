@@ -13,6 +13,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:graphql/client.dart';
 
 void main() async {
+  // ignore: unused_local_variable
   const bearerToken =
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDc4NTY4NDcsImlhdCI6MTcwNTIyNzEwNCwiaXNzIjoic2VuZiIsImp0aSI6IjdlMTExYjQ4LTMwNzUtNDA3MC1hYzBiLWMxMzNjZDNhMjQ1MSJ9.xOALeUgVp5e9bVWtyUgAEHpfBLYfTgtxaugs0a704BQ';
 }

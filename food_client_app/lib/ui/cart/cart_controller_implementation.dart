@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_client/commons/view_state.dart';
 import 'package:food_client/services/logging_service/logging_service.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart'
@@ -14,9 +15,6 @@ import 'package:food_client/ui/cart/services/cart_navigation_service.dart';
 import 'package:food_client/ui/cart/services/cart_persistence_service.dart';
 import 'package:food_client/ui/cart/services/cart_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-part 'cart_controller_implementation.g.dart';
 
 typedef StoredSortingUnit
     = CartPersistenceServiceModelActiveSortingSelectedUnit;
@@ -24,32 +22,48 @@ typedef StoredSorting = CartPersistenceServiceModelActiveSorting;
 
 const int _widthPixels = 200;
 
-@riverpod
-class CartControllerImplementation extends _$CartControllerImplementation
+class CartControllerImplementation extends Cubit<CartModel>
     implements CartController {
-  @override
-  CartModel build({
-    required final CartNavigationService navigationService,
-    required final CartPersistenceService persistenceService,
-    required final CartWebImageSizerService imageSizerService,
-    required final LoggingService logger,
-    required final bool combinedIngredients,
-  }) =>
-      CartModel(
-        data: CartModelData(
-          sorting: _readActiveSorting(),
-          recipes: _readStoredRecipes(),
-          ingredients: _getAllIngredientsSorted(
-            combineIngredients: combinedIngredients,
-            sorting: _readActiveSorting(),
+  final CartNavigationService navigationService;
+  final CartPersistenceService persistenceService;
+  final CartWebImageSizerService imageSizerService;
+  final LoggingService logger;
+  final bool combinedIngredients;
+  CartControllerImplementation({
+    required this.navigationService,
+    required this.persistenceService,
+    required this.imageSizerService,
+    required this.logger,
+    required this.combinedIngredients,
+  }) : super(
+          CartModel(
+            data: CartModelData(
+              sorting: const CartModelSorting.custom(ingredientIds: <String>[]),
+              recipes: <CartModelRecipe>[],
+              ingredients: <CartModelIngredient>[],
+              sortingUnits: persistenceService
+                  .getSortingUnits()
+                  .map(_mapSortingUnit)
+                  .toList(),
+              combineIngredients: combinedIngredients,
+            ).toViewStateData(),
           ),
-          sortingUnits: persistenceService
-              .getSortingUnits()
-              .map(_mapSortingUnit)
-              .toList(),
-          combineIngredients: combinedIngredients,
-        ).toViewStateData(),
-      );
+        ) {
+    emit(
+      state.copyWith(
+        data: state.data.mapData(
+          (CartModelData data) => data.copyWith(
+            sorting: _readActiveSorting(),
+            recipes: _readStoredRecipes(),
+            ingredients: _getAllIngredientsSorted(
+              combineIngredients: combinedIngredients,
+              sorting: _readActiveSorting(),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 
   @override
   void openSingleRecipe({required final String recipeId}) =>
@@ -72,13 +86,15 @@ class CartControllerImplementation extends _$CartControllerImplementation
             )
             .match(
               logger.error,
-              (_) => state = state.copyWith(
-                data: state.data.mapData(
-                  (CartModelData data) => data.copyWith(
-                    recipes: _readStoredRecipes(),
-                    ingredients: _getAllIngredientsSorted(
-                      combineIngredients: data.combineIngredients,
-                      sorting: data.sorting,
+              (_) => emit(
+                state.copyWith(
+                  data: state.data.mapData(
+                    (CartModelData data) => data.copyWith(
+                      recipes: _readStoredRecipes(),
+                      ingredients: _getAllIngredientsSorted(
+                        combineIngredients: data.combineIngredients,
+                        sorting: data.sorting,
+                      ),
                     ),
                   ),
                 ),
@@ -114,13 +130,15 @@ class CartControllerImplementation extends _$CartControllerImplementation
                   .deleteTicketOffIngredientsOfRecipe(recipeId: recipeId)
                   .match(
                     logger.error,
-                    (_) => state = state.copyWith(
-                      data: state.data.mapData(
-                        (CartModelData data) => data.copyWith(
-                          recipes: _readStoredRecipes(),
-                          ingredients: _getAllIngredientsSorted(
-                            sorting: data.sorting,
-                            combineIngredients: data.combineIngredients,
+                    (_) => emit(
+                      state.copyWith(
+                        data: state.data.mapData(
+                          (CartModelData data) => data.copyWith(
+                            recipes: _readStoredRecipes(),
+                            ingredients: _getAllIngredientsSorted(
+                              sorting: data.sorting,
+                              combineIngredients: data.combineIngredients,
+                            ),
                           ),
                         ),
                       ),
@@ -135,13 +153,15 @@ class CartControllerImplementation extends _$CartControllerImplementation
                   .deleteRecipe(recipeId: recipeId)
                   .match(
                     logger.error,
-                    (_) => state = state.copyWith(
-                      data: state.data.mapData(
-                        (CartModelData data) => data.copyWith(
-                          recipes: _readStoredRecipes(),
-                          ingredients: _getAllIngredientsSorted(
-                            sorting: data.sorting,
-                            combineIngredients: data.combineIngredients,
+                    (_) => emit(
+                      state.copyWith(
+                        data: state.data.mapData(
+                          (CartModelData data) => data.copyWith(
+                            recipes: _readStoredRecipes(),
+                            ingredients: _getAllIngredientsSorted(
+                              sorting: data.sorting,
+                              combineIngredients: data.combineIngredients,
+                            ),
                           ),
                         ),
                       ),
@@ -329,13 +349,15 @@ class CartControllerImplementation extends _$CartControllerImplementation
     );
 
     final CartModelSorting newSorting = _readActiveSorting();
-    state = state.copyWith(
-      data: state.data.mapData(
-        (CartModelData data) => data.copyWith(
-          sorting: newSorting,
-          ingredients: _getAllIngredientsSorted(
+    emit(
+      state.copyWith(
+        data: state.data.mapData(
+          (CartModelData data) => data.copyWith(
             sorting: newSorting,
-            combineIngredients: data.combineIngredients,
+            ingredients: _getAllIngredientsSorted(
+              sorting: newSorting,
+              combineIngredients: data.combineIngredients,
+            ),
           ),
         ),
       ),
@@ -371,11 +393,13 @@ class CartControllerImplementation extends _$CartControllerImplementation
               )
               .match(
                 logger.error,
-                (_) => state = state.copyWith(
-                  data: state.data.mapData(
-                    (CartModelData data) => data.copyWith(
-                      ingredients: ingredients2,
-                      sorting: custom.copyWith(ingredientIds: ingredientIds),
+                (_) => emit(
+                  state.copyWith(
+                    data: state.data.mapData(
+                      (CartModelData data) => data.copyWith(
+                        ingredients: ingredients2,
+                        sorting: custom.copyWith(ingredientIds: ingredientIds),
+                      ),
                     ),
                   ),
                 ),

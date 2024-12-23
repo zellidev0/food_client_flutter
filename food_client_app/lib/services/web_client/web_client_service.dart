@@ -4,6 +4,7 @@ import 'dart:core';
 import 'package:collection/collection.dart';
 import 'package:commons_graphql/commons_graphql.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_client/commons/error.dart';
 import 'package:food_client/services/web_client/web_client_model.dart';
 import 'package:food_client/ui/home/services/home_web_client_service.dart';
@@ -11,9 +12,6 @@ import 'package:food_client/ui/ingredients_sorting/services/ingredients_sorting_
 import 'package:food_client/ui/single_recipe/services/single_recipe_web_client_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-part 'web_client_service.g.dart';
 
 const String hasuraSecretHeader =
     '479mMb5g4g5zESHV2Xp2xGEixaD0X7YdeOFMFdRcz0ADeRrRrW0nc1mQbb1haeE5';
@@ -440,14 +438,15 @@ SingleRecipeWebClientModelRecipe _mapToSingleRecipeWebClientModelRecipe({
       slug: recipe.slug,
     );
 
-@riverpod
-WebClientServiceAggregator webClientService(final WebClientServiceRef ref) =>
-    WebClientService();
+abstract class WebClientService extends Cubit<Unit>
+    implements WebClientServiceAggregator {
+  WebClientService(super.initialState);
+}
 
-class WebClientService implements WebClientServiceAggregator {
+class WebClientServiceImplementation extends WebClientService {
   final GraphQLClient _client;
 
-  WebClientService()
+  WebClientServiceImplementation._()
       : _client = GraphQLClient(
           defaultPolicies: DefaultPolicies(
             query: Policies(fetch: FetchPolicy.networkOnly),
@@ -459,7 +458,11 @@ class WebClientService implements WebClientServiceAggregator {
               'x-hasura-admin-secret': hasuraSecretHeader,
             },
           ),
-        );
+        ),
+        super(unit);
+
+  factory WebClientServiceImplementation.instance() =>
+      WebClientServiceImplementation._();
 
   @override
   TaskEither<Exception, Uri> buildShareUrl({

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:food_client/mvc.dart';
 import 'package:food_client/ui/account/account_model.dart';
 
-class AccountView extends MvcView<AccountController, AccountModel> {
+class AccountView extends StatelessWidget {
+  final AccountController controller;
+  final AccountModel model;
+
   const AccountView({
-    required super.controller,
-    required super.model,
+    required this.controller,
+    required this.model,
     super.key,
   });
 
@@ -36,6 +38,6 @@ class AccountView extends MvcView<AccountController, AccountModel> {
       );
 }
 
-abstract class AccountController implements MvcController {
+abstract class AccountController {
   void goToIngredientsSorting();
 }

@@ -4,10 +4,7 @@ import 'package:food_client/ui/main/main_view.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'main_controller.g.dart';
-
-@riverpod
-class MainControllerImplementation extends _$MainControllerImplementation
+class MainControllerImplementation extends Cubit<MainModel>
     implements MainController {
   static const int initialIndex = 0;
   @override

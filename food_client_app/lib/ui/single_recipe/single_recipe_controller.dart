@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_client/commons/error.dart';
 import 'package:food_client/commons/view_state.dart';
 import 'package:food_client/services/logging_service/logging_service.dart';
@@ -12,38 +13,40 @@ import 'package:food_client/ui/single_recipe/services/single_recipe_web_image_si
 import 'package:food_client/ui/single_recipe/single_recipe_model.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_view.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:share_plus/share_plus.dart';
-
-part 'single_recipe_controller.g.dart';
 
 const int widthPixelsDescriptionSteps = 512;
 const int widthPixelsIngredientThumbNail = 256;
 
-@riverpod
-class SingleRecipeControllerImplementation
-    extends _$SingleRecipeControllerImplementation
+class SingleRecipeControllerImplementation extends Cubit<SingleRecipeModel>
     implements SingleRecipeController {
-  @override
-  SingleRecipeModel build({
-    required final String recipeId,
-    required final SingleRecipeWebClientService webClientService,
-    required final SingleRecipeWebImageSizerService webImageSizerService,
-    required final SingleRecipeNavigationService navigationService,
-    required final SingleRecipePersistenceService persistenceService,
-    required final LoggingService logger,
-  }) {
+  final SingleRecipeWebClientService webClientService;
+  final SingleRecipeWebImageSizerService webImageSizerService;
+  final SingleRecipeNavigationService navigationService;
+  final SingleRecipePersistenceService persistenceService;
+  final String recipeId;
+  final LoggingService logger;
+
+  SingleRecipeControllerImplementation({
+    required this.recipeId,
+    required this.webClientService,
+    required this.webImageSizerService,
+    required this.navigationService,
+    required this.persistenceService,
+    required this.logger,
+  }) : super(
+          SingleRecipeModel(
+            recipeId: recipeId,
+            recipe: const ViewState<SingleRecipeModelRecipe>.loading(),
+            selectedYield: none(),
+          ),
+        ) {
     scheduleMicrotask(
       () => unawaited(
         Task.sequenceList(<Task<void>>[
           fetchSingleRecipe(),
         ]).run(),
       ),
-    );
-    return SingleRecipeModel(
-      recipeId: recipeId,
-      recipe: const ViewState<SingleRecipeModelRecipe>.loading(),
-      selectedYield: none(),
     );
   }
 
@@ -52,7 +55,7 @@ class SingleRecipeControllerImplementation
     required final int yield,
     required final String recipeId,
   }) =>
-      state = state.copyWith(selectedYield: some(yield));
+      emit(state.copyWith(selectedYield: some(yield)));
 
   Task<void> fetchSingleRecipe() => webClientService
           .fetchSingleRecipe(recipeId: recipeId)
@@ -73,13 +76,15 @@ class SingleRecipeControllerImplementation
             ),
           );
 
-          state = state.copyWith(recipe: error.toViewStateError());
+          emit(state.copyWith(recipe: error.toViewStateError()));
         },
         (SingleRecipeModelRecipe recipe) {
-          state = state.copyWith(
-            recipe: recipe.toViewStateData(),
-            selectedYield: recipe.yields.firstOption.map(
-              (final SingleRecipeModelYield yield) => yield.servings,
+          emit(
+            state.copyWith(
+              recipe: recipe.toViewStateData(),
+              selectedYield: recipe.yields.firstOption.map(
+                (final SingleRecipeModelYield yield) => yield.servings,
+              ),
             ),
           );
         },

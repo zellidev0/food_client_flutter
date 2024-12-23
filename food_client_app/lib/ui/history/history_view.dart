@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:food_client/commons/empty_view_content.dart';
-import 'package:food_client/mvc.dart';
 import 'package:food_client/my_scaffold.dart';
 import 'package:food_client/ui/history/history_model.dart';
 import 'package:food_client/ui/history/widgets/history_view_recipe_list_item.dart';
 
-class HistoryView extends MvcView<HistoryController, HistoryModel> {
+class HistoryView extends StatelessWidget {
+  final HistoryController controller;
+  final HistoryModel model;
+
   const HistoryView({
-    required super.controller,
-    required super.model,
+    required this.controller,
+    required this.model,
     super.key,
   });
 
@@ -46,7 +48,7 @@ class HistoryView extends MvcView<HistoryController, HistoryModel> {
       );
 }
 
-abstract class HistoryController implements MvcController {
+abstract class HistoryController {
   void goToSingleRecipeView({required final String recipeId});
   void goBack();
 }

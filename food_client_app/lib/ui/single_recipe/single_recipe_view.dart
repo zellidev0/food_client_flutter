@@ -7,16 +7,16 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:food_client/commons/widgets.dart';
-import 'package:food_client/mvc.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_model.dart';
 import 'package:fpdart/fpdart.dart';
 
-class SingleRecipeView
-    extends MvcView<SingleRecipeController, SingleRecipeModel> {
+class SingleRecipeView extends StatelessWidget {
+  final SingleRecipeController controller;
+  final SingleRecipeModel model;
   const SingleRecipeView({
-    required super.controller,
-    required super.model,
     super.key,
+    required this.controller,
+    required this.model,
   });
 
   @override
@@ -382,7 +382,7 @@ class SingleRecipeView
       );
 }
 
-abstract class SingleRecipeController extends MvcController {
+abstract class SingleRecipeController {
   void setSelectedYield({
     required final int yield,
     required final String recipeId,

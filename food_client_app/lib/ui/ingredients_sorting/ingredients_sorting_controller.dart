@@ -2,11 +2,11 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_client/commons/error.dart';
 import 'package:food_client/generated/locale_keys.g.dart';
 import 'package:food_client/services/logging_service/logging_service.dart';
-import 'package:food_client/services/navigation_service/navigation_service.dart'
-    hide navigationService;
+import 'package:food_client/services/navigation_service/navigation_service.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_model.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_view.dart';
 import 'package:food_client/ui/ingredients_sorting/services/ingredients_sorting_navigation_service.dart';
@@ -14,10 +14,7 @@ import 'package:food_client/ui/ingredients_sorting/services/ingredients_sorting_
 import 'package:food_client/ui/ingredients_sorting/services/ingredients_sorting_web_client_service.dart';
 import 'package:food_client/ui/ingredients_sorting/services/ingredients_sorting_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
-
-part 'ingredients_sorting_controller.g.dart';
 
 typedef WebClientSorting = IngredientsSortingWebClientModelIngredientSorting;
 typedef PersistenceSorting = IngredientsSortingPersistenceModelSorting;
@@ -28,21 +25,31 @@ typedef Family1 = IngredientsSortingModelIngredientFamily;
 const int takeSize = 250;
 const int _widthPixels = 256;
 
-@riverpod
 class IngredientsSortingControllerImplementation
-    extends _$IngredientsSortingControllerImplementation
+    extends Cubit<IngredientsSortingModel>
     implements IngredientsSortingController {
-  @override
-  IngredientsSortingModel build({
-    required final IngredientsSortingNavigationService navigationService,
-    required final IngredientsSortingWebClientService webClientService,
-    required final IngredientsSortingWebImageSizerService webImageSizerService,
-    required final IngredientsSortingPersistenceService persistenceService,
-    required final LoggingService logger,
-  }) =>
+  final IngredientsSortingNavigationService navigationService;
+  final IngredientsSortingWebClientService webClientService;
+  final IngredientsSortingWebImageSizerService webImageSizerService;
+  final IngredientsSortingPersistenceService persistenceService;
+  final LoggingService logger;
+  IngredientsSortingControllerImplementation({
+    required this.navigationService,
+    required this.webClientService,
+    required this.webImageSizerService,
+    required this.persistenceService,
+    required this.logger,
+  }) : super(
+          const IngredientsSortingModel(
+            units: <IngredientsSortingModelUnit>[],
+          ),
+        ) {
+    emit(
       IngredientsSortingModel(
         units: _fetchPersistenceServiceUnits(),
-      );
+      ),
+    );
+  }
 
   @override
   void goBack() => navigationService.goBack();
@@ -63,8 +70,10 @@ class IngredientsSortingControllerImplementation
             )
             .match(
               logger.error,
-              (_) => state = state.copyWith(
-                units: _fetchPersistenceServiceUnits(),
+              (_) => emit(
+                state.copyWith(
+                  units: _fetchPersistenceServiceUnits(),
+                ),
               ),
             )
             .andThen(IO<void>(navigationService.goBack).toTask)
@@ -101,8 +110,10 @@ class IngredientsSortingControllerImplementation
                           message: 'Could not delete unit with id ${unit.id}',
                         ),
                       ),
-                      (final _) => state = state.copyWith(
-                        units: _fetchPersistenceServiceUnits(),
+                      (final _) => emit(
+                        state.copyWith(
+                          units: _fetchPersistenceServiceUnits(),
+                        ),
                       ),
                     )
                     .run,
@@ -117,14 +128,16 @@ class IngredientsSortingControllerImplementation
       unawaited(navigationService.showModalBottomSheet(child: child));
 
   @override
-  void setUnitSelected({required final Unit unit}) => state = state.copyWith(
-        units: state.units
-            .map(
-              (final Unit element) => element.copyWith(
-                selected: element.id == unit.id,
-              ),
-            )
-            .toList(),
+  void setUnitSelected({required final Unit unit}) => emit(
+        state.copyWith(
+          units: state.units
+              .map(
+                (final Unit element) => element.copyWith(
+                  selected: element.id == unit.id,
+                ),
+              )
+              .toList(),
+        ),
       );
 
   @override
@@ -137,14 +150,16 @@ class IngredientsSortingControllerImplementation
         List<IngredientsSortingModelSorting>.from(unit.sorting);
     final IngredientsSortingModelSorting sorting = sortings.removeAt(oldIndex);
     sortings.insert(newIndex, sorting);
-    state = state.copyWith(
-      units: state.units
-          .map(
-            (final Unit element) => element.copyWith(
-              sorting: element.id == unit.id ? sortings : element.sorting,
-            ),
-          )
-          .toList(),
+    emit(
+      state.copyWith(
+        units: state.units
+            .map(
+              (final Unit element) => element.copyWith(
+                sorting: element.id == unit.id ? sortings : element.sorting,
+              ),
+            )
+            .toList(),
+      ),
     );
     unawaited(
       persistenceService

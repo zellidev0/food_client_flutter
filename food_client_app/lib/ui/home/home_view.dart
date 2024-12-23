@@ -7,6 +7,8 @@ final PageStorageBucket pageStorageBucket = PageStorageBucket();
 class HomeView extends StatelessWidget {
   const HomeView({
     super.key,
+    required this.controller,
+    required this.model,
   });
 
   @override
