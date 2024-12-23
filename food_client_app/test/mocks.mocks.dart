@@ -456,33 +456,33 @@ class MockHomeWebClientService extends _i1.Mock
       ) as _i2.TaskEither<Exception, _i13.HomeWebClientModelRecipeResponse>);
 
   @override
-  _i2.TaskEither<Exception, List<_i13.HomeWebClientModelCuisine>>
-      fetchCuisines({
+  _i2.TaskEither<Exception,
+      List<_i13.HomeWebClientModelCuisine>> fetchCuisines({
     required List<_i14.Locale>? recipeLocales,
     _i2.Option<int>? take = const _i2.None(),
   }) =>
-          (super.noSuchMethod(
-            Invocation.method(
-              #fetchCuisines,
-              [],
-              {
-                #recipeLocales: recipeLocales,
-                #take: take,
-              },
-            ),
-            returnValue: _FakeTaskEither_0<Exception,
-                List<_i13.HomeWebClientModelCuisine>>(
-              this,
-              Invocation.method(
-                #fetchCuisines,
-                [],
-                {
-                  #recipeLocales: recipeLocales,
-                  #take: take,
-                },
-              ),
-            ),
-          ) as _i2.TaskEither<Exception, List<_i13.HomeWebClientModelCuisine>>);
+      (super.noSuchMethod(
+        Invocation.method(
+          #fetchCuisines,
+          [],
+          {
+            #recipeLocales: recipeLocales,
+            #take: take,
+          },
+        ),
+        returnValue:
+            _FakeTaskEither_0<Exception, List<_i13.HomeWebClientModelCuisine>>(
+          this,
+          Invocation.method(
+            #fetchCuisines,
+            [],
+            {
+              #recipeLocales: recipeLocales,
+              #take: take,
+            },
+          ),
+        ),
+      ) as _i2.TaskEither<Exception, List<_i13.HomeWebClientModelCuisine>>);
 
   @override
   _i2.TaskEither<Exception, List<_i13.HomeWebClientModelTag>> fetchTags({

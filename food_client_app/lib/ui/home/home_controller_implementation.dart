@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:bloc/bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:food_client/commons/error.dart';
@@ -15,44 +16,43 @@ import 'package:food_client/ui/home/services/home_web_client_service.dart';
 import 'package:food_client/ui/home/services/home_web_image_sizer_service.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-part 'home_controller_implementation.g.dart';
 
 const int widthPixels = 600;
 const int recipesPerPage = 16;
 
-@riverpod
-class HomeControllerImplementation extends _$HomeControllerImplementation
+class HomeControllerImplementation extends Cubit<HomeModel>
     implements HomeController {
-  @override
-  HomeModel build({
-    required final HomeWebClientService webClientService,
-    required final HomePersistenceService persistenceService,
-    required final HomeWebImageSizerService webImageSizerService,
-    required final HomeNavigationService globalNavigationService,
-    required final LoggingService logger,
-    required final List<Locale> recipeLocales,
-  }) {
-    final PagingController<int, HomeModelRecipe> paginationController =
-        PagingController<int, HomeModelRecipe>(
-      firstPageKey: 0,
-    );
+  final HomeNavigationService globalNavigationService;
+  final HomePersistenceService persistenceService;
+  final HomeWebImageSizerService webImageSizerService;
+  final HomeWebClientService webClientService;
+  final LoggingService logger;
+  final List<Locale> recipeLocales;
+  HomeControllerImplementation({
+    required this.globalNavigationService,
+    required this.persistenceService,
+    required this.webImageSizerService,
+    required this.webClientService,
+    required this.logger,
+    required this.recipeLocales,
+  }) : super(
+          HomeModel(
+            filters: const ViewState<List<HomeModelFilter>>.loading(),
+            recipes: const ViewState<List<HomeModelRecipe>>.loading(),
+            pagingController: PagingController<int, HomeModelRecipe>(
+              firstPageKey: 0,
+            ),
+          ),
+        ) {
     scheduleMicrotask(
       () => unawaited(
         Task.sequenceList(<Task<void>>[
           _fetchFiltersAndSetState(),
           _listenToPaginationController(
-            paginationController: paginationController,
+            paginationController: state.pagingController,
           ),
         ]).run(),
       ),
-    );
-
-    return HomeModel(
-      filters: const ViewState<List<HomeModelFilter>>.loading(),
-      recipes: const ViewState<List<HomeModelRecipe>>.loading(),
-      pagingController: paginationController,
     );
   }
 
@@ -137,13 +137,15 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
               );
             },
             (final List<HomeModelRecipe> recipes) {
-              state = state.copyWith(
-                filters: state.filters.mapData(
-                  (List<HomeModelFilter> filters) => replaceWIthId(
-                    data: filters,
-                    filterId: filterId,
-                    isSelected: isSelected,
-                  ).toList(),
+              emit(
+                state.copyWith(
+                  filters: state.filters.mapData(
+                    (List<HomeModelFilter> filters) => replaceWIthId(
+                      data: filters,
+                      filterId: filterId,
+                      isSelected: isSelected,
+                    ).toList(),
+                  ),
                 ),
               );
               _setRecipesInPageController(
@@ -299,13 +301,13 @@ class HomeControllerImplementation extends _$HomeControllerImplementation
           globalNavigationService.showSnackBar(
             message: LocaleKeys.ui_home_view_error_states_fetching_filters.tr(),
           );
-          state = state.copyWith(filters: error.toViewStateError());
+          emit(state.copyWith(filters: error.toViewStateError()));
         },
         (final HomeModel newState) {
           logger.info(
             message: 'Fetched filters: ${newState.filters}',
           );
-          state = newState;
+          emit(newState);
         },
       );
 

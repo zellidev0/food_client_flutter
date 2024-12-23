@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:food_client/mvc.dart';
 
-abstract class HomeController implements MvcController {
+abstract class HomeController {
   void retryLastRecipeFetching();
   void setFiltersSelected({
     required final String filterId,

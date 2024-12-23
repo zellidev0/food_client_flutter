@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_client/commons/type_adapters.dart';
 import 'package:food_client/services/app_settings_service/app_settings_service.dart';
 import 'package:food_client/services/app_settings_service/in_memory_app_settings_service.dart';
@@ -11,7 +10,6 @@ import 'package:food_client/services/persistence_service/persistence_service.dar
 import 'package:food_client/services/persistence_service/persistence_service_model.dart';
 import 'package:food_client/services/web_client/web_client_service.dart';
 import 'package:food_client/services/web_image_sizer/web_image_sizer_service.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
@@ -63,20 +61,16 @@ void main() async {
       ],
       path: 'assets/translations',
       fallbackLocale: const Locale('en'),
-      child: ProviderScope(
-        child: MyApp(),
-      ),
+      child: const MyApp(),
     ),
   );
 }
 
-class MyApp extends ConsumerWidget {
-  final GoRouter goRouter1 = goRouter();
-  MyApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
-  Widget build(final BuildContext context, final WidgetRef ref) =>
-      MultiBlocProvider(
+  Widget build(final BuildContext context) => MultiBlocProvider(
         // ignore: always_specify_types
         providers: [
           BlocProvider<AppSettingsService>(
@@ -87,7 +81,7 @@ class MyApp extends ConsumerWidget {
           ),
           BlocProvider<NavigationService>(
             create: (_) => GoRouterNavigationService.instance(
-              goRouter: goRouter1,
+              goRouter: goRouter,
             ),
           ),
           BlocProvider<WebImageSizerService>(
@@ -107,7 +101,7 @@ class MyApp extends ConsumerWidget {
             ),
             useMaterial3: true,
           ),
-          routerConfig: goRouter1,
+          routerConfig: goRouter,
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,

@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_client/services/app_settings_service/app_settings_service.dart';
 import 'package:food_client/services/logging_service/logging_service.dart';
 import 'package:food_client/services/navigation_service/navigation_service.dart';
@@ -8,16 +8,25 @@ import 'package:food_client/services/persistence_service/persistence_service.dar
 import 'package:food_client/services/web_client/web_client_service.dart';
 import 'package:food_client/services/web_image_sizer/web_image_sizer_service.dart';
 import 'package:food_client/ui/account/account_controller.dart';
+import 'package:food_client/ui/account/account_model.dart';
 import 'package:food_client/ui/account/account_view.dart';
 import 'package:food_client/ui/cart/cart_controller_implementation.dart';
+import 'package:food_client/ui/cart/cart_model.dart';
 import 'package:food_client/ui/cart/cart_view.dart';
 import 'package:food_client/ui/history/history_controller.dart';
+import 'package:food_client/ui/history/history_model.dart';
 import 'package:food_client/ui/history/history_view.dart';
+import 'package:food_client/ui/home/home_controller_implementation.dart';
+import 'package:food_client/ui/home/home_model.dart';
 import 'package:food_client/ui/home/home_view.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_controller.dart';
+import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_model.dart';
 import 'package:food_client/ui/ingredients_sorting/ingredients_sorting_view.dart';
+import 'package:food_client/ui/main/main_controller.dart';
+import 'package:food_client/ui/main/main_model.dart';
 import 'package:food_client/ui/main/main_view.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_controller.dart';
+import 'package:food_client/ui/single_recipe/single_recipe_model.dart';
 import 'package:food_client/ui/single_recipe/single_recipe_view.dart';
 import 'package:go_router/go_router.dart';
 
@@ -73,13 +82,23 @@ class ShellRouteData extends StatefulShellRouteData {
     StatefulNavigationShell navigationShell,
     List<Widget> children,
   ) =>
-      MainView(
-        bottomNavigationDestinations: navigationShell.route.branches
-            .map((StatefulShellBranch branch) => branch.defaultRoute?.path)
-            .whereNotNull()
-            .toList(),
-        navigationShell: navigationShell,
-        children: children,
+      BlocProvider<MainControllerImplementation>(
+        create: (BuildContext context) => MainControllerImplementation(
+          const MainModel(
+            currentBottomNavigationBarIndex: 0,
+          ),
+          navigationService: context.read<NavigationService>(),
+        ),
+        child: BlocBuilder<MainControllerImplementation, MainModel>(
+          builder: (BuildContext context, MainModel state) => MainView(
+            bottomNavigationDestinations: navigationShell.route.branches
+                .map((StatefulShellBranch branch) => branch.defaultRoute?.path)
+                .whereNotNull()
+                .toList(),
+            navigationShell: navigationShell,
+            children: children,
+          ),
+        ),
       );
 }
 
@@ -98,98 +117,122 @@ class AccountPageBranchData extends StatefulShellBranchData {
 @immutable
 class HomePageRoute extends GoRouteData {
   @override
-  Widget build(BuildContext context, GoRouterState state) => const HomeView();
+  Widget build(BuildContext context, GoRouterState state) =>
+      BlocProvider<HomeControllerImplementation>(
+        create: (BuildContext context) => HomeControllerImplementation(
+          recipeLocales: context.read<AppSettingsService>().state.recipeLocales,
+          globalNavigationService: context.read<NavigationService>(),
+          webClientService: context.read<WebClientService>(),
+          webImageSizerService: context.read<WebImageSizerService>(),
+          persistenceService: context.read<PersistenceService>(),
+          logger: LoggingServiceImplementation(
+            loggerName: 'HomeController',
+          ),
+        ),
+        child: BlocBuilder<HomeControllerImplementation, HomeModel>(
+          builder: (BuildContext context1, HomeModel model) => HomeView(
+            model: model,
+            controller: BlocProvider.of<HomeControllerImplementation>(
+              context1,
+            ),
+          ),
+        ),
+      );
 }
 
 @immutable
 class CartPageRoute extends GoRouteData {
   @override
-  Widget build(BuildContext context, GoRouterState state) => Consumer(
-        builder: (_, WidgetRef ref, ___) {
-          final CartControllerImplementationProvider provider =
-              cartControllerImplementationProvider(
-            navigationService: ref.watch(navigationServiceProvider),
-            combinedIngredients:
-                ref.watch(appSettingsServiceProvider).combineIngredients,
-            imageSizerService: ref.read(webImageSizerServiceProvider),
-            persistenceService: ref.watch(persistenceServiceProvider.notifier),
-            logger: ref.watch(
-              loggingServiceProvider(
-                loggerName: 'CartController',
-              ),
+  Widget build(BuildContext context, GoRouterState state) =>
+      BlocProvider<CartControllerImplementation>(
+        create: (BuildContext context) => CartControllerImplementation(
+          combinedIngredients:
+              context.read<AppSettingsService>().state.combineIngredients,
+          imageSizerService: context.read<WebImageSizerService>(),
+          navigationService: context.read<NavigationService>(),
+          persistenceService: context.read<PersistenceService>(),
+          logger: LoggingServiceImplementation(
+            loggerName: 'CartController',
+          ),
+        ),
+        child: BlocBuilder<CartControllerImplementation, CartModel>(
+          builder: (BuildContext context, CartModel model) => CartView(
+            model: model,
+            controller: BlocProvider.of<CartControllerImplementation>(
+              context,
             ),
-          );
-          ref.listen(persistenceServiceProvider, (_, __) {
-            ref.invalidate(cartControllerImplementationProvider);
-          });
-          return CartView(
-            model: ref.watch(provider),
-            controller: ref.watch(provider.notifier),
-          );
-        },
+          ),
+        ),
       );
 }
 
 @immutable
 class IngredientsSortingPageRoute extends GoRouteData {
   @override
-  Widget build(BuildContext context, GoRouterState state) => Consumer(
-        builder: (_, WidgetRef ref, ___) {
-          final IngredientsSortingControllerImplementationProvider provider =
-              IngredientsSortingControllerImplementationProvider(
-            webClientService: ref.read(webClientServiceProvider),
-            webImageSizerService: ref.read(webImageSizerServiceProvider),
-            logger: ref.read(
-              loggingServiceProvider(
-                loggerName: 'IngredientsSortingController',
-              ),
+  Widget build(BuildContext context, GoRouterState state) =>
+      BlocProvider<IngredientsSortingControllerImplementation>(
+        create: (BuildContext context) =>
+            IngredientsSortingControllerImplementation(
+          webClientService: context.read<WebClientService>(),
+          webImageSizerService: context.read<WebImageSizerService>(),
+          logger: LoggingServiceImplementation(
+            loggerName: 'IngredientsSortingController',
+          ),
+          navigationService: context.read<NavigationService>(),
+          persistenceService: context.read<PersistenceService>(),
+        ),
+        child: BlocBuilder<IngredientsSortingControllerImplementation,
+            IngredientsSortingModel>(
+          builder: (BuildContext context, IngredientsSortingModel model) =>
+              IngredientsSortingView(
+            model: model,
+            controller:
+                BlocProvider.of<IngredientsSortingControllerImplementation>(
+              context,
             ),
-            navigationService: ref.read(navigationServiceProvider),
-            persistenceService: ref.watch(persistenceServiceProvider.notifier),
-          );
-          return IngredientsSortingView(
-            model: ref.watch(provider),
-            controller: ref.watch(provider.notifier),
-          );
-        },
+          ),
+        ),
       );
 }
 
 @immutable
 class HistoryPageRoute extends GoRouteData {
   @override
-  Widget build(BuildContext context, GoRouterState state) => Consumer(
-        builder: (_, WidgetRef ref, ___) {
-          final HistoryControllerImplementationProvider provider =
-              historyControllerImplementationProvider(
-            logger: ref.watch(
-              loggingServiceProvider(loggerName: 'SingleRecipe'),
-            ),
-            navigationService: ref.watch(navigationServiceProvider),
-            persistenceService: ref.watch(persistenceServiceProvider.notifier),
-          );
-          return HistoryView(
-            model: ref.watch(provider),
-            controller: ref.watch(provider.notifier),
-          );
-        },
+  Widget build(BuildContext context, GoRouterState state) =>
+      BlocProvider<HistoryControllerImplementation>(
+        create: (BuildContext context) => HistoryControllerImplementation(
+          logger: LoggingServiceImplementation(
+            loggerName: 'HistoryController',
+          ),
+          navigationService: context.read<NavigationService>(),
+          persistenceService: context.read<PersistenceService>(),
+        ),
+        child: BlocBuilder<HistoryControllerImplementation, HistoryModel>(
+          builder: (BuildContext context, HistoryModel model) => HistoryView(
+            model: model,
+            controller:
+                BlocProvider.of<HistoryControllerImplementation>(context),
+          ),
+        ),
       );
 }
 
 @immutable
 class AccountPageRoute extends GoRouteData {
   @override
-  Widget build(BuildContext context, GoRouterState state) => Consumer(
-        builder: (_, WidgetRef ref, ___) {
-          final AccountControllerImplementationProvider provider =
-              accountControllerImplementationProvider(
-            navigationService: ref.watch(navigationServiceProvider),
-          );
-          return AccountView(
-            model: ref.watch(provider),
-            controller: ref.watch(provider.notifier),
-          );
-        },
+  Widget build(BuildContext context, GoRouterState state) =>
+      BlocProvider<AccountControllerImplementation>(
+        create: (BuildContext context) => AccountControllerImplementation(
+          navigationService: context.read<NavigationService>(),
+        ),
+        child: BlocBuilder<AccountControllerImplementation, AccountModel>(
+          builder: (BuildContext context, AccountModel model) => AccountView(
+            model: model,
+            controller: BlocProvider.of<AccountControllerImplementation>(
+              context,
+            ),
+          ),
+        ),
       );
 }
 
@@ -205,25 +248,29 @@ class SingleRecipePageRoute extends GoRouteData {
   });
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => Consumer(
-        builder: (_, WidgetRef ref, ___) {
-          final SingleRecipeControllerImplementationProvider provider =
-              singleRecipeControllerImplementationProvider(
-            recipeId: recipeId,
-            navigationService: ref.read(navigationServiceProvider),
-            webClientService: ref.read(webClientServiceProvider),
-            webImageSizerService: ref.read(webImageSizerServiceProvider),
-            persistenceService: ref.watch(
-              persistenceServiceProvider.notifier,
+  Widget build(BuildContext context, GoRouterState state) =>
+      BlocProvider<SingleRecipeControllerImplementation>(
+        create: (BuildContext context) => SingleRecipeControllerImplementation(
+          recipeId:
+              state.pathParameters[NavigationServiceUris.singleRecipeIdKey] ??
+                  '',
+          navigationService: context.read<NavigationService>(),
+          webClientService: context.read<WebClientService>(),
+          webImageSizerService: context.read<WebImageSizerService>(),
+          persistenceService: context.read<PersistenceService>(),
+          logger: LoggingServiceImplementation(
+            loggerName: 'SingleRecipe',
+          ),
+        ),
+        child: BlocBuilder<SingleRecipeControllerImplementation,
+            SingleRecipeModel>(
+          builder: (BuildContext context, SingleRecipeModel model) =>
+              SingleRecipeView(
+            model: model,
+            controller: BlocProvider.of<SingleRecipeControllerImplementation>(
+              context,
             ),
-            logger: ref.watch(
-              loggingServiceProvider(loggerName: 'SingleRecipe'),
-            ),
-          );
-          return SingleRecipeView(
-            model: ref.watch(provider),
-            controller: ref.watch(provider.notifier),
-          );
-        },
+          ),
+        ),
       );
 }

@@ -16,7 +16,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:go_router/go_router.dart';
 
 part 'navigation_service.freezed.dart';
-part 'navigation_service.g.dart';
 
 mixin GeneralNavigationService {
   void goBack({final String? fallbackLocation});
@@ -80,7 +79,8 @@ class GoRouterNavigationService extends NavigationService {
 
   StatefulNavigationShell? navigationShell;
 
-  GoRouterNavigationService({
+  GoRouterNavigationService._(
+    super.initialState, {
     required final GoRouter goRouter,
   }) : _goRouter = goRouter;
 

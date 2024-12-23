@@ -5,14 +5,9 @@ import 'package:go_router/go_router.dart';
 
 const String dailyPulseDailyPulseIdPathParameter = 'dailyPulseId';
 
-@riverpod
-GoRouter goRouter(final GoRouterRef ref) => GoRouter(
-      debugLogDiagnostics: kDebugMode,
-      initialLocation: NavigationServiceUris.homeRoute,
-      navigatorKey: rootNavigatorKey,
-      routes: $appRoutes,
-    );
-
-abstract class GoRouterNavigationService with GeneralNavigationService {
-  void openUri({required final Uri uri});
-}
+GoRouter goRouter = GoRouter(
+  debugLogDiagnostics: kDebugMode,
+  initialLocation: NavigationServiceUris.homeRoute,
+  navigatorKey: rootNavigatorKey,
+  routes: $appRoutes,
+);

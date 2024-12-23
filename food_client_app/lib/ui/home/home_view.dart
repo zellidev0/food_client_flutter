@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:food_client/ui/home/home_controller.dart';
+import 'package:food_client/ui/home/home_model.dart';
 import 'package:food_client/ui/home/widgets/recipe_header.dart';
 import 'package:food_client/ui/home/widgets/recipes_list.dart';
 
 final PageStorageBucket pageStorageBucket = PageStorageBucket();
 
 class HomeView extends StatelessWidget {
+  final HomeController controller;
+  final HomeModel model;
   const HomeView({
     super.key,
     required this.controller,
